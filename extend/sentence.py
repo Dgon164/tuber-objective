@@ -19,18 +19,14 @@ path = sys.argv[1]
 N = int(sys.argv[2]) if len(sys.argv) > 2 else 10
 
 # ---- the signal, as discovery.py reads it -------------------------------
-data, bits = D.read_signal(path)
-frame, profile, score, folding = D.find_frame(bits)
-words = D.cut_words(bits, frame)
-pool, made_of, part_of = {}, collections.defaultdict(set), collections.defaultdict(set)
-L0 = D.run_level(words, 1, pool, made_of, part_of, 1000000, None, 0)
+R = D.Root(path)
 T1 = time.time()
 
 text = lambda t: bytes(t).decode('latin-1')
 
 # ---- NEW: the follows table as a chain to walk --------------------------
 # run_follows: (run_a, run_b) -> count
-rfol = L0['run_follows']
+rfol = R.L0['run_follows']
 
 # build adjacency: word -> [(next_word, count), ...]
 adj = collections.defaultdict(list)

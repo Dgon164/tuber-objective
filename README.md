@@ -78,7 +78,7 @@ its forms.
 | [`paper/discovery.md`](paper/discovery.md) | what the system is and why it's built this way |
 | [`paper/persistence.md`](paper/persistence.md) | a proposed alignment paper: a root-cause objective is one under which complex things persist — it needs them, cannot get them back, and answers a harm by satisfying its cause (the baby model) |
 | [`guides/`](guides/) | how to run it, how it works step by step, how to read what it writes, how to feed it anything, how to connect it to other systems, and how to build new things on top of it |
-| [`notes/`](notes/) | the design rules, the things we haven't tried yet, and a log of what was built and when |
+| [`notes/`](notes/) | the design rules, the things we haven't tried yet, a proposal for the generations of AI and where this sits in them, and a log of what was built and when |
 | [`examples/text/`](examples/text/BREAKDOWN.md) | an English novel (Alice in Wonderland, plain ASCII): how it finds the alphabet, the words, the word endings, and a group of 22 verb stems |
 | [`examples/german/`](examples/german/BREAKDOWN.md) | a day of German parliament (UTF-8) plus the English version, and a bridge that lines up what the two languages share |
 | [`examples/code/`](examples/code/BREAKDOWN.md) | Discovery's own source code, and a compiled C program read two ways — as 64-bit chunks (the file's layout) and as single bytes (the readable strings inside) |
@@ -105,6 +105,11 @@ row-by-row extension reads what the net wrote).
 ```
 python discovery.py examples/text/alice.txt --lens ascii
 ```
+
+From Python the same thing is one call — `R = discovery.Root(path)`:
+the signal as read, level 0, the pool. Every program built on Discovery
+in this repo is that call plus one new thing, and so is `discovery.py`
+itself.
 
 ## Regenerate everything
 

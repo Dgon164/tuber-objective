@@ -13,23 +13,17 @@ sets).  Nothing is dropped; the tables show the top of each list.
     python same_slot.py ../examples/text/alice.txt
 
 Given: the cut at space and newline, as in alice.txt.sep20-0a.record.txt.
-The signal is read as discovery.py reads it; the lines marked NEW are
-the only new thing.
+The signal is read as discovery.py reads it (one call, Root); the lines
+marked NEW are the only new thing.
 """
 import sys, os, collections
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import discovery as D
 
 # ---- the signal, as discovery.py reads it -------------------------------
-path = sys.argv[1]
-data, bits = D.read_signal(path)
-frame, profile, score, folding = D.find_frame(bits)
-words = D.cut_words(bits, frame)
-pool, made_of, part_of = {}, collections.defaultdict(set), collections.defaultdict(set)
-L0 = D.run_level(words, [0x20, 0x0a], pool, made_of, part_of, 1000000, None, 0)
-runs = L0['runs']
-G = D.Glyphs(D.make_lens('ascii', frame))
-draw = lambda r: G.draw(r)
+R = D.Root(sys.argv[1], separators=[0x20, 0x0a], lens='ascii')
+runs = R.L0['runs']
+draw = R.draw
 
 # ---- NEW: every slot a run fills -- (left neighbour, right neighbour) ---
 slots = collections.defaultdict(collections.Counter)      # run -> slot -> count

@@ -322,8 +322,11 @@ sits inside.
 
 ## 10. Run
 
-`discover()` calls the steps in order and returns the paths to the two
-record files. `main()` handles the command line.
+`Root` is the one call a program built on Discovery makes: the signal
+as read (sections 1 to 3), level 0 on a shared pool (4 to 7), and a
+call for each further level. `discover()` is `Root` plus the levels run
+to the end and the record written (8 and 9), and returns the paths to
+the two record files. `main()` handles the command line.
 
 ## What's not in the file
 

@@ -209,25 +209,28 @@ per-column rate), plus writing the flips to a file and calling
    the lines. If it shows nothing new, the signal didn't have it.
 
 Every script in `extend/`, `hybrid/` and `examples/german/bridge.py` has
-the same shape, so that the one new thing is the only thing to read:
+the same shape, so that the one new thing is the only thing to read.
+The root is one call:
 
 ```
 import discovery as D
 
 # ---- the signal, as discovery.py reads it -------------------------------
-path = sys.argv[1]
-data, bits = D.read_signal(path)
-frame, profile, score, folding = D.find_frame(bits)
-words = D.cut_words(bits, frame)
-pool, made_of, part_of = {}, collections.defaultdict(set), collections.defaultdict(set)
-L0 = D.run_level(words, 1, pool, made_of, part_of, 1000000, None, 0)
+R = D.Root(sys.argv[1])      # read, frame, words, level 0, the shared pool
 
 # ---- NEW: the one new thing ---------------------------------------------
-...
+...                          # on R.words, R.L0, R.pool, R.part_of; R.level(...) for one level more
 
 # ---- what it found ------------------------------------------------------
-print(...)
+print(...)                   # R.draw(x) draws a part through the lens
 ```
+
+`Root` takes the four places to point as arguments where they are
+arguments: `separators` (the cut), `same` (the kind of same), the path
+(the signal); the comparison target is what the NEW section does with
+what `Root` holds. `discover()` itself is `Root` plus `all_levels()`
+plus the record, so the root of every program and the root of the
+program are the same call.
 
 A script that reads a record instead of a signal opens with *the
 record, as discovery.py wrote it* (`json.load` of the `.record.json`);

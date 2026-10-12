@@ -17,6 +17,8 @@ Output  a record (plain text and JSON) of the parts that were found,
 
 No dependencies.  Run:  python discovery.py FILE [--lens ascii|utf8|octal]
                         python discovery.py --help   for the other options
+From Python:            R = discovery.Root(FILE)   the signal as read, level 0, the pool;
+                        discover() is Root plus every level and the record.
 """
 
 import sys, os, json, pickle, collections, heapq, bisect
@@ -848,15 +850,72 @@ def write_record(out_txt, out_json, name, data, bits, frame, profile, score, fol
 
 # --------------------------------------------------------------------------
 # 10. RUN  -- the whole thing, top to bottom
+#
+# Root is the one call a program built on Discovery makes: the signal, as
+# Discovery reads it -- read, frame, words, level 0 on a shared pool --
+# with a call for each further level.  discover() is Root plus the levels
+# run to the end and the record written; every script in extend/ and
+# hybrid/ is Root plus one new thing.
 # --------------------------------------------------------------------------
+
+class Root:
+    """The signal, as Discovery reads it.
+
+        R = Root(path)                 read, frame, words, level 0
+        R.words, R.frame               the signal as words of R.frame bits
+        R.L0                           level 0: runs, run_counts, run_follows, parts,
+                                       endings, beginnings, classes, next_class_of
+        R.pool, R.made_of, R.part_of   the shared pool and its connections
+        R.level(seq, separators, class_of)   one more level on the same pool
+        R.all_levels()                 level after level until one run is left, as discover() does
+        R.draw(x)                      a part as text, through the lens
+
+    separators: 1 for the most common word, N for the N most common, or a
+    list of words.  same: a map from a word to what stands in for it when
+    two words count as the same (the band in extend/same_within.py).
+    pool, made_of, part_of: a memory to start from, as load_memory gives it.
+    """
+
+    def __init__(self, path, separators=1, lens='raw', same=None, cap=1000000, limit=None,
+                 widest=64, frame=None, pool=None, made_of=None, part_of=None):
+        self.path = path
+        self.name = os.path.basename(path)
+        self.data, self.bits = read_signal(path, limit)
+        self.frame, self.profile, self.score, self.folding = find_frame(self.bits, widest, force=frame)
+        self.words = cut_words(self.bits, self.frame)
+        self.pool = {} if pool is None else pool
+        self.made_of = collections.defaultdict(set) if made_of is None else made_of
+        self.part_of = collections.defaultdict(set) if part_of is None else part_of
+        self.memory = frozenset(self.pool)       # what was remembered before this signal
+        self.earlier = set()                     # what earlier levels of this run produced
+        self.cap = cap
+        self.levels = []
+        self.glyphs = Glyphs(make_lens(lens, self.frame))
+        self.L0 = self.level(self.words, separators, same)
+
+    def level(self, seq, separators=1, class_of=None):
+        """One more level on the shared pool: cut, mint, crystallize."""
+        L = run_level(seq, separators, self.pool, self.made_of, self.part_of, self.cap,
+                      class_of, len(self.levels), self.memory, self.earlier)
+        self.levels.append(L)
+        self.earlier |= L['produced']
+        return L
+
+    def all_levels(self):
+        """Level after level, each on the runs of the one before with its
+        classes as a way to be the same, until a level is left with one run."""
+        while len(self.levels[-1]['runs']) >= 2:
+            L = self.levels[-1]
+            self.level(L['runs'], 1, L['next_class_of'])
+        return self.levels
+
+    def draw(self, x):
+        return self.glyphs.draw(x)
+
 
 def discover(path, lens='raw', limit=None, widest=64, top=25, out=None, quiet=False,
              separators=1, frame=None, cap=1000000, memory=None):
-    name = os.path.basename(path)
     forced = frame
-    data, bits = read_signal(path, limit)
-    frame, profile, score, folding = find_frame(bits, widest, force=frame)
-    words = cut_words(bits, frame)
     pool, made_of, part_of, history = load_memory(memory)
     mem = None
     if memory:
@@ -867,18 +926,20 @@ def discover(path, lens='raw', limit=None, widest=64, top=25, out=None, quiet=Fa
     else:
         sep0 = int(separators)
         sep_tag = '.sep%d' % sep0 if sep0 > 1 else ''
-    levels, pool, made_of, part_of = run_levels(words, sep0, cap, pool, made_of, part_of)
+    R = Root(path, sep0, lens, cap=cap, limit=limit, widest=widest, frame=frame,
+             pool=pool, made_of=made_of, part_of=part_of)
+    R.all_levels()
     if memory:
-        history.append((name, len(data), frame))
-        save_memory(memory, pool, made_of, part_of, history)
+        history.append((R.name, len(R.data), R.frame))
+        save_memory(memory, R.pool, R.made_of, R.part_of, history)
 
     out = out or os.path.dirname(os.path.abspath(path))
     os.makedirs(out, exist_ok=True)
-    tag = name + ('.frame%d' % forced if forced else '') + sep_tag + ('.m%d' % len(history) if memory else '')
+    tag = R.name + ('.frame%d' % forced if forced else '') + sep_tag + ('.m%d' % len(history) if memory else '')
     out_txt = os.path.join(out, tag + '.record.txt')
     out_json = os.path.join(out, tag + '.record.json')
-    text = write_record(out_txt, out_json, name, data, bits, frame, profile, score, folding,
-                        levels, pool, made_of, part_of, make_lens(lens, frame), top, mem)
+    text = write_record(out_txt, out_json, R.name, R.data, R.bits, R.frame, R.profile, R.score, R.folding,
+                        R.levels, R.pool, R.made_of, R.part_of, make_lens(lens, R.frame), top, mem)
     if not quiet:
         print(text)
         print('record written: %s' % out_txt)

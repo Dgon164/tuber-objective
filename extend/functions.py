@@ -68,17 +68,13 @@ N = int(sys.argv[2]) if len(sys.argv) > 2 else 100
 wordlist = sys.argv[3] if len(sys.argv) > 3 else '/usr/share/dict/american-english'
 
 # ---- the signal, as discovery.py reads it (layer 0: the record) ---------
-data, bits = D.read_signal(path)
-frame, profile, score, folding = D.find_frame(bits)
-words = D.cut_words(bits, frame)
-pool, made_of, part_of = {}, collections.defaultdict(set), collections.defaultdict(set)
-L0 = D.run_level(words, 1, pool, made_of, part_of, 1000000, None, 0)
-fol = L0['follows']
+R = D.Root(path)
+fol = R.L0['follows']
 T1 = time.time()
 
 text = lambda t: bytes(t).decode('latin-1')
 key = set(w.strip() for w in open(wordlist, encoding='utf-8', errors='replace'))
-seen = set(re.findall(r"[a-z']+", data.decode('latin-1').lower()))
+seen = set(re.findall(r"[a-z']+", R.data.decode('latin-1').lower()))
 
 def apply(f, x):
     pre, post = f
@@ -91,9 +87,9 @@ def show(f):
 # ---- NEW: layer 1, functions --------------------------------------------
 dom = collections.defaultdict(set)                  # f -> parts it was seen on
 kind = collections.defaultdict(set)                 # part -> functions it takes
-runs = [p for p in L0['parts'] if pool.get(p, 0) > 0]       # whole runs: what the signal stands up on its own
+runs = [p for p in R.L0['parts'] if R.pool.get(p, 0) > 0]   # whole runs: what the signal stands up on its own
 for p in runs:
-    for f in D.changes_of(p, part_of):
+    for f in D.changes_of(p, R.part_of):
         dom[f].add(p)
 funcs = {f for f, d in dom.items() if len(d) >= 2}
 for f in funcs:

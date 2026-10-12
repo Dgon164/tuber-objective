@@ -13,8 +13,8 @@ bit each, one row per byte of Alice fed through the net).
 
     python row_by_row.py ../hybrid/alice.txt.reservoir
 
-The signal is read as discovery.py reads it; the lines marked NEW are
-the only new thing.
+The signal is read as discovery.py reads it (one call, Root); the lines
+marked NEW are the only new thing.
 """
 import sys, os, collections
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
@@ -22,9 +22,8 @@ import discovery as D
 
 # ---- the signal, as discovery.py reads it -------------------------------
 path = sys.argv[1]
-data, bits = D.read_signal(path)
-frame, profile, score, folding = D.find_frame(bits)
-rows = D.cut_words(bits, frame)
+R = D.Root(path)
+rows, frame = R.words, R.frame
 
 # ---- NEW: a row against the row before it -------------------------------
 flips = [a ^ b for a, b in zip(rows, rows[1:])]

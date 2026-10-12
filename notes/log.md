@@ -299,3 +299,15 @@ What was built, in order, and what each run changed. Dates are 2026.
   separators; it goes through `run_level` with them now. Every output
   byte for byte the same as before. `guides/building-from-discovery.md`
   shows the shape.
+- Then the root itself, as one call: `discovery.Root(path)` — read,
+  frame, words, level 0 on a shared pool, a call per further level,
+  `all_levels()`, `draw()`. The four places to point are its arguments
+  where they are arguments (`separators`, `same`, the path).
+  `discover()` is `Root` plus `all_levels()` plus the record, so the
+  root of every program and the root of the program are the same call;
+  the extensions are `R = D.Root(path)` plus their NEW section. Records
+  and outputs byte for byte the same.
+- `notes/generations.md`: the proposal for the generations of AI (1.0
+  human-made, 1.1 with self-refinement, 2.0 neural networks, 2.1
+  hybrid, 3.0 self-assembling and learning) and where this repo sits:
+  3.0 by the definition, with `hybrid/` as the meeting point.

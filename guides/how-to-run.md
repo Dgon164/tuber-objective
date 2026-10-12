@@ -64,9 +64,13 @@ rebuilding every record in the repo.
 
 ```python
 import discovery
-txt, js = discovery.discover('some/file', lens='ascii', quiet=True)
+R = discovery.Root('some/file', lens='ascii')   # the signal as read: R.words, R.frame, R.L0, R.pool, R.part_of
+R.all_levels()                                  # every level, as discover() runs them: R.levels
+txt, js = discovery.discover('some/file', lens='ascii', quiet=True)   # Root plus the record written
 ```
 
+`Root` is the root of every program built on Discovery (the scripts in
+`extend/` are `Root` plus one new thing) and of `discover()` itself.
 Or call the steps one at a time — each is a plain function:
 
 ```python
