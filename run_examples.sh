@@ -2,6 +2,7 @@
 # Regenerates every record in the repo from the inputs.  Run from the repo root.
 set -e
 cd "$(dirname "$0")"
+export PYTHONHASHSEED=0   # extend/functions.py keys on strings; a fixed seed makes its output repeatable
 
 echo "== text"
 python3 discovery.py examples/text/alice.txt --lens ascii --quiet

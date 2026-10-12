@@ -159,4 +159,4 @@ The first run of the 1.6 MB source with one separator (the tab) grew the pool pa
 - A pair of neighbors only gets compared when one of them is new from the last round (same result, about half the time).
 - `--cap` (default 1,000,000 parts) stops the loop and says so in the record.
 
-With `--separators 2` (tab and space) the source runs in about 19 seconds.
+With `--separators 2` (tab and space) the source runs in about 45 seconds, three levels and all; about half of that is writing the record (the JSON, with every connection listed in both directions, is 300 MB for this file).

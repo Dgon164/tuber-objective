@@ -1,29 +1,29 @@
 FUNCTIONS   signal alice.txt   answer key /usr/share/dict/american-english
-  time: record 2.6s, functions 0.8s, making 7.8s, total 11.2s
+  time: record 1.4s, functions 0.6s, making 4.3s, total 6.4s
   5935 changes in the record, 1734 are functions (seen on 2+ parts), 25992 sibling links
-  20 made, 166 failed attempts, 186 attempts, 3 recalls, 505 negative flags at the end
+  20 made, 170 failed attempts, 190 attempts, 3 recalls, 504 negative flags at the end
 
 MADE   n  word              part + function     how      attempt#  failed before it
     1  Os                O +s                sibling         6  5
-    2  mare              are m+              sibling        29  22
-    3  tare              are t+              sibling        30  0
-    4  fare              are f+              sibling        31  0
-    5  ham               am h+               sibling        44  12
-    6  pare              are p+              sibling        65  20
-    7  rare              are r+              sibling        72  6
-    8  bare              are b+              sibling        73  0
-    9  fend              end f+              sibling        78  4
-   10  fate              ate f+              sibling        84  5
-   11  cone              one c+              sibling        99  14
-   12  offed             off +ed             sibling       113  13
-   13  rend              end r+              sibling       124  10
-   14  pate              ate p+              sibling       129  4
-   15  bate              ate b+              sibling       132  2
-   16  pone              one p+              sibling       145  12
-   17  offing            off +ing            sibling       164  18
-   18  dour              our d+              sibling       183  18
-   19  court's           court +'s           sibling       184  0
-   20  mown              own m+              sibling       186  1
+    2  mare              are m+              sibling        22  15
+    3  fare              are f+              sibling        23  0
+    4  tare              are t+              sibling        24  0
+    5  ham               am h+               sibling        36  11
+    6  pare              are p+              sibling        49  12
+    7  bare              are b+              sibling        53  3
+    8  rare              are r+              sibling        56  2
+    9  fend              end f+              sibling        77  20
+   10  fate              ate f+              sibling        82  4
+   11  cone              one c+              sibling       101  18
+   12  rear              ear r+              sibling       109  7
+   13  offed             off +ed             sibling       115  5
+   14  tour              our t+              sibling       126  10
+   15  pate              ate p+              sibling       129  2
+   16  bate              ate b+              sibling       131  1
+   17  pone              one p+              sibling       159  27
+   18  offing            off +ing            sibling       174  14
+   19  Ham               am H+               sibling       189  14
+   20  dam               am d+               sibling       190  0
 
 THE FUNCTION TABLE   (compacted: what was found, not the search)
   function   seen on  made  refused  siblings  flags  out-kind (what its outputs take)
@@ -31,17 +31,18 @@ THE FUNCTION TABLE   (compacted: what was found, not the search)
   f+              27     3        3       277      2  +., +,, +en, 
 +, +ing
   p+              19     3        2       223      2  +ed, +s
-of, +ing, +ers, +
-
-  b+              29     2        0       201      0  +,, +', Rab+, +.
+of, +
+cro, +ing, +ers
+  t+              46     2        5       360      6  
++, +
+, +,, +., ful
++
+  b+              29     2        1       201      0  +,, +', Rab+, +.
 , +
 
-  r+              28     2        3       298      7  +
-, +ing, e+, +,, +
+  r+              28     2        6       298      9  +
+, +ing, +,, e+, +
 it:
-  m+              19     2        3       274      7  
-+, Nor+, +y, +n, +
-differ
   +s             167     1        2       625      9  +,, 
 +, +., +
 , +!
@@ -53,21 +54,23 @@ to, +.
 +, she
 +, +
 
-  +'s             50     1        0       103      0  '+, --+, .'
-
-+, +
-crown, +
-c
-  t+              46     1        3       360      4  
-+, +
-, +,, +., ful
+  h+              27     1        4       295     10  w+, +s, +t, her
++, 
 +
-  h+              27     1        4       295     10  w+, +s, +t, t+, +,
   c+              23     1        3       231      9  +s, +,', 
 +, +fully,, very
 +
+  m+              19     1        3       274      7  
++, Nor+, +n, +y, +
+di
   d+              18     1        1       169      0  +!, +,, +s, +:, +!'
-  +,             515     0        4       863      4  +', 
+  H+              13     1        0       211      0  +.
+
+'Then, +:, +.
+
+'It, +
+moved, +,
+  +,             515     0        4       863      7  +', 
 +, +
 , +
 and, the
@@ -75,7 +78,7 @@ and, the
   
 +             395     0        4      1096      9  
   +
-             329     0        3       952     12  +t, +h, +s, +c, +a
+             329     0        3       952     12  +t, +h, +c, +s, +a
   +.             218     0        3       584     13  +
 , +
 
@@ -129,31 +132,36 @@ The,
   the
 +           64     0        0        58      0  +,, +.
 
-'I, +", +h, +hand
+'I, +", +hand, +h
   +d              63     0        2       428     23  +,, 
 +, +
 , +., '
 +
-  +e              63     0        2       253     11  +,, +., 
-+, +d, +
-
+  +e              63     0        2       253     11  +., 
++, +,, +
+, +d
   
 
-+             61     0        1        89      0  
++             61     0        0        89      0  
   -+              60     0        2       340      9  
   +t              58     0        3       494      7  
-+, +,, +
-, 
++, +
+, +,, 
 
 +, +'
   +-              54     0        2       291     11  
-  +--             51     0        2       271     14  
+  +--             51     0        2       271      9  
+  +'s             50     0        0       103      0  '+, --+, .'
+
++, +
+c, +
+crown
   +n              49     0        2       483     12  
 
 +, +., 
 +, +,, '+
-  s+              48     0        2       395     14  +s, 
-+, '+, +p, i+
+  s+              48     0        2       395     11  +s, 
++, '+, +p, +i
   +ly             47     0        2       140      4  +,, +
 , +., +:, 
 +
@@ -162,258 +170,250 @@ The,
              37     0        0        15      0  +', +P, +The
   +.
 
-            36     0        2        99      3  +', +P, +Alice, +The
-  +i              35     0        2       336      8  
+            36     0        2        99      3  +', +P, +The, +Alice
 
 NEGATIVE FLAGS   g does not take what h takes  (most refusals first)
-  --+ !~ +, (3), h+ !~ 
-+ (3), 
-+ !~ +, (3), r+ !~ +e (3), +n !~ '+ (2), +h !~ +
- (2), -+ !~ t+ (2), +-- !~ t+ (2), +.' !~ +,' (2), C+ !~ g+ (2), +: !~ +
- (2), +d !~ '+ (2), l+ !~ c+ (2), +
-t !~ +, (2), v+ !~ +,' (2), +.' !~ 
-+ (2), +g !~ f+ (2), -+ !~ +
- (2), +-- !~ --+ (2), +
-s !~ +. (2), ed
-+ !~ +. (2), +: !~ +.
- (2), +!' !~ +: (2), +-- !~ +
- (2), +!' !~ s+ (2), +- !~ '+ (2), ,
-+ !~ '+ (2), +
-s !~ n+ (2), c+ !~ l+ (2), +
-h !~ +e (2), +
- !~ +.
-
- (2), C+ !~ n+ (2), l+ !~ 
-+ (2), +
- !~ +e (2), C+ !~ +,' (2), +y !~ +d (2), '+ !~ t+ (2), +r !~ +, (2), o+ !~ +,' (2), +
-c !~ t+ (2)
+  
++ !~ +, (3), h+ !~ 
++ (3), --+ !~ +, (3), n+ !~ +,' (2), i+ !~ n+ (2), +d !~ --+ (2), +y !~ +d (2), h+ !~ +s (2), l+ !~ +: (2), C+ !~ +! (2), +
+s !~ e+ (2), +. !~ +e (2), s+ !~ +,' (2), w+ !~ +. (2), w+ !~ 
++ (2), i+ !~ +r (2), s+ !~ +
+ (2), ,
++ !~ +
+ (2), +r !~ l+ (2), +: !~ +, (2), +i !~ h+ (2), +h !~ +, (2), +- !~ n+ (2), +r !~ +! (2), +-- !~ +, (2), +,' !~ +s (2), +!' !~ f+ (2), s
++ !~ +d (2), +n !~ +! (2), +y !~ +, (2), v+ !~ +,' (2), +!' !~ n+ (2), +
+t !~ +. (2), +
+s !~ '+ (2), +- !~ +r (2), v+ !~ H+ (2), e+ !~ t+ (2), l+ !~ +. (2), e+ !~ +! (2), ing
++ !~ +! (2)
 
 EVERY ATTEMPT   #  word  part  function  standing  how  answer
       1  "at,'"                 'at'               +,'       31  sibling  no
       2  '-or'                  'or'               -+        24  sibling  no
       3  "ear,'"                'ear'              +,'       23  sibling  no
-      4  'alls'                 'all'              +s        21  sibling  no
-      5  'ear\n'                'ear'              +
+      4  'ear\n'                'ear'              +
         21  sibling  no
+      5  'alls'                 'all'              +s        21  sibling  no
       6  'Os'                   'O'                +s        20  sibling  yes
       7  'Os,'                  'Os'               +,        27  path     no
-      8  'ori'                  'or'               +i        18  sibling  no
-      9  'or--'                 'or'               +--       18  sibling  no
+      8  'or--'                 'or'               +--       18  sibling  no
+      9  'ori'                  'or'               +i        18  sibling  no
      10  'atd'                  'at'               +d        18  sibling  no
      11  'Queen;'               'Queen'            +;        18  sibling  no
-     12  'as.'                  'as'               +.        17  sibling  no
-     13  'to.'                  'to'               +.        17  sibling  no
+     12  'to.'                  'to'               +.        17  sibling  no
+     13  'as.'                  'as'               +.        17  sibling  no
      14  "at!'"                 'at'               +!'       17  sibling  no
-     15  'again\n'              'again'            +
+     15  '\nam'                 'am'               
++        16  sibling  no
+     16  "am?'"                 'am'               +?'       16  sibling  no
+     17  "'am"                  'am'               '+        16  sibling  no
+     18  'again\n'              'again'            +
         16  sibling  no
-     16  '\nQueen'              'Queen'            
+     19  '\nQueen'              'Queen'            
 +        16  sibling  no
-     17  "am?'"                 'am'               +?'       16  sibling  no
-     18  '\nam'                 'am'               
-+        16  sibling  no
-     19  "'am"                  'am'               '+        16  sibling  no
-     20  'not!'                 'not'              +!        15  sibling  no
-     21  'nott'                 'not'              +t        15  sibling  no
-     22  'nots'                 'not'              +s        15  sibling  no
-     23  'mnot'                 'not'              m+        15  sibling  no
-     24  'hnot'                 'not'              h+        15  sibling  no
-     25  'sas'                  'as'               s+        15  sibling  no
-     26  'sall'                 'all'              s+        15  sibling  no
-     27  "ear!'"                'ear'              +!'       15  sibling  no
-     28  'one-'                 'one'              +-        15  sibling  no
-     29  'mare'                 'are'              m+        15  sibling  yes
-     30  'tare'                 'are'              t+        15  sibling  yes
-     31  'fare'                 'are'              f+        15  sibling  yes
-     32  'way:'                 'way'              +:        15  sibling  no
-     33  'fnot'                 'not'              f+        14  sibling  no
-     34  'lor'                  'or'               l+        14  sibling  no
-     35  'orl'                  'or'               +l        14  sibling  no
-     36  'or-'                  'or'               +-        14  sibling  no
-     37  'Ot'                   'O'                +t        14  sibling  no
-     38  'nus'                  'us'               n+        14  sibling  no
-     39  "end?'"                'end'              +?'       14  sibling  no
-     40  "'end"                 'end'              '+        14  sibling  no
-     41  '--am'                 'am'               --+       14  sibling  no
-     42  'mam'                  'am'               m+        14  sibling  no
-     43  '-am'                  'am'               -+        14  sibling  no
-     44  'ham'                  'am'               h+        14  sibling  yes
-     45  '--ate'                'ate'              --+       14  sibling  no
-     46  'atei'                 'ate'              +i        14  sibling  no
-     47  'tnot'                 'not'              t+        13  sibling  no
-     48  'not:'                 'not'              +:        13  sibling  no
-     49  'wnot'                 'not'              w+        13  sibling  no
-     50  'not;'                 'not'              +;        13  sibling  no
-     51  'lall'                 'all'              l+        13  sibling  no
-     52  'all--'                'all'              +--       13  sibling  no
-     53  'ear!'                 'ear'              +!        13  sibling  no
-     54  'of,'                  'of'               +,        13  sibling  no
-     55  'atn'                  'at'               +n        13  sibling  no
-     56  'atr'                  'at'               +r        13  sibling  no
-     57  'onee'                 'one'              +e        13  sibling  no
-     58  'oone'                 'one'              o+        13  sibling  no
-     59  'mone'                 'one'              m+        13  sibling  no
-     60  'wone'                 'one'              w+        13  sibling  no
-     61  'aren'                 'are'              +n        13  sibling  no
-     62  'nare'                 'are'              n+        13  sibling  no
-     63  'aree'                 'are'              +e        13  sibling  no
-     64  'oare'                 'are'              o+        13  sibling  no
-     65  'pare'                 'are'              p+        13  sibling  yes
-     66  'arey'                 'are'              +y        13  sibling  no
-     67  'areh'                 'are'              +h        13  sibling  no
-     68  'gare'                 'are'              g+        13  sibling  no
-     69  'd\nare'               'are'              d
+     20  'sas'                  'as'               s+        15  sibling  no
+     21  'way:'                 'way'              +:        15  sibling  no
+     22  'mare'                 'are'              m+        15  sibling  yes
+     23  'fare'                 'are'              f+        15  sibling  yes
+     24  'tare'                 'are'              t+        15  sibling  yes
+     25  'sone'                 'one'              s+        15  sibling  no
+     26  'one-'                 'one'              +-        15  sibling  no
+     27  'mnot'                 'not'              m+        15  sibling  no
+     28  'nots'                 'not'              +s        15  sibling  no
+     29  'not!'                 'not'              +!        15  sibling  no
+     30  'hnot'                 'not'              h+        15  sibling  no
+     31  'nott'                 'not'              +t        15  sibling  no
+     32  "ear!'"                'ear'              +!'       15  sibling  no
+     33  "end?'"                'end'              +?'       14  sibling  no
+     34  "'end"                 'end'              '+        14  sibling  no
+     35  'mam'                  'am'               m+        14  sibling  no
+     36  'ham'                  'am'               h+        14  sibling  yes
+     37  '--am'                 'am'               --+       14  sibling  no
+     38  '-am'                  'am'               -+        14  sibling  no
+     39  'orl'                  'or'               +l        14  sibling  no
+     40  'or-'                  'or'               +-        14  sibling  no
+     41  'lor'                  'or'               l+        14  sibling  no
+     42  'Ot'                   'O'                +t        14  sibling  no
+     43  'nus'                  'us'               n+        14  sibling  no
+     44  '--ate'                'ate'              --+       14  sibling  no
+     45  'atei'                 'ate'              +i        14  sibling  no
+     46  'fnot'                 'not'              f+        14  sibling  no
+     47  'atr'                  'at'               +r        13  sibling  no
+     48  'atn'                  'at'               +n        13  sibling  no
+     49  'pare'                 'are'              p+        13  sibling  yes
+     50  'd\nare'               'are'              d
 +       13  sibling  no
-     70  'arer'                 'are'              +r        13  sibling  no
-     71  'Lare'                 'are'              L+        13  sibling  no
-     72  'rare'                 'are'              r+        13  sibling  yes
-     73  'bare'                 'are'              b+        13  sibling  yes
-     74  'hup'                  'up'               h+        13  sibling  no
+     51  'areh'                 'are'              +h        13  sibling  no
+     52  'Lare'                 'are'              L+        13  sibling  no
+     53  'bare'                 'are'              b+        13  sibling  yes
+     54  'arer'                 'are'              +r        13  sibling  no
+     55  'are--'                'are'              +--       13  sibling  no
+     56  'rare'                 'are'              r+        13  sibling  yes
+     57  'aren'                 'are'              +n        13  sibling  no
+     58  'arey'                 'are'              +y        13  sibling  no
+     59  'aree'                 'are'              +e        13  sibling  no
+     60  'gare'                 'are'              g+        13  sibling  no
+     61  'nare'                 'are'              n+        13  sibling  no
+     62  'oare'                 'are'              o+        13  sibling  no
+     63  'wone'                 'one'              w+        13  sibling  no
+     64  'mone'                 'one'              m+        13  sibling  no
+     65  'onee'                 'one'              +e        13  sibling  no
+     66  'oone'                 'one'              o+        13  sibling  no
+     67  'wnot'                 'not'              w+        13  sibling  no
+     68  'not:'                 'not'              +:        13  sibling  no
+     69  'not;'                 'not'              +;        13  sibling  no
+     70  'tnot'                 'not'              t+        13  sibling  no
+     71  'hup'                  'up'               h+        13  sibling  no
+     72  'of,'                  'of'               +,        13  sibling  no
+     73  'ear!'                 'ear'              +!        13  sibling  no
+     74  'lall'                 'all'              l+        13  sibling  no
      75  'asd'                  'as'               +d        12  sibling  no
-     76  'orh'                  'or'               +h        12  sibling  no
-     77  'endl'                 'end'              +l        12  sibling  no
-     78  'fend'                 'end'              f+        12  sibling  yes
-     79  'hend'                 'end'              h+        12  sibling  no
+     76  'endl'                 'end'              +l        12  sibling  no
+     77  'fend'                 'end'              f+        12  sibling  yes
+     78  'hend'                 'end'              h+        12  sibling  no
+     79  'amu'                  'am'               +u        12  sibling  no
      80  'ama'                  'am'               +a        12  sibling  no
-     81  'amu'                  'am'               +u        12  sibling  no
-     82  'atey'                 'ate'              +y        12  sibling  no
-     83  'tate'                 'ate'              t+        12  sibling  no
-     84  'fate'                 'ate'              f+        12  sibling  yes
+     81  'orh'                  'or'               +h        12  sibling  no
+     82  'fate'                 'ate'              f+        12  sibling  yes
+     83  'atey'                 'ate'              +y        12  sibling  no
+     84  'tate'                 'ate'              t+        12  sibling  no
      85  'atet'                 'ate'              +t        12  sibling  no
      86  '\nOs'                 'Os'               
 +        12  path     no
-     87  'rnot'                 'not'              r+        11  sibling  no
-     88  ',\nas'                'as'               ,
+     87  ',\nas'                'as'               ,
 +       11  sibling  no
-     89  'rall'                 'all'              r+        11  sibling  no
-     90  'earu'                 'ear'              +u        11  sibling  no
-     91  'd\near'               'ear'              d
-+       11  sibling  no
-     92  'at\ns'                'at'               +
+     88  'at\ns'                'at'               +
 s       11  sibling  no
-     93  'ed\none'              'one'              ed
-+      11  sibling  no
-     94  'eone'                 'one'              e+        11  sibling  no
-     95  'one\ns'               'one'              +
+     89  'are\ns'               'are'              +
 s       11  sibling  no
-     96  "one'"                 'one'              +'        11  sibling  no
-     97  'fone'                 'one'              f+        11  sibling  no
-     98  'one\nt'               'one'              +
-t       11  sibling  no
-     99  'cone'                 'one'              c+        11  sibling  yes
-    100  '(are'                 'are'              (+        11  sibling  no
-    101  'ed\nare'              'are'              ed
-+      11  sibling  no
-    102  'vare'                 'are'              v+        11  sibling  no
-    103  'areo'                 'are'              +o        11  sibling  no
-    104  'arely'                'are'              +ly       11  sibling  no
-    105  'reare'                'are'              re+       11  sibling  no
-    106  "are'"                 'are'              +'        11  sibling  no
-    107  ',\nare'               'are'              ,
+     90  "are'"                 'are'              +'        11  sibling  no
+     91  ',\nare'               'are'              ,
 +       11  sibling  no
-    108  'are\nt'               'are'              +
+     92  '(are'                 'are'              (+        11  sibling  no
+     93  'ed\nare'              'are'              ed
++      11  sibling  no
+     94  'are\nt'               'are'              +
 t       11  sibling  no
-    109  '(then'                'then'             (+        11  sibling  no
-    110  'old\nh'               'old'              +
+     95  'vare'                 'are'              v+        11  sibling  no
+     96  'reare'                'are'              re+       11  sibling  no
+     97  'areo'                 'are'              +o        11  sibling  no
+     98  'arely'                'are'              +ly       11  sibling  no
+     99  'd\none'               'one'              d
++       11  sibling  no
+    100  "one'"                 'one'              +'        11  sibling  no
+    101  'cone'                 'one'              c+        11  sibling  yes
+    102  'ed\none'              'one'              ed
++      11  sibling  no
+    103  'one\nt'               'one'              +
+t       11  sibling  no
+    104  'fone'                 'one'              f+        11  sibling  no
+    105  'eone'                 'one'              e+        11  sibling  no
+    106  '(then'                'then'             (+        11  sibling  no
+    107  'rnot'                 'not'              r+        11  sibling  no
+    108  'earu'                 'ear'              +u        11  sibling  no
+    109  'rear'                 'ear'              r+        11  sibling  yes
+    110  'rall'                 'all'              r+        11  sibling  no
+    111  'grold'                'old'              gr+       11  sibling  no
+    112  'rold'                 'old'              r+        11  sibling  no
+    113  'old\nh'               'old'              +
 h       11  sibling  no
-    111  'oldly'                'old'              +ly       11  sibling  no
-    112  'grold'                'old'              gr+       11  sibling  no
-    113  'offed'                'off'              +ed       11  sibling  yes
-    114  'Os.'                  'Os'               +.        11  path     no
-    115  'pnot'                 'not'              p+        10  sibling  no
-    116  'twith'                'with'             t+        10  sibling  no
-    117  "W'a"                  "'a"               W+        10  sibling  no
-    118  "e.\n\n'But"           'But'              e.
+    114  'oldly'                'old'              +ly       11  sibling  no
+    115  'offed'                'off'              +ed       11  sibling  yes
+    116  'Os.'                  'Os'               +.        11  path     no
+    117  'cend'                 'end'              c+        10  sibling  no
+    118  'ends,'                'end'              +s,       10  sibling  no
+    119  'enda'                 'end'              +a        10  sibling  no
+    120  'eend'                 'end'              e+        10  sibling  no
+    121  'dend'                 'end'              d+        10  sibling  no
+    122  'Cam'                  'am'               C+        10  sibling  no
+    123  'ing\nam'              'am'               ing
++     10  sibling  no
+    124  "W'a"                  "'a"               W+        10  sibling  no
+    125  'rour'                 'our'              r+        10  sibling  no
+    126  'tour'                 'our'              t+        10  sibling  yes
+    127  'twith'                'with'             t+        10  sibling  no
+    128  'iate'                 'ate'              i+        10  sibling  no
+    129  'pate'                 'ate'              p+        10  sibling  yes
+    130  's\nate'               'ate'              s
++       10  sibling  no
+    131  'bate'                 'ate'              b+        10  sibling  yes
+    132  'atech'                'ate'              +ch       10  sibling  no
+    133  "e.\n\n'But"           'But'              e.
 
 '+    10  sibling  no
-    119  'fown'                 'own'              f+        10  sibling  no
-    120  'enda'                 'end'              +a        10  sibling  no
-    121  'dend'                 'end'              d+        10  sibling  no
-    122  'eend'                 'end'              e+        10  sibling  no
-    123  'ends,'                'end'              +s,       10  sibling  no
-    124  'rend'                 'end'              r+        10  sibling  yes
-    125  'cend'                 'end'              c+        10  sibling  no
-    126  'Cam'                  'am'               C+        10  sibling  no
-    127  'ing\nam'              'am'               ing
-+     10  sibling  no
-    128  'atech'                'ate'              +ch       10  sibling  no
-    129  'pate'                 'ate'              p+        10  sibling  yes
-    130  'iate'                 'ate'              i+        10  sibling  no
-    131  's\nate'               'ate'              s
-+       10  sibling  no
-    132  'bate'                 'ate'              b+        10  sibling  yes
-    133  'Hatter.\n\n'          'Hatter'           +.
+    134  'pnot'                 'not'              p+        10  sibling  no
+    135  'fown'                 'own'              f+        10  sibling  no
+    136  'Hatter.\n\n'          'Hatter'           +.
 
       10  sibling  no
-    134  "'our"                 'our'              '+        10  sibling  no
-    135  'our,'                 'our'              +,        10  sibling  no
-    136  'eat\n'                'eat'              +
+    137  'our,'                 'our'              +,        10  sibling  no
+    138  "'our"                 'our'              '+        10  sibling  no
+    139  'eat\n'                'eat'              +
         10  sibling  no
-    137  'e\nnot'               'not'              e
-+        9  sibling  no
-    138  'not\nh'               'not'              +
-h        9  sibling  no
-    139  's\nnot'               'not'              s
-+        9  sibling  no
-    140  'cear'                 'ear'              c+         9  sibling  no
+    140  'amg'                  'am'               +g         9  sibling  no
     141  "'ali"                 "'a"               +li        9  sibling  no
     142  "'ah,"                 "'a"               +h,        9  sibling  no
     143  "'athe"                "'a"               +the       9  sibling  no
-    144  'to\nm'                'to\n'             +m         9  sibling  no
-    145  'pone'                 'one'              p+         9  sibling  yes
-    146  'ione'                 'one'              i+         9  sibling  no
-    147  'Cone'                 'one'              C+         9  sibling  no
-    148  'ing\none'             'one'              ing
+    144  'rway'                 'way'              r+         9  sibling  no
+    145  'thead'                'head'             t+         9  sibling  no
+    146  'arem'                 'are'              +m         9  sibling  no
+    147  'ing\nare'             'are'              ing
 +      9  sibling  no
-    149  'arep'                 'are'              +p         9  sibling  no
-    150  'Pare'                 'are'              P+         9  sibling  no
-    151  'arec'                 'are'              +c         9  sibling  no
-    152  'areing'               'are'              +ing       9  sibling  no
-    153  'arem'                 'are'              +m         9  sibling  no
-    154  "\n\n'--are"           'are'              
+    148  's\nare'               'are'              s
++        9  sibling  no
+    149  'are\nthe'             'are'              +
+the      9  sibling  no
+    150  'ares,'                'are'              +s,        9  sibling  no
+    151  'Pare'                 'are'              P+         9  sibling  no
+    152  'are\nh'               'are'              +
+h        9  sibling  no
+    153  'arep'                 'are'              +p         9  sibling  no
+    154  'arec'                 'are'              +c         9  sibling  no
+    155  'areing'               'are'              +ing       9  sibling  no
+    156  "\n\n'--are"           'are'              
 
 '--+     9  sibling  no
-    155  'are\nthe'             'are'              +
-the      9  sibling  no
-    156  'ares,'                'are'              +s,        9  sibling  no
-    157  'amg'                  'am'               +g         9  sibling  no
-    158  'the\nbread-old'       'old'              the
-bread-+   9  sibling  no
-    159  'vold'                 'old'              v+         9  sibling  no
-    160  'pold'                 'old'              p+         9  sibling  no
-    161  'oldo'                 'old'              +o         9  sibling  no
-    162  'old\nc'               'old'              +
-c        9  sibling  no
-    163  'cif'                  'if'               c+         9  sibling  no
-    164  'offing'               'off'              +ing       9  sibling  yes
-    165  'first.\n\n'           'first'            +.
+    157  'ione'                 'one'              i+         9  sibling  no
+    158  'Cone'                 'one'              C+         9  sibling  no
+    159  'pone'                 'one'              p+         9  sibling  yes
+    160  'to\nm'                'to\n'             +m         9  sibling  no
+    161  'e\nnot'               'not'              e
++        9  sibling  no
+    162  'cear'                 'ear'              c+         9  sibling  no
+    163  'pif'                  'if'               p+         9  sibling  no
+    164  'cif'                  'if'               c+         9  sibling  no
+    165  'first\nf'             'first'            +
+f        9  sibling  no
+    166  'rfirst'               'first'            r+         9  sibling  no
+    167  'first.\n\n'           'first'            +.
 
        9  sibling  no
-    166  'first\na'             'first'            +
+    168  'first\na'             'first'            +
 a        9  sibling  no
-    167  'first\nf'             'first'            +
-f        9  sibling  no
-    168  '--not'                'not'              --+        9  sibling  no
-    169  'rold'                 'old'              r+         9  sibling  no
-    170  'hif'                  'if'               h+         9  sibling  no
-    171  '\nate'                'ate'              
+    169  'tfirst'               'first'            t+         9  sibling  no
+    170  'old\nc'               'old'              +
+c        9  sibling  no
+    171  'the\nbread-old'       'old'              the
+bread-+   9  sibling  no
+    172  'vold'                 'old'              v+         9  sibling  no
+    173  'oldo'                 'old'              +o         9  sibling  no
+    174  'offing'               'off'              +ing       9  sibling  yes
+    175  '--not'                'not'              --+        9  sibling  no
+    176  'hif'                  'if'               h+         9  sibling  no
+    177  '\nate'                'ate'              
 +         9  sibling  no
-    172  'ask,'                 'ask'              +,         9  sibling  no
-    173  "now.'"                'now'              +.'        8  sibling  no
-    174  '\n\nAs'               'As'               
-
+    178  'eat,'                 'eat'              +,         9  sibling  no
+    179  'y\nend'               'end'              y
 +        8  sibling  no
-    175  'org'                  'or'               +g         8  sibling  no
-    176  'or\nc'                'or'               +
-c        8  sibling  no
-    177  "M'a"                  "'a"               M+         8  sibling  no
-    178  "H'a"                  "'a"               H+         8  sibling  no
-    179  "L'a"                  "'a"               L+         8  sibling  no
-    180  "F'a"                  "'a"               F+         8  sibling  no
-    181  "R'a"                  "'a"               R+         8  sibling  no
-    182  "\n\n'But"             'But'              
-
-'+       8  sibling  no
-    183  'dour'                 'our'              d+         8  sibling  yes
-    184  "court's"              'court'            +'s        8  sibling  yes
-    185  "well.'"               'well'             +.'        8  sibling  no
-    186  'mown'                 'own'              m+         8  sibling  yes
+    180  'Lend'                 'end'              L+         8  sibling  no
+    181  "end.'"                'end'              +.'        8  sibling  no
+    182  'end\nthe'             'end'              +
+the      8  sibling  no
+    183  'with\nend'            'end'              with
++     8  sibling  no
+    184  "endn't"               'end'              +n't       8  sibling  no
+    185  'gend'                 'end'              g+         8  sibling  no
+    186  'reend'                'end'              re+        8  sibling  no
+    187  'bam'                  'am'               b+         8  sibling  no
+    188  'amf'                  'am'               +f         8  sibling  no
+    189  'Ham'                  'am'               H+         8  sibling  yes
+    190  'dam'                  'am'               d+         8  sibling  yes

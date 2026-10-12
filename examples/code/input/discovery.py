@@ -19,7 +19,7 @@ No dependencies.  Run:  python discovery.py FILE [--lens ascii|utf8|octal]
                         python discovery.py --help   for the other options
 """
 
-import sys, os, json, pickle, collections
+import sys, os, json, pickle, collections, heapq, bisect
 
 
 # --------------------------------------------------------------------------
@@ -147,10 +147,12 @@ def cut_runs(words, separators):
 # memory: the parts that were in the pool before this signal arrived
 # (loaded from a memory file).  Remembered parts of this level's depth sit
 # in the sorted pool next to the new runs, so a new run collides with what
-# is remembered as well as with the rest of the signal.  Two remembered
-# parts are not compared again (neither is fresh).  What this run
-# produces is reported against memory: confirmed (remembered and produced
-# again), added (new), not seen (remembered, not produced this time).
+# is remembered as well as with the rest of the signal.  Remembered parts
+# are fresh in the first round like everything else, so they are compared
+# again too; a remembered part that comes out of a comparison again is
+# confirmed.  What this run produces is reported against memory:
+# confirmed (remembered and produced again), added (new), not seen
+# (remembered, not produced this time).
 #
 # cap: the pool can grow large on a big signal with long runs.  When it
 # passes the cap the loop stops early and the record says so.  This is a
@@ -186,46 +188,100 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
                 break
         return tuple(h)
 
+    if not class_of:
+        def head(a, b):                        # no classes: the plain shared head
+            i = 0
+            for x, y in zip(a, b):
+                if x != y:
+                    break
+                i += 1
+            return a[:i]
+
+    def merged(keys, batch):
+        """batch, sorted, put into keys, sorted, where each belongs: the
+        new list, and where each of batch landed in it."""
+        out, at, i = [], [], 0
+        for item in batch:
+            j = bisect.bisect_left(keys, item, i)
+            out += keys[i:j]
+            at.append(len(out))
+            out.append(item)
+            i = j
+        out += keys[i:]
+        return out, at
+
     endings = collections.Counter()            # remainder after a shared head
     beginnings = collections.Counter()         # remainder before a shared tail
-    fresh = set(mine)
     rounds = []
+    nodal = level > 0                          # at level 0 a part is its own node
+    # The pool in both orders: forward as the parts, mirrored as (mirrored
+    # part, part).  What a round mints is merged in where it belongs, and
+    # only the pairs with a fresh part are compared: the first round
+    # compares every pair; after that, the parts merged in at this pass,
+    # and in the mirrored order also the ones the forward pass minted last
+    # round (merged in a pass earlier, fresh for one more).
+    order = [sorted(mine), sorted((p[::-1], p) for p in mine)]
+    pending = [[], []]                         # minted since each order was last merged
+    forward_made, carried = [], []             # mirrored entries minted by a forward pass
+    r = 0
     while True:
         new = set()
         for mirror in (False, True):
-            keys = sorted(mine, key=(lambda p: p[::-1]) if mirror else None)
-            for a, b in zip(keys, keys[1:]):
-                if a not in fresh and b not in fresh and a not in new and b not in new:
-                    continue
-                a2, b2 = (a[::-1], b[::-1]) if mirror else (a, b)
+            keys, at = order[mirror], []
+            if pending[mirror]:
+                pending[mirror].sort()
+                keys, at = merged(keys, pending[mirror])
+                order[mirror], pending[mirror] = keys, []
+            if mirror:
+                at += [bisect.bisect_left(keys, e) for e in carried]
+                carried, forward_made = forward_made, []
+            if r == 0:
+                left = range(len(keys) - 1)
+            else:
+                left = sorted(set(i for j in at for i in (j - 1, j) if 0 <= i < len(keys) - 1))
+            tally = beginnings if mirror else endings
+            for i in left:
+                x, y = keys[i], keys[i + 1]
+                if mirror:
+                    (a2, a), (b2, b) = x, y
+                else:
+                    a2 = a = x
+                    b2 = b = y
                 h = head(a2, b2)
                 n = len(h)
                 if n == 0:
                     continue
+                same = h[::-1] if mirror else h
                 for whole, flipped in ((a, a2), (b, b2)):
-                    same, rest = h, flipped[n:]
-                    if mirror:
-                        same, rest = same[::-1], rest[::-1]
                     if same == whole:
                         continue                       # the whole IS the shared part
+                    rest = flipped[n:]
+                    if mirror:
+                        rest = rest[::-1]
+                    wn = node(whole) if nodal else whole
                     for piece in ((same, rest) if rest else (same,)):
-                        k = node(piece)
+                        k = node(piece) if nodal else piece
                         produced.add(k)
-                        made_of[node(whole)].add(k)
-                        part_of[k].add(node(whole))
+                        made_of[wn].add(k)
+                        part_of[k].add(wn)
                         if k not in pool:
                             pool[k] = 0
                             mine.add(piece)
                             new.add(piece)
+                            pending[0].append(piece)
+                            e = (piece[::-1], piece)
+                            pending[1].append(e)
+                            if not mirror:
+                                forward_made.append(e)
                     if rest:
-                        (beginnings if mirror else endings)[rest] += 1
+                        tally[rest] += 1
         rounds.append(len(new))
-        fresh = new
         if not new:
             break
         if len(pool) > cap:
             rounds.append('stopped: pool passed the cap of %d parts' % cap)
             break
+        r += 1
     return mine, produced, endings, beginnings, rounds
 
 
@@ -254,12 +310,15 @@ def as_element_of(part, parent):
 
 def changes_of(part, part_of):
     out = set()
-    for parent in part_of.get(node(part), ()):
-        p = as_element_of(node(part), parent)
-        if parent[:len(p)] == p:
-            out.add(('+', parent[len(p):]))
-        elif parent[-len(p):] == p:
-            out.add((parent[:-len(p)], '+'))
+    k = node(part)
+    d = depth(k)
+    for parent in part_of.get(k, ()):
+        p = (k,) if depth(parent) == d + 1 else k   # as_element_of, with the part's depth found once
+        n = len(p)
+        if parent[0] == p[0] and parent[:n] == p:
+            out.add(('+', parent[n:]))
+        elif parent[-1] == p[-1] and parent[-n:] == p:
+            out.add((parent[:-n], '+'))
     return out
 
 
@@ -438,7 +497,15 @@ class Glyphs:
         d = depth(x)
         if d == 1:
             return self.r0(x)
-        text = (' ' if d == 2 else ' | ').join(self.draw(e) for e in x)
+        sep = ' ' if d == 2 else ' | '
+        pieces, n = [], -len(sep)              # n: the length of sep.join(pieces)
+        for e in x:
+            if n > self.wide:                  # display only: past the width nothing more is shown
+                break
+            s = self.draw(e)
+            pieces.append(s)
+            n += len(s) + len(sep)
+        text = sep.join(pieces)
         return text if len(text) <= self.wide else text[:self.wide] + '...'   # display only
 
     def change(self, d, x):
@@ -496,8 +563,8 @@ def write_level(say, L, G, pool, made_of, part_of, top, frame):
     dens = lambda p: len(part_of.get(node(p), ()))
     say('PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top %d)' % top)
     say('  %-30s  %7s  %6s  %s' % ('part', 'density', 'whole', 'inside (sample)'))
-    dense = sorted(L['parts'], key=lambda p: (-dens(p), -whole(p), p))
-    for p in dense[:top]:
+    dense = heapq.nsmallest(top, L['parts'], key=lambda p: (-dens(p), -whole(p), p))
+    for p in dense:
         inside = sorted(part_of.get(node(p), ()), key=lambda q: -pool.get(q, 0))[:4]
         say('  %-30s  %7d  %6d  %s' % (draw(p), dens(p), whole(p), ', '.join(draw(q) for q in inside)))
     say('')
@@ -538,27 +605,54 @@ def write_level(say, L, G, pool, made_of, part_of, top, frame):
     say('')
 
 
-def key_of(x, frame):
+def key_of(x, frame, keys=None):
     """A JSON key for any part: level-0 runs as hex words joined by '.',
     deeper parts as their elements' keys joined by ' ' (level 1) or ' | '
-    (level 2 and up); a class as {level.index}."""
+    (level 2 and up); a class as {level.index}.  Each part is keyed once;
+    keys (a Keys) holds the ones done."""
+    if keys is None:
+        keys = Keys(frame)
     x = node(x)
+    k = keys.get(x)
+    if k is not None:
+        return k
     if isinstance(x, int):
-        return format(x, '0%dx' % ((frame + 3) // 4))
-    if is_token(x):
+        k = format(x, '0%dx' % ((frame + 3) // 4))
+    elif is_token(x):
         d = depth(x)
         while isinstance(x, tuple):
             x = x[0]
-        return '{%d.%d}' % (d - 1, -1 - x)
-    d = depth(x)
-    if d == 1:
-        return '.'.join(key_of(w, frame) for w in x)
-    return (' ' if d == 2 else ' | ').join(key_of(e, frame) for e in x)
+        k = '{%d.%d}' % (d - 1, -1 - x)
+    else:
+        d = depth(x)
+        k = ('.' if d == 1 else ' ' if d == 2 else ' | ').join([keys[e] for e in x])
+    keys[x] = k
+    return k
 
 
-def level_json(L, pool, made_of, part_of, G, frame):
-    key = lambda t: key_of(t, frame)
+class Keys(dict):
+    """part -> JSON key; a part not seen yet is keyed on first use."""
+
+    def __init__(self, frame):
+        self.frame = frame
+
+    def __missing__(self, x):
+        k = key_of(x, self.frame, self)
+        self[x] = k
+        return k
+
+
+def level_json(L, pool, made_of, part_of, G, frame, keys=None):
+    kc = Keys(frame) if keys is None else keys
+    key = kc.__getitem__
     n = L['level']
+    parts = {}
+    for p in L['parts']:
+        k = node(p)
+        parts[kc[p]] = {'whole': pool.get(k, 0),
+                        'density': len(part_of.get(k, ())),
+                        'made_of': [kc[q] for q in made_of.get(k, ())],
+                        'part_of': [kc[q] for q in part_of.get(k, ())]}
     return {
         'level': n,
         'separator': [key(s) if n else s for s in L['separator']],
@@ -566,10 +660,7 @@ def level_json(L, pool, made_of, part_of, G, frame):
         'follows': [[key(a) if n else a, key(b) if n else b, c] for (a, b), c in L['follows'].items()],
         'runs': {key(r): c for r, c in L['run_counts'].items()},
         'run_follows': [[key(a), key(b), c] for (a, b), c in L['run_follows'].items()],
-        'parts': {key(p): {'whole': pool.get(node(p), 0),
-                           'density': len(part_of.get(node(p), ())),
-                           'made_of': [key(q) for q in made_of.get(node(p), ())],
-                           'part_of': [key(q) for q in part_of.get(node(p), ())]} for p in L['parts']},
+        'parts': parts,
         'endings': {key(e): c for e, c in L['endings'].items()},
         'beginnings': {key(b): c for b, c in L['beginnings'].items()},
         'classes': [{'id': '%d.%d' % (n, i),
@@ -637,6 +728,7 @@ def write_record(out_txt, out_json, name, data, bits, frame, profile, score, fol
 
     open(out_txt, 'w').write('\n'.join(T) + '\n')
 
+    keys = Keys(frame)                         # shared by every level
     J = {
         'signal': name, 'bytes': len(data), 'bits': len(bits),
         'frame': frame, 'profile': {str(w): profile[w] for w in profile},
@@ -649,9 +741,9 @@ def write_record(out_txt, out_json, name, data, bits, frame, profile, score, fol
             'history_before': memory['history_before'],
             'levels': [{'produced': len(L['produced']), 'confirmed': len(L['confirmed']),
                         'added': len(L['new']), 'unseen': len(L['unseen'])} for L in levels]},
-        'levels': [level_json(L, pool, made_of, part_of, G, frame) for L in levels],
+        'levels': [level_json(L, pool, made_of, part_of, G, frame, keys) for L in levels],
     }
-    json.dump(J, open(out_json, 'w'), separators=(',', ':'))
+    open(out_json, 'wb').write(json.dumps(J, separators=(',', ':')).encode())   # dumps: the C encoder
     return '\n'.join(T)
 
 

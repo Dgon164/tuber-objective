@@ -127,8 +127,11 @@ def seam(f, x):
     return (x[-1], post[0]) if pre == '+' else (pre[-1], x[0])
 
 def standing(g, x, via=None):
-    k = kind.get(x, ())
-    same = sum(1 for h in k if h in sib[g] and (g, h) not in flag)
+    k = kind.get(x, frozenset())
+    both = k & sib[g]
+    same = len(both)
+    if flag:
+        same -= sum(1 for h in both if (g, h) in flag)
     s = same - (len(k) - same)                     # same minus different: the comparator, both sides
     if via is not None:
         s += via                                   # a path: what its maker's outputs took

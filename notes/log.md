@@ -202,3 +202,38 @@ What was built, in order, and what each run changed. Dates are 2026.
   self-assembling system. Don't help it. Try it. Find the missing
   difference.
 - Repo created: github.com/dgon164/tuber-objective, public, MIT.
+
+## 10-12 — the cold run, four times faster
+
+- `run_examples.sh` from a fresh checkout: 393 s → 100 s, every record
+  byte for byte the same. Measured before touching anything: on Alice,
+  85% of the time was writing the record, not finding the structure.
+- The record. A part's JSON key was recomputed for every connection it
+  appears in (`key_of` recursed through every nested element each
+  time); now each part is keyed once (`Keys`). `json.dump`, the
+  pure-Python encoder, replaced by `json.dumps`, the C one, written as
+  bytes. Drawing a level-2 part stops at the display width instead of
+  drawing the whole book and cutting it after. The density table takes
+  its top 25 with a heap instead of sorting every part.
+- The mint. The pool is kept in both sorted orders between rounds; what
+  a round mints is merged in where it belongs and only the pairs with a
+  fresh part are compared — the fresh-pair rule's natural extension that
+  open.md asked for. Same pairs in the same rounds, so the same pool:
+  Alice 22,446 → +6,709 → +5 → +1 as before. The plain shared head (no
+  classes) has its own short path; at level 0 a part is its own node.
+  `changes_of` looks at the first and last element before slicing.
+- The comment on memory in `mint()` said two remembered parts are not
+  compared again; the code always compared them (that is how a
+  remembered part comes out again and counts as confirmed). Comment
+  corrected, code unchanged.
+- `extend/functions.py`: `standing()` counts a part's sibling functions
+  with a set intersection — same count, C speed; the making phase 5.9 s
+  → 3.3 s for 20 words.
+- `run_examples.sh` sets `PYTHONHASHSEED=0`. `functions.py` keys on
+  strings, so its tie-breaks followed the per-process hash seed and its
+  output changed on every run; now it is the same run every time.
+  (`sentence.py` draws at random and its output still changes.)
+- Where the 100 s go now: the 1.6 MB Apollo source 44 s (mint 14 s; the
+  rest is its record — the JSON lists every connection in both
+  directions and is 300 MB for that file); the four memory runs 15 s;
+  `functions.py` 7 s; `same_within.py` 6 s; Alice and German 3–4 s each.

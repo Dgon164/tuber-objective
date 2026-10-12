@@ -57,7 +57,7 @@ The rope was cut at EXTEND. The second most common word is 00000 (unused and zer
 
 ## Size
 
-Pure Python. The mint is a sort per round. A 1.6 MB file runs in 20 seconds with two separators. Larger signals need either `--limit`, cutting the file, or the fresh-pair rule's natural extension: sort only the fresh parts into the existing order instead of resorting the whole pool.
+Pure Python. The mint keeps the pool in sorted order and merges each round's new parts in where they belong, comparing only the pairs with a fresh part (the fresh-pair rule's natural extension; done 10-12, same records). A 1.6 MB file with two separators runs in about 45 seconds, and most of that is no longer the mint: it is writing the record, whose JSON lists every connection in both directions and comes to 300 MB for that file. Larger signals need `--limit` or a cut file, or a smaller record.
 
 ## The record as a knowledge graph
 
