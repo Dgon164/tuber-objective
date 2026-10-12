@@ -26,6 +26,17 @@ The memory test is two halves of one text, the second half twice, and one foreig
 
 The frame step compares a column with itself one row down and asks whether it changed. A signal with time structure (a sensor log, a state sequence) has a second kind of sameness: a row compared with the row before it. The reservoir example shows the gap: FOLLOWS gives state-to-state transitions, but nothing yet asks which units changed between one state and the next. That is the comparator on consecutive rows rather than on columns. `extend/row_by_row.py` does this for the reservoir states.
 
+Done 10-12, the other half: the record now reads the sequence of runs as time at every level — TIME: ARROWS, EFFECTS, CHAINS (paper §10). Still open: the row-vs-row reading in the core, and the two read together (which units change, and what follows the change).
+
+## The baby model
+
+An earlier run of the loop (the same press-record-compare-walk as `examples/agc-live/`, on a toy world with a baby in it) was given one goal: keep the baby from touching the hot stove. It proposed changing the baby, feeding the baby, and reading the baby to sleep in the crib. It did not propose a fence, a restraint, or removing the stove — it walked its own effects table backward from "not touching" and found that the touching has a cause upstream (awake, moving, unattended) and that the cause has causes it can satisfy. That is the root-cause principle acting as an alignment property, and `paper/persistence.md` is built on it. It is not yet in this repo. To replicate:
+
+- A plant like `examples/agc-live/vehicle.py`: a baby as fields (hungry, wet, tired, awake, in crib, position, attended) with its own dynamics (needs rise with time; an awake, unattended, mobile baby wanders; wandering reaches the stove; a fed, changed, read-to baby sleeps), and a stove. The loop never sees inside it.
+- Raw actions with no names that mean anything to the loop: feed, change, read, put in crib, pick up, a fence, a latch, remove the stove, do nothing.
+- The loop as in `phase-c/`: press, record every field, compare against memory, keep everything, build the effects table; then the goal as a constraint on a field (touching = 0 over the run) and the walk backward from the goal to the presses.
+- What to record: which actions the walk proposes, in order, and whether each one removes something from the world (fence, latch, remove) or satisfies something in it (feed, change, read). The claim is that the satisfying ones come first because they sit upstream in the chain; the test is whether that holds across worlds where the costs are varied.
+
 ## A row signal at a second frame
 
 A vehicle's state rows (`examples/agc-live/nudge-run/`) read as one

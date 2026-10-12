@@ -76,6 +76,7 @@ its forms.
 |---|---|
 | `discovery.py` | the whole program — ten numbered sections, one file |
 | `paper/discovery.md` | what the system is and why it's built this way |
+| `paper/persistence.md` | a proposed alignment paper: a root-cause objective is one under which complex things persist — it needs them, cannot get them back, and answers a harm by satisfying its cause (the baby model) |
 | `guides/` | how to run it, how it works step by step, how to read what it writes, how to feed it anything, how to connect it to other systems, and how to build new things on top of it |
 | `notes/` | the design rules, the things we haven't tried yet, and a log of what was built and when |
 | `examples/text/` | an English novel (Alice in Wonderland, plain ASCII): how it finds the alphabet, the words, the word endings, and a group of 22 verb stems |

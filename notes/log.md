@@ -256,3 +256,20 @@ What was built, in order, and what each run changed. Dates are 2026.
   document named it. Paper §10 now maps the six steps (roots, layers,
   interactions, crystals, relations, causes) to the code and the
   scales; reading-a-record.md has the TIME section.
+
+## 10-12 — persistence
+
+- `paper/persistence.md`: a proposed alignment paper. A root-cause
+  objective is one under which complex things persist: the comparator
+  needs the thing and needs it again (the loop reopens); what is gone
+  cannot be compared again (rule 4, deletion is irreversible); the root
+  cause of a harm is upstream, and upstream is a need. Persistence, not
+  preservation: the thing continuing on its own terms, not kept as it
+  is.
+- The baby model, the paper's evidence: the loop, given "keep the baby
+  from touching the hot stove", proposed changing, feeding and reading
+  the baby to sleep in the crib — the cause, not a restraint. Not yet in
+  this repo; the replication plan is in open.md (a plant with a baby, a
+  stove, needs; unnamed actions of the removing and the satisfying
+  kind; the walk from the goal; what it proposes first, across worlds
+  with the costs varied).
