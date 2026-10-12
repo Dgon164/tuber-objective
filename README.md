@@ -135,7 +135,15 @@ nothing else does.
 
 ## Licence
 
-MIT. See `LICENSE`.
+MIT for everything written for this repo. See `LICENSE`. What was
+brought in from elsewhere keeps its own terms, the loosest each has:
+
+- `examples/agc-live/virtualagc/yaAGC/`, `yaYUL/` and `Tools/`, the
+  Virtual AGC emulator and assembler: GPL version 2 or later, see
+  `examples/agc-live/virtualagc/COPYING`. `discovery-trace.patch`
+  modifies them, so a build of the patched emulator is GPL as well.
+- The Apollo flight program, Alice, and `hello.c`: public domain, or
+  written here. The Europarl sample: `examples/german/EUROPARL-README`.
 
 ## Contact
 

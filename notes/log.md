@@ -67,10 +67,10 @@ What was built, in order, and what each run changed. Dates are 2026.
 ## 10-09, midday — crystallize, then loop again, until no change
 
 - The crystal ran once and its output was terminal: it made classes and
-  nothing used them. Turtle: "crystallize then loop again; loop until no
+  nothing used them. Jason: "crystallize then loop again; loop until no
   change; it will stabilize and run out of new connections."
 - First version built levels by replacing each classed run with its
-  class and running on the copy. Turtle: "You don't replace. You add.
+  class and running on the copy. Jason: "You don't replace. You add.
   Run has 300, next has 50 added structures for 350, then 25 for 375,
   then 5 for 380, then stable."
 - Reworked to one shared pool. The next level runs on the runs as they
@@ -95,7 +95,7 @@ What was built, in order, and what each run changed. Dates are 2026.
 
 ## 10-09, late morning — the end-compare looped
 
-- Turtle's five steps of understanding: identification, association,
+- Jason's five steps of understanding: identification, association,
   reduction, composition, evaluation. Four were in the file; evaluation
   looked missing. His correction: evaluation is the root comparator —
   "is the end-compare real, or is this the same as that" — it was there,
@@ -116,7 +116,7 @@ What was built, in order, and what each run changed. Dates are 2026.
 
 ## 10-09, noon — how to build from it
 
-- Turtle: "How do we show that you can build from this. The general
+- Jason: "How do we show that you can build from this. The general
   claims and how to expand and build from them. Explain why the
   prerequisites are enough."
 - `guides/building-from-discovery.md`: the eight givens with where each
