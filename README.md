@@ -18,8 +18,7 @@ recurs is a difference that makes a difference; a difference that
 doesn't recur is noise. That is the only test, and it is applied at
 every level.
 
-One comparator. One memory. One Python file, 726 lines, no
-dependencies.
+One comparator. One memory. One Python file, no dependencies.
 
 ```
 python discovery.py examples/text/alice.txt --lens ascii

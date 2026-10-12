@@ -11,9 +11,9 @@ everything it finds: the parts, what each part is made of, what
 contains it, what shows up before and after it, and what you'd change
 to turn one part into another. It doesn't know what kind of file it's
 looking at. It has no dictionary, no grammar, no list of file types,
-and no training step. The same 726 lines of Python read an English
+and no training step. The same one file of Python reads an English
 novel, a German parliamentary debate, a compiled program, and the
-15-bit flight software of the Apollo Lunar Module — and write a record
+15-bit flight software of the Apollo Lunar Module — and writes a record
 of each one.
 
 This paper explains how the system works and why it's built the way it

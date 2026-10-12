@@ -50,7 +50,7 @@ comparator itself, applied to its own output.
 Discovery uses one method — compare and remember — on every signal it
 has ever been given. It found 8-bit ASCII in English text, 15-bit
 packed words in Apollo flight code, 64-bit chunks in a compiled binary,
-and UTF-8 lead bytes in German. The same 726 lines of Python, the same
+and UTF-8 lead bytes in German. The same one file of Python, the same
 comparator, the same loop. No specialization. The computation is the
 method.
 
