@@ -311,3 +311,6 @@ What was built, in order, and what each run changed. Dates are 2026.
   human-made, 1.1 with self-refinement, 2.0 neural networks, 2.1
   hybrid, 3.0 self-assembling and learning) and where this repo sits:
   3.0 by the definition, with `hybrid/` as the meeting point.
+- `extend/template.py`: the shape to copy — the three sections, the
+  middle one left to write (as it stands, for the most common runs,
+  what follows them and how much of the time).
