@@ -208,5 +208,32 @@ per-column rate), plus writing the flips to a file and calling
 4. Read the record. If it shows something the plain run didn't, keep
    the lines. If it shows nothing new, the signal didn't have it.
 
+Every script in `extend/`, `hybrid/` and `examples/german/bridge.py` has
+the same shape, so that the one new thing is the only thing to read:
+
+```
+import discovery as D
+
+# ---- the signal, as discovery.py reads it -------------------------------
+path = sys.argv[1]
+data, bits = D.read_signal(path)
+frame, profile, score, folding = D.find_frame(bits)
+words = D.cut_words(bits, frame)
+pool, made_of, part_of = {}, collections.defaultdict(set), collections.defaultdict(set)
+L0 = D.run_level(words, 1, pool, made_of, part_of, 1000000, None, 0)
+
+# ---- NEW: the one new thing ---------------------------------------------
+...
+
+# ---- what it found ------------------------------------------------------
+print(...)
+```
+
+A script that reads a record instead of a signal opens with *the
+record, as discovery.py wrote it* (`json.load` of the `.record.json`);
+one whose new thing makes a new signal has *the ..., as discovery.py
+reads it* after the NEW section, as a call to `discover`. The output
+each one prints is committed beside it.
+
 None of the three extensions above took longer to write than to read.
 That's what the givens being enough looks like in practice.

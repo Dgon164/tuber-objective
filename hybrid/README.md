@@ -5,6 +5,10 @@ Three ways to put Discovery next to another system. Nothing in
 the others. What each one printed is committed beside it.
 `guides/hybrid-systems.md` walks through all three.
 
+Each script has the same three sections as the ones in `extend/`: *the
+record, as discovery.py wrote it* (or *the signal, as discovery.py reads
+it*), *NEW: the one new thing*, and *what it found*.
+
 | script | the wiring | run | writes |
 |---|---|---|---|
 | `record_to_rules.py` | Discovery in front: the record becomes a rule table (next-run, forms-of, same-kind) that a second system runs without ever seeing the signal | `python record_to_rules.py ../examples/text/alice.txt.record.json` | `record_to_rules.output.txt` |

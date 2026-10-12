@@ -286,3 +286,16 @@ What was built, in order, and what each run changed. Dates are 2026.
   numbers (design rule 11, applied to the documents): FUNCTIONS.md,
   the self-assembly guide, the TIME examples in the paper and guides,
   the timings.
+
+## 10-12 — one shape for every program
+
+- Every script in `extend/`, `hybrid/` and `examples/german/bridge.py`
+  has the same three sections: *the signal, as discovery.py reads it*
+  (the same lines in each: read, frame, words, level 0) — or *the
+  record, as discovery.py wrote it* for the ones that read a record —
+  then *NEW: the one new thing*, then *what it found*. The hybrid
+  scripts and the bridge were `main()` functions; they are flat now
+  like the rest. `same_slot.py` cut its runs by hand with the two
+  separators; it goes through `run_level` with them now. Every output
+  byte for byte the same as before. `guides/building-from-discovery.md`
+  shows the shape.

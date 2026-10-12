@@ -14,19 +14,21 @@ Writes  hybrid/alice.txt.reservoir   (the net's states, as bits)
         hybrid/alice.txt.reservoir.record.txt / .json   (Discovery's record of it)
 
 Needs numpy for the net.  Discovery itself does not.
-"""
 
+The net's states are read as discovery.py reads any signal; the lines
+marked NEW are the only new thing.
+"""
 import sys, os
 import numpy as np
-
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
-import discovery
+import discovery as D
 
 UNITS = 32          # one bit of output per unit; a 32-bit state per step
 STEPS = 20000       # bytes of input fed through the net
 SEED = 7
 
 
+# ---- NEW: the net, and its states written out as bits -------------------
 def run_reservoir(data, units=UNITS, seed=SEED):
     rng = np.random.default_rng(seed)
     W_in = rng.normal(0, 1.0, (units, 8))          # the byte comes in as 8 bits
@@ -41,17 +43,15 @@ def run_reservoir(data, units=UNITS, seed=SEED):
         out += np.packbits(bits).tobytes()         # units/8 bytes per step
     return bytes(out)
 
+path = sys.argv[1]
+data = open(path, 'rb').read()[:STEPS]
+states = run_reservoir(data)
+out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.basename(path) + '.reservoir')
+open(out_path, 'wb').write(states)
+print('wrote %s: %d steps, %d bytes' % (os.path.basename(out_path), len(data), len(states)))
 
-def main(path):
-    data = open(path, 'rb').read()[:STEPS]
-    states = run_reservoir(data)
-    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                            os.path.basename(path) + '.reservoir')
-    open(out_path, 'wb').write(states)
-    print('wrote %s: %d steps, %d bytes' % (os.path.basename(out_path), len(data), len(states)))
-    discovery.discover(out_path, lens='raw', quiet=True)
-    print(open(out_path + '.record.txt').read()[:6000])
+# ---- the states, as discovery.py reads them: a new signal ---------------
+D.discover(out_path, lens='raw', quiet=True)
 
-
-if __name__ == '__main__':
-    main(sys.argv[1])
+# ---- what it found ------------------------------------------------------
+print(open(out_path + '.record.txt').read()[:6000])

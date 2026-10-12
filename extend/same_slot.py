@@ -13,28 +13,32 @@ sets).  Nothing is dropped; the tables show the top of each list.
     python same_slot.py ../examples/text/alice.txt
 
 Given: the cut at space and newline, as in alice.txt.sep20-0a.record.txt.
+The signal is read as discovery.py reads it; the lines marked NEW are
+the only new thing.
 """
 import sys, os, collections
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import discovery as D
 
+# ---- the signal, as discovery.py reads it -------------------------------
 path = sys.argv[1]
 data, bits = D.read_signal(path)
 frame, profile, score, folding = D.find_frame(bits)
 words = D.cut_words(bits, frame)
-runs = D.cut_runs(words, {0x20, 0x0a})
+pool, made_of, part_of = {}, collections.defaultdict(set), collections.defaultdict(set)
+L0 = D.run_level(words, [0x20, 0x0a], pool, made_of, part_of, 1000000, None, 0)
+runs = L0['runs']
 G = D.Glyphs(D.make_lens('ascii', frame))
 draw = lambda r: G.draw(r)
 
-# NEW: every slot a run fills -- (left neighbour, right neighbour)
+# ---- NEW: every slot a run fills -- (left neighbour, right neighbour) ---
 slots = collections.defaultdict(collections.Counter)      # run -> slot -> count
 fillers = collections.defaultdict(collections.Counter)    # slot -> run -> count
 for a, w, b in zip(runs, runs[1:], runs[2:]):
     slots[w][(a, b)] += 1
     fillers[(a, b)][w] += 1
 
-# NEW: two runs are compared by the slots they share
-def mates(w):
+def mates(w):                                             # NEW: two runs compared by the slots they share
     shared = collections.Counter()
     for s in slots[w]:
         for m in fillers[s]:
@@ -42,6 +46,7 @@ def mates(w):
                 shared[m] += 1
     return shared
 
+# ---- what it found ------------------------------------------------------
 count = collections.Counter(runs)
 print('%d runs, %d distinct, %d distinct slots' % (len(runs), len(count), len(fillers)))
 print()

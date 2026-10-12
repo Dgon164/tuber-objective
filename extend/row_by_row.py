@@ -13,19 +13,22 @@ bit each, one row per byte of Alice fed through the net).
 
     python row_by_row.py ../hybrid/alice.txt.reservoir
 
-Lines of new code: the ones marked NEW.
+The signal is read as discovery.py reads it; the lines marked NEW are
+the only new thing.
 """
 import sys, os, collections
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import discovery as D
 
+# ---- the signal, as discovery.py reads it -------------------------------
 path = sys.argv[1]
 data, bits = D.read_signal(path)
 frame, profile, score, folding = D.find_frame(bits)
 rows = D.cut_words(bits, frame)
 
-flips = [a ^ b for a, b in zip(rows, rows[1:])]                           # NEW: row vs previous row
-per_column = [sum((f >> (frame - 1 - c)) & 1 for f in flips) / len(flips) for c in range(frame)]   # NEW
+# ---- NEW: a row against the row before it -------------------------------
+flips = [a ^ b for a, b in zip(rows, rows[1:])]
+per_column = [sum((f >> (frame - 1 - c)) & 1 for f in flips) / len(flips) for c in range(frame)]
 print('frame %d; %d rows; %d row-to-row comparisons' % (frame, len(rows), len(flips)))
 print('units that flip least:  %s' % ', '.join('unit %2d %.3f' % (c, per_column[c]) for c in sorted(range(frame), key=lambda c: per_column[c])[:5]))
 print('units that flip most:   %s' % ', '.join('unit %2d %.3f' % (c, per_column[c]) for c in sorted(range(frame), key=lambda c: -per_column[c])[:5]))
@@ -36,10 +39,12 @@ print('most common changes (which units flipped together):')
 for f, n in collections.Counter(flips).most_common(8):
     print('  %s  %d' % (format(f, '0%db' % frame), n))
 
-# NEW: the flips are a signal; write them out and let Discovery read them
+# ---- the flips, as discovery.py reads them: a new signal ----------------
 out = os.path.join(os.path.dirname(os.path.abspath(path)), os.path.basename(path) + '.flips')
-open(out, 'wb').write(b''.join(f.to_bytes(frame // 8, 'big') for f in flips))
+open(out, 'wb').write(b''.join(f.to_bytes(frame // 8, 'big') for f in flips))   # NEW: written out as bytes
 txt, js = D.discover(out, quiet=True, out=os.path.dirname(os.path.abspath(__file__)))
+
+# ---- what it found ------------------------------------------------------
 rec = open(txt).read().split('LEVEL 1')[0]                                # level 0 only
 print()
 print('Discovery on the flips (level 0):')

@@ -14,8 +14,11 @@ small rule table built from three parts of the record:
 It then answers three questions from the rules, and walks the next-run
 table to produce a sequence.  The walk is a walk through a table; it is
 shown because it is the plainest way to see what the table holds.
-"""
 
+The record is read as discovery.py wrote it; the lines marked NEW are
+the only new thing.  loop.py imports the rule table from here, so the
+run itself sits under __main__.
+"""
 import sys, json, random
 
 
@@ -31,6 +34,7 @@ def key_of(text):
     return '.'.join('%02x' % b for b in text.encode('utf8'))
 
 
+# ---- NEW: the record as a rule table ------------------------------------
 class Rules:
     def __init__(self, record):
         self.rec = record
@@ -77,8 +81,12 @@ class Rules:
         return out
 
 
-def main(path):
+if __name__ == '__main__':
+    # ---- the record, as discovery.py wrote it ---------------------------
+    path = sys.argv[1]
     rules = Rules(json.load(open(path)))
+
+    # ---- what it found --------------------------------------------------
     print('RULES built from %s' % path)
     print('  next-run rules : %d' % sum(len(t) for t in rules.next.values()))
     print('  forms-of rules : %d' % len(rules.parts))
@@ -96,7 +104,3 @@ def main(path):
     print()
     print('walk from "Alice":')
     print('  ' + ' '.join(rules.walk('Alice', steps=24)))
-
-
-if __name__ == '__main__':
-    main(sys.argv[1])

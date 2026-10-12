@@ -4,6 +4,10 @@ Each script here points the comparator somewhere new without changing
 `discovery.py`; each is a few lines that call into it. They are
 independent of one another — run the one you want. The output each one
 printed is committed beside it, so you can read before you run.
+
+Every script has the same three sections: *the signal, as discovery.py
+reads it* (the same lines in each), *NEW: the one new thing*, and *what
+it found*. Read the NEW section; the rest is the same program.
 `guides/building-from-discovery.md` is the long version of why these
 are enough.
 

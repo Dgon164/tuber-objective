@@ -6,6 +6,9 @@ and how often.  A sentence is a chain of follows from a starter to
 an ender.  No grammar, no templates -- just what was found.
 
     python sentence.py ../examples/text/alice.txt [N sentences]
+
+The signal is read as discovery.py reads it; the sections marked NEW are
+the only new thing.
 """
 import sys, os, re, time, collections, random
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
@@ -15,7 +18,7 @@ T0 = time.time()
 path = sys.argv[1]
 N = int(sys.argv[2]) if len(sys.argv) > 2 else 10
 
-# ---- layer 0: the record ------------------------------------------------
+# ---- the signal, as discovery.py reads it -------------------------------
 data, bits = D.read_signal(path)
 frame, profile, score, folding = D.find_frame(bits)
 words = D.cut_words(bits, frame)
@@ -25,6 +28,7 @@ T1 = time.time()
 
 text = lambda t: bytes(t).decode('latin-1')
 
+# ---- NEW: the follows table as a chain to walk --------------------------
 # run_follows: (run_a, run_b) -> count
 rfol = L0['run_follows']
 
@@ -50,7 +54,7 @@ for (a, b), n in rfol.items():
 
 T2 = time.time()
 
-# ---- make a sentence: follow the chain -----------------------------------
+# ---- NEW: make a sentence: follow the chain ------------------------------
 def make_sentence(max_words=25):
     if not starters:
         return None
@@ -96,6 +100,7 @@ def make_sentence(max_words=25):
     return ' '.join(sentence)
 
 
+# ---- what it found ------------------------------------------------------
 print('record %.1fs, build %.1fs' % (T1 - T0, T2 - T1))
 print('%d words with followers, %d starters' % (len(adj), len(starters)))
 print()

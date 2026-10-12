@@ -54,6 +54,9 @@ Given (stated): the answer key (a word list, the only selection signal);
 "not in the signal" = not a whole word of the signal, lower-cased.
 
     python functions.py ../examples/text/alice.txt [N] [WORDLIST]
+
+The signal is read as discovery.py reads it; the sections marked NEW are
+the only new thing.
 """
 import sys, os, re, time, heapq, collections
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
@@ -64,7 +67,7 @@ path = sys.argv[1]
 N = int(sys.argv[2]) if len(sys.argv) > 2 else 100
 wordlist = sys.argv[3] if len(sys.argv) > 3 else '/usr/share/dict/american-english'
 
-# ---- layer 0: the record ----------------------------------------------
+# ---- the signal, as discovery.py reads it (layer 0: the record) ---------
 data, bits = D.read_signal(path)
 frame, profile, score, folding = D.find_frame(bits)
 words = D.cut_words(bits, frame)
@@ -85,7 +88,7 @@ def show(f):
     pre, post = f
     return ('+' + text(post)) if pre == '+' else (text(pre) + '+')
 
-# ---- layer 1: functions -------------------------------------------------
+# ---- NEW: layer 1, functions --------------------------------------------
 dom = collections.defaultdict(set)                  # f -> parts it was seen on
 kind = collections.defaultdict(set)                 # part -> functions it takes
 runs = [p for p in L0['parts'] if pool.get(p, 0) > 0]       # whole runs: what the signal stands up on its own
@@ -102,7 +105,7 @@ for f in funcs:
         for g in kind.get(apply(f, p), ()):
             outk[f][g] += 1
 
-# ---- layer 2: siblings --------------------------------------------------
+# ---- NEW: layer 2, siblings ---------------------------------------------
 pair = collections.Counter()
 for p, ks in kind.items():
     ks = sorted(ks, key=repr)
@@ -116,7 +119,7 @@ for (a, b), n in pair.items():
 T2 = time.time()
 print('record %.1fs functions %.1fs; %d funcs, %d pairs, max kind %d' % (T1-T0, T2-T1, len(funcs), len(pair), max(len(k) for k in kind.values())), flush=True)
 
-# ---- making words -------------------------------------------------------
+# ---- NEW: making words --------------------------------------------------
 yes_h, no_h = collections.Counter(), collections.Counter()   # (g, h) holds
 flag = set()                                                  # negative flags (g, h)
 yes_g, no_g = collections.Counter(), collections.Counter()    # per function: does what it makes get taken?
@@ -195,7 +198,7 @@ while heap and len(made) < N:
             offer(f2, w, via=n)
 T3 = time.time()
 
-# ---- what ships ---------------------------------------------------------
+# ---- what it found (what ships) -----------------------------------------
 out = os.path.splitext(os.path.basename(path))[0] + '.functions.txt'
 fails = len(log) - len(made)
 with open(out, 'w') as f:
