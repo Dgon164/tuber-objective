@@ -45,5 +45,8 @@ echo "== extend"
 (cd extend && python3 cut_at_class.py ../examples/text/alice.txt > cut_at_class.output.txt)
 (cd extend && python3 same_within.py ../examples/agc/input/luminary099.rope > same_within.output.txt)
 (cd extend && python3 row_by_row.py ../hybrid/alice.txt.reservoir > row_by_row.output.txt)
+(cd extend && python3 same_slot.py ../examples/text/alice.txt > same_slot.output.txt)
+(cd extend && python3 functions.py ../examples/text/alice.txt 20 > functions.output.txt)
+(cd extend && python3 sentence.py ../examples/text/alice.txt 5 > sentence.output.txt)
 
 echo "done"

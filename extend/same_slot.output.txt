@@ -1,0 +1,84 @@
+26443 runs, 5293 distinct, 20331 distinct slots
+
+SLOTS   the slots with the most different fillers (top 20)
+  the ___ and              82 fillers: fan, Gryphon,, window,, door,, house,, Queen,, King,, wind,, door, distance,
+  the ___ of               74 fillers: end, top, moral, rest, use, look, bottom, officers, name, roof
+  a ___ of                 41 fillers: tone, sort, pair, little, row, game, number, shower, kind, piece
+  to ___ the               29 fillers: change, try, see, give, explain, hear, drop, on, by, eat
+  the ___ was              28 fillers: Queen, Mouse, Duchess, cook, game, well, fall, Rabbit, key, bottle
+  of ___ and               25 fillers: it,, you,, Mercia, breath,, sticks, things,, Paris,, Rome,, thought,, sight;
+  and ___ the              21 fillers: Morcar,, then, all, join, picking, up, round, took, begged, till
+  the ___ as               20 fillers: same, shelves, cupboards, darkness, pool, Lory,, chimney, sage,, trees, door
+  the ___ with             20 fillers: garden, sand, animals, Mouse, Lory,, top, goose,, edge, door, baby
+  the ___ 'I               19 fillers: Cat., Hatter., Queen., cat.), Eaglet., leaves:, Pigeon., Duchess;, words:--, answer?'
+  the ___ in               19 fillers: Pigeon, Queen, hall:, Mouse,, Mouse, Dodo, floor:, direction, clock, Queen,
+  the ___ the              19 fillers: other:, King,, Duchess,, same,, effect:, Pigeon, subject,', garden:, Queen,, executioner,
+  she ___ to               18 fillers: said, tried, set, got, had, ought, was, longed, found, muttered
+  the ___ she              17 fillers: moment, door,, time, world, table:, carrier,', children, fan, bottle,, window,
+  a ___ and                17 fillers: bat,, Duck, Lory, ring,, long, fan, fall,, Jack-in-the-box,, cart-horse,, serpent;
+  and ___ to               17 fillers: began, said, tried, seemed, had, saying, went, listen, stopped, waited
+  her ___ and              17 fillers: hands,, hand,, eyes;, life,, paws, pocket,, face,, arm,, ear,, flamingo,
+  the ___ said             17 fillers: King, Duchess, Queen, whiting,', sort,', question?', mushroom,', eggs,', baby?', Queen?'
+  it ___ to                15 fillers: occurred, out, ought, belongs, advisable, is, muttering, say, myself, gave
+  to ___ it                15 fillers: see, say, put, hear, explain, be?', twist, kill, leave, carry
+
+SLOT-MATES   for each run: the runs that share the most slots with it (slots shared)
+  the         1507  a 9, this 3, his 2, HIS 1, home,' 1, your 1, little 1, its 1, several 1, our 1
+  and          714  was 3, to 3, so 3, as 3, in 2, that 2, took 2, on 2, best 1, head 1
+  to           703  in 8, into 6, with 5, all 4, at 4, and 3, of 3, must 3, would 3, after 2
+  a            606  the 9, another 6, so 2, of 2, its 2, again 1, was 1, tricks 1, wasn't 1, such 1
+  of           490  to 3, with 3, from 3, at 2, all 2, a 2, about 2, in 2, for 2, among 1
+  she          484  it 23, Alice 13, he 12, they 11, I 7, there 6, you 4, then 4, I've 2, this 2
+  said         416  added 6, thought 6, was 5, had 4, tried 3, began 3, looked 2, found 2, longed 2, muttered 2
+  it           346  she 23, Alice 7, he 7, they 6, there 5, them 4, you 3, this 2, then 2, I 2
+  in           345  with 9, to 8, at 5, was 5, after 5, for 5, on 4, as 4, into 4, all 3
+  was          328  had 7, did 6, said 5, in 5, could 4, were 4, is 4, gave 4, felt 4, found 3
+  I            260  she 7, you 3, he 2, it 2, now 1, in 1, on 1, at 1, only 1, exactly 1
+  you          251  she 4, it 3, he 3, I 3, they 3, there 2, her 2, well 2, Alice 2, me 1
+  as           237  when 5, that 4, in 4, so 3, and 3, then 3, for 2, before 2, how 2, if 2
+  Alice        221  she 13, it 7, they 5, Alice, 5, he 3, her 3, you 2, say 2, herself, 2, this 2
+  that         213  as 4, what 3, sure 2, and 2, face--and 1, head, 1, flamingo: 1, haste, 1, in 1, then, 1
+  her          203  his 5, its 4, Alice, 3, Alice 3, them 3, my 2, think 2, herself 2, Alice's 2, get 2
+  at           196  in 5, on 4, to 4, with 4, among 3, like 2, into 2, as 2, all 2, of 2
+  had          175  was 7, said 4, could 3, did 3, ought 3, went 3, found 3, seemed 2, tried 2, thought 2
+  with         167  in 9, to 5, at 4, of 3, after 2, on 2, which 2, before 2, into 2, all 2
+  all          150  to 4, in 3, Alice 2, getting 2, of 2, with 2, both 2, at 2, last 1, first, 1
+  on           138  by 4, in 4, at 4, and 2, upon 2, round 2, with 2, take 2, put 2, as 2
+  be           136  have 2, Alice 2, feel 2, get 2, her 2, become 1, about 1, manage 1, burn 1, cross-examine 1
+  very         126  its 1, her 1, she 1, something 1, snorting 1, nice 1, neat 1, tidy 1, tiny 1, dear 1
+  for          125  in 5, of 2, by 2, so 2, as 2, makes 1, stuff,' 1, all 1, down,' 1, finished 1
+  'I           121  'Oh, 1
+  little       117  hurried 1, long 1, good 1, proper 1, clear 1, natural 1, heap 1, row 1, book 1, sort 1
+  they         107  she 11, it 6, Alice 5, he 3, you 3, there 2, then 2, that's 1, this 1, 'as 1
+  so           103  as 3, and 3, a 2, for 2, had 1, not 1, too 1, in 1, another 1, you 1
+  not          103  quite 2, such 2, hoped) 1, kept 1, only 1, about 1, generally 1, in 1, going 1, just 1
+  but          101  and 1, for 1, upon 1, of 1, if 1, begun 1, been 1, come 1, got 1, all 1
+  out           96  tired 2, care 1, hold 1, in 1, occurred 1, belongs 1, advisable 1, is 1, muttering 1, say 1
+  he            94  she 12, it 7, Alice 3, they 3, you 3, I 2, then 1, something 1, nothing 1, think: 1
+  his           93  her 5, the 2, their 1, its 1, such 1
+  The           89  (The 1
+  what          85  that 3, how 3, if 2, as 2, here?' 1, with 1, before 1, this 1, is, 1, whether 1
+  this          85  the 3, it 2, as 2, Alice 2, she 2, what 1, this, 1, nothing: 1, nothing; 1, which 1
+  about         84  in 2, of 2, all 1, up 1, and 1, round 1, be 1, not 1, only 1, such 1
+  were          82  was 4, drew 1, kind 1, one 1, is--"Birds 1, making 1, found 1, felt 1, gave 1, WAS 1
+  up            81  down 4, up, 3, back 3, round 2, if 2, to 2, picking 1, Morcar, 1, took 1, begged 1
+  went          79  had 3, looked 2, sat 2, walked 2, got 2, decided 2, began 2, said 2, tried 2, thought 2
+  King          27  Queen 8, Hatter 6, Gryphon 5, Rabbit 4, Mouse 4, Duchess 3, cook 3, Dodo 3, way, 2, Queen, 2
+  Queen         34  King 8, Mouse 4, Gryphon 4, Duchess 3, Rabbit 3, cook 3, way 2, roof 2, pool 2, house 2
+  Hatter        24  King 6, Gryphon 3, Mouse 3, court 3, party 2, Cat 2, Dormouse 2, Knave 2, door 2, baby 2
+  large         32  bank--the 1, other 1, larger 1, much 1, hard 1, nearly 1, solemn 1, soon 1, sure 1, loud 1
+  looked        45  got 3, she 2, looking 2, went 2, walked 2, was 2, said 2, rushed 1, then 1, feet 1
+  thought       63  said 6, found 3, tried 3, heard 2, began 2, as 2, went 2, had 2, longed 2, passed; 1
+  head          29  face 2, sister 2, hand 2, way 1, and 1, best 1, eyes 1, back 1, hurry 1, voice 1
+  could         62  would 5, was 4, must 3, had 3, did 2, wouldn't 2, ought 1, can't 1, WOULD 1, usually 1
+  would         68  could 5, must 4, to 3, was 3, did 3, will 2, might 2, purring, 1, had 1, won't 1
+  must          39  would 4, shall 3, could 3, should 3, to 3, can't 2, wouldn't 2, will 2, needn't 1, might 1
+  Rabbit        29  King 4, Queen 3, Mouse 2, game 2, Gryphon 2, Rabbit, 1, well 1, fall 1, key 1, bottle 1
+  door          15  bank, 2, floor, 2, Duchess 2, day 2, Cat, 2, Hatter, 2, Hatter 2, King, 2, Gryphon, 2, reason 2
+  him           21  time 1, her 1, Alice, 1, all, 1, Alice 1, beginning 1, ear 1, day 1
+  them          49  it 4, her 3, milk 1, things 1, hands 1, say, 1, happen,' 1, this,' 1, Alice, 1, it,' 1
+  my            55  her 2, the 1, one 1
+  two           20  four 1, twice 1, two, 1, seemed 1, strange 1
+  three         23  locks 1, party 1, pebbles 1, chimneys 1, Hatter 1, balls 1, hedgehogs 1, rest 1, Panther 1, jurors 1
+  never         37  expected: 1, quite 1, ever 1, go 1, have 1, ought 1, manage 1, want 1, come 1, deserved 1
+  quite         53  such 3, not 2, hoped) 1, kept 1, this 1, out 1, never 1, much 1, lost, 1, QUITE 1

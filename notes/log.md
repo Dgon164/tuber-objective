@@ -170,3 +170,35 @@ What was built, in order, and what each run changed. Dates are 2026.
   thrust, 14 of 14; 24 DSKY codes: nothing). Given a goal row, 22
   presses: arm, engine on, four notches, lift-off, hold, 223 m.
 - `notes/review-2026-10-11.md`: the 10-10 package against the rules.
+
+## 10-12 — functions, sentences, and the launch
+
+- `extend/same_slot.py`: groups words by WHERE they stand (same left
+  neighbor, same right neighbor). Found pronouns, modals, characters,
+  determiners — parts of speech with no labels given.
+- `extend/functions.py`: Discovery's changes become functions (nodes
+  that turn one part into another). In-kind and out-kind learned from
+  the record. Siblings are functions sharing inputs. Standing = same −
+  different. Holds and negative flags at two levels: (function, sibling)
+  pairs and whole functions. 100 new English words not in Alice, 985
+  failed attempts, 6.3 seconds. Progression through four approaches:
+  open (3,341 failures), per-ending feedback (7,871 — worse), negative
+  groups (662), functions over the record (985 in 6s — the structure is
+  the feedback).
+- `extend/FUNCTIONS.md`: writeup of the functions work.
+- `extend/sentence.py`: sentences from the follows table. Word-level
+  bigrams chained from starters (after sentence-ending punctuation) to
+  enders. 15 sentences in 1.4 seconds.
+- `extend/make_words.py`: the class-pair approach (earlier iteration
+  of word-making, kept for comparison).
+- Paper: line count fixed (470 → 726).
+- README rewritten: opens with Wheeler ("it from bit") and Bateson
+  ("a difference that makes a difference"), shows how Discovery
+  implements both literally.
+- `notes/on-the-bitter-lesson.md`: Discovery as the Bitter Lesson taken
+  to its logical absolute — no human knowledge at all. Knowledge is the
+  output, not the input.
+- `guides/thinking-in-self-assembly.md`: how to work with a
+  self-assembling system. Don't help it. Try it. Find the missing
+  difference.
+- Repo created: github.com/dgon164/tuber-objective, public, MIT.
