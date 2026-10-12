@@ -237,3 +237,22 @@ What was built, in order, and what each run changed. Dates are 2026.
   rest is its record — the JSON lists every connection in both
   directions and is 300 MB for that file); the four memory runs 15 s;
   `functions.py` 7 s; `same_within.py` 6 s; Alice and German 3–4 s each.
+
+## 10-12 — time
+
+- `TIME` in every record, one level at a time: the sequence read as
+  time. ARROWS — a pair seen in both orders, counted each way (`said ->
+  Alice` 25 against 7, `if -> you` 12 against 1). EFFECTS — what comes
+  in the stretch after a run at least twice its usual rate, seen against
+  expected (`I` → `think`, `know`, `can`; `a` → `good`, `large`,
+  `curious`; `little` → `golden`, `door`, `key`; `the` → `King`,
+  `March`, `Rabbit`, `Hatter`). CHAINS — the strongest effect followed
+  forward (`a -> good -> deal -> I -> think`; on the rope the
+  instruction flow loops back on itself: `22156 -> 63411 -> 74756 ->
+  02031 -> 70000`). The stretch is the typical distance to the next
+  level's separator, so the unit is the signal's own.
+- The step was always there — `examples/agc-live/` is the whole loop
+  with a *do* — but the core never read its own sequence as time and no
+  document named it. Paper §10 now maps the six steps (roots, layers,
+  interactions, crystals, relations, causes) to the code and the
+  scales; reading-a-record.md has the TIME section.

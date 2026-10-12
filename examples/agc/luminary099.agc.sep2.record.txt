@@ -143,6 +143,71 @@ RUN FOLLOWS   which run comes after which (top 25 of 141500 pairs)
   TO                       -> BE                        178
   TC                       -> INTPRET\n                 177
 
+TIME   the sequence read as time; the stretch after a run is 18 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+    +1                          -> #                               442   the other way 4
+    #                           -> SET                             370   the other way 13
+    CCS                         -> A\n                             280   the other way 7
+    TO                          -> BE                              178   the other way 3
+    MPAC                        -> #                               176   the other way 25
+    Q                           -> #                               151   the other way 5
+    #                           -> STORE                           148   the other way 6
+    CAF                         -> ZERO\n                          119   the other way 4
+    #                           -> STAR                            115   the other way 2
+    RETURN                      -> TO                              116   the other way 6
+    THE                         -> FOLLOWING                       119   the other way 10
+    TIME                        -> OF                              114   the other way 6
+    A                           -> #                               141   the other way 35
+    L                           -> #                               116   the other way 10
+    0                           -> #                               112   the other way 14
+    +3                          -> #                                96   the other way 3
+    GO                          -> TO                              108   the other way 22
+    SET                         -> UP                               83   the other way 1
+    #                           -> RETURN                           77   the other way 2
+    VECTOR                      -> IN                               75   the other way 1
+    BIT                         -> 1                                72   the other way 3
+    IT                          -> IS                               90   the other way 22
+    SET                         -> TO                               84   the other way 23
+    TS                          -> L\n                              77   the other way 18
+    #                           -> COMMON                           60   the other way 1
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    #                           pp. 508/91.8, ECADR 521/211.1, 1DNADR 389/110.2, SAVE 452/215.2, STAR 400/176.5, COMMON 281/95.9
+    THE                         THE 4158/1095.8, IS 1626/579.2, OF 1451/611.3, AND 1243/557.8, A 765/341.5, BE 554/207.8
+    TC                          TC 3711/1005.1, CADR 854/179.7, CAF 874/376.8, ADRES 434/86.4, INTPRET\n 390/46.9, BANKCALL\n 386/54.6
+    TO                          THE 1855/814.0, BE 377/154.4, CALLING 129/44.6, THE\n# 105/34.1, MANEUVER 70/22.8, AN 78/38.9
+    TS                          TS 2143/408.5, CA 893/227.9, CAF 715/240.3, CS 511/157.1, INDEX 469/152.4, EXTEND\n 497/222.7
+    IN                          IN 845/378.4, THIS 173/85.9, CASE 67/11.9, MODE 93/39.7, MPAC\n 97/46.2, ORDER 57/17.1
+    OF                          THE 1516/611.3, OF 794/341.0, * 247/99.9, THIS 186/81.5, DP 127/36.1, ARE 166/81.3
+    TCF                         TCF 1595/326.2, CAF 491/214.7, CA 475/203.7, CS 365/140.4, INDEX 345/136.2, CCS 333/128.0
+    IS                          THE 1629/579.2, IS 869/306.1, TO 880/430.3, A 522/180.5, IF 438/213.7, IT 196/54.1
+    FOR                         FOR 819/295.4, ERASE 211/65.5, * 193/93.0, EARTH 95/18.2, MOON 87/13.9, DP 88/33.6
+    =                           = 2232/289.7, BIT 433/134.2, FLAG 345/78.8, + 150/44.1, ERASE 159/64.9, VBUF 92/11.7
+    AND                         THE 1283/557.8, AND 572/284.0, ARE 234/74.2, THE\n# 95/23.4, IT 106/52.1, CALLING 77/30.6
+    Page                        PROGRAM 130/40.1, SETLOC 120/31.5, COUNT* 117/34.8, MOD 88/17.1, BANK 100/29.4, SUBROUTINE 69/15.6
+    IF                          IS 706/213.7, IF 509/149.2, A 262/126.0, NOT 165/57.5, IT 133/37.8, THAN 98/24.2
+    CAF                         TC 1208/376.9, TS 903/240.3, CAF 446/141.3, TCF 499/214.7, CADR 252/67.4, MASK 244/84.0
+    CA                          TS 1091/227.9, CA 545/127.2, EXTEND\n 479/124.2, MASK 330/79.7, INDEX 321/85.0, TCF 439/203.7
+    EXTEND\n                    EXTEND\n 499/121.4, BZF 406/32.1, MP 358/27.3, DCA 350/30.7, DXCH 371/69.1, CA 386/124.2
+    OCT                         OCT 2150/111.6, DEC 210/39.8, 00000 151/5.9, 3COMP 146/11.4, SPARE\n 126/7.1, DP3, 106/3.5
+    EQUALS                      EQUALS 2861/109.0, +2 500/49.3, +1 444/50.3, +6 352/14.0, ERASE 192/39.8, AINLA 128/2.9
+    A                           THE 894/341.5, A 433/106.4, IS 437/180.5, OR 157/72.1, BE 140/64.8, IT 95/31.9
+    -                           - 898/105.5, + 125/26.6, BY 148/69.0, MOD 86/13.9, FUNCTIONAL 64/8.1, VECTOR 88/38.7
+    the                         the 663/66.8, for 564/32.6, in 441/27.1, images 408/27.6, Apollo 370/12.7, source 322/19.3
+    \n                          \n 474/63.7, TC 587/252.8, CAF 296/94.8, 2DEC 152/31.0, CS 176/62.0, B-1 105/8.7
+    BIT                         BIT 844/62.1, FLAG 807/36.5, = 524/134.2, 1 212/31.5, 7 166/11.6, 12 155/7.7
+    CS                          MASK 400/54.9, TS 492/157.1, AD 325/50.4, EXTEND\n 312/85.6, CS 253/60.4, ADS 136/17.9
+  CHAINS   the strongest effect, followed forward
+    # -> pp. -> p.
+    THE -> IS -> TO -> BE -> A
+    TC -> CADR -> ... -> RETURN\n# -> IS
+    TO -> THE -> IS -> A -> OR
+    TS -> CA -> EXTEND\n -> BZF -> TC
+    IN -> THIS -> THE -> IS -> TO
+    OF -> THE -> IS -> TO -> BE
+    TCF -> CAF -> TC -> CADR -> ...
+    IS -> THE -> OF -> * -> DP
+    FOR -> ERASE -> # -> pp. -> p.
+
 MINT   19 rounds; parts minted per round: 50448 20756 7368 2651 1161 635 348 200 118 85 58 38 27 12 7 2 1 1 0
   pool: 42490 distinct runs in, 126406 structures added, 126406 in the pool now
 
@@ -546,6 +611,52 @@ RUN FOLLOWS   which run comes after which (top 25 of 14554 pairs)
   ALL DEC OR ALL OCT.\n EXTEND\n DCA LODNNLOC -> SWITCH BANKS TO NOUN TABLE READING\n DXCH Z  2
   ROUTINE.\n CAF ZERO      -> X COMP\n TC PUTCOM\n INDEX NOUNADD\n TS 0\n CAF ONE  2
 
+TIME   the sequence read as time; the stretch after a run is 1327 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+    (DEC ONLY)\n OCT 24512      -> 82 3COMP VEL3 FOR EACH\n          1   the other way 1
+    (DEC ONLY)\n OCT 24512      -> 83 3COMP VEL3 FOR EACH\n          1   the other way 1
+    (DEC ONLY)\n OCT 24512      -> 84 3COMP VEL3 FOR EACH\n          1   the other way 1
+    (DEC ONLY)\n OCT 24512      -> 85 3COMP VEL3 FOR EACH\n          1   the other way 1
+    DIRECT RATE CONTROL.\n B... -> IF TARGET DB IS EXCEEDED...       1   the other way 1
+    INSURE DISPLAY OF 0-360 ... -> INTRODUCES AN ERROR OF B...       1   the other way 1
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    COLLECT SNAPSHOT\n 6DNAD... COLLECT SNAPSHOT\n 6DNAD... 45/9.1, LEMMASS,CSMMASS\n 1DNADR... 38/5.5, COMMON DATA\n 1DNADR TIM... 32/5.5, IMODES30,IMODES33\n 1DNA... 28/4.5, LASTYCMD,LASTXCMD\n 1DNA... 26/3.6, COMMON DATA\n 2DNADR POS... 25/3.6
+    SWITCH BANKS TO NOUN TAB... (DEC ONLY)\n OCT 24512 48/4.4, 95 SPARE\n OCT 0 39/4.4, SWITCH BANKS TO NOUN TAB... 28/5.8, (NO LOAD, DEC ONLY)\n OC... 24/2.2, ALTITUDE RATE\n 24/2.2, 94 SPARE\n OCT 0 21/2.2
+    PROCEED\n TCF -5            (CK4V32 RETURNS HERE IF ... 15/1.8, PRESERVED.\n DV HH 10/1.2, QUOTIENT SCALED AT 4 SEC... 10/1.2, STORE DENOMINATOR IN FIR... 10/1.2, UPDATE THE REGISTER BY C... 10/1.2, WHICH NEED NOT BE PRESER... 10/1.2
+    COMMON DATA\n 1DNADR TIM... COLLECT SNAPSHOT\n 6DNAD... 28/5.5, LEMMASS,CSMMASS\n 1DNADR... 21/3.3, IMODES30,IMODES33\n 1DNA... 15/2.7, COMMON DATA\n 2DNADR POS... 14/2.2, LASTYCMD,LASTXCMD\n 1DNA... 14/2.2, COMMON DATA\n 1DNADR TIM... 15/3.3
+    LEMMASS,CSMMASS\n 1DNADR... COLLECT SNAPSHOT\n 6DNAD... 22/5.5, IMODES30,IMODES33\n 1DNA... 15/2.7, COMMON DATA\n 1DNADR TIM... 15/3.3, LEMMASS,CSMMASS\n 1DNADR... 15/3.3, TEMP FOR DISPLAY OF HRS,... 12/1.1, TEMP FOR INDIR ADRESS TA... 12/1.1
+    95 SPARE\n OCT 0            TERMINATE\n TC +2 18/2.2, 95 SPARE\n OCT 0 15/3.3, 6\n OCT 00200 12/1.1, 8\n OCT 00020 12/1.1, IF EARTH CENTERED ALREAD... 12/1.1, IF MOON CENTERED, RESCAL... 12/1.1
+    (DEC ONLY)\n OCT 24512      95 SPARE\n OCT 0 30/3.3, TERMINATE\n TC +2 18/2.2, (DEC ONLY)\n OCT 24512 15/3.3, 50 SPARE\n OCT 0 12/1.1, 52 SPARE COMPONENT\n OCT... 12/1.1, 6\n OCT 00200 12/1.1
+    (3)\n TCF TASKOVER          COLLECT SNAPSHOT\n 6DNAD... 35/4.5, COMMON DATA\n 1DNADR TIM... 19/2.7, IMODES30,IMODES33\n 1DNA... 18/2.3, LEMMASS,CSMMASS\n 1DNADR... 18/2.7, SET EBANK\n MASK LOW8 15/1.8, (11)\n TCF WAITABIT 15/2.3
+    (11)\n TCF WAITABIT         COLLECT SNAPSHOT\n 6DNAD... 37/4.5, COMMON DATA\n 1DNADR TIM... 21/2.7, IMODES30,IMODES33\n 1DNA... 18/2.3, LEMMASS,CSMMASS\n 1DNADR... 18/2.7, SET EBANK\n MASK LOW8 15/1.8, COMMON DATA\n 2DNADR POS... 14/1.8
+    IMODES30,IMODES33\n 1DNA... COLLECT SNAPSHOT\n 6DNAD... 22/4.5, COMMON DATA\n 1DNADR TIM... 15/2.7, LEMMASS,CSMMASS\n 1DNADR... 15/2.7, TEMP FOR DISPLAY OF HRS,... 10/0.9, TEMP FOR INDIR ADRESS TA... 10/0.9, TEMP FOR LOAD OF HRS,MIN... 10/0.9
+    (GYRO PULSES)/(PIPA PULS... (GYRO PULSES)/(CS) X 2(-... 15/1.4, PIPAZ, PIPAY, PIPAX\n TS... 10/0.9, POSITIVE SO THAT THE ACC... 10/0.9, RESULT = (GYRO PULSES) X... 10/0.9, (GYRO PULSES)/(PIPA PULS... 10/2.3, SAVE Q\n EXTEND\n DCS DE... 6/0.9
+    (0)\n TCF ULLGNOT           COLLECT SNAPSHOT\n 6DNAD... 28/3.6, COMMON DATA\n 1DNADR TIM... 15/2.2, IMODES30,IMODES33\n 1DNA... 14/1.8, LEMMASS,CSMMASS\n 1DNADR... 14/2.2, SET EBANK\n MASK LOW8 12/1.5, (11)\n TCF WAITABIT 12/1.8
+    SET EBANK\n MASK LOW8       COLLECT SNAPSHOT\n 6DNAD... 30/2.8, COMMON DATA\n 1DNADR TIM... 18/1.7, LEMMASS,CSMMASS\n 1DNADR... 18/1.7, IMODES30,IMODES33\n 1DNA... 15/1.4, COMMON DATA\n 2DNADR POS... 12/1.1, LASTYCMD,LASTXCMD\n 1DNA... 12/1.1
+    COMMON DATA\n 2DNADR POS... LEMMASS,CSMMASS\n 1DNADR... 14/2.2, COLLECT SNAPSHOT\n 6DNAD... 15/3.6, IMODES30,IMODES33\n 1DNA... 10/1.8, COMMON DATA\n 1DNADR TIM... 10/2.2, LASTYCMD,LASTXCMD\n 1DNA... 9/1.5, TEMP FOR DISPLAY OF HRS,... 8/0.7
+    LASTYCMD,LASTXCMD\n 1DNA... LEMMASS,CSMMASS\n 1DNADR... 14/2.2, COLLECT SNAPSHOT\n 6DNAD... 14/3.6, IMODES30,IMODES33\n 1DNA... 10/1.8, COMMON DATA\n 1DNADR TIM... 10/2.2, TEMP FOR DISPLAY OF HRS,... 8/0.7, TEMP FOR INDIR ADRESS TA... 8/0.7
+    TERMINATE\n TC +2           PROCEED\n TCF -5 14/2.5, TERMINATE\n TCF +5 9/1.1, 6\n OCT 00200 6/0.7, 8\n OCT 00020 6/0.7, PRECISION UPDATE ACTIVE ... 6/0.7, PRECISION UPDATE PASSIVE... 6/0.7
+    (1)\n TCF COMFAIL3          COLLECT SNAPSHOT\n 6DNAD... 21/2.7, IMODES30,IMODES33\n 1DNA... 11/1.4, COMMON DATA\n 1DNADR TIM... 11/1.6, LEMMASS,CSMMASS\n 1DNADR... 11/1.6, SET EBANK\n MASK LOW8 9/1.1, COMMON DATA\n 2DNADR POS... 8/1.1
+    DURING SOFTWARE RESTART,... (GYRO PULSES)/(PIPA PULS... 15/1.4, (GYRO PULSES)/(CS) X 2(-... 9/0.8, (GYRO PULSES)/(CS) X 2(-... 9/0.8, +(NBDZ)(DELTAT) (GYRO PU... 6/0.5, INDICATE COMMANDS 2 PULS... 6/0.5, PIPAZ, PIPAY, PIPAX\n TS... 6/0.5
+    (GYRO PULSES)/(CS) X 2(-... (GYRO PULSES)/(PIPA PULS... 15/1.4, (GYRO PULSES)/(CS) X 2(-... 9/0.8, +(NBDZ)(DELTAT) (GYRO PU... 6/0.5, PIPAZ, PIPAY, PIPAX\n TS... 6/0.5, POSITIVE SO THAT THE ACC... 6/0.5, RESULT = (GYRO PULSES) X... 6/0.5
+    (GYRO PULSES)/(CS) X 2(-... (+) - (+) OR (-) - (-)\n... 3/0.3, (-45,45) OR (135,-135)\n... 3/0.3, (135,-135)\n HIDPHALF\n ... 3/0.3, (45,135) OR (-135,-45)\n... 3/0.3, (ADDRESS ALWAYS GIVEN).\... 3/0.3, (ARRIVES WITH C(A) = LOW... 3/0.3
+    PROCEED\n TC -5             PROCEED\n TCF -5 9/1.9, SWITCH BANKS TO NOUN TAB... 8/2.2, TERMINATE\n TCF +5 6/0.8, 6\n OCT 00200 4/0.5, 8\n OCT 00020 4/0.5, PRECISION UPDATE ACTIVE ... 4/0.5
+    ROUTINE.\n CAF ZERO         (DEC ONLY)\n OCT 24512 18/1.6, 95 SPARE\n OCT 0 18/1.6, (NO LOAD, DEC ONLY)\n OC... 9/0.8, 94 SPARE\n OCT 0 9/0.8, ALTITUDE RATE\n 9/0.8, SWITCH BANKS TO NOUN TAB... 9/2.2
+    ALTITUDE RATE\n             (DEC ONLY)\n OCT 24512 18/1.6, 95 SPARE\n OCT 0 18/1.6, (NO LOAD, DEC ONLY)\n OC... 9/0.8, 94 SPARE\n OCT 0 9/0.8, TERMINATE\n TC +2 9/1.1, 50 SPARE\n OCT 0 6/0.5
+    94 SPARE\n OCT 0            95 SPARE\n OCT 0 12/1.6, TERMINATE\n TC +2 9/1.1, 6\n OCT 00200 6/0.5, 8\n OCT 00020 6/0.5, IF EARTH CENTERED ALREAD... 6/0.5, IF MOON CENTERED, RESCAL... 6/0.5
+    (NO LOAD, DEC ONLY)\n OC... (DEC ONLY)\n OCT 24512 16/1.6, 95 SPARE\n OCT 0 15/1.6, TERMINATE\n TC +2 9/1.1, 50 SPARE\n OCT 0 6/0.5, 52 SPARE COMPONENT\n OCT... 6/0.5, 6\n OCT 00200 6/0.5
+  CHAINS   the strongest effect, followed forward
+    COLLECT SNAPSHOT\n 6DNAD... -> LEMMASS,CSMMASS\n 1DNADR... -> IMODES30,IMODES33\n 1DNA... -> COMMON DATA\n 1DNADR TIM... -> COMMON DATA\n 2DNADR POS...
+    SWITCH BANKS TO NOUN TAB... -> (DEC ONLY)\n OCT 24512 -> 95 SPARE\n OCT 0 -> TERMINATE\n TC +2 -> PROCEED\n TCF -5
+    PROCEED\n TCF -5 -> (CK4V32 RETURNS HERE IF ... -> UPDATE THE REGISTER BY C... -> (BIT 3 OF CHANNEL 11)\n ...
+    COMMON DATA\n 1DNADR TIM... -> COLLECT SNAPSHOT\n 6DNAD... -> LEMMASS,CSMMASS\n 1DNADR... -> IMODES30,IMODES33\n 1DNA... -> TEMP FOR DISPLAY OF HRS,...
+    LEMMASS,CSMMASS\n 1DNADR... -> COLLECT SNAPSHOT\n 6DNAD... -> COMMON DATA\n 1DNADR TIM... -> IMODES30,IMODES33\n 1DNA... -> TEMP FOR DISPLAY OF HRS,...
+    95 SPARE\n OCT 0 -> TERMINATE\n TC +2 -> PROCEED\n TCF -5 -> (CK4V32 RETURNS HERE IF ... -> UPDATE THE REGISTER BY C...
+    (DEC ONLY)\n OCT 24512 -> 95 SPARE\n OCT 0 -> TERMINATE\n TC +2 -> PROCEED\n TCF -5 -> (CK4V32 RETURNS HERE IF ...
+    (3)\n TCF TASKOVER -> COLLECT SNAPSHOT\n 6DNAD... -> LEMMASS,CSMMASS\n 1DNADR... -> IMODES30,IMODES33\n 1DNA... -> COMMON DATA\n 1DNADR TIM...
+    (11)\n TCF WAITABIT -> COLLECT SNAPSHOT\n 6DNAD... -> LEMMASS,CSMMASS\n 1DNADR... -> IMODES30,IMODES33\n 1DNA... -> COMMON DATA\n 1DNADR TIM...
+    IMODES30,IMODES33\n 1DNA... -> COLLECT SNAPSHOT\n 6DNAD... -> LEMMASS,CSMMASS\n 1DNADR... -> COMMON DATA\n 1DNADR TIM... -> COMMON DATA\n 2DNADR POS...
+
 MINT   29 rounds; parts minted per round: 34770 27381 18151 11354 6478 3596 1930 1079 624 411 264 180 132 82 58 43 31 25 20 21 13 7 6 3 2 6 3 3 0
   pool: 14404 distinct runs in, 121058 structures added, 247464 in the pool now
 
@@ -920,6 +1031,11 @@ RUN FOLLOWS   which run comes after which (top 25 of 10 pairs)
   SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE... -> SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D...  1
   SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D... -> SEND SNAPSHOT\n DNPTR LMAGSI04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
 
+TIME   the sequence read as time; the stretch after a run is 11 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
+
 MINT   1 rounds; parts minted per round: 0
   pool: 11 distinct runs in, 11 structures added, 247475 in the pool now
 
@@ -1046,6 +1162,11 @@ RUNS   1 runs between separators, 1 distinct
   SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5...  1
 
 RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+TIME   the sequence read as time; the stretch after a run is 1 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
   pool: 1 distinct runs in, 1 structures added, 247476 in the pool now

@@ -1,498 +1,563 @@
 DISCOVERY RECORD
 signal     discovery.py
-size       34673 bytes, 277384 bits
+size       39339 bytes, 314712 bits
 
 FRAME   score = spread between the column most often 1 and the column least often 1
   width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
-   40    0.948   col   0 at 0.000   col   2 at 0.948
-   56    0.947   col   0 at 0.000   col   2 at 0.947
-   64    0.946   col   0 at 0.000   col  26 at 0.946
-   32    0.945   col   0 at 0.000   col  26 at 0.945
-   48    0.944   col   0 at 0.000   col  10 at 0.944
+   64    0.949   col   0 at 0.000   col  34 at 0.949
+   48    0.948   col   0 at 0.000   col  18 at 0.948
+   32    0.947   col   0 at 0.000   col   2 at 0.947
+   40    0.946   col   0 at 0.000   col   2 at 0.946
    24    0.944   col   0 at 0.000   col  10 at 0.944
-   16    0.943   col   0 at 0.000   col  10 at 0.943
-    8    0.943   col   0 at 0.000   col   2 at 0.943
+   56    0.944   col   0 at 0.000   col   2 at 0.944
+   16    0.943   col   0 at 0.000   col   2 at 0.943
+    8    0.942   col   0 at 0.000   col   2 at 0.942
   picked width 8
-    fold to  1: columns differ by 0.1778 on average (wobble by chance 0.0027) -> different
-    fold to  2: columns differ by 0.1784 on average (wobble by chance 0.0027) -> different
-    fold to  4: columns differ by 0.1627 on average (wobble by chance 0.0027) -> different
+    fold to  1: columns differ by 0.1777 on average (wobble by chance 0.0025) -> different
+    fold to  2: columns differ by 0.1782 on average (wobble by chance 0.0025) -> different
+    fold to  4: columns differ by 0.1625 on average (wobble by chance 0.0025) -> different
   chosen width 8
   column rates at width 8:
-    0.000 0.538 0.943 0.227 0.363 0.424 0.305 0.414
+    0.000 0.540 0.942 0.228 0.361 0.421 0.307 0.414
 
 LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
   level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
-      0    34673        89     4322      1745     7239          190     8984        8984
-      1     4322      1745      183       182      225            2      405        9389
-      2      183       182        3         3        0            0        3        9392
-      3        3         3        1         1        0            0        1        9393
+      0    39339        89     4967      1952     7776          203     9728        9728
+      1     4967      1952      205       204      264            2      466       10194
+      2      205       204        3         3        0            0        3       10197
+      3        3         3        1         1        0            0        1       10198
   stopped: level 3 left a single run; nothing more to cut
 
 ==============================================================================
 LEVEL 0
 ==============================================================================
 
-WORDS   34673 words, 89 distinct
+WORDS   39339 words, 89 distinct
   bits      glyph   count
-  00100000          9245
-  01100101  e       2168
-  00101101  -       1605
-  01110100  t       1375
-  01101111  o       1366
-  01110011  s       1328
-  01110010  r       1269
-  01101110  n       1225
-  01100001  a       1184
-  01101001  i       1018
-  01100100  d       851
-  01101100  l       844
-  00001010  \n      818
-  00100111  '       678
-  00101000  (       662
-  00101001  )       662
-  01110000  p       631
-  00101100  ,       621
-  01100110  f       615
-  01101101  m       547
-  01100011  c       518
-  01101000  h       495
-  01110101  u       384
-  00111101  =       350
-  01110111  w       345
+  00100000          10524
+  01100101  e       2452
+  00101101  -       1769
+  01110100  t       1591
+  01101111  o       1540
+  01110011  s       1506
+  01110010  r       1430
+  01101110  n       1407
+  01100001  a       1379
+  01101001  i       1164
+  01100100  d       931
+  00001010  \n      917
+  01101100  l       912
+  00100111  '       757
+  00101000  (       741
+  00101001  )       741
+  01100110  f       724
+  00101100  ,       712
+  01110000  p       682
+  01100011  c       645
+  01101101  m       593
+  01101000  h       585
+  01110101  u       446
+  01110111  w       404
+  00111101  =       386
 
-FOLLOWS   which word comes after which (top 25 of 1206 pairs)
-                           ->                           4924
-  -                        -> -                         1487
-  \n                       ->                           576
-  ,                        ->                           554
-                           -> i                         350
-  o                        -> r                         329
-  e                        ->                           327
-  i                        -> n                         319
-  s                        ->                           282
-  l                        -> e                         280
-  t                        -> h                         272
-                           -> s                         265
-  n                        ->                           265
-                           -> p                         255
-                           -> t                         253
-  =                        ->                           241
-  r                        -> e                         237
-  a                        -> r                         234
-  e                        -> n                         227
-                           -> =                         217
-  )                        -> \n                        214
-  p                        -> a                         211
-                           -> c                         209
-  t                        ->                           207
-  s                        -> e                         206
+FOLLOWS   which word comes after which (top 25 of 1256 pairs)
+                           ->                           5558
+  -                        -> -                         1634
+  \n                       ->                           644
+  ,                        ->                           641
+                           -> i                         413
+  i                        -> n                         386
+  e                        ->                           385
+  o                        -> r                         377
+  s                        ->                           329
+  t                        -> h                         314
+  n                        ->                           314
+                           -> t                         311
+                           -> s                         305
+  l                        -> e                         300
+  =                        ->                           269
+                           -> p                         265
+  r                        -> e                         263
+                           -> c                         259
+  e                        -> n                         256
+                           -> a                         255
+  a                        -> r                         254
+                           -> =                         241
+  )                        -> \n                        241
+  t                        ->                           234
+  d                        ->                           226
 
 SEPARATOR   the most common word: 00100000 ( )
 
-RUNS   4322 runs between separators, 1745 distinct
-  =                                         182
-  in                                        113
-  the                                       108
-  if                                        100
-  for                                       87
-  %                                         68
-  is                                        50
-  a                                         49
-  return                                    44
-  else                                      39
-  ==                                        35
-  say('                                     34
-  of                                        32
-  and                                       31
-  +                                         27
-  not                                       25
-  #                                         25
-  %d                                        25
-  part                                      23
+RUNS   4967 runs between separators, 1952 distinct
+  =                                         204
+  in                                        142
+  the                                       134
+  if                                        112
+  for                                       108
+  %                                         73
+  is                                        61
+  a                                         59
+  return                                    46
+  else                                      43
+  say('                                     40
+  and                                       38
+  ==                                        37
+  of                                        34
+  +                                         34
+  not                                       30
+  c                                         28
+  #                                         27
+  %d                                        27
+  part                                      24
   d                                         22
-  c                                         20
-  that                                      19
-  level                                     19
-  n                                         19
-  as                                        18
+  as                                        21
+  that                                      20
+  -                                         20
+  x                                         20
 
-RUN FOLLOWS   which run comes after which (top 25 of 3508 pairs)
-  c                        -> in                        16
+RUN FOLLOWS   which run comes after which (top 25 of 3996 pairs)
+  c                        -> in                        21
   pool,                    -> made_of,                  16
-  %s'                      -> %                         15
+  %s'                      -> %                         16
+  %d'                      -> %                         14
   made_of,                 -> part_of,                  13
-  %d'                      -> %                         13
-  if                       -> not                       10
+  if                       -> not                       11
   for                      -> w                         10
   w                        -> in                        10
   k                        -> =                         10
   if                       -> n                         10
+  is                       -> the                       9
+  in                       -> the                       9
+  of                       -> the                       8
+  the                      -> same                      8
+  =                        -> []\n                      8
   d                        -> =                         8
+  x                        -> in                        8
   part                     -> is                        7
-  of                       -> the                       7
-  in                       -> the                       7
+  to                       -> the                       7
+  []\n                     -> for                       7
+  and                      -> the                       7
+  x                        -> =                         7
+  b,                       -> c,                        7
+  for                      -> a,                        7
   if                       -> d                         7
-  the                      -> same                      6
-  is                       -> the                       6
-  x                        -> in                        6
-  x                        -> =                         6
-  d                        -> ==                        6
-  c))\n                    -> say('')\n\n               6
-  --                       -> the                       5
-  to                       -> the                       5
-  =                        -> []\n                      5
-  =                        -> [],                       5
 
-MINT   19 rounds; parts minted per round: 3509 1829 912 471 236 122 64 31 20 16 11 5 3 2 2 2 2 2 0
-  pool: 1745 distinct runs in, 8984 structures added, 8984 in the pool now
+TIME   the sequence read as time; the stretch after a run is 24 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+    the                         -> same                              8   the other way 1
+    part                        -> is                                7   the other way 1
+    L                           -> in                                6   the other way 1
+    d                           -> ==                                6   the other way 3
+    +                           -> 1                                 4   the other way 1
+    out                         -> =                                 4   the other way 1
+    for                         -> r                                 3   the other way 1
+    in                          -> both                              3   the other way 1
+    part                        -> of                                3   the other way 1
+    of                          -> %d                                4   the other way 3
+    c                           -> for                               3   the other way 2
+    =                           -> produced                          2   the other way 1
+    c,                          -> back,                             2   the other way 1
+    distinct                    -> runs                              2   the other way 1
+    for                         -> h                                 2   the other way 1
+    k\n                         -> return                            2   the other way 1
+    not                         -> part                              2   the other way 1
+    of                          -> one                               2   the other way 1
+    that                        -> is                                2   the other way 1
+    the                         -> cap                               2   the other way 1
+    the                         -> ones                              2   the other way 1
+    what                        -> is                                2   the other way 1
+    %-24s                       -> ->                                2   the other way 2
+    %7d                         -> %8d                               2   the other way 2
+    '                           -> +                                 2   the other way 2
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    =                           k 33/12.8, []\n 33/13.8, else:\n 21/9.9, while 19/7.9, / 17/5.9, rows 17/5.9
+    in                          chain 7/2.0, {\n 7/2.7, %-27s 6/2.0, 0) 6/2.0, (n, 5/1.4, node(r)\n 5/1.4
+    the                         the 193/86.8, is 84/39.5, that 40/12.9, are 29/7.8, ------------------------... 25/7.1, part 33/15.5
+    if                          else 66/23.2, == 53/19.9, not 49/16.2, n 25/10.8, d 24/11.9, k 17/7.0
+    for                         in 171/74.1, c 49/14.6, a, 17/5.2, x 21/10.4, w 15/5.7, b, 15/6.3
+    %                           % 61/25.7, say(' 43/14.1, say('')\n\n 27/5.3, %d 31/9.5, ', 21/3.9, c))\n 16/2.8
+    is                          the 95/39.5, is 40/18.0, what 18/5.0, its 13/2.4, that 16/5.9, the\n# 12/2.4
+    a                           is 45/17.4, part 23/6.8, run 16/4.0, that 14/5.7, one 12/4.6, to 12/4.8
+    return                      return 27/10.2, ------------------------... 15/2.4, -- 12/3.1, isinstance(x, 9/2.0, w 8/2.4, run: 6/0.7
+    else                        + 16/7.0, n 11/4.1, # 12/5.5, k 8/2.7, memory 7/1.8, part_of 5/0.8
+    say('                       % 63/14.1, %s' 20/3.1, %d 22/5.2, say(' 24/7.7, %d' 17/2.7, say('')\n\n 17/2.9
+    and                         the 53/24.6, not 14/5.5, == 14/6.8, what 9/3.1, width 8/2.4, column 7/2.0
+    ==                          == 21/6.5, return 21/8.0, and 17/6.6, p:\n 10/0.7, else 16/7.5, not 12/5.2
+    of                          is 21/10.0, one 10/2.6, part 11/3.9, that 9/3.3, run 7/2.3, same 6/2.1
+    +                           + 21/5.6, else 19/7.1, text 8/1.0, / 7/1.0, 1 8/2.1, os.path.join(out, 6/0.3
+    not                         not 16/4.3, collections.defaultdict(... 6/0.3, b):\n 6/0.6, break\n 6/1.0, this 7/2.3, earlier 5/0.6
+    c                           c 28/3.8, in 41/19.2, c))\n 9/1.1, %d' 9/1.9, say(' 11/5.4, back 6/0.8
+    #                           # 14/3.5, forward 6/0.4, mirrored 6/0.5, shared 6/1.3, at 7/2.3, this 6/2.1
+    %d                          % 41/9.5, %d 19/3.5, say(' 19/5.2, say('')\n\n 14/2.0, %d' 11/1.8, %-24s 8/0.5
+    part                        the 32/15.5, is 18/7.1, of 11/3.9, that 9/2.3, one 8/1.9, part 8/2.8
+    d                           == 19/3.9, ' 16/1.5, else 18/4.6, d 14/2.3, not 11/3.2, x 8/2.1
+    as                          the 28/13.6, a 17/6.0, are 6/1.2, ' 6/1.4, keys 5/0.6, round 5/0.6
+    that                        the 36/12.9, is 18/5.9, of 10/3.3, part 8/2.3, one 7/1.5, when 5/0.4
+    -                           ' 12/1.4, d 12/2.1, - 9/1.9, == 9/3.6, 1, 6/0.6, else 9/4.2
+    x                           return 11/4.4, not 8/2.9, isinstance(x, 5/0.9, - 6/1.9, found[x] 4/0.2, no 4/0.2
+  CHAINS   the strongest effect, followed forward
+    = -> k -> if -> else -> +
+    in -> chain -> = -> k -> if
+    the -> is -> what -> part -> of
+    if -> else -> + -> text -> what
+    for -> in -> chain -> = -> k
+    % -> say(' -> %s' -> ', -> for
+    is -> the -> that -> of -> one
+    a -> is -> the -> that -> of
+    return -> ------------------------... -> -- -> the -> is
+    else -> + -> text -> what -> part
+
+MINT   19 rounds; parts minted per round: 3886 1968 964 467 235 108 58 29 20 16 8 4 3 2 2 2 2 2 0
+  pool: 1952 distinct runs in, 9728 structures added, 9728 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
   part                            density   whole  inside (sample)
-  (                                   526       0  (top, (a,, (\n, ()),
-  s                                   480       5  is, as, this, parts
-  e                                   479       4  the, else, one, are
-  '                                   434      12  say(', %s', %d', ',
-  ,                                   404       0  pool,, made_of,, part_of,, ',
-  t                                   362       0  the, not, part, that
-  \n                                  337       0  say('')\n\n, []\n, 1\n, 0\n
-  i                                   336      12  in, if, is, its
-  n                                   325      19  in, return, not, run
-  .                                   309       0  1., run., nothing., 4.
-  r                                   308       7  for, return, run, or
-  d                                   288      22  and, %d, def, shared
-  a                                   278      49  and, as, at, are
-  )                                   264       0  members), 0), len(s), Keys(frame)
-  o                                   256       0  of, one, to, on
-  l                                   243       0  level, pool, signal, until
-  p                                   235       7  part, parts, pool, produced
-  [                                   227       0  []\n, [],, [kc[q], [int(h,
-  c                                   212      20  column, c))\n, common, class
-  ]                                   201       0  score[w], c], [kc[q], x[0]
-  :                                   200       0  p:, q:, {str(w):, run:
-  m                                   197       4  memory, most, from, made
-  =                                   188     182  ==, +=, <=, >=
-  _                                   172       1  __init__(self,, __name__, _order(, write_
-  )\n                                 168       0  top)\n, frame)\n, x)\n, collections.defaultdict(collections.Counter)\n
+  (                                   549       0  (top, (a,, (\n, ()),
+  s                                   531       6  is, as, parts, this
+  e                                   513       7  the, else, one, same
+  '                                   476      14  say(', %s', %d', ',
+  ,                                   440       0  pool,, made_of,, part_of,, c,
+  t                                   401       0  the, not, part, that
+  \n                                  361       0  say('')\n\n, []\n, 0\n, 1\n
+  i                                   353      14  in, if, is, it
+  n                                   345      20  in, return, not, run
+  .                                   325       0  1., signal., run., nothing.
+  r                                   317       8  for, run, after, or
+  a                                   309      59  and, as, at, after
+  d                                   305      22  and, %d, def, shared
+  )                                   282       0  len(s), members), 0), tuple)
+  o                                   275       0  of, to, one, or
+  l                                   268       0  level, pool, signal, lambda
+  [                                   257       0  []\n, [],, [kc[q], [(a,
+  p                                   245       7  part, parts, pool, (top
+  :                                   233       0  p:, q:, {str(w):, run:
+  c                                   224      28  c,, column, c))\n, class
+  ]                                   213       0  score[w], c], [kc[q], x[0]
+  =                                   202     204  ==, +=, <=, >=
+  m                                   199       4  memory, minted, more, most
+  )\n                                 189       0  top)\n, frame)\n, x)\n, collections.defaultdict(collections.Counter)\n
+  _                                   173       1  __init__(self,, __name__, _order(, write_
 
 ENDINGS   what gets added to the end of a part to make another (top 25)
-  +,                         827
-  +\n                        513
-  +s                         338
-  +e                         303
-  +)                         301
-  +:                         288
-  +)\n                       258
-  +'                         246
-  +:\n                       244
-  +(                         227
-  +.                         224
-  +t                         214
-  +d                         194
-  +n                         186
-  +]                         186
-  +i                         186
-  +r                         151
-  +\n#                       142
-  +':                        137
-  +a                         133
-  +l                         133
-  +o                         131
-  +):\n                      126
-  +p                         113
-  +,\n                       108
+  +,                         898
+  +\n                        556
+  +s                         375
+  +:                         331
+  +)                         322
+  +e                         317
+  +:\n                       296
+  +)\n                       285
+  +'                         268
+  +.                         250
+  +(                         241
+  +t                         235
+  +d                         205
+  +]                         202
+  +i                         200
+  +n                         189
+  +\n#                       167
+  +':                        157
+  +r                         153
+  +l                         147
+  +o                         146
+  +a                         143
+  +p                         126
+  +):\n                      120
+  +,\n                       112
 
 BEGINNINGS   what gets added to the start of a part to make another (top 25)
-                         (+  612
-                         '+  521
-                         e+  398
-                         s+  385
-                         r+  340
-                         i+  339
-                         a+  337
-                         n+  321
-                         .+  312
-                         t+  303
-                         p+  296
-                         [+  295
-                         o+  295
-                         c+  253
-                         =+  246
-                         d+  237
-                         l+  232
-                         m+  223
-                         _+  216
-                         b+  181
-                         h+  175
-                         f+  145
-                         w+  142
-                        --+  133
-                         %+  122
+                         (+  640
+                         '+  566
+                         s+  418
+                         e+  415
+                         a+  374
+                         i+  354
+                         t+  344
+                         r+  343
+                         n+  338
+                         [+  338
+                         .+  313
+                         o+  306
+                         p+  293
+                         =+  266
+                         c+  260
+                         d+  257
+                         l+  251
+                         m+  234
+                         _+  218
+                         b+  196
+                         h+  177
+                         w+  163
+                         f+  143
+                         u+  123
+                        --+  122
 
-CLASSES   parts that take the same set of changes (largest 25 of 4755; two or more members count as same one level up)
+CLASSES   parts that take the same set of changes (largest 25 of 5125; two or more members count as same one level up)
   {0.0} [+,, +:]
-     6 members: key(b), mechanism, 'whole', 'bits', 'density', belongs
-  {0.1} [+e, +e(]
-     5 members: enumerat, nd_fram, ').writ, isinstanc, ')).encod
-  {0.2} [+:\n, +\n]
-     5 members: True), (word), depth(x), top), node(x)
-  {0.3} [+S, say('+]
+     6 members: mechanism, 'whole', 'bits', orders, 'density', belongs
+  {0.1} [+:\n, +\n]
+     6 members: True), runs), (word), depth(x), effects_of(a), node(x)
+  {0.2} [+:, +]]
+     5 members: 'runs', chains', produced', lasses', unseen'
+  {0.3} [[+, s[+]
+     5 members: c::w]\n, 1:]))\n\n\n#, :24], ch].append(part)\n, :top]]\n\n
+  {0.4} [+S, say('+]
      5 members: RUN, LEVEL, BEGINNING, PART, WORD
-  {0.4} [+e, +es]
-     5 members: structur, collid, tak, us, touch
-  {0.5} [(s+, s+]
-     5 members: orted(G.change(d,, elf,, et(i, elf.draw(d), ys.argv[1:])\n
-  {0.6} [(m+, m+]
-     4 members: irrored\n, embers),, erged, ine,
-  {0.7} [(l+, l+]
+  {0.5} [+e, +e(]
+     4 members: nd_fram, ').writ, isinstanc, ')).encod
+  {0.6} [+)\n, +,]
+     4 members: folding['picked'], memory['path'], (runs, -whole(p)
+  {0.7} [+e, +es]
+     4 members: structur, collid, ampl, touch
+  {0.8} [i+, ri+]
+     4 members: ed)', ght, ved\n#, nk\n#
+  {0.9} [(l+, l+]
      4 members: oaded, ist,, evel=level,, evel,
-  {0.8} [+d, +s]
+  {0.10} [+d, +s]
      3 members: passe, %7, %6
-  {0.9} [+l, +l(]
+  {0.11} [+l, +l(]
      3 members: '))[2:].zfil, write_leve, _signa
-  {0.10} ['w+, w+]
-     3 members: ').write('\n'.join(T), idest',, hole':
-  {0.11} [+m, +me]
-     3 members: beco, ele, 'sa
-  {0.12} [count+, follows+]
-     3 members: (runs)\n, (items):\n, (seq)\n
+  {0.12} [')+, )+]
+     3 members: (draw(x)), .write('\n'.join(T), .join([keys[
   {0.13} [len+, sorted+]
      3 members: (part_of.get(k,, (part_of.get(node(p),, (kv[1]
-  {0.14} ['+, ('+]
+  {0.14} [+t, +t(]
+     3 members: .nsmalles, (shor, sorted(part_of.ge
+  {0.15} ['+, ('+]
      3 members: size, part',, +',
-  {0.15} [+)\n, +,]
-     3 members: folding['picked'], memory['path'], -whole(p)
   {0.16} [=int(opts+, int(opts+]
      3 members: .get('widest',, .get('top',, ['frame'])
-  {0.17} ['+, +']
+  {0.17} [+l, +les]
+     3 members: time_tab, .nsmal, amp
+  {0.18} ['+, +']
      3 members: __main__, .sep, history_before
-  {0.18} [[+, s[+]
-     3 members: c::w]\n, 1:]))\n\n\n#, ch].append(part)\n
-  {0.19} [+items()},\n, +most_common(top):\n]
+  {0.19} [[+, t[+]
+     3 members: ::-1]\n, 1]))\n, 4]))\n
+  {0.20} [+items()},\n, +most_common(top):\n]
      3 members: L['beginnings']., L['counts']., L['endings'].
-  {0.20} [+', +']]
-     3 members: L['parts, L['total, opts['quiet
   {0.21} [+,, +:\n]
      3 members: else, L['parts'], range(w)
-  {0.22} [.+, ].+]
-     3 members: most_common(6)))\n, add(w, append(piece)\n
-  {0.23} [(r+, r+]
-     3 members: un_counts[r], ange(w),, emembered,
-  {0.24} [L['+, L['run_+]
-     3 members: follows'].items()],\n, counts'].items()},\n, counts'].most_common(top):\n
+  {0.22} [+s, +s(]
+     3 members: time_table, L['run_follows'].item, cut_run
+  {0.23} [+m, +me]
+     3 members: beco, ele, L['ti
+  {0.24} [ex+, x+]
+     3 members: w)\n\n, amples/agc-live:, cept
 
 CRYSTAL   dictionary entries for the most common runs (top 25)
-  =   seen 182
+  =   seen 204
     made of    
-    part of    ==, +=, <=, >=, |=, !=, =fl, rounds=
-    changes    +=, ++, <+, >+, |+, !+, +fl, rounds+
-    followed   []\n 5, [], 5, 0\n 4, depth(x)\n 4, x[0]\n 3, 1\n 2
-    preceded   k 10, d 8, x 6, n 5, i 4, s 3
-  in   seen 113
+    part of    ==, +=, <=, >=, |=, !=, =fl, effects=
+    changes    +=, ++, <+, >+, |+, !+, +fl, effects+
+    followed   []\n 8, [], 5, 0\n 4, depth(x)\n 4, x[0]\n 3, {}\n 3
+    preceded   k 10, d 8, x 7, n 6, i 4, out 4
+  in   seen 142
     made of    n, i
-    part of    into, plain, in\n#, inside, int(separators)\n, int), in,, inside,
-    changes    +to, pla+, +\n#, +side, +t(separators)\n, +t), +,, +side,
-    followed   the 7, levels:\n 3, this 2, range(1, 2, memory 2, zip(a, 2
-    preceded   c 16, w 10, x 6, p 5, q 5, L 5
-  the   seen 108
+    part of    into, plain, in\n#, inside, in,, int), (plain, inside,
+    changes    +to, pla+, +\n#, +side, +,, +t), (pla+, +side,
+    followed   the 9, both 3, levels:\n 3, this 2, range(1, 2, memory 2
+    preceded   c 21, w 10, x 8, e 6, L 6, p 5
+  the   seen 134
     made of    th, he, t, e
-    part of    the\n#, they, then, the\n, (the, there, they\n#, their
-    changes    +\n#, +y, +n, +\n, (+, +re, +y\n#, +ir
-    followed   same 6, parts 4, most 4, pool 4, part 3, shared 3
-    preceded   of 7, in 7, is 6, -- 5, to 5, on 5
-  if   seen 100
+    part of    the\n#, they, (the, there, then, the\n, they\n#, their
+    changes    +\n#, +y, (+, +re, +n, +\n, +y\n#, +ir
+    followed   same 8, parts 5, most 4, pool 4, part 3, shared 3
+    preceded   is 9, in 9, of 8, to 7, and 7, -- 6
+  if   seen 112
     made of    f, i
     part of    elif, memory=opts.get('memory'))\n\n\nif, 'dif, if d == 1:\n return self.r0(x)\n sep, collections.defaultdict(set) if, dif, if isinstance(x, int):\n return self.g0(x)\n if is_token(x):\n d, isinstance(x, int):\n return self.g0(x)\n if
     changes    el+, memory=opts.get('memory'))\n\n\n+, 'd+, +d == 1:\n return self.r0(x)\n sep, collections.defaultdict(set)+, d+, +isinstance(x, int):\n return self.g0(x)\n if is_token(x):\n d, isinstance(x, int):\n return self.g0(x)\n+
-    followed   not 10, n 10, d 7, isinstance(x, 4, x 3, mirror:\n 3
+    followed   not 11, n 10, d 7, isinstance(x, 4, x 4, mirror:\n 3
     preceded   []\n 3, x[0] 2, memory 2, b):\n 2, collections.defaultdict(set) 2, ' 2
-  for   seen 87
+  for   seen 108
     made of    fo, or, f, r
-    part of    forward, forced, format(x,, form, force, format, forwa, for x, y in zip(a, b):\n
-    changes    +ward, +ced, +mat(x,, +m, +ce, +mat, +wa, +x, y in zip(a, b):\n
-    followed   w 10, p 5, (a, 5, q 5, L 5, i 3
-    preceded   []\n 4, {}\n 3, '.join(draw(q) 3, c 3, set(p 2, 0\n 2
-  %   seen 68
+    part of    forward, forced, format(x,, form, force, format, forwa, collections.defaultdict(list)\n for
+    changes    +ward, +ced, +mat(x,, +m, +ce, +mat, +wa, collections.defaultdict(list)\n+
+    followed   w 10, a, 7, (a, 6, b, 6, p 5, i, 5
+    preceded   []\n 7, {}\n 4, 0\n 3, top)\n 3, '.join(draw(q) 3, c 3
+  %   seen 73
     made of    
     part of    %d, %s', %d', %d)', %7d, %s, %8d, %3d
     changes    +d, +s', +d', +d)', +7d, +s, +8d, +3d
-    followed   (\n 5, ', 5, top)\n 4, (d 2, (len(L['seq']), 2, frame), 2
-    preceded   %s' 15, %d' 13, %d)' 5, '0%dx' 2, '0%do' 2, '{%d.%d}' 2
-  is   seen 50
+    followed   (\n 5, top)\n 5, ', 5, (d 2, (len(L['seq']), 2, frame), 2
+    preceded   %s' 16, %d' 14, %d)' 5, '0%dx' 2, '0%do' 2, '{%d.%d}' 2
+  is   seen 61
     made of    s, i
-    part of    this, is_token(x):\n, is\n, is_token(p))\n, is\n#, isinstance(separators,, is;, This
-    changes    th+, +_token(x):\n, +\n, +_token(p))\n, +\n#, +instance(separators,, +;, Th+
-    followed   the 6, None 4, left 3, a 3, made 2, one 2
-    preceded   part 7, what 2, it 2, that 2, word 2, run 2
-  a   seen 49
+    part of    this, is_token(x):\n, is\n#, This, is\n, is_token(p))\n, isinstance(separators,, is;
+    changes    th+, +_token(x):\n, +\n#, Th+, +\n, +_token(p))\n, +instance(separators,, +;
+    followed   the 9, None 5, left 3, a 3, its 3, made 2
+    preceded   part 7, run 3, what 2, it 2, that 2, word 2
+  a   seen 59
     made of    
-    part of    and, as, at, are, key=lambda, added, any, after
-    changes    +nd, +s, +t, +re, key=lambd+, +dded, +ny, +fter
-    followed   level 4, part 4, round 2, new 2, shared 2, second 2
-    preceded   as 3, is 3, so 3, of 3, with 2, in 2
-  return   seen 44
-    made of    retur, eturn, turn, re, r, n
+    part of    and, as, at, after, are, a,, added, any
+    changes    +nd, +s, +t, +fter, +re, +,, +dded, +ny
+    followed   part 5, level 4, run 3, round 2, pair 2, new 2
+    preceded   of 4, as 3, is 3, so 3, after 3, with 2
+  return   seen 46
+    made of    retur, turn, re, n
     part of    return\n, k\n return, return force or frame, profile, score, {'picked': picked, 'wobble': wobb..., return force or frame, profile, score, {'picked': picked, 'wobble': wobb..., return '{%d.%d}' % (d - 1, -1 - x)\n d, x[0]\n return
     changes    +\n, k\n+, +force or frame, profile, score, {'picked': picked, 'wobble': wobble, 'fo..., +force or frame, profile, score, {'picked': picked, 'wobble': wobble, 'fo..., +'{%d.%d}' % (d - 1, -1 - x)\n d, x[0]\n+
     followed   data, 2, out\n\n\ndef 2, ascii_glyph, 2, force 1, [int(bits[i:i 1, collections.Counter(items)\n\n\ndef 1
     preceded   break\n 2, 1\n 2, 1:\n 2, x[0]\n 2, k\n 2, data:\n 1
-  else   seen 39
+  else   seen 43
     made of    els, lse, el, se, e
     part of    else:\n, else,
     changes    +:\n, +,
-    followed   ' 3, 0\n 2, None,\n 2, 0.5)\n 1, 1\n 1, x\n\n\ndef 1
+    followed   ' 3, 0\n 2, {\n 2, None,\n 2, 0.5)\n 1, 1\n 1
     preceded   1 5, 0 4, None 4, n 4, mirror 2, nodal 2
-  ==   seen 35
+  say('   seen 40
+    made of    say(, say, (', '
+    part of    say('')\n\n, say('=', say('CRYSTAL, say('MEMORY, say('FRAME, say('TIME, say('MINT, say('')\n\n\ndef
+    changes    +')\n\n, +=', +CRYSTAL, +MEMORY, +FRAME, +TIME, +MINT, +')\n\n\ndef
+    followed   %s 2, %-40s 2, %-24s 2, %-27s 2, ' 2, %-30s 2
+    preceded   L['counts'].most_common(top):\n 2, frame)\n 2, levels:\n 2, len(L['counts'])))\n 1, L['follows'].most_common(top):\n 1, L['run_counts'].most_common(top):\n 1
+  and   seen 38
+    made of    an, nd, a, d
+    part of    and\n, land, and\nthen, ands
+    changes    +\n, l+, +\nthen, +s
+    followed   the 7, not 4, in 2, width 2, a 1, JSON) 1
+    preceded   1 3, text 2, d 2, before 2, 2 2, comparator 1
+  ==   seen 37
     made of    =
     part of    == y:\n h.append(x)\n elif x in class_of and class_of[x] == class_of.get..., == p:\n ch, == 1:\n return self.r0(x)\n, == p:\n
     changes    +y:\n h.append(x)\n elif x in class_of and class_of[x] == class_of.get(y)..., +p:\n ch, +1:\n return self.r0(x)\n, +p:\n
     followed   0 4, p:\n 4, d 3, 0:\n 3, 1 2, 8:\n 2
     preceded   d 6, n 5, name 3, depth(p) 2, depth(parent) 2, width 2
-  say('   seen 34
-    made of    say(, say, (', '
-    part of    say('')\n\n, say('=', say('CRYSTAL, say('MEMORY, say('FRAME, say('MINT, say('')\n\n\ndef, say('DISCOVERY
-    changes    +')\n\n, +=', +CRYSTAL, +MEMORY, +FRAME, +MINT, +')\n\n\ndef, +DISCOVERY
-    followed   %s 2, %-40s 2, %-24s 2, %-30s 2, level 2, %5d 2
-    preceded   L['counts'].most_common(top):\n 2, frame)\n 2, levels:\n 2, len(L['counts'])))\n 1, L['follows'].most_common(top):\n 1, L['run_counts'].most_common(top):\n 1
-  of   seen 32
+  of   seen 34
     made of    f, o
-    part of    often, class_of, made_of, of,, of\n#, lass_of, _of, of[k].add(wn)\n
-    changes    +ten, class_+, made_+, +,, +\n#, lass_+, _+, +[k].add(wn)\n
-    followed   the 7, %d 4, a 3, this 2, one 2, changes 2
+    part of    often, made_of, of,, of\n#, lass_of, _of, of[k].add(wn)\n, changes_of
+    changes    +ten, made_+, +,, +\n#, lass_+, _+, +[k].add(wn)\n, changes_+
+    followed   the 8, a 4, %d 4, this 2, one 2, changes 2
     preceded   part 3, %d 3, made 2, set 2, left 1, JSON) 1
-  and   seen 31
-    made of    an, nd, a, d
-    part of    and\n, land, and\nthen, ands
-    changes    +\n, l+, +\nthen, +s
-    followed   the 3, not 3, in 2, width 2, a 1, JSON) 1
-    preceded   1 3, text 2, d 2, comparator 1, it, 1, c, 1
-  +   seen 27
+  +   seen 34
     made of    
     part of    +=, %24s+, +%-24s, +%, rest+, +',, 4s+, (width +
     changes    +=, %24s+, +%-24s, +%, rest+, +',, 4s+, (width+
-    followed   1):\n 2, 1]\n 2, 1 2, 3) 2, chance:\n 1, width], 1
-    preceded   widest 2, (width 2, tag 2, score[picked] 1, [int(bits[i:i 1, width 1
-  not   seen 25
+    followed   1 4, 1):\n 2, 1]\n 2, 3) 2, ' 2, chance:\n 1
+    preceded   widest 2, (width 2, ' 2, tag 2, score[picked] 1, [int(bits[i:i 1
+  not   seen 30
     made of    ot, no, n, t
     part of    nothing
     changes    +hing
-    followed   part 2, is_token(p))\n 2, class_of:\n 2, in 2, seen 2, data:\n 1
-    preceded   if 10, and 3, removed\n 1, (new), 1, (remembered, 1, limit, 1
-  #   seen 25
+    followed   in 5, part 2, is_token(p))\n 2, class_of:\n 2, seen 2, data:\n 1
+    preceded   if 11, and 4, removed\n 1, (new), 1, (remembered, 1, limit, 1
+  c   seen 28
+    made of    
+    part of    c,, column, c))\n, class, count, ch, classes, col
+    changes    +,, +olumn, +))\n, +lass, +ount, +h, +lasses, +ol
+    followed   in 21, for 3, >= 2, is 1, < 1
+    preceded   b), 6, b, 3, a, 3, r, 3, for 2, wd, 2
+  #   seen 27
     made of    
     part of    --------------------------------------------------------------------------\n#, the\n#, is\n#, only\n#, at\n#, bits\n#, part\n#, memory:\n#
     changes    --------------------------------------------------------------------------\n+, the\n+, is\n+, only\n+, at\n+, bits\n+, part\n+, memory:\n+
-    followed   remainder 2, display 2, divisor 1, this 1, whole 1, no 1
+    followed   display 3, remainder 2, divisor 1, this 1, whole 1, no 1
     preceded   collections.Counter() 2, {} 1, set(run_counts) 1, 0) 1, b): 1, 0 1
-  %d   seen 25
+  %d   seen 27
     made of    %, d
-    part of    %d', %d)', %d:', (%d, %d;, 0%d, %d.%d, %d}
-    changes    +', +)', +:', (+, +;, 0+, +.%d, +}
-    followed   of 3, distinct' 2, distinct 2, pairs)' 2, parts, 2, parts' 1
-    preceded   of 4, level 3, (top 2, say('WORDS 1, words, 1, say('SYMBOLS 1
-  part   seen 23
+    part of    %d', %d)', %d:', %d/%.1f', (%d, %d;, .%d, %d.
+    changes    +', +)', +:', +/%.1f', (+, +;, .+, +.
+    followed   of 3, distinct' 2, distinct 2, pairs)' 2, runs 2, parts, 2
+    preceded   of 4, level 3, (top 3, say('WORDS 1, words, 1, say('SYMBOLS 1
+  part   seen 24
     made of    par, art, pa, rt, t, p
-    part of    parts, part_of, part,, part\n#, part_of\n, part\n, part)., parts,\n
-    changes    +s, +_of, +,, +\n#, +_of\n, +\n, +)., +s,\n
+    part of    parts, part_of, part,, parts', part\n#, part_of\n, part\n, part).
+    changes    +s, +_of, +,, +s', +\n#, +_of\n, +\n, +).
     followed   is 7, of 3, into 2, that 2, to 2, two 1
-    preceded   a 4, the 3, not 2, shared 1, is 1, one 1
+    preceded   a 5, the 3, not 2, shared 1, is 1, one 1
   d   seen 22
     made of    
-    part of    and, %d, def, shared, word, produced, round, picked
-    changes    an+, %+, +ef, share+, wor+, produce+, roun+, picke+
+    part of    and, %d, def, shared, d,, word, produced, round
+    changes    an+, %+, +ef, share+, +,, wor+, produce+, roun+
     followed   = 8, == 6, and 2, in 2, += 1, + 1
     preceded   if 7, == 3, is_token(x):\n 2, w, 2, run_counts:\n 1, depth(x):\n 1
-  c   seen 20
-    made of    
-    part of    column, c))\n, common, class, count, ch, classes, col
-    changes    +olumn, +))\n, +ommon, +lass, +ount, +h, +lasses, +ol
-    followed   in 16, for 3, is 1
-    preceded   b), 5, r, 3, for 2, wd, 2, e, 2, b, 2
-  that   seen 19
-    made of    hat, tha, t
-    part of    that,, that.\n#, that.
-    changes    +,, +.\n#, +.
-    followed   were 3, is 2, take 2, one 1, bit 1, many 1
-    preceded   parts 4, column 2, part 2, is 1, often 1, with 1
-  level   seen 19
-    made of    evel, leve, vel, le, l
-    part of    level's, levels,, level,, levels:\n, level-0, (level, level=0,, level\n
-    changes    +'s, +s,, +,, +s:\n, +-0, (+, +=0,, +\n
-    followed   %d 3, 0 2, below; 1, above 1, == 1, > 1
-    preceded   a 4, one 2, say(' 2, the 1, if 1, count: 1
-  n   seen 19
-    made of    
-    part of    in, return, not, run, column, on, nothing, name
-    changes    i+, retur+, +ot, ru+, colum+, o+, +othing, +ame
-    followed   = 5, == 5, else 4, - 2, in 1, > 1
-    preceded   if 10, b2)\n 1, once\n 1, w, 1, pieces, 1, pieces.append(s)\n 1
-  as   seen 18
+  as   seen 21
     made of    a, s
     part of    was, ascii_glyph(word):\n, has, as_element_of(node(part),, ascii|utf8|octal]\n, as_element_of,, assumed.\nOutput, ass
     changes    w+, +cii_glyph(word):\n, h+, +_element_of(node(part),, +cii|utf8|octal]\n, +_element_of,, +sumed.\nOutput, +s
-    followed   a 3, bits. 1, every 1, new 1, well 1, with 1
-    preceded   class 2, count 2, read 1, file 1, starts 1, minted 1
+    followed   a 3, with 2, bits. 1, every 1, new 1, well 1
+    preceded   read 3, class 2, count 2, file 1, starts 1, minted 1
+  that   seen 20
+    made of    hat, tha, t
+    part of    that\n#, that.\n#, that,, that.
+    changes    +\n#, +.\n#, +,, +.
+    followed   were 3, is 2, take 2, one 1, bit 1, many 1
+    preceded   parts 4, column 2, part 2, is 1, often 1, with 1
+  -   seen 20
+    made of    
+    part of    --, ->, -pool.get(q,, -1, -whole(p),, --widest, -depth(q), -t[1],
+    changes    +-, +>, +pool.get(q,, +1, +whole(p),, +-widest, +depth(q), +t[1],
+    followed   1, 4, 1))\n 2, x)\n 2, min(cols)\n 1, profile[w][c 1, width 1
+    preceded   (d 2, -1 2, n 2, max(cols) 1, sum(abs(profile[picked][c] 1, len(bits) 1
+  x   seen 20
+    made of    
+    part of    x,, x[0]\n, x):\n, x[0], x)\n, x), x\n, x:
+    changes    +,, +[0]\n, +):\n, +[0], +)\n, +), +\n, +:
+    followed   in 8, = 7, == 1, != 1, else 1, < 1
+    preceded   if 4, for 4, d, 3, tuple):\n 2, elif 1, 1\n 1
 
 ==============================================================================
 LEVEL 1
 ==============================================================================
 
-SYMBOLS   4322 symbols, 1745 distinct  (each is a level 0 run; level 0 classes count as same)
-  =                                         182
-  in                                        113
-  the                                       108
-  if                                        100
-  for                                       87
-  %                                         68
-  is                                        50
-  a                                         49
-  return                                    44
-  else                                      39
-  ==                                        35
-  say('                                     34
-  of                                        32
-  and                                       31
-  +                                         27
-  not                                       25
-  #                                         25
-  %d                                        25
-  part                                      23
+SYMBOLS   4967 symbols, 1952 distinct  (each is a level 0 run; level 0 classes count as same)
+  =                                         204
+  in                                        142
+  the                                       134
+  if                                        112
+  for                                       108
+  %                                         73
+  is                                        61
+  a                                         59
+  return                                    46
+  else                                      43
+  say('                                     40
+  and                                       38
+  ==                                        37
+  of                                        34
+  +                                         34
+  not                                       30
+  c                                         28
+  #                                         27
+  %d                                        27
+  part                                      24
   d                                         22
-  c                                         20
-  that                                      19
-  level                                     19
-  n                                         19
-  as                                        18
+  as                                        21
+  that                                      20
+  -                                         20
+  x                                         20
 
-FOLLOWS   which symbol comes after which (top 25 of 3508 pairs)
-  c                        -> in                        16
+FOLLOWS   which symbol comes after which (top 25 of 3996 pairs)
+  c                        -> in                        21
   pool,                    -> made_of,                  16
-  %s'                      -> %                         15
+  %s'                      -> %                         16
+  %d'                      -> %                         14
   made_of,                 -> part_of,                  13
-  %d'                      -> %                         13
-  if                       -> not                       10
+  if                       -> not                       11
   for                      -> w                         10
   w                        -> in                        10
   k                        -> =                         10
   if                       -> n                         10
+  is                       -> the                       9
+  in                       -> the                       9
+  of                       -> the                       8
+  the                      -> same                      8
+  =                        -> []\n                      8
   d                        -> =                         8
+  x                        -> in                        8
   part                     -> is                        7
-  of                       -> the                       7
-  in                       -> the                       7
+  to                       -> the                       7
+  []\n                     -> for                       7
+  and                      -> the                       7
+  x                        -> =                         7
+  b,                       -> c,                        7
+  for                      -> a,                        7
   if                       -> d                         7
-  the                      -> same                      6
-  is                       -> the                       6
-  x                        -> in                        6
-  x                        -> =                         6
-  d                        -> ==                        6
-  c))\n                    -> say('')\n\n               6
-  --                       -> the                       5
-  to                       -> the                       5
-  =                        -> []\n                      5
-  =                        -> [],                       5
 
 SEPARATOR   the most common symbol: =
 
-RUNS   183 runs between separators, 182 distinct
+RUNS   205 runs between separators, 204 distinct
   depth(x)\n while isinstance(x, tuple):\n x  2
   """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato...  1
   open(path, 'rb').read()\n if limit:\n data  1
@@ -519,7 +584,7 @@ RUNS   183 runs between separators, 182 distinct
   []\n else:\n run.append(word)\n if run:\n runs.append(tuple(run))\n retu...  1
   set(run_counts) # this level's parts, in this level's form\n produced  1
 
-RUN FOLLOWS   which run comes after which (top 25 of 182 pairs)
+RUN FOLLOWS   which run comes after which (top 25 of 204 pairs)
   """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato... -> open(path, 'rb').read()\n if limit:\n data  1
   open(path, 'rb').read()\n if limit:\n data -> data[:limit]\n if not data:\n return data, ''\n bits  1
   data[:limit]\n if not data:\n return data, ''\n bits -> bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8)\n return data,...  1
@@ -546,76 +611,85 @@ RUN FOLLOWS   which run comes after which (top 25 of 182 pairs)
   set(run_counts) # this level's parts, in this level's form\n produced -> set(node(r) for r in run_counts)\n for r in run_counts:\n k  1
   set(node(r) for r in run_counts)\n for r in run_counts:\n k -> node(r)\n pool[k]         1
 
-MINT   6 rounds; parts minted per round: 151 49 16 8 1 0
-  pool: 182 distinct runs in, 405 structures added, 9389 in the pool now
+TIME   the sequence read as time; the stretch after a run is 68 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    depth(x)\n while isinsta... '.sep%d' % sep0 if sep0 ... 2/0.6, '.sep' + separators.repl... 2/0.6, '{%d.%d}' % (d - 1, -1 -... 2/0.6, ('.' if d == 1 else ' ' ... 2/0.6, Glyphs(lens)\n T 2/0.6, Keys(frame) # shared by ... 2/0.6
+  CHAINS   the strongest effect, followed forward
+    depth(x)\n while isinsta... -> '.sep%d' % sep0 if sep0 ...
+
+MINT   6 rounds; parts minted per round: 169 62 21 10 2 0
+  pool: 204 distinct runs in, 466 structures added, 10194 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
   part                            density   whole  inside (sample)
-  a                                   278       1  and, as, at, are
-  b                                   127       1  by, break\n, b),, between
-  []\n for                              5       0  []\n for x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class..., []\n for x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class..., []\n for word in words:\n if word in separators:\n if run:\n runs.append..., []\n for word in words:\n if word in separators:\n if run:\n runs.append...
+  a                                   309       1  and, as, at, after
+  b                                   141       1  by, b,, break\n, back
+  []\n for                              8       0  []\n for x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class..., []\n for b, c in after.items():\n expected, []\n for x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class..., []\n for word in words:\n if word in separators:\n if run:\n runs.append...
+  c in                                  5       0  a, c in, (a, b), c in, c in range(w):\n col, c in after.items():\n expected
+  {}\n for                              5       0  {}\n for p in L['parts']:\n k, {}\n for p in L['parts']:\n, {}\n for i, (ch, members) in enumerate(classes):\n if len(members) >= 2:..., {}\n for i, (ch, members) in enumerate(classes):\n if len(members) >= 2:...
   0\n while                             4       0  0\n while isinstance(x, tuple):\n d += 1\n x, 0\n while isinstance(x, tuple):\n d += 1\n, 0\n while True:\n new, 0\n while True:\n
   is_token(x):\n d                      4       0  int):\n return self.g0(x)\n if is_token(x):\n d, if isinstance(x, int):\n return self.g0(x)\n if is_token(x):\n d, isinstance(x, int):\n return self.g0(x)\n if is_token(x):\n d, format(x, '0%dx' % ((frame + 3) // 4))\n elif is_token(x):\n d
   x, y in zip(a, b):\n if x             4       0  x, y in zip(a, b):\n if x != y:\n break\n i += 1\n return a[:i]\n\n def ..., x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and c..., x, y in zip(a, b):\n if x != y:\n break\n i += 1\n return a[:i]\n\n def ..., for x, y in zip(a, b):\n if x
-  {}\n for                              4       0  {}\n for i, (ch, members) in enumerate(classes):\n if len(members) >= 2:..., {}\n for p in L['parts']:\n k, {}\n for i, (ch, members) in enumerate(classes):\n if len(members) >= 2:..., {}\n for p in L['parts']:\n
   collections.defaultdict(set) if        3       0  collections.defaultdict(set) if part_of is None else part_of\n memory, collections.defaultdict(set) if made_of is None else made_of\n, collections.defaultdict(set) if made_of is None else made_of\n part_of
+  for (a, b), c in                      3       0  for (a, b), c in L['run_follows'].items():\n nxt[a][b] += c\n prv[b][a] ..., for (a, b), c in run_follows.items():\n back, for (a, b), c in L['run_follows'].items():\n nxt[a][b] += c\n prv[b][a] ...
   keys, at                              3       0  order[mirror], []\n if pending[mirror]:\n pending[mirror].sort()\n keys,..., set()\n for mirror in (False, True):\n keys, at, mirror in (False, True):\n keys, at
+  mirror in (False, True):\n            3       0  set()\n for mirror in (False, True):\n, mirror in (False, True):\n keys, at, mirror in (False, True):\n keys,
   os.path.join(out, tag +               3       0  os.path.join(out, tag + '.record.json')\n text, os.path.join(out, tag + '.record.json')\n, os.path.join(out, tag + '.record.txt')\n out_json
   != y:\n break\n i += 1\n return a[:i]\n\n def merged(keys, batch):\n """...        2       0  x, y in zip(a, b):\n if x != y:\n break\n i += 1\n return a[:i]\n\n def ..., != y:\n break\n i += 1\n return a[:i]\n\n def merged(keys, batch):\n """...
   != y:\n break\n i += 1\n return a[:i]\n\n def merged(keys, batch):\n """...        2       0  for x, y in zip(a, b):\n if x != y:\n break\n i += 1\n return a[:i]\n\n ..., x, y in zip(a, b):\n if x != y:\n break\n i += 1\n return a[:i]\n\n def ...
   '{%d.%d}' % (d - 1, -1 - x)\n         2       0  '{%d.%d}' % (d - 1, -1 - x)\n d, '{%d.%d}' % (d - 1, -1 - x)\n else:\n
   '{%d.%d}' % (d - 1, -1 - x)\n d        2       0  return '{%d.%d}' % (d - 1, -1 - x)\n d, x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d
-  (a, b), c in L['run_follows'].items():\n nxt[a][b] += c\n prv[b][a] += c...        2       0  (a, b), c in L['run_follows'].items():\n nxt[a][b] += c\n prv[b][a] += c..., for (a, b), c in L['run_follows'].items():\n nxt[a][b] += c\n prv[b][a] ...
+  (a, b),                               2       0  (a, b), c in, for (a, b),
+  (a, b), c in                          2       0  (a, b), c in run_follows.items():\n back, for (a, b), c in
+  (a, b), c in run_follows.items():\n back        2       0  []\n for (a, b), c in run_follows.items():\n back, for (a, b), c in run_follows.items():\n back
   (width +                              2       0  (width + 2) // 3\n return (lambda word: format(word, '0%do' % octw)), \\..., (width + 3) // 4\n\n def raw(word):\n return format(word, '0%dx' % hexw)...
   0\n for                               2       0  0\n for item in batch:\n j, 0\n for x, y in zip(a, b):\n if x != y:\n break\n i += 1\n return a[:i]\...
   == p:\n                               2       0  == p:\n ch, as_element_of(node(part), parent)\n if parent[:len(p)] == p:\n
   == p:\n ch                            2       0  ('+', parent[len(p):])\n elif parent[-len(p):] == p:\n ch, as_element_of(node(part), parent)\n if parent[:len(p)] == p:\n ch
   == y:\n h.append(x)\n elif x in class_of and class_of[x] == class_of.get...        2       0  == y:\n h.append(x)\n elif x in class_of and class_of[x] == class_of.get..., x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and c...
-  == y:\n h.append(x)\n elif x in class_of and class_of[x] == class_of.get...        2       0  for x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of a..., y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and clas...
-  True:\n new                           2       0  0\n while True:\n new, while True:\n new
-  as_element_of(node(part), parent)\n if parent[:len(p)]        2       0  as_element_of(node(part), parent)\n if parent[:len(p)] == p:\n ch, as_element_of(node(part), parent)\n if parent[:len(p)] == p:\n
-  c in range(w):\n col                  2       0  for c in range(w):\n col, []\n for c in range(w):\n col
-  collections.Counter() # remainder        2       0  collections.Counter() # remainder before a shared tail\n rounds, collections.Counter() # remainder after a shared head\n beginnings
 
 ENDINGS   what gets added to the end of a part to make another (top 25)
   +k                         16
-  +x                         9
+  +x                         10
   +d                         8
   +i                         8
-  +c in range(w):\n col      5
+  +n                         5
   +run                       5
   +sep                       5
   +'{%d.%d}' % (d - 1, -1 - x)\n d  4
-  +n                         4
   +tok                       4
+  +at                        4
   +w in range(2, widest + 1):\n rows  4
   +!= y:\n break\n i += 1\n return a[:i]\n\n def merged(keys, batch):\n """...  4
+  +out                       4
   +if                        4
   +mine.add(piece)\n new.add(piece)\n pending[0].append(piece)\n e  3
   +True:\n new               3
+  +(a, b), c in run_follows.items():\n back  3
+  +c in range(w):\n col      3
   +nodal                     3
   +[] # mirrored entries minted by a forward pass\n r  3
+  +a, c in run_counts.most_common(top):\n found[a]  3
+  +i, (ch, members) in enumerate(classes):\n if len(members) >= 2:\n tok  3
   +rows                      3
   +part_of                   3
   +else:\n                   3
-  +s                         3
-  +ch                        3
-  +is_token(x):\n d          3
-  +keys is None else keys\n key  3
-  +out                       3
 
 BEGINNINGS   what gets added to the start of a part to make another (top 25)
-                       for+  18
-                      []\n+  13
+                       for+  19
                         if+  13
                        [],+  12
+                      []\n+  12
+                  []\n for+  11
+                  {}\n for+  9
              isinstance(x,+  9
                        0\n+  8
                 depth(x)\n+  8
-                  {}\n for+  7
-                   set()\n+  6
+                   set()\n+  7
   format(x, '0%dx' % ((frame + 3) // 4))\n elif+  6
                     return+  6
+  collections.defaultdict(list)\n+  6
   collections.defaultdict(set) if+  6
                      while+  6
                         x,+  6
@@ -623,65 +697,63 @@ BEGINNINGS   what gets added to the start of a part to make another (top 25)
                  node(x)\n+  5
                     x[0]\n+  5
                          #+  5
-                  []\n for+  5
   x, y in zip(a, b):\n if x+  5
                Keys(frame)+  4
+                      [(a,+  4
   collections.Counter() # remainder+  4
-                 lambda p:+  4
-                k\n return+  4
-                        {}+  4
+  collections.defaultdict(list)\n for+  4
 
-CLASSES   parts that take the same set of changes (largest 25 of 53; two or more members count as same one level up)
+CLASSES   parts that take the same set of changes (largest 25 of 63; two or more members count as same one level up)
   {1.0} [+i, x, y in zip(a, b):\n if x+]
      2 members: != y:\n break\n i += 1\n return a[:i]\n\n def merged(keys, batch):\n """..., == y:\n h.append(x)\n elif x in class_of and class_of[x] == class_of.get...
   {1.1} [[]\n for+, for+]
-     2 members: x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and c..., c in range(w):\n col
+     2 members: x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and c..., (a, b), c in run_follows.items():\n back
   {1.2} [for x, y in zip(a, b):\n if x+, x, y in zip(a, b):\n if x+]
      1 members: != y:\n break\n i += 1\n return a[:i]\n\n def merged(keys, batch):\n """...
   {1.3} [+d, +else:\n]
      1 members: '{%d.%d}' % (d - 1, -1 - x)\n
   {1.4} [return+, x[0]\n return+]
      1 members: '{%d.%d}' % (d - 1, -1 - x)\n d
-  {1.5} [+k, for+]
-     1 members: (a, b), c in L['run_follows'].items():\n nxt[a][b] += c\n prv[b][a] += c...
-  {1.6} [+2) // 3\n return (lambda word: format(word, '0%do' % octw)), \\n (lambda..., +3) // 4\n\n def raw(word):\n return format(word, '0%dx' % hexw)\n\n def ...]
+  {1.5} [+c in, for+]
+     1 members: (a, b),
+  {1.6} [+run_follows.items():\n back, for+]
+     1 members: (a, b), c in
+  {1.7} [+2) // 3\n return (lambda word: format(word, '0%do' % octw)), \\n (lambda..., +3) // 4\n\n def raw(word):\n return format(word, '0%dx' % hexw)\n\n def ...]
      1 members: (width +
-  {1.7} [+item in batch:\n j, +x, y in zip(a, b):\n if x != y:\n break\n i += 1\n return a[:i]\n\n def ...]
+  {1.8} [+item in batch:\n j, +x, y in zip(a, b):\n if x != y:\n break\n i += 1\n return a[:i]\n\n def ...]
      1 members: 0\n for
-  {1.8} [+True:\n, +True:\n new, +isinstance(x, tuple):\n d += 1\n, +isinstance(x, tuple):\n d += 1\n x]
+  {1.9} [+True:\n, +True:\n new, +isinstance(x, tuple):\n d += 1\n, +isinstance(x, tuple):\n d += 1\n x]
      1 members: 0\n while
-  {1.9} [+ch, as_element_of(node(part), parent)\n if parent[:len(p)]+]
+  {1.10} [+ch, as_element_of(node(part), parent)\n if parent[:len(p)]+]
      1 members: == p:\n
-  {1.10} [('+', parent[len(p):])\n elif parent[-len(p):]+, as_element_of(node(part), parent)\n if parent[:len(p)]+]
+  {1.11} [('+', parent[len(p):])\n elif parent[-len(p):]+, as_element_of(node(part), parent)\n if parent[:len(p)]+]
      1 members: == p:\n ch
-  {1.11} [for x, y in zip(a, b):\n if x+, y in zip(a, b):\n if x+]
+  {1.12} [for x, y in zip(a, b):\n if x+, y in zip(a, b):\n if x+]
      1 members: == y:\n h.append(x)\n elif x in class_of and class_of[x] == class_of.get...
-  {1.12} [0\n while+, while+]
+  {1.13} [+k, for (a, b), c in+]
+     1 members: L['run_follows'].items():\n nxt[a][b] += c\n prv[b][a] += c\n for r, c i...
+  {1.14} [0\n while+, while+]
      1 members: True:\n new
-  {1.13} [+c in range(w):\n col, +word in words:\n if word in separators:\n if run:\n runs.append(tuple(ru..., +word in words:\n if word in separators:\n if run:\n runs.append(tuple(ru..., +x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and c..., +x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and c...]
+  {1.15} [+(a, b), c in run_follows.items():\n back, +a, c in run_counts.most_common(min(top, 10)):\n chain, +b, c in after.items():\n expected, +c in range(w):\n col, +word in words:\n if word in separators:\n if run:\n runs.append(tuple(ru..., +word in words:\n if word in separators:\n if run:\n runs.append(tuple(ru..., +x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and c..., +x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and c...]
      1 members: []\n for
-  {1.14} ['+, '.'.join(form+, 'p+, 'r+, 's+, (+, (F+, (e+, (form+, (h+, (l+, (len(dat+, (lo+, (p+, (pl+, (s+, (wh+, +), +),, +,, +2, +2),, +2,, +[:, +[:i], +[:i]\n\n, +[:limit]\n, +\n#, +], +][, +][b, +][b], +b, +bit:, +bove, +bs, +bs(profile[picked][, +bs(profile[picked][c], +bspath(path))\n, +c, +ce, +ch, +d, +d(, +d;, +dd, +dd(, +dd(piece)\n, +dd(w, +dded, +dded':, +dds\n#, +de, +de_of, +ded, +ds, +f, +ft, +fter, +fter:, +g, +ga, +gain, +gainst, +ge, +ge., +i, +in, +ind, +inst, +ise, +k, +k\n, +ke, +kes, +l, +l':, +lf, +lgorithm;, +ll, +lly, +lly[rest], +ls, +lways, +m, +m., +mbda, +me, +me,, +mple, +mple)'))\n, +mple]\n, +n, +nc, +nce, +nd, +nd\n, +nds, +ng, +nge, +nge(, +nges, +no, +ny, +p, +pp, +ppen, +ppend, +ppend(, +ppend(tu, +ppend(tup, +ppend(tuple(, +ppend(x)\n, +pq, +pq.nsmallest(top,, +r, +re, +red, +rg, +rgest, +rgv[i].lstrip('-')], +rr, +rrived\n#, +rrower, +rt, +rts, +rts']:\n, +ry, +s, +s_, +sc, +sci, +scii, +scii', +se, +sen, +sename(pat, +sename(path)\n, +ss, +ssumed.\nOutput, +st, +st-1, +t, +t,, +t., +t.append, +t.append(len(out))\n, +t\n, +t\n#, +ta, +tc, +tch, +te, +te(, +ted,, +th, +th':, +th(path))\n, +ti, +tion, +to, +tor, +ts, +ttern, +ult, +ultdic, +ultdict(, +ultdict(collections.Counter)\n, +ultdict(se, +ultdict(set,, +ve, +ver, +vera, +verage, +w, +w', +wn, +w|ascii|utf8|octal, +x, +x(range(w),, +y, +y,, +y\n#, +ys, --c+, .+, .join(+, .nsm+, :s+, =l+, =lambd+, F+, Keys(fr+, Sp+, ['p+, [+, ].+, ][+, _m+, _sign+, _t+, b+, b][+, bd+, be+, bits[:s+, c+, ch+, collections.def+, comp+, compar+, cryst+, d+, dat+, def+, diction+, dirname(os.path.absp+, dr+, e+, enumer+, er+, et+, form+, forw+, forward_m+, fr+, g'))[2:].zfill(len(dat+, g+, gn+, h+, h.+, he+, head(+, heapq.nsm+, history.+, ion+, isinst+, key(+, key=lambd+, l+, le+, level(s+, lo+, m+, mbd+, memory['p+, n+, nxt[+, o+, orm+, os.path.b+, os.path.dirname(os.path.absp+, out.+, p+, pickle.lo+, pl+, pre+, pret+, prv[b][+, quiet=F+, r+, re+, rem+, repl+, ryst+, s+, s.repl+, sh+, sign+, spre+, st+, t+, th+, tot+, ver+, w+, wh+, write_level(s+]
+  {1.16} ['+, '.'.join(form+, 'ch+, 'fr+, 'p+, 'r+, 's+, (+, (F+, (e+, (form+, (h+, (l+, (len(dat+, (lo+, (p+, (pl+, (s+, (wh+, +), +))\n, +),, +):, +):\n, +)\n, +,, +2, +2),, +2,, +[:, +[:i], +[:i]\n\n, +[:limit]\n, +\n#, +], +]), +]:\n, +][b], +]\n, +b, +bit:, +ble, +bo, +bout, +bove, +bove))), +bs, +bs(profile[picked][, +bs(profile[picked][c], +bspath(path))\n, +c, +ce, +ch, +ck, +cro, +cross, +d, +d;, +dd, +dd(, +dd(piece)\n, +dd(w, +dded, +dded', +dded':, +dded'],, +dds\n#, +de, +de_of, +ded, +ds, +f, +ft, +fte, +fter, +fter:, +g, +ga, +gain, +gainst, +ge., +i, +in, +in), +ind, +inst, +ise, +k, +k\n, +ke, +kes, +l, +l', +l':, +lf, +lgorithm;, +ll, +lly, +lly[rest], +long, +ls, +lways, +m, +m., +mbda, +me, +me', +me,, +mp, +mple, +mple)'))\n, +mple]\n, +mples/agc-liv, +mples/agc-live:, +n, +nc, +nce, +nd, +nd\n, +nds, +ng, +nge, +nge(, +nges, +no, +ny, +p, +ppe, +ppen, +ppend, +ppend(, +ppend((c, +ppend(piece)\n, +ppend(x)\n, +pq, +pq.nsmallest(top,, +r, +re, +red, +rg, +rgest, +rgv, +rgv):\n, +rgv[i].lstrip('-')], +rr, +rro, +rrow, +rrower, +rrows, +rrows', +rrows'], +rrows']:\n, +rrows[:top]]\n\n, +rt, +rts, +rts']:\n, +ry, +s, +s_, +sc, +sci, +scii, +scii', +sename(path)\n, +ss, +ssumed.\nOutput, +st, +st-1, +t, +t,, +t., +t.append, +t[, +t[a, +t[r].append(i)\n\n, +t\n, +t\n#, +ta, +tch, +te, +te(, +ted,, +th, +th':, +th(path))\n, +ti, +tion, +to, +tor, +ts, +tt, +ttern\n, +u, +ul, +ult, +use.\n#, +ve, +vera, +verage, +w, +w', +wn, +w|ascii|utf8|octal, +x, +x(range(w),, +y, +y,, +y., +ys, --c+, .+, .join(+, .nsm+, :s+, =+, F+, Keys(fr+, Sp+, ['+, [+, ].+, _m+, _of(+, _sign+, _t+, b+, bd+, be+, bits[:s+, c+, ch+, cl+, collections.def+, comp+, compar+, cryst+, d+, dat+, def+, diction+, dirname(os.path.absp+, dist+, dr+, e+, effects_of(+, enumer+, er+, et+, form+, forw+, forward_m+, found[+, fr+, g'))[2:].zfill(len(dat+, g+, gn+, h+, he+, heapq.nsm+, history.+, ion+, l+, le+, len(+, level(s+, lo+, m+, mbd+, memory['p+, n(+, n+, nxt[+, o+, orm+, os.path.b+, os.path.dirname(os.path.absp+, ot+, out.+, out.sort(key=lambd+, over+, p+, pickle.lo+, pl+, pre+, pret+, quiet=F+, r+, re+, rem+, repl+, s+, s.repl+, sh+, sign+, sort(key=lambd+, spre+, st+, t+, t[+, th+, time_t+, typic+, upd+, ver+, w+, wh+, write_level(s+, yst+, {key(+]
      1 members: a
-  {1.15} [+== p:\n, +== p:\n ch]
+  {1.17} [+run_counts.most_common(min(top, 10)):\n chain, +run_counts.most_common(top):\n found[a]]
+     1 members: a, c in
+  {1.18} [+== p:\n, +== p:\n ch]
      1 members: as_element_of(node(part), parent)\n if parent[:len(p)]
-  {1.16} ["""+, '+, '0%d+, 'r+, 'sym+, 'w+, (+, (wo+, (wob+, +', +'), +'))\n, +')., +').write(json.dumps(J,, +), +),, +):, +):\n, +,, +2, +2), +2)):\n, +], +][, +][a, +][a], +a, +asen, +asename(pat, +asename(path)\n, +at, +atc, +atch, +atch:\n, +b, +ble, +ble,, +d, +da, +e, +ea, +ec, +eco, +ef, +efor, +efore'],\n, +eg, +egin, +eginn, +eginning, +eginnings':, +el, +er, +ers, +est, +et, +etween, +i, +ig, +ise, +isec, +isect, +isect_, +it, +it:, +its, +its,, +its[, +its[:sample]\n, +its[i:, +its[i:i, +its\n#, +le, +le,, +o, +ot, +oth, +ottom\n#, +ou, +ove, +r, +rea, +reak\n, +ro, +rou, +routine.\n\n, +routine.\n\nOne, +s, +s(profile[picked][, +s(profile[picked][c], +spath(path))\n, +ut, +y, +yt, +yte, +ytes':, -+, .+, 8-+, L['+, [+, ][+, _+, a+, a][+, em+, ha+, history_+, igh+, key(+, la+, len(+, m+, mem+, memory['history_+, n(int.from_+, num+, nxt[a][+, o+, ob+, os.path.+, prv[+, su+, sym+, um+, ym+, {key(+]
+  {1.19} ["""+, '+, '0%d+, 'r+, 'sym+, 'w+, (+, (a+, (wo+, (wob+, +', +'), +'))\n, +')., +').write(json.dumps(J,, +), +))\n, +),, +):, +):\n, +,, +., +2, +2), +2)):\n, +], +][a], +a, +ac, +ack, +asename(path)\n, +at, +atch, +atch:\n, +b, +bl, +ble, +ble,, +d, +da, +e, +ea, +ec, +eco, +ef, +efor, +efore'],\n, +eg, +egin, +eginn, +eginning, +eginnings':, +el, +er, +ers, +ers,, +est, +et, +etween, +i, +ig, +is, +ise, +isec, +isect, +isect.bisect_left(keys,, +isect_, +it, +it:, +its, +its,, +its[, +its[:sample]\n, +its[i, +its[i:i, +its\n#, +l, +le, +le,, +les(, +les(L['runs'],, +les(runs,, +o, +ot, +oth, +ottom\n#, +ou, +out, +ove, +ove))), +r, +rea, +reak\n, +ro, +rou, +routine.\n\n, +routine.\n\nOne, +s, +s(profile[picked][, +s(profile[picked][c], +spath(path))\n, +ut, +y, +yt, +yte, +ytes':, -+, .+, 7+, 8-+, L['+, [(+, [+, [[key(+, _+, a+, em+, ha+, history_+, igh+, int.from_+, key(+, la+, len(+, len(a+, m+, mem+, memory['history_+, n(int.from_+, num+, o+, ob+, os.path.+, prv[+, run_counts[+, su+, sym+, time_ta+, um+, ym+, {key(+]
      1 members: b
-  {1.17} [+after a shared head\n beginnings, +before a shared tail\n rounds]
+  {1.20} [(a, b),+, +after.items():\n expected, +range(w):\n col, a,+, for (a, b),+]
+     1 members: c in
+  {1.21} [+after a shared head\n beginnings, +before a shared tail\n rounds]
      1 members: collections.Counter() # remainder
-  {1.18} [+made_of is None else made_of\n, +made_of is None else made_of\n part_of, +part_of is None else part_of\n memory]
+  {1.22} [+i, r in enumerate(runs):\n at[r].append(i)\n\n def effects_of(a):\n afte..., +part in parts:\n ch]
+     1 members: collections.defaultdict(list)\n for
+  {1.23} [+made_of is None else made_of\n, +made_of is None else made_of\n part_of, +part_of is None else part_of\n memory]
      1 members: collections.defaultdict(set) if
-  {1.19} [+sep, if+]
+  {1.24} [+sep, if+]
      1 members: d == 1:\n return self.r0(x)\n
-  {1.20} [#+, +rows]
-     1 members: divisor -> mean difference from picked's columns\n
-  {1.21} [+k, collections.defaultdict(collections.Counter)\n+]
-     1 members: for (a, b), c in L['run_follows'].items():\n nxt[a][b] += c\n prv[b][a] ...
-  {1.22} [+!= y:\n break\n i += 1\n return a[:i]\n\n def merged(keys, batch):\n """..., +== y:\n h.append(x)\n elif x in class_of and class_of[x] == class_of.get...]
-     1 members: for x, y in zip(a, b):\n if x
-  {1.23} [+run, return+]
-     1 members: force or frame, profile, score, {'picked': picked, 'wobble': wobble, 'fo...
-  {1.24} [+is_token(x):\n, +is_token(x):\n d]
-     1 members: format(x, '0%dx' % ((frame + 3) // 4))\n elif
 
 CRYSTAL   dictionary entries for the most common runs (top 25)
   depth(x)\n while isinstance(x, tuple):\n x   seen 2
@@ -733,7 +805,7 @@ CRYSTAL   dictionary entries for the most common runs (top 25)
     followed   []\n for c in range(w):\n col 1
     preceded   bits[:sample]\n profile, score 1
   []\n for c in range(w):\n col   seen 1
-    made of    for c in range(w):\n col, c in range(w):\n col, []\n for, []\n
+    made of    c in range(w):\n col, []\n for
     part of    
     changes    
     followed   s[c::w]\n cols.append(col.count('1') / len(col) if col else 0.5)\n profi... 1
@@ -839,7 +911,7 @@ CRYSTAL   dictionary entries for the most common runs (top 25)
 LEVEL 2
 ==============================================================================
 
-SYMBOLS   183 symbols, 182 distinct  (each is a level 1 run; level 1 classes count as same)
+SYMBOLS   205 symbols, 204 distinct  (each is a level 1 run; level 1 classes count as same)
   depth(x)\n while isinstance(x, tuple):\n x  2
   """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato...  1
   open(path, 'rb').read()\n if limit:\n data  1
@@ -866,7 +938,7 @@ SYMBOLS   183 symbols, 182 distinct  (each is a level 1 run; level 1 classes cou
   []\n else:\n run.append(word)\n if run:\n runs.append(tuple(run))\n retu...  1
   set(run_counts) # this level's parts, in this level's form\n produced  1
 
-FOLLOWS   which symbol comes after which (top 25 of 182 pairs)
+FOLLOWS   which symbol comes after which (top 25 of 204 pairs)
   """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato... -> open(path, 'rb').read()\n if limit:\n data  1
   open(path, 'rb').read()\n if limit:\n data -> data[:limit]\n if not data:\n return data, ''\n bits  1
   data[:limit]\n if not data:\n return data, ''\n bits -> bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8)\n return data,...  1
@@ -904,8 +976,13 @@ RUN FOLLOWS   which run comes after which (top 25 of 2 pairs)
   """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato... -> x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ...  1
   x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ... -> x[0]\n k | '{%d.%d}' % (d - 1, -1 - x)\n else:\n d | depth(x)\n k | ('.'...  1
 
+TIME   the sequence read as time; the stretch after a run is 3 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
+
 MINT   1 rounds; parts minted per round: 0
-  pool: 3 distinct runs in, 3 structures added, 9392 in the pool now
+  pool: 3 distinct runs in, 3 structures added, 10197 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
   part                            density   whole  inside (sample)
@@ -959,8 +1036,13 @@ RUNS   1 runs between separators, 1 distinct
 
 RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
 
+TIME   the sequence read as time; the stretch after a run is 1 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
+
 MINT   1 rounds; parts minted per round: 0
-  pool: 1 distinct runs in, 1 structures added, 9393 in the pool now
+  pool: 1 distinct runs in, 1 structures added, 10198 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
   part                            density   whole  inside (sample)

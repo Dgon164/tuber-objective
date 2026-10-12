@@ -273,6 +273,40 @@ comparison itself but the loop: a run would read one signal, build the
 pool, and stop — so the final comparison never became the starting
 point of the next round.
 
+### The same steps, said the other way: roots, layers, interactions, crystals, relations, causes
+
+The five steps are one operation pointed at different places and
+scales. The same list in the words we use when we talk about what the
+system finds, with where each one lives:
+
+| find the | which is | where it is | at which scales |
+|---|---|---|---|
+| roots | identification | the frame (the word width, from the bits); the separator (the most common word); PARTS BY DENSITY (what everything else is made of); the stems in a class | bits, words, parts; across signals (memory's *confirmed*); across records (`bridge.py`, the shared parts) |
+| layers | composition | the levels: runs of runs into the one pool, `made_of` and `part_of` across levels | every level; memory keeps the levels |
+| interactions | association | FOLLOWS and RUN FOLLOWS at every level; the sorted neighbour; the new signal against memory; `extend/same_slot.py`, `extend/sentence.py` | every level; across signals |
+| crystals | reduction | CLASSES: the same set of changes; a class counts as same one level up; `extend/functions.py`'s siblings | every level; the functions |
+| relations | composition | the changes (`+ed`, `un+`); the classes; in-kind, out-kind and paths in `extend/functions.py`; `bridge.py`'s parents on each side | parts, functions, across records |
+| causes | evaluation, with time | TIME: the sequence read as time — ARROWS (a pair seen both ways, and which way wins), EFFECTS (what comes after a part more than it comes at all), CHAINS (the strongest effect followed forward); then `examples/agc-live/`: press, record, compare — the effect that is only there after the press | every level of a passive signal; across a *do* on the running machine |
+
+Time is in the signal from the start: the signal is in order, and the
+order is time. FOLLOWS was always a reading of it. The TIME tables
+read it three more ways, each the comparator pointed along the
+sequence: before against after. On Alice at level 0 the arrows are
+`said -> Alice` 25 times against 7 the other way, `if -> you` 12
+against 1, `I -> shall` 9 against 1; the effects of `I` are `think`,
+`know`, `can` at three to five times their usual rate; the effects of
+`a` are `good`, `large`, `curious`; of `little`, `golden`, `door`,
+`key`. On the Apollo rope the effects are the instruction flow, and
+the chains loop back through it: `22156 -> 63411 -> 74756 -> 02031 ->
+70000`. None of that is a cause
+yet. A cause is an arrow that holds across a *do*: `examples/agc-live/`
+presses a key, records every signal, and compares the run with the
+press against the run without it; the effect that is only there after
+the press (engine on → thrust, propellant, accelerometer, 13 of 13) is
+the causal structure, and `walk.py` runs it backward from a goal to the
+presses that reach it. Same comparator, same tables; the *do* is the
+only thing added.
+
 Grouped the way a program is, these are three subroutines:
 
 - **Interpret** (input): takes the signal in and applies identification

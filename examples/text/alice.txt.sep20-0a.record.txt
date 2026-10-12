@@ -143,6 +143,71 @@ RUN FOLLOWS   which run comes after which (top 25 of 17441 pairs)
   that                     -> she                       32
   was                      -> a                         29
 
+TIME   the sequence read as time; the stretch after a run is 18 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+    to                          -> herself,                         25   the other way 1
+    one                         -> of                               21   the other way 1
+    said                        -> Alice                            27   the other way 9
+    up                          -> and                              20   the other way 2
+    a                           -> large                            19   the other way 1
+    the                         -> Queen,                           17   the other way 1
+    to                          -> get                              18   the other way 3
+    it                          -> had                              15   the other way 1
+    to                          -> her                              17   the other way 4
+    the                         -> King,                            15   the other way 2
+    and                         -> Alice                            14   the other way 1
+    as                          -> it                               19   the other way 7
+    to                          -> say                              15   the other way 3
+    if                          -> you                              13   the other way 1
+    the                         -> Gryphon,                         13   the other way 1
+    in                          -> her                              15   the other way 4
+    to                          -> go                               13   the other way 2
+    I                           -> shall                            12   the other way 1
+    I                           -> should                           12   the other way 1
+    at                          -> all                              11   the other way 1
+    but                         -> it                               11   the other way 1
+    to                          -> do                               12   the other way 3
+    she                         -> found                            11   the other way 2
+    to                          -> herself                          11   the other way 2
+    like                        -> to                               10   the other way 1
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    the                         Mock 118/57.4, March 68/31.8, King 59/27.7, Hatter 50/24.6, White 46/22.6, Hare 37/16.4
+    and                         then 50/24.3, till 19/9.2, even 17/8.3, behind 13/5.8, saying 12/5.3, party 10/3.4
+    to                          herself, 42/14.8, get 43/20.6, herself 41/19.1, find 26/9.6, her, 19/8.6, eat 16/7.7
+    a                           large 32/13.2, good 28/9.5, curious 20/6.6, deal 17/4.5, minute 16/6.2, tone 12/3.3
+    of                          Gryphon, 12/4.7, Beau--ootiful 8/1.3, Soo--oop! 8/1.3, meaning 9/2.3, beautiful 9/2.7, e--e--evening, 7/1.0
+    she                         had 118/57.7, found 35/9.2, herself 35/13.2, made 24/9.6, felt 22/7.6, herself, 24/10.2
+    said                        Alice. 59/15.3, 'I 77/34.3, Alice, 57/21.5, Mock 44/15.9, Alice; 17/4.5, Turtle 21/9.3
+    it                          might 17/6.4, away 10/3.5, again. 10/3.8, doesn't 10/3.8, it's 12/5.9, much,' 7/1.2
+    in                          tone, 16/3.8, great 20/9.2, which 19/8.7, voice, 12/3.5, another 12/4.9, tone. 9/2.1
+    was                         by 30/12.1, going 20/5.8, quite 26/11.8, sitting 13/2.2, large 15/7.1, too 11/4.7
+    I                           I 113/46.0, can 24/4.8, don't 27/8.5, think 25/6.5, know 26/8.0, have 30/12.9
+    you                         'I 44/20.7, know.' 13/1.5, you, 15/4.3, know 18/7.7, your 19/9.1, Alice. 19/9.2
+    as                          well 23/4.4, could 25/10.0, if 24/11.1, could, 12/1.1, way 14/6.0, "I 9/1.1
+    Alice                       very 40/19.0, not 31/15.5, herself, 15/4.7, much 16/6.0, felt 11/3.5, rather 9/3.8
+    that                        could 18/9.0, there 15/6.4, him! 6/0.3, think 11/5.4, makes 7/1.6, knew 7/1.7
+    her                         her 63/28.0, head 19/4.0, own 8/1.2, neck 7/0.8, long 10/4.0, feel 6/1.1
+    at                          one 21/10.3, last 12/3.3, first 10/3.7, any 10/4.8, once 7/2.4, till 7/2.5
+    had                         been 23/4.3, into 17/8.0, it, 11/4.5, before, 7/1.3, found 9/3.3, back 9/3.5
+    with                        his 25/10.6, its 18/6.4, head!' 10/0.8, an 12/5.9, after 10/4.0, eyes 8/2.0
+    all                         they 24/10.9, their 14/5.1, looked 13/4.6, down 16/7.8, know. 6/0.8, anything 6/1.4
+    on                          one 15/7.2, their 12/4.7, your 12/5.0, it, 9/3.6, 'They 6/0.8, while 6/1.4
+    be                          so 24/9.5, queer 6/0.8, called 6/1.4, who 9/4.4, use 6/1.5, getting 6/1.9
+    very                        * 27/5.1, much 11/3.4, curious 7/1.4, glad 6/0.9, time 8/3.9, well 6/2.3
+    for                         time 14/3.9, some 11/4.0, quite 10/4.5, only 9/3.7, felt 7/2.0, such 8/3.4
+    'I                          said 81/34.3, don't 19/4.0, know 14/3.7, my 14/4.5, can't 10/2.2, Alice. 12/4.4
+  CHAINS   the strongest effect, followed forward
+    the -> Mock -> Turtle -> 'I -> said
+    and -> then -> herself -> she -> had
+    to -> herself, -> very -> * -> 'Come,
+    a -> large -> that -> could -> not
+    of -> Gryphon, -> Mock -> Turtle -> 'I
+    she -> had -> been -> changed -> her
+    said -> Alice. -> you -> 'I -> don't
+    it -> might -> well -> she -> had
+    in -> tone, -> as -> well -> she
+    was -> by -> this -> time -> with
+
 MINT   13 rounds; parts minted per round: 6644 1703 480 150 59 35 12 10 8 3 1 1 0
   pool: 5293 distinct runs in, 14399 structures added, 14399 in the pool now
 
@@ -546,6 +611,38 @@ RUN FOLLOWS   which run comes after which (top 25 of 1507 pairs)
   house!' (Which was very likely true.) Down, down, down. Would -> fall NEVER come to an end! 'I wonder how many miles I've fallen by this ...  1
   fall NEVER come to an end! 'I wonder how many miles I've fallen by this ... -> centre of                 1
 
+TIME   the sequence read as time; the stretch after a run is 302 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    end of                      King said to 9/2.4, officers of 9/2.4, White Rabbit blew three ... 6/1.6, rest of 5/2.4, other side of 4/1.6, Dormouse crossed 3/0.8
+    rest of                     Gryphon, and 5/1.8, dance? Will you, won't y... 4/1.2, King, 3/1.2, Classics master, though.... 2/0.6, Duchess asked, with anot... 2/0.6, Duchess began in a low, ... 2/0.6
+    Gryphon, and                King said to 9/1.8, end of 8/2.4, White Rabbit blew three ... 6/1.2, officers of 5/1.8, dance? Will you, won't y... 4/1.2, Dormouse crossed 3/0.6
+    King said to                officers of 9/1.6, shriek of 6/1.1, Dormouse crossed 3/0.5, Dormouse denied nothing,... 3/0.5, Dormouse said--' 3/0.5, Dormouse say?' one of 3/0.5
+    officers of                 shriek of 6/0.9, Dormouse turned out, and... 3/0.4, Duchess's cook. She carr... 3/0.4, Duchess's knee, while pl... 3/0.4, Gryphon, 3/0.4, Gryphon, and all 3/0.4
+    roof of                     shriek of 2/0.6
+    Caterpillar took            BEST butter, you know.' ... 2/0.4, BEST butter,' 2/0.4, Cat again, sitting on a ... 2/0.4, Cat said, waving its rig... 2/0.4, Cat went on, 'you see, a... 2/0.4, Cat, 'a dog's not mad. Y... 2/0.4
+    other:                      Gryphon, and 3/1.2, King, 2/0.8, dance? Will you, won't y... 2/0.8, look of 2/0.8
+    look of                     end of 4/1.6, Gryphon, and 3/1.2, King said to 3/1.2, White Rabbit blew three ... 2/0.8, dance? Will you, won't y... 2/0.8
+    place of                    King, 2/0.4, Gryphon, and 2/0.6, rest of 2/0.6
+    King,                       Gryphon, and 5/1.2, dance? Will you, won't y... 4/0.8, end of 4/1.6, King said to 3/1.2, Classics master, though.... 2/0.4, Gryphon answered, very n... 2/0.4
+    other side of               Gryphon, and 3/1.1, officers of 3/1.1, King, and 2/0.7, dance? Will you, won't y... 2/0.7, shriek of 2/0.7, voice of 2/0.7
+    King, and                   Gryphon, and 3/1.0, dance? Will you, won't y... 2/0.7, shriek of 2/0.7, voice of 2/0.7
+    dance? Will you, won't y... King said to 6/1.2, officers of 6/1.2, White Rabbit blew three ... 4/0.8, end of 4/1.6, Caterpillar, and 2/0.4, Dormouse crossed 2/0.4
+    voice of                    King said to 3/0.6, officers of 3/0.6, White Rabbit blew three ... 2/0.4, end of 2/0.8
+    White Rabbit blew three ... officers of 6/1.1, King said to 5/1.1, shriek of 4/0.7, Dormouse crossed 2/0.4, Dormouse denied nothing,... 2/0.4, Dormouse said--' 2/0.4
+    shriek of                   Gryphon, and all 2/0.0, Mock Turtle's heavy sobs... 2/0.0, after-time, be herself a... 2/0.0, busy farm-yard--while 2/0.0, cattle in 2/0.0, confused clamour of 2/0.0
+  CHAINS   the strongest effect, followed forward
+    end of -> King said to -> officers of -> shriek of -> Gryphon, and all
+    rest of -> Gryphon, and -> King said to -> officers of -> shriek of
+    Gryphon, and -> King said to -> officers of -> shriek of -> Gryphon, and all
+    King said to -> officers of -> shriek of -> Gryphon, and all
+    officers of -> shriek of -> Gryphon, and all
+    roof of -> shriek of -> Gryphon, and all
+    Caterpillar took -> BEST butter, you know.' ... -> rest of -> Gryphon, and -> King said to
+    other: -> Gryphon, and -> King said to -> officers of -> shriek of
+    look of -> end of -> King said to -> officers of -> shriek of
+    place of -> King, -> Gryphon, and -> King said to -> officers of
+
 MINT   23 rounds; parts minted per round: 2978 1929 1345 930 661 530 402 335 255 164 134 108 81 55 36 28 18 17 11 5 4 1 0
   pool: 1485 distinct runs in, 11493 structures added, 25892 in the pool now
 
@@ -908,6 +1005,11 @@ RUN FOLLOWS   which run comes after which (top 25 of 4 pairs)
   bill, "French, music, AND WASHING--extra."' 'You couldn't have wanted it... -> song. 'What trial is it?' Alice panted as she ran; but | Gryphon only an...  1
   song. 'What trial is it?' Alice panted as she ran; but | Gryphon only an... -> trial.' 'Stupid things!' Alice began in a loud, indignant voice, but she...  1
 
+TIME   the sequence read as time; the stretch after a run is 5 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
+
 MINT   1 rounds; parts minted per round: 0
   pool: 5 distinct runs in, 5 structures added, 25897 in the pool now
 
@@ -980,6 +1082,11 @@ RUNS   1 runs between separators, 1 distinct
   tail, and ending with | grin, which remained some time after | rest of i...  1
 
 RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+TIME   the sequence read as time; the stretch after a run is 1 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
   pool: 1 distinct runs in, 1 structures added, 25898 in the pool now

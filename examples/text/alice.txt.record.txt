@@ -143,6 +143,71 @@ RUN FOLLOWS   which run comes after which (top 25 of 17450 pairs)
   with                     -> a                         25
   said                     -> Alice                     25
 
+TIME   the sequence read as time; the stretch after a run is 18 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+    said                        -> Alice                            25   the other way 7
+    one                         -> of                               19   the other way 1
+    to                          -> get                              16   the other way 2
+    a                           -> large                            15   the other way 1
+    up                          -> and                              15   the other way 2
+    to                          -> her                              15   the other way 3
+    the                         -> King,                            14   the other way 2
+    it                          -> had                              13   the other way 1
+    to                          -> say                              14   the other way 3
+    and                         -> Alice                            12   the other way 1
+    if                          -> you                              12   the other way 1
+    the                         -> Gryphon,                         12   the other way 1
+    as                          -> it                               17   the other way 7
+    but                         -> it                               10   the other way 1
+    like                        -> to                               10   the other way 1
+    as                          -> well                             17   the other way 9
+    in                          -> her                              11   the other way 3
+    she                         -> found                            10   the other way 2
+    to                          -> do                               10   the other way 2
+    I                           -> shall                             9   the other way 1
+    I                           -> should                            9   the other way 1
+    at                          -> all                               9   the other way 1
+    it                          -> in                                9   the other way 2
+    the                         -> Duchess,                          8   the other way 1
+    the                         -> next                              8   the other way 1
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    the                         King 60/25.9, March 59/27.9, Rabbit 53/25.9, Hatter 49/22.9, White 44/19.9, same 37/18.0
+    to                          get 36/17.5, herself, 29/11.8, find 23/9.4, her, 17/7.6, it; 11/4.2, ask 9/3.3
+    and                         then 37/18.3, found 27/12.2, other 20/9.8, walked 12/4.7, party 10/3.3, talking 11/4.7
+    a                           good 25/8.5, large 26/9.8, curious 20/6.1, deal 15/4.1, long 19/9.3, tone 11/2.8
+    of                          Gryphon, 11/4.2, Beau--ootiful 8/1.3, Soo--oop!\n 8/1.3, beautiful 9/2.6, even 11/4.8, e--e--evening,\n 7/1.0
+    she                         found 26/8.2, made 20/8.2, herself 22/10.7, herself, 18/7.9, heard 17/7.9, find 14/6.3
+    said                        Alice, 54/21.2, Mock 42/15.6, 'I 36/17.1, King 23/7.6, Turtle 22/8.8, 'and 23/10.3
+    it                          might 15/6.1, much,' 7/1.2, doesn't 8/2.8, not,' 6/1.4, play 6/1.6, little, 5/0.7
+    in                          tone, 12/2.7, another 11/4.5, offended 7/1.6, hurry 6/0.9, other. 5/0.4, voice, 6/2.2
+    was                         by 23/10.4, quite 21/10.4, going 14/3.9, sitting 9/1.5, which 13/6.3, looking 11/4.8
+    I                           I 100/43.3, think 23/5.9, know 24/7.0, can 21/4.7, don't 23/7.9, if 27/12.0
+    you                         you, 15/3.8, never 16/5.6, think 15/5.5, won't 12/3.1, been 13/5.5, can't 11/3.6
+    as                          well 22/4.3, could 23/9.0, if 23/11.0, could, 11/1.1, do, 9/1.1, way 13/5.6
+    that                        there 11/4.9, any 10/3.9, an 12/6.0, him! 6/0.3, go 10/4.3, Dormouse 8/3.0
+    at                          one 20/9.0, then 14/5.3, some 12/5.8, must 11/4.9, last 9/3.1, first 9/3.4
+    her                         her 44/21.7, head 18/3.3, little 26/12.6, own 7/1.1, such 10/4.8, feel 5/0.9
+    had                         been 20/3.9, no 14/6.8, before, 6/0.9, found 8/3.0, came 8/3.5, it, 8/4.0
+    Alice                       very 32/12.9, herself, 9/2.9, much 10/4.3, good 7/2.4, hear 6/1.5, replied 6/1.6
+    with                        his 24/8.7, its 14/4.8, head!' 6/0.5, eyes 7/1.6, an 10/4.7, round 8/3.1
+    all                         they 20/9.7, about 16/6.7, down 15/6.9, looked 11/4.0, know. 6/0.7, four 5/0.4
+    on                          one 17/6.4, your 10/4.3, their 9/4.1, it, 8/3.3, three 6/2.0, 'and 7/3.4
+    be                          so 22/8.6, like 12/5.7, queer 6/0.5, down, 6/1.0, who 8/3.7, use 5/1.2
+    very                        * 23/4.3, much 9/3.1, curious 5/1.3, time 7/3.3, sometimes 4/0.3, *\n\n 4/0.5
+    for                         little 17/8.2, only 9/2.9, time 9/3.2, some 9/3.6, such 8/3.1, see 8/3.3
+    little                      golden 8/0.4, door 6/1.0, key 5/0.3, half 6/1.4, found 6/1.9, glass 4/0.2
+  CHAINS   the strongest effect, followed forward
+    the -> King -> said -> Alice, -> do
+    to -> get -> be -> so -> she
+    and -> then -> behind -> that -> there
+    a -> good -> deal -> I -> think
+    of -> Gryphon, -> Mock -> Turtle -> went
+    she -> found -> very -> * -> *\n\n
+    said -> Alice, -> do -> so -> she
+    it -> might -> well -> as -> could
+    in -> tone, -> as -> well -> she
+    was -> by -> this -> very -> *
+
 MINT   14 rounds; parts minted per round: 10038 3800 1303 484 176 88 37 22 15 10 4 1 2 0
   pool: 6466 distinct runs in, 22446 structures added, 22446 in the pool now
 
@@ -546,6 +611,31 @@ RUN FOLLOWS   which run comes after which (top 25 of 1340 pairs)
   earth. Let me see: that would be four\nthousand miles down, I think--' (... -> schoolroom, and though this\nwas not a VERY good opportunity for showing...  1
   schoolroom, and though this\nwas not a VERY good opportunity for showing... -> right distance--but then I wonder what Latitude\nor Longitude I've got t...  1
 
+TIME   the sequence read as time; the stretch after a run is 268 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    end of                      King said to 9/2.4, rest of 4/1.6, Dormouse crossed 3/0.8, Dormouse denied\nnothing... 3/0.8, Dormouse said--' 3/0.8, Dormouse say?' one of 3/0.8
+    King said to                Dormouse crossed 3/0.5, Dormouse denied\nnothing... 3/0.5, Dormouse said--' 3/0.5, Dormouse say?' one of 3/0.5, Dormouse\nturned out, an... 3/0.5, Dormouse, who was sittin... 3/0.5
+    Caterpillar took            BEST butter,\nyou know.'... 2/0.4, BEST butter,' 2/0.4, Cat said, waving its rig... 2/0.4, Cat went on, 'you see, a... 2/0.4, Cat\nagain, sitting on a... 2/0.4, Cat, 'a dog's not mad. Y... 2/0.4
+    look of                     end of 4/1.6, King said to 3/1.2, Gryphon, and 2/0.8, dance?\n Will you, won't... 2/0.8
+    King,                       dance?\n Will you, won't... 4/0.8, end of 4/1.6, Gryphon, and 3/0.8, King said to 3/1.2, Classics master, though.... 2/0.4, Gryphon at 2/0.4
+    King, and                   Gryphon, and 2/0.7, dance?\n Will you, won't... 2/0.7, voice of 2/0.7
+    rest of                     King said to 3/1.2, Gryphon, and 2/0.8, dance?\n Will you, won't... 2/0.8, voice of 2/0.8
+    Gryphon, and                King said to 6/1.2, end of 5/1.6, Dormouse crossed 2/0.4, Dormouse, who was sittin... 2/0.4, Dormouse. 'Fourteenth of... 2/0.4, Dormouse.\n\n'Don't talk... 2/0.4
+    dance?\n Will you, won't... King said to 6/1.2, end of 4/1.6, Caterpillar, and the\nwo... 2/0.4, Dormouse crossed 2/0.4, Dormouse denied\nnothing... 2/0.4, Dormouse said--' 2/0.4
+    voice of                    King said to 3/0.6, end of 2/0.8
+  CHAINS   the strongest effect, followed forward
+    end of -> King said to -> Dormouse crossed
+    King said to -> Dormouse crossed
+    Caterpillar took -> BEST butter,\nyou know.'... -> King, -> dance?\n Will you, won't... -> King said to
+    look of -> end of -> King said to -> Dormouse crossed
+    King, -> dance?\n Will you, won't... -> King said to -> Dormouse crossed
+    King, and -> Gryphon, and -> King said to -> Dormouse crossed
+    rest of -> King said to -> Dormouse crossed
+    Gryphon, and -> King said to -> Dormouse crossed
+    dance?\n Will you, won't... -> King said to -> Dormouse crossed
+    voice of -> King said to -> Dormouse crossed
+
 MINT   16 rounds; parts minted per round: 2332 1244 779 470 252 154 75 42 32 13 6 4 3 1 1 0
   pool: 1328 distinct runs in, 6709 structures added, 29155 in the pool now
 
@@ -908,6 +998,11 @@ RUN FOLLOWS   which run comes after which (top 25 of 4 pairs)
   bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante... -> song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only...  1
   song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only... -> trial.'\n\n'Stupid things!' Alice began in a loud, indignant voice, but ...  1
 
+TIME   the sequence read as time; the stretch after a run is 5 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
+
 MINT   1 rounds; parts minted per round: 0
   pool: 5 distinct runs in, 5 structures added, 29160 in the pool now
 
@@ -980,6 +1075,11 @@ RUNS   1 runs between separators, 1 distinct
   tail, and ending with | grin, which\nremained some time after | rest of ...  1
 
 RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+TIME   the sequence read as time; the stretch after a run is 1 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
   pool: 1 distinct runs in, 1 structures added, 29161 in the pool now

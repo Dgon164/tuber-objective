@@ -30,8 +30,9 @@ python discovery.py examples/text/alice.txt --lens ascii
 Give it any file — a novel, a compiled program, flight software from
 1969 — and it reads the file as raw bits, figures out the word size on
 its own, finds the parts, and writes down everything it learned: what
-each part is made of, what contains it, what shows up next to it, and
-what you'd have to change to turn one part into another.
+each part is made of, what contains it, what shows up next to it, what
+comes after it and which way the order runs, and what you'd have to
+change to turn one part into another.
 
 There's no list of file types, no dictionary, no grammar rules, and no
 training step. The same program reads all four example signals and

@@ -1,5 +1,5 @@
 FUNCTIONS   signal alice.txt   answer key /usr/share/dict/american-english
-  time: record 1.4s, functions 0.6s, making 4.3s, total 6.4s
+  time: record 1.1s, functions 0.5s, making 3.4s, total 5.0s
   5935 changes in the record, 1734 are functions (seen on 2+ parts), 25992 sibling links
   20 made, 170 failed attempts, 190 attempts, 3 recalls, 504 negative flags at the end
 

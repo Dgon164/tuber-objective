@@ -144,6 +144,13 @@ RUN FOLLOWS   which run comes after which (top 25 of 318 pairs)
   03512bc6.835dabc4.0350e3c6.03502bc6.c754abc4.c9712b04.0b51abc6.835cabc4.c35483c4.0b54e3c6.4b542bc6.4bd52b14.c3d493a0.8b56a3c4.c9e5ab54.c3d493a0.cb548bc0 -> 03512bc6.835dabc4.0350e3c6.03502bc6.c754abc4.c9712b04.0bd4a3c6.0350ebd6.c35dab94.0bd0a3c6.43d5ab94.f25d8b80.0b5069c6.c75cabd4.c35c9b84.8b518bc4.cbc4eb04.cb40ebc6.c35dab94  1
   03512bc6.835dabc4.0350e3c6.03502bc6.c754abc4.c9712b04.0bd4a3c6.0350ebd6.c35dab94.0bd0a3c6.43d5ab94.f25d8b80.0b5069c6.c75cabd4.c35c9b84.8b518bc4.cbc4eb04.cb40ebc6.c35dab94 -> cbf5ab14.0b54e2c6.835ca3c4.03d0a3c6.43d5ab14.c35dab84.cbc0eb24.cb59abc4.c35ca3c4.cb58a9c4.8b58ab94.0b54e3c6.03d423c6.43d5ab14.03d0a3c6.835ca3c4.cbf12b64.0bd4a3c6.0350ebd6.c358abd4.0b50a2c6.c75eabc4.c50cf245.c359a9c4.87d49204.8b56abc4.c354abc0.03d023c6.43d5ab14.c35493a0.0b54a3c6.035ca3c4.43d0a3c6.03d4a3c6.c35dabd4.0b50e2c6.835ca384.cbc5eb64.4740ebc4.cb59abc4.43d49324.c3549380.8b55abc4.0b50ebc6.03d422c6.c3f52b44.03d6b206.8b51abc4.03d4a246.8354abc4.c3d4b346.8b5dabc4.4bd5eb04.c3d49380.cf42eb46.cb59abc4.4bc4eb04.0bd492c6.835eabc4.c354abc0.0b50e3c6.03512bc6.43d5ab04.4350ebc6.8b59abc4.43d493e6.c3549380.8b55abc4.0b50ebc6.03d422c6.c3f52b44.0354b2c6.c35dab94.0b50ebc6  1
 
+TIME   the sequence read as time; the stretch after a run is 80 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    c35cabd4.0b5003c6.03d4a3... 03512bc6.c35cabd4.0b50a3... 2/0.6, 0b506bc6.c354abc4.cb412b... 2/0.6, 0b542bc4.455ce285.cbe12b... 2/0.6, 0b546bc6.c1f52b94.0bd4a3... 2/0.6, 0b546bc6.cbf52b94.cb5dab... 2/0.6, 43548380.c359ab84.c754ab... 2/0.6
+  CHAINS   the strongest effect, followed forward
+    c35cabd4.0b5003c6.03d4a3... -> 03512bc6.c35cabd4.0b50a3...
+
 MINT   64 rounds; parts minted per round: 1262 1237 1046 929 839 760 642 515 422 381 383 317 287 265 203 221 219 223 186 133 139 129 127 98 89 66 61 53 55 42 42 46 52 59 44 50 33 28 23 15 8 8 3 3 3 4 8 6 6 2 1 1 3 6 8 6 5 1 4 2 4 2 1 0
   pool: 316 distinct runs in, 12132 structures added, 12132 in the pool now
 
@@ -504,6 +511,11 @@ RUN FOLLOWS   which run comes after which (top 25 of 3 pairs)
   835dabc4.0b50e3c6.c3f52bd6.c75eab84.cb51abc4.c754abc4.0b506bc6.4bf5ab14.... -> 835dabc4.0b50e3c6.d51ce247.c35eabc4.8b59abc4.c754abc4.c9e12b14.cb5fab84....  1
   835dabc4.0b50e3c6.d51ce247.c35eabc4.8b59abc4.c754abc4.c9e12b14.cb5fab84.... -> 835dabc4.0b50e3c6.c3f52bd6.c75eab84.cb51abc4.c754abc4.c9612b04.435483c0....  1
 
+TIME   the sequence read as time; the stretch after a run is 4 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
+
 MINT   1 rounds; parts minted per round: 0
   pool: 4 distinct runs in, 4 structures added, 12136 in the pool now
 
@@ -567,6 +579,11 @@ RUNS   1 runs between separators, 1 distinct
   835dabc4.0b50e3c6.c3f52bd6.c75eab84.cb51abc4.c754abc4.0b506bc6.4bf5ab14....  1
 
 RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+TIME   the sequence read as time; the stretch after a run is 1 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
   pool: 1 distinct runs in, 1 structures added, 12137 in the pool now

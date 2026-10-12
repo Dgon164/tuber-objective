@@ -153,6 +153,71 @@ RUN FOLLOWS   which run comes after which (top 25 of 9529 pairs)
   to                       -> herself,                  13
   such                     -> a                         13
 
+TIME   the sequence read as time; the stretch after a run is 23 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+    to                          -> get                              16   the other way 2
+    as                          -> it                               14   the other way 3
+    said                        -> Alice                            12   the other way 3
+    to                          -> her                              12   the other way 3
+    a                           -> large                             9   the other way 1
+    if                          -> you                               9   the other way 1
+    she                         -> found                             8   the other way 2
+    to                          -> do                                7   the other way 2
+    up                          -> and                               7   the other way 2
+    like                        -> to                                6   the other way 1
+    in                          -> her                               6   the other way 2
+    I                           -> know                              5   the other way 1
+    do                          -> you                               5   the other way 1
+    down                        -> and                               5   the other way 1
+    the                         -> Pigeon                            5   the other way 1
+    am                          -> I                                 6   the other way 3
+    it                          -> in                                5   the other way 2
+    to                          -> say                               5   the other way 2
+    thought                     -> it                                4   the other way 1
+    wish                        -> I                                 7   the other way 5
+    Alice                       -> to                                5   the other way 3
+    soon                        -> as                                4   the other way 2
+    to                          -> have                              4   the other way 2
+    and                         -> her                               3   the other way 1
+    herself,                    -> as                                3   the other way 1
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    the                         same 18/6.0, Duchess 16/7.0, door, 12/5.0, rest 10/4.0, youth, 8/3.0, key 9/4.0
+    to                          find 19/7.3, it; 11/5.3, IS 8/2.7, try 10/4.7, 'How 7/2.7, Footman 7/2.7
+    and                         other 20/7.6, two 14/7.0, oh! 6/1.3, even 9/4.4, side 9/4.4, till 9/4.4
+    a                           good 24/9.1, large 19/9.1, deal 13/4.5, long 15/7.4, ran 11/4.0, curious 8/2.8
+    she                         found 25/8.4, could 26/12.8, made 17/6.4, just 19/9.4, feet 13/4.4, tried 14/6.4
+    of                          other 10/4.7, green 6/1.2, feet 8/3.5, even 7/2.7, Caterpillar 8/3.9, once 8/3.9
+    it                          it's 12/5.1, after 12/5.8, corner, 5/0.7, doesn't 7/2.9, ought 7/2.9, should 8/4.0
+    was                         just 15/6.3, sitting 9/2.3, shrinking 8/1.3, large 11/5.3, say 10/4.6, going 8/2.6
+    in                          another 9/4.0, 'and 9/4.3, tone, 6/1.7, them 8/3.7, grow 6/2.0, waited 5/1.4
+    I                           can 18/3.5, have 21/7.2, think 19/5.5, is 23/10.4, if 25/12.4, do 20/8.9
+    said                        Alice, 33/10.2, Alice; 13/2.9, 'but 11/2.1, 'I 17/8.3, Cat, 9/1.3, Caterpillar 9/2.7
+    as                          could 20/5.7, do, 10/1.5, one 16/7.9, could, 9/1.3, herself, 10/4.4, after 9/3.5
+    you                         said 61/26.8, you 44/18.6, is 19/6.7, perhaps 9/1.3, must 11/4.1, he 10/3.5
+    that                        were 11/5.2, an 8/3.5, any 7/3.1, small 5/1.3, seemed 7/3.3, know 7/3.5
+    her                         with 24/11.1, one 16/6.4, head 10/1.6, would 10/4.6, look 5/1.6, feel 4/0.7
+    at                          out 17/8.2, last 9/1.8, then 9/3.1, any 8/2.6, made 6/2.0, must 7/3.4
+    be                          is 11/5.2, queer 6/0.6, down, 6/1.2, getting 6/1.6, messages 4/0.3, who 6/2.3
+    had                         no 15/5.4, been 9/2.0, use 5/1.3, herself 7/3.4, few 4/0.9, begun 3/0.3
+    Alice                       very 20/7.7, like 12/5.7, moment 6/1.6, could 8/3.7, herself, 7/2.9, her, 5/1.3
+    for                         about 9/4.4, see 7/2.8, found 6/2.1, such 6/2.8, time 6/2.8, got 6/2.9
+    little                      golden 7/0.6, door 6/1.5, key 5/0.5, glass 4/0.4, pattering 4/0.4, table 4/0.6
+    on                          it, 8/2.6, top 5/0.5, over 5/1.3, which 6/2.7, 'and 5/1.8, eat 5/1.8
+    all                         down 12/5.7, four 6/0.5, have 8/2.9, I'm 8/3.5, times 5/0.6, they 8/3.9
+    with                        'I 9/3.6, its 8/3.5, round 6/1.8, some 6/2.2, rest 4/0.5, them, 4/0.8
+    very                        * 33/5.1, me 7/3.2, sometimes 4/0.3, herself 6/2.4, *\n\n 4/0.6, 'but 4/0.8
+  CHAINS   the strongest effect, followed forward
+    the -> same -> it, -> on -> top
+    to -> find -> a -> good -> for
+    and -> other -> side -> of -> green
+    a -> good -> for -> about -> her
+    she -> found -> could -> not -> like
+    of -> other -> side -> WHAT?' -> moment
+    it -> it's -> I'm -> I -> can
+    was -> just -> I -> can -> said
+    in -> another -> that -> were -> all
+    I -> can -> said -> Alice, -> do
+
 MINT   11 rounds; parts minted per round: 6287 2538 935 346 109 48 20 7 5 2 0
   pool: 3782 distinct runs in, 14079 structures added, 14079 in the pool now
 
@@ -556,6 +621,13 @@ RUN FOLLOWS   which run comes after which (top 25 of 542 pairs)
   earth. Let me see: that would be four\nthousand miles down, I think--' (... -> schoolroom, and though this\nwas not a VERY good opportunity for showing...  1
   schoolroom, and though this\nwas not a VERY good opportunity for showing... -> right distance--but then I wonder what Latitude\nor Longitude I've got t...  1
 
+TIME   the sequence read as time; the stretch after a run is 181 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+    Caterpillar took            Cat said, waving its rig... 2/0.6, Cat, 'a dog's not mad. Y... 2/0.6, Cat, 'if you only walk l... 2/0.6, Cat, 'or you wouldn't ha... 2/0.6, Cat.\n\n'--so long as I ... 2/0.6, Cat.\n\n'I don't much ca... 2/0.6
+  CHAINS   the strongest effect, followed forward
+    Caterpillar took -> Cat said, waving its rig...
+
 MINT   10 rounds; parts minted per round: 856 385 203 114 62 21 14 1 1 0
   pool: 542 distinct runs in, 2189 structures added, 16268 in the pool now
 
@@ -914,6 +986,11 @@ RUN FOLLOWS   which run comes after which (top 25 of 2 pairs)
   [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D... -> hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...  1
   hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\... -> hookah out of its mouth\nand yawned once or twice, and shook itself. The...  1
 
+TIME   the sequence read as time; the stretch after a run is 3 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
+
 MINT   1 rounds; parts minted per round: 0
   pool: 3 distinct runs in, 3 structures added, 16271 in the pool now
 
@@ -968,6 +1045,11 @@ RUNS   1 runs between separators, 1 distinct
   hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...  1
 
 RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+TIME   the sequence read as time; the stretch after a run is 1 runs (the typical distance to the next level's separator)
+  ARROWS   pairs seen in both orders, counted each way (top 25 by the difference)
+  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
+  CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
   pool: 1 distinct runs in, 1 structures added, 16272 in the pool now

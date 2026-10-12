@@ -430,6 +430,78 @@ def run_levels(words, separators, cap, pool=None, made_of=None, part_of=None):
     return levels, pool, made_of, part_of
 
 
+# --------------------------------------------------------------------------
+# 7b. TIME  -- the sequence read as time: before and after
+#
+# The signal is in order, and the order is time.  FOLLOWS holds what comes
+# right after what.  Three more readings of the same sequence, each the
+# comparator pointed along it:
+#
+#   arrows    a pair seen in both orders, counted each way.  The order that
+#             wins is an arrow; how much it wins by is its strength.
+#   effects   what a part changes about what comes after it: the parts that
+#             turn up in the stretch after it more often than they turn up
+#             overall (seen against expected).  The stretch is the typical
+#             distance to the next level's separator, so the unit is the
+#             signal's own.
+#   chains    the strongest effect, followed forward: a -> b -> c.
+#
+# This is the before and the after of a passive signal.  With a do
+# (examples/agc-live: press, record, compare) the same reading is taken
+# across the pressed run and the unpressed one, and the effect that is
+# only there after the press is the cause.
+# --------------------------------------------------------------------------
+
+def time_tables(runs, run_counts, run_follows, window, top):
+    n = len(runs)
+    arrows = []
+    for (a, b), c in run_follows.items():
+        back = run_follows.get((b, a))
+        if a == b or back is None or c < back or (c == back and not a < b):
+            continue
+        arrows.append((c - back, c, back, a, b))
+    arrows.sort(key=lambda t: (-t[0], -t[1], t[3], t[4]))
+    arrows = [(a, b, c, back) for d, c, back, a, b in arrows[:top]]
+
+    at = collections.defaultdict(list)
+    for i, r in enumerate(runs):
+        at[r].append(i)
+
+    def effects_of(a):
+        after, slots = collections.Counter(), 0
+        for i in at[a]:
+            w = runs[i + 1:i + 1 + window]
+            after.update(w)
+            slots += len(w)
+        out = []
+        for b, c in after.items():
+            expected = slots * run_counts[b] / n
+            if c >= 2 and c >= 2 * expected:          # seen twice, at twice the rate: as with the classes, two make a pattern
+                out.append((c - expected, b, c, expected))
+        out.sort(key=lambda t: (-t[0], t[1]))
+        return [(b, c, expected) for d, b, c, expected in out[:8]]
+
+    found = {}
+    for a, c in run_counts.most_common(top):
+        found[a] = effects_of(a)
+    effects = [(a, found[a]) for a, c in run_counts.most_common(top)]
+
+    chains = []
+    for a, c in run_counts.most_common(min(top, 10)):
+        chain = [a]
+        while len(chain) < 5:
+            x = chain[-1]
+            if x not in found:
+                found[x] = effects_of(x)
+            step = [b for b, c2, e in found[x] if b not in chain]
+            if not step:
+                break
+            chain.append(step[0])
+        if len(chain) > 1:
+            chains.append(chain)
+    return dict(window=window, arrows=arrows, effects=effects, chains=chains)
+
+
 def load_memory(path):
     if not path or not os.path.exists(path):
         return {}, collections.defaultdict(set), collections.defaultdict(set), []
@@ -554,6 +626,23 @@ def write_level(say, L, G, pool, made_of, part_of, top, frame):
         say('  %-24s -> %-24s  %d' % (draw(a), draw(b), c))
     say('')
 
+    T = L.get('time')
+    if T:
+        short = lambda x: (lambda s: s if len(s) <= 24 else s[:24] + '...')(draw(x))   # display only
+        say('TIME   the sequence read as time; the stretch after a run is %d runs (the typical distance to the next level\'s separator)'
+            % T['window'])
+        say('  ARROWS   pairs seen in both orders, counted each way (top %d by the difference)' % top)
+        for a, b, c, back in T['arrows']:
+            say('    %-27s -> %-27s  %6d   the other way %d' % (short(a), short(b), c, back))
+        say('  EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected')
+        for a, eff in T['effects']:
+            if eff:
+                say('    %-27s %s' % (short(a), ', '.join('%s %d/%.1f' % (short(b), c, e) for b, c, e in eff[:6])))
+        say('  CHAINS   the strongest effect, followed forward')
+        for chain in T['chains']:
+            say('    ' + ' -> '.join(short(x) for x in chain))
+        say('')
+
     say('MINT   %d rounds; parts minted per round: %s' % (len(L['rounds']), ' '.join(map(str, L['rounds']))))
     say('  pool: %d distinct runs in, %d structures added, %d in the pool now' % (
         len(L['run_counts']), L['added'], L['total']))
@@ -667,6 +756,11 @@ def level_json(L, pool, made_of, part_of, G, frame, keys=None):
                      'changes': sorted(('+' + key(x)) if d == '+' else (key(d) + '+') for d, x in ch),
                      'members': [key(m) for m in members]} for i, (ch, members) in enumerate(L['classes'])],
         'rounds': L['rounds'], 'minted': L['minted'], 'added': L['added'], 'total': L['total'],
+        'time': None if 'time' not in L else {
+            'window': L['time']['window'],
+            'arrows': [[key(a), key(b), c, back] for a, b, c, back in L['time']['arrows']],
+            'effects': {key(a): [[key(b), c, round(e, 2)] for b, c, e in eff] for a, eff in L['time']['effects']},
+            'chains': [[key(x) for x in chain] for chain in L['time']['chains']]},
     }
 
 
@@ -718,6 +812,11 @@ def write_record(out_txt, out_json, name, data, bits, frame, profile, score, fol
                 L['level'], len(L['produced']), len(L['confirmed']), len(L['new']), len(L['unseen'])))
         say('  after: %d parts, saved' % len(pool))
         say('')
+
+    for i, L in enumerate(levels):
+        above = levels[i + 1]['runs'] if i + 1 < len(levels) else ()
+        window = max(1, round(len(L['runs']) / len(above))) if above else len(L['runs'])
+        L['time'] = time_tables(L['runs'], L['run_counts'], L['run_follows'], window, top)
 
     for L in levels:
         say('=' * 78)

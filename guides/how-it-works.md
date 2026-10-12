@@ -275,6 +275,29 @@ levels, pool, made_of, part_of = run_levels(words, sep, cap, pool, made_of, part
 save_memory(path, pool, made_of, part_of, history + [(name, size, frame)])
 ```
 
+### Time — the sequence read as before and after
+
+The signal is in order, and the order is time. FOLLOWS was always a
+reading of it; `time_tables()` reads it three more ways at every level,
+each the comparator pointed along the sequence:
+
+- **arrows** — a pair of runs seen in both orders, counted each way.
+  The order that wins is an arrow (`said -> Alice` 25 against 7).
+- **effects** — what comes in the stretch after a run at least twice
+  its usual rate, seen against expected (`I` → `think`, `know`, `can`).
+  The stretch is the typical distance to the next level's separator —
+  about a clause at level 0 on Alice — so the unit is the signal's own,
+  and "at least twice" is the same bar the classes use: two make a
+  pattern.
+- **chains** — the strongest effect followed forward from the most
+  common runs (`a -> good -> deal -> I -> think`; on the Apollo rope
+  the instruction flow loops back on itself).
+
+This is the before and the after of a signal that was only watched. A
+cause is an arrow that holds across a *do*: `examples/agc-live/`
+presses a key, records every signal, and compares the run with the
+press against the run without it. The same tables, read across the two.
+
 ## 8. Lens
 
 The lens controls only how a word gets drawn on the page. `raw` shows
