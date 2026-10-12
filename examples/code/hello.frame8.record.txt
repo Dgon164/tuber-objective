@@ -1,0 +1,923 @@
+DISCOVERY RECORD
+signal     hello
+size       16104 bytes, 128832 bits
+
+FRAME   score = spread between the column most often 1 and the column least often 1
+  width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
+   64    0.130   col  40 at 0.017   col   2 at 0.148
+   32    0.092   col  16 at 0.019   col   1 at 0.112
+   48    0.080   col  24 at 0.020   col  33 at 0.100
+   16    0.076   col   8 at 0.021   col   1 at 0.097
+   56    0.069   col   8 at 0.025   col  49 at 0.094
+   24    0.065   col  16 at 0.028   col   9 at 0.093
+   40    0.064   col  24 at 0.029   col  25 at 0.093
+    8    0.060   col   0 at 0.030   col   1 at 0.090
+  picked width 64
+    fold to  1: columns differ by 0.0220 on average (wobble by chance 0.0111) -> different
+    fold to  2: columns differ by 0.0215 on average (wobble by chance 0.0111) -> different
+    fold to  4: columns differ by 0.0205 on average (wobble by chance 0.0111) -> different
+    fold to  8: columns differ by 0.0178 on average (wobble by chance 0.0111) -> different
+    fold to 16: columns differ by 0.0177 on average (wobble by chance 0.0111) -> different
+    fold to 32: columns differ by 0.0127 on average (wobble by chance 0.0111) -> different
+  chosen width 8
+  column rates at width 8:
+    0.030 0.090 0.085 0.064 0.073 0.080 0.072 0.078
+
+LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
+  level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
+      0    16104       216      795       351     2272           74     2623        2623
+      1      795       351       50        50       93            2      139        2762
+      2       50        50        1         1        0            0        1        2763
+  stopped: level 2 left a single run; nothing more to cut
+
+==============================================================================
+LEVEL 0
+==============================================================================
+
+WORDS   16104 words, 216 distinct
+  bits      glyph   count
+  00000000  \x00    13477
+  01011111  _       123
+  00000001  \x01    97
+  11111111  \xff    84
+  01110100  t       81
+  00101110  .       81
+  00010000  \x10    66
+  01100001  a       58
+  01100101  e       56
+  00000011  \x03    53
+  00000010  \x02    52
+  00001000  \x08    52
+  01110010  r       51
+  01101001  i       50
+  01101110  n       48
+  00000100  \x04    47
+  00100000          44
+  01001000  H       44
+  01110011  s       42
+  01101100  l       40
+  01101111  o       38
+  01100100  d       35
+  01000000  @       31
+  00001111  \x0f    31
+  00000110  \x06    29
+
+FOLLOWS   which word comes after which (top 25 of 1135 pairs)
+  \x00                     -> \x00                      12682
+  \x01                     -> \x00                      85
+  \x00                     -> \x01                      58
+  \x10                     -> \x00                      54
+  \x03                     -> \x00                      50
+  \x04                     -> \x00                      44
+  \x00                     -> \x10                      44
+  \x02                     -> \x00                      42
+  \x00                     -> \x08                      37
+  \xff                     -> \xff                      37
+  \x08                     -> \x00                      33
+  \x00                     -> \x04                      31
+  \x00                     -> _                         31
+  \x06                     -> \x00                      28
+  \x00                     ->                           28
+  \x00                     -> .                         28
+  \x00                     -> \x02                      27
+                           -> \x00                      25
+  \x00                     -> \x06                      24
+  _                        -> _                         24
+  @                        -> \x00                      22
+  \x00                     -> \x03                      21
+  s                        -> t                         20
+  \x00                     -> \xa0                      19
+  =                        -> \x00                      18
+
+SEPARATOR   the most common word: 00000000 (\x00)
+
+RUNS   795 runs between separators, 351 distinct
+  \x01                                      53
+  \x10                                      37
+  \x08                                      33
+  \x04                                      31
+  \x02                                      26
+  \x06                                      23
+  \x03                                      21
+                                            17
+  \x12                                      14
+  \x07                                      13
+  @                                         10
+  \xa0=                                     8
+  8\x03                                     8
+  \x14                                      8
+  \x18                                      8
+  \x05                                      7
+  0                                         7
+                                            6
+  \t                                        6
+  \x18\x03                                  5
+  \x1c                                      5
+  \xb0=                                     5
+  h\x03                                     5
+  f\x0f\x1fD                                5
+  \xf1\xff                                  5
+
+RUN FOLLOWS   which run comes after which (top 25 of 698 pairs)
+  \x01                     -> \x06                      8
+  \x10                     -> \x10                      7
+  \x01                     -> \x04                      6
+  \x01                     -> \x02                      6
+  8\x03                    -> 8\x03                     5
+  \x04                     -> \xf1\xff                  5
+  \x08                     -> \x08                      5
+  \x10                     -> \x01                      4
+  \x01                     -> \x03                      4
+  \x02                     -> \x10                      4
+  \x08                     -> \x18                      4
+  \x18\x03                 -> \x18\x03                  3
+  \x01                     -> \x01                      3
+                           ->                           3
+  8\x03                    -> 0                         3
+  0                        -> \x08                      3
+  h\x03                    -> h\x03                     3
+                           ->                           3
+  \x06                     -> \x08                      3
+  \x01                     -> \x08                      3
+  \x07                     -> \x02                      3
+  @                        -> @                         2
+  \x08                     -> \x03                      2
+  \x03                     -> \x04                      2
+  \x18\x03                 -> \x1c                      2
+
+MINT   29 rounds; parts minted per round: 487 371 305 232 168 149 114 88 80 50 40 30 28 24 22 23 12 10 12 9 7 3 2 1 2 1 1 1 0
+  pool: 351 distinct runs in, 2623 structures added, 2623 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  _                                   196       0  __gmon_start__, _ITM_registerTMCloneTable, __stack_chk_fail, _IO_stdin_used
+  .                                   146       0  H9\xf8t\x15H\x8b\x05\xd6., H\x89\xe5t\x0cH\x8b=\x86., .symtab, .note.gnu.property
+  t                                   101       1  __bss_start, .rela.plt, t\x01, _init
+  __                                   95       0  __gmon_start__, __stack_chk_fail, __bss_start, __cxa_finalize@GLIBC_2.2.5
+  e                                    88       0  .eh_frame, __dso_handle, es, note
+  i                                    86       1  _fini, ibc_start_main, ild, inux-x86-
+  s                                    84       0  .bss, puts, deregister_tm_clones, _tm_clones
+  a                                    82       1  frame_dummy_init_arra, a.plt, ma, xa
+  o                                    78       0  \xf0\xff\xffo, \xf5\xfe\xffo, \xff\xff\xffo, Scrt1.o
+  r                                    72       0  .eh_frame_hdr, .gnu.version_r, __bss_star, rtab
+  \x01                                 68      53  \xf0\x01, \x0c\x01,  \x01, \x90\x01
+  d                                    67       0  deregister_tm_clones, _end, .note.gnu.build-id, _IO_stdin_used
+  l                                    66       1  __stack_chk_fail, libc.so.6, xa_final, len
+  H                                    64       0  H\x85\xc0t\t\xff\xe0\x0f\x1f\x80, H9\xf8t\x15H\x8b\x05\xd6., H\x8d\x05\x12/, H\x89\xe5t\x0cH\x8b=\x86.
+  m                                    57       0  main, .dynsym, \xd1e\xcem, __libc_start_m
+  n                                    57       0  __libc_start_main, .gnu.version, strlen, note.gnu.property
+  c                                    56       0  crtstuff.c, .plt.sec, hello.c, completed.0
+  E                                    52       0  _E, TE, GLOBAL_OFFSE, FRAME_E
+  A                                    49       0  \x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10B\x0e\x08A, A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10B, AL_OFFSET_TAB, GLOBAL_OFFSET_TA
+  \x02                                 48      26  \xa5\x02, `\x02, \xd8\x02, \xf6\xff\xffo\x02
+  L                                    47       2  L\x89\xc7\xf3H\xabL\x8df\x08\x8dB\xfeL\x8dl\xc6\x10\xeb5H\x8d=\x08\x0e, \xc7\xf3H\xabL\x8df\x08\x8dB\xfeL, L\x89\xc7\xf3H\xabL\x8df\x08\x8dB\xfeL\x8dl\xc6\x10\xeb5H\x8d=\x08, L_
+  \x0e                                 47       1  \x0e\x10F\x0e\x18J\x0f\x0bw\x08\x80, L\x89\xc7\xf3H\xabL\x8df\x08\x8dB\xfeL\x8dl\xc6\x10\xeb5H\x8d=\x08\x0e, u\x0e, \x0e\x10\x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10B\x0e\x08A\x0b
+  f                                    47       0  f\x0f\x1fD, frame_dummy, tuff, f_chk
+  \x10                                 46      37  \x10@, \xc0\x10, \x80\x10, p\x10
+  \x08                                 46      33  \x08@, \x0e\x10\x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10B\x0e\x08, L\x89\xc7\xf3H\xabL\x8df\x08\x8dB\xfeL\x8dl\xc6\x10\xeb5H\x8d=\x08, \xc0\x08
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +_                         101
+  +.                         84
+  +\x01                      78
+  +i                         70
+  +t                         69
+  +o                         59
+  +r                         56
+  +e                         54
+  +s                         53
+  +d                         51
+  +a                         49
+  +\x02                      42
+  +E                         41
+  +m                         38
+  +y                         36
+  +l                         36
+  +4                         35
+  +n                         35
+  +\x10                      33
+  +/                         32
+  +A                         32
+  +c                         31
+  +\x08                      31
+  +T                         31
+  +6                         29
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                         _+  216
+                         .+  159
+                        __+  131
+                         a+  98
+                         H+  92
+                         e+  89
+                         t+  88
+                         s+  75
+                         i+  69
+                         o+  66
+                         r+  66
+                         d+  63
+                         c+  59
+                         l+  54
+                         m+  54
+                         L+  53
+                      \x01+  50
+                         u+  48
+                         n+  48
+                      \x0e+  46
+                         f+  44
+                          +  43
+                         g+  43
+                         G+  42
+                         O+  42
+
+CLASSES   parts that take the same set of changes (largest 25 of 1341; two or more members count as same one level up)
+  {0.0} [+_, __+]
+     4 members: gmon_start_, abi, GNU_EH_FRAME, stack_chk
+  {0.1} [H\x89+, \x89+]
+     4 members: \x84$\x08\x04, \xef\xe8s\xfe\xff\xff9\xd8\x7f\xe7I\x83\xc4\x08M9\xect\x0bI\x8b,$\xbb, \xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1, \xe5t\x0cH\x8b=\x86.
+  {0.2} [+\x0e, \x0e\x10+]
+     4 members: \x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A, \x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B, \x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10B, \x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n
+  {0.3} [+E, _+]
+     3 members: OFFS, GLOBAL_OFFS, GLOBAL_OFFSET_TABL
+  {0.4} [+_, _+]
+     3 members: GLOBAL_OFFSET_TABLE, OFFSET_TABLE, GLOBAL_OFFSET
+  {0.5} [+y, _+]
+     3 members: arra, entr, dumm
+  {0.6} [+t, __+]
+     3 members: bss_star, prin, frame_dummy_ini
+  {0.7} [nt+, t+]
+     3 members: f_chk@GLIBC_2.3.4, u 13.3.0-6ubuntu2~24.04.1), ry
+  {0.8} [+n, __+]
+     3 members: libc_start_mai, gmo, pri
+  {0.9} [.s+, s+]
+     3 members: ymtab, trtab, hstrtab
+  {0.10} [+A, \x0e\x10+]
+     3 members: \x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10B\x0e\x08, \x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(, \x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e 
+  {0.11} [+$, \x83+]
+     2 members: \xc3\x01H\x89\xef\xe8s\xfe\xff\xff9\xd8\x7f\xe7I\x83\xc4\x08M9\xect\x0bI\x8b,, \x04\x84\x01H\x83\xc3\x01H\x89\xef\xe8s\xfe\xff\xff9\xd8\x7f\xe7I\x83\xc4\x08M9\xect\x0bI\x8b,
+  {0.12} [+\x0e, \x8d\x02B\x0e\x18\x8c\x03A+]
+     2 members: \x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n, \x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A
+  {0.13} [+B, A+]
+     2 members: \x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18, \x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10
+  {0.14} [+\x80, \x0e+]
+     2 members: \x18J\x0f\x0bw\x08, \x10F\x0e\x18J\x0f\x0bw\x08
+  {0.15} [+\x08, \x01+]
+     2 members: \x1b\x0c\x07, x\x10\x01\x1b\x0c\x07
+  {0.16} [+d, c+]
+     2 members:  %, omplete
+  {0.17} [+/, \xff+]
+     2 members: %\x84, 5\x82
+  {0.18} [+H\x8b, +H\x8b\x05, H+]
+     2 members: 9\xf8t\x15, )\xfeH\x89\xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1\xfet\x14
+  {0.19} [+\x05, H+]
+     2 members: )\xfeH\x89\xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1\xfet\x14H\x8b, 9\xf8t\x15H\x8b
+  {0.20} [+_, +_f]
+     2 members: __stack_chk, .eh
+  {0.21} [+1, 3.+]
+     2 members: 0-6ubuntu2~24.04.1) , 3.0-6ubuntu2~24.04.1) 
+  {0.22} [.+, 4.+]
+     2 members: 1), 04.1)
+  {0.23} [@GLIBC_2.+, GLIBC_2.+]
+     2 members: 3.4, 34
+  {0.24} [+ , C+]
+     2 members: : (Ubuntu 13.3.0-6ubuntu2~24.04.1), C: (Ubuntu 13.3.0-6ubuntu2~24.04.1)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  \x01   seen 53
+    made of    
+    part of    \xf0\x01, \x0c\x01,  \x01, \x90\x01, \xb1\x01, \xe9\xe2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah\x01, \x9d\x01, \x01\x1b\x03;4
+    changes    \xf0+, \x0c+,  +, \x90+, \xb1+, \xe9\xe2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah+, \x9d+, +\x1b\x03;4
+    followed   \x06 8, \x04 6, \x02 6, \x03 4, \x01 3, \x08 3
+    preceded   \x10 4, \x01 3, \x1c 2, \t 2, \x07 2, > 1
+  \x10   seen 37
+    made of    
+    part of    \x10@, \xc0\x10, \x80\x10, p\x10, \x100,  \x10, P\x10, \xf0\x10
+    changes    +@, \xc0+, \x80+, p+, +0,  +, P+, \xf0+
+    followed   \x10 7, \x01 4, \x19 2, \x1a 2, \xa5\x02 1, \x02 1
+    preceded   \x10 7, \x02 4, \x12 2, \x18\x07 1, \x05 1, \xa5\x02 1
+  \x08   seen 33
+    made of    
+    part of    \x08@, \x0e\x10\x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10B\x0e\x08, L\x89\xc7\xf3H\xabL\x8df\x08\x8dB\xfeL\x8dl\xc6\x10\xeb5H\x8d=\x08, \xc0\x08, \x84$\x08, \x10\x01\x1b\x0c\x07\x08, F\x0e\x18J\x0f\x0bw\x08, \xc4\x08
+    changes    +@, \x0e\x10\x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10B\x0e+, L\x89\xc7\xf3H\xabL\x8df\x08\x8dB\xfeL\x8dl\xc6\x10\xeb5H\x8d=+, \xc0+, \x84$+, \x10\x01\x1b\x0c\x07+, F\x0e\x18J\x0f\x0bw+, \xc4+
+    followed   \x08 5, \x18 4, \x03 2, \x04 2, P\xe5td\x04 1, \xa0\x11 1
+    preceded   \x08 5, 0 3, \x06 3, \x01 3, \xd8\x02 1, \xf0\x01 1
+  \x04   seen 31
+    made of    
+    part of    \xc8\x04, \xc0\x04, \xf3\x0f\x1e\xfa\xe9w\xff\xff\xff\xf3\x0f\x1e\xfaAUATUSH\x81\xec\x18\x04, \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2\xf2\xa4\x04, S\xe5td\x04, H\x8b\x94$\x08\x04, \x04        \x01  \x01 \x10, \x03 \x04
+    changes    \xc8+, \xc0+, \xf3\x0f\x1e\xfa\xe9w\xff\xff\xff\xf3\x0f\x1e\xfaAUATUSH\x81\xec\x18+, \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2\xf2\xa4+, S\xe5td+, H\x8b\x94$\x08+, +       \x01  \x01 \x10, \x03+
+    followed   \xf1\xff 5,   2, \x04 2, @ 1, \x18\x03 1, \x18\x07 1
+    preceded   \x01 6, \x03 2, \x08 2, \x04 2, 4 2, \x13 2
+  \x02   seen 26
+    made of    
+    part of    \xa5\x02, `\x02, \xd8\x02, \xf6\xff\xffo\x02, \xe9\xd2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah\x02, \xff\xff\xffo\x02, \xfe\xff\xffo\x02, p\x02
+    changes    \xa5+, `+, \xd8+, \xf6\xff\xffo+, \xe9\xd2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah+, \xff\xff\xffo+, \xfe\xff\xffo+, p+
+    followed   \x10 4, \x02 2, \x06 1, \xc0\x04 1, \t 1, \x01 1
+    preceded   \x01 6, \x07 3, \x03 2, \x02 2, \x06 2, \x10 1
+  \x06   seen 23
+    made of    
+    part of    \xb8\x06, Q\xe5td\x06, \xb4\x91\x96\x06, \x06\x01, \x06 \x80\x10 \x80\x10 @ \x10 \x10 \xb9, \x06  \x10  \x10 P \x10 \x10 \xa7, \x06 \x10 \x10 \x1b \x04 \x9c, \x06 \x81 \t \xd1e\xcem + \x12 \x83  
+    changes    \xb8+, Q\xe5td+, \xb4\x91\x96+, +\x01, +\x80\x10 \x80\x10 @ \x10 \x10 \xb9, + \x10  \x10 P \x10 \x10 \xa7, +\x10 \x10 \x1b \x04 \x9c, +\x81 \t \xd1e\xcem + \x12 \x83  
+    followed   \x08 3, \x02 2, \x04 1, \xa0- 1, \xb0- 1, \x81 1
+    preceded   \x01 8, \x1e 1, \x02 1, \x12 1, \xd8? 1, \xe0? 1
+  \x03   seen 21
+    made of    
+    part of    8\x03, h\x03, \x18\x03, \x8c\x03, \xd8\x03, \xb0\x03, \xa8\x03, \xe9\xc2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah\x03
+    changes    8+, h+, \x18+, \x8c+, \xd8+, \xb0+, \xa8+, \xe9\xc2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah+
+    followed   \x04 2, \x02 2, \xa0? 2, \xb0= 2, > 1, \x02\x80 1
+    preceded   \x01 4, \x08 2, \x7fELF\x02\x01\x01 1, \xc0\x04 1, \x14 1, GNU 1
+      seen 17
+    made of    
+    part of      , X ,  \x01,  \x10,  \x11,  %, \x0e\x10\x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e ,  1
+    changes    + , X+, +\x01, +\x10, +\x11, +%, \x0e\x10\x8d\x02B\x0e\x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e+, +1
+    followed     3, \x04 2,  \x01 1, \x05 1, \x01 1, \x17 1
+    preceded     3, \x04 2, \x8c\x03 2, \x83 1, \x9f 1, \xae 1
+  \x12   seen 14
+    made of    
+    part of    \x98\x12, \x12\x02\x0c, \x12\x02\x11, H\x8d\x05\x12, \x12\x02, \x12/, \x05\x12
+    changes    \x98+, +\x02\x0c, +\x02\x11, H\x8d\x05+, +\x02, +/, \x05+
+    followed   \x10 2, \x83 1, $ 1, \x06 1, \x9f 1, \xae 1
+    preceded   + 1, \x01 1, $ 1, \x06 1, \x17 1, \xef 1
+  \x07   seen 13
+    made of    
+    part of    \x18\x07, \x0c\x07, D\x07, \x07\x10, \x01\x1b\x0c\x07, \x10\x01\x1b\x0c\x07, \x01x\x10\x01\x1b\x0c\x07, q \xff\xff\xffo\x02 \x90\x05 \x90\x05 \x14 \x06 \x02 \x02 ~ \xfe\xff\xff...
+    changes    \x18+, \x0c+, D+, +\x10, \x01\x1b\x0c+, \x10\x01\x1b\x0c+, \x01x\x10\x01\x1b\x0c+, q \xff\xff\xffo\x02 \x90\x05 \x90\x05 \x14 \x06 \x02 \x02 ~ \xfe\xff\xff...+
+    followed   \x02 3, \x01 2, \x03 1, \x04 1, \x05 1, \x07 1
+    preceded   \xb8? 1, \xc0? 1, \xc8? 1, \xd0? 1, \x07 1, \x14 1
+  @   seen 10
+    made of    
+    part of    \x10@, \x08@, \x0f\x1f@, @\x01, @\x10, \x18@, @0, @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04...
+    changes    \x10+, \x08+, \x0f\x1f+, +\x01, +\x10, \x18+, +0, +(7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \...
+    followed   @ 2, (7 1, 8 1, \x1f 1, \xd8\x02 1, (\x01 1
+    preceded   @ 2, \x19 2, \xc0\x10 1, (7 1, \r 1, \x04 1
+  \xa0=   seen 8
+    made of    \xa0, =
+    part of    
+    changes    
+    followed   \xa0= 2, p\x02 1, `\x02 1, \x08 1, \x1b 1, \xa7 1
+    preceded   \xa0- 2, \xa0= 2, x 1, \x19 1, \x15 1, \x03 1
+  8\x03   seen 8
+    made of    8, \x03
+    part of    
+    changes    
+    followed   8\x03 5, 0 3
+    preceded   8\x03 5, \x04 1, S\xe5td\x04 1, \x02 1
+  \x14   seen 8
+    made of    
+    part of    \x14ii\r, \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x1..., \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x1..., +\x14, \x14%(, )\xfeH\x89\xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1\xfet\x14, \x14 \x1c! \x04 \xf1\xff \xbd, \x14ii
+    changes    +ii\r, +\x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2..., +\x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2..., ++, +%(, )\xfeH\x89\xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1\xfet+, +\x1c! \x04 \xf1\xff \xbd, +ii
+    followed   \x03 1, \x01zR 1, \x1c 1, \ 1, t 1, \x07 1
+    preceded   \x04 1, \x89\xf1\xff\xff\xc0 1, \x01x\x10\x01\x1b\x0c\x07\x08\x90\x01 1, ?\x1a9*3$" 1, \xb8\xef\xff\xff\x10 1, ` 1
+  \x18   seen 8
+    made of    
+    part of    \x18\x03, \x18\x07, \x18@, \xe9w\xff\xff\xff\xf3\x0f\x1e\xfaAUATUSH\x81\xec\x18, \x0e\x18, \x18\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10B\x0e\x08, \x18\x04, \x18J\x0f\x0bw\x08
+    changes    +\x03, +\x07, +@, \xe9w\xff\xff\xff\xf3\x0f\x1e\xfaAUATUSH\x81\xec+, \x0e+, +\x8c\x03A\x0e \x86\x04A\x0e(\x83\x05G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e A\x0e\x18B\x0e\x10B\x0e\x08, +\x04, +J\x0f\x0bw\x08
+    followed   \x15 1, \x1e 1, \xa0? 1, i 1, \x97 1, \x08 1
+    preceded   \x08 4, \x0b 1, \t 1, \x01 1, \x06 1
+  \x05   seen 7
+    made of    
+    part of    \xf8\x05, \xa8\x05, \x90\x05, H\x8b\x05, H)\xfeH\x89\xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1\xfet\x14H\x8b\x05, \x05G\x0e\xc0\x08\x02\xd2\n\x0e, H\x8d\x05, \xec\x08H\x8b\x05
+    changes    \xf8+, \xa8+, \x90+, H\x8b+, H)\xfeH\x89\xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1\xfet\x14H\x8b+, +G\x0e\xc0\x08\x02\xd2\n\x0e, H\x8d+, \xec\x08H\x8b+
+    followed   \x10 1, GNU 1, \x01 1, V 1, \xd0? 1, \xf0\xff\xffh 1
+    preceded   \x01 2,   1, t\x19i\t 1, \x07 1, \x01\x1b\x03;4 1, \xb0\x03 1
+  0   seen 7
+    made of    
+    part of    \x100, completed.0, 0\x10, @0, 04.1), 0-6ubuntu2~24.04.1) 1, CC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, ted.0
+    changes    \x10+, completed.+, +\x10, @+, +4.1), +-6ubuntu2~24.04.1) 1, CC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.+, ted.+
+    followed   \x08 3, 0 2, \x10 1, \x100 1
+    preceded   8\x03 3, 0 2, @ 1, \x01 1
+       seen 6
+    made of     
+    part of    
+    changes    
+    followed      3, 4 2, \xd9 1
+    preceded      3, P\xe5td\x04 1, \x13 1, \x02 1
+  \t   seen 6
+    made of    
+    part of    GNU \x03 \x02 \x02 \t, \x02 \t, \xf1\xff \t, i\t, \t\xff\xe0, \x19i\t
+    changes    GNU \x03 \x02 \x02+, \x02+, \xf1\xff+, i+, +\xff\xe0, \x19i+
+    followed   \x01 2, \xd1e\xcem 1, \xb8? 1, \x18 1, \x03 1
+    preceded   \x02 1, \x81 1, \x06 1, \xc0 1, \xf1\xff 1, \x18 1
+  \x18\x03   seen 5
+    made of    \x18, \x03
+    part of    \x18\x03 \x18\x03, \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...
+    changes    +\x18\x03, \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...+
+    followed   \x18\x03 3, \x1c 2
+    preceded   \x18\x03 3, \x04 1, \x02 1
+  \x1c   seen 5
+    made of    
+    part of    \x1c!, \x1c\x02, (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \..., \x02 \x18\x03 \x18\x03 \x1c, @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04..., \x18\x03 \x18\x03 \x1c, \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ..., \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...
+    changes    +!, +\x02, (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \...+, \x02 \x18\x03 \x18\x03+, @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04...+, \x18\x03 \x18\x03+, \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...+, \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...+
+    followed   \x01 2, \x1c 1, H\xf0\xff\xff& 1, \x08 1
+    preceded   \x18\x03 2, \x1c 1, \x14 1, \xa8= 1
+  \xb0=   seen 5
+    made of    \xb0, =
+    part of    
+    changes    
+    followed   \xb0= 1, \xf0\x01 1, 0\x10 1, \xc6 1, \xb0- 1
+    preceded   \x03 2, \xb0- 1, \xb0= 1, \x17 1
+  h\x03   seen 5
+    made of    \x03, h
+    part of    \xc2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah\x03
+    changes    \xc2\xff\xff\xfff\x90\xf3\x0f\x1e\xfa+
+    followed   h\x03 3, D 1, $ 1
+    preceded   h\x03 3, \x04 1, \x02 1
+  f\x0f\x1fD   seen 5
+    made of    \x0f\x1fD, f
+    part of    \x08\xff\xe0f\x0f\x1fD
+    changes    \x08\xff\xe0+
+    followed   \xf3\x0f\x1e\xfa\xff%./ 1, \xf3\x0f\x1e\xfa\xff%&/ 1, \xf3\x0f\x1e\xfa\xff%\x1e/ 1, \xf3\x0f\x1e\xfa\xff%\x16/ 1, \xf3\x0f\x1e\xfa1\xedI\x89\xd1^H\x89\xe2H\x83\xe4\xf0PTE1\xc01\xc9H\x8d=\xca 1
+    preceded   \xe9\xb2\xff\xff\xfff\x90\xf3\x0f\x1e\xfa\xff%~/ 1, \xf3\x0f\x1e\xfa\xff%./ 1, \xf3\x0f\x1e\xfa\xff%&/ 1, \xf3\x0f\x1e\xfa\xff%\x1e/ 1, \xf3\x0f\x1e\xfa\xff%\x16/ 1
+  \xf1\xff   seen 5
+    made of    \xff, \xf1
+    part of    \xf1\xff \t, \xf1\xff\xff
+    changes    +\t, +\xff
+    followed   \t 1, \x1e 1, \x13 1, \xaf 1, \xbd 1
+    preceded   \x04 5
+
+==============================================================================
+LEVEL 1
+==============================================================================
+
+SYMBOLS   795 symbols, 351 distinct  (each is a level 0 run; level 0 classes count as same)
+  \x01                                      53
+  \x10                                      37
+  \x08                                      33
+  \x04                                      31
+  \x02                                      26
+  \x06                                      23
+  \x03                                      21
+                                            17
+  \x12                                      14
+  \x07                                      13
+  @                                         10
+  \xa0=                                     8
+  8\x03                                     8
+  \x14                                      8
+  \x18                                      8
+  \x05                                      7
+  0                                         7
+                                            6
+  \t                                        6
+  \x18\x03                                  5
+  \x1c                                      5
+  \xb0=                                     5
+  h\x03                                     5
+  f\x0f\x1fD                                5
+  \xf1\xff                                  5
+
+FOLLOWS   which symbol comes after which (top 25 of 698 pairs)
+  \x01                     -> \x06                      8
+  \x10                     -> \x10                      7
+  \x01                     -> \x04                      6
+  \x01                     -> \x02                      6
+  8\x03                    -> 8\x03                     5
+  \x04                     -> \xf1\xff                  5
+  \x08                     -> \x08                      5
+  \x10                     -> \x01                      4
+  \x01                     -> \x03                      4
+  \x02                     -> \x10                      4
+  \x08                     -> \x18                      4
+  \x18\x03                 -> \x18\x03                  3
+  \x01                     -> \x01                      3
+                           ->                           3
+  8\x03                    -> 0                         3
+  0                        -> \x08                      3
+  h\x03                    -> h\x03                     3
+                           ->                           3
+  \x06                     -> \x08                      3
+  \x01                     -> \x08                      3
+  \x07                     -> \x02                      3
+  @                        -> @                         2
+  \x08                     -> \x03                      2
+  \x03                     -> \x04                      2
+  \x18\x03                 -> \x1c                      2
+
+SEPARATOR   the most common symbol: \x01
+
+RUNS   50 runs between separators, 50 distinct
+  \x7fELF\x02\x01\x01 \x03 >                1
+  \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...  1
+  \x04 \x18\x07 \x18\x07 \x10               1
+  \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10  1
+  \x04        \x01  \x01 \x10               1
+  \x06 \xa0- \xa0= \xa0= p\x02 x\x02 \x10 \x02 \x06 \xb0- \xb0= \xb0= \xf0...  1
+  /lib64/ld-linux-x86-64.so.2 \x04   \x05 GNU \x02 \xc0\x04 \x03 \x02\x80 ...  1
+  \x04 \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\x...  1
+  GNU \x03 \x02 \x02 \t                     1
+  \x06 \x81 \t \xd1e\xcem + \x12 \x83       1
+  \x12 $ \x12 \x06 \x12 \x9f   \x17 \x12 \xae   = " puts __stack_chk_fail ...  1
+  \x03 \x03 \x04                            1
+  \x05                                      1
+  \x03                                      1
+  \x04 L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x...  1
+  \xe0? \x06 \x02 \xe8? \x06 \x06 \xf0? \x06 \x08 \xf8? \x06 \t \xb8? \x07...  1
+  t\x1d\x8b\x0c\x9c\x85\xc9t\xec\x89\xdaH\x89\xee\xbf\x02 \xb8 \xe8E\xfe\x...  1
+  \x02 usage: hello TEXT %c %d\n \x01\x1b\x03;4 \x05 \xf0\xff\xffh P\xf0\x...  1
+  L \x0c \x10 \r \x98\x12 \x19 \xa0= \x1b \x08 \x1a \xa8= \x1c \x08 \xf5\x...  1
+  \x08 \xfe\xff\xffo \xa8\x05 \xff\xff\xffo  1
+  \xf0\xff\xffo \x90\x05 \xf9\xff\xffo \x03 \xb0= 0\x10 @\x10 P\x10 `\x10 ...  1
+  \x04 \xf1\xff \t                          1
+  \x04 \x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  ...  1
+  \x1a \x10@                                1
+  U                                         1
+
+RUN FOLLOWS   which run comes after which (top 25 of 49 pairs)
+  \x7fELF\x02\x01\x01 \x03 > -> \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...  1
+  \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ... -> \x04 \x18\x07 \x18\x07 \x10  1
+  \x04 \x18\x07 \x18\x07 \x10 -> \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10  1
+  \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10 -> \x04        \x01  \x01 \x10  1
+  \x04        \x01  \x01 \x10 -> \x06 \xa0- \xa0= \xa0= p\x02 x\x02 \x10 \x02 \x06 \xb0- \xb0= \xb0= \xf0...  1
+  \x06 \xa0- \xa0= \xa0= p\x02 x\x02 \x10 \x02 \x06 \xb0- \xb0= \xb0= \xf0... -> /lib64/ld-linux-x86-64.so.2 \x04   \x05 GNU \x02 \xc0\x04 \x03 \x02\x80 ...  1
+  /lib64/ld-linux-x86-64.so.2 \x04   \x05 GNU \x02 \xc0\x04 \x03 \x02\x80 ... -> \x04 \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\x...  1
+  \x04 \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\x... -> GNU \x03 \x02 \x02 \t     1
+  GNU \x03 \x02 \x02 \t    -> \x06 \x81 \t \xd1e\xcem + \x12 \x83    1
+  \x06 \x81 \t \xd1e\xcem + \x12 \x83   -> \x12 $ \x12 \x06 \x12 \x9f   \x17 \x12 \xae   = " puts __stack_chk_fail ...  1
+  \x12 $ \x12 \x06 \x12 \x9f   \x17 \x12 \xae   = " puts __stack_chk_fail ... -> \x03 \x03 \x04            1
+  \x03 \x03 \x04           -> \x05                      1
+  \x05                     -> \x03                      1
+  \x03                     -> \x04 L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x...  1
+  \x04 L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x... -> \xe0? \x06 \x02 \xe8? \x06 \x06 \xf0? \x06 \x08 \xf8? \x06 \t \xb8? \x07...  1
+  \xe0? \x06 \x02 \xe8? \x06 \x06 \xf0? \x06 \x08 \xf8? \x06 \t \xb8? \x07... -> t\x1d\x8b\x0c\x9c\x85\xc9t\xec\x89\xdaH\x89\xee\xbf\x02 \xb8 \xe8E\xfe\x...  1
+  t\x1d\x8b\x0c\x9c\x85\xc9t\xec\x89\xdaH\x89\xee\xbf\x02 \xb8 \xe8E\xfe\x... -> \x02 usage: hello TEXT %c %d\n \x01\x1b\x03;4 \x05 \xf0\xff\xffh P\xf0\x...  1
+  \x02 usage: hello TEXT %c %d\n \x01\x1b\x03;4 \x05 \xf0\xff\xffh P\xf0\x... -> L \x0c \x10 \r \x98\x12 \x19 \xa0= \x1b \x08 \x1a \xa8= \x1c \x08 \xf5\x...  1
+  L \x0c \x10 \r \x98\x12 \x19 \xa0= \x1b \x08 \x1a \xa8= \x1c \x08 \xf5\x... -> \x08 \xfe\xff\xffo \xa8\x05 \xff\xff\xffo  1
+  \x08 \xfe\xff\xffo \xa8\x05 \xff\xff\xffo -> \xf0\xff\xffo \x90\x05 \xf9\xff\xffo \x03 \xb0= 0\x10 @\x10 P\x10 `\x10 ...  1
+  \xf0\xff\xffo \x90\x05 \xf9\xff\xffo \x03 \xb0= 0\x10 @\x10 P\x10 `\x10 ... -> \x04 \xf1\xff \t          1
+  \x04 \xf1\xff \t         -> \x04 \x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  ...  1
+  \x04 \x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  ... -> \x1a \x10@                1
+  \x1a \x10@               -> U                         1
+  U                        -> \x16 \xa8= | \x02 \x10 \xa0\x11 \x88  1
+
+MINT   8 rounds; parts minted per round: 38 23 18 6 4 3 1 0
+  pool: 50 distinct runs in, 139 structures added, 2762 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  \x05                                 21       1  \xf8\x05, \xa8\x05, \x90\x05, H\x8b\x05
+  \x03                                 20       1  8\x03, h\x03, \x18\x03, \x8c\x03
+  U                                    11       1  GNU, Ubuntu 13.3.0-6ubuntu2~24.04.1) 1, UH\x83, UH\x83=\x82
+  \x18\x03 \x18\x03 \x1c                4       0  \x02 \x18\x03 \x18\x03 \x1c, (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \..., \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ..., @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04...
+                                        4       0       \x01  \x01,     \x1d \x04 \xcd,        \x01  \x01,        \x01  \x01 \x10
+  \x10 \x10                             3       0  \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10, \x10 \x10 \x10 \xa5\x02 \xa5\x02, \x10 \x10 \x1b \x04 \x9c
+  \x18\x03 \x18\x03                     3       0  \x18\x03 \x18\x03 \x1c, \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ..., \x02 \x18\x03 \x18\x03
+     \x01  \x01                         3       0     \x01  \x01 \x10,        \x01  \x01,      \x01  \x01
+  \x03 \x04                             2       0  \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ..., \x03 \x03 \x04
+  \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2...        2       0  \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x1..., \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2...
+  \x10 \x10 \x10 \xa5\x02 \xa5\x02        2       0  \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10, \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02
+  \x10 \xa5\x02 \xa5\x02                2       0  \x10 \xa5\x02 \xa5\x02 \x10, \x10 \x10 \x10 \xa5\x02 \xa5\x02
+  \x18\x07 \x18\x07                     2       0  \x04 \x18\x07 \x18\x07, \x18\x07 \x18\x07 \x10
+  \x1b \x04 \x9c                        2       0  \x10 \x1b \x04 \x9c, \x10 \x10 \x1b \x04 \x9c
+         \x01  \x01                     2       0  \x04        \x01  \x01,        \x01  \x01 \x10
+       \x01  \x01                       2       0       \x01  \x01 \x10,        \x01  \x01
+     \x01  \x01 \x10                    2       0       \x01  \x01 \x10,        \x01  \x01 \x10
+   \x01  \x01                           2       0       \x01  \x01,    \x01  \x01
+  (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \...        2       0  (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \..., @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04...
+  (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \...        2       0  @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04..., (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \...
+  0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100        2       0  0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100 \x08, @ 0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100
+  @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04...        2       0  @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04..., \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...
+  @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04...        2       0  @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04..., \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...
+  @ 0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100        2       0  \x03 @ 0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100, @ 0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100 \x08
+  GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2\xf2\...        2       0  \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2..., GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2\xf2\...
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +\x10                      13
+  +\x1c                      6
+  +\x03 \x04                 5
+  +@ 0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100 \x08  4
+  +\x08                      4
+  +\x18\x03 \x18\x03 \x1c    3
+  +\x18\x07 \x18\x07 \x10    3
+  +\x04                      3
+  +\x1b \x04 \x9c            3
+  +\t                        3
+  +t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x10 \xb4\x91\...  3
+  +\x02                      3
+  + \x01  \x01               3
+  +\x18\x03 \x18\x03         3
+  +    \x1d \x04 \xcd        2
+  +      4 \x04 \xdb         2
+  +@0 \xa8\x03 \x1d \x12 \x08 \x18 \t \x03 \xe83 "\x02  2
+  +X  X  \xc8 \x08 \xe5 \x0e \x03 \xa0= \xa0- \x08 \x08 \x08 \xf1 \x0f \x03...  2
+  +\xa0? \xa0/ ` \x08 \x08 \x06\x01  2
+  +\x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x1...  2
+  +       \x01  \x01 \x10    2
+  +L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x10 \x...  2
+  +\x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  \x11 ...  2
+  + \x10  \x10 P \x10 \x10 \xa7  2
+  +p\x10 p\x10 \x10 \x10 \x10 \xb0  2
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                      \x02+  20
+                      \x06+  16
+                      \x03+  15
+                      \x04+  15
+                      \x10+  12
+                          +  10
+                      \x08+  8
+                  \xc0\x10+  8
+                         @+  8
+    \x04 \x18\x07 \x18\x07+  5
+                      \x14+  5
+  \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02+  4
+                         L+  4
+                 \x10 \x10+  4
+                      \x18+  4
+                          +  4
+                     \xa0?+  4
+                         0+  4
+    \x04        \x01  \x01+  3
+                      \x05+  3
+  \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...+  3
+                       GNU+  3
+        GNU \x03 \x02 \x02+  2
+                  \xf1\xff+  2
+                \x01  \x01+  2
+
+CLASSES   parts that take the same set of changes (largest 25 of 24; two or more members count as same one level up)
+  {1.0} [+\x10, \x04+]
+     2 members:        \x01  \x01, \x18\x07 \x18\x07
+  {1.1} [   +,  +]
+     2 members:    \x01  \x01 \x10,  \x01  \x01
+  {1.2} [+;, +@ 0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100, +@ 0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100 \x08, +GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2\xf2\..., +GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2\xf2\..., +\x02 \x02 \t, +\x03 \x04, +\x04, +\xa0? \xa0/ ` \x08 \x08 \x06\x01, 8+, GNU+, \x18+, \x8c+, \x8d\x02B\x0e\x18\x8c+, \xa8+, \xb0+, \xc2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah+, \xd8+, \xe9\xc2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah+, h+]
+     1 members: \x03
+  {1.3} [\x03+, \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08+]
+     1 members: \x03 \x04
+  {1.4} [+\x10, \x14+]
+     1 members: \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2...
+  {1.5} [)\xfeH\x89\xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1\xfet\x14H\x8b+, +G\x0e\xc0\x08\x02\xd2\n, +G\x0e\xc0\x08\x02\xd2\n\x0e, +G\x0e\xc0\x08\x02\xd2\n\x0e(, +G\x0e\xc0\x08\x02\xd2\n\x0e(A\x0e , +\x10 \x10 \x10 \xa5\x02 \xa5\x02, +\x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10, +\x12, +\x12/, +\xd6, +\xd9, +}, 9\xf8t\x15H\x8b+, H)\xfeH\x89\xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1\xfet\x14H\x8b+, H9\xf8t\x15H\x8b+, H\x8b+, H\x8d+, \x90+, \xa8+, \xec\x08H\x8b+, \xf8+]
+     1 members: \x05
+  {1.6} [+\x10 \xa5\x02 \xa5\x02, +\x10 \xa5\x02 \xa5\x02 \x10, +\x1b \x04 \x9c]
+     1 members: \x10 \x10
+  {1.7} [+\x10, \x05+]
+     1 members: \x10 \x10 \x10 \xa5\x02 \xa5\x02
+  {1.8} [+\x10, \x10 \x10+]
+     1 members: \x10 \xa5\x02 \xa5\x02
+  {1.9} [+\x1c, \x02+, \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...+]
+     1 members: \x18\x03 \x18\x03
+  {1.10} [(7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \...+, @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04...+, \x02+, \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...+]
+     1 members: \x18\x03 \x18\x03 \x1c
+  {1.11} [\x10 \x10+, \x10+]
+     1 members: \x1b \x04 \x9c
+  {1.12} [+   \x01  \x01, +   \x01  \x01 \x10, + \x01  \x01, +\x1d \x04 \xcd]
+     1 members:    
+  {1.13} [ +, +\x10]
+     1 members:      \x01  \x01
+  {1.14} [   +,  +, +\x10]
+     1 members:    \x01  \x01
+  {1.15} [+\x18\x03 \x18\x03 \x1c, @+]
+     1 members: (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \...
+  {1.16} [+\x1c, @+]
+     1 members: (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04 \...
+  {1.17} [+\x08, @+]
+     1 members: 0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100
+  {1.18} [+\x18\x03 \x18\x03 \x1c, \xc0\x10+]
+     1 members: @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04...
+  {1.19} [+\x1c, \xc0\x10+]
+     1 members: @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04...
+  {1.20} [+\x08, \x03+]
+     1 members: @ 0 \x10 \x08 \x0c\x01 \x08 \x03 \x10@ \x100
+  {1.21} [+\x10, \x03+]
+     1 members: GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x14\xb2\xf2\...
+  {1.22} [+H\x83, +H\x83=, +H\x83=\x82, +buntu 13.3.0-6ubuntu2~24.04.1), +buntu 13.3.0-6ubuntu2~24.04.1) 1, : (+, GN+, N+, __GN+, w\xff\xff\xff\xf3\x0f\x1e\xfaA+, w\xff\xff\xff\xf3\x0f\x1e\xfaAUAT+]
+     1 members: U
+  {1.23} [+\x18\x03 \x18\x03, +\x18\x03 \x18\x03 \x1c]
+     1 members: \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  \x7fELF\x02\x01\x01 \x03 >   seen 1
+    made of    
+    part of    
+    changes    
+    followed   \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ... 1
+    preceded   
+  \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...   seen 1
+    made of    @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 \x03 \x04..., \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ..., \xc0\x10, \x1c
+    part of    
+    changes    
+    followed   \x04 \x18\x07 \x18\x07 \x10 1
+    preceded   \x7fELF\x02\x01\x01 \x03 > 1
+  \x04 \x18\x07 \x18\x07 \x10   seen 1
+    made of    \x04 \x18\x07 \x18\x07, \x18\x07 \x18\x07 \x10, \x04, \x10
+    part of    
+    changes    
+    followed   \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10 1
+    preceded   \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ... 1
+  \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10   seen 1
+    made of    \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10, \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02, \x10, \x05
+    part of    
+    changes    
+    followed   \x04        \x01  \x01 \x10 1
+    preceded   \x04 \x18\x07 \x18\x07 \x10 1
+  \x04        \x01  \x01 \x10   seen 1
+    made of           \x01  \x01 \x10, \x04        \x01  \x01, \x04, \x10
+    part of    
+    changes    
+    followed   \x06 \xa0- \xa0= \xa0= p\x02 x\x02 \x10 \x02 \x06 \xb0- \xb0= \xb0= \xf0... 1
+    preceded   \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10 1
+  \x06 \xa0- \xa0= \xa0= p\x02 x\x02 \x10 \x02 \x06 \xb0- \xb0= \xb0= \xf0...   seen 1
+    made of    \xa0- \xa0= \xa0= p\x02 x\x02 \x10 \x02 \x06 \xb0- \xb0= \xb0= \xf0\x01 ..., \x06
+    part of    
+    changes    
+    followed   /lib64/ld-linux-x86-64.so.2 \x04   \x05 GNU \x02 \xc0\x04 \x03 \x02\x80 ... 1
+    preceded   \x04        \x01  \x01 \x10 1
+  /lib64/ld-linux-x86-64.so.2 \x04   \x05 GNU \x02 \xc0\x04 \x03 \x02\x80 ...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   \x04 \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\x... 1
+    preceded   \x06 \xa0- \xa0= \xa0= p\x02 x\x02 \x10 \x02 \x06 \xb0- \xb0= \xb0= \xf0... 1
+  \x04 \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\x...   seen 1
+    made of    \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\xfe\x1..., \x04
+    part of    
+    changes    
+    followed   GNU \x03 \x02 \x02 \t 1
+    preceded   /lib64/ld-linux-x86-64.so.2 \x04   \x05 GNU \x02 \xc0\x04 \x03 \x02\x80 ... 1
+  GNU \x03 \x02 \x02 \t   seen 1
+    made of    \x03 \x02 \x02 \t, GNU \x03 \x02 \x02, GNU, \t
+    part of    
+    changes    
+    followed   \x06 \x81 \t \xd1e\xcem + \x12 \x83   1
+    preceded   \x04 \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\x... 1
+  \x06 \x81 \t \xd1e\xcem + \x12 \x83     seen 1
+    made of    \x81 \t \xd1e\xcem + \x12 \x83  , \x06
+    part of    
+    changes    
+    followed   \x12 $ \x12 \x06 \x12 \x9f   \x17 \x12 \xae   = " puts __stack_chk_fail ... 1
+    preceded   GNU \x03 \x02 \x02 \t 1
+  \x12 $ \x12 \x06 \x12 \x9f   \x17 \x12 \xae   = " puts __stack_chk_fail ...   seen 1
+    made of    \x12 $ \x12 \x06 \x12 \x9f   \x17 \x12 \xae   = " puts __stack_chk_fail ..., \x02
+    part of    
+    changes    
+    followed   \x03 \x03 \x04 1
+    preceded   \x06 \x81 \t \xd1e\xcem + \x12 \x83   1
+  \x03 \x03 \x04   seen 1
+    made of    \x03 \x04, \x03
+    part of    
+    changes    
+    followed   \x05 1
+    preceded   \x12 $ \x12 \x06 \x12 \x9f   \x17 \x12 \xae   = " puts __stack_chk_fail ... 1
+  \x05   seen 1
+    made of    
+    part of    \xf8\x05, \xa8\x05, \x90\x05, H\x8b\x05, H)\xfeH\x89\xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1\xfet\x14H\x8b\x05, \x05G\x0e\xc0\x08\x02\xd2\n\x0e, H\x8d\x05, \xec\x08H\x8b\x05
+    changes    \xf8+, \xa8+, \x90+, H\x8b+, H)\xfeH\x89\xf0H\xc1\xee?H\xc1\xf8\x03H\x01\xc6H\xd1\xfet\x14H\x8b+, +G\x0e\xc0\x08\x02\xd2\n\x0e, H\x8d+, \xec\x08H\x8b+
+    followed   \x03 1
+    preceded   \x03 \x03 \x04 1
+  \x03   seen 1
+    made of    
+    part of    8\x03, h\x03, \x18\x03, \x8c\x03, \xd8\x03, \xb0\x03, \xa8\x03, \xe9\xc2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah\x03
+    changes    8+, h+, \x18+, \x8c+, \xd8+, \xb0+, \xa8+, \xe9\xc2\xff\xff\xfff\x90\xf3\x0f\x1e\xfah+
+    followed   \x04 L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x... 1
+    preceded   \x05 1
+  \x04 L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x...   seen 1
+    made of    L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x10 \x..., \x04
+    part of    
+    changes    
+    followed   \xe0? \x06 \x02 \xe8? \x06 \x06 \xf0? \x06 \x08 \xf8? \x06 \t \xb8? \x07... 1
+    preceded   \x03 1
+  \xe0? \x06 \x02 \xe8? \x06 \x06 \xf0? \x06 \x08 \xf8? \x06 \t \xb8? \x07...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   t\x1d\x8b\x0c\x9c\x85\xc9t\xec\x89\xdaH\x89\xee\xbf\x02 \xb8 \xe8E\xfe\x... 1
+    preceded   \x04 L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x... 1
+  t\x1d\x8b\x0c\x9c\x85\xc9t\xec\x89\xdaH\x89\xee\xbf\x02 \xb8 \xe8E\xfe\x...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   \x02 usage: hello TEXT %c %d\n \x01\x1b\x03;4 \x05 \xf0\xff\xffh P\xf0\x... 1
+    preceded   \xe0? \x06 \x02 \xe8? \x06 \x06 \xf0? \x06 \x08 \xf8? \x06 \t \xb8? \x07... 1
+  \x02 usage: hello TEXT %c %d\n \x01\x1b\x03;4 \x05 \xf0\xff\xffh P\xf0\x...   seen 1
+    made of    usage: hello TEXT %c %d\n \x01\x1b\x03;4 \x05 \xf0\xff\xffh P\xf0\xff\xf..., \x02
+    part of    
+    changes    
+    followed   L \x0c \x10 \r \x98\x12 \x19 \xa0= \x1b \x08 \x1a \xa8= \x1c \x08 \xf5\x... 1
+    preceded   t\x1d\x8b\x0c\x9c\x85\xc9t\xec\x89\xdaH\x89\xee\xbf\x02 \xb8 \xe8E\xfe\x... 1
+  L \x0c \x10 \r \x98\x12 \x19 \xa0= \x1b \x08 \x1a \xa8= \x1c \x08 \xf5\x...   seen 1
+    made of    \x0c \x10 \r \x98\x12 \x19 \xa0= \x1b \x08 \x1a \xa8= \x1c \x08 \xf5\xfe..., L
+    part of    
+    changes    
+    followed   \x08 \xfe\xff\xffo \xa8\x05 \xff\xff\xffo 1
+    preceded   \x02 usage: hello TEXT %c %d\n \x01\x1b\x03;4 \x05 \xf0\xff\xffh P\xf0\x... 1
+  \x08 \xfe\xff\xffo \xa8\x05 \xff\xff\xffo   seen 1
+    made of    \xfe\xff\xffo \xa8\x05 \xff\xff\xffo, \x08
+    part of    
+    changes    
+    followed   \xf0\xff\xffo \x90\x05 \xf9\xff\xffo \x03 \xb0= 0\x10 @\x10 P\x10 `\x10 ... 1
+    preceded   L \x0c \x10 \r \x98\x12 \x19 \xa0= \x1b \x08 \x1a \xa8= \x1c \x08 \xf5\x... 1
+  \xf0\xff\xffo \x90\x05 \xf9\xff\xffo \x03 \xb0= 0\x10 @\x10 P\x10 `\x10 ...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   \x04 \xf1\xff \t 1
+    preceded   \x08 \xfe\xff\xffo \xa8\x05 \xff\xff\xffo 1
+  \x04 \xf1\xff \t   seen 1
+    made of    \xf1\xff \t, \x04
+    part of    
+    changes    
+    followed   \x04 \x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  ... 1
+    preceded   \xf0\xff\xffo \x90\x05 \xf9\xff\xffo \x03 \xb0= 0\x10 @\x10 P\x10 `\x10 ... 1
+  \x04 \x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  ...   seen 1
+    made of    \x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  \x11 ..., \x04
+    part of    
+    changes    
+    followed   \x1a \x10@ 1
+    preceded   \x04 \xf1\xff \t 1
+  \x1a \x10@   seen 1
+    made of    
+    part of    
+    changes    
+    followed   U 1
+    preceded   \x04 \x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  ... 1
+  U   seen 1
+    made of    
+    part of    GNU, Ubuntu 13.3.0-6ubuntu2~24.04.1) 1, UH\x83, UH\x83=\x82, w\xff\xff\xff\xf3\x0f\x1e\xfaAUATU, UH\x83=, : (U, Ubuntu 13.3.0-6ubuntu2~24.04.1)
+    changes    GN+, +buntu 13.3.0-6ubuntu2~24.04.1) 1, +H\x83, +H\x83=\x82, w\xff\xff\xff\xf3\x0f\x1e\xfaAUAT+, +H\x83=, : (+, +buntu 13.3.0-6ubuntu2~24.04.1)
+    followed   \x16 \xa8= | \x02 \x10 \xa0\x11 \x88 1
+    preceded   \x1a \x10@ 1
+
+==============================================================================
+LEVEL 2
+==============================================================================
+
+SYMBOLS   50 symbols, 50 distinct  (each is a level 1 run; level 1 classes count as same)
+  \x7fELF\x02\x01\x01 \x03 >                1
+  \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...  1
+  \x04 \x18\x07 \x18\x07 \x10               1
+  \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10  1
+  \x04        \x01  \x01 \x10               1
+  \x06 \xa0- \xa0= \xa0= p\x02 x\x02 \x10 \x02 \x06 \xb0- \xb0= \xb0= \xf0...  1
+  /lib64/ld-linux-x86-64.so.2 \x04   \x05 GNU \x02 \xc0\x04 \x03 \x02\x80 ...  1
+  \x04 \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\x...  1
+  GNU \x03 \x02 \x02 \t                     1
+  \x06 \x81 \t \xd1e\xcem + \x12 \x83       1
+  \x12 $ \x12 \x06 \x12 \x9f   \x17 \x12 \xae   = " puts __stack_chk_fail ...  1
+  \x03 \x03 \x04                            1
+  \x05                                      1
+  \x03                                      1
+  \x04 L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x...  1
+  \xe0? \x06 \x02 \xe8? \x06 \x06 \xf0? \x06 \x08 \xf8? \x06 \t \xb8? \x07...  1
+  t\x1d\x8b\x0c\x9c\x85\xc9t\xec\x89\xdaH\x89\xee\xbf\x02 \xb8 \xe8E\xfe\x...  1
+  \x02 usage: hello TEXT %c %d\n \x01\x1b\x03;4 \x05 \xf0\xff\xffh P\xf0\x...  1
+  L \x0c \x10 \r \x98\x12 \x19 \xa0= \x1b \x08 \x1a \xa8= \x1c \x08 \xf5\x...  1
+  \x08 \xfe\xff\xffo \xa8\x05 \xff\xff\xffo  1
+  \xf0\xff\xffo \x90\x05 \xf9\xff\xffo \x03 \xb0= 0\x10 @\x10 P\x10 `\x10 ...  1
+  \x04 \xf1\xff \t                          1
+  \x04 \x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  ...  1
+  \x1a \x10@                                1
+  U                                         1
+
+FOLLOWS   which symbol comes after which (top 25 of 49 pairs)
+  \x7fELF\x02\x01\x01 \x03 > -> \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...  1
+  \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ... -> \x04 \x18\x07 \x18\x07 \x10  1
+  \x04 \x18\x07 \x18\x07 \x10 -> \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10  1
+  \x05 \x10 \x10 \x10 \xa5\x02 \xa5\x02 \x10 -> \x04        \x01  \x01 \x10  1
+  \x04        \x01  \x01 \x10 -> \x06 \xa0- \xa0= \xa0= p\x02 x\x02 \x10 \x02 \x06 \xb0- \xb0= \xb0= \xf0...  1
+  \x06 \xa0- \xa0= \xa0= p\x02 x\x02 \x10 \x02 \x06 \xb0- \xb0= \xb0= \xf0... -> /lib64/ld-linux-x86-64.so.2 \x04   \x05 GNU \x02 \xc0\x04 \x03 \x02\x80 ...  1
+  /lib64/ld-linux-x86-64.so.2 \x04   \x05 GNU \x02 \xc0\x04 \x03 \x02\x80 ... -> \x04 \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\x...  1
+  \x04 \x14 \x03 GNU \xe6\xaf\x02\x92`\xa6\xc5\xe8\xeeX\x17l\xe2\xaf\x85\x... -> GNU \x03 \x02 \x02 \t     1
+  GNU \x03 \x02 \x02 \t    -> \x06 \x81 \t \xd1e\xcem + \x12 \x83    1
+  \x06 \x81 \t \xd1e\xcem + \x12 \x83   -> \x12 $ \x12 \x06 \x12 \x9f   \x17 \x12 \xae   = " puts __stack_chk_fail ...  1
+  \x12 $ \x12 \x06 \x12 \x9f   \x17 \x12 \xae   = " puts __stack_chk_fail ... -> \x03 \x03 \x04            1
+  \x03 \x03 \x04           -> \x05                      1
+  \x05                     -> \x03                      1
+  \x03                     -> \x04 L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x...  1
+  \x04 L \x10 t\x19i\t \x05 V \x10 \x14ii\r \x04 b \x10 u\x1ai\t \x03 l \x... -> \xe0? \x06 \x02 \xe8? \x06 \x06 \xf0? \x06 \x08 \xf8? \x06 \t \xb8? \x07...  1
+  \xe0? \x06 \x02 \xe8? \x06 \x06 \xf0? \x06 \x08 \xf8? \x06 \t \xb8? \x07... -> t\x1d\x8b\x0c\x9c\x85\xc9t\xec\x89\xdaH\x89\xee\xbf\x02 \xb8 \xe8E\xfe\x...  1
+  t\x1d\x8b\x0c\x9c\x85\xc9t\xec\x89\xdaH\x89\xee\xbf\x02 \xb8 \xe8E\xfe\x... -> \x02 usage: hello TEXT %c %d\n \x01\x1b\x03;4 \x05 \xf0\xff\xffh P\xf0\x...  1
+  \x02 usage: hello TEXT %c %d\n \x01\x1b\x03;4 \x05 \xf0\xff\xffh P\xf0\x... -> L \x0c \x10 \r \x98\x12 \x19 \xa0= \x1b \x08 \x1a \xa8= \x1c \x08 \xf5\x...  1
+  L \x0c \x10 \r \x98\x12 \x19 \xa0= \x1b \x08 \x1a \xa8= \x1c \x08 \xf5\x... -> \x08 \xfe\xff\xffo \xa8\x05 \xff\xff\xffo  1
+  \x08 \xfe\xff\xffo \xa8\x05 \xff\xff\xffo -> \xf0\xff\xffo \x90\x05 \xf9\xff\xffo \x03 \xb0= 0\x10 @\x10 P\x10 `\x10 ...  1
+  \xf0\xff\xffo \x90\x05 \xf9\xff\xffo \x03 \xb0= 0\x10 @\x10 P\x10 `\x10 ... -> \x04 \xf1\xff \t          1
+  \x04 \xf1\xff \t         -> \x04 \x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  ...  1
+  \x04 \x8c\x03   \x13 \x04 \xf1\xff \x1e \x02 \x10 \xf0\x10   \x02 \x10  ... -> \x1a \x10@                1
+  \x1a \x10@               -> U                         1
+  U                        -> \x16 \xa8= | \x02 \x10 \xa0\x11 \x88  1
+
+SEPARATOR   the most common symbol: \x7fELF\x02\x01\x01 \x03 >
+
+RUNS   1 runs between separators, 1 distinct
+  \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 1 distinct runs in, 1 structures added, 2763 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  \xc0\x10 @ (7 @ 8 \r @ \x1f \x1e \x06 \x04 @ @ @ \xd8\x02 \xd8\x02 \x08 ...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   
+

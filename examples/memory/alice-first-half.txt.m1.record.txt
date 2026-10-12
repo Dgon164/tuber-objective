@@ -1,0 +1,992 @@
+DISCOVERY RECORD
+signal     alice-first-half.txt
+size       72215 bytes, 577720 bits
+
+FRAME   score = spread between the column most often 1 and the column least often 1
+  width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
+   56    0.954   col   0 at 0.000   col  42 at 0.954
+   64    0.952   col   0 at 0.000   col  34 at 0.952
+   48    0.951   col   0 at 0.000   col  34 at 0.951
+   32    0.951   col   0 at 0.000   col  10 at 0.951
+   40    0.950   col   0 at 0.000   col  10 at 0.950
+   24    0.950   col   0 at 0.000   col   2 at 0.950
+   16    0.950   col   0 at 0.000   col  10 at 0.950
+    8    0.950   col   0 at 0.000   col   2 at 0.950
+  picked width 8
+    fold to  1: columns differ by 0.2147 on average (wobble by chance 0.0020) -> different
+    fold to  2: columns differ by 0.2032 on average (wobble by chance 0.0020) -> different
+    fold to  4: columns differ by 0.1800 on average (wobble by chance 0.0020) -> different
+  chosen width 8
+  column rates at width 8:
+    0.000 0.745 0.950 0.235 0.338 0.477 0.333 0.452
+
+LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
+  level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
+      0    72215        72    12367      3782    10297          254    14079       14079
+      1    12367      3782      543       542     1657           32     2189       16268
+      2      543       542        3         3        0            0        3       16271
+      3        3         3        1         1        0            0        1       16272
+  stopped: level 3 left a single run; nothing more to cut
+
+MEMORY   alice.memory
+  before this signal: 0 parts, from nothing
+  this signal, against memory:
+  level  produced  confirmed      added  not seen this time
+      0     14079          0      14079                   0
+      1      2485          0       2189                   0
+      2         3          0          3                   0
+      3         1          0          1                   0
+  after: 16272 parts, saved
+
+==============================================================================
+LEVEL 0
+==============================================================================
+
+WORDS   72215 words, 72 distinct
+  bits      glyph   count
+  00100000          13055
+  01100101  e       6434
+  01110100  t       5081
+  01100001  a       4175
+  01101111  o       4125
+  01101000  h       3497
+  01101110  n       3487
+  01101001  i       3418
+  01110011  s       3199
+  01110010  r       2623
+  01101100  l       2425
+  01100100  d       2387
+  01110101  u       1621
+  00001010  \n      1541
+  01100111  g       1312
+  01110111  w       1274
+  00100111  '       1187
+  00101100  ,       1180
+  01100011  c       1069
+  01111001  y       1042
+  01100110  f       1002
+  01101101  m       999
+  01110000  p       732
+  01100010  b       719
+  01101011  k       528
+
+FOLLOWS   which word comes after which (top 25 of 1101 pairs)
+  e                        ->                           2102
+                           -> t                         1793
+  h                        -> e                         1746
+  t                        -> h                         1466
+  t                        ->                           1385
+                           -> a                         1379
+  d                        ->                           1301
+                           -> s                         1158
+  i                        -> n                         1013
+  ,                        ->                           948
+  e                        -> r                         904
+  s                        ->                           818
+  a                        -> n                         796
+                           -> w                         775
+  o                        -> u                         740
+  i                        -> t                         701
+  n                        -> d                         695
+                           ->                           689
+                           -> i                         682
+  n                        ->                           659
+                           -> h                         655
+  o                        ->                           652
+                           -> o                         623
+  r                        ->                           578
+  n                        -> g                         569
+
+SEPARATOR   the most common word: 00100000 ( )
+
+RUNS   12367 runs between separators, 3782 distinct
+  the                                       542
+  to                                        359
+  and                                       340
+  a                                         305
+  she                                       265
+  of                                        210
+  it                                        195
+  was                                       177
+  in                                        155
+  I                                         155
+  said                                      144
+  as                                        119
+  you                                       100
+  that                                      99
+  her                                       96
+  at                                        82
+  be                                        78
+  had                                       77
+  Alice                                     77
+  for                                       68
+  little                                    66
+  on                                        63
+  all                                       63
+  with                                      62
+  very                                      54
+
+RUN FOLLOWS   which run comes after which (top 25 of 9529 pairs)
+  said                     -> the                       70
+  of                       -> the                       43
+  *                        -> *                         42
+  in                       -> a                         40
+  to                       -> be                        30
+  as                       -> she                       29
+  she                      -> had                       28
+  it                       -> was                       28
+  in                       -> the                       28
+  a                        -> little                    28
+  and                      -> the                       25
+  she                      -> was                       24
+  out                      -> of                        21
+  that                     -> she                       20
+  at                       -> the                       19
+  and                      -> she                       19
+  to                       -> the                       19
+  said                     -> Alice,                    18
+  to                       -> get                       16
+  on                       -> the                       16
+  as                       -> it                        14
+  and                      -> a                         14
+  did                      -> not                       13
+  to                       -> herself,                  13
+  such                     -> a                         13
+
+MINT   11 rounds; parts minted per round: 6287 2538 935 346 109 48 20 7 5 2 0
+  pool: 3782 distinct runs in, 14079 structures added, 14079 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  e                                  1050       0  the, she, be, Alice
+  \n                                  992       0  the\n, to\n, a\n, be\n
+  s                                   855       0  she, was, said, as
+  ,                                   781       0  Alice,, it,, herself,, again,
+  t                                   742       0  the, to, it, that
+  a                                   719     305  and, as, at, all
+  r                                   634       0  her, for, or, your
+  '                                   575       0  'I, 'and, 'but, 'If
+  n                                   570       0  in, on, not, down
+  i                                   566       0  it, in, if, is
+  d                                   546       0  and, said, had, down
+  o                                   513       0  to, of, on, so
+  l                                   509       0  little, all, like, large
+  h                                   375       0  her, had, with, have
+  .                                   374       0  it., Alice., air., know.
+  c                                   340       0  could, came, come, can
+  m                                   306       0  my, me, I'm, much
+  p                                   303       0  up, poor, put, perhaps
+  u                                   292       0  you, up, under, use
+  ing                                 279       0  nothing, looking, being, going
+  y                                   274       0  you, very, my, they
+  g                                   266       0  get, got, thing, go
+  f                                   259       0  of, for, if, herself
+  ed                                  254       0  seemed, looked, tried, turned
+  -                                   237       0  -ch, inea-, coat-, -som
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +,                         1318
+  +e                         676
+  +s                         541
+  +\n                        501
+  +d                         441
+  +t                         439
+  +.                         412
+  +n                         356
+  +'                         345
+  +r                         324
+  +ing                       314
+  +ed                        293
+  +a                         287
+  +!                         283
+  +:                         274
+  +;                         273
+  +,'                        272
+  +l                         270
+  +i                         256
+  +o                         249
+  +!'                        214
+  +y                         202
+  +h                         186
+  +ly                        169
+  +g                         142
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                        \n+  1036
+                         e+  884
+                         a+  814
+                         s+  796
+                         t+  653
+                         r+  643
+                         i+  633
+                         '+  579
+                         n+  540
+                         o+  520
+                         c+  511
+                         d+  504
+                         l+  498
+                         h+  451
+                         p+  418
+                         m+  383
+                         f+  383
+                         b+  373
+                         u+  328
+                         g+  313
+                         w+  279
+                         -+  252
+                         .+  210
+                        --+  173
+                         I+  168
+
+CLASSES   parts that take the same set of changes (largest 25 of 7163; two or more members count as same one level up)
+  {0.0} [+ed, +ing]
+     17 members: order, swallow, mutter, rapp, ggl, pick, pull, tumbl, howl, nibbl, produc, stopp
+  {0.1} [+!, +,]
+     8 members: Mabel, whiskers, goose, asking, '\n\n'Well, !'\n\n'Oh, Pat, --Oh
+  {0.2} [+,, +.]
+     7 members: knowledge, Eaglet, middle, directly, outside, angrily, gravely
+  {0.3} [+,, +:]
+     6 members: suddenly, larger, lost, floor, comfits, eagerly
+  {0.4} [\ns+, s+]
+     6 members: hut, kimming, omewhere, nappishly., ize:, erpents!
+  {0.5} [nt+, t+]
+     5 members: ipathies,, ains,, erbury,, \nthimble';, \nagainst
+  {0.6} [,\n+, \n+]
+     5 members: 'for, except, she'll, nurse!, saying,
+  {0.7} [+,, +s]
+     5 members: creature, her\nhand, the\nother, paw, ucumber-frame
+  {0.8} [+e, +ing]
+     4 members: "Com, smok, shak, giv
+  {0.9} [+ll, +s]
+     4 members: It', 'it', 'Dinah', That'
+  {0.10} [\nl+, l+]
+     4 members: adder?--Why,, arge, essons, ike
+  {0.11} [\nt+, t+]
+     4 members: ears.\n\nNo,, one., rembling, ail.
+  {0.12} [e+, pe+]
+     4 members: bbles, rfectly, t:\n'Dinah's, nt!'
+  {0.13} [c+, oc+]
+     4 members: curred, kings, odile\n, eed.
+  {0.14} [er+, r+]
+     4 members: getic\nremedies--'\n\n'Speak, nly., ry-tart,, tainly:
+  {0.15} [is+, s+]
+     4 members: hly., n't,', tcoat-pocket,, h-Footman
+  {0.16} [t+, w+]
+     4 members: hat?', hen\n, histle, hat\nto
+  {0.17} [s+, t+]
+     4 members: he\nc, he\nsa, he\nw, he\nre
+  {0.18} [\nd+, d+]
+     4 members: own!, isappointment, runk, ifferent
+  {0.19} [+y, +y,]
+     4 members: sleep, sulk, liver, somebod
+  {0.20} [+d, +r]
+     4 members: mpe, ughe, olde, longe
+  {0.21} [e+, re+]
+     3 members: turning,, d.\n\nAlice, \nnowhere
+  {0.22} [+ed, +s]
+     3 members: sound, \npresent, fill
+  {0.23} [e+, he+]
+     3 members: 's\nperfectly, rself;, arth
+  {0.24} [+y, +y\n]
+     3 members: exactl, -Part, out-of-the-wa
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  the   seen 542
+    made of    th, he, t, e
+    part of    they, then, there, them, their, them,, 'the, the\n
+    changes    +y, +n, +re, +m, +ir, +m,, '+, +\n
+    followed   little 11, Mouse 9, Rabbit 8, right 8, Dodo 8, Caterpillar 8
+    preceded   said 70, of 43, in 28, and 25, at 19, to 19
+  to   seen 359
+    made of    t, o
+    part of    into, took, too, top, to\nsee, 'to, tone, tone:
+    changes    in+, +ok, +o, +p, +\nsee, '+, +ne, +ne:
+    followed   be 30, the 19, get 16, herself, 13, her 12, see 9
+    preceded   seemed 13, said 11, ought 8, used 7, like 6, got 6
+  and   seen 340
+    made of    an, nd, a, d
+    part of    'and, and,, hand, and--oh, and\nwas, and\nAlice, sadly.\n\n'Hand, and\ncalled
+    changes    '+, +,, h+, +--oh, +\nwas, +\nAlice, sadly.\n\n'H+, +\ncalled
+    followed   the 25, she 19, a 14, then 8, was 7, Alice 6
+    preceded   it, 9, up 7, again, 7, down 5, fan 5, house, 4
+  a   seen 305
+    made of    
+    part of    and, as, at, all, about, an, again,, any
+    changes    +nd, +s, +t, +ll, +bout, +n, +gain,, +ny
+    followed   little 28, good 10, large 9, very 6, great 6, long 6
+    preceded   in 40, and 14, such 13, was 13, into 10, with 10
+  she   seen 265
+    made of    he, sh, e, s
+    part of    (she, she\nfelt, she\nwas, as\nshe, and\nshe, she\nhad, but\nshe, she\nsaid
+    changes    (+, +\nfelt, +\nwas, as\n+, and\n+, +\nhad, but\n+, +\nsaid
+    followed   had 28, was 24, went 12, could 11, said 10, found 8
+    preceded   as 29, that 20, and 19, but 9, when 8, for 7
+  of   seen 210
+    made of    f, o
+    part of    off, off,, roof, row\nof, of\nthat, 'of, fond--of--of, of\nall
+    changes    +f, +f,, ro+, row\n+, +\nthat, '+, fond--of--+, +\nall
+    followed   the 43, this 6, its 6, a 5, her 4, any 3
+    preceded   out 21, one 10, sort 8, pair 5, hold 4, sides 3
+  it   seen 195
+    made of    t, i
+    part of    its, it,, it;, it., it'll, itself, bit, it:
+    changes    +s, +,, +;, +., +'ll, +self, b+, +:
+    followed   was 28, had 10, would 6, might 5, in 5, a 4
+    preceded   as 14, that 13, but 8, if 5, thought 4, see 4
+  was   seen 177
+    made of    wa, as, w, s
+    part of    was,, was\nnot, there\nwas, was\nvery, wasn't\nalways, was:, was!', wasn't
+    changes    +,, +\nnot, there\n+, +\nvery, +n't\nalways, +:, +!', +n't
+    followed   a 13, the 7, not 6, no 6, just 5, very 5
+    preceded   it 28, she 24, there 8, and 7, There 4, which 4
+  in   seen 155
+    made of    n, i
+    part of    into, inches, explain, begin, indeed, chin, in?', in?'\n\n'There
+    changes    +to, +ches, expla+, beg+, +deed, ch+, +?', +?'\n\n'There
+    followed   a 40, the 28, her 6, another 5, my 4, at 4
+    preceded   it 5, Alice 5, use 4, and 4, just 3, was 3
+  I   seen 155
+    made of    
+    part of    'I, I'm, I'll, I've, IS, I'd, It, It's
+    changes    '+, +'m, +'ll, +'ve, +S, +'d, +t, +t's
+    followed   can 8, shall 7, don't 7, should 6, wish 5, know 5
+    preceded   if 9, wish 7, am 6, think 4, when 4, dear! 3
+  said   seen 144
+    made of    sai, aid, sa, id, d, s
+    part of    said,, she\nsaid, said\nto, said,), thing!'\nsaid, said,\n, said\nAlice, said.\n\nAt
+    changes    +,, she\n+, +\nto, +,), thing!'\n+, +,\n, +\nAlice, +.\n\nAt
+    followed   the 70, Alice, 18, Alice 12, to 11, Alice; 6, this, 3
+    preceded   she 10, indeed!' 4, know,' 3, Alice 3, old,' 3, and 2
+  as   seen 119
+    made of    a, s
+    part of    was, has, she\nwas, ask, as\nshe, asked, as,, asleep,
+    changes    w+, h+, she\nw+, +k, +\nshe, +ked, +,, +leep,
+    followed   she 29, it 14, if 7, well 5, the 4, to 3
+    preceded   and, 5, just 5, and 5, well 4, soon 4, was 3
+  you   seen 100
+    made of    yo, ou, y, u
+    part of    your, youth,, you'll, you,, youth,', young, you?', 'you
+    changes    +r, +th,, +'ll, +,, +th,', +ng, +?', '+
+    followed   were 4, know 4, see, 3, could 3, know,' 3, wouldn't 3
+    preceded   if 9, do 5, Do 3, wish 3, Yet 3, way 2
+  that   seen 99
+    made of    hat, tha, t
+    part of    that's, that,, that,', that!, that?', 'that, see\nthat, that;
+    changes    +'s, +,, +,', +!, +?', '+, see\n+, +;
+    followed   she 20, it 13, the 4, Alice 2, they 2, would 2
+    preceded   felt 3, think 3, thought 3, into 3, find 3, in 3
+  her   seen 96
+    made of    er, he, r, h
+    part of    herself, herself,, rather, her,, here, her., her;, here,'
+    changes    +self, +self,, rat+, +,, +e, +., +;, +e,'
+    followed   head 6, eyes 3, hands, 3, to 3, as 3, sister 2
+    preceded   to 12, in 6, at 5, of 4, about 3, and 3
+  at   seen 82
+    made of    a, t
+    part of    eat, great, sat, cat, Cat, at\nthe, What, 'What
+    changes    e+, gre+, s+, c+, C+, +\nthe, Wh+, 'Wh+
+    followed   the 19, last 6, her 5, all 4, any 4, once 4
+    preceded   down 4, in 4, looked 3, off 3, not 3, but 2
+  be   seen 78
+    made of    e, b
+    part of    began, been, being, before, beg, before,, beginning, best
+    changes    +gan, +en, +ing, +fore, +g, +fore,, +ginning, +st
+    followed   a 10, no 4, of 2, two 2, the 2, an 2
+    preceded   to 30, must 9, would 5, shall 3, should 2, wouldn't 2
+  had   seen 77
+    made of    ad, ha, h, d
+    part of    hadn't, she\nhad, it\nhad, Alice\nhad, had\ndrunk, had\na, had,, had\nsucceeded
+    changes    +n't, she\n+, it\n+, Alice\n+, +\ndrunk, +\na, +,, +\nsucceeded
+    followed   been 7, no 5, not 5, to 5, never 3, got 2
+    preceded   she 28, it 10, and 5, Alice 4, they 3, (Alice 2
+  Alice   seen 77
+    made of    Alic, lice, e, A
+    part of    Alice,, Alice;, Alice., Caterpillar.\n\nAlice, Alice!, (Alice, Alice!', Alice\nbegan
+    changes    +,, +;, +., Caterpillar.\n\n+, +!, (+, +!', +\nbegan
+    followed   to 5, in 5, had 4, went 3, said 3, could 3
+    preceded   said 12, and 6, thought 3, so 3, cried 3, to 3
+  for   seen 68
+    made of    fo, or, f, r
+    part of    'for, forgot, forgotten, politely,\n'for, forgetting, for\ntwo, looking\nfor, for\na
+    changes    '+, +got, +gotten, politely,\n'+, +getting, +\ntwo, looking\n+, +\na
+    followed   the 8, she 7, a 6, some 5, her 3, it 2
+    preceded   opportunity 3, again, 3, could, 2, me 2, size 2, one 2
+  little   seen 66
+    made of    littl, ittle, tle, lit, l, e
+    part of    little,, the\nlittle, a\nlittle, little\nsnappishly., little--"', little!'\n\nShe, little\nanimals, little!
+    changes    +,, the\n+, a\n+, +\nsnappishly., +--"', +!'\n\nShe, +\nanimals, +!
+    followed   door 3, pattering 3, thing 3, girl 2, golden 2, house, 2
+    preceded   a 28, the 11, poor 6, of 2, an\nignorant 1, very 1
+  on   seen 63
+    made of    n, o
+    part of    one, only, soon, upon, once, on,, once,, cauldron
+    changes    +e, +ly, so+, up+, +ce, +,, +ce,, cauldr+
+    followed   the 16, it, 4, a 4, it 3, your 2, one 2
+    preceded   went 12, sitting 5, up 2, put 2, down 2, and 2
+  all   seen 63
+    made of    al, ll, l, a
+    part of    small, fall, all?', all,, all;, call, allow, hoarsely\nall
+    changes    sm+, f+, +?', +,, +;, c+, +ow, hoarsely\n+
+    followed   the 10, round 3, made 2, seemed 1, think 1, the\nright 1
+    preceded   they 5, at 4, was 3, were 3, and 3, know 2
+  with   seen 62
+    made of    ith, wit, th, wi, h, w
+    part of    without, with;, within--a, with\nits, with.'\n\n'A, (with, with\nthis, time\nwith
+    changes    +out, +;, +in--a, +\nits, +.'\n\n'A, (+, +\nthis, time\n+
+    followed   a 10, the 9, one 5, some 2, its 2, pink 1
+    preceded   over 2, Rabbit 1, rabbit 1, burning 1, here 1, paper\nlabel, 1
+  very   seen 54
+    made of    ery, ver, v, y
+    part of    every, very\ncarefully,, very\nlike, was\nvery, of\nevery, livery, a\nvery, very\nlonely
+    changes    e+, +\ncarefully,, +\nlike, was\n+, of\ne+, li+, a\n+, +\nlonely
+    followed   soon 3, likely 2, well 2, good 2, glad 2, tired 1
+    preceded   a 6, was 5, and 4, she 3, feel 2, it 2
+
+==============================================================================
+LEVEL 1
+==============================================================================
+
+SYMBOLS   12367 symbols, 3782 distinct  (each is a level 0 run; level 0 classes count as same)
+  the                                       542
+  to                                        359
+  and                                       340
+  a                                         305
+  she                                       265
+  of                                        210
+  it                                        195
+  was                                       177
+  in                                        155
+  I                                         155
+  said                                      144
+  as                                        119
+  you                                       100
+  that                                      99
+  her                                       96
+  at                                        82
+  be                                        78
+  had                                       77
+  Alice                                     77
+  for                                       68
+  little                                    66
+  on                                        63
+  all                                       63
+  with                                      62
+  very                                      54
+
+FOLLOWS   which symbol comes after which (top 25 of 9529 pairs)
+  said                     -> the                       70
+  of                       -> the                       43
+  *                        -> *                         42
+  in                       -> a                         40
+  to                       -> be                        30
+  as                       -> she                       29
+  she                      -> had                       28
+  it                       -> was                       28
+  in                       -> the                       28
+  a                        -> little                    28
+  and                      -> the                       25
+  she                      -> was                       24
+  out                      -> of                        21
+  that                     -> she                       20
+  at                       -> the                       19
+  and                      -> she                       19
+  to                       -> the                       19
+  said                     -> Alice,                    18
+  to                       -> get                       16
+  on                       -> the                       16
+  as                       -> it                        14
+  and                      -> a                         14
+  did                      -> not                       13
+  to                       -> herself,                  13
+  such                     -> a                         13
+
+SEPARATOR   the most common symbol: the
+
+RUNS   543 runs between separators, 542 distinct
+  Caterpillar took                          2
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D...  1
+  Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s...  1
+  use of a book,' thought Alice 'without pictures or\nconversation?'\n\nSo...  1
+  pleasure\nof making a daisy-chain would be worth  1
+  trouble of getting up and\npicking        1
+  daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\...  1
+  way to hear                               1
+  Rabbit say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she th...  1
+  time\nit all seemed quite natural); but when  1
+  Rabbit actually TOOK A WATCH\nOUT OF ITS WAISTCOAT-POCKET, and looked at...  1
+  field\nafter it, and fortunately was just in time to see it pop down a l...  1
+  hedge.\n\nIn another moment down went Alice after it, never once conside...  1
+  world she was to get out again.\n\nThe rabbit-hole went straight on like...  1
+  well was very deep, or she fell very slowly, for she had\nplenty of time...  1
+  sides of                                  1
+  well, and noticed that they were filled with\ncupboards and book-shelves...  1
+  shelves as\nshe passed; it was labelled 'ORANGE MARMALADE', but to her g...  1
+  jar for fear\nof killing somebody, so managed to put it into one of  1
+  cupboards as\nshe fell past it.\n\n'Well!' thought Alice to herself, 'af...  1
+  top\nof                                   1
+  house!' (Which was very likely true.)\n\nDown, down, down. Would  1
+  fall NEVER come to an end! 'I wonder how\nmany miles I've fallen by this...  1
+  centre of                                 1
+  earth. Let me see: that would be four\nthousand miles down, I think--' (...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 542 pairs)
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D... -> Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s...  1
+  Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s... -> use of a book,' thought Alice 'without pictures or\nconversation?'\n\nSo...  1
+  use of a book,' thought Alice 'without pictures or\nconversation?'\n\nSo... -> pleasure\nof making a daisy-chain would be worth  1
+  pleasure\nof making a daisy-chain would be worth -> trouble of getting up and\npicking  1
+  trouble of getting up and\npicking -> daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\...  1
+  daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\... -> way to hear               1
+  way to hear              -> Rabbit say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she th...  1
+  Rabbit say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she th... -> time\nit all seemed quite natural); but when  1
+  time\nit all seemed quite natural); but when -> Rabbit actually TOOK A WATCH\nOUT OF ITS WAISTCOAT-POCKET, and looked at...  1
+  Rabbit actually TOOK A WATCH\nOUT OF ITS WAISTCOAT-POCKET, and looked at... -> field\nafter it, and fortunately was just in time to see it pop down a l...  1
+  field\nafter it, and fortunately was just in time to see it pop down a l... -> hedge.\n\nIn another moment down went Alice after it, never once conside...  1
+  hedge.\n\nIn another moment down went Alice after it, never once conside... -> world she was to get out again.\n\nThe rabbit-hole went straight on like...  1
+  world she was to get out again.\n\nThe rabbit-hole went straight on like... -> well was very deep, or she fell very slowly, for she had\nplenty of time...  1
+  well was very deep, or she fell very slowly, for she had\nplenty of time... -> sides of                  1
+  sides of                 -> well, and noticed that they were filled with\ncupboards and book-shelves...  1
+  well, and noticed that they were filled with\ncupboards and book-shelves... -> shelves as\nshe passed; it was labelled 'ORANGE MARMALADE', but to her g...  1
+  shelves as\nshe passed; it was labelled 'ORANGE MARMALADE', but to her g... -> jar for fear\nof killing somebody, so managed to put it into one of  1
+  jar for fear\nof killing somebody, so managed to put it into one of -> cupboards as\nshe fell past it.\n\n'Well!' thought Alice to herself, 'af...  1
+  cupboards as\nshe fell past it.\n\n'Well!' thought Alice to herself, 'af... -> top\nof                   1
+  top\nof                  -> house!' (Which was very likely true.)\n\nDown, down, down. Would  1
+  house!' (Which was very likely true.)\n\nDown, down, down. Would -> fall NEVER come to an end! 'I wonder how\nmany miles I've fallen by this...  1
+  fall NEVER come to an end! 'I wonder how\nmany miles I've fallen by this... -> centre of                 1
+  centre of                -> earth. Let me see: that would be four\nthousand miles down, I think--' (...  1
+  earth. Let me see: that would be four\nthousand miles down, I think--' (... -> schoolroom, and though this\nwas not a VERY good opportunity for showing...  1
+  schoolroom, and though this\nwas not a VERY good opportunity for showing... -> right distance--but then I wonder what Latitude\nor Longitude I've got t...  1
+
+MINT   10 rounds; parts minted per round: 856 385 203 114 62 21 14 1 1 0
+  pool: 542 distinct runs in, 2189 structures added, 16268 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  out of                               17       0  sentence in her French lesson-book. The Mouse gave a\nsudden leap out of, daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\..., with his knuckles. It was opened\nby another footman in livery, with a r..., cakes, and was delighted to find that she\nbegan shrinking directly. As ...
+  Pigeon                               11       1  Pigeon,, Pigeon.\n\n'I'm, Pigeon., Pigeon;
+  door, and                            10       1  door, and knocked.\n\n'There's no sort of use in knocking,' said, door, and knocked.\n\n'There's no sort of use in, door, and knocked.\n\n'There's no sort of use, door, and tried to open it; but, as\nthe door opened inwards, and Alice'...
+  one of                               10       0  floor, and a bright idea came into her\nhead. 'If I eat one of these cak..., jar for fear\nof killing somebody, so managed to put it into one of, Footman's head: it just grazed his nose,\nand broke to pieces against on..., words,' said poor Alice, and her eyes\nfilled with tears again as she we...
+  in a                                  8       0  in a VERY unpleasant\nstate of mind, she turned away.\n\n'Come back!', in a hoarse\ngrowl, 'the world would go round a deal faster than it does..., in a sulky tone, as it settled\ndown again into its nest. Alice crouched..., Pigeon in a
+  to eat                                8       0  as solemn as she\ncould.\n\nThe next thing was to eat, to eat or drink, solemn as she\ncould.\n\nThe next thing was to eat, next moment she felt a violent\nblow underneath her chin: it had struck ...
+  Duchess; 'and                         7       0  Duchess; 'and that's a fact.'\n\nAlice did not at, Duchess; 'and that's a fact.'\n\nAlice did, Duchess; 'and that's a fact.'\n\nAlice did not at all, Duchess; 'and most of 'em do.'\n\n'I don't know of any that do,' Alice s...
+  hookah out of its                     6       0  hookah out of its mouth again, and said, 'So you think\nyou're changed, ..., hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\..., hookah out of its mouth\nand yawned once or twice, and shook itself. The..., hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...
+  next moment                           6       0  next moment a shower of little pebbles came rattling in at the\nwindow, ..., next moment she felt a violent\nblow underneath her chin: it had struck ..., next moment a shower of little pebbles came rattling in at the\nwindow, ..., next moment a shower of little pebbles came rattling in at the\nwindow, ...
+  she had                               6       0  right words,' said poor Alice, and her eyes\nfilled with tears again as ..., difficulty was, that she had, only difficulty was, that she had, first minute\nor two, it was as much as she could do to hold it.\n\nAs s...
+  she was                               6       0  she was now, vanished.\n\nAlice was not much surprised at this, she was getting so us..., she was holding, and she dropped\nit hastily, just in time to avoid shri..., she was to get out again.\n\nThe rabbit-hole went straight on like a tun...
+  to try                                6       0  edge with each hand.\n\n'And now which is which?' she said to herself, a..., 'the best way to explain it is to do it.' (And, as\nyou might like to tr..., Crab, a little\nsnappishly. 'You're enough to try, young Crab, a little\nsnappishly. 'You're enough to try
+  was looking                           6       0  Rabbit, trotting slowly back again, and looking\nanxiously about as it w..., trotting slowly back again, and looking\nanxiously about as it went, as ..., White Rabbit, trotting slowly back again, and looking\nanxiously about a..., between us. For instance,\nif you were INSIDE, you might knock, and I co...
+  end of                                5       1  end of his\ntail. 'As if I would talk on such a subject! Our family alwa..., end of his\ntail. 'As if I would talk on such a subject! Our family alwa..., end of his\ntail. 'As if I would talk on such a subject! Our family alwa..., end of your nose--\n What made you so awfully clever?'\n\n 'I have answe...
+  Cat, and                              5       0  Cat, and vanished again.\n\nAlice waited a little, half expecting to see..., Cat, and vanished again.\n\nAlice waited a little, half expecting to see..., Cat, and vanished.\n\nAlice was not much surprised at this, she was gett..., Cat, and vanished.\n\nAlice was not much surprised at this, she was gett...
+  Mouse was                             5       0  Mouse was speaking, so that her idea, Mouse was speaking, so that her idea of, Mouse was swimming\naway from her as hard as it could go, and making qui..., Mouse was swimming\naway from her as hard as it could go, and making qui...
+  Mouse, who                            5       0  Mouse, who seemed to be a person of authority among them,\ncalled out, '..., Mouse, who was trembling, Mouse, who was trembling down, Mouse, who seemed to be a person of authority among them,\ncalled out, '...
+  Pigeon in a                           5       0  Pigeon in a sulky tone, as it settled\ndown again into its nest. Alice c..., Pigeon in a sulky tone, as it settled\ndown again into its nest. Alice c..., Pigeon in a tone, Pigeon in a sulky tone, as it settled\ndown again into its nest. Alice c...
+  about in                              5       0  chimney as she could, and waited\ntill she heard a little animal (she co..., she could, and waited\ntill she heard a little animal (she couldn't gues..., could, and waited\ntill she heard a little animal (she couldn't guess of..., of tears which she had wept when she\nwas nine feet high.\n\n'I wish I h...
+  house, and                            5       0  house, and the\nMarch Hare and, house, and found quite a crowd of little\nanimals and birds waiting outs..., house, and the\nMarch Hare, house, and wondering what\nto do next, when suddenly a footman in livery...
+  indeed!' said                         5       0  Caterpillar.\n\n'Well, I should like to be a LITTLE larger, sir, if you ..., I should like to be a LITTLE larger, sir, if you wouldn't mind,'\nsaid A..., sort.\n\nNext came an angry voice--the Rabbit's--'Pat! Pat! Where are yo..., Pigeon. 'I can see you're trying to\ninvent something!'\n\n'I--I'm a lit...
+  moment she                            5       0  moment she quite forgot how to speak good English); 'now I'm\nopening ou..., moment she quite forgot how to speak good English); 'now I'm\nopening ou..., moment she felt a violent\nblow underneath her chin: it had struck her f..., moment she appeared on the\nother side,
+  thought that                          5       0  thought that it might be\nhungry, in which case it would be very likely ..., thought that she was now, thought that it might be\nhungry, in which case it would be very likely ..., thought that it might be\nhungry, in which case it would be very likely ...
+  took up                               5       0  darkness as hard as he could go.\n\nAlice took up, it (as she had hoped) a fan and two or three pairs\nof tiny white kid gl..., on it (as she had hoped) a fan and two or three pairs\nof tiny white kid..., hall: in fact she was\nnow more than nine feet high, and she at once too...
+  was sitting on                        5       0  edge of the\nmushroom, and her eyes immediately met those of a large cat..., the\nmushroom, and her eyes immediately met those of a large caterpillar..., was sitting on a three-legged stool in\nthe middle, nursing a baby;, of the\nmushroom, and her eyes immediately met those of a large caterpil...
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +said                      113
+  +and                       60
+  +in                        48
+  +to                        47
+  +of                        43
+  +at                        38
+  +on                        30
+  +all                       22
+  +was                       21
+  +with                      20
+  +that                      20
+  +took                      19
+  +for                       19
+  +it                        19
+  +she                       19
+  +out                       17
+  +down                      16
+  +into                      15
+  +but                       13
+  +out of                    12
+  +like                      11
+  +not                       11
+  +among                     11
+  +up                        11
+  +hear                      10
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                       was+  51
+                       she+  51
+                       and+  46
+                        to+  43
+                         a+  41
+                    little+  38
+                        as+  36
+                      with+  28
+                     Mouse+  25
+                      Dodo+  25
+                     right+  25
+                      door+  25
+                        of+  24
+                    Rabbit+  23
+                       way+  23
+                     thing+  22
+               Caterpillar+  20
+                        it+  20
+                     other+  19
+                   window,+  18
+                    Mouse,+  18
+                      same+  16
+                     house+  15
+                      said+  14
+                      cook+  14
+
+CLASSES   parts that take the same set of changes (largest 25 of 533; two or more members count as same one level up)
+  {1.0} [+and, was+]
+     3 members: over.\n\nAlice was not a bit hurt, and she jumped up on to her feet in a..., shut again,, getting quite crowded with the\nbirds and animals that had fallen into i...
+  {1.1} [+said, Cat.+]
+     2 members: 'I'd nearly\nforgotten to ask.'\n\n'It turned into a pig,' Alice quietly..., 'Do you play croquet with the\nQueen to-day?'\n\n'I should like it very ...
+  {1.2} [+got, +got to]
+     2 members: chimney!'\n\n'Oh! So Bill's, Alice severely. 'What are you\nthinking of?'\n\n'I beg your pardon,' sai...
+  {1.3} [Mouse to+, to+]
+     2 members: Alice severely. 'What are you\nthinking of?'\n\n'I beg your pardon,' sai..., tell them something more.\n\n'You promised to tell me your history, you ...
+  {1.4} [+that,', +that,' said]
+     2 members: paw, 'lives a March\nHare. Visit either you like: they're both mad.'\n\n..., Cat.\n\n'--so long as I get SOMEWHERE,' Alice added as an explanation.\n...
+  {1.5} [+one, +one of]
+     2 members: glass, and she tried her\nbest to climb up, Footman's head: it just grazed his nose,\nand broke to pieces against
+  {1.6} [+and, window,+]
+     2 members: I only wish they COULD! I'm\nsure I don't want to stay in here any longe..., she suddenly spread out her\nhand,
+  {1.7} [+indeed!', +indeed!' said]
+     2 members: sort.\n\nNext came an angry voice--the Rabbit's--'Pat! Pat! Where are yo..., Pigeon. 'I can see you're trying to\ninvent something!'\n\n'I--I'm a lit...
+  {1.8} [+said, opportunity of+]
+     2 members: saying to her\ndaughter 'Ah, my dear! Let this be a lesson to you never ..., adding, 'You're\nlooking for eggs, I know THAT well enough; and what doe...
+  {1.9} [+said, other+]
+     2 members: birds\ntittered audibly.\n\n'What I was going to say,', paw, 'lives a March\nHare. Visit either you like: they're both mad.'\n\n...
+  {1.10} [+'You are old,', +'You are old,' said]
+     2 members: brain;\n But, now that I'm perfectly sure I have none,\n Why, I do it ag..., my life.'\n\n
+  {1.11} [Mouse was+, was+]
+     2 members: swimming\naway from her as hard as it could go, and making quite a commo..., bristling all over, and she\nfelt certain it must be really offended. 'W...
+  {1.12} [+said, Caterpillar+]
+     2 members: called after her. 'I've something important\nto say!'\n\nThis sounded pr..., sternly. 'Explain\nyourself!'\n\n'I can't explain MYSELF, I'm afraid, si...
+  {1.13} [+Bill's, +Bill's got]
+     2 members: chimney!'\n\n'Oh! So, other\nladder?--Why, I hadn't to bring but one;
+  {1.14} [+but, to+]
+     2 members: do it! Oh dear! I'd nearly forgotten that\nI've got to grow up again! Le..., see if she meant to take\nthe hint;
+  {1.15} [+said, your+]
+     2 members: nose--\n What made you so awfully clever?'\n\n 'I have answered three qu..., feelings may be different,' said Alice; 'all I know\nis, it would feel v...
+  {1.16} [moment she+, she+]
+     2 members: quite forgot how to speak good English); 'now I'm\nopening out like, felt a violent\nblow underneath her chin: it had struck her foot!\n\nShe...
+  {1.17} [right size+, size+]
+     2 members: for going\nthrough, to do it! Oh dear! I'd nearly forgotten that\nI've got to grow up again!...
+  {1.18} [+said, Dodo+]
+     2 members: had paused as if it thought that SOMEBODY ought to speak,\nand no one el..., replied very gravely. 'What else have you got in\nyour pocket?' he went ...
+  {1.19} [door+, little door+]
+     2 members: was shut again, and, into that lovely garden. First, however, she\nwaited for a few minutes t...
+  {1.20} [golden+, little golden+]
+     2 members: key was\nlying on, key, and when she\nwent back to
+  {1.21} [+said, a+]
+     2 members: shiver.\n\n'I beg your pardon!', large cat which was sitting on\nthe hearth and grinning from ear to ear....
+  {1.22} [+said, said+]
+     2 members: pig,' replied Alice; 'and I wish you wouldn't keep appearing and\nvanish..., nothing: she had never been so much contradicted in her life\nbefore, an...
+  {1.23} [and+, window, and+]
+     2 members: one foot up, on it (as she had hoped) a fan and two or three pairs\nof tiny white kid...
+  {1.24} [+that, +that she]
+     2 members: sand with wooden spades, then a row\nof lodging houses, and behind them ..., only difficulty was,
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  Caterpillar took   seen 2
+    made of    Caterpillar, took
+    part of    
+    changes    
+    followed   hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\... 1, hookah out of its mouth\nand yawned once or twice, and shook itself. The... 1
+    preceded   smallest notice of her or of anything else.\n\n\n\n\nCHAPTER V. Advice f... 1, Caterpillar; and it put the\nhookah into its mouth and began smoking aga... 1
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s... 1
+    preceded   
+  Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s...   seen 1
+    made of    Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s..., Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s..., what is, is
+    part of    
+    changes    
+    followed   use of a book,' thought Alice 'without pictures or\nconversation?'\n\nSo... 1
+    preceded   [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D... 1
+  use of a book,' thought Alice 'without pictures or\nconversation?'\n\nSo...   seen 1
+    made of    a book,' thought Alice 'without pictures or\nconversation?'\n\nSo she wa..., use of
+    part of    
+    changes    
+    followed   pleasure\nof making a daisy-chain would be worth 1
+    preceded   Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s... 1
+  pleasure\nof making a daisy-chain would be worth   seen 1
+    made of    
+    part of    
+    changes    
+    followed   trouble of getting up and\npicking 1
+    preceded   use of a book,' thought Alice 'without pictures or\nconversation?'\n\nSo... 1
+  trouble of getting up and\npicking   seen 1
+    made of    
+    part of    
+    changes    
+    followed   daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\... 1
+    preceded   pleasure\nof making a daisy-chain would be worth 1
+  daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\...   seen 1
+    made of    daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\..., out of
+    part of    
+    changes    
+    followed   way to hear 1
+    preceded   trouble of getting up and\npicking 1
+  way to hear   seen 1
+    made of    way to, to hear, hear, way
+    part of    
+    changes    
+    followed   Rabbit say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she th... 1
+    preceded   daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\... 1
+  Rabbit say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she th...   seen 1
+    made of    say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she thought i..., Rabbit say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she th..., Rabbit, at
+    part of    
+    changes    
+    followed   time\nit all seemed quite natural); but when 1
+    preceded   way to hear 1
+  time\nit all seemed quite natural); but when   seen 1
+    made of    time\nit all seemed quite natural); but, when
+    part of    
+    changes    
+    followed   Rabbit actually TOOK A WATCH\nOUT OF ITS WAISTCOAT-POCKET, and looked at... 1
+    preceded   Rabbit say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she th... 1
+  Rabbit actually TOOK A WATCH\nOUT OF ITS WAISTCOAT-POCKET, and looked at...   seen 1
+    made of    actually TOOK A WATCH\nOUT OF ITS WAISTCOAT-POCKET, and looked at it, an..., Rabbit
+    part of    
+    changes    
+    followed   field\nafter it, and fortunately was just in time to see it pop down a l... 1
+    preceded   time\nit all seemed quite natural); but when 1
+  field\nafter it, and fortunately was just in time to see it pop down a l...   seen 1
+    made of    field\nafter it, and fortunately was just in time to see it pop down a l..., under
+    part of    
+    changes    
+    followed   hedge.\n\nIn another moment down went Alice after it, never once conside... 1
+    preceded   Rabbit actually TOOK A WATCH\nOUT OF ITS WAISTCOAT-POCKET, and looked at... 1
+  hedge.\n\nIn another moment down went Alice after it, never once conside...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   world she was to get out again.\n\nThe rabbit-hole went straight on like... 1
+    preceded   field\nafter it, and fortunately was just in time to see it pop down a l... 1
+  world she was to get out again.\n\nThe rabbit-hole went straight on like...   seen 1
+    made of    she was to get out again.\n\nThe rabbit-hole went straight on like a tun..., world
+    part of    
+    changes    
+    followed   well was very deep, or she fell very slowly, for she had\nplenty of time... 1
+    preceded   hedge.\n\nIn another moment down went Alice after it, never once conside... 1
+  well was very deep, or she fell very slowly, for she had\nplenty of time...   seen 1
+    made of    well was very deep, or she fell very slowly, for she had\nplenty of time..., at
+    part of    
+    changes    
+    followed   sides of 1
+    preceded   world she was to get out again.\n\nThe rabbit-hole went straight on like... 1
+  sides of   seen 1
+    made of    sides, of
+    part of    sides of it; and as it was perfectly\nround, she found this a very diffi...
+    changes    +it; and as it was perfectly\nround, she found this a very difficult ques...
+    followed   well, and noticed that they were filled with\ncupboards and book-shelves... 1
+    preceded   well was very deep, or she fell very slowly, for she had\nplenty of time... 1
+  well, and noticed that they were filled with\ncupboards and book-shelves...   seen 1
+    made of    well, and noticed that they were filled with\ncupboards and book-shelves..., one of
+    part of    
+    changes    
+    followed   shelves as\nshe passed; it was labelled 'ORANGE MARMALADE', but to her g... 1
+    preceded   sides of 1
+  shelves as\nshe passed; it was labelled 'ORANGE MARMALADE', but to her g...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   jar for fear\nof killing somebody, so managed to put it into one of 1
+    preceded   well, and noticed that they were filled with\ncupboards and book-shelves... 1
+  jar for fear\nof killing somebody, so managed to put it into one of   seen 1
+    made of    jar for fear\nof killing somebody, so managed to put it into, one of
+    part of    
+    changes    
+    followed   cupboards as\nshe fell past it.\n\n'Well!' thought Alice to herself, 'af... 1
+    preceded   shelves as\nshe passed; it was labelled 'ORANGE MARMALADE', but to her g... 1
+  cupboards as\nshe fell past it.\n\n'Well!' thought Alice to herself, 'af...   seen 1
+    made of    cupboards as\nshe fell past it.\n\n'Well!' thought Alice to herself, 'af..., off
+    part of    
+    changes    
+    followed   top\nof 1
+    preceded   jar for fear\nof killing somebody, so managed to put it into one of 1
+  top\nof   seen 1
+    made of    \nof, top
+    part of    
+    changes    
+    followed   house!' (Which was very likely true.)\n\nDown, down, down. Would 1
+    preceded   cupboards as\nshe fell past it.\n\n'Well!' thought Alice to herself, 'af... 1
+  house!' (Which was very likely true.)\n\nDown, down, down. Would   seen 1
+    made of    
+    part of    
+    changes    
+    followed   fall NEVER come to an end! 'I wonder how\nmany miles I've fallen by this... 1
+    preceded   top\nof 1
+  fall NEVER come to an end! 'I wonder how\nmany miles I've fallen by this...   seen 1
+    made of    NEVER come to an end! 'I wonder how\nmany miles I've fallen by this time..., fall NEVER come to an end! 'I wonder how\nmany miles I've fallen by this..., near, fall
+    part of    
+    changes    
+    followed   centre of 1
+    preceded   house!' (Which was very likely true.)\n\nDown, down, down. Would 1
+  centre of   seen 1
+    made of    centre, of
+    part of    
+    changes    
+    followed   earth. Let me see: that would be four\nthousand miles down, I think--' (... 1
+    preceded   fall NEVER come to an end! 'I wonder how\nmany miles I've fallen by this... 1
+  earth. Let me see: that would be four\nthousand miles down, I think--' (...   seen 1
+    made of    earth. Let me see: that would be four\nthousand miles down, I think--' (..., in
+    part of    
+    changes    
+    followed   schoolroom, and though this\nwas not a VERY good opportunity for showing... 1
+    preceded   centre of 1
+
+==============================================================================
+LEVEL 2
+==============================================================================
+
+SYMBOLS   543 symbols, 542 distinct  (each is a level 1 run; level 1 classes count as same)
+  Caterpillar took                          2
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D...  1
+  Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s...  1
+  use of a book,' thought Alice 'without pictures or\nconversation?'\n\nSo...  1
+  pleasure\nof making a daisy-chain would be worth  1
+  trouble of getting up and\npicking        1
+  daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\...  1
+  way to hear                               1
+  Rabbit say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she th...  1
+  time\nit all seemed quite natural); but when  1
+  Rabbit actually TOOK A WATCH\nOUT OF ITS WAISTCOAT-POCKET, and looked at...  1
+  field\nafter it, and fortunately was just in time to see it pop down a l...  1
+  hedge.\n\nIn another moment down went Alice after it, never once conside...  1
+  world she was to get out again.\n\nThe rabbit-hole went straight on like...  1
+  well was very deep, or she fell very slowly, for she had\nplenty of time...  1
+  sides of                                  1
+  well, and noticed that they were filled with\ncupboards and book-shelves...  1
+  shelves as\nshe passed; it was labelled 'ORANGE MARMALADE', but to her g...  1
+  jar for fear\nof killing somebody, so managed to put it into one of  1
+  cupboards as\nshe fell past it.\n\n'Well!' thought Alice to herself, 'af...  1
+  top\nof                                   1
+  house!' (Which was very likely true.)\n\nDown, down, down. Would  1
+  fall NEVER come to an end! 'I wonder how\nmany miles I've fallen by this...  1
+  centre of                                 1
+  earth. Let me see: that would be four\nthousand miles down, I think--' (...  1
+
+FOLLOWS   which symbol comes after which (top 25 of 542 pairs)
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D... -> Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s...  1
+  Rabbit-Hole\n\nAlice was beginning to get very tired of sitting by her s... -> use of a book,' thought Alice 'without pictures or\nconversation?'\n\nSo...  1
+  use of a book,' thought Alice 'without pictures or\nconversation?'\n\nSo... -> pleasure\nof making a daisy-chain would be worth  1
+  pleasure\nof making a daisy-chain would be worth -> trouble of getting up and\npicking  1
+  trouble of getting up and\npicking -> daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\...  1
+  daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\... -> way to hear               1
+  way to hear              -> Rabbit say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she th...  1
+  Rabbit say to itself, 'Oh dear!\nOh dear! I shall be late!' (when she th... -> time\nit all seemed quite natural); but when  1
+  time\nit all seemed quite natural); but when -> Rabbit actually TOOK A WATCH\nOUT OF ITS WAISTCOAT-POCKET, and looked at...  1
+  Rabbit actually TOOK A WATCH\nOUT OF ITS WAISTCOAT-POCKET, and looked at... -> field\nafter it, and fortunately was just in time to see it pop down a l...  1
+  field\nafter it, and fortunately was just in time to see it pop down a l... -> hedge.\n\nIn another moment down went Alice after it, never once conside...  1
+  hedge.\n\nIn another moment down went Alice after it, never once conside... -> world she was to get out again.\n\nThe rabbit-hole went straight on like...  1
+  world she was to get out again.\n\nThe rabbit-hole went straight on like... -> well was very deep, or she fell very slowly, for she had\nplenty of time...  1
+  well was very deep, or she fell very slowly, for she had\nplenty of time... -> sides of                  1
+  sides of                 -> well, and noticed that they were filled with\ncupboards and book-shelves...  1
+  well, and noticed that they were filled with\ncupboards and book-shelves... -> shelves as\nshe passed; it was labelled 'ORANGE MARMALADE', but to her g...  1
+  shelves as\nshe passed; it was labelled 'ORANGE MARMALADE', but to her g... -> jar for fear\nof killing somebody, so managed to put it into one of  1
+  jar for fear\nof killing somebody, so managed to put it into one of -> cupboards as\nshe fell past it.\n\n'Well!' thought Alice to herself, 'af...  1
+  cupboards as\nshe fell past it.\n\n'Well!' thought Alice to herself, 'af... -> top\nof                   1
+  top\nof                  -> house!' (Which was very likely true.)\n\nDown, down, down. Would  1
+  house!' (Which was very likely true.)\n\nDown, down, down. Would -> fall NEVER come to an end! 'I wonder how\nmany miles I've fallen by this...  1
+  fall NEVER come to an end! 'I wonder how\nmany miles I've fallen by this... -> centre of                 1
+  centre of                -> earth. Let me see: that would be four\nthousand miles down, I think--' (...  1
+  earth. Let me see: that would be four\nthousand miles down, I think--' (... -> schoolroom, and though this\nwas not a VERY good opportunity for showing...  1
+  schoolroom, and though this\nwas not a VERY good opportunity for showing... -> right distance--but then I wonder what Latitude\nor Longitude I've got t...  1
+
+SEPARATOR   the most common symbol: Caterpillar took
+
+RUNS   3 runs between separators, 3 distinct
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D...  1
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...  1
+  hookah out of its mouth\nand yawned once or twice, and shook itself. The...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 2 pairs)
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D... -> hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...  1
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\... -> hookah out of its mouth\nand yawned once or twice, and shook itself. The...  1
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 3 distinct runs in, 3 structures added, 16271 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D...        0       1  
+  hookah out of its mouth\nand yawned once or twice, and shook itself. The...        0       1  
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\... 1
+    preceded   
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   hookah out of its mouth\nand yawned once or twice, and shook itself. The... 1
+    preceded   [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D... 1
+  hookah out of its mouth\nand yawned once or twice, and shook itself. The...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\... 1
+
+==============================================================================
+LEVEL 3
+==============================================================================
+
+SYMBOLS   3 symbols, 3 distinct  (each is a level 2 run; level 2 classes count as same)
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D...  1
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...  1
+  hookah out of its mouth\nand yawned once or twice, and shook itself. The...  1
+
+FOLLOWS   which symbol comes after which (top 25 of 2 pairs)
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D... -> hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...  1
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\... -> hookah out of its mouth\nand yawned once or twice, and shook itself. The...  1
+
+SEPARATOR   the most common symbol: [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D...
+
+RUNS   1 runs between separators, 1 distinct
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 1 distinct runs in, 1 structures added, 16272 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   
+

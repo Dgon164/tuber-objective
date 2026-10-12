@@ -1,0 +1,1070 @@
+DISCOVERY RECORD
+signal     luminary099.agc
+size       1637816 bytes, 13102528 bits
+
+FRAME   score = spread between the column most often 1 and the column least often 1
+  width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
+   56    0.646   col   0 at 0.000   col  17 at 0.646
+   48    0.645   col   0 at 0.000   col  33 at 0.645
+   64    0.645   col   0 at 0.000   col  25 at 0.645
+   24    0.641   col   0 at 0.000   col   9 at 0.641
+   40    0.639   col   0 at 0.000   col   1 at 0.639
+   32    0.639   col   0 at 0.000   col  17 at 0.639
+   16    0.639   col   0 at 0.000   col   1 at 0.639
+    8    0.638   col   0 at 0.000   col   1 at 0.638
+  picked width 8
+    fold to  1: columns differ by 0.1309 on average (wobble by chance 0.0020) -> different
+    fold to  2: columns differ by 0.1345 on average (wobble by chance 0.0020) -> different
+    fold to  4: columns differ by 0.1283 on average (wobble by chance 0.0020) -> different
+  chosen width 8
+  column rates at width 8:
+    0.000 0.638 0.290 0.267 0.390 0.371 0.381 0.546
+
+LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
+  level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
+      0  1637816        91   257599     42490    83916         2938   126406      126406
+      1   257599     42490    14598     14404   106673         2627   121058      247464
+      2    14598     14404       11        11        0            0       11      247475
+      3       11        11        1         1        0            0        1      247476
+  stopped: level 3 left a single run; nothing more to cut
+
+==============================================================================
+LEVEL 0
+==============================================================================
+
+WORDS   1637816 words, 91 distinct
+  bits      glyph   count
+  00001001  \t      176129
+  00100000          173702
+  01000101  E       90937
+  01010100  T       87825
+  01000001  A       73668
+  00001010  \n      65603
+  01010011  S       63817
+  01001111  O       60749
+  01010010  R       60387
+  01001110  N       56300
+  01001001  I       55440
+  01000011  C       52968
+  01000100  D       49729
+  01001100  L       42859
+  00100011  #       36755
+  01010000  P       32457
+  01001101  M       29509
+  01010101  U       24764
+  01000110  F       24487
+  01000010  B       20808
+  01001000  H       19503
+  00110001  1       19187
+  01000111  G       19111
+  01010110  V       15026
+  00110010  2       14915
+
+FOLLOWS   which word comes after which (top 25 of 3192 pairs)
+  \t                       -> \t                        71975
+  \n                       -> \t                        34847
+  #                        ->                           22850
+                           ->                           18348
+  \n                       -> #                         17431
+  E                        ->                           15660
+  I                        -> N                         15206
+  \t                       -> #                         14508
+                           -> T                         12980
+  R                        -> E                         12445
+  \t                       -> T                         11132
+                           -> A                         11088
+  T                        ->                           10931
+  T                        -> E                         10691
+  *                        -> *                         10666
+  S                        ->                           10400
+  E                        -> R                         10381
+                           -> I                         10373
+  I                        -> T                         10270
+  A                        -> L                         10030
+  O                        -> R                         9610
+  A                        -> N                         9604
+  C                        -> A                         9113
+  O                        -> N                         8761
+                           -> S                         8749
+
+SEPARATOR   the most common words: 00001001 (\t), 00100000 ( )
+
+RUNS   257599 runs between separators, 42490 distinct
+  #                                         14597
+  THE                                       3960
+  TC                                        3793
+  TO                                        2942
+  TS                                        2418
+  IN                                        2327
+  OF                                        2209
+  TCF                                       2161
+  IS                                        2093
+  FOR                                       2056
+  =                                         2036
+  AND                                       2016
+  Page                                      1512
+  IF                                        1461
+  CAF                                       1422
+  CA                                        1349
+  EXTEND\n                                  1318
+  OCT                                       1264
+  EQUALS                                    1249
+  A                                         1234
+  -                                         1229
+  the                                       978
+  \n                                        955
+  BIT                                       943
+  CS                                        930
+
+RUN FOLLOWS   which run comes after which (top 25 of 141500 pairs)
+  +2                       -> #                         468
+  +1                       -> #                         442
+  OF                       -> THE                       397
+  #                        -> SET                       370
+  #                        -> IF                        350
+  EXTEND                   -> #                         331
+  EXTEND\n                 -> BZF                       294
+  CCS                      -> A\n                       280
+  source                   -> code                      277
+  TO                       -> THE                       247
+  of                       -> the                       225
+  EXTEND\n                 -> MP                        224
+  *                        -> *                         220
+  IN                       -> THE                       217
+  BANKCALL\n               -> CADR                      205
+  TC                       -> BANKCALL\n                199
+  A\n                      -> TCF                       197
+  EXTEND\n                 -> DCA                       191
+  SEE                      -> IF                        190
+  the                      -> source                    188
+  SCALED                   -> AT                        186
+  code                     -> for                       183
+  ERASE                    -> #                         182
+  TO                       -> BE                        178
+  TC                       -> INTPRET\n                 177
+
+MINT   19 rounds; parts minted per round: 50448 20756 7368 2651 1161 635 348 200 118 85 58 38 27 12 7 2 1 1 0
+  pool: 42490 distinct runs in, 126406 structures added, 126406 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  \n                                19247     955  EXTEND\n, A\n, +2\n, CALL\n
+  S                                  4534      30  TS, IS, EQUALS, CS
+  E                                  4350      75  THE, STORE, BE, ARE
+  A                                  4289    1234  AND, CA, AT, AD
+  R                                  4261      88  FOR, OR, CADR, VECTOR
+  1                                  4166     478  +1, 10, B-1, 1.
+  T                                  4020      53  THE, TC, TO, TS
+  \n#                                3886     216  \n##, -\n#, *\n#, -\n#\n#
+  #                                  3819   14597  \n##, \n#, THE\n#, -\n#
+  D                                  3653      13  AND, AD, DXCH, DISPLAY
+  2                                  3630     474  +2, 2DEC, 2CADR, 12
+  ,                                  3298      21  14,, (AGC),, read,, Fjeld,
+  -                                  3229    1229  -\n#, -1, -\n#\n#, ->
+  N                                  3171      49  IN, NOT, ON, NO
+  C                                  2968      49  TC, CAF, CA, CS
+  L                                  2921     248  STOVL, Luminary, CALL, STODL
+  P                                  2918      63  Page, PROGRAM, MP, UP
+  I                                  2820      30  IN, IS, IF, INDEX
+  .                                  2769      42  ..., Museum., 1., 2.
+  O                                  2735       2  TO, OF, OCT, OR
+  0                                  2691     443  0\n, 10, 001, 0D\n
+  (                                  2656      80  (much), (with, (1), (2)
+  M                                  2433     108  MPAC, MASK, FROM, PROGRAM
+  3                                  2315     265  +3, 3COMP, 13, 3.
+  IN                                 2192    2327  INTO, INPUT, INITIAL, INTEGRATION
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +\n                        16348
+  +\n#                       5791
+  +,                         5309
+  +#                         5257
+  +1                         2838
+  +S                         2836
+  +.                         2581
+  +2                         2562
+  +)                         2557
+  +E                         2526
+  +D                         2515
+  +##                        2461
+  +T                         2078
+  +R                         2044
+  +A                         1816
+  +.\n                       1729
+  +N                         1638
+  +3                         1590
+  +\n##                      1563
+  +L                         1498
+  +0                         1483
+  +C                         1452
+  +4                         1376
+  +O                         1352
+  +I                         1350
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                        \n+  10544
+                         (+  5279
+                         R+  4253
+                         A+  4064
+                         S+  3866
+                         1+  3827
+                         E+  3773
+                         T+  3562
+                         -+  3404
+                         D+  3377
+                         C+  3197
+                         P+  3131
+                         N+  3072
+                         2+  2888
+                         I+  2852
+                         L+  2834
+                         0+  2772
+                         O+  2682
+                         M+  2493
+                         B+  2279
+                         3+  2046
+                         V+  1972
+                         .+  1770
+                         ++  1758
+                         5+  1727
+
+CLASSES   parts that take the same set of changes (largest 25 of 62466; two or more members count as same one level up)
+  {0.0} [+\n, \n+]
+     130 members: BVSU, RSTACK, ROTSENSE, VDEF, SURFFLAG, COFSKEW, FLAGWRD6, THIRD, NNTYPTAB, TEMZ, NORMZI, DELVOV
+  {0.1} [+#, +\n#]
+     118 members: RETURN\n#, BANKCALL\n#, VECTOR\n#, OFF.\n, ANGLE\n#, SURFACE\n, WAITLIST\n#, +5\n#, VVEC\n, DEGREES\n#, MODE\n#, NORMAL\n
+  {0.2} [+#, +\n]
+     69 members: PHASCHNG\n, GOFLASH\n, TERMINATE\n, NEG0\n, VALUE\n, 2PHSCHNG\n, GOPERF1\n, MAGNITUDE\n, DIVISOR.\n, T6FURTHA\n, FUNCTION\n, PI/4\n
+  {0.3} [+1, +2]
+     48 members: +6,, \nP20LEMD, \nCAGESUB, \nSTORE,, \nENTMID, \nOCT3000, \n\nRUFLAW, \nSPSLOOP, DSKY\nORBCHG, \nCONC+S, EQUALS\nR6, ITRPNT
+  {0.4} [S+, \nS+]
+     31 members: 8BITS, KIPU, TORE1S, NAPAGN, FMIXCAL, VEXITAD, CALECHK, FRUTMIX, TRTIDLE, MALRATE, NUFFBIT, UBLIST
+  {0.5} [+,, +\n]
+     30 members: DPDEG(360), POS4, (THIS, BRANCHING, POS5, (SP), -DELGMBY, POS7, DOCKED), 2(21), TAILOFF, 01777
+  {0.6} [(S)\n+, +\n]
+     30 members: XDELVFLG, QUITFLAG, SOLNSW, NEEDLFLG, AVEGFLAG, IGNFLAG, COGAFLAG, DMENFLG, RRNBSW, LOKONSW, AVEMIDSW, SRCHOPTN
+  {0.7} [++, -+]
+     25 members: 1,1\n, 10D,1\n, DEC,, 4,1\n, 2,1\n, 1.999, .152, (ADO, .0069, QMIN\n\n, 21D,, 7.97
+  {0.8} [D+, \nD+]
+     24 members: SPV6N79, CMCL, ISTEM, RFTSUB2, FRNT, NADRDCR, VBYCO, DUMGOOD, T/TAU, ODESEND, PSTHRSH, VOVSUB
+  {0.9} [T+, \nT+]
+     24 members: STRLSRM, YPEPOLY, 4JUMP, HRESH2, OBALL, AUROD, URNITON, OTATTER, 3RUPT2, DISPSET, WELVE, GO1
+  {0.10} [P+, \nP+]
+     23 members: HSPART2, WRCNT, ULSEM, ERIODCH, OWFLITE, 20LEMD2, UTXYZ, 12RET, ITCHANG, SKIPADR, RDTTAB, ROCTNON
+  {0.11} [0+, 1+]
+     22 members: 1001\n#, 75D, 0003\n, 48D, 68D, 69D, 6143, 91D, 81D, 92D, 71D, 88D
+  {0.12} [R+, \nR+]
+     21 members: ODSCALE, PRPXXXX, RZEROK, DESGAIN, OTSENSE, 36TAG2, HCSCALE, NDCON, 29RRR?, 59RET, SAMPDT, WAITK
+  {0.13} [R+, V+]
+     20 members: PASS2\n, ATT\n, CV\n#, PASS3\n, ACT2\n, N.VN, ACT3\n, RECTCSM\n, INIT,, PPREC\n, CVCSM(LEM), CV(6)
+  {0.14} [A+, \nA+]
+     20 members: COSST2, GSVCALC, CCDOTQ, DDPOS, FDUMP, URLOKON, LFLT3, UTR1FLG, TAN=, INLA, LTSCALE, FCSPOT
+  {0.15} [+\n, EQUALS\n+]
+     20 members: ORBITAL2, KALCMON2, UPDATE2, CSI/CDH1, DOWNTELM, STARTAB, TOF-FF1, SELFCHEC, CONICS1, E/PROG, EXTVB1, F2DPS*11
+  {0.16} [COS+, SIN+]
+     19 members: 60DEG\n, (OG)\n, (CDUX), (PHI)\n#, (CDUZD), (THETA)\n, (OBL),, (IG), (MGC), (PSI)\n#, (NGL), (LONG)COS(LAT)
+  {0.17} [F+, \nF+]
+     19 members: ULLAPS, BANKMSK, INDKEY, REERET, ORCEV25, HNM, LAGWRD2, OURTEEN, RANDRES, UELNEED, VACCADR, SPASBIT
+  {0.18} [+1\n+, +\n]
+     19 members: T6FURTHA, RADCADR, 1/ACOSTT, M/SCON3, DELINDEP, LGCOMP, ORIGEX, INTBITAB, RETJADR, TRAPEDR, PLAYTEM3, SCALSAVE
+  {0.19} [C+, \nC+]
+     19 members: ATLOG, OVCNV, DESFLAG, DUTODCM, SSUN, OTROLER, LRADMOD, REWMANU, AGESUB, RITCON, HKPOOH, OAALIGN
+  {0.20} [V+, \nV+]
+     19 members: 99RECYC, BZERO, 82CON, BTERM, GTIG, ERIFYMK, 67WW, GPREV, 89RECL, 90PERF, 43K, 50PASTE
+  {0.21} [L+, \nL+]
+     19 members: DLOOP72, UNSPH, IMALARM, ST2FAN, OWVERB, STBNKCH, RVELY, GYROBIN, RWVZ, GCUPDTE, OASCENT, VELBIAS
+  {0.22} [+\n, B(1)\n+]
+     19 members: MKDEX, SKEEP3, SKEEP4, SKEEP5, STILBADV, LRMCTR, DELVROD, TEMPR60, STILBADH, LASTTPIP, LRSCTR, OUTROUTE
+  {0.23} [B+, I+]
+     17 members: (1)\n\n#, (1)\n##, (6)\n##, (1)TMP\nRTN, (3)TMP\n\n#, (6)\nY, (2)PL, (6)\nZ, (6)\nT, (2)\nR, (1)\nL, (2)DSP
+  {0.24} [(+, +\n]
+     17 members: BETWEEN, SINCE, TRUNNION, MINOR, BECAUSE, HALF-UNIT, I.E.,, ORIGINALLY, POSSIBLY, 10.24, PRIO,, BOFSET
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  #   seen 14597
+    made of    
+    part of    \n##, \n#, THE\n#, -\n#, domain.\n##, yaYUL\n##, FILE="Main.annotation"\n##, (LM)\n##
+    changes    \n#+, \n+, THE\n+, -\n+, domain.\n#+, yaYUL\n#+, FILE="Main.annotation"\n#+, (LM)\n#+
+    followed   SET 370, IF 350, SAVE 168, IS 167, STORE 148, SEE 122
+    preceded   +2 468, +1 442, EXTEND 331, ERASE 182, MPAC 176, +6 151
+  THE   seen 3960
+    made of    HE, TH, E, T
+    part of    THEN, THESE, THE\n, THERE, THEY, THETAD, (THE, THEIR
+    changes    +N, +SE, +\n, +RE, +Y, +TAD, (+, +IR
+    followed   FOLLOWING 119, PROGRAM 58, RR 55, SAME 50, DESIRED 45, ASTRONAUT 39
+    preceded   OF 397, TO 247, IN 217, IS 130, BY 121, IF 114
+  TC   seen 3793
+    made of    C, T
+    part of    TCF, TCR, TC\n, TCSI, TCCSM(LEM), TCDANZIG\n, (TC, TCP\n
+    changes    +F, +R, +\n, +SI, +CSM(LEM), +DANZIG\n, (+, +P\n
+    followed   BANKCALL\n 199, INTPRET\n 177, BANKCALL 115, PHASCHNG\n 88, Q 63, DOWNFLAG 50
+    preceded   \n 160, EXIT\n 66, A\n 64, MPAC\n 59, +2\n 58, +1\n 48
+  TO   seen 2942
+    made of    O, T
+    part of    INTO, TO\n, TOO, TOTAL, TORQUING, (TO, DNTMGOTO, TOP
+    changes    IN+, +\n, +O, +TAL, +RQUING, (+, DNTMGO+, +P
+    followed   THE 247, BE 178, SEE 46, A 28, INDICATE 27, ZERO 24
+    preceded   RETURN 116, GO 108, # 94, SET 84, TIME 64, IS 61
+  TS   seen 2418
+    made of    S, T
+    part of    ITS, CONTENTS, GTS, RESULTS, SHIFTS, GETS, INTERRUPTS, ALLOWGTS
+    changes    I+, CONTEN+, G+, RESUL+, SHIF+, GE+, INTERRUP+, ALLOWG+
+    followed   MPAC 125, L\n 77, L 50, EBANK\n 39, MPAC\n 35, DSPCOUNT\n 28
+    preceded   ZERO\n 111, +1\n 53, ONE\n 44, Q\n 35, +2\n 24, FIXLOC\n 22
+  IN   seen 2327
+    made of    I, N
+    part of    INTO, INPUT, INITIAL, INTEGRATION, WITHIN, SIN, INHINT, MIN
+    changes    +TO, +PUT, +ITIAL, +TEGRATION, WITH+, S+, +HINT, M+
+    followed   THE 217, A 49, THIS 46, MPAC 45, CASE 32, MPAC\n 32
+    preceded   # 76, VECTOR 75, IS 69, NOT 64, BE 41, USED 40
+  OF   seen 2209
+    made of    O, F
+    part of    OFF, COF, OF\n, OFFSET, BOF, (OF, OFF.\n#\n#, OFTEN
+    changes    +F, C+, +\n, +FSET, B+, (+, +F.\n#\n#, +TEN
+    followed   THE 397, A 43, THIS 28, CHANNEL 28, 2 21, LOW 20
+    preceded   TIME 114, PART 72, END 55, NUMBER 51, MAGNITUDE 43, VECTOR 39
+  TCF   seen 2161
+    made of    CF, TC, F, T
+    part of    TCFINDVC\n, TCF.)\n\n, *****TCF, YIELDS COS(CDUZ) IN UNITS OF 2\n\n EXTEND\n DCA MPAC\n DDOUBL\n TS TEM5\..., TCF F(MASS)\n\nDPSFLITE, TCF NXTIFAIL\n, TCF DOACCFUN, WAND CHAN12\n TCF
+    changes    +INDVC\n, +.)\n\n, *****+, YIELDS COS(CDUZ) IN UNITS OF 2\n\n EXTEND\n DCA MPAC\n DDOUBL\n TS TEM5\...+, +F(MASS)\n\nDPSFLITE, +NXTIFAIL\n, +DOACCFUN, WAND CHAN12\n+
+    followed   +2\n 92, +2 49, +3\n 25, +4\n 23, GOTOPOOH 22, +1\n 19
+    preceded   A\n 197, +2\n 82, \n 42, +1\n 24, TERMINATE\n 23, +3\n 20
+  IS   seen 2093
+    made of    I, S
+    part of    ISS, AXIS, IS\n, MIS, IS,, (THIS, ISOLATE, HIS
+    changes    +S, AX+, +\n, M+, +,, (TH+, +OLATE, H+
+    followed   THE 130, NOT 77, IN 69, TO 61, SET 61, A 60
+    preceded   # 167, IT 90, THIS 50, PROGRAM 38, RETURN 35, TIME 30
+  FOR   seen 2056
+    made of    OR, FO, F, R
+    part of    FORCE, FORM, (FOR, FOR\n, FORWARD, FORVEL, FORCES, FORMAT
+    changes    +CE, +M, (+, +\n, +WARD, +VEL, +CES, +MAT
+    followed   THE 113, EARTH 43, A 42, MOON 36, THIS 29, USE 25
+    preceded   # 91, TEMP 38, CHECK 35, RETURN 32, SET 28, 1 27
+  =   seen 2036
+    made of    
+    part of    EBANK=, SBANK=, =\n#, NOT=, =1, =0, =0\n, (=
+    changes    EBANK+, SBANK+, +\n#, NOT+, +1, +0, +0\n, (+
+    followed   1 32, 0 31, VBUF 30, 0, 21, STATE 15, MPAC 14
+    preceded   # 62, C(A) 26, MPAC 21, 1 20, MUST 20, X 18
+  AND   seen 2016
+    made of    AN, ND, D, A
+    part of    RAND, WAND, AND\n, LAND, AND/OR, OPERAND, HAND, (AND
+    changes    R+, W+, +\n, L+, +/OR, OPER+, H+, (+
+    followed   THE 101, A 19, DISPLAY 18, IS 18, GO 17, REMARKS\n# 15
+    preceded   # 96, ALARM 23, ON 23, A 20, MPAC 20, ZERO 15
+  Page   seen 1512
+    made of    age, Pa, ge, P
+    part of    Pages:, CORRECTED\n## Page, EXIT.\n\n## Page, TIME\n## Page, ***\n\n## Page, NO\n\n## Page, CALL\n## Page, -0.\n\n## Page
+    changes    +s:, CORRECTED\n##+, EXIT.\n\n##+, TIME\n##+, ***\n\n##+, NO\n\n##+, CALL\n##+, -0.\n\n##+
+    followed   1\n\n# 2, 1284\n# 1, 1285\n# 1, 1286\nS+7 1, 1287\n 1, 1288\n# 1
+    preceded   \n## 87, \n\n## 78, EXTEND\n## 30, Q\n\n## 15, RVQ\n\n## 13, INTPRET\n## 11
+  IF   seen 1461
+    made of    I, F
+    part of    IF\n, (IF, PIF, DIF, IFAILOK, DOPIF, IF/WHEN, THROTTLE\nPIF
+    changes    +\n, (+, P+, D+, +AILOK, DOP+, +/WHEN, THROTTLE\nP+
+    followed   THE 114, A 47, IT 42, IN 39, SO, 29, NOT, 27
+    preceded   # 350, SEE 190, BRANCH 38, CHECK 32, ALARM 19, SET 15
+  CAF   seen 1422
+    made of    CA, AF, F, C
+    part of    CAF LOW9\n MASK PRIORITY\n AD NEWPRIO\n TS PRIORITY\n COM\n TCF JOBSLP2, CAF BIT5, CAF DISPLACE\n, TC P40/RET\n\n EBANK= TRKMKCNT\nPOSTBURN CA Z\n TS DISPDEX\n EXTEND\n DC..., MPAC NOT 0\n TS MPAC +2\n CAF ZERO\n AD MPAC +1\n TS MPAC +1\n CAF, CAF POWERDB, CAF EBANK6\n, INDEX A\n CAF
+    changes    +LOW9\n MASK PRIORITY\n AD NEWPRIO\n TS PRIORITY\n COM\n TCF JOBSLP2, +BIT5, +DISPLACE\n, TC P40/RET\n\n EBANK= TRKMKCNT\nPOSTBURN CA Z\n TS DISPDEX\n EXTEND\n DC...+, MPAC NOT 0\n TS MPAC +2\n CAF ZERO\n AD MPAC +1\n TS MPAC +1\n+, +POWERDB, +EBANK6\n, INDEX A\n+
+    followed   ZERO\n 119, ZERO 91, TWO 32, ONE\n 28, ONE 23, TWO\n 21
+    preceded   \n 102, EXIT\n 27, A\n 22, +1\n 15, +2\n 13, MPAC\n 13
+  CA   seen 1349
+    made of    A, C
+    part of    CAF, CADR, DCA, CALLING, CAN, CAE, CASE, CALLS
+    changes    +F, +DR, D+, +LLING, +N, +E, +SE, +LLS
+    followed   ZERO\n 54, MPAC 46, ONE\n 19, L\n 17, Q\n 15, FLAGWRD4 15
+    preceded   \n 63, A\n 25, L\n 21, +2\n 19, MPAC\n 16, +1\n 13
+  EXTEND\n   seen 1318
+    made of    EXTEND, TEND\n, EXTE, ND\n, EX, \n
+    part of    EXTEND\n##, EXTEND\n#, EXTEND\nOCT10002, COSINE\n EXTEND\n, V72\n\n# ROUTINE TO INCREMENT CLOCK(TIME2,TIME1) WITH CONTENTS OF DP WOR..., EXTEND\n RAND DSALMOUT\n AD BIT14\n EXTEND\n WRITE, NOT MARK OR MKREJECT - SEE IF DESCENT BITS\n EXTEND\n RAND NAVKEYIN\n EX..., SLEEP SOME MORE.\n\n TS MPAC +2\n EXTEND\n
+    changes    +##, +#, +OCT10002, COSINE\n+, V72\n\n# ROUTINE TO INCREMENT CLOCK(TIME2,TIME1) WITH CONTENTS OF DP WOR...+, +RAND DSALMOUT\n AD BIT14\n EXTEND\n WRITE, NOT MARK OR MKREJECT - SEE IF DESCENT BITS\n EXTEND\n RAND NAVKEYIN\n+, SLEEP SOME MORE.\n\n TS MPAC +2\n+
+    followed   BZF 294, MP 224, DCA 191, BZMF 132, INDEX 76, WOR 52
+    preceded   +1\n 27, MPAC\n 21, \n 21, L\n 15, +2\n 13, LATVEL\n 11
+  OCT   seen 1264
+    made of    CT, OC, O, T
+    part of    OCTAL, 2OCT, OCT\n, OCTOBER, OCT1400, OCT24, OCTXX, OCT,
+    changes    +AL, 2+, +\n, +OBER, +1400, +24, +XX, +,
+    followed   00000 59, 0 51, 04024\n\n 32, 04022\n 16, 24400 11, 16347 11
+    preceded   PHASCHNG\n 88, ONLY)\n 46, SPARE\n 44, 13\n 32, ALARM\n 31, DP3\n 19
+  EQUALS   seen 1249
+    made of    EQUAL, EQU, ALS, S
+    part of    EQUALS\n, EQUALS\nP12, EQUALS\nSERV, EQUALS\nR62, EQUALS\nR31, EQUALS\nR61, EQUALS\nR10, WHICH RR DATA TRIGGERED N49 DISPLA\n \n# P21 STORAGE (2D)\n\nP21TIME EQU...
+    changes    +\n, +\nP12, +\nSERV, +\nR62, +\nR31, +\nR61, +\nR10, WHICH RR DATA TRIGGERED N49 DISPLA\n \n# P21 STORAGE (2D)\n\nP21TIME+
+    followed   AINLA 31, MPAC 24, 1/ATEM1 16, GENPL 14, DAPTEMP1 14, GTSTEMPS 13
+    preceded   X 3, TWEEKIT 2, 2\n# 2, OPTION 2, (SPWORD) 2, $$/SELF\nSBIT1 1
+  A   seen 1234
+    made of    
+    part of    AND, CA, AT, AD, ARE, A\n, AS, DCA
+    changes    +ND, C+, +T, +D, +RE, +\n, +S, DC+
+    followed   # 141, JOB 29, AND 20, FLASHING 17, RESTART 17, SWITCH 13
+    preceded   CCS 95, IS 60, IN 49, AS 47, IF 47, OF 43
+  -   seen 1229
+    made of    
+    part of    -\n#, -1, -\n#\n#, ->, -1\n, --, -\n, -2
+    changes    +\n#, +1, +\n#\n#, +>, +1\n, +-, +\n, +2
+    followed   SET 21, - 19, EXIT 15, THE 14, SEE 13, RETURN 12
+    preceded   NO 46, YES 43, # 24, SECTION 22, NAME 20, - 19
+  the   seen 978
+    made of    th, he, t, e
+    part of    the\n##, they, these, them, the\n#, themselves,, then, there
+    changes    +\n##, +y, +se, +m, +\n#, +mselves,, +n, +re
+    followed   source 188, Lunar 92, MIT 91, hardcopy 90, Museum. 89, images 89
+    preceded   of 225, from 150, for 98, to 94, that 93, on 90
+  \n   seen 955
+    made of    
+    part of    EXTEND\n, A\n, +2\n, CALL\n, +1\n, MPAC\n, \n##, ZERO\n
+    changes    EXTEND+, A+, +2+, CALL+, +1+, MPAC+, +##, ZERO+
+    followed   TC 160, CAF 102, CS 78, CA 63, 2DEC 54, COUNT* 51
+    preceded   BANK\n 49, Z\n 35, +1\n 12, 2(+14)\n 12, RADMODES\n 11, IMODES30\n 8
+  BIT   seen 943
+    made of    BI, IT, B, T
+    part of    BITS, BIT6, BIT2, BIT5, BIT4, BIT1, BIT8, BIT7
+    changes    +S, +6, +2, +5, +4, +1, +8, +7
+    followed   1 72, 7 48, 6 46, 14 45, 10 43, 12 43
+    preceded   # 33, (RADMODES 33, \n\n# 29, \n# 19, SET 17, DP 15
+  CS   seen 930
+    made of    S, C
+    part of    CCS, CSM, DCS, RCS, CSI, M/CS, CSMMASS, CSMCONIC
+    changes    C+, +M, D+, R+, +I, M/+, +MMASS, +MCONIC
+    followed   ONE\n 21, A\n 16, MPAC 16, FLAGWRD7 14, ZERO 14, ONE 14
+    preceded   \n 78, INHINT\n 16, A\n 14, L\n 12, +2\n 11, CYL\n 10
+
+==============================================================================
+LEVEL 1
+==============================================================================
+
+SYMBOLS   257599 symbols, 42490 distinct  (each is a level 0 run; level 0 classes count as same)
+  #                                         14597
+  THE                                       3960
+  TC                                        3793
+  TO                                        2942
+  TS                                        2418
+  IN                                        2327
+  OF                                        2209
+  TCF                                       2161
+  IS                                        2093
+  FOR                                       2056
+  =                                         2036
+  AND                                       2016
+  Page                                      1512
+  IF                                        1461
+  CAF                                       1422
+  CA                                        1349
+  EXTEND\n                                  1318
+  OCT                                       1264
+  EQUALS                                    1249
+  A                                         1234
+  -                                         1229
+  the                                       978
+  \n                                        955
+  BIT                                       943
+  CS                                        930
+
+FOLLOWS   which symbol comes after which (top 25 of 141500 pairs)
+  +2                       -> #                         468
+  +1                       -> #                         442
+  OF                       -> THE                       397
+  #                        -> SET                       370
+  #                        -> IF                        350
+  EXTEND                   -> #                         331
+  EXTEND\n                 -> BZF                       294
+  CCS                      -> A\n                       280
+  source                   -> code                      277
+  TO                       -> THE                       247
+  of                       -> the                       225
+  EXTEND\n                 -> MP                        224
+  *                        -> *                         220
+  IN                       -> THE                       217
+  BANKCALL\n               -> CADR                      205
+  TC                       -> BANKCALL\n                199
+  A\n                      -> TCF                       197
+  EXTEND\n                 -> DCA                       191
+  SEE                      -> IF                        190
+  the                      -> source                    188
+  SCALED                   -> AT                        186
+  code                     -> for                       183
+  ERASE                    -> #                         182
+  TO                       -> BE                        178
+  TC                       -> INTPRET\n                 177
+
+SEPARATOR   the most common symbol: #
+
+RUNS   14598 runs between separators, 14404 distinct
+  COLLECT SNAPSHOT\n 6DNADR DNTMBUFF        10
+  SWITCH BANKS TO NOUN TABLE READING\n DXCH Z  8
+  PROCEED\n TCF -5                          7
+  COMMON DATA\n 1DNADR TIME2                6
+  LEMMASS,CSMMASS\n 1DNADR IMODES30         6
+  95 SPARE\n OCT 0                          6
+  (DEC ONLY)\n OCT 24512                    6
+  (3)\n TCF TASKOVER                        5
+  (11)\n TCF WAITABIT                       5
+  IMODES30,IMODES33\n 1DNADR TIG            5
+  (GYRO PULSES)/(PIPA PULSE) X 2(-6) *\n TC GCOMPSUB  5
+  (0)\n TCF ULLGNOT                         4
+  SET EBANK\n MASK LOW8                     4
+  COMMON DATA\n 2DNADR POSTORKU             4
+  LASTYCMD,LASTXCMD\n 1DNADR LEMMASS        4
+  TERMINATE\n TC +2                         4
+  (1)\n TCF COMFAIL3                        3
+  DURING SOFTWARE RESTART, DO NOT DISTURB\n EXTEND  3
+  (GYRO PULSES)/(CS) X 2(-5)\n TC DRIFTSUB  3
+  (GYRO PULSES)/(CS) X 2(-5)\n TC FBIASSUB  3
+  PROCEED\n TC -5                           3
+  ROUTINE.\n CAF ZERO                       3
+  ALTITUDE RATE\n                           3
+  94 SPARE\n OCT 0                          3
+  (NO LOAD, DEC ONLY)\n OCT 00000           3
+
+RUN FOLLOWS   which run comes after which (top 25 of 14554 pairs)
+  LEMMASS,CSMMASS\n 1DNADR IMODES30 -> IMODES30,IMODES33\n 1DNADR TIG  5
+  LASTYCMD,LASTXCMD\n 1DNADR LEMMASS -> LEMMASS,CSMMASS\n 1DNADR IMODES30  4
+  (0)\n TCF ULLGNOT        -> (1)\n TCF COMFAIL3        3
+  SWITCH BANKS TO NOUN TABLE READING\n DXCH Z -> ROUTINE.\n CAF ZERO       3
+  94 SPARE\n OCT 0         -> 95 SPARE\n OCT 0          3
+  TERMINATE\n TCF +5       -> PROCEED\n TCF -5          3
+  STARTING ADDRESS\n CA S10BITS -> 01777\n TS SKEEP3         2
+  (1)\n TCF COMFAIL3       -> (2)\n TCF GOCUTOFF        2
+  (2)\n TCF GOCUTOFF       -> (3)\n TCF TASKOVER        2
+  (7)\n\n TCF DISPCHNG     -> (11)\n TCF WAITABIT       2
+  (1)\n TCF COMFAIL4       -> (2)\n TCF GOPOST          2
+  (2)\n TCF GOPOST         -> (3)\n TCF TASKOVER        2
+  (6)\n EBANK= OMEGAQ\n 2CADR STEERING -> (7)\n\n TCF P40SJUNK      2
+  (7)\n\n TCF P40SJUNK     -> (11)\n TCF WAITABIT       2
+  SEND SNAPSHOT\n 1DNADR DELLT4 -> DELLT4,+1\n 3DNADR RTARG  2
+  COMMON DATA\n 2DNADR POSTORKU -> POSTORKU,NEGTORKU,POSTORKV,NEGTORKV\n 1DNADR SPARE\n 1DNADR TCDH  2
+  POSTORKU,NEGTORKU,POSTORKV,NEGTORKV\n 1DNADR SPARE\n 1DNADR TCDH -> TCDH,+1\n 3DNADR DELVEET2  2
+  TCDH,+1\n 3DNADR DELVEET2 -> DELVEET2 +0...+5\n 1DNADR TTPI  2
+  DELVEET2 +0...+5\n 1DNADR TTPI -> TTPI,+1\n 3DNADR DELVEET3  2
+  CDUS,PIPAX,PIPAY,PIPAZ\n 1DNADR LASTYCMD -> LASTYCMD,LASTXCMD\n 1DNADR LEMMASS  2
+  AOG,TRKMKCNT\n 1DNADR TANGNB -> TANGNB,+1\n 1DNADR MKTIME  2
+  TERMINATE\n TCF +2       -> PROCEED\n TCF -5          2
+  READ FRESH DATA FOR HI AND LO INTO MPAC,\n CADR READLO -> MPAC+1.\n TC TPAGREE      2
+  ALL DEC OR ALL OCT.\n EXTEND\n DCA LODNNLOC -> SWITCH BANKS TO NOUN TABLE READING\n DXCH Z  2
+  ROUTINE.\n CAF ZERO      -> X COMP\n TC PUTCOM\n INDEX NOUNADD\n TS 0\n CAF ONE  2
+
+MINT   29 rounds; parts minted per round: 34770 27381 18151 11354 6478 3596 1930 1079 624 411 264 180 132 82 58 43 31 25 20 21 13 7 6 3 2 6 3 3 0
+  pool: 14404 distinct runs in, 121058 structures added, 247464 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  TC BANKCALL                         310       0  THAN 5 DEGREES\n TC BANKCALL\n CADR GOFLASH\n TC GOTOPOOH\n TCF +2\n TCF..., YES\n TC BANKCALL, 7-9\n\nR59OUT TC BANKCALL, * 0501\n TC BANKCALL
+  CAF ZERO                            287       0  IT.\n CADR UPDATVB -1\n CAF ZERO, CALCULATIONS.\n TCF GOQTRIMG +1\n\nGOQTRIMG CAF ZERO, LUNSFCHK\n TC R21LEM5\n CAF ZERO, (E SUBK) +1 MIXED\n \nDPINORM CAF ZERO
+  CCS A                               273       0  DO PROG ALARM IF TM TOO FAST.\n TCF NXTFL33\n \n TC ALARM\n OCT 1105\n T..., SET LR LITES PROPERLY\n CADR R12LITES\n\n## Page 876\nCOPYCYC1 TC QUIKFA..., TYPE B, THIS BIT SHOULD\n CCS A, BRANCH USING THE CADR IN POLISH.\n\n## Page 1089\n# SUBROUTINE TO CONVER...
+  SEE IF                              247       0  SEE IF ASTRONAUT HAS SIGNALLED TERMINATE\n, SEE IF DELAY PRESENT DISCRETE HAS BEEN\n RAND CHAN12, SEE IF OVERFLOW IN MIN CASE\n AD 1JACCU\n## Page 1501 \n AD BIT9, SEE IF DETENT 7 FOR COAS\n EXTEND\n BZF CODE7\n \n TCF CODE1TO6\n \nCODE...
+  CCS A\n                             232       0  JETS FIRING NEGATIVELY\n CS TJU\n CCS A\n, CCS A\n INDEX A\n, MARK MADE\n TS L\n \n## Page 259\n CA PRIO3\n EXTEND\n RXOR LCHAN\n CCS ..., +/- 1 FOR OF/UF\n TC Q\n\n# IF MPAC, +1 ARE EACH +NZ OR +0 AND C(A)=-0, ...
+  EXTEND\n BZF                        232       0  EXTEND\n BZF GETRVN, DESIGNATE\n EXTEND\n BZF, EXTEND\n BZF KILCLOCK, EXTEND\n BZF GUILDRET
+  EXTEND\n MP                         226       0  0.\n CS EDOTP\n EXTEND\n MP, EXTEND\n MP LEMMASS\n EXTEND\n MP, EXTEND\n MP BIT14, ITEMP3\n EXTEND\n MP
+  DXCH MPAC                           225       0  MULT BY .6 + 2EXP-7\n DXCH MPAC, DXCH MPAC +1\n+DECSGN XCH MPAC +2\n INDEX INREL\n TS XREGLP -2\n XCH MPA..., MAJOR PART INTO A,L AND PLACE IN\n## Page 1048\n DXCH MPAC, AGREEMENT\n DXCH MPAC
+  EXTEND\n DCA                        194       0  = - SINX COSZ\n\n EXTEND\n DCA, NEWMODEX\nDEC66 DEC 66\n EXTEND\n DCA, FOR DIVISION LATER\n EXTEND\n DCA, EXTEND\n DCA MPAC +3\n
+  SCALED AT                           164       0  SCALED AT PI\nSPSIN TS TEMK\n TCF SPT\n CS TEMK\nSPT DOUBLE\n TS TEMK\n ..., SCALED AT PI\n, SCALED AT PI/2(7), SCALED AT PI/32 RADIANS/SECOND.\n\n
+  PICK UP                             159       0  PICK UP PI, 2'S COMPLEMENT\n TS TEM3, PICK UP YROT\n CDULOGIC\n, PICK UP UPDATED VELOCITY VECTOR.\n 24D\nVHORCOMP VSL2 VAD\n DELVS\n VSR2..., PICK UP LANDING SITE VEC IN MF\n PDDL PUSH
+  TC INTPRET\n                        154       0  TC INTPRET\n CALL\n SELECTMU\nP35/P75B RTB\n LOADTIME\n STORE TSTRT\n DA..., RESTORE EBANK 7\n TS BBANK\n TC INTPRET\n, TC INTPRET\n DLOAD DCOMP\n TCSI\n BMN DLOAD\n VN0655\n## Page 622\n TETL..., TC INTPRET\n SET VLOAD
+  CCS A\n TCF                         147       0  RR IS IN.\n MASK RADMODES\n CCS A\n TCF, CCS A\n TCF RRCDUCHK, REFSMMAT FLAG CLEAR BYPASS STAR AQUIR\n CCS A\n TCF, CCS A\n TCF TOBALLC
+  TC Q                                147       0  ZERO\n## Page 993 \n TC Q, CHECK FOR AUTO MODE\n READ CHAN31\n MASK BIT14\n TC Q, +1\n TCF UMPAC+\n TC Q, BY 1 IF ODD\n TS ITEMP1\n EXTEND\n INDEX ITEMP1\n DCA RN1\n INDEX ITEMP1...
+  TS L                                143       0  EDITING\n TS L, MAGNITUDE. IF SO, REDUCE IT TO LESS THAN\n TS L, THE ROUND AT THIS STAGE MAY INTRODUCE A\n TS L, LIMIT THE MGA\n TS L
+  ERASE +1                            136       0  DIFFERENCE AT CDH\nPOSTCSI ERASE +1, DIFFERENCE\n\n# P30-P40 INTERFACE UNSHARED. (3D)\n\nTTOGO ERASE +1, B(2)TMP CSI TIME IN CENTISECONDS\nTTPI ERASE +1, 13) 1/ACCJOB CONTROL (ACCSET)\nT5ADR ERASE +1
+  SET UP                              135       0  SET UP BY, SET UP 1/ACCS SO THAT THE SWITCH CURVES\n TC NOVAC, SET UP RETURN FROM COMPUTATION ROUTINE\n TS ARET\n CS BIT8, SET UP POINTER
+  TCF +2                              135       0  BIT 10 TO SEE IF IN\n TCF +2, TRY AGAIN ON FORMER MINOR PART.\n TCF BUF+\n TCF +2, TO SEE IF IN\n TCF +2, THE TRIM GIMBAL CONTROLLING\n TCF +2
+  TURN OFF                            135       0  TURN OFF ALT FAIL LAMP\n ADRES HFLSHFLG\n\nNOREASON CS FLGWRD11\n MASK L..., TURN OFF + PITCH, + ROLL.\n, TURN OFF ENABLE RR ERROR COUNTER\n EXTEND\n WAND CHAN12\n TCF ENDOFJOB, TURN OFF NO ATT
+  GO TO                               130       0  GO TO SM COORDS\n VXM SET, GO TO WTLST5 WITH\n TCF WTLST5, GO TO UPFNDVAC IF INSTALL IS REQUIRED.\n AD UPVERB, GO TO THE SQRT ROUTINE\n
+  TC DOWNFLAG                         123       0  ADRES ACMODFLG\n TC DOWNFLAG, VALUE INTO T1,T2, WITH\n TC DOWNFLAG, MANUAL ACQUISITION FLAG RESET\n ADRES ACMODFLG\n TC DOWNFLAG, ACMODFLG\n TC DOWNFLAG
+  TC UPFLAG                           115       0  OTHER RCS SYSTEM\n ADRES AORBTFLG\n TC UPFLAG, L-R LT 4, DO NOT TURN ON TRK FAIL\n BZF +2\n TCF NORLITE\n\n TC UPFLAG, ALSO.\n TC UPFLAG, CONTINUE WITH P20\nORBCHGO TC UPFLAG
+  TS MPAC                             115       0  .37 MSEC.\n TC TPSL1\n CCS SFTEMP1\n TC LEFTNCOM\n## Page 434\n TC SFTEM..., TS MPAC +1, DOWN RAPIDLY AS A\n TS MPAC, TC MPAC\n\nSETVAC CAF TCFINDVC\n TC REQEX1\n \n# VBRQWAIT ENTERS REQUEST...
+  DXCH MPAC\n                         114       0  ADDRWD SET TO COSCDUZ STILL\n DXCH MPAC\n DDOUBL\n DXCH MPAC +3\n\n EXTE..., ADDRWD SET TO COSCDUZ STILL\n DXCH MPAC\n DDOUBL\n DXCH MPAC +3\n\n EXTE..., IN BUF-.\n DCS MPAC\n DXCH MPAC\n, CONTENTS DOWN.\n DXCH MPAC\n
+  TC INTPRET                          106       0  COARSE\n TC INTPRET, RECYCLE, MAYBE RE-ALIGN\n\n5DEGTEST TC INTPRET, UNFV/2 NEED NOT BE EXACTLY SEMI-UNIT.\n\n CA UNFVZ/2\n LXCH MPAC +5\n TC..., GOTOPOOH\n TC INTPRET
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +TS                        1076
+  +EXTEND                    1013
+  ++2                        886
+  ++1                        805
+  +CA                        748
+  +CS                        637
+  +\n                        589
+  +TCF                       533
+  +EQUALS                    523
+  +TC                        521
+  +MASK                      487
+  +AD                        406
+  +DXCH                      377
+  +TO                        375
+  +CCS                       368
+  +STORE                     362
+  +IN                        360
+  +ERASE                     350
+  +INDEX                     334
+  +CAF                       311
+  +TC BANKCALL               305
+  +CAF ZERO                  301
+  +=                         301
+  +FOR                       294
+  +CCS A                     290
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                        TO+  1798
+                       FOR+  1744
+                        IN+  1732
+                        IF+  1726
+                       AND+  1609
+                       SET+  1484
+                        IS+  1340
+                       THE+  1185
+                     STORE+  1048
+                        OF+  943
+                        TC+  938
+                         =+  920
+                         -+  890
+                        TS+  879
+                         A+  667
+                        OR+  646
+                      SAVE+  615
+                       TCF+  597
+                        NO+  581
+                       GET+  556
+                       NOT+  548
+                   DISPLAY+  540
+                      MASK+  538
+                        CA+  516
+                     INDEX+  478
+
+CLASSES   parts that take the same set of changes (largest 25 of 47595; two or more members count as same one level up)
+  {1.0} [++2, B(2)+]
+     24 members: THROTTLE\nPSEUDO55 = PIF, DISPLAY\nFUNNYDSP = DELTAH, DISPLAY\nOUTOFPLN EQUALS RANGEDSP, ALARM-ABORT USER'S 2CADR\nERCOUNT EQUALS ALMCADR, DISPLAY\n\n# BURN PROG STORAGE. (2D)\n\nSAVET-30 EQUALS TTFDISP, LR\nVN2 = HMEAS, LR\nLRXCDU = LRVTIME, DISPLAY NOUN\nGOBLTIME EQUALS DVTOTAL, GUIDANCE\nELINCR = TTF/8TMP, DISPLAY\nHDOTDISP EQUALS ABVEL, GUIDANCE CONTIGUOUS\nELIDUMMY = TTF/8, ( FOR )\nGDT1/2 EQUALS PIPTIME1
+  {1.1} [++1, B(1)+]
+     19 members: LR\nLRZCDU = LRYCDU, LR\nLRYCDU = LRXCDU, THROTTLE\nFWEIGHT = RTNHOLD, P64\nAZINCR1 EQUALS ELVIRA, THROTTLE\n\n# THESE ERASABLES SHOULD NOT BE SHARED DURING P63, P64, P65,..., P64\nELINCR1 EQUALS AZINCR1, DISPLAY\nLOOKANGL = FUNNYDSP, THROTTLE\nFCOLD = TTHROT, (HIGHCRIT MUST FOLLOW LOWCRIT)\nHIGHCRIT EQUALS LOWCRIT, GUIDANCE\nFILLER = WCHPHOLD +1\nFLPASS0 = FILLER, SCALE SHIFT FOR EARTH/MOON\nRXZ EQUALS SCALSHFT, THROTTLE\nRTNHOLD = PIFPSET
+  {1.2} [++6, I(6)+]
+     17 members: PHASE\nAAPFG EQUALS VAPFG, Y-AXIS SRCH PATTERN COORDS\nDATAGOOD EQUALS UYVECT, APPROACH\nVAPFG EQUALS RAPFG, PERTURBING ACCELERATIONS\nALPHAM EQUALS FV, TARGET\nVAPFG* EQUALS AAPFG, CM V X R VECTOR\nLOSDESRD EQUALS VXRCM, TARGET\nVBRFG* EQUALS ABRFG, PHASE\nABRFG EQUALS VBRFG, THRUST DIRECTION\nVGTIG EQUALS UT, X-AXIS SRCH PATTERN COORDS\nUYVECT EQUALS UXVECT, MUST BE IN SAME BANK AS RCS DAP\nCAM EQUALS COFSKEW, PRESERVE Z,Y,X ORDER.\n\nLRVTIME = VXBEAMNB
+  {1.3} [++2, I(2)TMP+]
+     16 members: RDOTD - RDOT\nDYDOT EQUALS DRDOT, RADIAL THRUST COMP. * 2(9)\nATP EQUALS ATR, YDOTD - YDOT\nDZDOT EQUALS DYDOT, TAILOFF TIME * 2(17)CS.\nTBUP EQUALS TTO, DOWN RANGE VEL * 2(-7).\nGEFF EQUALS ZDOT, EXHAUST VELOCITY * 2(7)M/CS.\nTTO EQUALS VE, S40.1 GENERATES THIS FOR S40.3\nMDOT EQUALS F, MASS CHNG RATE, KG/CS AT 2**3.\nTDECAY EQUALS MDOT, EFFECTIVE GRAVITY\n\n# THESE TWO GROUPS OF ASCENT GUIDANCE ARE SPLIT BY ..., ZDOTD - ZDOT\nPCONS EQUALS DZDOT, SCALING IS 2(7)M/CS.\nZDOTD EQUALS YDOTD, (M/MDOT) * 2(17)CS.\nRDOTD EQUALS TBUP
+  {1.4} [++2, I(2)+]
+     13 members: DISPLAY\nANGTERM EQUALS VHORIZ, LAG TIME DIVIDED BY TAUROD (P66)\nMINFORCE EQUALS LAG/TAU, GATE\nGAINBRAK EQUALS JBRFG*, PAD OR LANDING RADIUS FOR SR30.1\nTSTART82 EQUALS RPADTEM, PARAMETERS:\nAAPFG* EQUALS VAPFG*, LOW\nJAPFG* EQUALS AAPFG*, ( CYCLE )\nR1S EQUALS MASS1, GATE\nGAINAPPR EQUALS JAPFG*, LR ALTITUDE DATA REASONABLE PARM.\nLRALPHA EQUALS DELQFIX, HIGH\nJBRFG* EQUALS ABRFG*, NOMINAL TIME OF LANDING\nRBRFG EQUALS TLAND, PARAMETERS:\nABRFG* EQUALS VBRFG*
+  {1.5} [+EXTEND, AND+]
+     13 members: INCREMENT TO LGYRO.\n MASK SEVEN\n AD BIT13\n ADS LGYRO\n TS EBANK\n MAS..., F BANKS\n\n, ROUND MPAC WHEN\n, OVFIND\n\n TC QUIKFAZ5\n, DISPATCH JOB.\n\n EBANK= SELFRET\nSELFBANK BBCON SELFCHK\n\nNUDIRECT, COEFFR=.707(1+.5EPSILON)\n EXTEND\n MP COEFFR\n TS COEFFQ\n TCF JACCUV\n..., ACTIVITY BITS.\n\nGYROFRAC 2DEC .215 B-21\n\n## Page 1327\n# IMU MODE SW..., TRUNCATED FRACTION\nGMERGE, IMU IN USE FLAGS\n TS FLAGWRD0\n TC CLRADMOD\n## Page 231\n \nKILL2, RE-LOAD LAST TWO COMPONENTS\n INDEX ADDRWD\n DCA 2\n DXCH MPAC +3\n INDE..., DECREMENT ON INDEX.\n INDEX INDEXLOC\n CS S1\n INDEX INDEXLOC\n AD X1\n, B ONLY FOR FIRST DV.\n +1
+  {1.6} [+EXTEND, IF+]
+     10 members: IT'S A V70 - V72.\n, TARGET DB IS EXCEEDED, CONTINUE\n, R = 0, DO NOT TURN ON TRK FAIL\n AD LRLCTR\n MASK NEG3\n, VSELECT = 2 (X AXIS),\n, JUST ON.\n \n CAF BIT15\n, EDOT NEGATIVE, PICK UP SET OF VALUES\n, TJET, SCALED AT 32 SEC, EXCEEDS\n, OPERATE ON ONLY, AND WE ARE IN COARSE\n, LOSCMFLG NOT SET, DON'T TEST\n, L/ 2 CHAR IN FOR MM CODE, ALARM\n
+  {1.7} [+EQUALS, B(1)PRM+]
+     10 members: VHY=VMP.UHYP (AN ORDER)\n## Page 151\nVHZ, TIME 1 MINUS (PIPTIME +1)\nDALTRATE, MONIT. FLAG FOR FORVEL (ED PAIR)\nVHY, LATERAL VELOCITY (AN ORDER)\nFORVEL, FORWARD VELOCITY (-ED PAIR)\nTRAKLATV, THESE ARE CALLED BY T4RUPT\nLASTXCMD, FORVEL MONITOR METER (-ED PAIR)\nLATVEL, MONITOR FLG 4 LATVEL (AN ORDER)\nTRAKFWDV, LATVEL MONITOR METER (AN ORDER)\nFORVMETR, VHZ=VMP.UHZP (-ED PAIR)\nVVECT
+  {1.8} [++1, B(1)PRM+]
+     10 members: VHZ=VMP.UHZP (-ED PAIR)\nVVECT EQUALS VHZ, LATERAL VELOCITY (AN ORDER)\nFORVEL EQUALS LATVEL, MONIT. FLAG FOR FORVEL (ED PAIR)\nVHY EQUALS TRAKFWDV, FORVEL MONITOR METER (-ED PAIR)\nLATVEL EQUALS FORVMETR, LATVEL MONITOR METER (AN ORDER)\nFORVMETR EQUALS LATVMETR, VHY=VMP.UHYP (AN ORDER)\n## Page 151\nVHZ EQUALS VHY, MONITOR FLG 4 LATVEL (AN ORDER)\nTRAKFWDV EQUALS TRAKLATV, THESE ARE CALLED BY T4RUPT\nLASTXCMD EQUALS LASTYCMD, FORWARD VELOCITY (-ED PAIR)\nTRAKLATV EQUALS FORVEL, TIME 1 MINUS (PIPTIME +1)\nDALTRATE EQUALS DT
+  {1.9} [+EQUALS, I(2)TMP+]
+     9 members: VEL. NORMAL TO REF. PLANE*2(-7)\nZDOT, EXHAUST VELOCITY * 2(7)M/CS.\nTTO, DISTANCE, SCALED AT 2(24).\n1/DV1, DOWN RANGE VEL * 2(-7).\nGEFF, RDOTD - RDOT\nDYDOT, ENGINE DATA -- THRUST ACC*2(9)\nVE, (M/MDOT) * 2(17)CS.\nRDOTD, S40.1 GENERATES THIS FOR S40.3\nMDOT, YDOTD - YDOT\nDZDOT
+  {1.10} [++2, ++4]
+     9 members: 81 VEL3 DP3\n ECADR DELVLVC, 84 VEL3 DP3\n ECADR DELVOV, 93 DPDEG(90) DP3\n ECADR OGC, 82 VEL3 DP3\n ECADR DELVLVC, 88 FRAC FRAC\n ECADR STARAD, 59 VEL3 DP3\n ECADR DVLOS, 86 VEL3 DP3\n ECADR DELVLVC, 85 VEL3 DP3\n ECADR VGBODY, 83 VEL3 DP3\n ECADR DELVIMU
+  {1.11} [+TS, TO+]
+     9 members: MODE CENTER\n, PROCESS - DO GETMKS\n OCT 111\n TCF GETMKS\n \nV01N71 VN 171\nV06N87* VN..., BBCON.\n TS L\n CAF DELAYEX\n, REFER TO MATRIX\n, EDOP\n CA BBANK\n, SM TRANSFORMATION\n TCF C*MM*N2\n\n# *NBSM* AND *SMNB* EXPECT TO SEE THE..., OBTAIN MINOR PART OF RESULT.\n EXTEND\n DV BUF\n +3, ZERO AND EXIT ON DP.\n TCF DANZIG\n\nENDTPUSH, WIPE OUT ANYONE\n
+  {1.12} [IS NOT+, NOT+]
+     9 members: IN USE\n CADR IMUZERO, BIT 15, CCS IS SAFE)\n CCS A\n TCF RCS\n CCS ALLOWGTS, SET, SERV- DVMON ON ITS NEXT\n, VALID. SET RAPO =\n NEARONE, DOCKED.\n CA STIKSENS\n EXTEND\n MP 1/10\n TS STIKSENS\n CA -0.3D/S, PRESENT\n\n# BIT 1 FLAG 12\nTURNONFL = 194D, FOR GENERAL USE. REALLY PART\n TC POSTJUMP, IN MINIMUM-IMPULSE\n, LESS THAN .5 UNLESS\n TS L\n INDEX FIXLOC\n DXCH LV\n TCF DVOVF
+  {1.13} [(1)+, +ERASE]
+     8 members: MASS AFTER STAGING, SCALE AT B16 KG.\nROLLTIME, USED BY KALCMANU\nDELAYLOC ERASE +2\nLEMMASS, ESTIMATOR PARA- (VALUES 00012\nDKKAOSN, METERS FOR THE 00074\nLMTRAP, LEM-ALONE CASES 00000\nLMKAOSN, DOCKED AND 77001\nLMOMEGAN, RESPECTIVELY 00074\nDKDB, DAP STATE (POSSIBLE 77001\nDKOMEGAN
+  {1.14} [+ERASE, B(1)\n\n#+]
+     7 members: P27 (UPDATE PROGRAM) STORAGE. (26D)\n\nUPVERBSV, ERASABLES FOR THE R2 LUNAR POTENTIAL MODEL (2D)\n\nE3J22R2M, P63, P64, P65, P66, AND P67. (1D)\n\nWCHPHASE, THROTTLE STORAGE. -PAD LOADED- (1D)\n\nZOOMTIME, *** R21 *** (1D)\n\nLOSCOUNT, L SR22.3 (RENDEZVOUS NAVIGATION) STORAGE. (4D)\n\n# RETAIN THE ORDER OF ..., PERMANENT LEM DAP STORAGE. (12D)\n\nCH5MASK
+  {1.15} [+EXTEND\n BZF, IF+]
+     7 members: BIT 14 SET - END MARKING\n MASK BIT14\n, FLUNDISP IS SET, NO DISPLAY THIS PASS\n MASK FLUNDBIT\n, 0, PROGRAM NOT IN YET.\n\n, -\n TS DSMAG\n INDEX COUNT\n MASK DSMSK\n EXTEND\n SU CODE\n, 1, R04 IS RUNNING. DO NOT ALARM-\n, BIT14 SET, GIMBAL LOCK\n MASK FLAGWRD3\n, NNADTEM = -1, CHANNEL TO BE SPECIFIED\n
+  {1.16} [+EXTEND, IN+]
+     7 members: 2 SECONDS.\n\nULLGNOT, DRIFTING FLIGHT\n, EVERY CASE.\n TCF +5\n\n, A, SUPERBITS IN L.\n TC DSPOCTWD\nENDSPF TC ENDOFJOB\n\n## Page 441\n# W..., FUNCTION, AT PI(2)/16\n## Page 1476\n CCS DEL\n TCF RSTOFGTS\n TCF NEGUS..., FOR MM CODE, ALARM\n, MPAC, +1, +2.\n MASK DECBRNCH\n INDEX A\n TC +0\n TC +DECSGN\n## Page 40...
+  {1.17} [GO TO+, TO+]
+     7 members: UPFNDVAC IF INSTALL IS REQUIRED.\n AD UPVERB, STORE 11111 FOR DISPLAY IN R1\n CS SIX\n AD NSRCHPNT, WTLST5 WITH\n TCF WTLST5, CONTINUOUS DESIGNATE\n CLRGO\n FSPASFLG, WAITLIST\n TS GOLOC -1\n\n NDX TEMP2G\n CS PHSPRDT1, ALTROUT +1 OR TO ALTOUT +1\nZERODATA CAF ZERO, VERIFICATION SEQUENCE\n TCF OHWELL2 -1
+  {1.18} [BE+, TO BE+]
+     7 members: UPDATED\nPROG20A TC BANKCALL\n CADR R02BOTH\n TC UPFLAG\n ADRES UPDATFLG, STORED MINUS ONE\nSTORLP71 TS MPAC, GAINED SCALED AT (7) M/CS\n MXV VSL1\n REFSMMAT\n STORE UNFC/2\nBDTOK VL..., CALLED BY SR30.1.\n STOVL RONE, DONE\n SURFFLAG\n RENDEND, CHECKED\n EXTEND\n BZF ENDSUMS, USED\n TCF COASCODE
+  {1.19} [7+, FLAG 7+]
+     6 members: (S)\nASTNFLAG = 108D, (S)\nVERIFLAG = 117D, (S)\nMANUFLAG = 106D, (L,C)\nV82EMFLG = 118D, (S)\nV37FLAG = 114D, (S)\nAVEGFLAG = 115D
+  {1.20} [++2, FOR+]
+     6 members: ABORTS.\nCOSTHET1 EQUALS ABTRDOT, ITERATION ITERATION EXISTS\n\n# BIT 1 FLAG 1 \n# = 029D\n \nFLAGWRD2 = S..., IGNITION\nKIGNX/B4 EQUALS RIGNZ, PRECEDING TEST ON NEXT LOOP PASS\n CCS TEM2\n TCF DELGMBLP\n\n## Page 91..., )\nGDT1/2 EQUALS PIPTIME1, SR30.1\nTSTART82 EQUALS RPADTEM
+  {1.21} [EXTEND\n INDEX+, INDEX+]
+     6 members: Q\n DCA, DINDX\n MP AK\n TS L\n CCS A\n CA DACLIMIT\n TCF +2\n CS DACLIMIT\n AD L..., ADDRWD\n DCA, A\n EBANK= 1401\n DCA 1401, A\n DCA INDEXI\n DXCH DEXI\n\n CA ONE\n TS BUF\n EXTEND\n INDEX DEX1\n D..., PWRPTR\n DCA
+  {1.22} [A+, IN A+]
+     6 members: SENSE FOR WHICH 1/ACCS HAS FORCED\n BZMF +3, SCALED 32 SEC\n TS Q\n DAS A\n AD Q\n, REGISTER FROM CCS ON (-1).\n INDEX QRCNTR\n CS GMBLBITA\n EXTEND\n WAND ..., SCALED VERSION WHERE P(X) IS A\n DXCH BUF2, SHIFT RIGHT 15D.\n XCH MPAC\n XCH MPAC +1\n TC SETROUND, AFTER CCS\n TC DSPCOM3\n TC ENTEXIT\n TC +1\nDSPCOM3 TS DISTEM
+  {1.23} [RANGE+, RR RANGE+]
+     6 members: RATE, THROW OUT BIAS.\n DCS RDOTBIAS\nDASAMPL DAS ITEMP3\nDGCHECK2 CA IT..., ERROR VARIANCE\nRATEVAR ERASE +1, READING TO M. AT 2(-29\n\n SETLOC SERVICES\n BANK\n COUNT* $$/SERV\n \nH..., READING RR RANGE READING ON\nRRRSBIT, AND RANGE RATE (1/SEC)\n TC BANKCALL, SCALE\n RAND CHAN33
+  {1.24} [++2, B(2)TMP+]
+     6 members: THROTTLE\nFP EQUALS FCODD, THROTTLE\nFCODD EQUALS /AFC/, ATMAG\nXRANGE EQUALS 1/DV3, TIG-30 RESTART\n\n# SERVICER STORAGE. (69D)\n\nVGBODY EQUALS SAVET-30, ATMAG\n1/DV2 EQUALS 1/DV1, RR GIMBAL ANGLES\n# RETAIN THE ORDER OF MKTIME TO RM FOR DOWNLINK PURPOS...
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  COLLECT SNAPSHOT\n 6DNADR DNTMBUFF   seen 10
+    made of    COLLECT SNAPSHOT\n 6DNADR, 6DNADR DNTMBUFF, COLLECT SNAPSHOT\n, DNTMBUFF
+    part of    
+    changes    
+    followed   SEND SNAPSHOT\n 1DNADR DELLT4 1, SEND SNAPSHOT\n DNPTR LMORBM04 1, SEND SNAPSHOT\n 1DNADR AGSK 1, SEND SNAPSHOT\n DNPTR LMCSTA04 1, SEND SNAPSHOT\n DNPTR LMREND07 1, SEND SNAPSHOT\n DNPTR LMREND04 1
+    preceded   SEND ID BY SPECIAL CODING\n DNPTR LMORBM01 1, TIME2/1\n DNPTR LMORBM03 1, SEND ID BY SPECIAL CODING\n DNPTR LMCSTA01 1, TIME2/1\n DNPTR LMCSTA03 1, SEND ID BY SPECIAL CODING\n DNPTR LMREND01 1, TIME2/1\n DNPTR LMREND03 1
+  SWITCH BANKS TO NOUN TABLE READING\n DXCH Z   seen 8
+    made of    SWITCH BANKS TO NOUN TABLE READING\n, TO NOUN TABLE READING\n DXCH Z, NOUN TABLE READING\n DXCH Z, SWITCH BANKS TO, DXCH Z, SWITCH BANKS
+    part of    
+    changes    
+    followed   ROUTINE.\n CAF ZERO 3, ROUTINE.\n INDEX MIXBR\n TC +0\n TC +2 1, ROUTINE.\n TC VERBFAN\n \n EBANK= DSPCOUNT\n## Page 408\nLODNNLOC 2CADR ... 1, ROUTINE.\n CCS NNADTEM\n AD ONE 1, ROUTINE.\n CAF ONE\n TC PUTCOM\n INDEX NOUNADD\n TS 1\n TC LOADLV\n \nCL... 1, ROUTINE.\n CAF TWO\n TC PUTCOM\n INDEX NOUNADD\n TS 2\n TC LOADLV\n\nLOA... 1
+    preceded   ALL DEC OR ALL OCT.\n EXTEND\n DCA LODNNLOC 2, VERB L/ LOWVERB\n DCA LODNNLOC 1, ECADR INTO NOUNCADR. SET EB, NOUNADD.\n EXTEND\n DCA LODNNLOC 1, RETURN TO L+2\n \nREQDATX CAF R1D1\n TCF REQCOM\nREQDATY CAF R2D1\n TCF ... 1, Y COMP\n TC PUTCOM\n INDEX NOUNADD\n TS 1\n TC LOADLV\n \nALOAD TC REQDA... 1, SET CLPASS FOR PASS0 ONLY\n TS CLPASS\n TC REQDATY\n EXTEND\n DCA LODNNL... 1
+  PROCEED\n TCF -5   seen 7
+    made of    TCF -5, PROCEED\n TCF, PROCEED\n, -5
+    part of    
+    changes    
+    followed   ENTER\n\n TC PHASCHNG\n OCT 04024\n\n TC INTPRET\n CALL 1, RECYCLE FOR ASTRONAUT INPUT TIME\n DXCH DSPTEMX\n EXTEND\n BZF LREGCHK 1, RECYCLE\n CAF THREE 1, RECYCLE\n CAF BIT3 1, RECYCLE\n CAF SIX 1, RECYCLE\nV06N33SR VN 0633\nV06N55SR VN 0655\nV04N06SR VN 0406\nV06N57SR ... 1
+    preceded   TERMINATE\n TCF +5 3, TERMINATE\n TCF +2 2, FLASH TIG\n CADR GOFLASH\n TCF GOTOPOOH\n TCF +2 1, TERMINATE\n TC RTRN 1
+  COMMON DATA\n 1DNADR TIME2   seen 6
+    made of    COMMON DATA\n 1DNADR, COMMON DATA\n, 1DNADR TIME2, TIME2
+    part of    
+    changes    
+    followed   TIME2/1\n DNPTR LMORBM03 1, TIME2/1\n DNPTR LMCSTA03 1, TIME2/1\n DNPTR LMREND03 1, TIME2/1\n DNPTR LMDSAS03 1, TIME/1\n DNPTR LMLSAL03 1, TIME2/1\n DNPTR LMAGSI03 1
+    preceded   TPASS4,+1\n DNPTR LMORBM02 1, COMMON DATA\n DNPTR LMCSTA02 1, COMMON DATA\n DNPTR LMREND02 1, COMMON DATA\n DNPTR LMDSAS02 1, COMMON DATA\n DNPTR LMLSAL02 1, UPBUFF +8D...+19D\n DNPTR LMAGSI02 1
+  LEMMASS,CSMMASS\n 1DNADR IMODES30   seen 6
+    made of    LEMMASS,CSMMASS\n 1DNADR, IMODES30
+    part of    
+    changes    
+    followed   IMODES30,IMODES33\n 1DNADR TIG 5, IMODES30,IMODES33\n 1DNADR SPARE\n DNPTR LMAGSI05 1
+    preceded   LASTYCMD,LASTXCMD\n 1DNADR LEMMASS 4, DIFFALT,+1\n 1DNADR LEMMASS 1, UPBUFF +12D...+19D\n 1DNADR LEMMASS 1
+  95 SPARE\n OCT 0   seen 6
+    made of    SPARE\n OCT 0, 95
+    part of    
+    changes    
+    followed   95 SPARE\n OCT 0 2, 96 SPARE\n OCT 04253 1, 96 SPARE\n OCT 00000 1, 96 SPARE\n OCT 0 1, 96 SPARE\n OCT 06143 1
+    preceded   94 SPARE\n OCT 0 3, 95 SPARE\n OCT 0 2, 94 \n OCT 0 1
+  (DEC ONLY)\n OCT 24512   seen 6
+    made of    (DEC ONLY)\n OCT, OCT 24512, (DEC ONLY)\n, 24512
+    part of    
+    changes    
+    followed   59 3COMP VEL3 FOR EACH\n 1, 82 3COMP VEL3 FOR EACH\n 1, 83 3COMP VEL3 FOR EACH\n 1, 84 3COMP VEL3 FOR EACH\n 1, 85 3COMP VEL3 FOR EACH\n 1, 86 3COMP VEL3 FOR EACH\n 1
+    preceded   58 3COMP POS4, VEL3, VEL3\n 1, 81 3COMP VEL3 FOR EACH\n 1, 82 3COMP VEL3 FOR EACH\n 1, 83 3COMP VEL3 FOR EACH\n 1, 84 3COMP VEL3 FOR EACH\n 1, 85 3COMP VEL3 FOR EACH\n 1
+  (3)\n TCF TASKOVER   seen 5
+    made of    TCF TASKOVER, (3)\n
+    part of    
+    changes    
+    followed   (4)\n TCF P12SPOT 1, (4)\n TCF P40SPOT 1, (4)\n TCF P42SPOT 1, (4)\n TCF P63SPOT 1, (4)\n NOOP 1
+    preceded   (2)\n TCF GOCUTOFF 2, (2)\n TCF GOPOST 2, (2)\n TCF V99RECYC 1
+  (11)\n TCF WAITABIT   seen 5
+    made of    TCF WAITABIT, (11)\n TCF, WAITABIT, (11)\n
+    part of    
+    changes    
+    followed   (12)\n TCF P12IGN 1, (12)\n TCF P40IGN 1, (12)\n TCF P42IGN 1, (12)\n## Page 733\n TCF P63IGN 1, (12)\n TCF ABRTIGN 1
+    preceded   (7)\n\n TCF DISPCHNG 2, (7)\n\n TCF P40SJUNK 2, (7)\n NOOP\n TCF DISPCHNG 1
+  IMODES30,IMODES33\n 1DNADR TIG   seen 5
+    made of    IMODES30,IMODES33\n 1DNADR, TIG
+    part of    
+    changes    
+    followed   TIG,+1\n DNPTR LMORBM05 1, TIG,+1\n DNPTR LMCSTA05 1, TIG,+1\n DNPTR LMREND05 1, TIG,+1\n DNPTR LMDSAS05 1, TIG,+1\n DNPTR LMLSAL05 1
+    preceded   LEMMASS,CSMMASS\n 1DNADR IMODES30 5
+  (GYRO PULSES)/(PIPA PULSE) X 2(-6) *\n TC GCOMPSUB   seen 5
+    made of    (GYRO PULSES)/(PIPA PULSE) X 2(-6) *\n, (GYRO PULSES)/(PIPA PULSE) X 2(-6), *\n TC GCOMPSUB, TC GCOMPSUB
+    part of    
+    changes    
+    followed   -(ADIAX)(PIPAX) (GYRO PULSES) X 2(+14)\n \n EXTEND 1, -(ADSRAX)(PIPAY) (GYRO PULSES) X 2(+14)\n\n# EXTEND ***\n# DCS DELVZ ***... 1, -(ADIAY)(PIPAY) (GYRO PULSES) X 2(+14)\n\n EXTEND\n DCS DELVZ 1, +(ADSRAY)(PIPAZ) (GYRO PULSES) X 2(+14)\n\n# EXTEND ***\n# DCS DELVX ***... 1, -(ADIAZ)(PIPAZ) (GYRO PULSES) X 2(+14)\n \n# EXTEND ***\n# DCS DELVX ***... 1
+    preceded   (PIPA PULSES) X 2(+14)\n DXCH MPAC\n CA ADIAX 1, \n CS ADSRAX 1, (PIPA PULSES) X 2(+14)\n DXCH MPAC\n CA ADIAY 1, (PIPA PULSES) X 2(+14)\n DXCH MPAC\n CS ADSRAY 1, (PIPA PULSES) X 2(+14)\n DXCH MPAC\n CA ADIAZ 1
+  (0)\n TCF ULLGNOT   seen 4
+    made of    TCF ULLGNOT, (0)\n TCF, ULLGNOT, (0)\n
+    part of    
+    changes    
+    followed   (1)\n TCF COMFAIL3 3, (1)\n TCF COMFAIL4 1
+    preceded   ALL RETURNS ARE NOW MADE VIA GOODEND\n TC WAITLIST\n EBANK= BCDU\n 2CADR... 1, (13)\n\nP40TABLE VN 0640 1, (14)\n\nP63TABLE VN 0662 1, (13)\n\nABRTABLE VN 0663 1
+  SET EBANK\n MASK LOW8   seen 4
+    made of    EBANK\n MASK LOW8, SET EBANK\n, MASK LOW8, SET
+    part of    
+    changes    
+    followed   ISOLATE RELATIVE ADDRESS\n EXTEND\n INDEX A\n EBANK= 1401\n DCA 1401 1, ISOLATE RELATIVE ADDRESS\n TS L\n CA DNADRDCR 1, ISOLATE RELATIVE ADDRESS.\n TS Q 1, ISOLATE RELATIVE ADDRESS\n INDEX A\n EBANK= 1400\n LXCH 1400 1
+    preceded   (NOTE.. TMINDEX = DNECADR)\n\n# THE FOLLOWING CODING (FROM SNAPLOOP TO S... 1, NOW GO SEND THEM.\n\nFETCH2WD CA DNECADR\n TS EBANK 1, FOR WORDS 3 TO 256D OF CURRENT EBANK\n\nDNDUMP2 CA DUMPLOC\n TS EBANK 1, PICK UP NEXT ECADR OF REG TO BE UPDATED\n TS EBANK 1
+  COMMON DATA\n 2DNADR POSTORKU   seen 4
+    made of    COMMON DATA\n 2DNADR, COMMON DATA\n, 2DNADR POSTORKU, POSTORKU
+    part of    
+    changes    
+    followed   POSTORKU,NEGTORKU,POSTORKV,NEGTORKV\n 1DNADR SPARE\n 1DNADR TCDH 2, POSTORKU,NEGTORKU,POSTORKV,NEGTORKV\n 3DNADR RGU 1, POSTORKU,NEGTORKU,POSTORKV,NEGTORKV\n 1DNADR SPARE\n 1DNADR SPARE\n 1DNA... 1
+    preceded   SEND SNAPSHOT\n DNPTR LMORBM04 1, SEND SNAPSHOT\n DNPTR LMREND04 1, SEND SNAPSHOT\n DNPTR LMDSAS04 1, SEND SNAPSHOT\n DNPTR LMAGSI04 1
+  LASTYCMD,LASTXCMD\n 1DNADR LEMMASS   seen 4
+    made of    1DNADR LEMMASS, LASTYCMD,LASTXCMD\n 1DNADR, LASTYCMD,LASTXCMD\n, LEMMASS
+    part of    
+    changes    
+    followed   LEMMASS,CSMMASS\n 1DNADR IMODES30 4
+    preceded   CDUS,PIPAX,PIPAY,PIPAZ\n 1DNADR LASTYCMD 2, FC,GARBAGE\n 1DNADR LASTYCMD 1, AGSK,+1\n 1DNADR LASTYCMD 1
+  TERMINATE\n TC +2   seen 4
+    made of    TERMINATE\n TC, TC +2, TERMINATE\n, +2
+    part of    
+    changes    
+    followed   PROCEED\n TC -5 2, PROCEED VALUE OF ASSUMED VEHICLE OK\n TC -5 1, PROCEED\n TC V89RECL 1
+    preceded   OPTION 2\n TC BANKCALL\n CADR GOPERF4\n TC GOTOPOOH 1, V 04 N 06\n TC BANKCALL\n CADR GOXDSPF\n TC ENDEXT 1, V 04 N 12\n TC BANKCALL\n CADR GOFLASH\n TC ENDEXT 1, NOUN 18 REFERS TO FDAIX,Y,Z\n CADR GOFLASH\n TC ENDEXT 1
+  (1)\n TCF COMFAIL3   seen 3
+    made of    (1)\n TCF, TCF COMFAIL3, COMFAIL3, (1)\n
+    part of    
+    changes    
+    followed   (2)\n TCF GOCUTOFF 2, (2)\n TCF V99RECYC 1
+    preceded   (0)\n TCF ULLGNOT 3
+  DURING SOFTWARE RESTART, DO NOT DISTURB\n EXTEND   seen 3
+    made of    DURING SOFTWARE RESTART, DO NOT DISTURB\n, DURING SOFTWARE RESTART, DO NOT, DO NOT DISTURB\n EXTEND, DURING SOFTWARE RESTART,, DISTURB\n EXTEND, EXTEND
+    part of    
+    changes    
+    followed   ENGINE ON, OFF AND ISS WARNING.\n WAND DSALMOUT\n \n CS READRBIT 1, IMU FLAGS. (COURSE ALIGN ENABLE, ZERO\n WAND CHAN12 1, GYRO ENABLE FLAG.\n WAND CHAN14\n \n EBANK= LST1\n CAF STARTEB\n TS EBAN... 1
+    preceded   SET T5RUPT FOR DAPIDLER PROGRAM.\n DCA IDLEADR\n DXCH T5ADR\n\nSTARTSB2 ... 1, DESIGNATING\n TS RADMODES\n CAF OCT27470 1, RESUMES EXCEPT DURING P64)\n WOR CHAN13\n \n CAF BIT6 1
+  (GYRO PULSES)/(CS) X 2(-5)\n TC DRIFTSUB   seen 3
+    made of    (GYRO PULSES)/(CS) X 2(-5)\n TC, DRIFTSUB
+    part of    
+    changes    
+    followed   -(NBOX)(DELTAT) (GYRO PULSES) X 2(+14)\n \n TC IRIGY 1, -(NBDY)(DELTAT) (GYRO PULSES) X 2(+14)\n \n TC IRIGZ 1, +(NBDZ)(DELTAT) (GYRO PULSES) X 2(+14)\n \n CCS GCOMPSW 1
+    preceded   COMPENSATE ACCELERATION TERMS\n \n CS NBDX 1, COMPENSATE ACCELERATION TERMS\n \n CS NBDY 1, COMPENSATE ACCELERATION TERMS\n \n CA NBDZ 1
+  (GYRO PULSES)/(CS) X 2(-5)\n TC FBIASSUB   seen 3
+    made of    PULSES)/(CS) X 2(-5)\n TC FBIASSUB, (GYRO PULSES)/(CS) X 2(-5)\n TC, FBIASSUB, (GYRO
+    part of    
+    changes    
+    followed   -(NBOX)(DELTAT) (GYRO PULSES) X 2(+14)\n \n CCS TEM1 1, -(NBDY)(DELTAT) (GYRO PULSES) X 2(+14)\n \n CCS TEM1 1, +(NBDZ)(DELTAT) (GYRO PULSES) X 2(+14)\n \n CCS GCOMPSW 1
+    preceded   DELTAT NOW SCALED (CS) X 2(+19)\n \n CS NBDX 1, DELTAT SCALED (CS) X 2(+19)\n CA NBDY 1, DELTAT SCALED (CS) X 2(+19)\n CS NBDZ 1
+  PROCEED\n TC -5   seen 3
+    made of    TC -5, PROCEED\n TC, PROCEED\n, -5
+    part of    
+    changes    
+    followed   STORE DATA AND REPEAT FLASHING\n CAF V06N84 +1 1, DATA IN. OPTION1+1 = 1 FOR THIS VEHICLE.\n 1, DATA IN. OPTION1+1 = 1 FOR Z AXIS\nV89RECL TC INTPRET 1
+    preceded   TERMINATE\n TC +2 2, AND WAIT FOR KEYBOARD ACTION.\n CADR GOFLASH\n TCF ENDP76\n TC +2 1
+  ROUTINE.\n CAF ZERO   seen 3
+    made of    CAF ZERO, ROUTINE.\n CAF, ROUTINE.\n, ZERO
+    part of    
+    changes    
+    followed   X COMP\n TC PUTCOM\n INDEX NOUNADD\n TS 0\n CAF ONE 2, X COMP\n TC PUTCOM\n## Page 427\n INDEX NOUNADD\n TS 0\n TC LOADLV\n \nB... 1
+    preceded   SWITCH BANKS TO NOUN TABLE READING\n DXCH Z 3
+  ALTITUDE RATE\n   seen 3
+    made of    ALTITUDE, RATE\n
+    part of    ALTITUDE RATE\n OCT 05531\n OCT 02727, ALTITUDE RATE\n OCT
+    changes    +OCT 05531\n OCT 02727, +OCT
+    followed   COMPUTED ALTITUDE\n OCT 64077 1, COMPUTED ALTITUDE\n OCT 64110 1, COMPUTED ALTITUDE\n OCT 24113 1
+    preceded   60 HORIZONTAL VELOCITY\n 1, 63 ABSOLUTE VALUE OF VELOCITY\n 1, 64 TIME LEFT FOR REDESIGNATION - LPD ANGLE\n 1
+  94 SPARE\n OCT 0   seen 3
+    made of    SPARE\n OCT 0, 94 SPARE\n OCT, 94, 0
+    part of    
+    changes    
+    followed   95 SPARE\n OCT 0 3
+    preceded   93 DELTA GYRO ANGLES\n OCT 00000 1, 93 3COMP DPDEG(90) FOR EACH\n OCT 00000 1, 93 DP3, DP3, DP3\n OCT 00000 1
+  (NO LOAD, DEC ONLY)\n OCT 00000   seen 3
+    made of    (NO LOAD, DEC ONLY)\n OCT, (NO LOAD, DEC ONLY)\n, ONLY)\n OCT 00000, (NO LOAD, DEC, OCT 00000, 00000
+    part of    
+    changes    
+    followed   46 1COMP OCTAL ONLY\n OCT 00306 1, 65 3COMP HMS (DEC ONLY)\n OCT 00016 1, 69 SPARE\n OCT 0 1
+    preceded   45 3COMP WHOLE, MIN/SEC, DPDEG(360)\n 1, 64 3COMP 2INT, VEL3, COMP ALT\n 1, 68 3COMP POS7, MIN/SEC, COMP ALT\n 1
+
+==============================================================================
+LEVEL 2
+==============================================================================
+
+SYMBOLS   14598 symbols, 14404 distinct  (each is a level 1 run; level 1 classes count as same)
+  COLLECT SNAPSHOT\n 6DNADR DNTMBUFF        10
+  SWITCH BANKS TO NOUN TABLE READING\n DXCH Z  8
+  PROCEED\n TCF -5                          7
+  COMMON DATA\n 1DNADR TIME2                6
+  LEMMASS,CSMMASS\n 1DNADR IMODES30         6
+  95 SPARE\n OCT 0                          6
+  (DEC ONLY)\n OCT 24512                    6
+  (3)\n TCF TASKOVER                        5
+  (11)\n TCF WAITABIT                       5
+  IMODES30,IMODES33\n 1DNADR TIG            5
+  (GYRO PULSES)/(PIPA PULSE) X 2(-6) *\n TC GCOMPSUB  5
+  (0)\n TCF ULLGNOT                         4
+  SET EBANK\n MASK LOW8                     4
+  COMMON DATA\n 2DNADR POSTORKU             4
+  LASTYCMD,LASTXCMD\n 1DNADR LEMMASS        4
+  TERMINATE\n TC +2                         4
+  (1)\n TCF COMFAIL3                        3
+  DURING SOFTWARE RESTART, DO NOT DISTURB\n EXTEND  3
+  (GYRO PULSES)/(CS) X 2(-5)\n TC DRIFTSUB  3
+  (GYRO PULSES)/(CS) X 2(-5)\n TC FBIASSUB  3
+  PROCEED\n TC -5                           3
+  ROUTINE.\n CAF ZERO                       3
+  ALTITUDE RATE\n                           3
+  94 SPARE\n OCT 0                          3
+  (NO LOAD, DEC ONLY)\n OCT 00000           3
+
+FOLLOWS   which symbol comes after which (top 25 of 14554 pairs)
+  LEMMASS,CSMMASS\n 1DNADR IMODES30 -> IMODES30,IMODES33\n 1DNADR TIG  5
+  LASTYCMD,LASTXCMD\n 1DNADR LEMMASS -> LEMMASS,CSMMASS\n 1DNADR IMODES30  4
+  (0)\n TCF ULLGNOT        -> (1)\n TCF COMFAIL3        3
+  SWITCH BANKS TO NOUN TABLE READING\n DXCH Z -> ROUTINE.\n CAF ZERO       3
+  94 SPARE\n OCT 0         -> 95 SPARE\n OCT 0          3
+  TERMINATE\n TCF +5       -> PROCEED\n TCF -5          3
+  STARTING ADDRESS\n CA S10BITS -> 01777\n TS SKEEP3         2
+  (1)\n TCF COMFAIL3       -> (2)\n TCF GOCUTOFF        2
+  (2)\n TCF GOCUTOFF       -> (3)\n TCF TASKOVER        2
+  (7)\n\n TCF DISPCHNG     -> (11)\n TCF WAITABIT       2
+  (1)\n TCF COMFAIL4       -> (2)\n TCF GOPOST          2
+  (2)\n TCF GOPOST         -> (3)\n TCF TASKOVER        2
+  (6)\n EBANK= OMEGAQ\n 2CADR STEERING -> (7)\n\n TCF P40SJUNK      2
+  (7)\n\n TCF P40SJUNK     -> (11)\n TCF WAITABIT       2
+  SEND SNAPSHOT\n 1DNADR DELLT4 -> DELLT4,+1\n 3DNADR RTARG  2
+  COMMON DATA\n 2DNADR POSTORKU -> POSTORKU,NEGTORKU,POSTORKV,NEGTORKV\n 1DNADR SPARE\n 1DNADR TCDH  2
+  POSTORKU,NEGTORKU,POSTORKV,NEGTORKV\n 1DNADR SPARE\n 1DNADR TCDH -> TCDH,+1\n 3DNADR DELVEET2  2
+  TCDH,+1\n 3DNADR DELVEET2 -> DELVEET2 +0...+5\n 1DNADR TTPI  2
+  DELVEET2 +0...+5\n 1DNADR TTPI -> TTPI,+1\n 3DNADR DELVEET3  2
+  CDUS,PIPAX,PIPAY,PIPAZ\n 1DNADR LASTYCMD -> LASTYCMD,LASTXCMD\n 1DNADR LEMMASS  2
+  AOG,TRKMKCNT\n 1DNADR TANGNB -> TANGNB,+1\n 1DNADR MKTIME  2
+  TERMINATE\n TCF +2       -> PROCEED\n TCF -5          2
+  READ FRESH DATA FOR HI AND LO INTO MPAC,\n CADR READLO -> MPAC+1.\n TC TPAGREE      2
+  ALL DEC OR ALL OCT.\n EXTEND\n DCA LODNNLOC -> SWITCH BANKS TO NOUN TABLE READING\n DXCH Z  2
+  ROUTINE.\n CAF ZERO      -> X COMP\n TC PUTCOM\n INDEX NOUNADD\n TS 0\n CAF ONE  2
+
+SEPARATOR   the most common symbol: COLLECT SNAPSHOT\n 6DNADR DNTMBUFF
+
+RUNS   11 runs between separators, 11 distinct
+  ### FILE="Main.annotation"\n## Copyright: Public domain.\n## Filename: A...  1
+  SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5...  1
+  SEND SNAPSHOT\n DNPTR LMORBM04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n 1DNADR AGSK | AGSK,+1\n 1DNADR TALIGN | TALIGN,+1\n 2DNA...  1
+  SEND SNAPSHOT\n DNPTR LMCSTA04 | COMMON DATA\n DNPTR LMCSTA07 | COMMON D...  1
+  SEND SNAPSHOT\n DNPTR LMREND07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...  1
+  SEND SNAPSHOT\n DNPTR LMREND04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n DNPTR LMDSAS04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...  1
+  SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D...  1
+  SEND SNAPSHOT\n DNPTR LMAGSI04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 10 pairs)
+  ### FILE="Main.annotation"\n## Copyright: Public domain.\n## Filename: A... -> SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5...  1
+  SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5... -> SEND SNAPSHOT\n DNPTR LMORBM04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n DNPTR LMORBM04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... -> SEND SNAPSHOT\n 1DNADR AGSK | AGSK,+1\n 1DNADR TALIGN | TALIGN,+1\n 2DNA...  1
+  SEND SNAPSHOT\n 1DNADR AGSK | AGSK,+1\n 1DNADR TALIGN | TALIGN,+1\n 2DNA... -> SEND SNAPSHOT\n DNPTR LMCSTA04 | COMMON DATA\n DNPTR LMCSTA07 | COMMON D...  1
+  SEND SNAPSHOT\n DNPTR LMCSTA04 | COMMON DATA\n DNPTR LMCSTA07 | COMMON D... -> SEND SNAPSHOT\n DNPTR LMREND07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...  1
+  SEND SNAPSHOT\n DNPTR LMREND07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE... -> SEND SNAPSHOT\n DNPTR LMREND04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n DNPTR LMREND04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... -> SEND SNAPSHOT\n DNPTR LMDSAS04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n DNPTR LMDSAS04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... -> SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...  1
+  SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE... -> SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D...  1
+  SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D... -> SEND SNAPSHOT\n DNPTR LMAGSI04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 11 distinct runs in, 11 structures added, 247475 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  ### FILE="Main.annotation"\n## Copyright: Public domain.\n## Filename: A...        0       1  
+  SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D...        0       1  
+  SEND SNAPSHOT\n 1DNADR AGSK | AGSK,+1\n 1DNADR TALIGN | TALIGN,+1\n 2DNA...        0       1  
+  SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5...        0       1  
+  SEND SNAPSHOT\n DNPTR LMAGSI04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...        0       1  
+  SEND SNAPSHOT\n DNPTR LMCSTA04 | COMMON DATA\n DNPTR LMCSTA07 | COMMON D...        0       1  
+  SEND SNAPSHOT\n DNPTR LMDSAS04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...        0       1  
+  SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...        0       1  
+  SEND SNAPSHOT\n DNPTR LMORBM04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...        0       1  
+  SEND SNAPSHOT\n DNPTR LMREND04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...        0       1  
+  SEND SNAPSHOT\n DNPTR LMREND07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  ### FILE="Main.annotation"\n## Copyright: Public domain.\n## Filename: A...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5... 1
+    preceded   
+  SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   SEND SNAPSHOT\n DNPTR LMORBM04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... 1
+    preceded   ### FILE="Main.annotation"\n## Copyright: Public domain.\n## Filename: A... 1
+  SEND SNAPSHOT\n DNPTR LMORBM04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   SEND SNAPSHOT\n 1DNADR AGSK | AGSK,+1\n 1DNADR TALIGN | TALIGN,+1\n 2DNA... 1
+    preceded   SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5... 1
+  SEND SNAPSHOT\n 1DNADR AGSK | AGSK,+1\n 1DNADR TALIGN | TALIGN,+1\n 2DNA...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   SEND SNAPSHOT\n DNPTR LMCSTA04 | COMMON DATA\n DNPTR LMCSTA07 | COMMON D... 1
+    preceded   SEND SNAPSHOT\n DNPTR LMORBM04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... 1
+  SEND SNAPSHOT\n DNPTR LMCSTA04 | COMMON DATA\n DNPTR LMCSTA07 | COMMON D...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   SEND SNAPSHOT\n DNPTR LMREND07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE... 1
+    preceded   SEND SNAPSHOT\n 1DNADR AGSK | AGSK,+1\n 1DNADR TALIGN | TALIGN,+1\n 2DNA... 1
+  SEND SNAPSHOT\n DNPTR LMREND07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   SEND SNAPSHOT\n DNPTR LMREND04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... 1
+    preceded   SEND SNAPSHOT\n DNPTR LMCSTA04 | COMMON DATA\n DNPTR LMCSTA07 | COMMON D... 1
+  SEND SNAPSHOT\n DNPTR LMREND04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   SEND SNAPSHOT\n DNPTR LMDSAS04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... 1
+    preceded   SEND SNAPSHOT\n DNPTR LMREND07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE... 1
+  SEND SNAPSHOT\n DNPTR LMDSAS04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE... 1
+    preceded   SEND SNAPSHOT\n DNPTR LMREND04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... 1
+  SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D... 1
+    preceded   SEND SNAPSHOT\n DNPTR LMDSAS04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... 1
+  SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   SEND SNAPSHOT\n DNPTR LMAGSI04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... 1
+    preceded   SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE... 1
+  SEND SNAPSHOT\n DNPTR LMAGSI04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D... 1
+
+==============================================================================
+LEVEL 3
+==============================================================================
+
+SYMBOLS   11 symbols, 11 distinct  (each is a level 2 run; level 2 classes count as same)
+  ### FILE="Main.annotation"\n## Copyright: Public domain.\n## Filename: A...  1
+  SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5...  1
+  SEND SNAPSHOT\n DNPTR LMORBM04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n 1DNADR AGSK | AGSK,+1\n 1DNADR TALIGN | TALIGN,+1\n 2DNA...  1
+  SEND SNAPSHOT\n DNPTR LMCSTA04 | COMMON DATA\n DNPTR LMCSTA07 | COMMON D...  1
+  SEND SNAPSHOT\n DNPTR LMREND07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...  1
+  SEND SNAPSHOT\n DNPTR LMREND04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n DNPTR LMDSAS04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...  1
+  SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D...  1
+  SEND SNAPSHOT\n DNPTR LMAGSI04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+
+FOLLOWS   which symbol comes after which (top 25 of 10 pairs)
+  ### FILE="Main.annotation"\n## Copyright: Public domain.\n## Filename: A... -> SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5...  1
+  SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5... -> SEND SNAPSHOT\n DNPTR LMORBM04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n DNPTR LMORBM04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... -> SEND SNAPSHOT\n 1DNADR AGSK | AGSK,+1\n 1DNADR TALIGN | TALIGN,+1\n 2DNA...  1
+  SEND SNAPSHOT\n 1DNADR AGSK | AGSK,+1\n 1DNADR TALIGN | TALIGN,+1\n 2DNA... -> SEND SNAPSHOT\n DNPTR LMCSTA04 | COMMON DATA\n DNPTR LMCSTA07 | COMMON D...  1
+  SEND SNAPSHOT\n DNPTR LMCSTA04 | COMMON DATA\n DNPTR LMCSTA07 | COMMON D... -> SEND SNAPSHOT\n DNPTR LMREND07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...  1
+  SEND SNAPSHOT\n DNPTR LMREND07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE... -> SEND SNAPSHOT\n DNPTR LMREND04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n DNPTR LMREND04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... -> SEND SNAPSHOT\n DNPTR LMDSAS04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+  SEND SNAPSHOT\n DNPTR LMDSAS04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK... -> SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE...  1
+  SEND SNAPSHOT\n DNPTR LMLSAL07 | COLLECT SNAPSHOT\n 4DNADR DNTMBUFF | SE... -> SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D...  1
+  SEND SHAPSHOT\n DNPTR LMLSAL04 | COMMON DATA\n DNPTR LMLSAL09 | COMMON D... -> SEND SNAPSHOT\n DNPTR LMAGSI04 | COMMON DATA\n 2DNADR POSTORKU | POSTORK...  1
+
+SEPARATOR   the most common symbol: ### FILE="Main.annotation"\n## Copyright: Public domain.\n## Filename: A...
+
+RUNS   1 runs between separators, 1 distinct
+  SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 1 distinct runs in, 1 structures added, 247476 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  SEND SNAPSHOT\n 1DNADR DELLT4 | DELLT4,+1\n 3DNADR RTARG | RTARG,+1...+5...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   
+

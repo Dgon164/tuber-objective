@@ -1,0 +1,10 @@
+  on the pad: mass 15000 kg, propellant 5000 kg, engine 4670..43900 N, weight 24300 N
+  t=   0.69s  computer zeroes the IMU CDUs: platform taken as the body's frame now
+  t=  62.16s  manual: arm
+  t=  70.78s  manual: engine on
+  t=  77.90s  manual: throttle up
+  t=  86.69s  computer says: ISS turn-on delay complete; request dropped
+  t=  87.06s  manual: throttle up
+  t=  95.82s  manual: throttle up
+  t= 103.76s  manual: throttle up
+  t= 103.76s  lift-off: thrust 24670 N, weight 24084 N

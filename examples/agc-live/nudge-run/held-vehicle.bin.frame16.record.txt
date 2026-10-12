@@ -1,0 +1,863 @@
+DISCOVERY RECORD
+signal     held-vehicle.bin
+size       26000 bytes, 208000 bits
+
+FRAME   score = spread between the column most often 1 and the column least often 1
+  width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
+   52    0.638   col   0 at 0.000   col  25 at 0.638
+   26    0.246   col  22 at 0.074   col  25 at 0.319
+   48    0.236   col   4 at 0.136   col  29 at 0.372
+   64    0.234   col  20 at 0.136   col  61 at 0.370
+   32    0.229   col  20 at 0.136   col  29 at 0.365
+   16    0.228   col   4 at 0.137   col  13 at 0.365
+   39    0.180   col  36 at 0.125   col  27 at 0.306
+   13    0.178   col  10 at 0.127   col   1 at 0.305
+  picked width 52
+    fold to  1: columns differ by 0.1576 on average (wobble by chance 0.0079) -> different
+    fold to  2: columns differ by 0.1566 on average (wobble by chance 0.0079) -> different
+    fold to  4: columns differ by 0.1553 on average (wobble by chance 0.0079) -> different
+    fold to 13: columns differ by 0.1560 on average (wobble by chance 0.0079) -> different
+    fold to 26: columns differ by 0.1465 on average (wobble by chance 0.0079) -> different
+  chosen width 16
+  column rates at width 16:
+    0.184 0.260 0.184 0.208 0.137 0.223 0.299 0.218 0.156 0.232 0.218 0.167 0.170 0.365 0.213 0.202
+
+LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
+  level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
+      0    13000      1967     3700      1882     1810           34     3692        3692
+      1     3700      1882      901       901      802            0     1702        5394
+      2      901       901        1         1        0            0        1        5395
+  stopped: level 2 left a single run; nothing more to cut
+
+==============================================================================
+LEVEL 0
+==============================================================================
+
+WORDS   13000 words, 1967 distinct
+  bits              glyph   count
+  0000000000000000  0000    6043
+  0100001000000100  4204    1000
+  1111011101100100  f764    1000
+  0000000000000111  0007    295
+  1111111110001111  ff8f    245
+  0000000001010111  0057    169
+  0000000000001000  0008    103
+  0000000000010011  0013    97
+  0000000001001111  004f    97
+  1111111111000000  ffc0    89
+  0000000000000010  0002    78
+  0000000101010100  0154    74
+  1111111110010100  ff94    66
+  1111111101111100  ff7c    58
+  1111111110111000  ffb8    58
+  0000000000000100  0004    52
+  0000000000000011  0003    48
+  1111111101111110  ff7e    39
+  0000000000000110  0006    37
+  1111111101000010  ff42    37
+  1111111111111111  ffff    34
+  0000000000000101  0005    29
+  0000000010000000  0080    29
+  0000000001000110  0046    23
+  0010000100000000  2100    22
+
+FOLLOWS   which word comes after which (top 25 of 4244 pairs)
+  0000                     -> 0000                      2342
+  0000                     -> 4204                      1000
+  4204                     -> f764                      1000
+  f764                     -> 0000                      1000
+  0007                     -> 0000                      252
+  0000                     -> ff8f                      244
+  ff8f                     -> 0007                      244
+  0057                     -> 0000                      169
+  0000                     -> 0057                      167
+  0000                     -> 0008                      101
+  004f                     -> 0000                      96
+  0000                     -> 0013                      95
+  0013                     -> 004f                      94
+  ffc0                     -> 0000                      89
+  0000                     -> 0154                      74
+  0154                     -> ffc0                      74
+  0002                     -> 0000                      68
+  0000                     -> ff94                      65
+  ff94                     -> 0002                      65
+  0000                     -> ff7c                      58
+  ff7c                     -> ffb8                      58
+  ffb8                     -> 0000                      58
+  0000                     -> 0004                      49
+  0000                     -> 0003                      46
+  0000                     -> 0007                      43
+
+SEPARATOR   the most common word: 0000000000000000 (0000)
+
+RUNS   3700 runs between separators, 1882 distinct
+  4204.f764                                 1000
+  ff8f.0007                                 244
+  0057                                      167
+  0013.004f                                 94
+  0154.ffc0                                 74
+  ff94.0002                                 65
+  ff7c.ffb8                                 58
+  ff42.ff7e                                 37
+  0046.ffff                                 20
+  00df.0035                                 18
+  0059.00bb                                 13
+  ff67.0063                                 9
+  0056                                      2
+  005f                                      2
+  0068                                      2
+  0071                                      2
+  00b6                                      2
+  00bf                                      2
+  00c8                                      2
+  00d1                                      2
+  0199                                      2
+  01a2                                      2
+  01ab                                      2
+  01f9                                      2
+  0202                                      2
+
+RUN FOLLOWS   which run comes after which (top 25 of 2811 pairs)
+  ff8f.0007                -> 4204.f764                 244
+  0057                     -> 4204.f764                 167
+  4204.f764                -> 4204.f764                 99
+  0013.004f                -> 4204.f764                 94
+  0154.ffc0                -> 4204.f764                 74
+  ff94.0002                -> 4204.f764                 65
+  ff7c.ffb8                -> 4204.f764                 58
+  ff42.ff7e                -> 4204.f764                 37
+  0046.ffff                -> 4204.f764                 20
+  00df.0035                -> 4204.f764                 18
+  0059.00bb                -> 4204.f764                 13
+  ff67.0063                -> 4204.f764                 9
+  4204.f764                -> 6900.0354                 2
+  0058.00ba                -> 4204.f764                 2
+  4204.f764                -> 0008                      1
+  0008                     -> 0057                      1
+  4204.f764                -> 0004                      1
+  0004                     -> 0011                      1
+  0011                     -> 0057                      1
+  4204.f764                -> 0009                      1
+  0009                     -> 0019                      1
+  0019                     -> 0057                      1
+  4204.f764                -> 000d                      1
+  000d                     -> 0022                      1
+  0022                     -> 0057                      1
+
+MINT   6 rounds; parts minted per round: 1592 202 13 2 1 0
+  pool: 1882 distinct runs in, 3692 structures added, 3692 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  ff8f.0007                           244     244  049e 0005.0406.0027 ff8f.0007, 0515 0006.032e.0034 ff8f.0007, 0865 0007.fd32.0091 ff8f.0007, 06ce 0008.0014.0064 ff8f.0007
+  0057                                170     167  0008.00ec.0057, ff5c.0057, 01d4 038b 0057, 0226 0428 0057
+  0008                                153       1  0008.ff48.0070, 0008.fea9.007a, 0008.ff81.006d, 0008.018b.004d
+  0013.004f                            94      94  1d8e 0077.fea4.feef 0013.004f, 1cdf 0081.fe66.fdec 0013.004f, 1e0f 0071.fed3.ffb4 0013.004f, 1d59 007a.fe91.fea0 0013.004f
+  0004                                 88       1  0004.04d2.001a, 0004.049a.001e, 0001.063e.0004, 0004.fb00.00ae
+  0003                                 84       0  0003.f90d.00b7, 0003.f97a.00b5, 0003.f985.00b5, 0003.f8d7.00b8
+  0007                                 76       0  ff8f.0007, 0007.fd10.0093, 0001.0610.0007, 0007.0290.003d
+  0154.ffc0                            74      74  0d4b 0028.fc1d.ffca 0154.ffc0, 1144 002e.027b.fe99 0154.ffc0, 1103 002f.0215.feac 0154.ffc0, 0c8a 0022.faeb.0003 0154.ffc0
+  ff94.0002                            65      65  0ab1 0003.f8f8.00b7 ff94.0002, 0a3d 0003.f9d1.00b3 ff94.0002, 09dc 0004.fa89.00b0 ff94.0002, 0a37 0003.f9dc.00b3 ff94.0002
+  ff7c.ffb8                            58      58  1bb9 0080.ff93.fe40 ff7c.ffb8, 1b0e 0080.0067.feb4 ff7c.ffb8, 1c65 0083.febf.fdcc ff7c.ffb8, 1a6d 0082.012d.ff20 ff7c.ffb8
+  0006                                 58       0  0006.fcb6.0099, 0006.033a.0033, 0006.fcd8.0097, 0006.0351.0032
+  0005                                 44       0  0005.fbbc.00a8, 0005.0411.0026, 0005.0428.0024, 0005.fba5.00a9
+  ff42.ff7e                            37      37  19ad 0088.020a.ffa3 ff42.ff7e, 17b8 00a6.0432.011c ff42.ff7e, 1923 008e.02a2.000b ff42.ff7e, 198a 0089.0230.ffbd ff42.ff7e
+  0080                                 37       0  0080.ff86.fe39, 0080.ffd5.fe64, 0080.ffad.fe4f, 0080.000a.fe81
+  0081                                 24       0  0081.ff1c.fdff, 0081.00a9.fed8, 0081.00d0.feee, 0081.ff43.fe15
+  0002                                 22       0  ff94.0002, 0002.059f.000e, 0002.05d7.000a, 0044.0002
+  2100                                 22       0  2100.1200, 2100.034e, 2100.1392, 2100.11ed
+  0001                                 21       0  0001.0610.0007, 0001.0627.0006, 0001.003d, 0054.0001
+  0046.ffff                            20      20  031d 0600 0046.ffff, 0900.0300 05c8 0046.ffff, 030b 05dd 0046.ffff, 032c 061c.ffff 0046.ffff
+  0084                                 20       1  0084.fe97.fdb7, 0084.fe70.fda7, 0084.fe8c.fdb1, 0084.fe5f.fda9
+  0032                                 19       1  0006.0351.0032, 0032.003a.ff05, 0032.0539.fea9, 0032.fff6.ff12
+  0031                                 19       0  0031.ff6e.ff2b, 0031.0149.fed2, 0006.035c.0031, 0031.ff08.ff3e
+  00df.0035                            18      18  1347 0036.05a8.fec3 00df.0035, 1288 002d.0487.fe7f 00df.0035, 1296 002d.049d.fe84 00df.0035, 12e0 0031.050c.fe9e 00df.0035
+  0082                                 18       1  0082.fee7.fde2, 0082.fe61.fdd4, 0082.ff01.fdf1, 0082.0105.ff0b
+  0083                                 17       0  0083.feb2.fdc5, 0083.0162.ff3d, 0083.fecc.fdd4, 0083.fea4.fdbe
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +ffc0                      17
+  +00bd                      16
+  +0007                      15
+  +ffff                      15
+  +00b4                      13
+  +00ac                      12
+  +00ad                      12
+  +00b7                      11
+  +00b8                      11
+  +00b5                      11
+  +00b2                      11
+  +00b1                      11
+  +00af                      11
+  +009f                      10
+  +00b6                      10
+  +00b3                      10
+  +0080                      10
+  +0017                      9
+  +00b0                      9
+  +00ae                      9
+  +003b                      8
+  +0022                      8
+  +0032                      8
+  +0061                      8
+  +0051                      8
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                      0008+  279
+                      0004+  134
+                      0003+  132
+                      0007+  115
+                      0006+  95
+                      0005+  73
+                      0080+  56
+                      0081+  47
+                      2100+  43
+                      0084+  37
+                      4800+  34
+                      8400+  34
+                      0083+  31
+                      0082+  31
+                      0031+  31
+                      0002+  30
+                      9600+  30
+                      0001+  28
+                      1200+  26
+                      002a+  24
+                      0032+  24
+                      6900+  23
+                      0030+  22
+                      006f+  20
+                      002b+  19
+
+CLASSES   parts that take the same set of changes (largest 25 of 510; two or more members count as same one level up)
+  {0.0} [+00b1, 0004+]
+     5 members: fa5e, fa3d, fa53, fa48, f894
+  {0.1} [+00b4, 0003+]
+     5 members: f9a5, f89b, f99a, f990, f9b0
+  {0.2} [+00b7, 0003+]
+     5 members: f8e2, f8a3, f8f8, f8ed, f903
+  {0.3} [+00b5, 0003+]
+     5 members: f96f, f964, f97a, f959, f94f
+  {0.4} [+00af, 0004+]
+     5 members: fabf, fad5, fab4, faaa, faca
+  {0.5} [+00ad, 0004+]
+     5 members: fb4c, fb21, fb37, fb41, fb2c
+  {0.6} [+00b8, 0003+]
+     4 members: f8b7, f8ac, f8cc, f8c2
+  {0.7} [+00b6, 0003+]
+     4 members: f923, f939, f918, f92e
+  {0.8} [+00b0, 0004+]
+     4 members: fa73, fa89, fa7e, fa94
+  {0.9} [+00b3, 0003+]
+     3 members: f9c6, f9e6, f9d1
+  {0.10} [+00b2, 0004+]
+     3 members: fa12, fa27, fa1d
+  {0.11} [+00ae, 0004+]
+     3 members: fb0b, fb00, faf6
+  {0.12} [+00ac, 0004+]
+     3 members: fb6d, fb62, fb57
+  {0.13} [+004c, 0008+]
+     2 members: 01a1, 0196
+  {0.14} [+0048, 0008+]
+     2 members: 01e5, 01da
+  {0.15} [+0041, 0007+]
+     2 members: 0257, 024c
+  {0.16} [+003f, 0007+]
+     2 members: 026e, 0279
+  {0.17} [+003b, 0007+]
+     2 members: 02bd, 02b2
+  {0.18} [+fe79, 002c+]
+     2 members: 0325, 0471
+  {0.19} [+0032, 0006+]
+     2 members: 0345, 0351
+  {0.20} [+0024, 0005+]
+     2 members: 0428, 0434
+  {0.21} [+0022, 0005+]
+     2 members: 044a, 0456
+  {0.22} [+001c, 0004+]
+     2 members: 04bc, 04b0
+  {0.23} [+0019, 0004+]
+     2 members: 04e9, 04de
+  {0.24} [+0017, 0003+]
+     2 members: 050b, 0500
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  4204.f764   seen 1000
+    made of    
+    part of    
+    changes    
+    followed   4204.f764 99, 6900.0354 2, 0008 1, 0004 1, 0009 1, 000d 1
+    preceded   ff8f.0007 244, 0057 167, 4204.f764 99, 0013.004f 94, 0154.ffc0 74, ff94.0002 65
+  ff8f.0007   seen 244
+    made of    0007, ff8f
+    part of    049e 0005.0406.0027 ff8f.0007, 0515 0006.032e.0034 ff8f.0007, 0865 0007.fd32.0091 ff8f.0007, 06ce 0008.0014.0064 ff8f.0007, 05f8 0008.0196.004c ff8f.0007, 04b7 0006.03d9.0029 ff8f.0007, 07a3 0008.fe92.007c ff8f.0007, 08fd 0005.fc22.00a2 ff8f.0007
+    changes    049e 0005.0406.0027+, 0515 0006.032e.0034+, 0865 0007.fd32.0091+, 06ce 0008.0014.0064+, 05f8 0008.0196.004c+, 04b7 0006.03d9.0029+, 07a3 0008.fe92.007c+, 08fd 0005.fc22.00a2+
+    followed   4204.f764 244
+    preceded   0001.063e.0004 1, 0001.0632.0005 1, 0001.0627.0006 1, 0001.061b.0006 1, 0001.0610.0007 1, 0001.0605.0008 1
+  0057   seen 167
+    made of    
+    part of    0008.00ec.0057, ff5c.0057, 01d4 038b 0057, 0226 0428 0057, 00ec.0057, 0167 02b9 0057, 02ca 0562 0057, 01eb 03b6 0057
+    changes    0008.00ec+, ff5c+, 01d4 038b+, 0226 0428+, 00ec+, 0167 02b9+, 02ca 0562+, 01eb 03b6+
+    followed   4204.f764 167
+    preceded   0008 1, 0011 1, 0019 1, 0022 1, 002b 1, 0033 1
+  0013.004f   seen 94
+    made of    004f, 0013
+    part of    1d8e 0077.fea4.feef 0013.004f, 1cdf 0081.fe66.fdec 0013.004f, 1e0f 0071.fed3.ffb4 0013.004f, 1d59 007a.fe91.fea0 0013.004f, 1d53 007b.fe90.fe99 0013.004f, 1cff 007f.fe71.fe1b 0013.004f, 1d7d 0078.fe9f.fed7 0013.004f, 1d3e 007c.fe88.fe79 0013.004f
+    changes    1d8e 0077.fea4.feef+, 1cdf 0081.fe66.fdec+, 1e0f 0071.fed3.ffb4+, 1d59 007a.fe91.fea0+, 1d53 007b.fe90.fe99+, 1cff 007f.fe71.fe1b+, 1d7d 0078.fe9f.fed7+, 1d3e 007c.fe88.fe79+
+    followed   4204.f764 94
+    preceded   0083.fe5d.fdc4 1, 0083.fe5f.fdcc 1, 0082.fe61.fdd4 1, 0082.fe62.fddc 1, 0082.fe64.fde4 1, 0081.fe66.fdec 1
+  0154.ffc0   seen 74
+    made of    ffc0, 0154
+    part of    0d4b 0028.fc1d.ffca 0154.ffc0, 1144 002e.027b.fe99 0154.ffc0, 1103 002f.0215.feac 0154.ffc0, 0c8a 0022.faeb.0003 0154.ffc0, 0ff1 0032.005c.feff 0154.ffc0, 11ad 002c.0325.fe79 0154.ffc0, 1198 002c.0303.fe80 0154.ffc0, 1158 002d.029d.fe93 0154.ffc0
+    changes    0d4b 0028.fc1d.ffca+, 1144 002e.027b.fe99+, 1103 002f.0215.feac+, 0c8a 0022.faeb.0003+, 0ff1 0032.005c.feff+, 11ad 002c.0325.fe79+, 1198 002c.0303.fe80+, 1158 002d.029d.fe93+
+    followed   4204.f764 74
+    preceded   0018.f976.0048 1, 0019.f998.0042 1, 001a.f9ba.003b 1, 001b.f9dc.0035 1, 001c.f9fe.002f 1, 001d.fa20.0028 1
+  ff94.0002   seen 65
+    made of    0002, ff94
+    part of    0ab1 0003.f8f8.00b7 ff94.0002, 0a3d 0003.f9d1.00b3 ff94.0002, 09dc 0004.fa89.00b0 ff94.0002, 0a37 0003.f9dc.00b3 ff94.0002, 0a21 0003.fa07.00b2 ff94.0002, 0a89 0003.f944.00b6 ff94.0002, 09a8 0004.faeb.00ae ff94.0002, 0a9a 0003.f923.00b6 ff94.0002
+    changes    0ab1 0003.f8f8.00b7+, 0a3d 0003.f9d1.00b3+, 09dc 0004.fa89.00b0+, 0a37 0003.f9dc.00b3+, 0a21 0003.fa07.00b2+, 0a89 0003.f944.00b6+, 09a8 0004.faeb.00ae+, 0a9a 0003.f923.00b6+
+    followed   4204.f764 65
+    preceded   0004.fb6d.00ac 1, 0004.fb62.00ac 1, 0004.fb57.00ac 1, 0004.fb4c.00ad 1, 0004.fb41.00ad 1, 0004.fb37.00ad 1
+  ff7c.ffb8   seen 58
+    made of    
+    part of    1bb9 0080.ff93.fe40 ff7c.ffb8, 1b0e 0080.0067.feb4 ff7c.ffb8, 1c65 0083.febf.fdcc ff7c.ffb8, 1a6d 0082.012d.ff20 ff7c.ffb8, 1a82 0082.0113.ff12 ff7c.ffb8, 1c24 0082.ff0e.fdf8 ff7c.ffb8, 1c7a 0083.fea4.fdbe ff7c.ffb8, 1b19 0080.0059.fead ff7c.ffb8
+    changes    1bb9 0080.ff93.fe40+, 1b0e 0080.0067.feb4+, 1c65 0083.febf.fdcc+, 1a6d 0082.012d.ff20+, 1a82 0082.0113.ff12+, 1c24 0082.ff0e.fdf8+, 1c7a 0083.fea4.fdbe+, 1b19 0080.0059.fead+
+    followed   4204.f764 58
+    preceded   0084.0197.ff5a 1, 0084.018a.ff53 1, 0084.017c.ff4c 1, 0084.016f.ff45 1, 0083.0162.ff3d 1, 0083.0155.ff36 1
+  ff42.ff7e   seen 37
+    made of    ff7e, ff42
+    part of    19ad 0088.020a.ffa3 ff42.ff7e, 17b8 00a6.0432.011c ff42.ff7e, 1923 008e.02a2.000b ff42.ff7e, 198a 0089.0230.ffbd ff42.ff7e, 1913 008f.02b5.0018 ff42.ff7e, 17fe 00a1.03e6.00e8 ff42.ff7e, 1967 008b.0256.ffd7 ff42.ff7e, 17a7 00a7.0445.0129 ff42.ff7e
+    changes    19ad 0088.020a.ffa3+, 17b8 00a6.0432.011c+, 1923 008e.02a2.000b+, 198a 0089.0230.ffbd+, 1913 008f.02b5.0018+, 17fe 00a1.03e6.00e8+, 1967 008b.0256.ffd7+, 17a7 00a7.0445.0129+
+    followed   4204.f764 37
+    preceded   00af.04a4.0169 1, 00ad.0491.015c 1, 00ac.047e.0150 1, 00aa.046b.0143 1, 00a9.0458.0136 1, 00a7.0445.0129 1
+  0046.ffff   seen 20
+    made of    0046, ffff
+    part of    031d 0600 0046.ffff, 0900.0300 05c8 0046.ffff, 030b 05dd 0046.ffff, 032c 061c.ffff 0046.ffff, 0333 062a.ffff 0046.ffff, 0328 0615.ffff 0046.ffff, 0330 0623.ffff 0046.ffff, 033f 063f.ffff 0046.ffff
+    changes    031d 0600+, 0900.0300 05c8+, 030b 05dd+, 032c 061c.ffff+, 0333 062a.ffff+, 0328 0615.ffff+, 0330 0623.ffff+, 033f 063f.ffff+
+    followed   4204.f764 20
+    preceded   05c8 1, 05cf 1, 05d6 1, 05dd 1, 05e4 1, 05eb 1
+  00df.0035   seen 18
+    made of    0035, 00df
+    part of    1347 0036.05a8.fec3 00df.0035, 1288 002d.0487.fe7f 00df.0035, 1296 002d.049d.fe84 00df.0035, 12e0 0031.050c.fe9e 00df.0035, 1338 0035.0592.febe 00df.0035, 1365 0037.05d4.fece 00df.0035, 12c2 002f.04e0.fe94 00df.0035, 1279 002c.0471.fe79 00df.0035
+    changes    1347 0036.05a8.fec3+, 1288 002d.0487.fe7f+, 1296 002d.049d.fe84+, 12e0 0031.050c.fe9e+, 1338 0035.0592.febe+, 1365 0037.05d4.fece+, 12c2 002f.04e0.fe94+, 1279 002c.0471.fe79+
+    followed   4204.f764 18
+    preceded   002b.045a.fe74 1, 002c.0471.fe79 1, 002d.0487.fe7f 1, 002d.049d.fe84 1, 002e.04b3.fe89 1, 002f.04c9.fe8e 1
+  0059.00bb   seen 13
+    made of    00bb, 0059
+    part of    149b 0068.06d4.fff2 0059.00bb, 147b 0062.06c2.ffcd 0059.00bb, 14ba 006f.06e6.0017 0059.00bb, 143b 0055.069e.ff83 0059.00bb, 145b 005b.06b0.ffa8 0059.00bb, 142b 0052.0696.ff71 0059.00bb, 148a 0065.06cb.ffdf 0059.00bb, 2100.141b 004f.068d.ff5e 0059.00bb
+    changes    149b 0068.06d4.fff2+, 147b 0062.06c2.ffcd+, 14ba 006f.06e6.0017+, 143b 0055.069e.ff83+, 145b 005b.06b0.ffa8+, 142b 0052.0696.ff71+, 148a 0065.06cb.ffdf+, 2100.141b 004f.068d.ff5e+
+    followed   4204.f764 13
+    preceded   004f.068d.ff5e 1, 0052.0696.ff71 1, 0055.069e.ff83 1, 0058.06a7.ff96 1, 005b.06b0.ffa8 1, 005f.06b9.ffbb 1
+  ff67.0063   seen 9
+    made of    ff67, 0063
+    part of    1630 00b3.064f.0191 ff67.0063, 15cf 00a7.06b9.014d ff67.0063, 1615 00af.066d.017e ff67.0063, 1623 00b1.065e.0187 ff67.0063, 15dd 00a9.06aa.0157 ff67.0063, 15eb 00ab.069b.0160 ff67.0063, 15f9 00ac.068c.016a ff67.0063, 4800.15c1 00a6.06c9.0143 ff67.0063
+    changes    1630 00b3.064f.0191+, 15cf 00a7.06b9.014d+, 1615 00af.066d.017e+, 1623 00b1.065e.0187+, 15dd 00a9.06aa.0157+, 15eb 00ab.069b.0160+, 15f9 00ac.068c.016a+, 4800.15c1 00a6.06c9.0143+
+    followed   4204.f764 9
+    preceded   00a6.06c9.0143 1, 00a7.06b9.014d 1, 00a9.06aa.0157 1, 00ab.069b.0160 1, 00ac.068c.016a 1, 00ae.067d.0174 1
+  0056   seen 2
+    made of    
+    part of    00f7.0056
+    changes    00f7+
+    followed   0057 1, 00ae 1
+    preceded   0029 1, 4204.f764 1
+  005f   seen 2
+    made of    
+    part of    005f.06b9.ffbb, 0064.005f, 005f.06b9
+    changes    +06b9.ffbb, 0064+, +06b9
+    followed   0057 1, 00bf 1
+    preceded   002d 1, 4204.f764 1
+  0068   seen 2
+    made of    
+    part of    0068.06d4.fff2, 006c.fefe.0068, 0068.00ac, fefe.0068, 0068.06d4, ffd0.0068
+    changes    +06d4.fff2, 006c.fefe+, +00ac, fefe+, +06d4, ffd0+
+    followed   0057 1, 00d1 1
+    preceded   0032 1, 4204.f764 1
+  0071   seen 2
+    made of    
+    part of    0071.fed7.ffc3, 0071.fed3.ffb4, 0071.fed5.ffbb, 0071.fed1.ffac, ff3c.0071
+    changes    +fed7.ffc3, +fed3.ffb4, +fed5.ffbb, +fed1.ffac, ff3c+
+    followed   0057 1, 00e2 1
+    preceded   0036 1, 4204.f764 1
+  00b6   seen 2
+    made of    
+    part of    0003.f918.00b6, 0003.f923.00b6, 0003.f92e.00b6, 0003.f939.00b6, 00b6.050e.01a0, f918.00b6, f923.00b6, f939.00b6
+    changes    0003.f918+, 0003.f923+, 0003.f92e+, 0003.f939+, +050e.01a0, f918+, f923+, f939+
+    followed   0057 1, 0165 1
+    preceded   005b 1, 4204.f764 1
+  00bf   seen 2
+    made of    
+    part of    
+    changes    
+    followed   0057 1, 0176 1
+    preceded   005f 1, 4204.f764 1
+  00c8   seen 2
+    made of    
+    part of    
+    changes    
+    followed   0057 1, 0188 1
+    preceded   0064 1, 4204.f764 1
+  00d1   seen 2
+    made of    
+    part of    
+    changes    
+    followed   0057 1, 0199 1
+    preceded   0068 1, 4204.f764 1
+  0199   seen 2
+    made of    
+    part of    
+    changes    
+    followed   0057 1, 0319 1
+    preceded   00d1 1, 4204.f764 1
+  01a2   seen 2
+    made of    
+    part of    00b5.062e.01a2
+    changes    00b5.062e+
+    followed   0057 1, 032b 1
+    preceded   00d5 1, 4204.f764 1
+  01ab   seen 2
+    made of    
+    part of    
+    changes    
+    followed   0057 1, 033c 1
+    preceded   00da 1, 4204.f764 1
+  01f9   seen 2
+    made of    
+    part of    
+    changes    
+    followed   0057 1, 03d1 1
+    preceded   0103 1, 4204.f764 1
+  0202   seen 2
+    made of    
+    part of    
+    changes    
+    followed   0057 1, 03e2 1
+    preceded   0108 1, 4204.f764 1
+
+==============================================================================
+LEVEL 1
+==============================================================================
+
+SYMBOLS   3700 symbols, 1882 distinct  (each is a level 0 run; level 0 classes count as same)
+  4204.f764                                 1000
+  ff8f.0007                                 244
+  0057                                      167
+  0013.004f                                 94
+  0154.ffc0                                 74
+  ff94.0002                                 65
+  ff7c.ffb8                                 58
+  ff42.ff7e                                 37
+  0046.ffff                                 20
+  00df.0035                                 18
+  0059.00bb                                 13
+  ff67.0063                                 9
+  0056                                      2
+  005f                                      2
+  0068                                      2
+  0071                                      2
+  00b6                                      2
+  00bf                                      2
+  00c8                                      2
+  00d1                                      2
+  0199                                      2
+  01a2                                      2
+  01ab                                      2
+  01f9                                      2
+  0202                                      2
+
+FOLLOWS   which symbol comes after which (top 25 of 2811 pairs)
+  ff8f.0007                -> 4204.f764                 244
+  0057                     -> 4204.f764                 167
+  4204.f764                -> 4204.f764                 99
+  0013.004f                -> 4204.f764                 94
+  0154.ffc0                -> 4204.f764                 74
+  ff94.0002                -> 4204.f764                 65
+  ff7c.ffb8                -> 4204.f764                 58
+  ff42.ff7e                -> 4204.f764                 37
+  0046.ffff                -> 4204.f764                 20
+  00df.0035                -> 4204.f764                 18
+  0059.00bb                -> 4204.f764                 13
+  ff67.0063                -> 4204.f764                 9
+  4204.f764                -> 6900.0354                 2
+  0058.00ba                -> 4204.f764                 2
+  4204.f764                -> 0008                      1
+  0008                     -> 0057                      1
+  4204.f764                -> 0004                      1
+  0004                     -> 0011                      1
+  0011                     -> 0057                      1
+  4204.f764                -> 0009                      1
+  0009                     -> 0019                      1
+  0019                     -> 0057                      1
+  4204.f764                -> 000d                      1
+  000d                     -> 0022                      1
+  0022                     -> 0057                      1
+
+SEPARATOR   the most common symbol: 4204.f764
+
+RUNS   901 runs between separators, 901 distinct
+  0008 0057                                 1
+  0004 0011 0057                            1
+  0009 0019 0057                            1
+  000d 0022 0057                            1
+  0012 002b 0057                            1
+  0016 0033 0057                            1
+  001b 003c 0057                            1
+  001f 0045 0057                            1
+  0024 004e 0057                            1
+  0029 0056 0057                            1
+  002d 005f 0057                            1
+  0032 0068 0057                            1
+  0036 0071 0057                            1
+  003b 0079 0057                            1
+  003f 0082 0057                            1
+  0044 008b 0057                            1
+  0048 0093 0057                            1
+  004d 009c 0057                            1
+  0051 00a5 0057                            1
+  0056 00ae 0057                            1
+  005b 00b6 0057                            1
+  005f 00bf 0057                            1
+  0064 00c8 0057                            1
+  0068 00d1 0057                            1
+  006d 00d9 0057                            1
+
+RUN FOLLOWS   which run comes after which (top 25 of 900 pairs)
+  0008 0057                -> 0004 0011 0057            1
+  0004 0011 0057           -> 0009 0019 0057            1
+  0009 0019 0057           -> 000d 0022 0057            1
+  000d 0022 0057           -> 0012 002b 0057            1
+  0012 002b 0057           -> 0016 0033 0057            1
+  0016 0033 0057           -> 001b 003c 0057            1
+  001b 003c 0057           -> 001f 0045 0057            1
+  001f 0045 0057           -> 0024 004e 0057            1
+  0024 004e 0057           -> 0029 0056 0057            1
+  0029 0056 0057           -> 002d 005f 0057            1
+  002d 005f 0057           -> 0032 0068 0057            1
+  0032 0068 0057           -> 0036 0071 0057            1
+  0036 0071 0057           -> 003b 0079 0057            1
+  003b 0079 0057           -> 003f 0082 0057            1
+  003f 0082 0057           -> 0044 008b 0057            1
+  0044 008b 0057           -> 0048 0093 0057            1
+  0048 0093 0057           -> 004d 009c 0057            1
+  004d 009c 0057           -> 0051 00a5 0057            1
+  0051 00a5 0057           -> 0056 00ae 0057            1
+  0056 00ae 0057           -> 005b 00b6 0057            1
+  005b 00b6 0057           -> 005f 00bf 0057            1
+  005f 00bf 0057           -> 0064 00c8 0057            1
+  0064 00c8 0057           -> 0068 00d1 0057            1
+  0068 00d1 0057           -> 006d 00d9 0057            1
+  006d 00d9 0057           -> 0071 00e2 0057            1
+
+MINT   2 rounds; parts minted per round: 802 0
+  pool: 901 distinct runs in, 1702 structures added, 5394 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  0004 0011                             1       0  0004 0011 0057
+  0009 0019                             1       0  0009 0019 0057
+  000d 0022                             1       0  000d 0022 0057
+  0012 002b                             1       0  0012 002b 0057
+  0016 0033                             1       0  0016 0033 0057
+  001b 003c                             1       0  001b 003c 0057
+  001f 0045                             1       0  001f 0045 0057
+  0024 004e                             1       0  0024 004e 0057
+  0029 0056                             1       0  0029 0056 0057
+  002d 005f                             1       0  002d 005f 0057
+  0032 0068                             1       0  0032 0068 0057
+  0036 0071                             1       0  0036 0071 0057
+  003b 0079                             1       0  003b 0079 0057
+  003f 0082                             1       0  003f 0082 0057
+  0044 008b                             1       0  0044 008b 0057
+  0048 0093                             1       0  0048 0093 0057
+  004d 009c                             1       0  004d 009c 0057
+  0051 00a5                             1       0  0051 00a5 0057
+  0056 00ae                             1       0  0056 00ae 0057
+  005b 00b6                             1       0  005b 00b6 0057
+  005f 00bf                             1       0  005f 00bf 0057
+  0064 00c8                             1       0  0064 00c8 0057
+  0068 00d1                             1       0  0068 00d1 0057
+  006d 00d9                             1       0  006d 00d9 0057
+  0071 00e2                             1       0  0071 00e2 0057
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +ff8f.0007                 244
+  +0057                      166
+  +0013.004f                 94
+  +0154.ffc0                 74
+  +ff94.0002                 65
+  +ff7c.ffb8                 58
+  +ff42.ff7e                 37
+  +0046.ffff                 20
+  +00df.0035                 18
+  +0059.00bb                 13
+  +ff67.0063                 9
+  +0058.00ba                 2
+  +065d.0001 ffe4.0007       1
+  +065e.0001 fffd.0007       1
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                 6900.0354+  4
+       1e9b 006b.ff05.0088+  2
+       1ea0 006b.ff07.0090+  2
+       1ea5 006b.ff09.0098+  2
+       1eaa 006b.ff0b.009f+  2
+       1e7b 006c.fefa.0059+  2
+       1e80 006c.fefc.0061+  2
+       1e86 006c.fefe.0068+  2
+       1e8b 006c.ff00.0070+  2
+       1e91 006c.ff02.0078+  2
+       1e63 006d.fef1.0031+  2
+       1e68 006d.fef3.0039+  2
+       1e6d 006d.fef5.0041+  2
+       1e72 006d.fef6.0049+  2
+       1e77 006d.fef8.0051+  2
+       1e4d 006e.fee9.0012+  2
+       1e52 006e.feeb.001a+  2
+       1e58 006e.feed.0022+  2
+       1e5e 006e.feef.002a+  2
+       1e34 006f.fee0.ffeb+  2
+       1e39 006f.fee2.fff2+  2
+       1e3e 006f.fee4.fffa+  2
+       1e43 006f.fee6.0002+  2
+       1e48 006f.fee8.000a+  2
+       1e1e 0070.fed9.ffcb+  2
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  0008 0057   seen 1
+    made of    0008, 0057
+    part of    
+    changes    
+    followed   0004 0011 0057 1
+    preceded   
+  0004 0011 0057   seen 1
+    made of    0004 0011, 0057
+    part of    
+    changes    
+    followed   0009 0019 0057 1
+    preceded   0008 0057 1
+  0009 0019 0057   seen 1
+    made of    0009 0019, 0057
+    part of    
+    changes    
+    followed   000d 0022 0057 1
+    preceded   0004 0011 0057 1
+  000d 0022 0057   seen 1
+    made of    000d 0022, 0057
+    part of    
+    changes    
+    followed   0012 002b 0057 1
+    preceded   0009 0019 0057 1
+  0012 002b 0057   seen 1
+    made of    0012 002b, 0057
+    part of    
+    changes    
+    followed   0016 0033 0057 1
+    preceded   000d 0022 0057 1
+  0016 0033 0057   seen 1
+    made of    0016 0033, 0057
+    part of    
+    changes    
+    followed   001b 003c 0057 1
+    preceded   0012 002b 0057 1
+  001b 003c 0057   seen 1
+    made of    001b 003c, 0057
+    part of    
+    changes    
+    followed   001f 0045 0057 1
+    preceded   0016 0033 0057 1
+  001f 0045 0057   seen 1
+    made of    001f 0045, 0057
+    part of    
+    changes    
+    followed   0024 004e 0057 1
+    preceded   001b 003c 0057 1
+  0024 004e 0057   seen 1
+    made of    0024 004e, 0057
+    part of    
+    changes    
+    followed   0029 0056 0057 1
+    preceded   001f 0045 0057 1
+  0029 0056 0057   seen 1
+    made of    0029 0056, 0057
+    part of    
+    changes    
+    followed   002d 005f 0057 1
+    preceded   0024 004e 0057 1
+  002d 005f 0057   seen 1
+    made of    002d 005f, 0057
+    part of    
+    changes    
+    followed   0032 0068 0057 1
+    preceded   0029 0056 0057 1
+  0032 0068 0057   seen 1
+    made of    0032 0068, 0057
+    part of    
+    changes    
+    followed   0036 0071 0057 1
+    preceded   002d 005f 0057 1
+  0036 0071 0057   seen 1
+    made of    0036 0071, 0057
+    part of    
+    changes    
+    followed   003b 0079 0057 1
+    preceded   0032 0068 0057 1
+  003b 0079 0057   seen 1
+    made of    003b 0079, 0057
+    part of    
+    changes    
+    followed   003f 0082 0057 1
+    preceded   0036 0071 0057 1
+  003f 0082 0057   seen 1
+    made of    003f 0082, 0057
+    part of    
+    changes    
+    followed   0044 008b 0057 1
+    preceded   003b 0079 0057 1
+  0044 008b 0057   seen 1
+    made of    0044 008b, 0057
+    part of    
+    changes    
+    followed   0048 0093 0057 1
+    preceded   003f 0082 0057 1
+  0048 0093 0057   seen 1
+    made of    0048 0093, 0057
+    part of    
+    changes    
+    followed   004d 009c 0057 1
+    preceded   0044 008b 0057 1
+  004d 009c 0057   seen 1
+    made of    004d 009c, 0057
+    part of    
+    changes    
+    followed   0051 00a5 0057 1
+    preceded   0048 0093 0057 1
+  0051 00a5 0057   seen 1
+    made of    0051 00a5, 0057
+    part of    
+    changes    
+    followed   0056 00ae 0057 1
+    preceded   004d 009c 0057 1
+  0056 00ae 0057   seen 1
+    made of    0056 00ae, 0057
+    part of    
+    changes    
+    followed   005b 00b6 0057 1
+    preceded   0051 00a5 0057 1
+  005b 00b6 0057   seen 1
+    made of    005b 00b6, 0057
+    part of    
+    changes    
+    followed   005f 00bf 0057 1
+    preceded   0056 00ae 0057 1
+  005f 00bf 0057   seen 1
+    made of    005f 00bf, 0057
+    part of    
+    changes    
+    followed   0064 00c8 0057 1
+    preceded   005b 00b6 0057 1
+  0064 00c8 0057   seen 1
+    made of    0064 00c8, 0057
+    part of    
+    changes    
+    followed   0068 00d1 0057 1
+    preceded   005f 00bf 0057 1
+  0068 00d1 0057   seen 1
+    made of    0068 00d1, 0057
+    part of    
+    changes    
+    followed   006d 00d9 0057 1
+    preceded   0064 00c8 0057 1
+  006d 00d9 0057   seen 1
+    made of    006d 00d9, 0057
+    part of    
+    changes    
+    followed   0071 00e2 0057 1
+    preceded   0068 00d1 0057 1
+
+==============================================================================
+LEVEL 2
+==============================================================================
+
+SYMBOLS   901 symbols, 901 distinct  (each is a level 1 run; level 1 classes count as same)
+  0008 0057                                 1
+  0004 0011 0057                            1
+  0009 0019 0057                            1
+  000d 0022 0057                            1
+  0012 002b 0057                            1
+  0016 0033 0057                            1
+  001b 003c 0057                            1
+  001f 0045 0057                            1
+  0024 004e 0057                            1
+  0029 0056 0057                            1
+  002d 005f 0057                            1
+  0032 0068 0057                            1
+  0036 0071 0057                            1
+  003b 0079 0057                            1
+  003f 0082 0057                            1
+  0044 008b 0057                            1
+  0048 0093 0057                            1
+  004d 009c 0057                            1
+  0051 00a5 0057                            1
+  0056 00ae 0057                            1
+  005b 00b6 0057                            1
+  005f 00bf 0057                            1
+  0064 00c8 0057                            1
+  0068 00d1 0057                            1
+  006d 00d9 0057                            1
+
+FOLLOWS   which symbol comes after which (top 25 of 900 pairs)
+  0008 0057                -> 0004 0011 0057            1
+  0004 0011 0057           -> 0009 0019 0057            1
+  0009 0019 0057           -> 000d 0022 0057            1
+  000d 0022 0057           -> 0012 002b 0057            1
+  0012 002b 0057           -> 0016 0033 0057            1
+  0016 0033 0057           -> 001b 003c 0057            1
+  001b 003c 0057           -> 001f 0045 0057            1
+  001f 0045 0057           -> 0024 004e 0057            1
+  0024 004e 0057           -> 0029 0056 0057            1
+  0029 0056 0057           -> 002d 005f 0057            1
+  002d 005f 0057           -> 0032 0068 0057            1
+  0032 0068 0057           -> 0036 0071 0057            1
+  0036 0071 0057           -> 003b 0079 0057            1
+  003b 0079 0057           -> 003f 0082 0057            1
+  003f 0082 0057           -> 0044 008b 0057            1
+  0044 008b 0057           -> 0048 0093 0057            1
+  0048 0093 0057           -> 004d 009c 0057            1
+  004d 009c 0057           -> 0051 00a5 0057            1
+  0051 00a5 0057           -> 0056 00ae 0057            1
+  0056 00ae 0057           -> 005b 00b6 0057            1
+  005b 00b6 0057           -> 005f 00bf 0057            1
+  005f 00bf 0057           -> 0064 00c8 0057            1
+  0064 00c8 0057           -> 0068 00d1 0057            1
+  0068 00d1 0057           -> 006d 00d9 0057            1
+  006d 00d9 0057           -> 0071 00e2 0057            1
+
+SEPARATOR   the most common symbol: 0008 0057
+
+RUNS   1 runs between separators, 1 distinct
+  0004 0011 0057 | 0009 0019 0057 | 000d 0022 0057 | 0012 002b 0057 | 0016...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 1 distinct runs in, 1 structures added, 5395 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  0004 0011 0057 | 0009 0019 0057 | 000d 0022 0057 | 0012 002b 0057 | 0016...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  0004 0011 0057 | 0009 0019 0057 | 000d 0022 0057 | 0012 002b 0057 | 0016...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   
+

@@ -1,0 +1,8 @@
+10512 vehicle rows, 1051 s of machine time
+  alt    satisfied in  9152 rows  (first at 136.1 s)
+  rates  satisfied in 10512 rows  (first at 0.0 s)
+  vz     satisfied in    30 rows  (first at 0.0 s)
+  vx     satisfied in     0 rows  -- NEVER
+  the whole row: NEVER seen together
+  fields that ever changed: ['alt', 'vz'];  never changed: ['engine', 'jets5', 'jets6', 'thrust', 'vx', 'wx', 'wy', 'wz']
+  at the first altitude-0 row: vz = -220.4 m/s, vx = 1690.0 m/s -- altitude 0 arrived by falling, not by landing

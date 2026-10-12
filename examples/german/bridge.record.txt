@@ -1,0 +1,85 @@
+BRIDGE   19210 parts in A, 10985 in B, 2188 shared
+
+  shared part       dens A  dens B   parents in A                       parents in B
+  s                   1343    1202   das, des, es                       is, this, as
+  e                   2026    1131   die, eine, es                      the, we, be
+  a                    889    1158   auf, auch, an                      and, as, are
+  i                   1048     839   in, ich, ist                       in, is, it
+  t                   1337     746   ist, mit, hat                      the, to, that
+  r                   1269     744   der, für, wir                      for, regions, Mr
+  n                   1801     657   in, den, von                       in, on, not
+  o                    530     556   oder, so, ob                       of, to, on
+  l                    770     508   weil, letzten, Ziel                like, will, all
+  d                    503     582   der, die, und                      and, would, development
+  in                   418     909   ein, Präsidentin, Berichterstatterin within, increased, indeed
+  u                    595     374   und, zu, um                        you, us, up
+  p                    337     389   politische, pro, politischen       policy, point, people
+  m                    457     311   im, mit, dem                       more, my, must
+  -                    304     300   Wirtschafts-, Struktur-, Agrar-    -20ºC, -40ºC, -inten
+  g                    646     260   ganz, geht, gibt                   great, good, given
+  h                    432     244   ich, hat, haben                    have, with, has
+  be                   269     240   bei, berücksichtigt, habe          been, because, between
+  f                    433     233   für, auf, führen                   of, for, from
+  es                   276     221   des, dieses, eines                 programmes, does, priorities
+  b                    485     206   bei, ob, bereits                   be, by, been
+  en                  1120     176   den, Regionen, können              been, when, between
+  an                   206     167   man, daran, anderen                and, European, can
+  er                   543     167   der, aber, .\nDer                  Commissioner, matter, order
+  c                    153     459   capital, coup, chapeau             can, economic, cohesion
+  v                    253     153   von, vor, vom                      very, vote, view
+  re                   151     267   ihre, unsere, wäre                 are, report, more
+  w                    272     131   wir, werden, wie                   we, with, would
+  st                   173     123   ist, selbst, möglichst             must, just, first
+  al                   122     165   als, also, allem                   also, all, regional
+  de                   137     117   der, den, des                      debate, made, deal
+  is                   115     437   ist, bis, Kenntnis                 this, .\nThis, issue
+  le                   113     116   zentrale, lediglich, leider        possible, principle, able
+  te                   187     112   halte, hatte, sollte               vote, terms, quite
+  .\n                  133     107   .\nIch, .\nDas, .\nEs              .\nI, .\nWe, .\nMr
+  so                   112     106   sowie, sondern, also               also, social, some
+  on                   102     546   von, Union, Fraktion               Union, only, one
+  ng                   101     136   Entwicklung, Zusammenhang, Beschäftigung long, young, coming
+  se                   101     103   diese, sehr, sein                  these, see, those
+  un                   142     100   und, uns, unserer                  under, until, unfortunately
+
+LONG SHARED PARTS   (4 or more words long, by length)
+  international         A: internationalen                 B: internationally
+  Wulf-Mathies          A:                                 B: 
+  ulf-Mathies           A: Wulf-Mathies                    B: Wulf-Mathies
+  alternative           A:                                 B: 
+  transparent           A: transparenteren, transparenter  B: 
+  legislative           A:                                 B: 
+  Ponnambalam           A:                                 B: 
+  Brandenburg           A:                                 B: 
+  Schroedter            A:                                 B: 
+  Hatzidakis            A:                                 B: 
+  instrument            A: Arbeitsinstrument, instrumenten  B: instruments
+  lf-Mathies            A: Wulf-Mathies, ulf-Mathies       B: Wulf-Mathies, ulf-Mathies
+  technologi            A: technologische, technologien    B: technologies, technological
+  Paddington            A:                                 B: 
+  Plooij-van            A:                                 B: 
+  Raschhofer            A:                                 B: 
+  Poettering            A:                                 B: 
+  Transport             A: Transporte, Transportarten      B: \nTransport
+  transport             A: Gefahrguttransport, transportiert  B: transported, transportation
+  programme             A: Kommissionsprogramme, sprogramme  B: programmes
+  technolog             A: technologische, technologien    B: technologies, technological
+  operation             A: operationellen                  B: cooperation, operations
+  addington             A: Paddington                      B: Paddington
+  Plooij-va             A: Plooij-van                      B: Plooij-van
+  Wulf-Math             A: Wulf-Mathies                    B: Wulf-Mathies
+  Seppänen              A:                                 B: 
+  oettering             A: Poettering                      B: Poettering
+  Amsterdam             A: Amsterdamer                     B: 
+  looij-van             A: Plooij-van                      B: Plooij-van
+  nnambalam             A: Ponnambalam                     B: Ponnambalam
+  Ponnambal             A: Ponnambalam                     B: Ponnambalam
+  2000-2006             A:                                 B: 
+  September             A:                                 B: 
+  Alexander             A:                                 B: 
+  González              A:                                 B: 
+  Angelilli             A:                                 B: 
+  Bradbourn             A:                                 B: 
+  Elisabeth             A:                                 B: 
+  Regional              A: Regionalpolitik, Regional-      B: .\nRegional
+  regional              A: regionale, regionalpolitischen  B: interregional

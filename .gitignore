@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+# JSON records are large (up to 145 MB); run_examples.sh rebuilds every one in about a minute
+*.record.json
+*.memory
+*.flips
+examples/agc-live/runs/
+examples/agc-live/virtualagc/yaAGC/yaAGC
+examples/agc-live/virtualagc/yaYUL/yaYUL
+examples/agc-live/virtualagc/Luminary099/MAIN.agc.bin
+examples/agc-live/virtualagc/Luminary099/MAIN.agc.symtab
+examples/agc-live/virtualagc/Luminary099/assembly.log
+examples/agc-live/virtualagc/Luminary099/*.lst

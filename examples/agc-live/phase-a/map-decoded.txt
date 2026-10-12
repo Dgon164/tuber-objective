@@ -1,0 +1,71 @@
+THE MAP, as the machine has it (contexts shown as what differs from rest; names are the reader's)
+
+from 5057 (rest): tried 33 actions
+    key 17 -> 2ba6 {'010.10': '50000'}  x2
+    key 18 -> 547e {'011.0': '21000'}  x1
+    stays for: 0 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 19 20 21 22 23 24 25 26 27 28 29 30 31
+from 2ba6 {'010.10': '50000'}: tried 10 actions
+    key  1 -> e405 {'010.10': '50140'}  x1
+    key  2 -> dac7 {'010.10': '51440'}  x1
+    key  3 -> 53a7 {'010.10': '51540'}  x1
+    key  4 -> 30d7 {'010.10': '50740'}  x1
+    key  5 -> 5074 {'010.10': '51700'}  x1
+    key  6 -> 681a {'010.10': '51600'}  x1
+    key  7 -> 1815 {'010.10': '51140'}  x1
+    key  8 -> ec6c {'010.10': '51640'}  x1
+    key  9 -> e81d {'010.10': '51740'}  x1
+    stays for: 0
+from 547e {'011.0': '21000'}: tried 1 actions
+    key  0 -> 5057 {}  x1
+    stays for: 
+from e405 {'010.10': '50140'}: tried 2 actions
+    key  1 -> 5057 {}  x1
+    stays for: 0
+from dac7 {'010.10': '51440'}: tried 2 actions
+    key  1 -> 1a40 {'010.10': '51443'}  x1
+    stays for: 0
+from 53a7 {'010.10': '51540'}: tried 2 actions
+    key  1 -> 6ebf {'010.10': '51543'}  x1
+    stays for: 0
+from 30d7 {'010.10': '50740'}: tried 2 actions
+    key  1 -> 2029 {'010.10': '50743'}  x1
+    stays for: 0
+from 5074 {'010.10': '51700'}: tried 2 actions
+    key  1 -> 7858 {'010.10': '51703'}  x1
+    stays for: 0
+from 681a {'010.10': '51600'}: tried 2 actions
+    key  1 -> 82ae {'010.10': '51603'}  x1
+    stays for: 0
+from 1815 {'010.10': '51140'}: tried 2 actions
+    key  1 -> 8a4f {'010.10': '51143'}  x1
+    stays for: 0
+from ec6c {'010.10': '51640'}: tried 2 actions
+    key  1 -> 1a49 {'010.10': '51643'}  x1
+    stays for: 0
+from e81d {'010.10': '51740'}: tried 2 actions
+    key  1 -> 5439 {'010.10': '51743'}  x1
+    stays for: 0
+from 1a40 {'010.10': '51443'}: tried 18 actions
+    key 17 -> 2ba6 {'010.10': '50000'}  x1
+    stays for: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+from 6ebf {'010.10': '51543'}: tried 18 actions
+    key 17 -> 2ba6 {'010.10': '50000'}  x1
+    stays for: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+from 2029 {'010.10': '50743'}: tried 18 actions
+    key 17 -> 2ba6 {'010.10': '50000'}  x1
+    stays for: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+from 7858 {'010.10': '51703'}: tried 18 actions
+    key 17 -> 2ba6 {'010.10': '50000'}  x1
+    stays for: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+from 82ae {'010.10': '51603'}: tried 18 actions
+    key 17 -> 2ba6 {'010.10': '50000'}  x1
+    stays for: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+from 8a4f {'010.10': '51143'}: tried 18 actions
+    key 17 -> 2ba6 {'010.10': '50000'}  x1
+    stays for: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+from 1a49 {'010.10': '51643'}: tried 18 actions
+    key 17 -> 2ba6 {'010.10': '50000'}  x1
+    stays for: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+from 5439 {'010.10': '51743'}: tried 18 actions
+    key 17 -> 2ba6 {'010.10': '50000'}  x1
+    stays for: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16

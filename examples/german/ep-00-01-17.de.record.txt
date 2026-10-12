@@ -1,0 +1,1048 @@
+DISCOVERY RECORD
+signal     ep-00-01-17.de
+size       160002 bytes, 1280016 bits
+
+FRAME   score = spread between the column most often 1 and the column least often 1
+  width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
+   40    0.899   col   8 at 0.033   col  10 at 0.932
+   64    0.897   col  16 at 0.034   col  18 at 0.931
+   48    0.897   col  32 at 0.034   col  34 at 0.931
+   56    0.896   col  48 at 0.034   col  50 at 0.930
+   24    0.894   col   8 at 0.036   col  10 at 0.929
+   32    0.894   col   0 at 0.036   col   2 at 0.930
+   16    0.892   col   0 at 0.036   col   2 at 0.929
+    8    0.892   col   0 at 0.036   col   2 at 0.928
+  picked width 8
+    fold to  1: columns differ by 0.2143 on average (wobble by chance 0.0020) -> different
+    fold to  2: columns differ by 0.2040 on average (wobble by chance 0.0020) -> different
+    fold to  4: columns differ by 0.1694 on average (wobble by chance 0.0020) -> different
+  chosen width 8
+  column rates at width 8:
+    0.036 0.803 0.928 0.245 0.315 0.494 0.377 0.462
+
+LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
+  level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
+      0   160002        88    23206      4489    14721          405    19210       19210
+      1    23206      4489     1703      1654    13315          404    14943       34153
+      2     1703      1654        9         9        0            0        9       34162
+      3        9         9        1         1        0            0        1       34163
+  stopped: level 3 left a single run; nothing more to cut
+
+==============================================================================
+LEVEL 0
+==============================================================================
+
+WORDS   160002 words, 88 distinct
+  bits      glyph   count
+  00100000          23206
+  01100101  e       20397
+  01101110  n       13451
+  01101001  i       11048
+  01110010  r       9898
+  01110100  t       7520
+  01110011  s       6984
+  01100100  d       6371
+  01100001  a       5874
+  01101000  h       5247
+  01110101  u       5001
+  01100111  g       3980
+  01101100  l       3871
+  01100011  c       3648
+  01101111  o       3601
+  01101101  m       3117
+  11000011  \xc3    2827
+  01100110  f       1859
+  01100010  b       1850
+  00101100  ,       1707
+  01110111  w       1686
+  01101011  k       1459
+  01111010  z       1370
+  00001010  \n      941
+  10100100  \xa4    940
+
+FOLLOWS   which word comes after which (top 25 of 1044 pairs)
+  n                        ->                           5640
+  e                        -> n                         5234
+  e                        -> r                         4579
+                           -> d                         3465
+  c                        -> h                         3430
+  e                        ->                           3289
+  r                        ->                           2975
+  d                        -> e                         2782
+  i                        -> e                         2421
+  t                        ->                           2154
+  e                        -> i                         2108
+  u                        -> n                         2053
+  i                        -> n                         1964
+  t                        -> e                         1828
+                           -> ,                         1702
+  ,                        ->                           1702
+  g                        -> e                         1700
+  n                        -> d                         1643
+  i                        -> c                         1594
+  n                        -> g                         1339
+  s                        ->                           1339
+  e                        -> s                         1317
+  d                        -> i                         1296
+  i                        -> t                         1202
+  n                        -> e                         1179
+
+SEPARATOR   the most common word: 00100000 ( )
+
+RUNS   23206 runs between separators, 4489 distinct
+  ,                                         1702
+  der                                       878
+  die                                       862
+  und                                       629
+  in                                        376
+  den                                       302
+  zu                                        271
+  daß                                       263
+  für                                       248
+  von                                       214
+  ich                                       198
+  ist                                       190
+  wir                                       173
+  nicht                                     172
+  auf                                       171
+  das                                       167
+  im                                        145
+  des                                       142
+  auch                                      139
+  eine                                      134
+  es                                        130
+  werden                                    126
+  Kommission                                125
+  mit                                       110
+  -                                         101
+
+RUN FOLLOWS   which run comes after which (top 25 of 15421 pairs)
+  ,                        -> daß                       244
+  ,                        -> die                       177
+  für                      -> die                       81
+  in                       -> den                       68
+  ,                        -> und                       68
+  in                       -> der                       61
+  daß                      -> die                       60
+  der                      -> Kommission                59
+  auf                      -> die                       58
+  die                      -> Kommission                53
+  und                      -> die                       53
+  ,                        -> der                       49
+  möchte                   -> ich                       45
+  ,                        -> wie                       43
+  ,                        -> Herr                      42
+  .\nHerr                  -> Präsident                 42
+  ,                        -> um                        39
+  bei                      -> der                       39
+  ,                        -> wenn                      38
+  Präsident                -> ,                         36
+  über                     -> die                       33
+  werden                   -> ,                         32
+  von                      -> der                       31
+  daß                      -> wir                       31
+  ist                      -> ,                         29
+
+MINT   10 rounds; parts minted per round: 9291 3641 1205 402 130 42 7 2 1 0
+  pool: 4489 distinct runs in, 19210 structures added, 19210 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  e                                  2026       0  die, eine, es, ein
+  n                                  1801       0  in, den, von, nicht
+  s                                  1343       0  das, des, es, sind
+  t                                  1337       0  ist, mit, hat, Bericht
+  r                                  1269       0  der, für, wir, zur
+  en                                 1120       0  den, Regionen, können, Mitgliedstaaten
+  i                                  1048       1  in, ich, ist, im
+  a                                   889       2  auf, auch, an, als
+  l                                   770       0  weil, letzten, Ziel, Mittel
+  die                                 664     862  dieser, diese, diesem, dieses
+  der                                 654     878  oder, Länder, wieder, deren
+  g                                   646       0  ganz, geht, gibt, wichtig
+  u                                   595       0  und, zu, um, uns
+  er                                  543      16  der, aber, .\nDer, äußerster
+  o                                   530       0  oder, so, ob, also
+  d                                   503       0  der, die, und, den
+  b                                   485       2  bei, ob, bereits, bin
+  m                                   457       0  im, mit, dem, möchte
+  f                                   433       0  für, auf, führen, fünf
+  h                                   432       0  ich, hat, haben, durch
+  in                                  418     376  ein, Präsidentin, Berichterstatterin, sein
+  k                                   410       1  kann, keine, kommen, Politik
+  ung                                 376       0  Entwicklung, Bedeutung, Tagesordnung, Beschäftigung
+  und                                 374     629  aufgrund, Grund, Freund, und ob ich befugt bin
+  ch                                  339       0  ich, auch, .\nIch, sich
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +n                         1731
+  +en                        1507
+  +e                         1461
+  +t                         1153
+  +s                         855
+  +r                         821
+  +i                         528
+  +l                         457
+  +a                         423
+  +ung                       381
+  +g                         331
+  +er                        321
+  +m                         315
+  +u                         288
+  +d                         285
+  +o                         275
+  +f                         222
+  +h                         219
+  +ch                        209
+  +k                         205
+  +-                         195
+  +b                         194
+  +lich                      162
+  +ten                       160
+  +p                         159
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                         e+  1462
+                         s+  1172
+                         r+  1062
+                         i+  1058
+                         n+  972
+                         a+  924
+                         t+  769
+                         l+  761
+                         g+  703
+                         b+  660
+                         u+  620
+                         o+  554
+                         d+  524
+                         k+  499
+                         h+  486
+                         f+  471
+                         m+  458
+                         A+  442
+                         S+  435
+                        be+  407
+                         E+  401
+                         p+  399
+                         B+  392
+                        ge+  374
+                         w+  359
+
+CLASSES   parts that take the same set of changes (largest 25 of 10094; two or more members count as same one level up)
+  {0.0} [+en, +t]
+     52 members: Wes, bewirk, verursach, verweis, kompensier, verdeutlich, diskutier, beurteil, speis, ermöglich, reagier, deck
+  {0.1} [+n, +r]
+     42 members: einige, liebe, ländliche, gemeinschaftliche, nachhaltige, sämtliche, dritte, lokale, umfassende, nationale, optimale, strategische
+  {0.2} [A+, a+]
+     23 members: nreize, uftreten, ufme, uswi, uszahlung, nspruch, bge, usschusses, nstrengungen, usr, usfüh, nforderungen
+  {0.3} [V+, v+]
+     22 members: erzög, orbereitung, ereinfachung, erantwortung, orlage, erlängerung, orgehen, orau, ereinba, orsitzende, erordnung, ertre
+  {0.4} [E+, e+]
+     21 members: ntstehen, nth, rhöh, rneue, rwa, ntgegen, ntscheid, ntfern, rfül, inheit, rika, rwerbstätigkeit
+  {0.5} [B+, b+]
+     19 members: ereichen, erück, edauern, ehandlung, eitrag, efugnisse, emüh, etrieb, esitz, ereits, ürgern, eitritts
+  {0.6} [+n, +t]
+     17 members: erwarte, stande, verpflichte, entwickel, widme, verbesser, belaste, verhinder, leiste, vorbereite, verwende, verabschiede
+  {0.7} [!+, .+]
+     15 members: \nZunächst, \nIm, \nSehr, \nB, \nAuch, \nNach, \nLiebe, \nGestatten, \nUnser, \nAls, \nMit, \nDa
+  {0.8} [+n, +s]
+     12 members: Punkte, vorrangige, wesentliche, hohe, utsche, einzige, deutliche, lande, ausgewogene, Handel, würdige, kalte
+  {0.9} [.\nD+, d+]
+     11 members: eswegen, azu, arüber, amit, ritter, adurch, abei, iesem, ieses, ennoch, anach
+  {0.10} [b+, g+]
+     10 members: eraten, ewirkt, ekommen, elegt, estärkt, edacht, eschlossen, escha, efördert, efür
+  {0.11} [+en, +ung]
+     9 members: sarbeit, chätz, kämpf, Nutz, stalt, bewert, Angleich, vermeid, Erschein
+  {0.12} [+e, +en]
+     9 members: schnell, genannt, kalt, geordnet, leid, beträchtlich, Chanc, notw, Ide
+  {0.13} [G+, g+]
+     9 members: leichgewicht, eldern, ebäude, ruppe, emeinsamen, esell, ebot, ebietsk, rundsatz
+  {0.14} [K+, k+]
+     8 members: ompli, ompete, onseque, oordinier, atastrophen, onzentr, onzepte, raft
+  {0.15} [!\n+, \n+]
+     7 members: Der, Liebe, Sehr, Auch, Als, Gestatten, Zunächst
+  {0.16} [P+, p+]
+     7 members: arla, ortug, rogrammen, robleme, riva, räz, eriodischen
+  {0.17} [M+, m+]
+     7 members: inister, öglichkeiten, onate, ensch, ittel-, engen, axim
+  {0.18} [+e, +en, +t]
+     7 members: beglückwünsch, sag, verlang, darstell, konzentrier, unterstütz, fäll
+  {0.19} [.\nA+, a+]
+     7 members: llein, llerdings, nhand, bschließend, ngesichts, ufgrund, ufge
+  {0.20} [+e, +em]
+     6 members: kurz, .\nDies, finanziell, ordnungsg, Dez, gewiss
+  {0.21} [+t, +ungen]
+     6 members: erleg, belehr, eförder, zöger, gestell, beding
+  {0.22} [S+, s+]
+     6 members: üd, chwäc, chlußfol, trukturen, echsten, taaten
+  {0.23} [R+, r+]
+     6 members: echtfer, egelungen, egeln, eleva, äumen, ückstand
+  {0.24} [F+, f+]
+     6 members: ällen, ünften, estl, ehlen, inanzierung, unktionieren
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  ,   seen 1702
+    made of    
+    part of    3,, ,7, 23,, ,6, 1,, 5,, ,5, ,1
+    changes    3+, +7, 23+, +6, 1+, 5+, +5, +1
+    followed   daß 244, die 177, und 68, der 49, wie 43, Herr 42
+    preceded   Präsident 36, werden 32, ist 29, sind 24, wird 21, Präsidentin 19
+  der   seen 878
+    made of    er, de, r, d
+    part of    oder, Länder, wieder, deren, Gelder, leider, derzeit, Transitländer
+    changes    o+, Län+, wie+, +en, Gel+, lei+, +zeit, Transitlän+
+    followed   Kommission 59, Europäischen 24, Union 22, Richtlinie 15, Leitlinien 15, Regionen 14
+    preceded   in 61, , 49, bei 39, von 31, und 24, mit 20
+  die   seen 862
+    made of    di, ie, e, d
+    part of    dieser, diese, diesem, dieses, dies, diejenigen, dienen, dieselben
+    changes    +ser, +se, +sem, +ses, +s, +jenigen, +nen, +selben
+    followed   Kommission 53, Mitgliedstaaten 19, Leitlinien 16, in 12, Regionen 11, Berichterstatterin 10
+    preceded   , 177, für 81, daß 60, auf 58, und 53, über 33
+  und   seen 629
+    made of    nd, un, u, d
+    part of    aufgrund, Grund, Freund, und ob ich befugt bin, Kommunen und, und dies setzt hinsichtlich der Lebensbedingungen eine Annäherung nach o..., und das, und insofern müssen auch die Mitgliedstaaten ihrer Verantwortung nachkom...
+    changes    aufgr+, Gr+, Fre+, +ob ich befugt bin, Kommunen+, +dies setzt hinsichtlich der Lebensbedingungen eine Annäherung nach oben ..., +das, +insofern müssen auch die Mitgliedstaaten ihrer Verantwortung nachkommen ...
+    followed   die 53, der 24, Herren 17, Kollegen 16, ich 16, den 13
+    preceded   , 68, Damen 17, Kolleginnen 16, - 13, wirtschaftlichen 9, Parlament 6
+  in   seen 376
+    made of    n, i
+    part of    ein, Präsidentin, Berichterstatterin, sein, bin, Kommissarin, .\nEin, darin
+    changes    e+, Präsident+, Berichterstatter+, se+, b+, Kommissar+, .\nE+, dar+
+    followed   den 68, der 61, diesem 21, äußerster 16, die 15, einer 12
+    preceded   , 28, Regionen 15, die 12, es 9, auch 8, nicht 8
+  den   seen 302
+    made of    en, de, n, d
+    part of    werden, worden, denen, denn, wurden, beiden, denke, würden
+    changes    wer+, wor+, +en, +n, wur+, bei+, +ke, wür+
+    followed   Regionen 12, Mitgliedstaaten 8, letzten 8, Vorschlag 6, Antrag 6, ländlichen 6
+    preceded   in 68, , 23, für 21, mit 17, und 13, von 11
+  zu   seen 271
+    made of    z, u
+    part of    zur, zum, dazu, zunächst, zuständigen, zumindest, .\nDazu, zugestimmt
+    changes    +r, +m, da+, +nächst, +ständigen, +mindest, .\nDa+, +gestimmt
+    followed   einer 11, schaffen 9, diesem 7, tun 6, können 6, berücksichtigen 6
+    preceded   , 15, sich 4, nun 3, um 3, auch 3, und 3
+  daß   seen 263
+    made of    aß, ß, da, d
+    part of    daß sie sich so klar und eindeutig zur Sicherheit im Verkehrsbereich und..., daß ein Parlament dazu da ist, daß auch, daß Indikatoren und eine Strategie für den wirtschaftlichen und sozialen..., daß man der, daß der private Sektor, daß Sie, daß mein Vorschlag in der morgigen Abstimmung Berücksichtigung findet .\...
+    changes    +sie sich so klar und eindeutig zur Sicherheit im Verkehrsbereich und zur..., +ein Parlament dazu da ist, +auch, +Indikatoren und eine Strategie für den wirtschaftlichen und sozialen Zus..., +man der, +der private Sektor, +Sie, +mein Vorschlag in der morgigen Abstimmung Berücksichtigung findet .\nHer...
+    followed   die 60, wir 31, das 14, es 14, der 13, diese 11
+    preceded   , 244, und 10, so 6, ohne 1, nur 1, als 1
+  für   seen 248
+    made of    fü, ür, r, f
+    part of    dafür, für seine Arbeit zu dieser Frage danken .\nDas ist auch für die Bedingun..., für diese Wahlperiode, für derartige Belange der geeignetere Rahmen zu sein scheint .\nViele Ih..., Vorlage dieses Berichts und dieses Vorschlags beglückwünschen ; letztend..., für diese Woche darauf vorbereitet waren, für Regionalpolitik, für Regionalpolitik einen meiner Änderungsanträge angenommen hat
+    changes    da+, +seine Arbeit zu dieser Frage danken .\nDas ist auch für die Bedingungen ..., +diese Wahlperiode, +derartige Belange der geeignetere Rahmen zu sein scheint .\nViele Ihrer ..., Vorlage dieses Berichts und dieses Vorschlags beglückwünschen ; letztend...+, +diese Woche darauf vorbereitet waren, +Regionalpolitik, +Regionalpolitik einen meiner Änderungsanträge angenommen hat
+    followed   die 81, den 21, eine 12, das 11, Regionalpolitik 10, Beschäftigung 5
+    preceded   , 20, Ausschuß 10, es 9, Ausschusses 7, Grundlage 5, ist 5
+  von   seen 214
+    made of    on, vo, v, n
+    part of    davon, insbesondere auch von, von Herrn Koch, von sehr großer Bedeutung sind .\nIch möchte nur wenige Anmerkungen mach..., von Herrn Barón Crespo Stellung zu nehmen .\nSie haben mich auch nicht a..., von sehr großer Bedeutung sind .\nIch möchte nur wenige Anmerkungen mach..., von Frau Schroedter enthält zweifellos zahlreiche wichtige Hinweise, Fall ist .\nDie früher beantworteten Anfragen bezogen sich auf das Auftr...
+    changes    da+, insbesondere auch+, +Herrn Koch, +sehr großer Bedeutung sind .\nIch möchte nur wenige Anmerkungen machen ...., +Herrn Barón Crespo Stellung zu nehmen .\nSie haben mich auch nicht aufge..., +sehr großer Bedeutung sind .\nIch möchte nur wenige Anmerkungen machen ...., +Frau Schroedter enthält zweifellos zahlreiche wichtige Hinweise, Fall ist .\nDie früher beantworteten Anfragen bezogen sich auf das Auftr...+
+    followed   der 31, Herrn 11, den 11, Frau 7, einer 5, Arbeitsplätzen 5
+    preceded   die 7, Schaffung 6, auch 5, und 5, , 5, ) 4
+  ich   seen 198
+    made of    ic, ch, h, i
+    part of    sich, mich, Reich, ausschließlich, zusätzlich, ich bei den Sozialisten ein bißchen Gelächter höre - mir wurde gesagt, zu führen .\nJedenfalls konnte ich, ich aber dennoch kurz eingehen möchte
+    changes    s+, m+, Re+, ausschließl+, zusätzl+, +bei den Sozialisten ein bißchen Gelächter höre - mir wurde gesagt, zu führen .\nJedenfalls konnte+, +aber dennoch kurz eingehen möchte
+    followed   möchte 10, es 7, Sie 6, die 6, an 6, auch 6
+    preceded   möchte 45, und 16, , 15, halte 9, daß 8, bitte 5
+  ist   seen 190
+    made of    is, st, t, i
+    part of    Frist, beweist, verweist, daß ein Parlament dazu da ist, ist gefallen, ein kleiner Schritt zu mehr Verkehrssicherheit ist, es möglich ist, nur ein kleiner Schritt zu mehr Verkehrssicherheit ist
+    changes    Fr+, bewe+, verwe+, daß ein Parlament dazu da+, +gefallen, ein kleiner Schritt zu mehr Verkehrssicherheit+, es möglich+, nur ein kleiner Schritt zu mehr Verkehrssicherheit+
+    followed   , 29, die 13, es 11, .\nIch 7, und 6, eine 6
+    preceded   , 13, .\nDas 12, .\nEs 8, worden 6, Fall 5, das 4
+  wir   seen 173
+    made of    wi, ir, r, w
+    part of    wird, wirklich, wirklichen, wirkungsvolles, wirtschaftlich, wirft, wir unseren Dank für seine, wir über den Antrag der Sozialdemokratischen Fraktion
+    changes    +d, +klich, +klichen, +kungsvolles, +tschaftlich, +ft, +unseren Dank für seine, +über den Antrag der Sozialdemokratischen Fraktion
+    followed   uns 12, die 7, eine 7, als 6, sind 5, in 5
+    preceded   daß 31, die 9, und 9, müssen 8, denen 8, , 7
+  nicht   seen 172
+    made of    icht, cht, nic, ht, ni, n
+    part of    nichts, nicht an die Arbeitsschutzregelungen hält, Fraktionen die programmatische Rede der Kommission in schriftlicher Form..., sollten wir nicht, der wachsende Reichtum erreicht nicht, nicht ausreichend spezifisch sind .\nDiese Aussage muß aber aus der Pers..., Votum der Arbeitsgruppe der zuständigen Kolleginnen und Kollegen der Soz..., Lage in Indonesien äußerst instabil .\nEs besteht sogar die Gefahr eines...
+    changes    +s, +an die Arbeitsschutzregelungen hält, Fraktionen die programmatische Rede der Kommission in schriftlicher Form...+, sollten wir+, der wachsende Reichtum erreicht+, +ausreichend spezifisch sind .\nDiese Aussage muß aber aus der Perspektiv..., Votum der Arbeitsgruppe der zuständigen Kolleginnen und Kollegen der Soz...+, Lage in Indonesien äußerst instabil .\nEs besteht sogar die Gefahr eines...+
+    followed   nur 17, in 8, , 7, ausreichend 5, darum 4, die 4
+    preceded   , 8, es 6, noch 5, uns 5, wir 5, und 4
+  auf   seen 171
+    made of    uf, au, f, a
+    part of    darauf, aufgenommen, aufmerksam, aufgrund, aufzunehmen, aufgeschlossen, aufgefordert, auffordern
+    changes    dar+, +genommen, +merksam, +grund, +zunehmen, +geschlossen, +gefordert, +fordern
+    followed   die 58, der 19, den 10, Straße 6, das 4, eine 4
+    preceded   , 18, bezug 11, Hinblick 9, ich 6, und 5, sich 5
+  das   seen 167
+    made of    as, da, s, d
+    part of    dasselbe, das Element der finanziellen Realität in die Finanzierungsüberlegungen e..., und das, das sich in den starken Wirtschaftszentren in einem Tempo vollzieht, das Protokoll gegebenenfalls ändern .\n( Das Parlament genehmigt den geä..., das Steuer herumreißen und das Vertrauen von Investoren maßgeblich festi..., Entwicklung des ländlichen Raums - und das, das auch
+    changes    +selbe, +Element der finanziellen Realität in die Finanzierungsüberlegungen einge..., und+, +sich in den starken Wirtschaftszentren in einem Tempo vollzieht, +Protokoll gegebenenfalls ändern .\n( Das Parlament genehmigt den geänder..., +Steuer herumreißen und das Vertrauen von Investoren maßgeblich festigen ..., Entwicklung des ländlichen Raums - und+, +auch
+    followed   Parlament 15, , 6, ist 4, nicht 3, Legislativprogramm 3, Recht 3
+    preceded   , 22, daß 14, für 11, und 9, über 6, auf 4
+  im   seen 145
+    made of    m, i
+    part of    beim, .\nBeim, immensen, im Moment für etwas verworren halte .\nWir werden das aber sehr genau pr..., im Ausschuß Änderungsanträge der verschiedenen Fraktionen aufgenommen we..., im vergangenen Jahr im Tauerntunnel zahlreiche Menschenleben gekostet ha..., im großen und ganzen einverstanden, im Vorfeld der neuen Strukturfondsverordnung
+    changes    be+, .\nBe+, +mensen, +Moment für etwas verworren halte .\nWir werden das aber sehr genau prüfe..., +Ausschuß Änderungsanträge der verschiedenen Fraktionen aufgenommen werde..., +vergangenen Jahr im Tauerntunnel zahlreiche Menschenleben gekostet hat u..., +großen und ganzen einverstanden, +Vorfeld der neuen Strukturfondsverordnung
+    followed   Rahmen 10, Namen 9, Hinblick 8, Februar 6, ländlichen 6, Sinne 5
+    preceded   die 5, und 4, Kommission 4, , 4, Sicherheit 3, ganz 2
+  des   seen 142
+    made of    es, de, s, d
+    part of    deshalb, dessen, Landes, desselben, jedes, Umfeldes, deswegen, Parlament und des
+    changes    +halb, +sen, Lan+, +selben, je+, Umfel+, +wegen, Parlament und+
+    followed   Parlaments 10, Europäischen 7, Ausschusses 6, Rates 4, CEN 4, Zeitraums 4
+    preceded   und 7, Namen 4, Entwicklung 4, Verlängerung 3, Vorstellung 3, Teil 3
+  auch   seen 139
+    made of    uch, au, ch, a
+    part of    einem beträchtlichen Teil von Wales gemäß Strukturfondsprogramm der Stat..., daß auch, denn auch, auch das Verwaltungsreformprojekt einzubeziehen, der noch nicht hintergründig diskutiert wurde .\nIn diesem Zusammenhang ..., Vertrauen ausgesprochen .\nAber wir sind auch, auch wenn, das auch
+    changes    einem beträchtlichen Teil von Wales gemäß Strukturfondsprogramm der Stat...+, daß+, denn+, +das Verwaltungsreformprojekt einzubeziehen, der noch nicht hintergründig diskutiert wurde .\nIn diesem Zusammenhang ...+, Vertrauen ausgesprochen .\nAber wir sind+, +wenn, das+
+    followed   die 14, in 8, der 7, , 6, von 5, auf 5
+    preceded   als 11, und 7, aber 7, , 6, daß 6, ich 6
+  eine   seen 134
+    made of    ine, ein, e
+    part of    einer, einen, meine, einem, keine, eines, seine, .\nMeine
+    changes    +r, +n, m+, +m, k+, +s, s+, .\nM+
+    followed   Erklärung 4, solche 4, sehr 3, gute 3, Steigerung 3, Verlängerung 2
+    preceded   , 14, für 12, wir 7, ist 6, und 6, auf 4
+  es   seen 130
+    made of    e, s
+    part of    des, dieses, eines, alles, meines, ihres, Rates, Binnenmarktes
+    changes    d+, dies+, ein+, all+, mein+, ihr+, Rat+, Binnenmarkt+
+    followed   in 9, für 9, nicht 6, um 6, den 3, als 3
+    preceded   daß 14, ist 11, ich 7, gibt 7, wenn 6, geht 6
+  werden   seen 126
+    made of    erden, werde, rden, wer, den, we, n, w
+    part of    Nichttätigwerden, Annäherung .\nEbenso konnten die Arbeitslosenzahlen in den am stärksten ..., daß Indikatoren und eine Strategie für den wirtschaftlichen und sozialen..., für das gemeinschaftliche Förderkonzept eine zentrale Rolle spielen werd..., die Mitgliedstaaten selbst verzeichnen hier eine gewisse Annäherung .\nE..., es müssen konkrete Situationen in Betracht gezogen werden, mit diesem Prozeß die Regionalpolitik der Union gelenkt werden, rechtlichen Grundlagen für eine Zusammenarbeit zwischen Regionen und Mit...
+    changes    Nichttätig+, Annäherung .\nEbenso konnten die Arbeitslosenzahlen in den am stärksten ...+, daß Indikatoren und eine Strategie für den wirtschaftlichen und sozialen...+, für das gemeinschaftliche Förderkonzept eine zentrale Rolle spielen werd...+, die Mitgliedstaaten selbst verzeichnen hier eine gewisse Annäherung .\nE...+, es müssen konkrete Situationen in Betracht gezogen+, mit diesem Prozeß die Regionalpolitik der Union gelenkt+, rechtlichen Grundlagen für eine Zusammenarbeit zwischen Regionen und Mit...+
+    followed   , 32, können 10, wir 5, muß 4, kann 4, sollen 3
+    preceded   umgesetzt 4, , 4, berücksichtigt 4, .\nWir 3, gestaltet 3, wir 2
+  Kommission   seen 125
+    made of    ommission, Kommissio, Kommiss, Kommi, ssion, ion, K, n
+    part of    Kommissionsdokument, EU-Kommission, Kommission am 19. März 1998 gestellt wurde und wir uns heute damit besch..., Kommission das neue Instrument dafür, Kommission zu ersuchen, der die Kommission, Kommission zum richtigen Zeitpunkt vorliegt, Kommission und der Rat davon halten .\nDas ist nicht zuviel verlangt .\n...
+    changes    +sdokument, EU-+, +am 19. März 1998 gestellt wurde und wir uns heute damit beschäftigen - w..., +das neue Instrument dafür, +zu ersuchen, der die+, +zum richtigen Zeitpunkt vorliegt, +und der Rat davon halten .\nDas ist nicht zuviel verlangt .\nIch wiederh...
+    followed   , 17, über 6, in 5, und 5, im 4, das 3
+    preceded   der 59, die 53, und 2, .\nDie 2, Europäischen 2, neue 1
+  mit   seen 110
+    made of    it, mi, t, m
+    part of    damit, .\nDamit, mittleren, somit, .\nSomit, mitteilen, mitwirken, mitzubringen
+    changes    da+, .\nDa+, +tleren, so+, .\nSo+, +teilen, +wirken, +zubringen
+    followed   der 20, den 17, dem 14, denen 9, einer 4, dieser 4
+    preceded   , 16, sich 5, Zusammenhang 4, wir 4, und 4, die 4
+  -   seen 101
+    made of    
+    part of    Wirtschafts-, Struktur-, Agrar-, -20, Mittel-, -40, -kapazitäten, Verkehrs-
+    changes    Wirtschafts+, Struktur+, Agrar+, +20, Mittel+, +40, +kapazitäten, Verkehrs+
+    followed   , 13, und 13, wie 5, die 4, das 3, ich 3
+    preceded   ist 5, wird 4, Kommission 3, 1999 3, daß 3, bitten 2
+
+==============================================================================
+LEVEL 1
+==============================================================================
+
+SYMBOLS   23206 symbols, 4489 distinct  (each is a level 0 run; level 0 classes count as same)
+  ,                                         1702
+  der                                       878
+  die                                       862
+  und                                       629
+  in                                        376
+  den                                       302
+  zu                                        271
+  daß                                       263
+  für                                       248
+  von                                       214
+  ich                                       198
+  ist                                       190
+  wir                                       173
+  nicht                                     172
+  auf                                       171
+  das                                       167
+  im                                        145
+  des                                       142
+  auch                                      139
+  eine                                      134
+  es                                        130
+  werden                                    126
+  Kommission                                125
+  mit                                       110
+  -                                         101
+
+FOLLOWS   which symbol comes after which (top 25 of 15421 pairs)
+  ,                        -> daß                       244
+  ,                        -> die                       177
+  für                      -> die                       81
+  in                       -> den                       68
+  ,                        -> und                       68
+  in                       -> der                       61
+  daß                      -> die                       60
+  der                      -> Kommission                59
+  auf                      -> die                       58
+  die                      -> Kommission                53
+  und                      -> die                       53
+  ,                        -> der                       49
+  möchte                   -> ich                       45
+  ,                        -> wie                       43
+  ,                        -> Herr                      42
+  .\nHerr                  -> Präsident                 42
+  ,                        -> um                        39
+  bei                      -> der                       39
+  ,                        -> wenn                      38
+  Präsident                -> ,                         36
+  über                     -> die                       33
+  werden                   -> ,                         32
+  von                      -> der                       31
+  daß                      -> wir                       31
+  ist                      -> ,                         29
+
+SEPARATOR   the most common symbol: ,
+
+RUNS   1703 runs between separators, 1654 distinct
+  Herr Kommissar                            8
+  meine Damen und Herren                    7
+  Frau Berichterstatterin                   5
+  Frau Präsidentin                          4
+  Herrn Koch                                4
+  Herr Berend                               4
+  Herr Präsident                            3
+  daß                                       3
+  meine Damen und Herren Abgeordneten       3
+  Herr Kommissar Barnier                    3
+  Herr Berichterstatter                     3
+  Herr Evans                                2
+  Frau de Palacio                           2
+  daß das                                   2
+  nicht nur                                 2
+  aber ich glaube                           2
+  ist die Tatsache                          2
+  wie ich meine                             2
+  sondern auch                              2
+  meine sehr verehrten Damen und Herren     2
+  Frau Schroedter                           2
+  Herr Abgeordneter                         2
+  die                                       2
+  verbessert                                2
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 1702 pairs)
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag -> dem 17. Dezember unterbrochene Sitzungsperiode des Europäischen Parlamen...  1
+  dem 17. Dezember unterbrochene Sitzungsperiode des Europäischen Parlamen... -> wünsche Ihnen nochmals alles Gute zum Jahreswechsel und hoffe  1
+  wünsche Ihnen nochmals alles Gute zum Jahreswechsel und hoffe -> daß Sie schöne Ferien hatten .\nWie Sie feststellen konnten  1
+  daß Sie schöne Ferien hatten .\nWie Sie feststellen konnten -> ist der gefürchtete " Millenium-Bug " nicht eingetreten .\nDoch sind Bür...  1
+  ist der gefürchtete " Millenium-Bug " nicht eingetreten .\nDoch sind Bür... -> allen Opfern der Stürme   1
+  allen Opfern der Stürme  -> insbesondere in den verschiedenen Ländern der Europäischen Union  1
+  insbesondere in den verschiedenen Ländern der Europäischen Union -> in einer Schweigeminute zu gedenken .\nIch bitte Sie  1
+  in einer Schweigeminute zu gedenken .\nIch bitte Sie -> sich zu einer Schweigeminute zu erheben .\n( Das Parlament erhebt sich z...  1
+  sich zu einer Schweigeminute zu erheben .\n( Das Parlament erhebt sich z... -> zur Geschäftsordnung .\nWie Sie sicher aus der Presse und dem Fernsehen ...  1
+  zur Geschäftsordnung .\nWie Sie sicher aus der Presse und dem Fernsehen ... -> gab es in Sri Lanka mehrere Bombenexplosionen mit zahlreichen Toten .\nZ...  1
+  gab es in Sri Lanka mehrere Bombenexplosionen mit zahlreichen Toten .\nZ... -> die es in jüngster Zeit in Sri Lanka zu beklagen gab  1
+  die es in jüngster Zeit in Sri Lanka zu beklagen gab -> zählt auch Herr Kumar Ponnambalam  1
+  zählt auch Herr Kumar Ponnambalam -> der dem Europäischen Parlament erst vor wenigen Monaten einen Besuch abg...  1
+  der dem Europäischen Parlament erst vor wenigen Monaten einen Besuch abg... -> wenn Sie                  1
+  wenn Sie                 -> Frau Präsidentin          1
+  Frau Präsidentin         -> der Präsidentin von Sri Lanka in einem Schreiben das Bedauern des Parlam...  1
+  der Präsidentin von Sri Lanka in einem Schreiben das Bedauern des Parlam... -> alles in ihrem Kräften stehende zu tun  1
+  alles in ihrem Kräften stehende zu tun -> um nach einer friedlichen Lösung dieser sehr schwierigen Situation zu su...  1
+  um nach einer friedlichen Lösung dieser sehr schwierigen Situation zu su... -> Herr Evans                1
+  Herr Evans               -> ich denke                 1
+  ich denke                -> daß eine derartige Initiative durchaus angebracht ist .\nWenn das Haus d...  1
+  daß eine derartige Initiative durchaus angebracht ist .\nWenn das Haus d... -> werde ich dem Vorschlag von Herrn Evans folgen .\nFrau Präsidentin  1
+  werde ich dem Vorschlag von Herrn Evans folgen .\nFrau Präsidentin -> zur Geschäftsordnung .\nKönnten Sie mir eine Auskunft zu Artikel 143 im ...  1
+  zur Geschäftsordnung .\nKönnten Sie mir eine Auskunft zu Artikel 143 im ... -> die am Donnerstag zur Sprache kommen wird und auf die ich dann erneut ve...  1
+  die am Donnerstag zur Sprache kommen wird und auf die ich dann erneut ve... -> der in Absatz 6 vorschlägt  1
+
+MINT   23 rounds; parts minted per round: 3342 2656 1977 1440 1090 830 597 418 311 216 142 100 62 47 37 20 12 9 5 2 1 1 0
+  pool: 1654 distinct runs in, 14943 structures added, 34153 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  die                                 664       2  dieser, diese, diesem, dieses
+  auf                                 179       1  darauf, aufgenommen, aufmerksam, aufgrund
+  daß                                 165       3  daß sie sich so klar und eindeutig zur Sicherheit im Verkehrsbereich und..., daß ein Parlament dazu da ist, daß auch, daß Indikatoren und eine Strategie für den wirtschaftlichen und sozialen...
+  daß die                             103       0  daß die gewöhnlich länger als zwei Minuten dauert .\nIch möchte den Vors..., daß die entsprechenden Zahlen in gewisser Weise in den Zahlen für das Ve..., daß die Bedeutung dieses Ziels in den Anschauungen der Kommission zunehm..., daß die Nutzung der zwischen dem 1. Januar 1997 und dem Inkrafttreten di...
+  .\nHerr Präsident                    92       0  daß mein Vorschlag in der morgigen Abstimmung Berücksichtigung findet .\..., Änderungen zuzustimmen .\nHerr Präsident, Bekämpfung des Analphabetentums bei Erwachsenen dienen .\nHerr Präsident, Vorschlag in der morgigen Abstimmung Berücksichtigung findet .\nHerr Prä...
+  daß wir                              76       1  daß wir über den, daß wir seitens der Kommission auf diese Aussprache, daß wir mit den Leitlinien im großen und ganzen einverstanden, daß wir im Februar die Debatte über das langfristige Programm der Kommis...
+  möchte ich                           74       0  .\nHinzufügen möchte ich, sind .\nAbschließend möchte ich, möchte ich mich, Linie möchte ich
+  sagen                                64       1  vorgeschlagen haben .\nAlle anderen waren anderer Meinung .\nDas war der..., überhaupt ein Wachstum gibt und daß wir insgesamt aus der Phase der Stag..., dezentralen Ansatz streichen wollen .\nIch kann nur sagen, sagen kann
+  die Kommission                       55       0  der die Kommission, noch nicht hintergründig diskutiert wurde .\nIn diesem Zusammenhang möch..., im September erneut ein Vertrauensvotum für die Kommission insgesamt .\n..., der noch nicht hintergründig diskutiert wurde .\nIn diesem Zusammenhang ...
+  in der                               55       0  in der Kommission beschlossen ist und dieses Programm für fünf Jahre bes..., an die uns diese Berichte erinnern und die in der, Vorschlag in der, in der Pflicht sind .\nWenn wir von der Verantwortung der
+  für die                              54       0  für die Sicherheit von sehr großer Bedeutung sind .\nIch möchte nur weni..., für die Kommission ; schließlich noch grenzüberschreitende Aspekte .\nBe..., auch für die, für die Ziel-1-Regionen der Grundsatz der Zusätzlichkeit gilt
+  der Kommission                       51       0  der Vizepräsidentin der Kommission, der Kommission für das Jahr 2000 führen .\nEs ist also auch ein vernünft..., Weg gehen .\nAber wir als Parlament sind auch der Kontrolleur der Kommis..., im Februar .\nWir haben dem zugestimmt .\nWir wollen ja an sich keinen S...
+  in den                               48       0  in den Mitgliedstaaten sich mitunter sogar verschärfen, vor allem in den, in den Regionen nicht das europäische Prinzip der Dezentralität verwirkl..., in den Bereich der Entwicklung des ländlichen Raums - und das zweite Pri...
+  und die                              40       0  und die Festlegung von integrierten Entwicklungs- bzw. Umstellungsstrate..., und die Erstellung von einschlägigen Statistiken von der Zuverlässigkeit..., und die Dienste für KMU müssen weiterentwickelt werden .\nEine weitere S..., und die Festlegung von integrierten Entwicklungs- bzw. Umstellungsstrate...
+  auf die                              38       0  Bereichen tätig zu werden und uns dabei mit einzubinden .\nAngesichts de..., auf die am 18. November des vergangenen Jahres in der Tageszeitung ABC e..., auf die einige, auf die Änderung einiger
+  an die                               35       0  an die uns diese Berichte erinnern und die in der, an die wir uns dann selbst nicht halten .\nFrau Lynne, an die Menschen, an die kleinen und mittleren Unternehmen
+  bei der                              35       0  bei der Beförderung, bei der Prüfung der Normungen und Charakterisierungen technischer Art in..., bei der Bewertung der Effizienz gemeinschaftlicher Beihilfen Zurückhaltu..., bei der Angleichung des BIP und der Produktivität der europäischen Regio...
+  .\nFrau Präsidentin                  32       0  .\nFrau Präsidentin !\nIch möchte Sie auf einen Fall, der gegen den Antrag spricht .\nFrau Präsidentin, spricht .\nFrau Präsidentin, den Antrag spricht .\nFrau Präsidentin
+  daß es                               28       1  daß es in den letzten beiden Jahrzehnten eben kein Wachstum gegeben hat ..., daß es den jeweiligen Staaten obliegt, daß es im wesentlichen Aufgabe, daß es immer dort
+  daß der                              28       0  daß der wirtschaftliche und soziale Zusammenhalt ein zentrales Ziel der ..., daß der britischen Regierung sehr wohl bekannt, daß der private Sektor, daß der Europäische Sozialfonds einen ganz bedeutenden Beitrag zur Unter...
+  der Union                            28       0  von der Union, der Union : das große politische und humanistische Projekt für unsere In..., Schlußfolgerungen aus ihrem Sechsten Periodischen Bericht im Hinblick au..., Gefälle in den letzten zehn Jahren erheblich zugenommen hat .\nDen enorm...
+  daß die Kommission                   27       0  daß die Kommission vor allem höchsten Respekt gegenüber den Beschlüssen ..., daß die Kommission hier streng bleibt .\nDamit knüpfe ich an den letzten..., daß die Kommission im Bereich der Kohäsionspolitik dieser städtischen Di..., daß die Kommission auch aufgeschlossen ist für diesen Gedanken -
+  über die                             27       0  über die Leitlinien zu sprechen, über die Thematik der Inseln gehört, über die Leitlinien zu sprechen .\nAber ich glaube nicht, Kommission über die
+  mit der                              26       0  mit der Sache befaßt worden ist .\nIch möchte, sofort ans Parlament weitergeleitet wurden .\nDoch aufgrund der damals a..., mit der Zusätzlichkeit mehr Aufmerksamkeit widmet .\nWir halten, als auch beim Umschlag von gefährlichen Gütern ; b ) einen Abbau von Wet...
+  nicht nur                            25       2  nicht nur an der, nicht nur ein juristischer Fall ist und daß es falsch ist, nicht nur an, nicht nur ein juristischer
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +der                       179
+  +ist                       174
+  +werden                    135
+  +und                       128
+  +die                       112
+  +haben                     98
+  +.\nHerr Präsident         97
+  +ich                       94
+  +nicht                     92
+  +-                         88
+  +hat                       87
+  +sind                      86
+  +wird                      83
+  +das                       67
+  +zu                        67
+  +in                        66
+  +sagen                     65
+  +Regionen                  64
+  +Sie                       63
+  +auch                      63
+  +für                       60
+  +Bericht                   59
+  +kann                      59
+  +wir                       56
+  +den                       51
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                       die+  997
+                       der+  642
+                       und+  418
+                       daß+  379
+                        in+  328
+                       den+  264
+                       das+  255
+                      eine+  196
+                        im+  187
+                   daß die+  173
+                       ich+  173
+                       wir+  173
+                        zu+  163
+                       von+  163
+                        um+  154
+                       wie+  154
+                      auch+  144
+                     nicht+  144
+                       auf+  140
+                       ist+  135
+                       sie+  129
+                       für+  128
+                       ein+  128
+                        es+  127
+                       dem+  125
+
+CLASSES   parts that take the same set of changes (largest 25 of 6082; two or more members count as same one level up)
+  {1.0} [der+, in der+]
+     6 members: Europäischen Union die Unterschiede zwischen den Staaten geringer geword..., Kommission beschlossen ist und dieses Programm für fünf Jahre beschreibt..., geforderten Zeit die notwendige Vorschriftenänderung für eine entspreche..., Kommunikation sowie im Energiebereich zu einer kontinuierlichen Abwander..., Industrie gab .\nJetzt sind aus diesen Regionen teilweise Problemfälle u..., EU der Gefahrentransport nach wie vor große Probleme mit sich bringt .\n...
+  {1.1} [+ist, der+]
+     5 members: Dinge bei den Harmonisierungsbestrebungen dieser beiden Organisationen, Stand der Dinge bei den Harmonisierungsbestrebungen dieser beiden Organi..., zwischen dem 1. Januar 1997 und dem Inkrafttreten dieser Richtlinie in B..., kürzestmöglichen Frist vorzulegen .\nDie Ereignisse der vergangenen Woch..., zur Aussetzung der Vollstreckung des Todesurteils und zur Begnadigung de...
+  {1.2} [Kommission+, die Kommission+]
+     4 members: zu ersuchen, und der Rat davon halten .\nDas ist nicht zuviel verlangt .\nIch wiederh..., im Namen des Industrieausschusses darauf hinweisen möchte .\nAls Ausschu..., - wie ich an die jeweiligen Präsidenten der Regionen in äußerster Randla...
+  {1.3} [eine+, für eine+]
+     4 members: verbesserte soziale, Harmonisierung der Systeme der sozialen Sicherheit und eine Reduzierung ..., Bestätigung unserer gemeinsamen Arbeit, Entwicklung nicht
+  {1.4} [bei der+, der+]
+     4 members: Gewährung von Zuschüssen als Indikator für die wirtschaftlich günstigste..., Bewertung der Effizienz gemeinschaftlicher Beihilfen Zurückhaltung zu üb..., früheren Abstimmung zur Frage des Strategieplans der Kommission - keine ..., Überwindung einiger der gewaltigen Schwierigkeiten
+  {1.5} [+hat, die+]
+     4 members: Phase einer beratenden und untergeordneten Institution noch nicht überwu..., er dabei geleistet, insbesondere das Ziel, EU die Möglichkeit
+  {1.6} [den+, für den+]
+     4 members: ländlichen Raum einer Diversifizierung Priorität einräumen .\nWas nun di..., Schutz der Öffentlichkeit verantwortlich sind, fraglichen Zeitraum in diesem Parlament vor ihrer Annahme geprüft und er..., Gefahrguttransport auf der Straße
+  {1.7} [+sind, die+]
+     4 members: Verwaltung der Strukturfondsmittel verantwortlich, Ihnen nicht neu, Vereine und Verbände - als auch derer des privaten Sektors .\nUnd die te..., vielleicht technische Berichte
+  {1.8} [+werden, die+]
+     4 members: Mitgliedstaaten selbst verzeichnen hier eine gewisse Annäherung .\nEbens..., oft gerade von den Politiken einer gleichgültigen Europäischen Union ben..., zu unserer Gemeinschaft stoßen, durch Europa befördert
+  {1.9} [den+, in den+]
+     4 members: Mitgliedstaaten sich mitunter sogar verschärfen, starken Wirtschaftszentren in einem Tempo vollzieht, zweiten Kohäsionsbericht aufgenommen werden sollen, ärmsten oder am wenigsten entwickelten Regionen
+  {1.10} [Erklärung+, eine Erklärung+]
+     4 members: sein .\nNun geht es darum, zur Abstimmung abzugeben .\nDas ist eine wichtige Angelegenheit .\nViell..., hört und gar nicht weiß, der Kommission über ihre strategischen Ziele für die nächsten fünf Jahre...
+  {1.11} [Kommission im+, im+]
+     3 members: Amt war, Namen des Industrieausschusses darauf hinweisen möchte .\nAls Ausschuß f..., allgemeinen und dem für Regionalpolitik zuständigen Kommissar im besonde...
+  {1.12} [eine solche+, solche+]
+     3 members: Stelle nicht leisten .\nEntweder sie verkaufen ihre Ladung oder mischen ..., Analyse in den zweiten Kohäsionsbericht aufzunehmen, Dezentralisation der höheren Ausbildung ist nachgerade eine sinnvolle Po...
+  {1.13} [+können, die+]
+     3 members: Vertreter der Bürger .\nDie Bürger, Arbeitslosigkeit sogar inakzeptabel .\nDamit die Ziele dieser Politiken ..., Bürger Europas müssen sich darauf verlassen
+  {1.14} [bezug auf die+, in bezug auf die+]
+     3 members: Zusätzlichkeit verletzt, Arbeitslosigkeit sogar inakzeptabel .\nDamit die Ziele dieser Politiken ..., Leitlinien quasi auf den fahrenden Zug aufgesprungen ist
+  {1.15} [die die+, die+]
+     3 members: Aufgabe hat, Berichterstatterin in ihren Ausführungen eben mit aller Deutlichkeit und..., Stellungnahme im Auftrag des Ausschusses für Beschäftigung und soziale A...
+  {1.16} [daß der+, der+]
+     3 members: private Sektor, Ausschuß für Regionalpolitik einen meiner Änderungsanträge angenommen ha..., wirtschaftliche und soziale Zusammenhalt ein zentrales Ziel der Union is...
+  {1.17} [die im+, im+]
+     3 members: Ausschuß Änderungsanträge der verschiedenen Fraktionen aufgenommen werde..., vergangenen Jahr im Tauerntunnel zahlreiche Menschenleben gekostet hat u..., Bereich der Beförderung gefährlicher Güter auf Straße
+  {1.18} [die+, über die+]
+     3 members: Auswirkungen der Erweiterung der Union, großen Aktionslinien für den nächsten Fünfjahreszeitraum, Gebiete in äußerster Randlage verzögert
+  {1.19} [einer+, von einer+]
+     3 members: achtmal höheren, Befriedigung der sozialen Bedürfnisse ausgeht, wirklichen Annäherung des durchschnittlichen regionalen Entwicklungsstan...
+  {1.20} [auf eine+, eine+]
+     3 members: klare Zielsetzung für alternative Finanzierungsquellen einschließlich Re..., Bemerkung von Frau Angelilli einzugehen, Debatte über das Fünfjahresprogramm in den Fraktionen vernünftig vorbere...
+  {1.21} [+-, der+]
+     3 members: gefürchtete " Millenium-Bug " nicht eingetreten .\nDoch sind Bürger eini..., Beschluß so lautet, Europäischen Union die Unterschiede zwischen den Staaten geringer geword...
+  {1.22} [+.\nHerr Präsident, die+]
+     3 members: Bindung der Bevölkerung an den ländlichen Raum eines der vorrangigen Zie..., bereitwillige Aufnahme von Anregungen unsererseits in den Bericht, Forderungen des Parlaments ernst nimmt und daß sie hier die europäische ...
+  {1.23} [+sagen, die+]
+     3 members: Inselregionen und natürlich auch die Regionen in äußerster Randlage .\nI..., manchmal bei der Prüfung der Normungen und Charakterisierungen technisch..., Debatte über beide Programme gemeinsam zu führen .\nDeswegen lehnt meine...
+  {1.24} [die+, ob die+]
+     3 members: EU die Möglichkeit hat, Mitgliedstaaten bestimmte eigene Vorschriften erlassen können .\nSie wir..., angewandte Politik die richtige ist oder ob es nicht zweckmäßiger ist
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  Herr Kommissar   seen 8
+    made of    Kommissar, Herr
+    part of    Herr Kommissar !\nNach genauem Studium des vorliegenden Berichts kommt m..., Herr Kommissar ist, Herr Kommissar !\nDer vorliegende Bericht des Kollegen Berend folgt gena..., Herr Kommissar .\nDie Aussprache ist geschlossen .\nDie Abstimmung finde..., Herr Kommissar Barnier, Herr Kommissar !\nMit Hilfe von Leitlinien soll den Mitgliedstaaten eine..., Herr Kommissar !\nIm Ausschuß für Beschäftigung und soziale Angelegenhei..., Herr Kommissar !\nNach genauem Studium des vorliegenden Berichts kommt m...
+    changes    +!\nNach genauem Studium des vorliegenden Berichts kommt man unzweifelhaf..., +ist, +!\nDer vorliegende Bericht des Kollegen Berend folgt genau der von der E..., +.\nDie Aussprache ist geschlossen .\nDie Abstimmung findet morgen um 12...., +Barnier, +!\nMit Hilfe von Leitlinien soll den Mitgliedstaaten eine Orientierung z..., +!\nIm Ausschuß für Beschäftigung und soziale Angelegenheiten vertraten w..., +!\nNach genauem Studium des vorliegenden Berichts kommt man unzweifelhaf...
+    followed   meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand... 1, liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine... 1, sehr geehrte Kollegen !\nAls Beweis dafür 1, meine lieben Kolleginnen und Kollegen 1, liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin... 1, ist das erste Gebot für den kommenden Zeitraum .\nSomit 1
+    preceded   das umgehend korrigiert wird .\nHerr Präsident 1, denn nach meiner Auffassung muß die Bindung der Bevölkerung an den ländl... 1, und ich sehe darin einen äußerst interessanten Prozeß .\nUnsere Fraktion... 1, daß dieser Kodex eingehalten und das Parlament über alle Entwicklungen u... 1, diesen Änderungen zuzustimmen .\nHerr Präsident 1, die strukturelle Finanzierung stärker an die Schaffung von Arbeitsplätze... 1
+  meine Damen und Herren   seen 7
+    made of    Damen und Herren, meine
+    part of    meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand..., meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand..., meine Damen und Herren Abgeordneten
+    changes    +!\nDer von der Kommission in Erfüllung ihres Mandats unterbreitete Vorsc..., +!\nDer von der Kommission in Erfüllung ihres Mandats unterbreitete Vorsc..., +Abgeordneten
+    followed   sagen 1, kennen die Gründe 1, möchte ich kurz auf die Bedeutung und Struktur der Leitlinien eingehen 1, vorgebracht haben 1, möchte ich kurz auf einige Ihrer Bemerkungen eingehen ; zunächst zum Ver... 1, der Kommission im allgemeinen und dem für Regionalpolitik zuständigen Ko... 1
+    preceded   daß wir schon mehrere Jahre über diese Frage diskutieren .\nIn ganz kurz... 1, Frau Berichterstatterin 1, an die viele von Ihnen mit Nachdruck erinnert haben .\nDeshalb 1, oder auch Sie 1, damit sie im Rahmen der einzelnen Ziele in unterschiedlichem Maße je nac... 1, die darin enthaltenen Empfehlungen sowie Ihre Ausführungen 1
+  Frau Berichterstatterin   seen 5
+    made of    Berichterstatterin, Frau
+    part of    
+    changes    
+    followed   meine Damen und Herren 1, die mir seit langem am Herzen liegt 1, möchte ich mich auf einige Gedanken Ihres Berichts konzentrieren .\nIch ... 1, hinsichtlich des Punktes " Leitlinien für die Entwicklung im ländlichen ... 1, für Ihren Bericht danken ; Sie und Ihr Ausschuß haben gute Arbeit geleis... 1
+    preceded   Ihrer stellenweisen Kritik sowie Ihren Vorschlägen im Zusammenhang mit d... 1, ein Europa der schicken Stadtviertel und ein Europa der armen Vorstädte ... 1, sondern zum Beispiel in das Vademecum oder das methodische Dokument .\nA... 1, die Prioritäten und die Effizienz der Programme zu bestimmen .\nFerner f... 1, für Ihr Verständnis - möchte ich Ihnen 1
+  Frau Präsidentin   seen 4
+    made of    Präsidentin, Frau
+    part of    ) Frau Präsidentin, beide Programme gemeinsam zu führen .\nDeswegen lehnt meine Fraktion den..., danach zur Abstimmung zu schreiten .\n( Beifall der PSE-Fraktion ) Frau ...
+    changes    )+, beide Programme gemeinsam zu führen .\nDeswegen lehnt meine Fraktion den...+, danach zur Abstimmung zu schreiten .\n( Beifall der PSE-Fraktion )+
+    followed   der Präsidentin von Sri Lanka in einem Schreiben das Bedauern des Parlam... 1, wurde meinem Wunsch nicht entsprochen .\nZwar können wir jetzt zwei finn... 1, die Kommission zu ersuchen 1, möchte ich bekräftigen 1
+    preceded   wenn Sie 1, daß Sie Wort gehalten haben und nun in der ersten Sitzungsperiode des ne... 1, die der Aussprache zugrunde liegen .\nDaher bitte ich Sie 1, wobei man am Vorabend vor den Fraktionen des Parlaments mit einer Rede a... 1
+  Herrn Koch   seen 4
+    made of    Herrn, Koch
+    part of    von Herrn Koch, Herrn Koch für seinen Bericht, / 1999 ) von Herrn Koch, das Protokoll gegebenenfalls ändern .\n( Das Parlament genehmigt den geä..., Herrn Koch für seinen
+    changes    von+, +für seinen Bericht, / 1999 ) von+, das Protokoll gegebenenfalls ändern .\n( Das Parlament genehmigt den geä...+, +für seinen
+    followed   zu seiner großartigen Arbeit und seiner konstruktiven Zusammenarbeit mit... 1, meinen Dank sagen .\nDie Aussprache ist geschlossen .\nDie Abstimmung fi... 1, für seine Arbeit zu dieser Frage danken .\nDas ist auch für die Bedingun... 1, die in verschiedenen 1
+    preceded   ob Transitländer oder nicht .\nHerr Präsident !\nIn erster Linie möchte ... 1, sondern wir arbeiten daran am Rande dieser Geschehnisse .\nDiese führen ... 1, was außerordentlich begrüßenswert ist .\nIch möchte daher dem Berichters... 1, auf die Übereinstimmung zwischen dem Wortlaut der Richtlinie und dem Inh... 1
+  Herr Berend   seen 4
+    made of    Berend, Herr
+    part of    wie Herr Berend
+    changes    wie+
+    followed   daß die Kommission besonders bemüht war 1, komme ich zu einigen spezifischen Punkten .\nSie haben den Wunsch geäuße... 1, bedauert 1, insgesamt positiv beurteilt haben 1
+    preceded   daß wir diese Beurteilung durch Sie und durch das Parlament gerne zur Ke... 1, mit den nationalen und regionalen Behörden ein Seminar über eben diese F... 1, die Qualität seiner statistischen Daten zu verbessern .\nWie Herr Aparic... 1, den Sie 1
+  Herr Präsident   seen 3
+    made of    Präsident, Herr
+    part of    zügig Reformvorschläge zu unterbreiten .\nSehr geehrter Herr Präsident, Herr Präsident !\nIch danke zuerst Herrn Koch für seinen Bericht
+    changes    zügig Reformvorschläge zu unterbreiten .\nSehr geehrter+, +!\nIch danke zuerst Herrn Koch für seinen Bericht
+    followed   sind bereits die Hauptprobleme dargelegt worden 1, für Ihr Verständnis - möchte ich Ihnen 1, bitte ich meine verehrten Kolleginnen und Kollegen um die Zustimmung zu ... 1
+    preceded   weil die Arbeiten nicht zum Abschluß gebracht wurden .\nSchließlich 1, die unter den Stürmen besonders stark zu leiden hatten .\nAbschließend -... 1, ist das erste Gebot für den kommenden Zeitraum .\nSomit 1
+  daß   seen 3
+    made of    aß, ß, da, d
+    part of    daß sie sich so klar und eindeutig zur Sicherheit im Verkehrsbereich und..., daß ein Parlament dazu da ist, daß auch, daß Indikatoren und eine Strategie für den wirtschaftlichen und sozialen..., daß man der, daß der private Sektor, daß Sie, daß mein Vorschlag in der morgigen Abstimmung Berücksichtigung findet .\...
+    changes    +sie sich so klar und eindeutig zur Sicherheit im Verkehrsbereich und zur..., +ein Parlament dazu da ist, +auch, +Indikatoren und eine Strategie für den wirtschaftlichen und sozialen Zus..., +man der, +der private Sektor, +Sie, +mein Vorschlag in der morgigen Abstimmung Berücksichtigung findet .\nHer...
+    followed   wie in der Vergangenheit so oft geschehen 1, die Kommission - wie ich an die jeweiligen Präsidenten der Regionen in ä... 1, nachdem die Leitlinien von der Kommission in Form eines Entwurfs im Febr... 1
+    preceded   sondern mit denen auch verhindert wird 1, die Inselregionen und natürlich auch die Regionen in äußerster Randlage ... 1, daß Ihr Haus erst spät mit der Sache befaßt worden ist .\nIch möchte abe... 1
+  meine Damen und Herren Abgeordneten   seen 3
+    made of    Damen und Herren Abgeordneten, meine Damen und Herren, Abgeordneten, meine
+    part of    meine Damen und Herren Abgeordneten !\nIch habe, meine Damen und Herren Abgeordneten !\nIch, meine Damen und Herren Abgeordneten !\nIch habe ihren Ausführungen, meine Damen und Herren Abgeordneten !\nIch habe ihren
+    changes    +!\nIch habe, +!\nIch, +!\nIch habe ihren Ausführungen, +!\nIch habe ihren
+    followed   daß die Leitlinien von drei strategischen Prinzipien ausgehen 1, zu Ihren in der Aussprache geäußerten Bedenken möchte ich sagen 1, versichern 1
+    preceded   auf nationaler Ebene meine ich damit auch die Verbindung zum Kohäsionsfo... 1, sowie die europäische Beschäftigungsstrategie und die Wirtschafts- und W... 1, sofort ans Parlament weitergeleitet wurden .\nDoch aufgrund der damals a... 1
+  Herr Kommissar Barnier   seen 3
+    made of    Herr Kommissar, Kommissar Barnier, Barnier, Herr
+    part of    
+    changes    
+    followed   meine sehr verehrten Damen und Herren 1, liebe Kolleginnen und Kollegen !\nDieser Sechste periodische Bericht übe... 1, liebe Kolleginnen und Kollegen !\nDa mir nur sehr wenig Zeit zur Verfügu... 1
+    preceded   Verkehr und Fremdenverkehr über den Sechsten Periodischen Bericht über d... 1, damit diese Förderperiode ohne zeitliche Verzögerung auch vor Ort ordent... 1, wie das bei uns in Europa der oft Fall ist .\nHerr Präsident 1
+  Herr Berichterstatter   seen 3
+    made of    Berichterstatter, Herr
+    part of    
+    changes    
+    followed   ein paar Worte zu Ihrer Einschätzung des Sechsten Periodischen Berichts ... 1, deshalb kurz im Telegrammstil : Der erste Punkt betrifft die Verwertbark... 1, ein sehr wichtiges Instrument darstellt - nicht nur 1
+    preceded   der Kommission im allgemeinen und dem für Regionalpolitik zuständigen Ko... 1, möchte ich mich nicht lange aufhalten 1, der für mich 1
+  Herr Evans   seen 2
+    made of    Evans, Herr
+    part of    Herr Evans nochmals mit der entsprechenden Verordnung vertraut macht .\n..., Herr Evans nochmals mit der entsprechenden Verordnung vertraut macht .\n..., Herr Evans nochmals mit der entsprechenden Verordnung vertraut macht .\n...
+    changes    +nochmals mit der entsprechenden Verordnung vertraut macht .\nMeine Frakt..., +nochmals mit der entsprechenden Verordnung vertraut macht .\nMeine Frakt..., +nochmals mit der entsprechenden Verordnung vertraut macht .\nMeine Frakt...
+    followed   ich denke 1, aber nicht nur von Wales .\nHinzufügen möchte ich hier noch 1
+    preceded   um nach einer friedlichen Lösung dieser sehr schwierigen Situation zu su... 1, insbesondere von Wales 1
+  Frau de Palacio   seen 2
+    made of    de Palacio, Frau
+    part of    der Fall ist .\nDie früher beantworteten Anfragen bezogen sich auf das A..., Frau de Palacio in einer bestimmten Angelegenheit, Fall ist .\nDie früher beantworteten Anfragen bezogen sich auf das Auftr...
+    changes    der Fall ist .\nDie früher beantworteten Anfragen bezogen sich auf das A...+, +in einer bestimmten Angelegenheit, Fall ist .\nDie früher beantworteten Anfragen bezogen sich auf das Auftr...+
+    followed   gestellt .\nDie zuständigen Dienste haben sie nicht in die Tagesordnung ... 1, vertreten ist 1
+    preceded   in einer spanischen Zeitung wiedergegebenen Stellungnahmen der Vizepräsi... 1, dieses Programm vorzulegen ( In diesem Fall sollte sie eine Klärung herb... 1
+  daß das   seen 2
+    made of    daß, das
+    part of    daß das Gericht ihn freigesprochen und deutlich gemacht hat, daß das Legislativprogramm im Februar, daß das wichtigste strategische Ziel der Struktur- und Kohäsionsfonds un..., daß das Gericht ihn freigesprochen und deutlich gemacht, daß das Parlament in bezug auf die Leitlinien quasi auf den fahrenden Zu..., daß das Europäische Komitee für Normung ( CEN ) nicht in der Lage gewese..., daß das Parlament vorausdenkt und die Leitlinien für die Revision nach d..., daß das regionale Gefälle in den letzten zehn Jahren erheblich zugenomme...
+    changes    +Gericht ihn freigesprochen und deutlich gemacht hat, +Legislativprogramm im Februar, +wichtigste strategische Ziel der Struktur- und Kohäsionsfonds und ihrer ..., +Gericht ihn freigesprochen und deutlich gemacht, +Parlament in bezug auf die Leitlinien quasi auf den fahrenden Zug aufges..., +Europäische Komitee für Normung ( CEN ) nicht in der Lage gewesen ist, +Parlament vorausdenkt und die Leitlinien für die Revision nach der Hälft..., +regionale Gefälle in den letzten zehn Jahren erheblich zugenommen hat .\...
+    followed   was Herr Poettering da sagt 1, was auf Europas Straßen 1
+    preceded   ich möchte zunächst darauf hinweisen 1, die Bürger Europas müssen sich darauf verlassen können 1
+  nicht nur   seen 2
+    made of    nicht, nur
+    part of    nicht nur an der, nicht nur ein juristischer Fall ist und daß es falsch ist, nicht nur an, nicht nur ein juristischer, nicht nur unter 20, nicht nur von Wales .\nHinzufügen möchte ich hier noch, nicht nur gegen weitere Kosten absichern, wichtiges Instrument darstellt - nicht nur
+    changes    +an der, +ein juristischer Fall ist und daß es falsch ist, +an, +ein juristischer, +unter 20, +von Wales .\nHinzufügen möchte ich hier noch, +gegen weitere Kosten absichern, wichtiges Instrument darstellt -+
+    followed   aber auch 1, um den wirtschaftlichen und sozialen Niedergang der ländlichen Gebiete u... 1
+    preceded   aber auch auf der Schiene oder auf Wasserwegen große Schäden entstehen 1, ist sie weiterhin wichtig 1
+  aber ich glaube   seen 2
+    made of    aber ich, ich glaube, glaube, aber
+    part of    
+    changes    
+    followed   uns allen ist noch die Katastrophe in lebendiger Erinnerung 1, daß wir rascher reagieren müssen 1
+    preceded   weil die Betroffenen den Transit von gefährlichen Gütern nicht ernst gen... 1, dann ist dieser Zeitraum etwas zu lang .\nDas ist jetzt nicht allein die... 1
+  ist die Tatsache   seen 2
+    made of    ist die, die Tatsache, Tatsache, ist
+    part of    
+    changes    
+    followed   daß die Gewährung von Unterstützung im Rahmen der Strukturfonds in gewis... 1, daß es in den letzten beiden Jahrzehnten eben kein Wachstum gegeben hat ... 1
+    preceded   sondern eine weitreichendere Verbesserung der wirtschaftlichen Basis des... 1, den Regionen in äußerster Randlage oder Insellage noch mehr schadet 1
+  wie ich meine   seen 2
+    made of    ich meine, wie ich, meine, wie
+    part of    wie ich meine .\nIm Ergebnis dieses Berichtes machen wir die Kommission ...
+    changes    +.\nIm Ergebnis dieses Berichtes machen wir die Kommission darauf aufmerk...
+    followed   als wahrer Freund von Wales erweisen kann .\nHerr Präsident !\nUnser Aus... 1, eine solide Grundlage für die Formulierung von strukturpolitischen Prior... 1
+    preceded   in dem sich die Kommission 1, liebe Kolleginnen und Kollegen !\nDer sechste periodische Bericht enthäl... 1
+  sondern auch   seen 2
+    made of    sondern, auch
+    part of    sondern auch in der EU der Gefahrentransport nach wie vor große Probleme..., sondern auch der Vizepräsidentin der Kommission dafür danken, sondern auch aufgrund eines Dokumentes
+    changes    +in der EU der Gefahrentransport nach wie vor große Probleme mit sich bri..., +der Vizepräsidentin der Kommission dafür danken, +aufgrund eines Dokumentes
+    followed   weil den Landwirten eine grundlegende Rolle bei der Bewirtschaftung des ... 1, um mit den Bürgern 1
+    preceded   um den wirtschaftlichen und sozialen Niedergang der ländlichen Gebiete u... 1, was gemacht wurde oder um die zukünftigen Leitlinien zu untersuchen und ... 1
+  meine sehr verehrten Damen und Herren   seen 2
+    made of    sehr verehrten Damen und Herren, meine
+    part of    
+    changes    
+    followed   Herr Kommissar !\nMit Hilfe von Leitlinien soll den Mitgliedstaaten eine... 1, liebe Kolleginnen und Kollegen !\nDer sechste periodische Bericht enthäl... 1
+    preceded   auch für die bereitwillige Aufnahme von Anregungen unsererseits in den B... 1, Herr Kommissar Barnier 1
+  Frau Schroedter   seen 2
+    made of    Schroedter, Frau
+    part of    akzeptieren also die uns unterbreiteten vier Änderungsanträge .\nDie Aus..., aufgegriffen .\nWir akzeptieren also die uns unterbreiteten vier Änderun..., uns unterbreiteten vier Änderungsanträge .\nDie Aussprache ist geschloss..., .\nWir akzeptieren also die uns unterbreiteten vier Änderungsanträge .\n..., Redebeitrag mit einem Dank an Frau Schroedter, Frau Schroedter enthält zweifellos zahlreiche wichtige Hinweise, die uns unterbreiteten vier Änderungsanträge .\nDie Aussprache ist gesch..., Frau Schroedter ganz herzlich für die von ihr zu diesem Thema geleistete...
+    changes    akzeptieren also die uns unterbreiteten vier Änderungsanträge .\nDie Aus...+, aufgegriffen .\nWir akzeptieren also die uns unterbreiteten vier Änderun...+, uns unterbreiteten vier Änderungsanträge .\nDie Aussprache ist geschloss...+, .\nWir akzeptieren also die uns unterbreiteten vier Änderungsanträge .\n...+, Redebeitrag mit einem Dank an+, +enthält zweifellos zahlreiche wichtige Hinweise, die uns unterbreiteten vier Änderungsanträge .\nDie Aussprache ist gesch...+, +ganz herzlich für die von ihr zu diesem Thema geleistete Arbeit danken ....
+    followed   wenn Sie diesen Änderungsantrag gerade auch unter dem Aspekt der Subsidi... 1, oder auch Sie 1
+    preceded   der eine angemessene Einbeziehung des privaten Sektors bei der Planung u... 1, die Sie 1
+  Herr Abgeordneter   seen 2
+    made of    Abgeordneter, Herr
+    part of    
+    changes    
+    followed   Ihnen meine Auffassung mitzuteilen 1, müssen wir dafür sorgen 1
+    preceded   mit meiner Kollegin De Palacio über die aus der Ölpest in Frankreich zu ... 1, daß die Früchte des Wachstums ungleich verteilt seien .\nDoch zunächst 1
+  die   seen 2
+    made of    di, ie, e, d
+    part of    dieser, diese, diesem, dieses, dies, diejenigen, dienen, dieselben
+    changes    +ser, +se, +sem, +ses, +s, +jenigen, +nen, +selben
+    followed   Herr Hatzidakis 1, vor allem in den letzten Jahren 1
+    preceded   für eine Bestätigung unserer gemeinsamen Arbeit 1, daß diese Anreize recht oft nicht den gewünschten Erfolg zeitigen .\nDie... 1
+  verbessert   seen 2
+    made of    verbesser, verbess, ert, t
+    part of    verbesserte, rechtlichen Grundlagen für eine Zusammenarbeit zwischen Regionen und Mit...
+    changes    +e, rechtlichen Grundlagen für eine Zusammenarbeit zwischen Regionen und Mit...+
+    followed   und das zu einem Zeitpunkt 1, beeinflußt werden kann .\nIch denke an technologische Forschung und Entw... 1
+    preceded   nämlich der Regionen 1, gefördert 1
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag   seen 1
+    made of    
+    part of    
+    changes    
+    followed   dem 17. Dezember unterbrochene Sitzungsperiode des Europäischen Parlamen... 1
+    preceded   
+
+==============================================================================
+LEVEL 2
+==============================================================================
+
+SYMBOLS   1703 symbols, 1654 distinct  (each is a level 1 run; level 1 classes count as same)
+  Herr Kommissar                            8
+  meine Damen und Herren                    7
+  Frau Berichterstatterin                   5
+  Frau Präsidentin                          4
+  Herrn Koch                                4
+  Herr Berend                               4
+  Herr Präsident                            3
+  daß                                       3
+  meine Damen und Herren Abgeordneten       3
+  Herr Kommissar Barnier                    3
+  Herr Berichterstatter                     3
+  Herr Evans                                2
+  Frau de Palacio                           2
+  daß das                                   2
+  nicht nur                                 2
+  aber ich glaube                           2
+  ist die Tatsache                          2
+  wie ich meine                             2
+  sondern auch                              2
+  meine sehr verehrten Damen und Herren     2
+  Frau Schroedter                           2
+  Herr Abgeordneter                         2
+  die                                       2
+  verbessert                                2
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag  1
+
+FOLLOWS   which symbol comes after which (top 25 of 1702 pairs)
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag -> dem 17. Dezember unterbrochene Sitzungsperiode des Europäischen Parlamen...  1
+  dem 17. Dezember unterbrochene Sitzungsperiode des Europäischen Parlamen... -> wünsche Ihnen nochmals alles Gute zum Jahreswechsel und hoffe  1
+  wünsche Ihnen nochmals alles Gute zum Jahreswechsel und hoffe -> daß Sie schöne Ferien hatten .\nWie Sie feststellen konnten  1
+  daß Sie schöne Ferien hatten .\nWie Sie feststellen konnten -> ist der gefürchtete " Millenium-Bug " nicht eingetreten .\nDoch sind Bür...  1
+  ist der gefürchtete " Millenium-Bug " nicht eingetreten .\nDoch sind Bür... -> allen Opfern der Stürme   1
+  allen Opfern der Stürme  -> insbesondere in den verschiedenen Ländern der Europäischen Union  1
+  insbesondere in den verschiedenen Ländern der Europäischen Union -> in einer Schweigeminute zu gedenken .\nIch bitte Sie  1
+  in einer Schweigeminute zu gedenken .\nIch bitte Sie -> sich zu einer Schweigeminute zu erheben .\n( Das Parlament erhebt sich z...  1
+  sich zu einer Schweigeminute zu erheben .\n( Das Parlament erhebt sich z... -> zur Geschäftsordnung .\nWie Sie sicher aus der Presse und dem Fernsehen ...  1
+  zur Geschäftsordnung .\nWie Sie sicher aus der Presse und dem Fernsehen ... -> gab es in Sri Lanka mehrere Bombenexplosionen mit zahlreichen Toten .\nZ...  1
+  gab es in Sri Lanka mehrere Bombenexplosionen mit zahlreichen Toten .\nZ... -> die es in jüngster Zeit in Sri Lanka zu beklagen gab  1
+  die es in jüngster Zeit in Sri Lanka zu beklagen gab -> zählt auch Herr Kumar Ponnambalam  1
+  zählt auch Herr Kumar Ponnambalam -> der dem Europäischen Parlament erst vor wenigen Monaten einen Besuch abg...  1
+  der dem Europäischen Parlament erst vor wenigen Monaten einen Besuch abg... -> wenn Sie                  1
+  wenn Sie                 -> Frau Präsidentin          1
+  Frau Präsidentin         -> der Präsidentin von Sri Lanka in einem Schreiben das Bedauern des Parlam...  1
+  der Präsidentin von Sri Lanka in einem Schreiben das Bedauern des Parlam... -> alles in ihrem Kräften stehende zu tun  1
+  alles in ihrem Kräften stehende zu tun -> um nach einer friedlichen Lösung dieser sehr schwierigen Situation zu su...  1
+  um nach einer friedlichen Lösung dieser sehr schwierigen Situation zu su... -> Herr Evans                1
+  Herr Evans               -> ich denke                 1
+  ich denke                -> daß eine derartige Initiative durchaus angebracht ist .\nWenn das Haus d...  1
+  daß eine derartige Initiative durchaus angebracht ist .\nWenn das Haus d... -> werde ich dem Vorschlag von Herrn Evans folgen .\nFrau Präsidentin  1
+  werde ich dem Vorschlag von Herrn Evans folgen .\nFrau Präsidentin -> zur Geschäftsordnung .\nKönnten Sie mir eine Auskunft zu Artikel 143 im ...  1
+  zur Geschäftsordnung .\nKönnten Sie mir eine Auskunft zu Artikel 143 im ... -> die am Donnerstag zur Sprache kommen wird und auf die ich dann erneut ve...  1
+  die am Donnerstag zur Sprache kommen wird und auf die ich dann erneut ve... -> der in Absatz 6 vorschlägt  1
+
+SEPARATOR   the most common symbol: Herr Kommissar
+
+RUNS   9 runs between separators, 9 distinct
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag | dem 17...  1
+  meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand...  1
+  liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine...  1
+  sehr geehrte Kollegen !\nAls Beweis dafür | daß dieses Parlament die Pha...  1
+  meine lieben Kolleginnen und Kollegen | in meinen anderthalb Minuten Red...  1
+  liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin...  1
+  ist das erste Gebot für den kommenden Zeitraum .\nSomit | Herr Präsident...  1
+  sehr geehrte Kollegen !\nBis heute ist es in der Regionalpolitik der Eur...  1
+  sehr verehrte Kollegen !\nMein Dank gilt dem Berichterstatter für die Be...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 8 pairs)
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag | dem 17... -> meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand...  1
+  meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand... -> liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine...  1
+  liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine... -> sehr geehrte Kollegen !\nAls Beweis dafür | daß dieses Parlament die Pha...  1
+  sehr geehrte Kollegen !\nAls Beweis dafür | daß dieses Parlament die Pha... -> meine lieben Kolleginnen und Kollegen | in meinen anderthalb Minuten Red...  1
+  meine lieben Kolleginnen und Kollegen | in meinen anderthalb Minuten Red... -> liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin...  1
+  liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin... -> ist das erste Gebot für den kommenden Zeitraum .\nSomit | Herr Präsident...  1
+  ist das erste Gebot für den kommenden Zeitraum .\nSomit | Herr Präsident... -> sehr geehrte Kollegen !\nBis heute ist es in der Regionalpolitik der Eur...  1
+  sehr geehrte Kollegen !\nBis heute ist es in der Regionalpolitik der Eur... -> sehr verehrte Kollegen !\nMein Dank gilt dem Berichterstatter für die Be...  1
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 9 distinct runs in, 9 structures added, 34162 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag | dem 17...        0       1  
+  ist das erste Gebot für den kommenden Zeitraum .\nSomit | Herr Präsident...        0       1  
+  liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin...        0       1  
+  liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine...        0       1  
+  meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand...        0       1  
+  meine lieben Kolleginnen und Kollegen | in meinen anderthalb Minuten Red...        0       1  
+  sehr geehrte Kollegen !\nAls Beweis dafür | daß dieses Parlament die Pha...        0       1  
+  sehr geehrte Kollegen !\nBis heute ist es in der Regionalpolitik der Eur...        0       1  
+  sehr verehrte Kollegen !\nMein Dank gilt dem Berichterstatter für die Be...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag | dem 17...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand... 1
+    preceded   
+  meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine... 1
+    preceded   \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag | dem 17... 1
+  liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   sehr geehrte Kollegen !\nAls Beweis dafür | daß dieses Parlament die Pha... 1
+    preceded   meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand... 1
+  sehr geehrte Kollegen !\nAls Beweis dafür | daß dieses Parlament die Pha...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   meine lieben Kolleginnen und Kollegen | in meinen anderthalb Minuten Red... 1
+    preceded   liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine... 1
+  meine lieben Kolleginnen und Kollegen | in meinen anderthalb Minuten Red...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin... 1
+    preceded   sehr geehrte Kollegen !\nAls Beweis dafür | daß dieses Parlament die Pha... 1
+  liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   ist das erste Gebot für den kommenden Zeitraum .\nSomit | Herr Präsident... 1
+    preceded   meine lieben Kolleginnen und Kollegen | in meinen anderthalb Minuten Red... 1
+  ist das erste Gebot für den kommenden Zeitraum .\nSomit | Herr Präsident...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   sehr geehrte Kollegen !\nBis heute ist es in der Regionalpolitik der Eur... 1
+    preceded   liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin... 1
+  sehr geehrte Kollegen !\nBis heute ist es in der Regionalpolitik der Eur...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   sehr verehrte Kollegen !\nMein Dank gilt dem Berichterstatter für die Be... 1
+    preceded   ist das erste Gebot für den kommenden Zeitraum .\nSomit | Herr Präsident... 1
+  sehr verehrte Kollegen !\nMein Dank gilt dem Berichterstatter für die Be...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   sehr geehrte Kollegen !\nBis heute ist es in der Regionalpolitik der Eur... 1
+
+==============================================================================
+LEVEL 3
+==============================================================================
+
+SYMBOLS   9 symbols, 9 distinct  (each is a level 2 run; level 2 classes count as same)
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag | dem 17...  1
+  meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand...  1
+  liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine...  1
+  sehr geehrte Kollegen !\nAls Beweis dafür | daß dieses Parlament die Pha...  1
+  meine lieben Kolleginnen und Kollegen | in meinen anderthalb Minuten Red...  1
+  liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin...  1
+  ist das erste Gebot für den kommenden Zeitraum .\nSomit | Herr Präsident...  1
+  sehr geehrte Kollegen !\nBis heute ist es in der Regionalpolitik der Eur...  1
+  sehr verehrte Kollegen !\nMein Dank gilt dem Berichterstatter für die Be...  1
+
+FOLLOWS   which symbol comes after which (top 25 of 8 pairs)
+  \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag | dem 17... -> meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand...  1
+  meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand... -> liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine...  1
+  liebe Kolleginnen und Kollegen !\nIch möchte meinen Redebeitrag mit eine... -> sehr geehrte Kollegen !\nAls Beweis dafür | daß dieses Parlament die Pha...  1
+  sehr geehrte Kollegen !\nAls Beweis dafür | daß dieses Parlament die Pha... -> meine lieben Kolleginnen und Kollegen | in meinen anderthalb Minuten Red...  1
+  meine lieben Kolleginnen und Kollegen | in meinen anderthalb Minuten Red... -> liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin...  1
+  liebe Kolleginnen und Kollegen !\nAuch ich möchte die Berichterstatterin... -> ist das erste Gebot für den kommenden Zeitraum .\nSomit | Herr Präsident...  1
+  ist das erste Gebot für den kommenden Zeitraum .\nSomit | Herr Präsident... -> sehr geehrte Kollegen !\nBis heute ist es in der Regionalpolitik der Eur...  1
+  sehr geehrte Kollegen !\nBis heute ist es in der Regionalpolitik der Eur... -> sehr verehrte Kollegen !\nMein Dank gilt dem Berichterstatter für die Be...  1
+
+SEPARATOR   the most common symbol: \nWiederaufnahme der Sitzungsperiode Ich erkläre die am Freitag | dem 17...
+
+RUNS   1 runs between separators, 1 distinct
+  meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 1 distinct runs in, 1 structures added, 34163 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  meine Damen und Herren !\nDer von der Kommission in Erfüllung ihres Mand...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   
+

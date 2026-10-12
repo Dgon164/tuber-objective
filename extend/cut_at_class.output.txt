@@ -1,0 +1,28 @@
+level 1 cut at class [+ed, +ing]: 58 separators (the stems and the whole runs built on them)
+  56 runs between them, 56 distinct, 78 parts minted
+
+RUNS (stretches between those stems)
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D... 1
+  into the\nbook her sister was reading, but it had no pictures or convers... 1
+  in her own mind (as well as she could, for the\nhot day made her feel ve... 1
+  how\nin the world she was to get out again.\n\nThe rabbit-hole went stra... 1
+  down stairs! How brave they'll all think me at\nhome! Why, I wouldn't sa... 1
+  the same\nsize: to be sure, this generally happens when one eats cake, b... 1
+  to himself as he came, 'Oh! the Duchess, the Duchess!\nOh! won't she be ... 1
+  herself all the time she went on talking: 'Dear, dear! How\nqueer everyt... 1
+  out a box of comfits, (luckily the salt water had\nnot got into it), and... 1
+  to itself 'The Duchess! The Duchess! Oh my dear paws! Oh\nmy fur and whi... 1
+  me out of the window, I only wish they COULD! I'm\nsure I don't want to ... 1
+  another dead silence.\n\nAlice noticed with some surprise that the pebbl... 1
+
+ENDINGS (what sits right before such a stem)        BEGINNINGS (right after)
+  +and                           13                             herself+ 9
+  +to                            5                                  out+ 9
+  +she                           5                                  the+ 8
+  +now and then, 'we went to school in the\nsea. The master was an old Turt... 3                                    a+ 8
+  +to\nabout two feet high: even then she walked up towards it rather timid... 3                                   at+ 8
+  +one paw, trying to touch her. 'Poor little thing!'\nsaid Alice, in a coa... 3                             a little+ 7
+  +same\nsize: to be sure, this generally happens when one eats cake, but A... 3                                   to+ 6
+  +little, and then said 'The fourth.'\n\n'Two days wrong!' sighed the Hatt... 2                                  her+ 6
+  +rubbing\nits eyes, for it was getting very sleepy; 'and they drew all ma... 2                                  and+ 5
+  +her feet as the White Rabbit hurried by--the\nfrightened Mouse splashed ... 2                                  its+ 4

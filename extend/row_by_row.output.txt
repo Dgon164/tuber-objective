@@ -1,0 +1,21 @@
+frame 32; 20000 rows; 19999 row-to-row comparisons
+units that flip least:  unit 28 0.002, unit 21 0.002, unit  2 0.006, unit  7 0.025, unit  9 0.026
+units that flip most:   unit 15 0.542, unit 20 0.538, unit 12 0.519, unit  4 0.517, unit  0 0.506
+bits flipped per step:  8.38 of 32 on average; 31 steps with no change
+
+most common changes (which units flipped together):
+  00001000100001000100100000010000  149
+  01000000000001011000100011010010  124
+  10001000000010011100000000010010  118
+  00000000100001000100100000010000  110
+  10000000000000011100100000010000  96
+  01001000101011011000100010100000  93
+  11000000100011011100000011000000  93
+  10000000100111010100000011000000  66
+
+Discovery on the flips (level 0):
+  chosen width 32
+WORDS   19999 words, 6701 distinct
+SEPARATOR   the most common word: 00001000100001000100100000010000 (08844810)
+RUNS   150 runs between separators, 150 distinct
+MINT   7 rounds; parts minted per round: 643 280 61 18 9 2 0

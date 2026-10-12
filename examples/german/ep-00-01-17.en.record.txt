@@ -1,0 +1,1015 @@
+DISCOVERY RECORD
+signal     ep-00-01-17.en
+size       146699 bytes, 1173592 bits
+
+FRAME   score = spread between the column most often 1 and the column least often 1
+  width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
+   56    0.975   col  32 at 0.000   col  10 at 0.975
+   64    0.973   col  48 at 0.000   col  34 at 0.973
+   32    0.972   col  16 at 0.000   col   2 at 0.973
+   40    0.972   col  24 at 0.000   col  18 at 0.973
+   48    0.972   col  40 at 0.000   col   2 at 0.973
+   24    0.971   col  16 at 0.000   col  10 at 0.972
+   16    0.971   col   0 at 0.000   col   2 at 0.972
+    8    0.971   col   0 at 0.000   col   2 at 0.971
+  picked width 8
+    fold to  1: columns differ by 0.2221 on average (wobble by chance 0.0020) -> different
+    fold to  2: columns differ by 0.2149 on average (wobble by chance 0.0020) -> different
+    fold to  4: columns differ by 0.1838 on average (wobble by chance 0.0020) -> different
+  chosen width 8
+  column rates at width 8:
+    0.000 0.791 0.971 0.266 0.319 0.472 0.331 0.459
+
+LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
+  level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
+      0   146699        86    25835      3357     7628          242    10985       10985
+      1    25835      3357     1748      1692    21092          553    22780       33765
+      2     1748      1692        6         6        0            0        6       33771
+      3        6         6        1         1        0            0        1       33772
+  stopped: level 3 left a single run; nothing more to cut
+
+==============================================================================
+LEVEL 0
+==============================================================================
+
+WORDS   146699 words, 86 distinct
+  bits      glyph   count
+  00100000          25835
+  01100101  e       14699
+  01110100  t       11119
+  01101111  o       9427
+  01101001  i       8774
+  01100001  a       8512
+  01101110  n       8476
+  01110010  r       7516
+  01110011  s       7507
+  01101000  h       5341
+  01101100  l       4358
+  01100100  d       3847
+  01100011  c       3386
+  01110101  u       3332
+  01101101  m       3166
+  01110000  p       2816
+  01100110  f       2352
+  01100111  g       1867
+  01111001  y       1754
+  01110111  w       1733
+  00101100  ,       1498
+  01100010  b       1395
+  01110110  v       1243
+  00001010  \n      900
+  00101110  .       888
+
+FOLLOWS   which word comes after which (top 25 of 870 pairs)
+  e                        ->                           5051
+                           -> t                         4155
+  t                        -> h                         3258
+  s                        ->                           3230
+  h                        -> e                         2589
+                           -> a                         2560
+  t                        ->                           2535
+  n                        ->                           2320
+  r                        -> e                         2089
+  i                        -> n                         2065
+  o                        -> n                         1938
+  d                        ->                           1926
+                           -> i                         1698
+                           -> o                         1671
+  e                        -> n                         1668
+  a                        -> n                         1566
+                           -> ,                         1498
+  ,                        ->                           1498
+  e                        -> r                         1479
+  a                        -> t                         1393
+  y                        ->                           1382
+  i                        -> s                         1376
+  e                        -> s                         1346
+  r                        ->                           1333
+  n                        -> t                         1278
+
+SEPARATOR   the most common word: 00100000 ( )
+
+RUNS   25835 runs between separators, 3357 distinct
+  the                                       1747
+  ,                                         1498
+  of                                        906
+  to                                        830
+  and                                       684
+  in                                        560
+  that                                      387
+  is                                        382
+  a                                         376
+  for                                       286
+  this                                      274
+  on                                        245
+  I                                         210
+  we                                        204
+  be                                        199
+  which                                     187
+  as                                        178
+  have                                      170
+  are                                       168
+  not                                       163
+  it                                        157
+  with                                      130
+  Commission                                130
+  would                                     127
+  has                                       120
+
+RUN FOLLOWS   which run comes after which (top 25 of 14424 pairs)
+  of                       -> the                       287
+  in                       -> the                       162
+  to                       -> the                       119
+  the                      -> Commission                107
+  ,                        -> I                         106
+  ,                        -> the                       105
+  for                      -> the                       97
+  on                       -> the                       90
+  that                     -> the                       89
+  like                     -> to                        84
+  President                -> ,                         81
+  ,                        -> and                       73
+  ,                        -> in                        72
+  ,                        -> as                        62
+  ,                        -> which                     62
+  '                        -> s                         61
+  the                      -> European                  58
+  I                        -> would                     56
+  and                      -> the                       56
+  to                       -> be                        54
+  ,                        -> we                        54
+  with                     -> the                       51
+  would                    -> like                      48
+  it                       -> is                        43
+  Member                   -> States                    43
+
+MINT   8 rounds; parts minted per round: 5658 1570 344 47 6 2 1 0
+  pool: 3357 distinct runs in, 10985 structures added, 10985 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  ,                                  1296    1498  , furthermore ,, , been taken into account very satisfactorily .\nThey have either been a..., request ,, , can be submitted for revision and proper assessment .\nWe all agree th...
+  s                                  1202      61  is, this, as, has
+  a                                  1158     376  and, as, are, also
+  e                                  1131       1  the, we, be, have
+  in                                  909     560  within, increased, indeed, inland
+  of                                  892     906  often, off, offer, officials
+  to                                  847     830  too, today, towards, tomorrow
+  i                                   839       0  in, is, it, if
+  t                                   746       0  the, to, that, this
+  r                                   744       0  for, regions, Mr, our
+  and                                 703     684  hand, island, demand, land
+  n                                   657       0  in, on, not, European
+  d                                   582       0  and, would, development, do
+  o                                   556       0  of, to, on, also
+  on                                  546     245  Union, only, one, attention
+  l                                   508       0  like, will, all, well
+  that                                480     387  that in, side of growth , even though I am aware , as Mr van Dam just said , that, of rural society , let us not forget that, that has taken root
+  c                                   459       1  can, economic, cohesion, clear
+  is                                  437     382  this, .\nThis, issue, his
+  for                                 428     286  form, force, forward, forget
+  p                                   389       0  policy, point, people, up
+  u                                   374       0  you, us, up, unemployment
+  ing                                 345       0  being, regarding, working, programming
+  ed                                  316       0  need, concerned, adopted, mentioned
+  m                                   311       0  more, my, must, from
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +s                         1031
+  +e                         874
+  +d                         590
+  +t                         482
+  +ing                       468
+  +i                         445
+  +ed                        439
+  +n                         417
+  +r                         370
+  +a                         346
+  +ly                        333
+  +l                         310
+  +y                         274
+  +o                         268
+  +es                        237
+  +ng                        211
+  +c                         180
+  +al                        174
+  +on                        168
+  +u                         155
+  +m                         148
+  +p                         138
+  +h                         129
+  +g                         129
+  +ion                       104
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                         e+  889
+                         i+  832
+                         a+  830
+                         r+  786
+                         s+  664
+                         o+  600
+                         c+  595
+                         t+  569
+                         n+  567
+                         p+  532
+                         l+  474
+                         d+  457
+                         m+  404
+                         u+  396
+                         f+  372
+                        re+  348
+                         b+  306
+                         h+  303
+                         g+  286
+                         -+  240
+                       .\n+  201
+                        in+  190
+                         v+  175
+                        co+  158
+                       con+  149
+
+CLASSES   parts that take the same set of changes (largest 25 of 5319; two or more members count as same one level up)
+  {0.0} [+d, +s]
+     25 members: issue, ensure, place, continue, create, include, face, base, balance, demonstrate, relate, analyse
+  {0.1} [+ed, +ing]
+     19 members: ask, last, mention, help, explain, express, draft, strengthen, adapt, intend, occurr, exclud
+  {0.2} [+ies, +y]
+     12 members: synerg, societ, energ, opportunit, responsibilit, possibilit, disparit, polic, iversit, inequalit, activit, Treat
+  {0.3} [+ed, +s]
+     12 members: want, delay, remain, offer, intention, highlight, benefit, affect, detail, appear, limit, target
+  {0.4} [+ng, +on]
+     12 members: discussi, promoti, inati, mulati, iati, orti, integrati, creati, ntrati, protecti, contributi, locati
+  {0.5} [co+, i+]
+     11 members: nstructive, nstituti, nve, ncre, ntri, mplementing, nstruction, nsul, ncluded, mpa, ncluding
+  {0.6} [+on, +ve]
+     10 members: consultati, novati, exclusi, extensi, constructi, indicati, directi, legislati, attenti, objecti
+  {0.7} [+e, +es, +ing]
+     9 members: provid, caus, mak, rul, programm, becom, giv, includ, vot
+  {0.8} [+ing, +s]
+     9 members: say, thank, lack, comment, happen, spend, exist, guarantee, understand
+  {0.9} [.+, ?+]
+     8 members: \nIt, \nN, \nHow, \nMr, \nOne, \nWh, \nYes, \nIn
+  {0.10} [+e, +ed, +ing]
+     8 members: introduc, damag, debat, achiev, enabl, conclud, increas, approv
+  {0.11} [+ed, +ing, +s]
+     8 members: need, regard, request, result, concern, link, adopt, word
+  {0.12} [+e, +y]
+     8 members: ngl, probabl, flexibl, terribl, considerabl, itabl, unacceptabl, possibl
+  {0.13} [+e, +ion]
+     7 members: appreciat, ordinat, participat, ificat, equat, redistribut, cooperat
+  {0.14} [.\nT+, t+]
+     7 members: omorrow, herefore, hese, hird, hey, hank, hus
+  {0.15} [+on, +ons, +ve]
+     6 members: administrati, erati, instructi, decisi, positi, servati
+  {0.16} [+e, +ing]
+     6 members: refus, revitalis, experienc, hav, encourag, writ
+  {0.17} [.\nS+, s+]
+     6 members: hould, upporting, ubsi, everal, till, ubsequently
+  {0.18} [+cy, +t]
+     5 members: curren, Presiden, urgen, transparen, efficien
+  {0.19} [+e, +es]
+     5 members: outcom, typ, agu, infrastructur, challeng
+  {0.20} [P+, p+]
+     5 members: residents, olicy, rincip, arty, rocedure
+  {0.21} [+ce, +t]
+     5 members: importan, heren, confiden, significan, competen
+  {0.22} [d+, r+]
+     5 members: eserves, emo, ecent, efe, epri
+  {0.23} [G+, g+]
+     5 members: uide, eneral, uidance, uarantee, roups
+  {0.24} [.\nP+, p+]
+     5 members: rojects, ersonally, overty, lease, erhaps
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  the   seen 1747
+    made of    th, he, t, e
+    part of    these, there, their, they, therefore, them, then, themselves
+    changes    +se, +re, +ir, +y, +refore, +m, +n, +mselves
+    followed   Commission 107, European 58, Member 28, guidelines 27, report 25, regions 24
+    preceded   of 287, in 162, to 119, , 105, for 97, on 90
+  ,   seen 1498
+    made of    
+    part of    , furthermore ,, , been taken into account very satisfactorily .\nThey have either been a..., request ,, , can be submitted for revision and proper assessment .\nWe all agree th..., ad hoc transportation of dangerous goods and b ) enacting less stringent..., , more, as Mr Berend said ,, point of view of research .\nWe see it as a very positive sign that , in...
+    changes    +furthermore ,, +been taken into account very satisfactorily .\nThey have either been acc..., request+, +can be submitted for revision and proper assessment .\nWe all agree that..., ad hoc transportation of dangerous goods and b ) enacting less stringent...+, +more, as Mr Berend said+, point of view of research .\nWe see it as a very positive sign that , in...+
+    followed   I 106, the 105, and 73, in 72, as 62, which 62
+    preceded   President 81, and 23, that 22, Commissioner 20, however 19, regions 17
+  of   seen 906
+    made of    f, o
+    part of    often, off, offer, officials, offers, proof, official, of rural society , let us not forget that
+    changes    +ten, +f, +fer, +ficials, +fers, pro+, +ficial, +rural society , let us not forget that
+    followed   the 287, this 40, these 24, dangerous 21, a 19, all 13
+    preceded   number 20, , 18, transport 18, account 13, principle 11, lack 11
+  to   seen 830
+    made of    t, o
+    part of    too, today, towards, tomorrow, together, tool, totally, onto
+    changes    +o, +day, +wards, +morrow, +gether, +ol, +tally, on+
+    followed   the 119, be 54, make 26, this 19, ensure 16, say 16
+    preceded   like 84, , 33, and 19, is 19, have 17, need 17
+  and   seen 684
+    made of    an, nd, a, d
+    part of    hand, island, demand, land, mainland, and such decentralisation of higher education will be an unquestionably ..., common position and, transferred more to rail .\nIn this context , when planning future railw...
+    changes    h+, isl+, dem+, l+, mainl+, +such decentralisation of higher education will be an unquestionably usef..., common position+, transferred more to rail .\nIn this context , when planning future railw...+
+    followed   the 56, , 23, I 22, to 19, that 19, in 17
+    preceded   , 73, - 17, economic 16, Commission 11, ladies 11, regions 11
+  in   seen 560
+    made of    n, i
+    part of    within, increased, indeed, inland, internal, main, explain, initiatives
+    changes    with+, +creased, +deed, +land, +ternal, ma+, expla+, +itiatives
+    followed   the 162, a 33, this 28, order 13, particular 13, which 12
+    preceded   , 72, and 17, that 8, is 8, particularly 7, increase 6
+  that   seen 387
+    made of    hat, tha, th, at, t
+    part of    that in, side of growth , even though I am aware , as Mr van Dam just said , that, of rural society , let us not forget that, that has taken root, however , that, that this is, that if financial support is to be utilised efficiently , then, see that
+    changes    +in, side of growth , even though I am aware , as Mr van Dam just said ,+, of rural society , let us not forget+, +has taken root, however ,+, +this is, +if financial support is to be utilised efficiently , then, see+
+    followed   the 89, we 42, , 22, this 20, is 15, it 14
+    preceded   , 26, and 19, is 17, so 15, fact 14, ensure 12
+  is   seen 382
+    made of    s, i
+    part of    this, .\nThis, issue, his, issues, analysis, islands, island
+    changes    th+, .\nTh+, +sue, h+, +sues, analys+, +lands, +land
+    followed   a 38, the 27, not 20, to 19, that 17, , 11
+    preceded   it 43, there 28, .\nThis 25, .\nIt 23, which 22, this 17
+  a   seen 376
+    made of    
+    part of    and, as, are, also, all, at, an, areas
+    changes    +nd, +s, +re, +lso, +ll, +t, +n, +reas
+    followed   number 14, few 14, very 8, matter 7, Europe 7, great 6
+    preceded   is 38, in 33, , 19, of 19, as 17, and 14
+  for   seen 286
+    made of    fo, or, f, r
+    part of    form, force, forward, forget, forgotten, forthcoming, former, forces
+    changes    +m, +ce, +ward, +get, +gotten, +thcoming, +mer, +ces
+    followed   the 97, a 10, safety 8, this 7, example 7, his 6
+    preceded   , 25, and 9, programme 5, responsible 5, requirements 5, need 5
+  this   seen 274
+    made of    thi, his, th, is, t, s
+    part of    this regional, this Parliament has, in this, this to, this programme , in which case it should clarify it .\nAccording to its ..., this ,, they had been answered in a previous part-session .\nI would ask that th..., agrees , I shall do as Mr Evans has suggested .\nMadam President , on a ...
+    changes    +regional, +Parliament has, in+, +to, +programme , in which case it should clarify it .\nAccording to its Presi..., +,, they had been answered in a previous part-session .\nI would ask that th...+, agrees , I shall do as Mr Evans has suggested .\nMadam President , on a ...+
+    followed   Parliament 19, is 17, report 14, House 12, matter 9, kind 9
+    preceded   of 40, in 28, that 20, to 19, , 18, on 17
+  on   seen 245
+    made of    n, o
+    part of    Union, only, one, attention, position, action, once, decision
+    changes    Uni+, +ly, +e, attenti+, positi+, acti+, +ce, decisi+
+    followed   the 90, this 17, a 12, behalf 9, Regional 8, cohesion 7
+    preceded   , 26, Committee 17, debate 11, report 11, vote 6, and 5
+  I   seen 210
+    made of    
+    part of    .\nI, Italy, Internet, ISO, Industry, India, ?\nI, I do wish to mention - since you have asked me to do so - that , as far ...
+    changes    .\n+, +taly, +nternet, +SO, +ndustry, +ndia, ?\n+, +do wish to mention - since you have asked me to do so - that , as far as...
+    followed   would 56, am 18, should 16, have 12, shall 11, believe 11
+    preceded   , 106, and 22, that 13, which 12, as 9, but 4
+  we   seen 204
+    made of    e, w
+    part of    were, well, week, weeks, weight, weak, weather, well-trained
+    changes    +re, +ll, +ek, +eks, +ight, +ak, +ather, +ll-trained
+    followed   are 35, should 18, have 15, can 11, will 10, would 9
+    preceded   , 54, that 42, and 8, when 6, what 6, as 5
+  be   seen 199
+    made of    e, b
+    part of    been, because, between, being, before, behalf, better, become
+    changes    +en, +cause, +tween, +ing, +fore, +half, +tter, +come
+    followed   taken 11, able 8, a 8, the 4, an 4, given 4
+    preceded   to 54, must 24, should 19, will 18, would 13, can 9
+  which   seen 187
+    made of    ich, whi, wh, ch
+    part of    in Objective 1 regions do not always result in such an increase , not re..., which we, , which, .\nSecondly , partnership , a subject which, which surely must be providing, amendments which, which would, method by which
+    changes    in Objective 1 regions do not always result in such an increase , not re...+, +we, ,+, .\nSecondly , partnership , a subject+, +surely must be providing, amendments+, +would, method by+
+    followed   is 22, are 16, I 12, has 11, have 11, , 9
+    preceded   , 62, in 12, and 6, regions 5, - 3, report 3
+  as   seen 178
+    made of    a, s
+    part of    has, was, areas, ask, asked, aspects, assist, assistance
+    changes    h+, w+, are+, +k, +ked, +pects, +sist, +sistance
+    followed   the 20, a 17, well 12, possible 9, I 9, it 8
+    preceded   , 62, such 11, well 10, far 9, - 5, soon 3
+  have   seen 170
+    made of    ave, hav, ve, ha, e, h
+    part of    political groups when compromise formulas have, have another proposal regarding, have not, this House , have, or they have, have to think of, not have, we have
+    changes    political groups when compromise formulas+, +another proposal regarding, +not, this House ,+, or they+, +to think of, not+, we+
+    followed   been 31, to 17, a 12, just 5, the 5, not 5
+    preceded   we 15, I 12, you 11, which 11, .\nWe 9, to 9
+  are   seen 168
+    made of    re, ar, e, a
+    part of    areas, area, aware, share, prepare, declare, case of Alexander Nikitin .\nAll of us here are, same , we must not content ourselves with enacting European law to ensur...
+    changes    +as, +a, aw+, sh+, prep+, decl+, case of Alexander Nikitin .\nAll of us here+, same , we must not content ourselves with enacting European law to ensur...+
+    followed   not 11, concerned 7, , 6, the 6, now 4, a 4
+    preceded   we 35, which 16, they 14, there 8, .\nWe 7, , 5
+  not   seen 163
+    made of    ot, no, n, t
+    part of    cannot, note, nothing, noted, notice, services have not, not proved successful, have not
+    changes    can+, +e, +hing, +ed, +ice, services have+, +proved successful, have+
+    followed   been 14, only 9, be 7, a 6, to 6, have 6
+    preceded   do 29, is 20, , 15, does 13, has 11, are 11
+  it   seen 157
+    made of    t, i
+    part of    its, item, itself, transit, wait, bit, remit, itemise
+    changes    +s, +em, +self, trans+, wa+, b+, rem+, +emise
+    followed   is 43, was 15, has 6, would 5, to 4, , 4
+    preceded   , 29, that 14, as 8, make 8, see 5, when 5
+  with   seen 130
+    made of    ith, wit, th, wi, h, w
+    part of    within, without, withdrawn, with a view to, or Austria .\nI can live with, negotiation of programming documents with, deadline , we were to find ourselves after a year and a bit with, with regard to
+    changes    +in, +out, +drawn, +a view to, or Austria .\nI can live+, negotiation of programming documents+, deadline , we were to find ourselves after a year and a bit+, +regard to
+    followed   the 51, regard 14, a 11, your 4, this 3, these 3
+    preceded   , 15, accordance 10, deal 7, agree 5, line 5, States 3
+  Commission   seen 130
+    made of    mmission, mission, ssion, Commi, Com, Co
+    part of    Commissioner, Commission is a body with a monopoly of initiative in accordance with, Commission ' s report on, Commission to ensure that, Commission .\nThere has therefore been enough time for, Commission statement on its strategic objectives should be reinstated .\..., Commission and which describes this programme over, Commission ensures that Structural Fund monies are spent in a way which ...
+    changes    +er, +is a body with a monopoly of initiative in accordance with, +' s report on, +to ensure that, +.\nThere has therefore been enough time for, +statement on its strategic objectives should be reinstated .\n(, +and which describes this programme over, +ensures that Structural Fund monies are spent in a way which is transpar...
+    followed   ' 16, is 14, to 12, and 11, , 8, 's 3
+    preceded   the 107, .\nThe 10, European 3, a 2, Prodi 2, Economic 2
+  would   seen 127
+    made of    woul, ould, uld, wo, d, w
+    part of    .\nThis is what persuades us to vote in favour of it .\nMr President , I..., which would, observations , and I would, would also like to point out that transport problems, , and I would, I would, would also like to point out that transport problems are, persuades us to vote in favour of it .\nMr President , I too would
+    changes    .\nThis is what persuades us to vote in favour of it .\nMr President , I...+, which+, observations , and I+, +also like to point out that transport problems, , and I+, I+, +also like to point out that transport problems are, persuades us to vote in favour of it .\nMr President , I too+
+    followed   like 48, be 13, ask 8, also 8, have 7, urge 4
+    preceded   I 56, .\nI 25, we 9, which 6, it 5, , 2
+  has   seen 120
+    made of    ha, as, s, h
+    part of    haste, number of votes as his Group has, this Parliament has, public must be highly motivated and highly qualified .\nThe rapporteur h..., has done on this and to explain to colleagues that I am speaking for my ..., rapporteur has, has witnessed a proliferation of regional disparities .\nLittle consider..., same number of votes as his Group has
+    changes    +te, number of votes as his Group+, this Parliament+, public must be highly motivated and highly qualified .\nThe rapporteur+, +done on this and to explain to colleagues that I am speaking for my coll..., rapporteur+, +witnessed a proliferation of regional disparities .\nLittle consideratio..., same number of votes as his Group+
+    followed   been 26, not 11, already 9, to 5, also 4, the 3
+    preceded   which 11, Parliament 7, it 6, , 5, ?\nWhy 3, Commission 3
+
+==============================================================================
+LEVEL 1
+==============================================================================
+
+SYMBOLS   25835 symbols, 3357 distinct  (each is a level 0 run; level 0 classes count as same)
+  the                                       1747
+  ,                                         1498
+  of                                        906
+  to                                        830
+  and                                       684
+  in                                        560
+  that                                      387
+  is                                        382
+  a                                         376
+  for                                       286
+  this                                      274
+  on                                        245
+  I                                         210
+  we                                        204
+  be                                        199
+  which                                     187
+  as                                        178
+  have                                      170
+  are                                       168
+  not                                       163
+  it                                        157
+  with                                      130
+  Commission                                130
+  would                                     127
+  has                                       120
+
+FOLLOWS   which symbol comes after which (top 25 of 14424 pairs)
+  of                       -> the                       287
+  in                       -> the                       162
+  to                       -> the                       119
+  the                      -> Commission                107
+  ,                        -> I                         106
+  ,                        -> the                       105
+  for                      -> the                       97
+  on                       -> the                       90
+  that                     -> the                       89
+  like                     -> to                        84
+  President                -> ,                         81
+  ,                        -> and                       73
+  ,                        -> in                        72
+  ,                        -> as                        62
+  ,                        -> which                     62
+  '                        -> s                         61
+  the                      -> European                  58
+  I                        -> would                     56
+  and                      -> the                       56
+  to                       -> be                        54
+  ,                        -> we                        54
+  with                     -> the                       51
+  would                    -> like                      48
+  it                       -> is                        43
+  Member                   -> States                    43
+
+SEPARATOR   the most common symbol: the
+
+RUNS   1748 runs between separators, 1692 distinct
+  Group of                                  5
+  debate on                                 5
+  Committee on Regional Policy , Transport and Tourism , on  4
+  Commission and                            3
+  directive on                              3
+  content of                                3
+  implementation of                         3
+  impact of                                 3
+  importance of                             3
+  issue of                                  3
+  subject of                                3
+  islands of                                3
+  regions of                                3
+  quality of                                3
+  course of                                 2
+  start of                                  2
+  presentation of                           2
+  whole of                                  2
+  exception of                              2
+  failure of                                2
+  result of                                 2
+  part of                                   2
+  Commission for                            2
+  approximation of                          2
+  laws of                                   2
+
+RUN FOLLOWS   which run comes after which (top 25 of 1744 pairs)
+  approximation of         -> laws of                   2
+  laws of                  -> Member States with regard to  2
+  social and economic situation and development of -> regions of                2
+  \nResumption of          -> session I declare resumed  1
+  session I declare resumed -> session of                1
+  session of               -> European Parliament adjourned on Friday 17 December 1999 , and I would l...  1
+  European Parliament adjourned on Friday 17 December 1999 , and I would l... -> hope that you enjoyed a pleasant festive period .\nAlthough , as you wil...  1
+  hope that you enjoyed a pleasant festive period .\nAlthough , as you wil... -> dreaded ' millennium bug ' failed to materialise , still  1
+  dreaded ' millennium bug ' failed to materialise , still -> people in a number of countries suffered a series of natural disasters t...  1
+  people in a number of countries suffered a series of natural disasters t... -> course of                 1
+  course of                -> next few days , during this part-session .\nIn  1
+  next few days , during this part-session .\nIn -> meantime , I should like to observe a minute ' s silence , as a number o...  1
+  meantime , I should like to observe a minute ' s silence , as a number o... -> victims concerned , particularly those of  1
+  victims concerned , particularly those of -> terrible storms , in      1
+  terrible storms , in     -> various countries of      1
+  various countries of     -> European Union .\nPlease rise , then , for this minute ' s silence .\n( ...  1
+  European Union .\nPlease rise , then , for this minute ' s silence .\n( ... -> press and television that there have been a number of bomb explosions an...  1
+  press and television that there have been a number of bomb explosions an... -> people assassinated very recently in Sri Lanka was Mr Kumar Ponnambalam ...  1
+  people assassinated very recently in Sri Lanka was Mr Kumar Ponnambalam ... -> European Parliament just a few months ago .\nWould it be appropriate for...  1
+  European Parliament just a few months ago .\nWould it be appropriate for... -> Sri Lankan President expressing Parliament 's regret at his and  1
+  Sri Lankan President expressing Parliament 's regret at his and -> other violent deaths in Sri Lanka and urging her to do everything she po...  1
+  other violent deaths in Sri Lanka and urging her to do everything she po... -> type you have just suggested would be entirely appropriate .\nIf  1
+  type you have just suggested would be entirely appropriate .\nIf -> House agrees , I shall do as Mr Evans has suggested .\nMadam President ,...  1
+  House agrees , I shall do as Mr Evans has suggested .\nMadam President ,... -> principle of relative stability .\nI believe that  1
+  principle of relative stability .\nI believe that -> principle of relative stability is a fundamental legal principle of  1
+
+MINT   33 rounds; parts minted per round: 3847 3095 2571 2134 1835 1503 1268 986 771 600 486 388 316 244 210 145 124 101 85 73 70 56 58 41 29 19 12 6 5 7 4 3 0
+  pool: 1692 distinct runs in, 22780 structures added, 33765 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  , and                               119       0  of Structural Funds and Cohesion Funds .\nPoverty and wealth used to dep..., .\nFinally , and, .\nIn addition , more attention must be given to boosting entrepreneuria..., Fruteau , and
+  report                              110       1  reports, programming phases are so far on , there is little point in starting fro..., report by a fellow member of my Group , Elisabeth Schroedter , has not b..., report on cohesion
+  , I                                  99       0  , I had occasion, perfectly logical and I can , therefore , give it my wholehearted suppor..., prepare its programme and for us to become familiar with it and explain ..., cohesion policy .\nIndeed , I
+  , in                                 94       0  Community initiatives , so that their application should be reflected , ..., such as , in, , in itself , entail any major changes .\nMost, , in all countries , whether they are transit countries or not .\nMr Pre...
+  , as                                 89       0  .\nFinally , as, Structural and Cohesion Funds .\nPast experience dictates that , as, of Structural Funds and Cohesion Funds .\nPoverty and wealth used to dep..., , as I see it , lies in clearly encouraging entrepreneurship .\nBy entre...
+  , which                              69       0  establishing these guidelines , which, kind of measure will we be able to overcome social and regional inequali..., , which has been very dilatory in drawing up and adapting, , which have been drafted
+  Member States                        65       0  Member States to, Member States may impose certain rules of their own .\nIn so doing , it ..., Member States .\nThis is extraordinarily positive , and there is cause t..., Member States ,
+  European Union                       62       0  European Union .\nThis makes it necessary to also take account of, European Union ; by adopting it we contribute, European Union ,, European Union and for
+  ' s                                  54       0  Europe ' s, ' s regional policy has , until now , not been able to interpret , in an..., owing to agriculture ' s, ' s sitting will take into account any additional explanations .\nI thin...
+  , but                                50       0  taxpayer , but, of high employment levels and sustainable development , to name but a fe..., principle , I believe that in many cases where transport is concerned we..., matter .\nI do not know whether this information is correct , but
+  .\nThis is                           50       0  vote .\nThis is, suffered some delays in terms of development , especially regarding infr..., Cohesion Fund .\nThis is, .\nThis is very costly and it also causes very great social problems .\n...
+  way                                  48       1  away, halfway, waterway, railway
+  that we                              48       0  that we have two major challenges to face, that we have presented today .\nThis is because we think that they are p..., best .\nMr President , Mrs Schroedter ' s report undoubtedly contains se..., believe that we
+  like to                              47       0  like to make a few comments , firstly, Azores and Madeira .\nI would like to, also like to, .\nI would also like to
+  I would                              45       0  I would like to remind you of, I would like to thank, .\nMr President , I would, , and I would
+  , we                                 44       0  future , we, planning stage .\nFinally , we, to make it more relevant to those whom it is there to guide .\nI would l..., , we will
+  we are                               44       0  macroeconomic models we are, .\nThis is what we are, .\nWhat we are, we are discussing this report right
+  , for                                43       0  .\nIn conclusion , with thanks for your understanding , Mr President , I..., .\nThis is not an assessment but , for, an assessment but , for, process , for
+  that ,                               43       0  agree that we should ask that ,, PPE-DE Group ) Madam President , I would like to make it very clear that..., and that ,, offices for several months .\nBearing this in mind , this House should ,...
+  to make                              43       0  to make it more relevant to those whom it is there to guide .\nI would l..., here , giving a progressive regional policy a chance at long last .\nMr ..., Commission ' s attention .\nFirstly , we need to make, safe as possible .\nWhen it comes to safety my Group will always support...
+  it is                                42       0  as it is, it is to present this programme , as agreed .\nAlternatively , Parliamen..., transport of dangerous goods by road , rail or inland waterway .\nWe und..., it is now that we are starting
+  must be                              42       0  must be highly motivated and highly qualified .\nThe rapporteur has poin..., areas must be, relevant regions and , if necessary , tying this in with financial aid ,..., regions and , if necessary , tying this in with financial aid , a higher...
+  fact that                            41       1  fact that 50 % of unemployment is structural unemployment .\nThat is why..., fact that it can be very cold in, fact that there is considerable evidence to show - as we shall see later..., fact that you have kept your word and that , during this
+  do not                               40       0  .\nI do not, do not wish to spend time right now , Mr Berend , going into details reg..., do not know what is happening .\nSo why should EU arms producers profit, do not properly
+  number of                            40       0  number of votes as his Group has Members .\nThere was a vote on this mat..., number of votes as his Group has Members, number of votes as his Group has, number of you who have just pointed out what appeared to you to be an om...
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +,                         711
+  +of                        657
+  +in                        577
+  +to                        555
+  +and                       406
+  +that                      378
+  +for                       306
+  +on                        302
+  +with                      185
+  +is                        181
+  +by                        135
+  +a                         132
+  +it                        122
+  +this                      120
+  +at                        111
+  +we                        109
+  +have                      108
+  +all                       106
+  +be                        96
+  +as                        91
+  +not                       91
+  +I                         85
+  +.\nI                      81
+  +are                       75
+  +from                      72
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                         ,+  804
+                       and+  530
+                        of+  462
+                         a+  460
+                        to+  386
+                        in+  372
+                        is+  355
+                Commission+  308
+                      this+  278
+                     which+  255
+                      that+  242
+                      have+  236
+                       for+  217
+                        we+  210
+                       are+  193
+                        on+  182
+                    report+  175
+                        be+  173
+                guidelines+  172
+                       has+  172
+                        as+  166
+                        it+  161
+                         I+  156
+                  European+  152
+                       not+  147
+
+CLASSES   parts that take the same set of changes (largest 25 of 11103; two or more members count as same one level up)
+  {1.0} [, which+, which+]
+     10 members: surely must be providing, entered into force on 1 January 1997 , contains a number of transitional..., are contained in, sometimes take, is a meticulous and substantive piece of work .\nThe European Union ' s ..., has been very dilatory in drawing up and adapting, stipulates that, have been submitted, certainly allow for adequate flexibility , are in every sense, calls upon
+  {1.1} [be+, to be+]
+     9 members: possible , what we need from, able to do a reasonable amount of preparation, , and I do not expect you to give way on this again .\nHow else otherwis..., taken seriously , then you must also take it seriously yourselves !\nPar..., an omission, regretted , as, implemented more efficiently and in a more concentrated manner in order ..., spent .\nMember States are urged to attach greater importance to integra..., more specific .\nThe Commission accepts all of
+  {1.2} [+of, and+]
+     7 members: fast criteria we use to assess whether Article 1, what might one day be a European regional planning policy .\nIn any even..., even there they are not enjoyed by all sections, so Member States should also assume their responsibilities and do their ..., regional levels .\nAnd so , Mr Sepp\xc3\xa4nen , I shall also mention at..., detailed description, humanist project
+  {1.3} [+in, and+]
+     7 members: they shall be entered, let me say , Mrs Schroedter , that I am including, medium-sized enterprises .\nIt is absolutely crucial that parallel tempo..., so Member States should also assume their responsibilities and do their ..., essential objectives which we should set, unambiguous way in which they have declared their support for safety, presenting this report and this proposal ;
+  {1.4} [+in, ,+]
+     6 members: often very precise ones , should be provided .\nI shall not list them al..., Mrs de Palacio , which appeared in a Spanish newspaper .\nThe competent ..., who is with us here today , to table an appropriate text as soon as poss..., together with my fellow Commissioner , Mrs de Palacio , what lessons we ..., based on past experience, regions which also happen to be poor areas , whilst
+  {1.5} [a number of+, number of+]
+     5 members: you who have just pointed out what appeared to you to be an omission, European objectives , often very precise ones , should be provided .\nI ..., accompanying measures if anything at all is to be accomplished there .\n..., bomb explosions and killings in Sri Lanka .\nOne, countries suffered a series of natural disasters that truly were dreadfu...
+  {1.6} [of this+, this+]
+     5 members: report in drawing up, avalanche of amendments - and perhaps there are more of them than we exp..., House , have made .\nRegarding, sixth periodic report .\nYou pointed out, regional policy and what might one day be a European regional planning p...
+  {1.7} [, as+, as+]
+     5 members: stipulated in Article 158 of, far as I am concerned , Mr Berend , an extremely important instrument , ..., Mr Cocilovo mentioned , there is clearly a problem with, far as I am concerned , this partnership - and I spent long enough as a ..., expressed in this report , will also be taken into account .\nNow to
+  {1.8} [, in+, in+]
+     5 members: recent years Italy has had problems in utilising, that order .\nThe corollary to this , it has to be said , is that measur..., a number of countries it is compulsory to employ such safety advisers in..., fact , continued to increase .\nUnemployment is currently at 24 % in 25, which case it should clarify it .\nAccording to its President , it is in...
+  {1.9} [, to+, to+]
+     5 members: speak to propose it .\nThat is , if he so wishes , of course .\nThen we ..., table an appropriate text as soon as possible with a view to continuing ..., carry out, an increase in productivity and only partly to an increase in, congratulate Mrs Schroedter .\nI know many have already done so , but sh...
+  {1.10} [+,, a+]
+     5 members: decision - which is not clearly worded - is set at a maximum of three mo..., common transport market genuinely up and running , it is important that ..., more rapid and efficient boost for attaining these objectives , we think..., framework and tool to support and enhance economic regeneration, balanced territorial policy .\nIn fact
+  {1.11} [a+, is a+]
+     5 members: good basis for our thinking , for us all and for myself .\nI should ther..., number of accompanying measures if anything at all is to be accomplished..., fundamental legal principle of, meticulous and substantive piece of work .\nThe European Union ' s struc..., body with a monopoly of initiative in accordance with
+  {1.12} [, we+, we+]
+     5 members: should remember that, had an in-depth discussion .\nYour Group was alone in advocating what yo..., still have time to re-establish, can avoid a great deal of problems later on .\nFinally , I would like to..., will see that
+  {1.13} [+for, ,+]
+     5 members: is something which I would urge you to support .\nBy not setting a speci..., has already pointed out that basically everything could have been somewh..., in that order .\nThe corollary to this , it has to be said , is that mea..., compilation and analysis of representative indicators, had asked .\nUnfortunately , this did not happen .\nMr Berni\xc3\xa9 is ...
+  {1.14} [+have, +have been]
+     4 members: -20\xc2\xbaC would, issues , which, or they, free movement of goods , persons , services and capital exist .\nIn conc...
+  {1.15} [, Mr+, Mr+]
+     4 members: Evans , that of Wales , but not only of Wales .\nAnd , because there are..., Hatzidakis , Mrs Schroedter and Mrs McCarthy mentioned that, Berend , is a good basis for our thinking , for us all and for myself .\..., Berend , regarding
+  {1.16} [+that, and+]
+     4 members: on his flexibility , which ensured, let me say , Mrs Schroedter ,, Mrs McCarthy mentioned, Europe ' s rural heritage .\nIt must , however , be stressed
+  {1.17} [+it, +it is]
+     4 members: programme , in which case it should clarify it .\nAccording to its Presi..., desired effect in all regions and countries .\nSince, European objectives into practice , but, programme in our Groups .\nYou cannot prepare if you hear a statement in...
+  {1.18} [, this+, this+]
+     4 members: Parliament has viewed, sixth periodic report presents interesting arguments, partnership - and I spent long enough as a regional administrator within..., is often
+  {1.19} [+would like, +would like to]
+     4 members: Structural Funds , mainly because of excessive bureaucracy , insufficien..., such decentralisation of higher education will be an unquestionably usef..., United Nations Economic Commission was proceeding none too expeditiously..., transport of dangerous goods by road so that we have a degree of legal c...
+  {1.20} [+of, ,+]
+     4 members: apart from a few differences in our assessments, more than one third, follow-up and supervision, good joint working practice , which is , Mr Hatzidakis , backed up by so...
+  {1.21} [,+, and ,+]
+     4 members: secondly ,, furthermore , with, as Mr Cocilovo mentioned , there is clearly a problem with, unfortunately , this is often
+  {1.22} [I am+, am+]
+     4 members: convinced that my request will fall on fertile ground - to ensure that m..., certain that they will be keen to ensure that we comply, very pleased , apart from a few differences, concerned , this partnership - and I spent long enough as a regional adm...
+  {1.23} [, and+, and+]
+     4 members: this was a very interesting process .\nThis report is very good and our ..., in particular , Mr Evans , that of Wales , but not only of Wales .\nAnd ..., continue to make , a significant contribution to, your rapporteur mentioned some of these .\nI wish to assure you , firstl...
+  {1.24} [is to+, to+]
+     4 members: strengthen social and economic cohesion between, present this programme , as agreed .\nAlternatively , Parliament is not ..., decide on, make efforts to create new jobs in rural areas , outside of
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  Group of   seen 5
+    made of    Group, of
+    part of    Rules of Procedure .\nNo amendments have been proposed relating to Monda...
+    changes    Rules of Procedure .\nNo amendments have been proposed relating to Monda...+
+    followed   Party of European Socialists which was unanimously approved by 1, Party of European Socialists , and which you have mentioned , is that 1, Party of European Socialists that 1, Party of European Socialists because they went back on a decision taken ... 1, Party of European Socialists in this Parliament agrees with 1
+    preceded   whole legislature was initially a proposal by 1, proposal of 1, request of 1, agenda .\nThank you , Mr Poettering .\nWe shall now hear Mr Wurtz speaki... 1, SEC .\nMr President , 1
+  debate on   seen 5
+    made of    debate, on
+    part of    debate on a reform when Parliament had no prior knowledge, debate on a reform when, annual debate on, debate on a reform, debate on a reform when Parliament had no prior, debate on a reform when Parliament had, debate on a, a debate on
+    changes    +a reform when Parliament had no prior knowledge, +a reform when, annual+, +a reform, +a reform when Parliament had no prior, +a reform when Parliament had, +a, a+
+    followed   five-year programme in our Groups .\nYou cannot prepare if you hear a st... 1, Commission 's long-term programme up to 1, Commission 's legislative programme for 1, Erika disaster , we do not wait until there is a disaster to deal with 1, report ( A5-0107 / 1999 ) by Mr Berend , on behalf of 1
+    preceded   Commission .\nI should like us to be able to do a reasonable amount of p... 1, Commission is also open to this idea - that we hold 1, same time , in February we also hold 1, Commission .\nAs I will say in 1, Union The next item is 1
+  Committee on Regional Policy , Transport and Tourism , on   seen 4
+    made of    Committee on Regional Policy , Transport and Tourism, Regional Policy , Transport and Tourism , on, Committee on, , on
+    part of    
+    changes    
+    followed   common position adopted by 1, proposal for a European Parliament and Council directive amending Direct... 1, communication from 1, sixth periodic report on 1
+    preceded   report ( A5-0105 / 1999 ) by Mr Koch , on behalf of 1, report ( A5-0104 / 1999 ) by Mr Koch , on behalf of 1, report ( A5-0108 / 1999 ) by Mrs Schroedter , on behalf of 1, report ( A5-0107 / 1999 ) by Mr Berend , on behalf of 1
+  Commission and   seen 3
+    made of    Commission, and
+    part of    Commission and we do not have to agree with everything which comes, Commission and proceed in a manner which fulfils our duty to our fellow, Commission and in Romano Prodi and , after a difficult procedure , as ev..., Commission and which describes, Commission and my predecessor , Mrs Wulf-Mathies , I must inform you tha..., Commission and Parliament which was signed in May .\nI am absolutely cer..., Commission and proceed in a manner which fulfils our duty to our fellow ..., Commission and Parliament
+    changes    +we do not have to agree with everything which comes, +proceed in a manner which fulfils our duty to our fellow, +in Romano Prodi and , after a difficult procedure , as everyone knows ,, +which describes, +my predecessor , Mrs Wulf-Mathies , I must inform you that we were very ..., +Parliament which was signed in May .\nI am absolutely certain that this ..., +proceed in a manner which fulfils our duty to our fellow citizens, +Parliament
+    followed   Council thought of it .\nIt is not a lot to ask .\nI therefore repeat 1, Council should be retained so that we can find out , once and for all , 1, Member States to give due attention to 1
+    preceded   Tobin tax , but of whether one dared to hear what 1, proposal that this oral question to 1, level of employment .\nHence we would urge 1
+  directive on   seen 3
+    made of    directive, on
+    part of    European Parliament and Council directive on, a European Parliament and Council directive on, directive on today 's agenda does not therefore affect, with a view to adopting a European Parliament and Council directive on, adopting a European Parliament and Council directive on, Council directive on, view to adopting a European Parliament and Council directive on, a view to adopting a European Parliament and Council directive on
+    changes    European Parliament and Council+, a European Parliament and Council+, +today 's agenda does not therefore affect, with a view to adopting a European Parliament and Council+, adopting a European Parliament and Council+, Council+, view to adopting a European Parliament and Council+, a view to adopting a European Parliament and Council+
+    followed   approximation of 1, transport of dangerous goods by road , dates from May 1999 , however , a... 1, transport of dangerous goods by road .\nIt is good that this directive s... 1
+    preceded   transport of dangerous goods by road [ COM ( 1999 ) 158 - C5-0004 / 1999... 1, Council Decision of June 1999 .\nThe proposal to be discussed today , to... 1, Commission ' s proposal to amend 1
+  content of   seen 3
+    made of    content, of
+    part of    
+    changes    
+    followed   annexes and 1, guidelines because it was not consulted until 1, report on cohesion which is , as far as I am concerned , Mr Berend , an ... 1
+    preceded   directive and 1, Community development programme .\nIf you want our work at European leve... 1, report on cohesion should not entail any loss of information or loss of ... 1
+  implementation of   seen 3
+    made of    implementation, of
+    part of    and implementation of, implementation of programmes .\nOur Group also considers it important to..., planning and implementation of
+    changes    and+, +programmes .\nOur Group also considers it important to take greater acco..., planning and+
+    followed   European structural funds more binding .\nSubsequently , 1, programmes .\nMr President , Commissioner , in this minute and a half I ... 1, Union ' s regional policy aims .\nThe report shows that growth has been ... 1
+    preceded   requirement for there to be efficiency , concentration , and simplificat... 1, developments and details concerning 1, committee was debating it .\nThe sixth periodical report gives a basis f... 1
+  impact of   seen 3
+    made of    impact, of
+    part of    
+    changes    
+    followed   instrument per se .\nSecondly , it uncovers 1, measures shortly to be adopted under new Article 299 ( 2 ) of 1, Union ' s enlargement on our structural policy .\nThis sixth periodic re... 1
+    preceded   report assesses 1, most remote regions and , more specifically , to consideration of 1, new programming and we are already considering together 1
+  importance of   seen 3
+    made of    importance, of
+    part of    importance of relations between, importance of SMEs as employers and forces behind regional development ...., importance of SMEs as employers and forces behind regional development ...., importance of once again making improvements to, importance of transport safety is highlighted on a regular basis in this..., importance of once again making improvements, importance of relations, importance of transport safety is highlighted on a regular basis in this...
+    changes    +relations between, +SMEs as employers and forces behind regional development .\nIt is absolu..., +SMEs as employers and forces behind regional development .\nIt is absolu..., +once again making improvements to, +transport safety is highlighted on a regular basis in this Parliament an..., +once again making improvements, +relations, +transport safety is highlighted on a regular basis in this Parliament an...
+    followed   report we are now discussing .\nWe feel that it is important that 1, necessary synergies being produced between 1, principle of subsidiarity , 1
+    preceded   face of this avalanche of amendments - and perhaps there are more of the... 1, face of an interim revision of these directives .\nIn our amendments , w... 1, aim is to reduce regional inequality .\nOur Group emphasises 1
+  issue of   seen 3
+    made of    issue, of
+    part of    issue of support for renewable energy resources from Cohesion and Region..., issue of support for renewable energy resources from Cohesion and Region..., issue of safety, issue of support for renewable energy resources from Cohesion and Region..., issue of support for renewable energy resources from Cohesion and Region..., issue of transport safety .\nThe report looks, issue of safety , be it on, issue of support for renewable energy resources from Cohesion and Region...
+    changes    +support for renewable energy resources from Cohesion and Regional Develo..., +support for renewable energy resources from Cohesion and Regional Develo..., +safety, +support for renewable energy resources from Cohesion and Regional Develo..., +support for renewable energy resources from Cohesion and Regional Develo..., +transport safety .\nThe report looks, +safety , be it on, +support for renewable energy resources from Cohesion and Regional Develo...
+    followed   use of Structural Funds .\nAs you know , it is up to each State to redis... 1, islands and I would also like to bring 1, fifth periodic report .\nI consider , however , that 1
+    preceded   Commissioner to set up and in which I would ask him to involve us .\nFin... 1, Union ' s fundamental objectives .\nSecondly , I agree with what has alr... 1, progress made in this area since 1
+  subject of   seen 3
+    made of    subject, of
+    part of    subject of Wednesday ' s sitting, subject of Wednesday ' s sitting , I have another proposal, subject of this regional policy and what might one day be a European reg..., subject of this regional policy and what might one day be a European reg..., subject of Wednesday ' s sitting , I have another, subject of this regional policy and what might one day be a European reg..., subject of Wednesday ' s sitting , I have, subject of Wednesday ' s sitting ,
+    changes    +Wednesday ' s sitting, +Wednesday ' s sitting , I have another proposal, +this regional policy and what might one day be a European regional plann..., +this regional policy and what might one day be a European regional plann..., +Wednesday ' s sitting , I have another, +this regional policy and what might one day be a European regional plann..., +Wednesday ' s sitting , I have, +Wednesday ' s sitting ,
+    followed   outermost regions such as , in my country , 1, role of 1, balance of rural society , let us not forget that there is also 1
+    preceded   outermost regions to your attention .\nIn future , we would like to see ... 1, form .\nOn 1, diversification of rural society as a priority .\nAnd indeed , on 1
+  islands of   seen 3
+    made of    islands, of
+    part of    
+    changes    
+    followed   Azores and Madeira .\nI would like to ask if 1, European Union and for 1, Union , as stipulated in Article 158 of 1
+    preceded   outermost regions such as , in my country , 1, crucial seven-year period 2000-2006 so as to ensure sustainable developm... 1, Greek islands which , of course , comprise half of 1
+  regions of   seen 3
+    made of    regions, of
+    part of    of some regions of, remote regions of, some regions of, islands and remote regions of, island regions of
+    changes    of some+, remote+, some+, islands and remote+, island+
+    followed   Union The next item is 1, European Union [ SEC ( 99 ) 0066 - C5-0120 / 99 - 1999 / 2123 ( COS ) ] ... 1, European Union constitutes a milestone in 1
+    preceded   social and economic situation and development of 2, code of conduct which links our two institutions .\nThe debate is closed... 1
+  quality of   seen 3
+    made of    quality, of
+    part of    quality of his report .\nJust like, quality of your work and, quality of his conclusions and on his flexibility , which ensured that, quality of his, quality of your work, quality of your work and that of
+    changes    +his report .\nJust like, +your work and, +his conclusions and on his flexibility , which ensured that, +his, +your work, +your work and that of
+    followed   report and you even wrote , if I am not mistaken , that it marked a real... 1, analysis submitted to you .\nI am thinking in particular of 1, statistics .\nMr Berend , you also mentioned , as did Mr Aparicio S\xc3\... 1
+    preceded   assessment you have made of this sixth periodic report .\nYou pointed ou... 1, evaluation made by this House and by yourself .\nThe Commission was cert... 1, efforts which Eurostat is making and shall continue to make in order to ... 1
+  course of   seen 2
+    made of    course, of
+    part of    course of this year we will have to discuss our objectives in terms, course of this year we will have, course of this year we will have to discuss our objectives, course of this year we will have to discuss our, course of this year we, course of this year we will have to discuss our objectives in, course of this year we will, course of this year we will have to discuss our objectives in terms of
+    changes    +this year we will have to discuss our objectives in terms, +this year we will have, +this year we will have to discuss our objectives, +this year we will have to discuss our, +this year we, +this year we will have to discuss our objectives in, +this year we will, +this year we will have to discuss our objectives in terms of
+    followed   next few days , during this part-session .\nIn 1, negotiations and to actually put 1
+    preceded   people in a number of countries suffered a series of natural disasters t... 1, Commission to take Parliament ' s demands seriously in 1
+  start of   seen 2
+    made of    start, of
+    part of    
+    changes    
+    followed   presentation of 1, programme period .\nBut at 1
+    preceded   time when you may , if you wish , raise this question , i.e. on Thursday... 1, grant-giving process .\nNext , we all too often see vast sums of money b... 1
+  presentation of   seen 2
+    made of    presentation, of
+    part of    annual presentation of
+    changes    annual+
+    followed   report .\nMadam President , coinciding with this year ' s first part-ses... 1, Prodi Commission ' s political programme for 1
+    preceded   start of 1, usual procedure , hearing one speaker in favour and one against .\nMadam... 1
+  whole of   seen 2
+    made of    whole, of
+    part of    
+    changes    
+    followed   European Community , to make representations , using 1, economic base within 1
+    preceded   European Parliament and by 1, Structural Funds programme not just to see industrial restructuring but ... 1
+  exception of   seen 2
+    made of    exception, of
+    part of    
+    changes    
+    followed   non-attached Members - but , of course , they are not a Group - were in ... 1, PPE and ELDR Groups .\nAs my fellow chairmen will recall , I even mentio... 1
+    preceded   Groups with 1, same .\nWe discussed that matter and we were unanimous , with 1
+  failure of   seen 2
+    made of    failure, of
+    part of    failure of Parliament in its duty as a Parliament , as well as introduci...
+    changes    +Parliament in its duty as a Parliament , as well as introducing an origi...
+    followed   Seattle Conference .\nWe shall proceed to vote on 1, Commission ' s communication to focus on territorial pacts and , especia... 1
+    preceded   tide of feeling generated by 1, Funds .\nThis is something about which European small and medium-sized b... 1
+  result of   seen 2
+    made of    result, of
+    part of    result of ignorance
+    changes    +ignorance
+    followed   vote would be ....\nMadam President , 1, vote .\nThere is no room for amendments .\nLadies and gentlemen , once a... 1
+    preceded   two Members who have declared themselves , then 1, Presidency has already declared 1
+  part of   seen 2
+    made of    part, of
+    part of    central part of, safety aspects for goods transported by road , rail and inland waterways..., transported by road , rail and inland waterways and incorporate these , ..., use of Structural Funds .\nAs you know , it is up to each State to redis..., aspects for goods transported by road , rail and inland waterways and in..., part of governments , and such decentralisation of higher education will..., for goods transported by road , rail and inland waterways and incorporat..., , rail and inland waterways and incorporate these , as part of
+    changes    central+, safety aspects for goods transported by road , rail and inland waterways...+, transported by road , rail and inland waterways and incorporate these , ...+, use of Structural Funds .\nAs you know , it is up to each State to redis...+, aspects for goods transported by road , rail and inland waterways and in...+, +governments , and such decentralisation of higher education will be an u..., for goods transported by road , rail and inland waterways and incorporat...+, , rail and inland waterways and incorporate these , as+
+    followed   drivers or others responsible for 1, CEN , which has been very dilatory in drawing up and adapting 1
+    preceded   transport of dangerous goods seriously enough or because - as a result o... 1, inactivity on 1
+  Commission for   seen 2
+    made of    Commission, for
+    part of    
+    changes    
+    followed   proposal it has submitted .\nWe are concerned here with 1, clear and unambiguous way in which they have declared their support for ... 1
+    preceded   report and , secondly , 1, Vice-President of 1
+  approximation of   seen 2
+    made of    approximation, of
+    part of    
+    changes    
+    followed   laws of 2
+    preceded   proposal for a European Parliament and Council directive amending Direct... 1, directive on 1
+  laws of   seen 2
+    made of    laws, of
+    part of    
+    changes    
+    followed   Member States with regard to 2
+    preceded   approximation of 2
+
+==============================================================================
+LEVEL 2
+==============================================================================
+
+SYMBOLS   1748 symbols, 1692 distinct  (each is a level 1 run; level 1 classes count as same)
+  Group of                                  5
+  debate on                                 5
+  Committee on Regional Policy , Transport and Tourism , on  4
+  Commission and                            3
+  directive on                              3
+  content of                                3
+  implementation of                         3
+  impact of                                 3
+  importance of                             3
+  issue of                                  3
+  subject of                                3
+  islands of                                3
+  regions of                                3
+  quality of                                3
+  course of                                 2
+  start of                                  2
+  presentation of                           2
+  whole of                                  2
+  exception of                              2
+  failure of                                2
+  result of                                 2
+  part of                                   2
+  Commission for                            2
+  approximation of                          2
+  laws of                                   2
+
+FOLLOWS   which symbol comes after which (top 25 of 1744 pairs)
+  approximation of         -> laws of                   2
+  laws of                  -> Member States with regard to  2
+  social and economic situation and development of -> regions of                2
+  \nResumption of          -> session I declare resumed  1
+  session I declare resumed -> session of                1
+  session of               -> European Parliament adjourned on Friday 17 December 1999 , and I would l...  1
+  European Parliament adjourned on Friday 17 December 1999 , and I would l... -> hope that you enjoyed a pleasant festive period .\nAlthough , as you wil...  1
+  hope that you enjoyed a pleasant festive period .\nAlthough , as you wil... -> dreaded ' millennium bug ' failed to materialise , still  1
+  dreaded ' millennium bug ' failed to materialise , still -> people in a number of countries suffered a series of natural disasters t...  1
+  people in a number of countries suffered a series of natural disasters t... -> course of                 1
+  course of                -> next few days , during this part-session .\nIn  1
+  next few days , during this part-session .\nIn -> meantime , I should like to observe a minute ' s silence , as a number o...  1
+  meantime , I should like to observe a minute ' s silence , as a number o... -> victims concerned , particularly those of  1
+  victims concerned , particularly those of -> terrible storms , in      1
+  terrible storms , in     -> various countries of      1
+  various countries of     -> European Union .\nPlease rise , then , for this minute ' s silence .\n( ...  1
+  European Union .\nPlease rise , then , for this minute ' s silence .\n( ... -> press and television that there have been a number of bomb explosions an...  1
+  press and television that there have been a number of bomb explosions an... -> people assassinated very recently in Sri Lanka was Mr Kumar Ponnambalam ...  1
+  people assassinated very recently in Sri Lanka was Mr Kumar Ponnambalam ... -> European Parliament just a few months ago .\nWould it be appropriate for...  1
+  European Parliament just a few months ago .\nWould it be appropriate for... -> Sri Lankan President expressing Parliament 's regret at his and  1
+  Sri Lankan President expressing Parliament 's regret at his and -> other violent deaths in Sri Lanka and urging her to do everything she po...  1
+  other violent deaths in Sri Lanka and urging her to do everything she po... -> type you have just suggested would be entirely appropriate .\nIf  1
+  type you have just suggested would be entirely appropriate .\nIf -> House agrees , I shall do as Mr Evans has suggested .\nMadam President ,...  1
+  House agrees , I shall do as Mr Evans has suggested .\nMadam President ,... -> principle of relative stability .\nI believe that  1
+  principle of relative stability .\nI believe that -> principle of relative stability is a fundamental legal principle of  1
+
+SEPARATOR   the most common symbol: Group of
+
+RUNS   6 runs between separators, 6 distinct
+  \nResumption of | session I declare resumed | session of | European Parl...  1
+  Party of European Socialists which was unanimously approved by | Confere...  1
+  Party of European Socialists , and which you have mentioned , is that | ...  1
+  Party of European Socialists that | Commission statement on its strategi...  1
+  Party of European Socialists because they went back on a decision taken ...  1
+  Party of European Socialists in this Parliament agrees with | report tha...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 5 pairs)
+  \nResumption of | session I declare resumed | session of | European Parl... -> Party of European Socialists which was unanimously approved by | Confere...  1
+  Party of European Socialists which was unanimously approved by | Confere... -> Party of European Socialists , and which you have mentioned , is that | ...  1
+  Party of European Socialists , and which you have mentioned , is that | ... -> Party of European Socialists that | Commission statement on its strategi...  1
+  Party of European Socialists that | Commission statement on its strategi... -> Party of European Socialists because they went back on a decision taken ...  1
+  Party of European Socialists because they went back on a decision taken ... -> Party of European Socialists in this Parliament agrees with | report tha...  1
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 6 distinct runs in, 6 structures added, 33771 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  \nResumption of | session I declare resumed | session of | European Parl...        0       1  
+  Party of European Socialists , and which you have mentioned , is that | ...        0       1  
+  Party of European Socialists because they went back on a decision taken ...        0       1  
+  Party of European Socialists in this Parliament agrees with | report tha...        0       1  
+  Party of European Socialists that | Commission statement on its strategi...        0       1  
+  Party of European Socialists which was unanimously approved by | Confere...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  \nResumption of | session I declare resumed | session of | European Parl...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   Party of European Socialists which was unanimously approved by | Confere... 1
+    preceded   
+  Party of European Socialists which was unanimously approved by | Confere...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   Party of European Socialists , and which you have mentioned , is that | ... 1
+    preceded   \nResumption of | session I declare resumed | session of | European Parl... 1
+  Party of European Socialists , and which you have mentioned , is that | ...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   Party of European Socialists that | Commission statement on its strategi... 1
+    preceded   Party of European Socialists which was unanimously approved by | Confere... 1
+  Party of European Socialists that | Commission statement on its strategi...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   Party of European Socialists because they went back on a decision taken ... 1
+    preceded   Party of European Socialists , and which you have mentioned , is that | ... 1
+  Party of European Socialists because they went back on a decision taken ...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   Party of European Socialists in this Parliament agrees with | report tha... 1
+    preceded   Party of European Socialists that | Commission statement on its strategi... 1
+  Party of European Socialists in this Parliament agrees with | report tha...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   Party of European Socialists because they went back on a decision taken ... 1
+
+==============================================================================
+LEVEL 3
+==============================================================================
+
+SYMBOLS   6 symbols, 6 distinct  (each is a level 2 run; level 2 classes count as same)
+  \nResumption of | session I declare resumed | session of | European Parl...  1
+  Party of European Socialists which was unanimously approved by | Confere...  1
+  Party of European Socialists , and which you have mentioned , is that | ...  1
+  Party of European Socialists that | Commission statement on its strategi...  1
+  Party of European Socialists because they went back on a decision taken ...  1
+  Party of European Socialists in this Parliament agrees with | report tha...  1
+
+FOLLOWS   which symbol comes after which (top 25 of 5 pairs)
+  \nResumption of | session I declare resumed | session of | European Parl... -> Party of European Socialists which was unanimously approved by | Confere...  1
+  Party of European Socialists which was unanimously approved by | Confere... -> Party of European Socialists , and which you have mentioned , is that | ...  1
+  Party of European Socialists , and which you have mentioned , is that | ... -> Party of European Socialists that | Commission statement on its strategi...  1
+  Party of European Socialists that | Commission statement on its strategi... -> Party of European Socialists because they went back on a decision taken ...  1
+  Party of European Socialists because they went back on a decision taken ... -> Party of European Socialists in this Parliament agrees with | report tha...  1
+
+SEPARATOR   the most common symbol: \nResumption of | session I declare resumed | session of | European Parl...
+
+RUNS   1 runs between separators, 1 distinct
+  Party of European Socialists which was unanimously approved by | Confere...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 1 distinct runs in, 1 structures added, 33772 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  Party of European Socialists which was unanimously approved by | Confere...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  Party of European Socialists which was unanimously approved by | Confere...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   
+

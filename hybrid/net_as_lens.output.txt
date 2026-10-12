@@ -1,0 +1,98 @@
+wrote alice.txt.reservoir: 20000 steps, 80000 bytes
+DISCOVERY RECORD
+signal     alice.txt.reservoir
+size       80000 bytes, 640000 bits
+
+FRAME   score = spread between the column most often 1 and the column least often 1
+  width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
+   64    0.986   col  28 at 0.001   col   7 at 0.986
+   32    0.985   col  28 at 0.001   col   7 at 0.985
+   48    0.924   col   5 at 0.041   col   6 at 0.965
+   16    0.922   col   5 at 0.043   col   6 at 0.965
+   56    0.387   col  42 at 0.251   col   8 at 0.638
+   40    0.381   col  26 at 0.252   col  24 at 0.633
+   24    0.376   col   2 at 0.253   col   0 at 0.629
+    8    0.370   col   2 at 0.255   col   0 at 0.625
+  picked width 32
+    fold to  1: columns differ by 0.3248 on average (wobble by chance 0.0039) -> different
+    fold to  2: columns differ by 0.3248 on average (wobble by chance 0.0039) -> different
+    fold to  4: columns differ by 0.3158 on average (wobble by chance 0.0039) -> different
+    fold to  8: columns differ by 0.2859 on average (wobble by chance 0.0039) -> different
+    fold to 16: columns differ by 0.1376 on average (wobble by chance 0.0039) -> different
+  chosen width 32
+  column rates at width 32:
+    0.588 0.593 0.003 0.024 0.487 0.084 0.962 0.985 0.329 0.983 0.103 0.901 0.321 0.650 0.082 0.343 0.794 0.225 0.813 0.116 0.618 0.002 0.967 0.939 0.791 0.682 0.101 0.171 0.001 0.909 0.348 0.019
+
+LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
+  level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
+      0    20000      1904      319       316    11816          239    12132       12132
+      1      319       316        4         4        0            0        4       12136
+      2        4         4        1         1        0            0        1       12137
+  stopped: level 2 left a single run; nothing more to cut
+
+==============================================================================
+LEVEL 0
+==============================================================================
+
+WORDS   20000 words, 1904 distinct
+  bits                              glyph   count
+  00001011010100000010101111000110  0b502bc6  331
+  00001011110100001010001111000110  0bd0a3c6  314
+  11000011010111011010101110010100  c35dab94  309
+  00001011010100001110001111000110  0b50e3c6  291
+  11000011010101001001001110100000  c35493a0  257
+  00001011110101001010001111000110  0bd4a3c6  254
+  10000011010111001010001111000100  835ca3c4  247
+  00001011010100000110101111000110  0b506bc6  238
+  10000011010111011010101111000100  835dabc4  235
+  01000011110101011010101100010100  43d5ab14  232
+  01001011110101001110101100000100  4bd4eb04  232
+  10001011010111011010101111000100  8b5dabc4  230
+  11000011010111011010101110000100  c35dab84  220
+  11000011010101001010101111000100  c354abc4  207
+  00000011110100000010001111000110  03d023c6  204
+  11001011010110011010101111000100  cb59abc4  199
+  00000011110100001010001111000110  03d0a3c6  191
+  00000011110101001010001111000110  03d4a3c6  188
+  00000011010100001110101111010110  0350ebd6  177
+  11000011010111001010001111000100  c35ca3c4  172
+  00001011010100001110101111000110  0b50ebc6  172
+  00000011010101001110101111010110  0354ebd6  168
+  11001011010001011110101100000100  cb45eb04  167
+  10001011010110010010101111000100  8b592bc4  160
+  10001011010110011010101111000100  8b59abc4  160
+
+FOLLOWS   which word comes after which (top 25 of 7229 pairs)
+  03d023c6                 -> 43d5ab14                  119
+  0350ebd6                 -> 8b592bc4                  112
+  0b50e3c6                 -> 8b512bd6                  96
+  835ca3c4                 -> cbf12b64                  93
+  8b592bc4                 -> 4bd4eb04                  93
+  0bd4a3c6                 -> 0350ebd6                  75
+  0bd0a3c6                 -> 0354ebd6                  74
+  cb59abc4                 -> 4bc4eb04                  66
+  03d4a3c6                 -> 0350ebd6                  65
+  c35dab84                 -> 0b50e3c6                  63
+  0bd0a3c6                 -> 43d5ab94                  63
+  c35493a0                 -> cb45eb04                  62
+  0b506bc6                 -> 0b502bc6                  55
+  c358abd4                 -> 0b50a2c6                  51
+  c35c9b84                 -> 8b518bc4                  49
+  0bd4a3c6                 -> 835ca3c4                  49
+  cb59abc4                 -> 4bd4eb04                  49
+  0354ebd6                 -> cb592bc4                  48
+  03d0a3c6                 -> 0354ebd6                  45
+  0b502bc6                 -> 4bf42b94                  45
+  c35dab94                 -> 0bd0a3c6                  43
+  0b5069c6                 -> c75cabd4                  42
+  c75cabd4                 -> c35c9b84                  42
+  cb592bc4                 -> 4bd4eb04                  41
+  03d483c6                 -> 835dabc4                  41
+
+SEPARATOR   the most common word: 00001011010100000010101111000110 (0b502bc6)
+
+RUNS   319 runs between separators, 316 distinct
+  c35cabd4.0b5003c6.03d4a3c6.03502bc6.835dabc4.4bd4eba4.8b5c8384.cb54a3c4  3
+  cbf5ab14.4350ebc6.c35dab94.43d4a3e6.43d4abc6.8359abc4.0350e3c6.83592bd6  2
+  c65e81c0.d3598b90.0b5069c6.c75cabd4.c35c9b84.8b518bc4.cb5cab84.c3d483a0.cb45eb04.d7598b80.0b5049c6.03d482c6.8359abc4.0350e2c6.03d023c6.0354a3c4.43d4b3e6.8b5dabc4.c3d483a4.cb45eb04.cf5aabc4.0350a3c6.cbf52b54.025c8280.8b52a1c4.0354a3c6.0b512bc6.835dabc4.43d493e6.0b512bc6.c35dab94.0b50e3c6.8b512bd6.43d5eb04.c3d69386.c354abc4.c9612b04.1f10e2c6.c35129c4.03548380.c35aebc4.c3549380.cb47eb04.c75e9280.cb7b8bc4.47d49364.c3d49346.8356a3c4  1
+  43f42b94.c854aba0.4fc4e3c4.41d4b3c6.4b55a3c0.1258a3c0.575ee245.c5203246.c75e9200.9762c946.d75c8810.d6d087e2.131086c2.925989d0.47d493e2.cbf76b46.d75fabd0.4b5463c6.cbf52b54.135982c2.0352e1c4.c35483c0.0b54e3c6.c3f52b56.03d4a3c6.0350ebd6.8b592bc4.4bd4eb24.c7d492c2.cb5f8bc4.83d49306.83f69b46.c75fabc4.03d02bc6.4b5dabc4.1758ebd7

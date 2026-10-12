@@ -1,0 +1,26 @@
+goal phase: resumed memory at step 1740: 922 transitions, 44 actions with effects (a new life; the plant is back on the pad)
+baseline: 2 windows; channels that move by themselves: 006 013 034 035 174 240
+baseline: instruments holding at level 1: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)  level 2: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+step 1740  st 24e6  walk*(2 steps) ctl 300  rows  89  new ch    0 rows    0 d1    0  effect: f15+      0s
+step 1741  st 198c  walk*(1 steps) ctl 301  rows  84  new ch    0 rows    0 d1    0  effect: f9+ f13+ f14- f16+      1s
+step 1742  st d31f  walk*(4 steps) ctl 303  rows  76  new ch    0 rows    0 d1  125  effect: f9+      2s
+step 1743  st 81ff  walk*(3 steps) ctl 303  rows  87  new ch    0 rows    0 d1   69  effect: f9+      2s
+step 1744  st 4080  walk*(2 steps) ctl 303  rows  92  new ch    0 rows    0 d1   89  effect: f9+      3s
+step 1745  st a64f  walk*(1 steps) ctl 303  rows  82  new ch    0 rows    0 d1   25  effect: f8+ f9+      4s
+step 1746  st 4ad3  direct  key   0  rows  82  new ch    0 rows    0 d1   14  effect: f6+      5s
+step 1747  st dca3  hold    key   3  rows  49  new ch    0 rows    0 d1   13  effect: -      5s
+step 1748  st dca3  hold    key   3  rows  47  new ch    0 rows    0 d1   21  effect: -  predicted 17 fields, missed 0      6s
+step 1749  st dca3  hold    key   3  rows  51  new ch    0 rows    0 d1   11  effect: -  predicted 17 fields, missed 0      6s
+step 1750  st dca3  hold    key   3  rows  47  new ch    0 rows    0 d1    7  effect: -  predicted 17 fields, missed 0      7s
+step 1751  st dca3  hold    key   3  rows  50  new ch    0 rows    0 d1   16  effect: -  predicted 17 fields, missed 0      7s
+step 1752  st dca3  hold    key   3  rows  49  new ch    0 rows    0 d1    7  effect: -  predicted 17 fields, missed 0      8s
+step 1753  st dca3  hold    key   3  rows  52  new ch    0 rows    0 d1   10  effect: -  predicted 17 fields, missed 0      8s
+step 1754  st dca3  hold    key   3  rows  49  new ch    0 rows    0 d1   10  effect: -  predicted 17 fields, missed 0      9s
+step 1755  st dca3  hold    key   3  rows  46  new ch    0 rows    0 d1   12  effect: -  predicted 17 fields, missed 0      9s
+step 1756  st dca3  hold    key   3  rows  53  new ch    0 rows    0 d1   14  effect: -  predicted 17 fields, missed 0     10s
+step 1757  st dca3  hold    key   3  rows  50  new ch    0 rows    0 d1   11  effect: -  predicted 17 fields, missed 0     10s
+step 1758  st dca3  hold    key   3  rows  48  new ch    0 rows    0 d1   23  effect: -  predicted 17 fields, missed 0     11s
+step 1759  st dca3  hold    key   3  rows  49  new ch    0 rows    0 d1   22  effect: -  predicted 17 fields, missed 0     11s
+step 1760  st dca3  hold    key   3  rows  53  new ch    0 rows    0 d1   28  effect: -  predicted 17 fields, missed 0     12s
+step 1761  GOAL SATISFIED: row (0, 0, 0, 0, 0, 0, 223, 0, 65, 2467, 0, 0, 0, 16805, 4196, 1, 1)
+done: 930 transitions, 51 states, predictions right 14276 wrong 4

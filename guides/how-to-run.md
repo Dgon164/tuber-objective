@@ -1,0 +1,92 @@
+# How to run Discovery
+
+You need Python 3. Nothing to install. (`hybrid/net_as_lens.py` needs
+numpy; nothing else does.)
+
+## Run it on a file
+
+```
+python discovery.py FILE
+```
+
+Two files get written next to the input: `FILE.record.txt` (readable
+by people) and `FILE.record.json` (readable by programs). The text
+record also gets printed to the screen. When you use `--frame` or
+`--separators`, the file names include that so different runs of the
+same file don't overwrite each other (like `FILE.frame8.record.txt` or
+`FILE.sep2.record.txt`). With `--memory` the name includes `.mN`,
+where N is how many signals the memory has seen after this one.
+
+## Options
+
+| option | what it does | default |
+|---|---|---|
+| `--lens raw\|ascii\|utf8\|octal` | how words are displayed in the record (changes the look, not the results) | `raw` (hex) |
+| `--limit BYTES` | only read the first BYTES of the file | the whole file |
+| `--widest BITS` | widest word size to test | 64 |
+| `--frame BITS` | skip the word-size detection and use this width | auto-detected |
+| `--separators N` | use the N most common words as separators instead of just one | 1 |
+| `--separators HEX,HEX` | pick the separator words yourself, in hex (`20,0a` means space and newline) | |
+| `--cap PARTS` | stop the mint loop if the pool gets bigger than this | 1000000 |
+| `--memory FILE` | load a saved pool from FILE, compare this signal against it, then save the updated pool back | none |
+| `--top N` | how many rows to show per table in the text record | 25 |
+| `--out DIR` | where to write the record files | next to the input |
+| `--quiet` | don't print the record to the screen | |
+
+The JSON record always has everything. `--top` only affects the
+text printout.
+
+## The examples
+
+```
+python discovery.py examples/text/alice.txt --lens ascii
+python discovery.py examples/text/alice.txt --lens ascii --separators 20,0a
+python discovery.py examples/german/ep-00-01-17.de --lens utf8
+python discovery.py examples/code/input/hello --lens ascii --out examples/code
+python discovery.py examples/code/input/hello --lens ascii --out examples/code --frame 8
+python discovery.py examples/code/input/discovery.py --lens ascii --out examples/code
+python discovery.py examples/agc/input/luminary099.rope --lens octal --out examples/agc
+python discovery.py examples/agc/input/luminary099.agc --lens ascii --out examples/agc --separators 2
+
+cd examples/memory
+python ../../discovery.py alice-first-half.txt  --lens ascii --memory alice.memory
+python ../../discovery.py alice-second-half.txt --lens ascii --memory alice.memory
+python ../../discovery.py alice-second-half.txt --lens ascii --memory alice.memory
+python ../../discovery.py ep-00-01-17.de        --lens utf8  --memory alice.memory
+```
+
+`run_examples.sh` runs all of these plus the hybrid scripts and
+rebuilds every record in the repo.
+
+## Use it from Python
+
+```python
+import discovery
+txt, js = discovery.discover('some/file', lens='ascii', quiet=True)
+```
+
+Or call the steps one at a time — each is a plain function:
+
+```python
+data, bits = discovery.read_signal('some/file')
+frame, profile, score, folding = discovery.find_frame(bits)
+words = discovery.cut_words(bits, frame)
+levels, pool, made_of, part_of = discovery.run_levels(words, 1, cap=1000000)
+L0 = levels[0]            # runs, run_counts, run_follows, parts, endings, beginnings, classes
+
+# the same thing, but against a saved memory
+pool, made_of, part_of, history = discovery.load_memory('alice.memory')
+levels, pool, made_of, part_of = discovery.run_levels(words, 1, 1000000, pool, made_of, part_of)
+discovery.save_memory('alice.memory', pool, made_of, part_of, history + [('name', len(data), frame)])
+```
+
+## How long does it take
+
+Pure Python, so time grows with the file. Alice (144 KB) takes about
+two seconds. The German file (160 KB) takes under one. The 1.6 MB AGC
+assembly source takes about twenty seconds with two separators. For a
+big file, use `--limit` to read just the first part, or split the file
+and run each piece. The mint loop's time depends on how many distinct
+runs there are and how long they are — not on file size. `--cap`
+(defaults to 1,000,000 parts) stops the mint loop if the pool gets
+too big, and the record says so.

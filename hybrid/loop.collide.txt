@@ -1,0 +1,40 @@
+walked 8001 runs into loop.output.txt
+
+COLLIDE   first record 22446 parts, second 10468 parts
+  shared 8543   lost 13903   new 1925
+
+  most common lost parts (in the text, not in the walk):
+    *                    seen 51
+    both                 seen 13
+    walked               seen 10
+    'I've                seen 9
+    done                 seen 8
+    offended             seen 7
+    explain              seen 7
+    noticed              seen 6
+    not,'                seen 6
+    *\n\n                seen 6
+    low,                 seen 6
+    so,'                 seen 5
+    kid                  seen 5
+    course,'             seen 5
+    sounded              seen 5
+
+  most common new parts (in the walk, not in the text):
+    dn't!'               seen 0   made of n't!', dn't, d, !'
+    \nnervou             seen 0   made of \nnerv, ou
+    so\ndesp             seen 0   made of so\nd, \ndesp, esp, so
+    footstep             seen 0   made of foot, footste, p, step
+    ''T                  seen 0   made of 'T, '
+    Gryphon,\n           seen 0   made of Gryphon, on,\n, ,\n, \n, Gryphon,, Gryph
+    irely\ndis           seen 0   made of ire, ly\ndis, is, irely\ndi, irely\nd, s
+    someb                seen 0   made of some, b
+    piec                 seen 0   made of pie, ec, c, pi
+    now\n                seen 0   made of now, n, \n, ow\n
+    uncomm               seen 0   made of unc, un, mm, comm, unco, omm
+    eag                  seen 0   made of e, ea, g, ag
+    afterwards.'         seen 0   made of wards.', after, s.', afterward
+    rds.'\n\n'S          seen 0   made of r, .'\n\n'S, rds, ds.'\n\n'S
+    Drawlin              seen 0   made of Dr, in, Drawl, awlin
+
+  classes in first: 11693   in second: 5381

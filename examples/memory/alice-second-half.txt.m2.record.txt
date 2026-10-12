@@ -1,0 +1,1007 @@
+DISCOVERY RECORD
+signal     alice-second-half.txt
+size       72180 bytes, 577440 bits
+
+FRAME   score = spread between the column most often 1 and the column least often 1
+  width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
+   56    0.946   col   0 at 0.000   col  26 at 0.946
+   64    0.945   col   0 at 0.000   col  34 at 0.945
+   40    0.945   col   0 at 0.000   col  34 at 0.945
+   48    0.943   col   0 at 0.000   col  18 at 0.943
+   32    0.943   col   0 at 0.000   col   2 at 0.943
+   16    0.943   col   0 at 0.000   col   2 at 0.943
+   24    0.942   col   0 at 0.000   col   2 at 0.942
+    8    0.942   col   0 at 0.000   col   2 at 0.942
+  picked width 8
+    fold to  1: columns differ by 0.2147 on average (wobble by chance 0.0020) -> different
+    fold to  2: columns differ by 0.2008 on average (wobble by chance 0.0020) -> different
+    fold to  4: columns differ by 0.1770 on average (wobble by chance 0.0020) -> different
+  chosen width 8
+  column rates at width 8:
+    0.000 0.746 0.942 0.243 0.340 0.490 0.340 0.461
+
+LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
+  level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
+      0    72180        67    11801      3710     6792          447     9337       25609
+      1    11801      3710      799       789     3742          147     4510       30119
+      2      799       789        4         4        0            0        4       30123
+      3        4         4        1         1        0            0        1       30124
+  stopped: level 3 left a single run; nothing more to cut
+
+MEMORY   alice.memory
+  before this signal: 16272 parts, from alice-first-half.txt (72215 bytes, frame 8)
+  this signal, against memory:
+  level  produced  confirmed      added  not seen this time
+      0     21278      11941       9337                2138
+      1      6967       1664       4510                 525
+      2         4          0          4                   3
+      3         1          0          1                   1
+  after: 30124 parts, saved
+
+==============================================================================
+LEVEL 0
+==============================================================================
+
+WORDS   72180 words, 67 distinct
+  bits      glyph   count
+  00100000          12000
+  01100101  e       6957
+  01110100  t       5136
+  01100001  a       3979
+  01101111  o       3846
+  01101000  h       3593
+  01101110  n       3413
+  01101001  i       3365
+  01110011  s       3085
+  01110010  r       2677
+  01100100  d       2355
+  01101100  l       2195
+  00001010  \n      1790
+  01110101  u       1782
+  00100111  '       1684
+  00101100  ,       1238
+  01100011  c       1186
+  01110111  w       1164
+  01100111  g       1136
+  01111001  y       1107
+  01100110  f       925
+  01101101  m       908
+  01110000  p       727
+  01100010  b       666
+  00101110  .       589
+
+FOLLOWS   which word comes after which (top 25 of 1081 pairs)
+  e                        ->                           2321
+                           -> t                         1984
+  h                        -> e                         1960
+  t                        -> h                         1731
+  d                        ->                           1329
+                           -> a                         1204
+  t                        ->                           1164
+                           -> s                         1063
+  i                        -> n                         987
+  ,                        ->                           890
+  e                        -> r                         877
+  s                        ->                           783
+  o                        -> u                         775
+                           -> w                         748
+  a                        -> n                         723
+                           -> h                         635
+                           -> o                         628
+  n                        ->                           624
+  r                        -> e                         600
+  n                        -> d                         570
+  n                        -> g                         566
+  a                        -> t                         563
+  o                        -> n                         556
+  i                        -> t                         545
+                           -> i                         535
+
+SEPARATOR   the most common word: 00100000 ( )
+
+RUNS   11801 runs between separators, 3710 distinct
+  the                                       798
+  and                                       290
+  to                                        275
+  said                                      251
+  a                                         241
+  of                                        223
+  she                                       158
+  in                                        147
+  you                                       122
+  it                                        121
+  was                                       114
+  as                                        101
+  at                                        99
+  I                                         86
+  that                                      83
+  with                                      82
+  had                                       80
+  Alice                                     78
+  her                                       75
+  all                                       71
+  he                                        70
+  on                                        66
+  his                                       65
+  they                                      64
+  very                                      58
+
+RUN FOLLOWS   which run comes after which (top 25 of 9096 pairs)
+  said                     -> the                       127
+  of                       -> the                       59
+  the                      -> Mock                      47
+  in                       -> a                         44
+  to                       -> the                       37
+  and                      -> the                       35
+  Mock                     -> Turtle                    30
+  at                       -> the                       29
+  in                       -> the                       26
+  the                      -> March                     23
+  the                      -> King                      22
+  said                     -> to                        21
+  the                      -> Queen                     20
+  as                       -> she                       19
+  said                     -> Alice,                    17
+  the                      -> Gryphon                   17
+  it                       -> was                       15
+  the                      -> Dormouse                  15
+  with                     -> a                         15
+  the                      -> White                     15
+  was                      -> a                         14
+  and                      -> she                       14
+  the                      -> Hatter                    14
+  with                     -> the                       14
+  the                      -> Queen,                    14
+
+MINT   13 rounds; parts minted per round: 3932 1809 594 254 99 52 21 13 8 6 3 1 0
+  pool: 3710 distinct runs in, 9337 structures added, 25609 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  e                                  1710       0  the, she, Alice, be
+  \n                                 1651       0  be\n, the\n, dance.\n\n, dance?\n\n
+  s                                  1341       0  she, said, was, as
+  ,                                  1284       0  Alice,, it,, again,, herself,
+  t                                  1170       0  the, to, it, that
+  a                                  1133     546  and, as, at, all
+  '                                  1121       0  'I, 'and, it,', 'but
+  r                                   956       0  her, for, or, your
+  i                                   930       0  it, in, if, into
+  n                                   888       0  in, on, not, down
+  d                                   858       0  and, said, had, down
+  o                                   815       0  to, of, on, so
+  l                                   775       0  all, little, like, well
+  .                                   712       0  Alice., it., know., her.
+  h                                   574       0  her, had, with, he
+  c                                   561       0  could, came, can, can't
+  p                                   494       0  up, put, poor, perhaps
+  -                                   487       0  -en, -once, ce-, -na
+  m                                   483       0  my, me, them, much
+  ing                                 459       0  King, looking, getting, nothing
+  said                                445     395  said,, said\nto, said:, she\nsaid
+  u                                   443       0  you, up, use, under
+  y                                   429       0  you, very, they, by
+  f                                   405       0  of, for, if, off
+  and                                 401     630  'and, and,, hand, stand
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +,                         2032
+  +e                         1109
+  +\n                        859
+  +s                         859
+  +'                         704
+  +.                         686
+  +t                         676
+  +d                         649
+  +n                         562
+  +,'                        549
+  +a                         493
+  +ing                       485
+  +r                         484
+  +;                         471
+  +:                         467
+  +i                         436
+  +l                         431
+  +o                         409
+  +ed                        406
+  +!'                        371
+  +!                         359
+  +y                         342
+  +h                         305
+  +-                         237
+  +?'                        230
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                        \n+  1235
+                         e+  1110
+                         s+  988
+                         a+  956
+                         i+  805
+                         '+  802
+                         t+  790
+                         r+  730
+                         o+  659
+                         d+  632
+                         n+  623
+                         c+  587
+                         l+  562
+                         p+  506
+                         h+  482
+                         m+  456
+                         b+  433
+                         -+  429
+                         f+  427
+                         u+  383
+                         .+  375
+                         g+  350
+                         w+  325
+                        --+  239
+                         T+  209
+
+CLASSES   parts that take the same set of changes (largest 25 of 12401; two or more members count as same one level up)
+  {0.0} [+ed, +ing]
+     21 members: swallow, remain, consider, mutter, pull, crawl, tumbl, nibbl, yawn, fann, stretch, rustl
+  {0.1} [+,, +.]
+     11 members: exclaimed, interesting, middle, knowledge, deeply, Eaglet, spectacles, gravely, to\nherself, directly, indignantly
+  {0.2} [+!', +,]
+     9 members: NOT, wrong, guinea-pigs, below, tongue, tale, knot, Ugh, 'Yes
+  {0.3} [+!, +,]
+     8 members: asking, Mabel, !'\n\n'Oh, goose, '\n\n'Well, \n\n'Ah, Pat, --Oh
+  {0.4} [+,, +s]
+     8 members: shoulder, creature, her\nhand, pencil, manner, beast, toe, ucumber-frame
+  {0.5} [+,, +:]
+     8 members: suddenly, himself, larger, lost, floor, comfits, doubtfully, listening
+  {0.6} [\ns+, s+]
+     7 members: peaking, hut, kimming, omewhere, ize:, everity;, erpents!
+  {0.7} [,\n+, \n+]
+     6 members: except, 'Let, 'tis, saying,, she'll, nurse!
+  {0.8} [+s, +s,]
+     6 members: hour, choru, its\neye, guest, comfit, Pari
+  {0.9} [+e, +es]
+     6 members: conqu, its\ney, bon, teas, ssag, adventur
+  {0.10} [s+, t+]
+     6 members: he\nw, o\ns, he\ntri, he\nre, he\nsa, he\nb
+  {0.11} [+ll, +s]
+     5 members: It', That', 'it', 'Dinah', 'ti
+  {0.12} [e+, pe+]
+     5 members: bbles, --Will, nt!', rfectly, t:\n'Dinah's
+  {0.13} [et+, t+]
+     5 members: ely.\n\nVery, ree;, on.'\n\nAlice, urning,, :\n'Dinah's
+  {0.14} [-s+, s+]
+     5 members: omersault, chool,, helves;, ugar, pirited.
+  {0.15} [+,, +;]
+     5 members: sleepy, cushion, sorrowful\ntone, father, courtiers
+  {0.16} [ir+, r+]
+     5 members: ritated, y-tales,, ed\nof, cumstances.\nThere, t,\nupsetting
+  {0.17} [el+, l+]
+     5 members: ly-fish, l.\n\nE, ves;, d\nafter, se.\n\n\n\n\nCHAPTER
+  {0.18} [nt+, t+]
+     4 members: ipathies,, erbury,, \nthimble';, \nagainst
+  {0.19} [e+, re+]
+     4 members: turning,, gular, \nnowhere, atures,'
+  {0.20} [+e, +ing]
+     4 members: "Com, shak, rattl, smok
+  {0.21} [.\n\n+, \n\n+]
+     4 members: ''Tis, 'When, Hardly, Lastly,
+  {0.22} [e+, he+]
+     4 members: rself;, -way\nthings, arth, 's\nperfectly
+  {0.23} [-+, e-+]
+     4 members: apple,, way\nthings, -evening,\n, legged
+  {0.24} [r+, tr+]
+     4 members: etching,, ampled, ouble,, adicted
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  the   seen 798
+    made of    th, he, t, e
+    part of    they, their, them, then, there, them,, these, in\nthe
+    changes    +y, +ir, +m, +n, +re, +m,, +se, in\n+
+    followed   Mock 47, March 23, King 22, Queen 20, Gryphon 17, Dormouse 15
+    preceded   said 127, of 59, to 37, and 35, at 29, in 26
+  and   seen 290
+    made of    an, nd, a, d
+    part of    'and, and,, hand, stand, them--and, Wonderland, and\nwas, and\nthey
+    changes    '+, +,, h+, st+, them--+, Wonderl+, +\nwas, +\nthey
+    followed   the 35, she 14, then 10, was 9, looked 7, went 6
+    preceded   up 8, Alice, 5, again, 5, them, 4, Gryphon, 4, it, 3
+  to   seen 275
+    made of    t, o
+    part of    into, took, too, tone, top, told, said\nto, 'to
+    changes    in+, +ok, +o, +ne, +p, +ld, said\n+, '+
+    followed   the 37, be 11, say 9, see 8, have 6, find 6
+    preceded   said 21, had 7, went 6, turning 5, close 5, you 4
+  said   seen 251
+    made of    sai, aid, sa, id, d, s
+    part of    said,, said\nto, said:, she\nsaid, said\nAlice, said;, thing!'\nsaid, said.\n\nThe
+    changes    +,, +\nto, +:, she\n+, +\nAlice, +;, thing!'\n+, +.\n\nThe
+    followed   the 127, to 21, Alice, 17, Alice 13, in 5, Alice: 5
+    preceded   it,' 12, she 8, he 7, King 5, Alice 4, you,' 4
+  a   seen 241
+    made of    
+    part of    and, as, at, all, about, an, are, any
+    changes    +nd, +s, +t, +ll, +bout, +n, +re, +ny
+    followed   very 13, little 13, large 6, great 5, curious 5, minute 4
+    preceded   in 44, with 15, was 14, of 10, such 9, had 7
+  of   seen 223
+    made of    f, o
+    part of    off, off,, roof, often, of\nthe, often,, offer, officers
+    changes    +f, +f,, ro+, +ten, +\nthe, +ten,, +fer, +ficers
+    followed   the 59, a 10, her 10, them 6, Hearts, 5, it 5
+    preceded   out 11, one 9, end 7, moral 5, piece 4, voice 4
+  she   seen 158
+    made of    he, sh, e, s
+    part of    (she, as\nshe, she,, she\nfelt, she\nwas, and\nshe, she\nhad, but\nshe
+    changes    (+, as\n+, +,, +\nfelt, +\nwas, and\n+, +\nhad, but\n+
+    followed   had 13, was 10, went 9, said 8, could 6, said, 4
+    preceded   as 19, and 14, so 7, that 7, but 6, when 5
+  in   seen 147
+    made of    n, i
+    part of    into, join, explain, begin, inches, chin, in\nher, indeed
+    changes    +to, jo+, expla+, beg+, +ches, ch+, +\nher, +deed
+    followed   a 44, the 26, an 7, her 5, their 4, his 3
+    preceded   said 5, was 5, it 4, meaning 4, on 4, began 3
+  you   seen 122
+    made of    yo, ou, y, u
+    part of    your, you,, 'you, you'd, young, you,', yourself, you?'
+    changes    +r, +,, '+, +'d, +ng, +,', +rself, +?'
+    followed   to 4, see, 4, don't 4, join 4, know,' 3, can't 3
+    preceded   that 5, what 5, tell 4, as 4, did 4, if 3
+  it   seen 121
+    made of    t, i
+    part of    its, it,, it,', it;, it., it:, itself, bit
+    changes    +s, +,, +,', +;, +., +:, +self, b+
+    followed   was 15, to 4, in 4, as 4, had 3, would 3
+    preceded   of 5, that 5, at 3, 'but 3, and 3, what 3
+  was   seen 114
+    made of    wa, as, w, s
+    part of    was,, wasn't, was:, was,', was\nnot, there\nwas, was\nvery, washing?'
+    changes    +,, +n't, +:, +,', +\nnot, there\n+, +\nvery, +hing?'
+    followed   a 14, the 10, going 5, in 5, beginning 3, very 3
+    preceded   it 15, she 10, and 9, there 5, who 5, I 4
+  as   seen 101
+    made of    a, s
+    part of    was, asked, ask, has, as\nshe, 'as, she\nwas, asking
+    changes    w+, +ked, +k, h+, +\nshe, '+, she\nw+, +king
+    followed   she 19, well 12, the 12, he 10, if 5, you 4
+    preceded   just 6, well 5, it 4, thing 3, Alice 3, Alice, 3
+  at   seen 99
+    made of    a, t
+    part of    great, eat, sat, 'What, 'that, Cat, cat, What
+    changes    gre+, e+, s+, 'Wh+, 'th+, C+, c+, Wh+
+    followed   the 29, all 5, her 4, it 3, all,' 3, first, 2
+    preceded   looked 12, look 6, looking 4, was 2, live 2, it 2
+  I   seen 86
+    made of    
+    part of    'I, I'm, I'll, I've, IS, "I, It, I'd
+    changes    '+, +'m, +'ll, +'ve, +S, "+, +t, +'d
+    followed   don't 5, was 4, think 3, should 3, can't 3, never 3
+    preceded   what 7, when 4, but 4, and 2, thing 2, 'so 2
+  that   seen 83
+    made of    hat, tha, t
+    part of    that's, that,', 'that, that,, that:, that?', that!, quickly\nthat
+    changes    +'s, +,', '+, +,, +:, +?', +!, quickly\n+
+    followed   she 7, you 5, it 5, the 4, had 4, makes 4
+    preceded   was, 4, and 4, of 4, so 2, find 2, is, 2
+  with   seen 82
+    made of    ith, wit, th, wi, h, w
+    part of    without, with\nthe, with,', court\nwith, within--a, (with, with\na, even\nwith
+    changes    +out, +\nthe, +,', court\n+, +in--a, (+, +\na, even\n+
+    followed   a 15, the 14, an 5, her 5, his 5, one 4
+    preceded   'Off 5, begins 3, on 3, said 2, in 2, Off 2
+  had   seen 80
+    made of    ad, ha, h, d
+    part of    hadn't, she\nhad, it\nhad, had,, had\nnot, (she\nhad, had\ndrunk, had\na
+    changes    +n't, she\n+, it\n+, +,, +\nnot, (she\n+, +\ndrunk, +\na
+    followed   been 7, to 7, a 7, never 4, not 4, just 3
+    preceded   she 13, who 7, he 5, they 4, that 4, Queen 3
+  Alice   seen 78
+    made of    Alic, lice, e, A
+    part of    Alice,, Alice;, Alice., Alice's, Alice:, Alice.\n\n'You, (Alice, Caterpillar.\n\nAlice
+    changes    +,, +;, +., +'s, +:, +.\n\n'You, (+, Caterpillar.\n\n+
+    followed   said 4, could 4, thought 4, replied 3, was 3, as 3
+    preceded   said 13, and 6, not,' 2, moment 2, things!' 2, little 2
+  her   seen 75
+    made of    er, he, r, h
+    part of    herself, herself,, rather, her,, here, her., here,', her:
+    changes    +self, +self,, rat+, +,, +e, +., +e,', +:
+    followed   head 4, own 3, arm, 2, head!' 2, very 2, sister 2
+    preceded   of 10, in 5, with 5, at 4, on 3, upon 3
+  all   seen 71
+    made of    al, ll, l, a
+    part of    small, fall, call, all,', all,, all., all?', all;
+    changes    sm+, f+, c+, +,', +,, +., +?', +;
+    followed   the 10, this 3, over 2, three 2, her 2, that,' 2
+    preceded   were 5, at 5, and 4, in 3, of 2, they 2
+  he   seen 70
+    made of    e, h
+    part of    the, she, her, The, head, heard, herself,, She
+    changes    t+, s+, +r, T+, +ad, +ard, +rself,, S+
+    followed   said 7, had 5, spoke, 4, went 3, added 2, wasn't 2
+    preceded   as 10, if 6, and 5, but 3, that 3, it?' 2
+  on   seen 66
+    made of    n, o
+    part of    one, only, upon, on,, soon, once, reason, once,
+    changes    +e, +ly, up+, +,, so+, +ce, reas+, +ce,
+    followed   the 11, their 7, in 4, his 4, a 3, her 3
+    preceded   went 9, go 3, down 3, put 3, lying 2, going 2
+  his   seen 65
+    made of    is, hi, s, h
+    part of    this, This, in\nhis, said\nthis, his\nwhiskers!'\n\nFor, him\nhis, 'This, his\npocket,
+    changes    t+, T+, in\n+, said\nt+, +\nwhiskers!'\n\nFor, him\n+, 'T+, +\npocket,
+    followed   head 4, head!' 3, first 2, eyes 2, shoulder 2, teacup 2
+    preceded   with 5, on 4, in 3, down 3, of 3, opened 2
+  they   seen 64
+    made of    the, hey, y, t
+    part of    they'd, they'll, they\ncan't, first--they, there\nthey, they\nall, or\nthey, they\nliked,
+    changes    +'d, +'ll, +\ncan't, first--+, there\n+, +\nall, or\n+, +\nliked,
+    followed   were 7, had 4, saw 3, live 3, got 3, both 2
+    preceded   did 5, So 4, when 3, that 3, 'and 2, as 2
+  very   seen 58
+    made of    ery, ver, v, y
+    part of    every, a\nvery, very\ncarefully,, very\nlike, came\nvery, was\nvery, of\nevery, livery
+    changes    e+, a\n+, +\ncarefully,, +\nlike, came\n+, was\n+, of\ne+, li+
+    followed   much 5, civil 2, curious 2, nearly 2, rude.'\n\nThe 1, wide 1
+    preceded   a 13, 'it's 3, Alice, 3, was 3, wasn't 2, replied 2
+
+==============================================================================
+LEVEL 1
+==============================================================================
+
+SYMBOLS   11801 symbols, 3710 distinct  (each is a level 0 run; level 0 classes count as same)
+  the                                       798
+  and                                       290
+  to                                        275
+  said                                      251
+  a                                         241
+  of                                        223
+  she                                       158
+  in                                        147
+  you                                       122
+  it                                        121
+  was                                       114
+  as                                        101
+  at                                        99
+  I                                         86
+  that                                      83
+  with                                      82
+  had                                       80
+  Alice                                     78
+  her                                       75
+  all                                       71
+  he                                        70
+  on                                        66
+  his                                       65
+  they                                      64
+  very                                      58
+
+FOLLOWS   which symbol comes after which (top 25 of 9096 pairs)
+  said                     -> the                       127
+  of                       -> the                       59
+  the                      -> Mock                      47
+  in                       -> a                         44
+  to                       -> the                       37
+  and                      -> the                       35
+  Mock                     -> Turtle                    30
+  at                       -> the                       29
+  in                       -> the                       26
+  the                      -> March                     23
+  the                      -> King                      22
+  said                     -> to                        21
+  the                      -> Queen                     20
+  as                       -> she                       19
+  said                     -> Alice,                    17
+  the                      -> Gryphon                   17
+  it                       -> was                       15
+  the                      -> Dormouse                  15
+  with                     -> a                         15
+  the                      -> White                     15
+  was                      -> a                         14
+  and                      -> she                       14
+  the                      -> Hatter                    14
+  with                     -> the                       14
+  the                      -> Queen,                    14
+
+SEPARATOR   the most common symbol: the
+
+RUNS   799 runs between separators, 789 distinct
+  end of                                    3
+  King said to                              3
+  King,                                     2
+  King, and                                 2
+  rest of                                   2
+  Gryphon, and                              2
+  dance?\n Will you, won't you, will you, won't you, won't you join  2
+  voice of                                  2
+  \nThe table was a large one, but          1
+  three were all crowded together at\none corner of it: 'No room! No room!...  1
+  table.\n\n'Have some wine,'               1
+  March Hare said in an encouraging tone.\n\nAlice looked all round  1
+  table, but there was nothing on it but tea.\n'I don't see any wine,' she...  1
+  March Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alic...  1
+  Hatter. He had been looking at Alice\nfor some time with great curiosity...  1
+  answer to it?' said the\nMarch Hare.\n\n'Exactly so,' said Alice.\n\n'Th...  1
+  March Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at leas...  1
+  same thing, you know.'\n\n'Not            1
+  same thing a bit!' said                   1
+  Hatter. 'You might just as well say\nthat "I see what I eat" is  1
+  same thing as "I eat what I see"!'\n\n'You might just as well say,' adde...  1
+  March Hare, 'that "I like what I\nget" is  1
+  same thing as "I get what I like"!'\n\n'You might just as well say,' add...  1
+  Dormouse, who seemed to be\ntalking in his sleep, 'that "I breathe when ...  1
+  same thing\nas "I sleep when I breathe"!'\n\n'It IS  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 798 pairs)
+  \nThe table was a large one, but -> three were all crowded together at\none corner of it: 'No room! No room!...  1
+  three were all crowded together at\none corner of it: 'No room! No room!... -> table.\n\n'Have some wine,'  1
+  table.\n\n'Have some wine,' -> March Hare said in an encouraging tone.\n\nAlice looked all round  1
+  March Hare said in an encouraging tone.\n\nAlice looked all round -> table, but there was nothing on it but tea.\n'I don't see any wine,' she...  1
+  table, but there was nothing on it but tea.\n'I don't see any wine,' she... -> March Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alic...  1
+  March Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alic... -> Hatter. He had been looking at Alice\nfor some time with great curiosity...  1
+  Hatter. He had been looking at Alice\nfor some time with great curiosity... -> answer to it?' said the\nMarch Hare.\n\n'Exactly so,' said Alice.\n\n'Th...  1
+  answer to it?' said the\nMarch Hare.\n\n'Exactly so,' said Alice.\n\n'Th... -> March Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at leas...  1
+  March Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at leas... -> same thing, you know.'\n\n'Not  1
+  same thing, you know.'\n\n'Not -> same thing a bit!' said   1
+  same thing a bit!' said  -> Hatter. 'You might just as well say\nthat "I see what I eat" is  1
+  Hatter. 'You might just as well say\nthat "I see what I eat" is -> same thing as "I eat what I see"!'\n\n'You might just as well say,' adde...  1
+  same thing as "I eat what I see"!'\n\n'You might just as well say,' adde... -> March Hare, 'that "I like what I\nget" is  1
+  March Hare, 'that "I like what I\nget" is -> same thing as "I get what I like"!'\n\n'You might just as well say,' add...  1
+  same thing as "I get what I like"!'\n\n'You might just as well say,' add... -> Dormouse, who seemed to be\ntalking in his sleep, 'that "I breathe when ...  1
+  Dormouse, who seemed to be\ntalking in his sleep, 'that "I breathe when ... -> same thing\nas "I sleep when I breathe"!'\n\n'It IS  1
+  same thing\nas "I sleep when I breathe"!'\n\n'It IS -> same thing with you,' said  1
+  same thing with you,' said -> Hatter, and here the\nconversation dropped, and  1
+  Hatter, and here the\nconversation dropped, and -> party sat silent for a minute, while Alice\nthought over all she could r...  1
+  party sat silent for a minute, while Alice\nthought over all she could r... -> first to break            1
+  first to break           -> silence. 'What day of     1
+  silence. 'What day of    -> month\nis it?' he said, turning to Alice: he had taken his watch out of ...  1
+  month\nis it?' he said, turning to Alice: he had taken his watch out of ... -> Hatter. 'I told you butter wouldn't suit\nthe works!' he added looking a...  1
+  Hatter. 'I told you butter wouldn't suit\nthe works!' he added looking a... -> March Hare.\n\n'It was    1
+  March Hare.\n\n'It was   -> BEST butter,'             1
+
+MINT   14 rounds; parts minted per round: 1529 909 567 316 174 113 57 35 29 9 2 1 1 0
+  pool: 789 distinct runs in, 4510 structures added, 30119 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  way                                  65       1  away, way,, out-of-the-way, way.\n\nSo
+  Mock Turtle                          50       0  Mock Turtle yet?'\n\n'No,' said Alice. 'I don't even know what a Mock Tu..., Mock Turtle in\na tone of great relief. 'Now at OURS, Mock Turtle said with a sigh: 'he taught\nLaughing and Grief, they used ..., Mock Turtle replied in an offended tone. And\nthe Gryphon added 'Come, l...
+  in a                                 33       0  on in a, in a low, hurried tone. He looked\nanxiously over his shoulder as he spo..., in a low, trembling voice.\n\n'There's more evidence to come yet, please..., in a deep voice,\n'are done with a whiting. Now you know.'\n\n'And what ...
+  said to                              26       0  Queen was\nsilent.\n\nThe King laid his hand upon her arm, and timidly s..., said to one of, said to Alice,\nflinging, well,' Alice said to
+  one of                               23       0  King.\n\nHere one of, and a bright idea came into her\nhead. 'If I eat one of these cakes,' sh..., Dormouse say?' one of, said to one of
+  March Hare                           22       0  March Hare said--'\n\n'I didn't!', March Hare and his friends\nshared their never-ending meal, and, March Hare interrupted, yawning.\n'I'm getting tired of this. I vote, March Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at leas...
+  out of                               22       0  sentence in her French lesson-book. The Mouse gave a\nsudden leap out of, daisies, when suddenly a White Rabbit with pink eyes ran\nclose by her.\..., out of this pool? I am very tired\nof swimming about here, O Mouse!' (Al..., 'W. RABBIT' engraved upon it. She went in without\nknocking, and hurried...
+  Gryphon,                             21       1  Gryphon,\nhalf, Gryphon, 'she wants for to know your\nhistory, she do.'\n\n'I'll tell it..., Gryphon, and, Gryphon, 'that they WOULD
+  King,                                19       2  the\nKing,, King, with an air of great relief. 'Call, King, 'unless it was written to\nnobody, which isn't usual, you know.'\n..., King, 'or I'll have you executed.'\n\nThe miserable Hatter dropped his t...
+  had been                             17       0  locked; and when\nAlice had been, Queen\nwas to find it out, we should all have our heads cut off, you kno..., by\nrailway,' she said to herself. (Alice had been, had been looking at Alice\nfor some time with great curiosity, and this ...
+  with a                               16       0  with a teacup in one\nhand and a piece of bread-and-butter, with a bound into, with a sigh. 'I\nonly, with a sigh. 'I\nonly took
+  White Rabbit                         13       0  White Rabbit hurried by--the\nfrightened Mouse splashed his way through, White Rabbit put on his spectacles. 'Where shall I begin, please\nyour M..., White Rabbit put on his spectacles. 'Where shall I begin, please\nyour M..., White Rabbit read:--\n\n 'They told me you had been to her,\n And mentio...
+  went on,                             13       0  went on, 'you see, a dog growls when it's angry,\nand wags its tail when..., went on, 'if you don't know what to uglify is,\nyou ARE a simpleton.'\n\..., went on, without attending to her; 'but those\nserpents! There's no plea..., went on, 'you throw the--'\n\n'The lobsters!' shouted
+  end of                               12       3  end of his\ntail. 'As if I would talk on such a subject! Our family alwa..., end of his\ntail. 'As if I would talk on such a subject! Our family alwa..., end of trials, "There was some attempts\nat applause, which was immediat..., end of his\ntail. 'As if I would talk on such a subject! Our family alwa...
+  White Rabbit,                        12       0  White Rabbit, 'and that's, White Rabbit, who, White Rabbit, 'and, White Rabbit, 'but it seems to be a\nletter, written
+  she had                              12       0  right words,' said poor Alice, and her eyes\nfilled with tears again as ..., once; but, alas for poor Alice! when she got to the\ndoor, she found she..., time she had, garden at once; but, alas for poor Alice! when she got to the\ndoor, she...
+  top of                               12       0  top of its voice.\n\n'Back to land again, and that's all, top of it.\n\nShe stretched herself up on tiptoe, and peeped, top of her voice. Nobody\nmoved.\n\n'Who cares for you?' said Alice, (sh..., top of its voice.\n\n'Back to land again, and that's
+  it,' said                            11       0  paper.\n\n'If there's no meaning in it,' said, Hare.\n\n'He denies it,' said, so many\ntea-things are put out here?' she asked.\n\n'Yes, that's it,' s..., March Hare.\n\n'He denies it,' said
+  Mock Turtle,                         10       0  Mock Turtle, 'but if you've\nseen them so often, of course you know what..., Mock Turtle, who looked at them with large eyes\nfull of tears, but said..., Mock Turtle, 'they--you've seen them,\nof course?'\n\n'Yes,' said Alice,..., Mock Turtle, 'Drive on, old fellow! Don't be all day about it!'\nand he ...
+  as well                              10       0  as well wait, as she had nothing else to do, and\nperhaps after all it m..., as well say,' added, as well say,', what I like"!'\n\n'You might just as well
+  did not                              10       0  Mock\nTurtle, and to hear his history. I must go back and see after some..., to hear his history. I must go back and see after some\nexecutions I hav..., fact.'\n\nAlice did not, players to be\nexecuted for having missed their turns, and she did not
+  door, and                            10       0  door, and knocked.\n\n'There's no sort of use in knocking,' said, door, and knocked.\n\n'There's no sort of use in, door, and knocked.\n\n'There's no sort of use, door, and tried to open it; but, as\nthe door opened inwards, and Alice'...
+  looked at                            10       0  their proper places--ALL,' he repeated with\ngreat emphasis, looking har..., Queen. 'Can you play croquet?'\n\nThe soldiers were silent, and looked a..., Mock Turtle repeated thoughtfully. 'I\nshould like to hear her try and r..., in their proper places--ALL,' he repeated with\ngreat emphasis, looking ...
+  poor little                          10       0  poor little thing, poor little thing\nsat down and cried.\n\n'Come, there's no use in cryin..., poor little thing\nsat down and cried.\n\n'Come, there's no use in cryin..., poor little thing\nsat down and cried.\n\n'Come, there's no use in cryin...
+  to see                               10       0  three gardeners instantly threw\nthemselves flat upon their faces. There..., instantly threw\nthemselves flat upon their faces. There was a sound of ..., Queen, 'and take this young lady to see, take this young lady to see
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +said                      359
+  +and                       172
+  +to                        151
+  +in                        121
+  +of                        116
+  +at                        113
+  +on                        61
+  +was                       54
+  +all                       53
+  +with                      47
+  +she                       46
+  +that                      43
+  +it                        39
+  +for                       35
+  +by                        34
+  +had                       33
+  +as                        33
+  +took                      29
+  +is                        26
+  +round                     26
+  +like                      25
+  +but                       25
+  +you                       25
+  +out                       25
+  +from                      23
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                       and+  134
+               Mock Turtle+  86
+                       was+  85
+                        to+  74
+                     Queen+  70
+                        as+  67
+                       had+  67
+                        it+  66
+                       she+  63
+                         a+  61
+                      King+  57
+                   Gryphon+  56
+                      went+  51
+                      with+  49
+                      Mock+  49
+                    Hatter+  46
+                     March+  45
+                        in+  44
+                        of+  43
+                    Queen,+  42
+                  Dormouse+  42
+                      same+  41
+                       his+  40
+                      said+  38
+                    little+  38
+
+CLASSES   parts that take the same set of changes (largest 25 of 1964; two or more members count as same one level up)
+  {1.0} [+said, King,+]
+     3 members: 'and don't look at me like that!'\nHe got behind Alice as he spoke.\n\n'..., who had been for some time busily writing in\nhis note-book, cackled out..., 'or I'll have you executed.'\n\nThe miserable Hatter dropped his teacup ...
+  {1.1} [on,+, went on,+]
+     3 members: yawning and rubbing\nits eyes, for it was getting very sleepy; 'and they..., 'if you don't know what to uglify is,\nyou ARE a simpleton.'\n\nAlice di..., 'you throw the--'\n\n'The lobsters!' shouted
+  {1.2} [+had, +had been]
+     3 members: hall, but they were all locked; and when\nAlice, sea, 'and in that case I can go back by\nrailway,' she said to herself. ..., Queen\nwas to find it out, we should all have our heads cut off, you kno...
+  {1.3} [+said, Mock+]
+     3 members: Turtle.\n\n'Certainly not!' said Alice indignantly.\n\n'Ah! then yours w..., Turtle.\n\n'No, no! The adventures first,', Turtle; 'but it sounds\nuncommon nonsense.'\n\nAlice said nothing; she h...
+  {1.4} [on+, went on+]
+     3 members: at last, more calmly,\nthough still sobbing a little now and then, 'we w..., in a deep voice,\n'are done with a whiting. Now you know.'\n\n'And what ..., in a mournful tone, 'he won't\ndo a thing I ask! It's always six o'clock...
+  {1.5} [a+, in a+]
+     3 members: furious passion, and went stamping about, and\nshouting 'Off with his he..., deep, hollow tone: 'sit\ndown, both of you, and don't speak a word till ..., low voice,\n'Your Majesty must cross-examine THIS witness.'\n\n'Well, if...
+  {1.6} [had+, it had+]
+     3 members: entirely\ndisappeared; so, gone.\n\n'Well! I've often seen a cat without a grin,' thought Alice; 'b..., some kind of\nauthority over Alice.\n\n'Stand up and repeat "'TIS THE VO...
+  {1.7} [+said, you+]
+     3 members: haven't found it so yet,' said Alice; 'but when you\nhave to turn into a..., executed.'\n\nThe miserable Hatter dropped his teacup and bread-and-butt..., play croquet with the\nQueen to-day?'\n\n'I should like it very much,' s...
+  {1.8} [+and, was+]
+     3 members: over.\n\nAlice was not a bit hurt, and she jumped up on to her feet in a..., shut again,, getting quite crowded with the\nbirds and animals that had fallen into i...
+  {1.9} [in a low,+, low,+]
+     3 members: trembling voice.\n\n'There's more evidence to come yet, please your Maje..., weak voice.\n\n'Now, I give you fair warning,', hurried tone. He looked\nanxiously over his shoulder as he spoke, and th...
+  {1.10} [+said, Dormouse+]
+     3 members: shall!' they both cried. 'Wake up, Dormouse!' And\nthey pinched it on bo..., indignantly. However, he consented to\ngo on. 'And so these three little..., went on, yawning and rubbing\nits eyes, for it was getting very sleepy; ...
+  {1.11} [+said, said+]
+     3 members: that day.\n\n'That PROVES his guilt,', nothing: she had never been so much contradicted in her life\nbefore, an..., pig,' replied Alice; 'and I wish you wouldn't keep appearing and\nvanish...
+  {1.12} [all.+, at all.+]
+     2 members: However, 'jury-men' would have done\njust as well.\n\nThe twelve jurors ..., 'But perhaps it was only sobbing,'\nshe thought, and looked into its eye...
+  {1.13} [+said, Cat.+]
+     2 members: 'Do you play croquet with the\nQueen to-day?'\n\n'I should like it very ..., 'I'd nearly\nforgotten to ask.'\n\n'It turned into a pig,' Alice quietly...
+  {1.14} [Mock Turtle,+, Turtle,+]
+     2 members: who looked at them with large eyes\nfull of tears, but said nothing.\n\n..., 'Drive on, old fellow! Don't be all day about it!'\nand he went on in th...
+  {1.15} [Mock Turtle said:+, said:+]
+     2 members: 'no\nwise fish would go anywhere without a porpoise.'\n\n'Wouldn't it re..., 'I'm too\nstiff. And
+  {1.16} [Mock Turtle.+, Turtle.+]
+     2 members: 'Seals, turtles, salmon, and so on;\nthen, when you've cleared all, Alice was very nearly getting up and\nsaying, 'Thank you, sir, for your ...
+  {1.17} [and said+, said+]
+     2 members: to herself 'Now I\ncan do no more, whatever happens. What WILL become of..., 'What else had you to learn?'\n\n'Well, there was Mystery,'
+  {1.18} [+anxiously, +anxiously at]
+     2 members: 'chop off her head!'\n\nAlice glanced rather, cook.\n\nThe King looked
+  {1.19} [Mock Turtle:+, Turtle:+]
+     2 members: 'why, if a fish came to ME, and\ntold me he was going a journey, I shoul..., 'crumbs would all\nwash off in
+  {1.20} [+don't, +don't know]
+     2 members: Eaglet. 'I, 'em do.'\n\n'I don't know of any that do,' Alice said very politely, fee...
+  {1.21} [+said, of+]
+     2 members: 'em do.'\n\n'I don't know of any that do,' Alice said very politely, fee..., that?'\n\n 'In my youth,'
+  {1.22} [Hare,+, March Hare,+]
+     2 members: 'that "I like what I\nget" is, who had followed him into the\ncourt, arm-in-arm with
+  {1.23} [it+, on it+]
+     2 members: but tea.\n'I don't see any wine,' she remarked.\n\n'There isn't any,', (as she had hoped) a fan and two or three pairs\nof tiny white kid glove...
+  {1.24} [Queen, and+, and+]
+     2 members: in\nhis confusion he bit a large piece out of his teacup instead of the\..., Alice joined
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  end of   seen 3
+    made of    end, of
+    part of    end of his\ntail. 'As if I would talk on such a subject! Our family alwa..., end of his\ntail. 'As if I would talk on such a subject! Our family alwa..., end of trials, "There was some attempts\nat applause, which was immediat..., end of his\ntail. 'As if I would talk on such a subject! Our family alwa..., crowded together at\none corner of it: 'No room! No room!' they cried ou..., end of his\ntail. 'As if I would talk on such a subject! Our family alwa..., together at\none corner of it: 'No room! No room!' they cried out when t..., end of your nose--\n What made you so awfully clever?'\n\n 'I have answe...
+    changes    +his\ntail. 'As if I would talk on such a subject! Our family always HATE..., +his\ntail. 'As if I would talk on such a subject! Our family always HATE..., +trials, "There was some attempts\nat applause, which was immediately sup..., +his\ntail. 'As if I would talk on such a subject! Our family always HATE..., crowded together at\none corner of it: 'No room! No room!' they cried ou...+, +his\ntail. 'As if I would talk on such a subject! Our family always HATE..., together at\none corner of it: 'No room! No room!' they cried out when t...+, +your nose--\n What made you so awfully clever?'\n\n 'I have answered thr...
+    followed   bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante... 1, song.\n\n'What trial is it?' Alice panted as she ran; but 1, trial.'\n\n'Stupid things!' Alice began in a loud, indignant voice, but ... 1
+    preceded   Mock Turtle in\na tone of great relief. 'Now at OURS they had at 1, hand, it hurried\noff, without waiting for 1, Gryphon whispered in reply, 'for\nfear they should forget them before 1
+  King said to   seen 3
+    made of    King said, said to, King, to
+    part of    King said to Alice.\n\n'Nothing,' said Alice.\n\n'Nothing WHATEVER?' per...
+    changes    +Alice.\n\n'Nothing,' said Alice.\n\n'Nothing WHATEVER?' persisted
+    followed   jury.\n\n'Not yet, not yet!' 1, jury, and 1, Hatter.\n\n'It isn't mine,' said 1
+    preceded   parchment scroll, and read as follows:--\n\n 'The Queen of Hearts, she m... 1, Dormouse.\n\n'Write that down,' 1, answer to shillings and pence.\n\n'Take off your hat,' 1
+  King,   seen 2
+    made of    ing,, King, K, ,
+    part of    the\nKing,, King, with an air of great relief. 'Call, King, 'unless it was written to\nnobody, which isn't usual, you know.'\n..., King, 'or I'll have you executed.'\n\nThe miserable Hatter dropped his t..., King, looking round, King, 'that, King, 'that saves a world of\ntrouble, you know, as we needn't try to fi..., King, who had been for some time busily writing in\nhis note-book, cackl...
+    changes    the\n+, +with an air of great relief. 'Call, +'unless it was written to\nnobody, which isn't usual, you know.'\n\n'Who..., +'or I'll have you executed.'\n\nThe miserable Hatter dropped his teacup ..., +looking round, +'that, +'that saves a world of\ntrouble, you know, as we needn't try to find any..., +who had been for some time busily writing in\nhis note-book, cackled out...
+    followed   Queen,\nthe royal children, and everybody else.\n\n'Leave off that!' scr... 1, Queen, and Alice, were in custody and\nunder sentence of execution.\n\nT... 1
+    preceded   three\ngardeners instantly jumped up, and began bowing to 1, soldiers,\nwho of course had to leave off being arches to do this, so th... 1
+  King, and   seen 2
+    made of    King,, and
+    part of    King, and he went on muttering over\nthe verses to himself: '"WE KNOW IT..., King, and he went on muttering over\nthe verses to himself: '"WE KNOW IT...
+    changes    +he went on muttering over\nthe verses to himself: '"WE KNOW IT TO BE TRU..., +he went on muttering over\nthe verses to himself: '"WE KNOW IT TO BE TRU...
+    followed   Queen, who were all talking at once,\nwhile all 1, Hatter hurriedly left 1
+    preceded   Cheshire Cat, she was surprised to find quite a\nlarge crowd collected r... 1, list of singers.\n\n'You may go,' said 1
+  rest of   seen 2
+    made of    rest, of
+    part of    rest of the\npack, she could not tell whether they were gardeners, or so..., rest of my life.'\n\n 'You are old,' said, rest of my life.'\n\n 'You are old,', rest of it had gone.\n\n'Well! I've often seen a cat without a grin,' th..., rest of it had gone.\n\n'Well! I've often seen a cat without a grin,' th..., rest of the\npack, she could not tell whether they were gardeners, or so...
+    changes    +the\npack, she could not tell whether they were gardeners, or soldiers, ..., +my life.'\n\n 'You are old,' said, +my life.'\n\n 'You are old,', +it had gone.\n\n'Well! I've often seen a cat without a grin,' thought Al..., +it had gone.\n\n'Well! I've often seen a cat without a grin,' thought Al..., +the\npack, she could not tell whether they were gardeners, or soldiers, ...
+    followed   party went back to 1, day; and this was\nof very little use, as it left no mark on 1
+    preceded   executioner ran wildly up and down\nlooking for it, while 1, Lizard) could not make out\nat all what had become of it; so, after hunt... 1
+  Gryphon, and   seen 2
+    made of    Gryphon,, and
+    part of    Gryphon, and the\nGryphon answered, very nearly in, Gryphon, and all, Gryphon, and the\nGryphon answered, very nearly
+    changes    +the\nGryphon answered, very nearly in, +all, +the\nGryphon answered, very nearly
+    followed   constant\nheavy sobbing of 1, Mock Turtle had just begun\nto repeat it, when a cry of 'The trial's beg... 1
+    preceded   Mock Turtle at last, with a deep sigh, 'I was a real\nTurtle.'\n\nThese ... 1, e--e--evening,\n Beautiful, beauti--FUL SOUP!'\n\n'Chorus again!' cried 1
+  dance?\n Will you, won't you, will you, won't you, won't you join   seen 2
+    made of    dance?\n Will you, won't you, will you, won't you, won't, you join
+    part of    
+    changes    
+    followed   dance?\n\n "You can really have no notion how delightful it will be\n Wh... 1, dance?"'\n\n'Thank you, it's a very interesting dance to watch,' said Al... 1
+    preceded   dance?\n\n Will you, won't you, will you, won't you, will you join 1, dance.\n\n Will you, won't you, will you, won't you, will you join 1
+  voice of   seen 2
+    made of    voice, of
+    part of    shrill voice of, voice of thunder, and\npeople began running about in all directions, tum...
+    changes    shrill+, +thunder, and\npeople began running about in all directions, tumbling up ...
+    followed   Lobster; I heard him declare,\n "You have baked me too brown, I must sug... 1, shepherd boy--and 1
+    preceded   words came\nvery queer indeed:--\n\n ''Tis 1, Queen's shrill\ncries to 1
+  \nThe table was a large one, but   seen 1
+    made of    \nThe table was a large one,, but
+    part of    
+    changes    
+    followed   three were all crowded together at\none corner of it: 'No room! No room!... 1
+    preceded   
+  three were all crowded together at\none corner of it: 'No room! No room!...   seen 1
+    made of    were all crowded together at\none corner of it: 'No room! No room!' they..., three were all crowded together at\none corner of it: 'No room! No room!..., three, of
+    part of    
+    changes    
+    followed   table.\n\n'Have some wine,' 1
+    preceded   \nThe table was a large one, but 1
+  table.\n\n'Have some wine,'   seen 1
+    made of    
+    part of    
+    changes    
+    followed   March Hare said in an encouraging tone.\n\nAlice looked all round 1
+    preceded   three were all crowded together at\none corner of it: 'No room! No room!... 1
+  March Hare said in an encouraging tone.\n\nAlice looked all round   seen 1
+    made of    March Hare said in an encouraging tone.\n\nAlice looked all, said in an encouraging tone.\n\nAlice looked all round, in an encouraging tone.\n\nAlice looked all round, March Hare said, March Hare, round
+    part of    
+    changes    
+    followed   table, but there was nothing on it but tea.\n'I don't see any wine,' she... 1
+    preceded   table.\n\n'Have some wine,' 1
+  table, but there was nothing on it but tea.\n'I don't see any wine,' she...   seen 1
+    made of    but there was nothing on it but tea.\n'I don't see any wine,' she remark..., table, but there was nothing on it but tea.\n'I don't see any wine,' she..., there was nothing on it but tea.\n'I don't see any wine,' she remarked.\..., table, but, table,, said
+    part of    
+    changes    
+    followed   March Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alic... 1
+    preceded   March Hare said in an encouraging tone.\n\nAlice looked all round 1
+  March Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alic...   seen 1
+    made of    March Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alic..., Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alice angr..., March, said
+    part of    
+    changes    
+    followed   Hatter. He had been looking at Alice\nfor some time with great curiosity... 1
+    preceded   table, but there was nothing on it but tea.\n'I don't see any wine,' she... 1
+  Hatter. He had been looking at Alice\nfor some time with great curiosity...   seen 1
+    made of    Hatter. He had been looking at Alice\nfor some time with great curiosity..., had been looking at Alice\nfor some time with great curiosity, and this ..., Hatter. He, out
+    part of    
+    changes    
+    followed   answer to it?' said the\nMarch Hare.\n\n'Exactly so,' said Alice.\n\n'Th... 1
+    preceded   March Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alic... 1
+  answer to it?' said the\nMarch Hare.\n\n'Exactly so,' said Alice.\n\n'Th...   seen 1
+    made of    it?' said the\nMarch Hare.\n\n'Exactly so,' said Alice.\n\n'Then you sho..., answer to
+    part of    
+    changes    
+    followed   March Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at leas... 1
+    preceded   Hatter. He had been looking at Alice\nfor some time with great curiosity... 1
+  March Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at leas...   seen 1
+    made of    Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at least I me..., went on.\n\n'I do,' Alice hastily replied; 'at least--at least I mean wh..., on.\n\n'I do,' Alice hastily replied; 'at least--at least I mean what I\..., March Hare went, March Hare, March
+    part of    
+    changes    
+    followed   same thing, you know.'\n\n'Not 1
+    preceded   answer to it?' said the\nMarch Hare.\n\n'Exactly so,' said Alice.\n\n'Th... 1
+  same thing, you know.'\n\n'Not   seen 1
+    made of    thing, you know.'\n\n'Not, same
+    part of    
+    changes    
+    followed   same thing a bit!' said 1
+    preceded   March Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at leas... 1
+  same thing a bit!' said   seen 1
+    made of    thing a bit!' said, same thing a bit!', a bit!' said, same thing, said, same
+    part of    
+    changes    
+    followed   Hatter. 'You might just as well say\nthat "I see what I eat" is 1
+    preceded   same thing, you know.'\n\n'Not 1
+  Hatter. 'You might just as well say\nthat "I see what I eat" is   seen 1
+    made of    'You might just as well say\nthat "I see what I eat" is, Hatter. 'You might just as well say\nthat "I see what I eat", Hatter., is
+    part of    
+    changes    
+    followed   same thing as "I eat what I see"!'\n\n'You might just as well say,' adde... 1
+    preceded   same thing a bit!' said 1
+  same thing as "I eat what I see"!'\n\n'You might just as well say,' adde...   seen 1
+    made of    same thing as "I eat what I see"!'\n\n'You might just as well say,', as "I eat what I see"!'\n\n'You might just as well say,' added, eat what I see"!'\n\n'You might just as well say,' added, same thing as "I, same thing, added
+    part of    
+    changes    
+    followed   March Hare, 'that "I like what I\nget" is 1
+    preceded   Hatter. 'You might just as well say\nthat "I see what I eat" is 1
+  March Hare, 'that "I like what I\nget" is   seen 1
+    made of    March Hare, 'that "I like what I\nget", Hare, 'that "I like what I\nget" is, 'that "I like what I\nget" is, March Hare,, March, is
+    part of    
+    changes    
+    followed   same thing as "I get what I like"!'\n\n'You might just as well say,' add... 1
+    preceded   same thing as "I eat what I see"!'\n\n'You might just as well say,' adde... 1
+  same thing as "I get what I like"!'\n\n'You might just as well say,' add...   seen 1
+    made of    as "I get what I like"!'\n\n'You might just as well say,' added, get what I like"!'\n\n'You might just as well say,' added, same thing as "I get what I like"!'\n\n'You, might just as well say,' added, same thing as "I, same thing
+    part of    
+    changes    
+    followed   Dormouse, who seemed to be\ntalking in his sleep, 'that "I breathe when ... 1
+    preceded   March Hare, 'that "I like what I\nget" is 1
+  Dormouse, who seemed to be\ntalking in his sleep, 'that "I breathe when ...   seen 1
+    made of    who seemed to be\ntalking in his sleep, 'that "I breathe when I sleep" i..., Dormouse, who seemed to be\ntalking in his sleep, 'that "I breathe when ..., seemed to be\ntalking in his sleep, 'that "I breathe when I sleep" is, Dormouse, who, Dormouse,, is
+    part of    
+    changes    
+    followed   same thing\nas "I sleep when I breathe"!'\n\n'It IS 1
+    preceded   same thing as "I get what I like"!'\n\n'You might just as well say,' add... 1
+  same thing\nas "I sleep when I breathe"!'\n\n'It IS   seen 1
+    made of    thing\nas "I sleep when I breathe"!'\n\n'It IS, same
+    part of    
+    changes    
+    followed   same thing with you,' said 1
+    preceded   Dormouse, who seemed to be\ntalking in his sleep, 'that "I breathe when ... 1
+
+==============================================================================
+LEVEL 2
+==============================================================================
+
+SYMBOLS   799 symbols, 789 distinct  (each is a level 1 run; level 1 classes count as same)
+  end of                                    3
+  King said to                              3
+  King,                                     2
+  King, and                                 2
+  rest of                                   2
+  Gryphon, and                              2
+  dance?\n Will you, won't you, will you, won't you, won't you join  2
+  voice of                                  2
+  \nThe table was a large one, but          1
+  three were all crowded together at\none corner of it: 'No room! No room!...  1
+  table.\n\n'Have some wine,'               1
+  March Hare said in an encouraging tone.\n\nAlice looked all round  1
+  table, but there was nothing on it but tea.\n'I don't see any wine,' she...  1
+  March Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alic...  1
+  Hatter. He had been looking at Alice\nfor some time with great curiosity...  1
+  answer to it?' said the\nMarch Hare.\n\n'Exactly so,' said Alice.\n\n'Th...  1
+  March Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at leas...  1
+  same thing, you know.'\n\n'Not            1
+  same thing a bit!' said                   1
+  Hatter. 'You might just as well say\nthat "I see what I eat" is  1
+  same thing as "I eat what I see"!'\n\n'You might just as well say,' adde...  1
+  March Hare, 'that "I like what I\nget" is  1
+  same thing as "I get what I like"!'\n\n'You might just as well say,' add...  1
+  Dormouse, who seemed to be\ntalking in his sleep, 'that "I breathe when ...  1
+  same thing\nas "I sleep when I breathe"!'\n\n'It IS  1
+
+FOLLOWS   which symbol comes after which (top 25 of 798 pairs)
+  \nThe table was a large one, but -> three were all crowded together at\none corner of it: 'No room! No room!...  1
+  three were all crowded together at\none corner of it: 'No room! No room!... -> table.\n\n'Have some wine,'  1
+  table.\n\n'Have some wine,' -> March Hare said in an encouraging tone.\n\nAlice looked all round  1
+  March Hare said in an encouraging tone.\n\nAlice looked all round -> table, but there was nothing on it but tea.\n'I don't see any wine,' she...  1
+  table, but there was nothing on it but tea.\n'I don't see any wine,' she... -> March Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alic...  1
+  March Hare.\n\n'Then it wasn't very civil of you to offer it,' said Alic... -> Hatter. He had been looking at Alice\nfor some time with great curiosity...  1
+  Hatter. He had been looking at Alice\nfor some time with great curiosity... -> answer to it?' said the\nMarch Hare.\n\n'Exactly so,' said Alice.\n\n'Th...  1
+  answer to it?' said the\nMarch Hare.\n\n'Exactly so,' said Alice.\n\n'Th... -> March Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at leas...  1
+  March Hare went on.\n\n'I do,' Alice hastily replied; 'at least--at leas... -> same thing, you know.'\n\n'Not  1
+  same thing, you know.'\n\n'Not -> same thing a bit!' said   1
+  same thing a bit!' said  -> Hatter. 'You might just as well say\nthat "I see what I eat" is  1
+  Hatter. 'You might just as well say\nthat "I see what I eat" is -> same thing as "I eat what I see"!'\n\n'You might just as well say,' adde...  1
+  same thing as "I eat what I see"!'\n\n'You might just as well say,' adde... -> March Hare, 'that "I like what I\nget" is  1
+  March Hare, 'that "I like what I\nget" is -> same thing as "I get what I like"!'\n\n'You might just as well say,' add...  1
+  same thing as "I get what I like"!'\n\n'You might just as well say,' add... -> Dormouse, who seemed to be\ntalking in his sleep, 'that "I breathe when ...  1
+  Dormouse, who seemed to be\ntalking in his sleep, 'that "I breathe when ... -> same thing\nas "I sleep when I breathe"!'\n\n'It IS  1
+  same thing\nas "I sleep when I breathe"!'\n\n'It IS -> same thing with you,' said  1
+  same thing with you,' said -> Hatter, and here the\nconversation dropped, and  1
+  Hatter, and here the\nconversation dropped, and -> party sat silent for a minute, while Alice\nthought over all she could r...  1
+  party sat silent for a minute, while Alice\nthought over all she could r... -> first to break            1
+  first to break           -> silence. 'What day of     1
+  silence. 'What day of    -> month\nis it?' he said, turning to Alice: he had taken his watch out of ...  1
+  month\nis it?' he said, turning to Alice: he had taken his watch out of ... -> Hatter. 'I told you butter wouldn't suit\nthe works!' he added looking a...  1
+  Hatter. 'I told you butter wouldn't suit\nthe works!' he added looking a... -> March Hare.\n\n'It was    1
+  March Hare.\n\n'It was   -> BEST butter,'             1
+
+SEPARATOR   the most common symbol: end of
+
+RUNS   4 runs between separators, 4 distinct
+  \nThe table was a large one, but | three were all crowded together at\no...  1
+  bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante...  1
+  song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only...  1
+  trial.'\n\n'Stupid things!' Alice began in a loud, indignant voice, but ...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 3 pairs)
+  \nThe table was a large one, but | three were all crowded together at\no... -> bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante...  1
+  bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante... -> song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only...  1
+  song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only... -> trial.'\n\n'Stupid things!' Alice began in a loud, indignant voice, but ...  1
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 4 distinct runs in, 4 structures added, 30123 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  \nThe table was a large one, but | three were all crowded together at\no...        0       1  
+  bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante...        0       1  
+  song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only...        0       1  
+  trial.'\n\n'Stupid things!' Alice began in a loud, indignant voice, but ...        0       1  
+  [Alice's Adventures in Wonderland by Lewis Carroll 1865]\n\nCHAPTER I. D...        0       0  
+  hookah out of its mouth\nand yawned once or twice, and shook itself. The...        0       0  
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...        0       0  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  \nThe table was a large one, but | three were all crowded together at\no...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante... 1
+    preceded   
+  bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only... 1
+    preceded   \nThe table was a large one, but | three were all crowded together at\no... 1
+  song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   trial.'\n\n'Stupid things!' Alice began in a loud, indignant voice, but ... 1
+    preceded   bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante... 1
+  trial.'\n\n'Stupid things!' Alice began in a loud, indignant voice, but ...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only... 1
+
+==============================================================================
+LEVEL 3
+==============================================================================
+
+SYMBOLS   4 symbols, 4 distinct  (each is a level 2 run; level 2 classes count as same)
+  \nThe table was a large one, but | three were all crowded together at\no...  1
+  bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante...  1
+  song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only...  1
+  trial.'\n\n'Stupid things!' Alice began in a loud, indignant voice, but ...  1
+
+FOLLOWS   which symbol comes after which (top 25 of 3 pairs)
+  \nThe table was a large one, but | three were all crowded together at\no... -> bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante...  1
+  bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante... -> song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only...  1
+  song.\n\n'What trial is it?' Alice panted as she ran; but | Gryphon only... -> trial.'\n\n'Stupid things!' Alice began in a loud, indignant voice, but ...  1
+
+SEPARATOR   the most common symbol: \nThe table was a large one, but | three were all crowded together at\no...
+
+RUNS   1 runs between separators, 1 distinct
+  bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 1 distinct runs in, 1 structures added, 30124 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante...        0       1  
+  hookah out of its mouth, and addressed\nher in a languid, sleepy voice.\...        0       0  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  bill,\n"French, music, AND WASHING--extra."'\n\n'You couldn't have wante...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   
+

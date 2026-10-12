@@ -1,0 +1,28 @@
+THE EFFECTS TABLE, as the machine has it (field numbers are all it sees; names are the lens)
+
+action         pressed  effects seen (field: times up / times down); fields with no effect omitted
+arm                 41  armed:3/0
+engine on           39  alt:2/0 vz:2/0 thrust:13/0 pipa:13/0 prop:0/13 engine:13/0
+engine off          33  vz:0/2 thrust:0/10 pipa:0/10 prop:10/0 engine:0/10
+throttle up         37  alt:2/0 vz:3/0 thrust:14/0
+throttle down       22  -
++roll               22  ax:2/0 wx:2/0 cdu:2/0
+-roll               20  -
++pitch              20  -
+-pitch              20  -
++yaw                20  -
+-yaw                20  pipa:0/1
+DSKY code 0         64  ax:0/2 wx:0/2 alt:5/0 vz:1/5 jets6:2/1 cdu:0/2 pipa:4/3 prop:2/0
+DSKY code 1         51  jets6:0/1 pipa:1/0
+PRO                 40  -
+DSKY code 2         48  wx:0/1 vz:1/0 jets6:1/0 pipa:1/2
+DSKY code 11        45  alt:0/2
+DSKY code 15        45  thrust:0/1 engine:0/1
+DSKY code 16        43  vz:0/1 thrust:0/1 engine:0/1
+DSKY code 22        42  vz:2/0
+DSKY code 24        42  alt:0/2
+
+24 DSKY codes pressed with no effect on any instrument field, ever.
+
+fields seen moving (continuous): ['ax', 'wx', 'alt', 'vz', 'jets6', 'cdu', 'pipa', 'prop']
+predictions: right 14259, wrong 4

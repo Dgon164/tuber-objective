@@ -1,0 +1,97 @@
+
+==== writes: words  held 58917  quiet 20497  shared 18281  only-held 40636  only-quiet 2216
+     held PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+     quiet PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+
+  cells written ONLY in the held flight (by number of such writes), with the names lens:
+    3352 DAPTREG6/E           26851
+    0033 CDUY/CHAN33          14334
+    3340 DAPTEMP2/ROTEMP2     10973
+    3027 EDOT/EDOTP           10397
+    3337 ABSEDOTP/ABSTJ        7526
+    0031 CHAN31/TIME6          7488
+    3341 DAPTEMP3/FIREFCT      5567
+    0034 CDUZ/DNTM1            4934
+    3351 DAPTREG5/FUNCTION     4687
+    1076 TEMK                  4370
+    3050 DYERROR/QDIFF         4050
+    3031 TRAPEDQ               3754
+    3026 OMEGAU/URATEDIF       3177
+    3344 ACENTRAL/ADRSDIF2     3167
+    3052 DZERROR/RDIFF         3164
+    3023 OMEGAR                3127
+    3032 TRAPEDR               2845
+    3030 TRAPEDP               2680
+    3350 DAPTREG4/DPSBURN      2475
+    0032 BVECTR/CDUX           2204
+    3347 DAPTREG3/HALFARG      2160
+    3346 A2CNTRAL/ADRSDIF1     2037
+    3051 ?                     1800
+    3022 OMEGAQ                1642
+    0011 DSALMOUT/LRUPT        1536
+    3021 OMEGAP                1393
+    3037 EDOTR/RRATEDIF        1391
+    3053 ?                     1390
+    3047 ?                     1386
+    0073 DIM0FLAG/DSRUPTEM     1386
+
+  routines (nearest label at or below the instruction address) doing writes seen ONLY in the held flight:
+    BACKP          27889
+    ?              21881
+    ROT-TOUV        8481
+    TJCALC          5963
+    QERRCALC        5892
+    TJLAW           5320
+    PAXIS           4771
+    NEGEDOT         4619
+    SETSENSE        3968
+    ZONE4,5         3743
+    RERRCALC        3684
+    SCALEE          3592
+    CALCPERR        3535
+    P-RATE          3418
+    Q-RATE          3398
+    STILLRCS        3393
+    SCALEDOT        3388
+    TJETLAW         3361
+    DACLOOP         3212
+    ERRTEST         3077
+    LMONLY          2994
+    R-RATE          2963
+    ROTORQUE        2843
+    SUBDIVDE        2634
+    NORRGMON        2504
+    POLLEY          2284
+    ALTDSPLY        2274
+    RCS             2181
+    QRAXIS          2109
+    SPT             2077
+
+  cells written ONLY in the quiet flight:
+    3034 NQTRAPS                825
+    3035 NRTRAPS                659
+    0011 DSALMOUT/LRUPT         467
+    0012 CHAN12/LOKONSW         435
+    3033 NPTRAPS                368
+    0010 ALPHA/ARUPT            269
+    3356 ?                      190
+    3355 DAPBQRPT               109
+    0016 1/MU/504LPL             99
+    0064 ITEMP4/LOCCTR            7
+
+==== channels: words  held 316  quiet 89  shared 62  only-held 254  only-quiet 27
+     parts  held 11500  quiet 930  shared 270  only-held 11230  only-quiet 660
+
+  channel packets seen ONLY in the held flight, by channel (count of packets), and their most common values:
+    233    5817   values: 00023x3018 00021x2799
+    234    1409   values: 00023x855 00021x554
+    035     248   values: 31244x48 00471x21 07102x8 03612x8
+    034     235   values: 00471x20 00004x18 00026x11 02427x10
+    005     193   values: 00041x55 00151x40 00110x30 00022x27
+    232     142   values: 00021x105 00023x37
+    013      85   values: 40100x81 40000x4
+    175      75   values: 40003x10 40002x6 00004x6 40011x5
+    176      41   values: 00001x10 40002x8 40001x6 00002x3
+    174      22   values: 00001x11 40001x8 00003x2 40002x1
+  channel packets seen ONLY in the quiet flight, by channel: 035:74
+  channels with packets in BOTH: 035:36 034:15 013:2 011:2 163:2 014:1 006:1 005:1 010:1 033:1

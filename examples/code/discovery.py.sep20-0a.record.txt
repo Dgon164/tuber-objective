@@ -1,0 +1,987 @@
+DISCOVERY RECORD
+signal     discovery.py
+size       31228 bytes, 249824 bits
+
+FRAME   score = spread between the column most often 1 and the column least often 1
+  width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
+   48    0.947   col   0 at 0.000   col  26 at 0.947
+   40    0.947   col   0 at 0.000   col  10 at 0.947
+   56    0.946   col   0 at 0.000   col  10 at 0.946
+   64    0.945   col   0 at 0.000   col  10 at 0.945
+   32    0.944   col   0 at 0.000   col  26 at 0.944
+   24    0.944   col   0 at 0.000   col  18 at 0.944
+   16    0.944   col   0 at 0.000   col  10 at 0.944
+    8    0.943   col   0 at 0.000   col   2 at 0.943
+  picked width 8
+    fold to  1: columns differ by 0.1795 on average (wobble by chance 0.0028) -> different
+    fold to  2: columns differ by 0.1790 on average (wobble by chance 0.0028) -> different
+    fold to  4: columns differ by 0.1632 on average (wobble by chance 0.0028) -> different
+  chosen width 8
+  column rates at width 8:
+    0.000 0.543 0.943 0.229 0.373 0.439 0.310 0.424
+
+LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
+  level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
+      0    31228        88     3980      1487     6334          164     7821        7821
+      1     3980      1487      142       140      197            1      337        8158
+      2      142       140        3         3        2            0        5        8163
+      3        3         3        1         1        0            0        1        8164
+  stopped: level 3 left a single run; nothing more to cut
+
+==============================================================================
+LEVEL 0
+==============================================================================
+
+WORDS   31228 words, 88 distinct
+  bits      glyph   count
+  00100000          7838
+  01100101  e       1931
+  00101101  -       1599
+  01101111  o       1283
+  01110100  t       1266
+  01110011  s       1200
+  01101110  n       1138
+  01110010  r       1129
+  01100001  a       1076
+  01101001  i       902
+  01101100  l       788
+  01100100  d       769
+  00001010  \n      726
+  00100111  '       677
+  00101000  (       641
+  00101001  )       641
+  00101100  ,       577
+  01110000  p       567
+  01100110  f       563
+  01101101  m       505
+  01100011  c       476
+  01101000  h       447
+  01110101  u       369
+  01110111  w       329
+  00111101  =       292
+
+FOLLOWS   which word comes after which (top 25 of 1168 pairs)
+                           ->                           3992
+  -                        -> -                         1487
+  ,                        ->                           512
+  \n                       ->                           493
+                           -> i                         308
+  e                        ->                           293
+  i                        -> n                         293
+  o                        -> r                         292
+  l                        -> e                         267
+  s                        ->                           252
+                           -> s                         250
+  n                        ->                           245
+  t                        -> h                         244
+                           -> t                         232
+                           -> p                         218
+  r                        -> e                         218
+  e                        -> n                         204
+  a                        -> r                         201
+                           -> c                         200
+  )                        -> \n                        200
+                           -> r                         188
+  =                        ->                           188
+  p                        -> a                         186
+  m                        -> e                         182
+  t                        ->                           181
+
+SEPARATOR   the most common words: 00100000 ( ), 00001010 (\n)
+
+RUNS   3980 runs between separators, 1487 distinct
+  =                                         141
+  in                                        107
+  #                                         106
+  the                                       100
+  if                                        89
+  for                                       81
+  %                                         68
+  is                                        46
+  a                                         45
+  return                                    44
+  else                                      35
+  say('                                     34
+  def                                       33
+  and                                       32
+  ==                                        31
+  of                                        30
+  not                                       26
+  %d                                        25
+  +                                         24
+  c                                         22
+  part                                      21
+  d                                         21
+  --------------------------------------------------------------------------  20
+  that                                      18
+  level                                     18
+
+RUN FOLLOWS   which run comes after which (top 25 of 3150 pairs)
+  #                        -> --------------------------------------------------------------------------  20
+  c                        -> in                        16
+  pool,                    -> made_of,                  16
+  %s'                      -> %                         16
+  made_of,                 -> part_of,                  13
+  %d'                      -> %                         13
+  #                        -> #                         11
+  for                      -> w                         11
+  w                        -> in                        11
+  -------------------------------------------------------------------------- -> #                         10
+  -------------------------------------------------------------------------- -> def                       10
+  if                       -> n                         9
+  if                       -> not                       8
+  of                       -> the                       7
+  d                        -> =                         7
+  if                       -> d                         7
+  the                      -> #                         6
+  to                       -> the                       6
+  the                      -> same                      6
+  is                       -> the                       6
+  x                        -> in                        6
+  not                      -> in                        6
+  x                        -> =                         6
+  d                        -> ==                        6
+  c))                      -> say('')                   6
+
+MINT   19 rounds; parts minted per round: 3112 1639 769 378 205 100 55 27 18 11 5 3 3 2 2 2 2 1 0
+  pool: 1487 distinct runs in, 7821 structures added, 7821 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  (                                   485       5  (a,, (top, ()),, (ch,
+  e                                   452       2  the, else, one, are
+  s                                   448       4  is, as, this, parts
+  '                                   399      12  say(', %s', %d', ',
+  ,                                   396       0  pool,, made_of,, part_of,, ',
+  )                                   328       0  frame), x), top), 0)
+  t                                   316       0  the, not, part, that
+  n                                   291      15  in, return, not, run
+  r                                   282       4  for, return, run, runs
+  i                                   279       5  in, if, is, it
+  .                                   274       0  1., run., signal., nothing.
+  d                                   261      21  def, and, %d, shared
+  a                                   260      45  and, as, at, are
+  :                                   260       0  p:, else:, memory:, run:
+  o                                   238       0  of, to, one, on
+  l                                   232       0  level, pool, signal, lambda
+  p                                   220       6  part, parts, pool, p:
+  =                                   187     141  ==, +=, <=, >=
+  c                                   179      22  column, c)), class, common
+  m                                   177       4  most, from, made_of, made
+  ]                                   175       0  [], x[0], score[w], c]
+  [                                   174       0  [], [],, [[key(a), [int(h,
+  _                                   157       1  __init__(self,, __name__, _order(, write_
+  h                                   125       5  fresh, how, ch, head
+  f                                   121       0  if, for, def, of
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +,                         845
+  +)                         501
+  +:                         462
+  +s                         319
+  +e                         284
+  +.                         250
+  +'                         247
+  +(                         214
+  +d                         198
+  +t                         194
+  +n                         170
+  +]                         169
+  +i                         150
+  +':                        146
+  +r                         140
+  +a                         123
+  +l                         122
+  +):                        119
+  +o                         115
+  +p                         109
+  +),                        103
+  +=                         86
+  +m                         86
+  +))                        85
+  +c                         82
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                         (+  550
+                         '+  487
+                         e+  383
+                         s+  365
+                         a+  316
+                         r+  312
+                         n+  291
+                         i+  288
+                         o+  275
+                         t+  268
+                         p+  259
+                         =+  248
+                         l+  236
+                         .+  234
+                         [+  228
+                         c+  218
+                         d+  206
+                         m+  201
+                         _+  188
+                         h+  154
+                         b+  152
+                         w+  135
+                         f+  135
+                        --+  127
+                         %+  114
+
+CLASSES   parts that take the same set of changes (largest 25 of 4145; two or more members count as same one level up)
+  {0.0} [+,, +:]
+     7 members: i), key(b), mechanism, 'whole', 'bits', 'density', range(w)
+  {0.1} [+:, +],]
+     5 members: added', minted', 'wobble', L['run_follows'].items(), rts_before'
+  {0.2} [+), +,]
+     5 members: L['level'], memory['history_before'], folding['picked'], memory['path'], -whole(p)
+  {0.3} [+S, say('+]
+     5 members: RUN, LEVEL, BEGINNING, PART, WORD
+  {0.4} [+)), +,]
+     5 members: len(bits), len(L['counts']), L['total'], len(L['run_counts']), kv[1])
+  {0.5} [+d, +s]
+     4 members: touche, passe, %7, %6
+  {0.6} ['+, ('+]
+     4 members: size, part',, \n'.join(T), +',
+  {0.7} [+e, +e(]
+     4 members: enumerat, nd_fram, isinstanc, enam
+  {0.8} [ar+, r+]
+     4 members: rived, ts']},, rower, gv[i].lstrip('-')]
+  {0.9} [+:, +]]
+     4 members: width), produced', lasses', unseen'
+  {0.10} [+t, +t']
+     3 members: cu, 'limi, distinc
+  {0.11} [+),, +,]
+     3 members: False, 'raw', runs']
+  {0.12} [+m, +me]
+     3 members: beco, ele, 'sa
+  {0.13} [=int(opts+, int(opts+]
+     3 members: .get('widest',, .get('top',, ['frame'])
+  {0.14} [+items()},, +most_common(top):]
+     3 members: L['beginnings']., L['counts']., L['endings'].
+  {0.15} [+t, +t(]
+     3 members: nex, [in, sorted(part_of.ge
+  {0.16} [(r+, r+]
+     3 members: un_counts[r], ange(w),, emembered,
+  {0.17} [+e, +es]
+     3 members: structur, collid, tak
+  {0.18} [L['+, L['run_+]
+     3 members: counts'].items()},, follows'].items()],, counts'].most_common(top):
+  {0.19} [i+, si+]
+     3 members: de,, ty':, nstance(x[0],
+  {0.20} [+e, +en]
+     3 members: make_l, depend, oft
+  {0.21} [(l+, l+]
+     3 members: oaded, evel=level,, evel,
+  {0.22} [n+, on+]
+     3 members: ly., firmed']),, firmed':
+  {0.23} [+e, +ed]
+     3 members: remov, flipp, pass
+  {0.24} [(w+, w+]
+     3 members: hole)], idth, hat,
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  =   seen 141
+    made of    
+    part of    ==, +=, <=, >=, |=, !=, =fl, rounds=
+    changes    +=, ++, <+, >+, |+, !+, +fl, rounds+
+    followed   [] 5, {} 4, x[0] 4, depth(x) 4, 1 3, lambda 3
+    preceded   d 7, x 6, k 3, n 3, out 3, ch 3
+  in   seen 107
+    made of    n, i
+    part of    into, inside, plain, int(separators), int), in,, inside,, (plain
+    changes    +to, +side, pla+, +t(separators), +t), +,, +side,, (pla+
+    followed   the 5, run) 3, x) 3, levels: 3, this 2, range(1, 2
+    preceded   c 16, w 11, x 6, not 6, q 5, L 5
+  #   seen 106
+    made of    
+    part of    
+    changes    
+    followed   -------------------------------------------------------------------------- 20, # 11, is 2, the 2, that 2, The 2
+    preceded   # 11, -------------------------------------------------------------------------- 10, the 6, a 3, bits 2, in 2
+  the   seen 100
+    made of    th, he, t, e
+    part of    they, then, (the, there, their, them,, there., thei
+    changes    +y, +n, (+, +re, +ir, +m,, +re., +i
+    followed   # 6, same 6, most 4, pool 4, part 3, shared 3
+    preceded   of 7, to 6, is 6, -- 5, on 5, in 5
+  if   seen 89
+    made of    f, i
+    part of    elif, if run_counts else 0 remembered, dif, if is_token(x): d, if x else 0 return d def as_element_of(part, parent): """The form of par..., drif, ifferent')), ifferent
+    changes    el+, +run_counts else 0 remembered, d+, +is_token(x): d, +x else 0 return d def as_element_of(part, parent): """The form of part t..., dr+, +ferent')), +ferent
+    followed   n 9, not 8, d 7, isinstance(x, 4, mirror 3, name 3
+    preceded   x[0] 2, memory 2, parent) 2, collections.defaultdict(set) 2, node(x) 2, depth(x) 2
+  for   seen 81
+    made of    fo, or, f, r
+    part of    forced, form, force, for x, y in zip(a, b): if x == y: h.append(x) elif x in class_of and cla..., for i, (ch, members) in enumerate(classes): if len(members) >= 2:, set() for, befor, fore'],
+    changes    +ced, +m, +ce, +x, y in zip(a, b): if x == y: h.append(x) elif x in class_of and class_o..., +i, (ch, members) in enumerate(classes): if len(members) >= 2:, set()+, be+, +e'],
+    followed   w 11, (a, 5, q 5, L 5, p 4, r 3
+    preceded   [] 4, c 4, '.join(draw(q) 3, frame) 3, {} 2, set(p 2
+  %   seen 68
+    made of    
+    part of    %d, %s', %d', %d)', %7d, %s, %8d, %3d
+    changes    +d, +s', +d', +d)', +7d, +s, +8d, +3d
+    followed   ( 5, ', 5, top) 4, (d 2, (len(L['seq']), 2, frame), 2
+    preceded   %s' 16, %d' 13, %d)' 5, '0%dx' 2, '0%do' 2, '{%d.%d}' 2
+  is   seen 46
+    made of    s, i
+    part of    this, is_token(x):, is_token(p)), isinstance(separators,, is.""", is;, This, is:
+    changes    th+, +_token(x):, +_token(p)), +instance(separators,, +.""", +;, Th+, +:
+    followed   the 6, a 4, left 3, None 3, made 2, one 2
+    preceded   part 5, run 3, what 2, it 2, # 2, that 2
+  a   seen 45
+    made of    
+    part of    and, as, at, are, key=lambda, added, any, lambda
+    changes    +nd, +s, +t, +re, key=lambd+, +dded, +ny, lambd+
+    followed   level 4, # 3, run 2, new 2, shared 2, not 2
+    preceded   is 4, as 3, so 3, and 2, in 2, of 2
+  return   seen 44
+    made of    retur, eturn, turn, re, r, n
+    part of    return force or frame, profile, score, {'picked': picked, 'wobble': wobb..., return '{%d.%d}' % (d - 1, -1 - x) d, depth(x) if d == 1: return, node(x) if isinstance(x, int): return, return force or frame, profile, score, {'picked': picked, 'wobble': wobb..., x[0] return, return { 'level': n, 'separator': [key(s) if n else s for s in L['separa...
+    changes    +force or frame, profile, score, {'picked': picked, 'wobble': wobble, 'fo..., +'{%d.%d}' % (d - 1, -1 - x) d, depth(x) if d == 1:+, node(x) if isinstance(x, int):+, +force or frame, profile, score, {'picked': picked, 'wobble': wobble, 'fo..., x[0]+, +{ 'level': n, 'separator': [key(s) if n else s for s in L['separator']],...
+    followed   data, 2, out 2, ascii_glyph, 2, '{%d.%d}' 2, force 1, [int(bits[i:i 1
+    preceded   break 3, 1: 3, x[0] 3, int): 2, x) 2, data: 1
+  else   seen 35
+    made of    els, lse, el, se, e
+    part of    else:
+    changes    +:
+    followed   0 2, ' 2, '') 2, None, 2, 0.5) 1, 1 1
+    preceded   0 4, n 4, mirror 3, 1 3, None 3, 2 2
+  say('   seen 34
+    made of    say(, say, (', '
+    part of    say(''), say('=', say('CRYSTAL, say('MEMORY, say('FRAME, say('MINT, say('DISCOVERY, say('BEGINNINGS
+    changes    +'), +=', +CRYSTAL, +MEMORY, +FRAME, +MINT, +DISCOVERY, +BEGINNINGS
+    followed   %s 2, %-40s 2, %-24s 2, %-30s 2, level 2, %5d 2
+    preceded   L['counts'].most_common(top): 2, frame) 2, levels: 2, len(L['counts']))) 1, L['follows'].most_common(top): 1, L['run_counts'].most_common(top): 1
+  def   seen 33
+    made of    ef, de, f, d
+    part of    defaultdict(, default, collections.def, defa
+    changes    +aultdict(, +ault, collections.+, +a
+    followed   read_signal(path, 1, find_frame(bits, 1, cut_words(bits, 1, count(items): 1, follows(items): 1, cut_runs(words, 1
+    preceded   -------------------------------------------------------------------------- 10, out 2, width)] 1, collections.Counter(items) 1, x 1, {} 1
+  and   seen 32
+    made of    an, nd, a, d
+    part of    land, ands
+    changes    l+, +s
+    followed   the 4, not 3, a 2, b 2, width 2, then 1
+    preceded   1 3, text 2, d 2, fresh 2, comparator 1, signal 1
+  ==   seen 31
+    made of    =
+    part of    == p: ch, as_element_of(node(part), parent) if parent[:len(p)] ==, == 1: return
+    changes    +p: ch, as_element_of(node(part), parent) if parent[:len(p)]+, +1: return
+    followed   0 4, p: 4, d 2, 0: 2, 8: 2, 1: 2
+    preceded   d 6, n 5, name 3, depth(p) 2, parent[:len(p)] 2, parent[-len(p):] 2
+  of   seen 30
+    made of    f, o
+    part of    often, made_of, class_of, of,, ').join(key_of, of[k].add(node(whole)), .join(key_of, lass_of
+    changes    +ten, made_+, class_+, +,, ').join(key_+, +[k].add(node(whole)), .join(key_+, lass_+
+    followed   the 7, %d 4, this 2, one 2, changes 2, a 2
+    preceded   part 3, %d 3, made 2, run 2, set 2, left 1
+  not   seen 26
+    made of    ot, no, n, t
+    part of    nothing
+    changes    +hing
+    followed   in 6, part 2, seen 2, is_token(p)) 2, data: 1, compared 1
+    preceded   if 8, and 3, a 2, b 2, removed 1, are 1
+  %d   seen 25
+    made of    %, d
+    part of    %d', %d)', %d:', (%d, %d;, 0%d, %d.%d, %d.%
+    changes    +', +)', +:', (+, +;, 0+, +.%d, +.%
+    followed   of 3, distinct' 2, distinct 2, pairs)' 2, parts, 2, parts' 1
+    preceded   of 4, level 3, (top 2, say('WORDS 1, words, 1, say('SYMBOLS 1
+  +   seen 24
+    made of    
+    part of    +=, %24s+, +%-24s, +%, rest+, +',, 4s+, (width +
+    changes    +=, %24s+, +%-24s, +%, rest+, +',, 4s+, (width+
+    followed   1): 2, 3) 2, '+') 2, chance: 1, width], 1, 1, 1
+    preceded   widest 2, (width 2, tag 2, score[picked] 1, [int(bits[i:i 1, width 1
+  c   seen 22
+    made of    
+    part of    column, c)), class, common, count, ch, classes, col
+    changes    +olumn, +)), +lass, +ommon, +ount, +h, +lasses, +ol
+    followed   in 16, for 4, is 1, prv[b][a] 1
+    preceded   b), 5, r, 3, for 2, wd, 2, e, 2, b, 2
+  part   seen 21
+    made of    par, art, pa, rt, t, p
+    part of    part_of,, parts, part_of, part_of[k].add(node(whole)), part,, part:, change(part, part),
+    changes    +_of,, +s, +_of, +_of[k].add(node(whole)), +,, +:, change(+, +),
+    followed   is 5, of 3, into 2, to 2, two 1, what 1
+    preceded   the 3, shared 2, not 2, a 2, is 1, one 1
+  d   seen 21
+    made of    
+    part of    def, and, %d, shared, produced, picked, word, remembered
+    changes    +ef, an+, %+, share+, produce+, picke+, wor+, remembere+
+    followed   = 7, == 6, and 2, in 2, += 1, def 1
+    preceded   if 7, == 2, is_token(x): 2, x) 2, w, 2, run_counts: 1
+  --------------------------------------------------------------------------   seen 20
+    made of    -------------------------------------------------------------------------, ------------------------------------------------------------------------, --, -
+    part of    
+    changes    
+    followed   # 10, def 10
+    preceded   # 20
+  that   seen 18
+    made of    hat, tha, t
+    part of    that.
+    changes    +.
+    followed   were 3, is 2, take 2, one 1, bit 1, many 1
+    preceded   parts 4, column 2, # 2, is 1, often 1, with 1
+  level   seen 18
+    made of    evel, leve, vel, le, l
+    part of    level's, levels,, level,, levels:, level-0, (level, level=0,, level-1
+    changes    +'s, +s,, +,, +s:, +-0, (+, +=0,, +-1
+    followed   %d 3, below; 1, # 1, above 1, == 1, 0 1
+    preceded   a 4, one 2, say(' 2, the 1, at 1, if 1
+
+==============================================================================
+LEVEL 1
+==============================================================================
+
+SYMBOLS   3980 symbols, 1487 distinct  (each is a level 0 run; level 0 classes count as same)
+  =                                         141
+  in                                        107
+  #                                         106
+  the                                       100
+  if                                        89
+  for                                       81
+  %                                         68
+  is                                        46
+  a                                         45
+  return                                    44
+  else                                      35
+  say('                                     34
+  def                                       33
+  and                                       32
+  ==                                        31
+  of                                        30
+  not                                       26
+  %d                                        25
+  +                                         24
+  c                                         22
+  part                                      21
+  d                                         21
+  --------------------------------------------------------------------------  20
+  that                                      18
+  level                                     18
+
+FOLLOWS   which symbol comes after which (top 25 of 3150 pairs)
+  #                        -> --------------------------------------------------------------------------  20
+  c                        -> in                        16
+  pool,                    -> made_of,                  16
+  %s'                      -> %                         16
+  made_of,                 -> part_of,                  13
+  %d'                      -> %                         13
+  #                        -> #                         11
+  for                      -> w                         11
+  w                        -> in                        11
+  -------------------------------------------------------------------------- -> #                         10
+  -------------------------------------------------------------------------- -> def                       10
+  if                       -> n                         9
+  if                       -> not                       8
+  of                       -> the                       7
+  d                        -> =                         7
+  if                       -> d                         7
+  the                      -> #                         6
+  to                       -> the                       6
+  the                      -> same                      6
+  is                       -> the                       6
+  x                        -> in                        6
+  not                      -> in                        6
+  x                        -> =                         6
+  d                        -> ==                        6
+  c))                      -> say('')                   6
+
+SEPARATOR   the most common symbol: =
+
+RUNS   142 runs between separators, 140 distinct
+  depth(x) while isinstance(x, tuple): x    2
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d  2
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an...  1
+  open(path, 'rb').read() if limit: data    1
+  data[:limit] if not data: return data, '' bits  1
+  bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8) return data, b...  1
+  the spread between the column that is 1 most often and the # column that...  1
+  bits[:sample] profile, score              1
+  {}, {} for w in range(1, widest + 1): cols  1
+  [] for c in range(w): col                 1
+  s[c::w] cols.append(col.count('1') / len(col) if col else 0.5) profile[w...  1
+  cols score[w]                             1
+  max(cols) - min(cols) picked              1
+  1 for w in range(2, widest + 1): rows     1
+  len(s) // w chance                        1
+  1 / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance: pic...  1
+  w fold                                    1
+  {} # divisor -> mean difference from picked's columns rows  1
+  max(len(s) // picked, 1) wobble           1
+  0.5 / rows ** 0.5 frame                   1
+  picked for w in range(1, picked): if picked % w: continue fold[w]  1
+  sum(abs(profile[picked][c] - profile[w][c % w]) for c in range(picked)) ...  1
+  w return force or frame, profile, score, {'picked': picked, 'wobble': wo...  1
+  [], [] for word in words: if word in separators: if run: runs.append(tup...  1
+  [] else: run.append(word) if run: runs.append(tuple(run)) return runs # ...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 140 pairs)
+  depth(x) while isinstance(x, tuple): x -> x[0] return '{%d.%d}' % (d - 1, -1 - x) d  2
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an... -> open(path, 'rb').read() if limit: data  1
+  open(path, 'rb').read() if limit: data -> data[:limit] if not data: return data, '' bits  1
+  data[:limit] if not data: return data, '' bits -> bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8) return data, b...  1
+  bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8) return data, b... -> the spread between the column that is 1 most often and the # column that...  1
+  the spread between the column that is 1 most often and the # column that... -> bits[:sample] profile, score  1
+  bits[:sample] profile, score -> {}, {} for w in range(1, widest + 1): cols  1
+  {}, {} for w in range(1, widest + 1): cols -> [] for c in range(w): col  1
+  [] for c in range(w): col -> s[c::w] cols.append(col.count('1') / len(col) if col else 0.5) profile[w...  1
+  s[c::w] cols.append(col.count('1') / len(col) if col else 0.5) profile[w... -> cols score[w]             1
+  cols score[w]            -> max(cols) - min(cols) picked  1
+  max(cols) - min(cols) picked -> 1 for w in range(2, widest + 1): rows  1
+  1 for w in range(2, widest + 1): rows -> len(s) // w chance        1
+  len(s) // w chance       -> 1 / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance: pic...  1
+  1 / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance: pic... -> w fold                    1
+  w fold                   -> {} # divisor -> mean difference from picked's columns rows  1
+  {} # divisor -> mean difference from picked's columns rows -> max(len(s) // picked, 1) wobble  1
+  max(len(s) // picked, 1) wobble -> 0.5 / rows ** 0.5 frame   1
+  0.5 / rows ** 0.5 frame  -> picked for w in range(1, picked): if picked % w: continue fold[w]  1
+  picked for w in range(1, picked): if picked % w: continue fold[w] -> sum(abs(profile[picked][c] - profile[w][c % w]) for c in range(picked)) ...  1
+  sum(abs(profile[picked][c] - profile[w][c % w]) for c in range(picked)) ... -> w return force or frame, profile, score, {'picked': picked, 'wobble': wo...  1
+  w return force or frame, profile, score, {'picked': picked, 'wobble': wo... -> [], [] for word in words: if word in separators: if run: runs.append(tup...  1
+  [], [] for word in words: if word in separators: if run: runs.append(tup... -> [] else: run.append(word) if run: runs.append(tuple(run)) return runs # ...  1
+  [] else: run.append(word) if run: runs.append(tuple(run)) return runs # ... -> set(run_counts) # this level's parts, in this level's form produced  1
+  set(run_counts) # this level's parts, in this level's form produced -> set(node(r) for r in run_counts) for r in run_counts: k  1
+
+MINT   5 rounds; parts minted per round: 141 38 13 5 0
+  pool: 140 distinct runs in, 337 structures added, 8158 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  collections.defaultdict(set) if        5       0  collections.defaultdict(set) if made_of is None else made_of part_of, collections.defaultdict(set) if made_of is None else made_of, collections.defaultdict(set) if made_of, collections.defaultdict(set) if made_of is None else
+  [] for                                4       0  [] for c in range(w): col, [] for word in words: if word in separators: if run: runs.append(tuple(r..., [] for x, y in zip(a, b): if x == y: h.append(x) elif x in class_of and ..., [] for word in words: if word in separators: if run: runs.append(tuple(r...
+  node(x) if isinstance(x, int): return        4       0  node(x) if isinstance(x, int): return format(x, '0%dx' % ((frame + 3) //..., node(x) if isinstance(x, int): return format(x, '0%dx' % ((frame + 3) //..., node(x) if isinstance(x, int): return self.g0(x) if is_token(x):, node(x) if isinstance(x, int): return self.g0(x) if is_token(x): d
+  while isinstance(x, tuple):           4       0  while isinstance(x, tuple): d += 1 x, depth(x) while isinstance(x, tuple):, while isinstance(x, tuple): d += 1, while isinstance(x, tuple): x
+  format(x, '0%dx' % ((frame + 3) // 4))        3       0  node(x) if isinstance(x, int): return format(x, '0%dx' % ((frame + 3) //..., format(x, '0%dx' % ((frame + 3) // 4)) if is_token(x): d, format(x, '0%dx' % ((frame + 3) // 4)) if is_token(x):
+  if is_token(x):                       3       0  self.g0(x) if is_token(x):, if is_token(x): d, format(x, '0%dx' % ((frame + 3) // 4)) if is_token(x):
+  if is_token(x): d                     3       0  node(x) if isinstance(x, int): return format(x, '0%dx' % ((frame + 3) //..., format(x, '0%dx' % ((frame + 3) // 4)) if is_token(x): d, self.g0(x) if is_token(x): d
+  is None else                          3       0  made_of is None else, pool is None else, collections.defaultdict(set) if made_of is None else
+  os.path.join(out, tag +               3       0  os.path.join(out, tag + '.record.json') text, os.path.join(out, tag + '.record.json'), os.path.join(out, tag + '.record.txt') out_json
+  self.r0(x) text                       3       0  if d == 1: return self.r0(x) text, d == 1: return self.r0(x) text, depth(x) if d == 1: return self.r0(x) text
+  set() for                             3       0  set() for parent in part_of.get(node(part), ()): p, set() for parent in part_of.get(node(part), ()):, set() for mirror in (False, True): keys
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d        2       2  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s..., x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return '...
+  '{%d.%d}' % (d - 1, -1 - x) d         2       0  return '{%d.%d}' % (d - 1, -1 - x) d, x[0] return '{%d.%d}' % (d - 1, -1 - x) d
+  (a, b), c in L['run_follows'].items(): nxt[a][b] += c prv[b][a] += c for...        2       0  (a, b), c in L['run_follows'].items(): nxt[a][b] += c prv[b][a] += c for..., for (a, b), c in L['run_follows'].items(): nxt[a][b] += c prv[b][a] += c...
+  (width +                              2       0  (width + 2) // 3 return (lambda word: format(word, '0%do' % octw)), \ (l..., (width + 3) // 4 def raw(word): return format(word, '0%dx' % hexw) def a...
+  == p: ch                              2       0  as_element_of(node(part), parent) if parent[:len(p)] == p: ch, ('+', parent[len(p):]) elif parent[-len(p):] == p: ch
+  as_element_of(node(part), parent) if parent[:len(p)]        2       0  as_element_of(node(part), parent) if parent[:len(p)] ==, as_element_of(node(part), parent) if parent[:len(p)] == p: ch
+  as_element_of(node(part), parent) if parent[:len(p)] == p:        2       0  as_element_of(node(part), parent) if parent[:len(p)] == p: ch, as_element_of(node(part), parent) if parent[:len(p)] == p: out.add(('+',...
+  c in range(w): col                    2       0  [] for c in range(w): col, for c in range(w): col
+  collections.Counter() # remainder        2       0  collections.Counter() # remainder before a shared tail fresh, collections.Counter() # remainder after a shared head beginnings
+  d += 1                                2       0  while isinstance(x, tuple): d += 1, d += 1 x
+  d == 1: return                        2       0  d == 1: return self.r0(x) text, if d == 1: return
+  depth(x) if d == 1: return            2       0  depth(x) if d == 1: return '.'.join(key_of(w, frame) for w in x) return ..., depth(x) if d == 1: return self.r0(x) text
+  for (a, b), c in L['run_follows'].items(): nxt[a][b] += c prv[b][a] += c...        2       0  for (a, b), c in L['run_follows'].items(): nxt[a][b] += c prv[b][a] += c..., collections.defaultdict(collections.Counter) for (a, b), c in L['run_fol...
+  for i, (ch, members) in enumerate(classes): if len(members) >= 2:        2       0  {} for i, (ch, members) in enumerate(classes): if len(members) >= 2:, for i, (ch, members) in enumerate(classes): if len(members) >= 2: tok
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +d                         8
+  +x                         8
+  +c in range(w): col        6
+  +rows                      5
+  +tok                       5
+  +run                       5
+  +k                         5
+  +ch                        4
+  +fold                      4
+  +'{%d.%d}' % (d - 1, -1 - x) d  4
+  +n                         4
+  +out                       4
+  +made_of                   4
+  +x, y in zip(a, b): if x == y: h.append(x) elif x in class_of and class_o...  3
+  +say                       3
+  +self.r0(x) text           3
+  +mirror in (False, True): keys  3
+  +def head(a, b): h         3
+  +new                       3
+  +part_of                   3
+  +class_of                  3
+  +return                    3
+  +i, (ch, members) in enumerate(classes): if len(members) >= 2: tok  3
+  +p                         3
+  +2) // 3 return (lambda word: format(word, '0%do' % octw)), \ (lambda run...  2
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+                       for+  15
+                        []+  12
+                        if+  11
+                        {}+  10
+  collections.defaultdict(set) if+  10
+  node(x) if isinstance(x, int): return+  8
+                    return+  8
+                         1+  8
+                         w+  8
+                      x[0]+  7
+                    lambda+  7
+  depth(next(iter(run_counts)))+  6
+                         0+  6
+                 set() for+  6
+                  depth(x)+  6
+  while isinstance(x, tuple):+  6
+                     while+  6
+                       [],+  4
+  collections.Counter() # remainder+  4
+                self.g0(x)+  4
+                  produced+  4
+                  (width ++  4
+   os.path.join(out, tag ++  4
+  node(x) if isinstance(x, int):+  4
+  format(x, '0%dx' % ((frame + 3) // 4))+  4
+
+CLASSES   parts that take the same set of changes (largest 25 of 45; two or more members count as same one level up)
+  {1.0} [[] for+, for+]
+     2 members: x, y in zip(a, b): if x == y: h.append(x) elif x in class_of and class_o..., c in range(w): col
+  {1.1} [return+, x[0] return+]
+     1 members: '{%d.%d}' % (d - 1, -1 - x) d
+  {1.2} [+k, for+]
+     1 members: (a, b), c in L['run_follows'].items(): nxt[a][b] += c prv[b][a] += c for...
+  {1.3} [+2) // 3 return (lambda word: format(word, '0%do' % octw)), \ (lambda run..., +3) // 4 def raw(word): return format(word, '0%dx' % hexw) def ascii_glyp...]
+     1 members: (width +
+  {1.4} [('+', parent[len(p):]) elif parent[-len(p):]+, as_element_of(node(part), parent) if parent[:len(p)]+]
+     1 members: == p: ch
+  {1.5} [+c in range(w): col, +word in words: if word in separators: if run: runs.append(tuple(run)), +word in words: if word in separators: if run: runs.append(tuple(run)) ru..., +x, y in zip(a, b): if x == y: h.append(x) elif x in class_of and class_o...]
+     1 members: [] for
+  {1.6} [+==, +== p: ch]
+     1 members: as_element_of(node(part), parent) if parent[:len(p)]
+  {1.7} [+ch, +out.add(('+', parent[len(p):])) elif parent[-len(p):] == p: out.add((par...]
+     1 members: as_element_of(node(part), parent) if parent[:len(p)] == p:
+  {1.8} [+after a shared head beginnings, +before a shared tail fresh]
+     1 members: collections.Counter() # remainder
+  {1.9} [+made_of, +made_of is None else, +made_of is None else made_of, +made_of is None else made_of part_of, +part_of is None else part_of memory]
+     1 members: collections.defaultdict(set) if
+  {1.10} [+x, while isinstance(x, tuple):+]
+     1 members: d += 1
+  {1.11} [+self.r0(x) text, if+]
+     1 members: d == 1: return
+  {1.12} [+'.'.join(key_of(w, frame) for w in x) return (' ' if d == 2 else ' | ')...., +self.r0(x) text]
+     1 members: depth(x) if d == 1: return
+  {1.13} [+k, collections.defaultdict(collections.Counter)+]
+     1 members: for (a, b), c in L['run_follows'].items(): nxt[a][b] += c prv[b][a] += c...
+  {1.14} [+tok, {}+]
+     1 members: for i, (ch, members) in enumerate(classes): if len(members) >= 2:
+  {1.15} [+rows, 1+]
+     1 members: for w in range(2, widest + 1):
+  {1.16} [+run, return+]
+     1 members: force or frame, profile, score, {'picked': picked, 'wobble': wobble, 'fo...
+  {1.17} [+if is_token(x):, +if is_token(x): d, node(x) if isinstance(x, int): return+]
+     1 members: format(x, '0%dx' % ((frame + 3) // 4))
+  {1.18} [+tok, for+]
+     1 members: i, (ch, members) in enumerate(classes): if len(members) >= 2:
+  {1.19} [+self.r0(x) text, depth(x)+]
+     1 members: if d == 1: return
+  {1.20} [+d, format(x, '0%dx' % ((frame + 3) // 4))+, self.g0(x)+]
+     1 members: if is_token(x):
+  {1.21} [format(x, '0%dx' % ((frame + 3) // 4))+, node(x) if isinstance(x, int): return format(x, '0%dx' % ((frame + 3) //...+, self.g0(x)+]
+     1 members: if is_token(x): d
+  {1.22} [+out, x[0]+]
+     1 members: if x else 0 return d def as_element_of(part, parent): """The form of par...
+  {1.23} [+rows, w+]
+     1 members: in range(2, widest + 1):
+  {1.24} [collections.defaultdict(set) if made_of+, made_of+, pool+]
+     1 members: is None else
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  depth(x) while isinstance(x, tuple): x   seen 2
+    made of    depth(x) while isinstance(x, tuple):, while isinstance(x, tuple): x, depth(x), x
+    part of    
+    changes    
+    followed   x[0] return '{%d.%d}' % (d - 1, -1 - x) d 2
+    preceded   node(x) if isinstance(x, int): return self.g0(x) if is_token(x): d 1, node(x) if isinstance(x, int): return format(x, '0%dx' % ((frame + 3) //... 1
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d   seen 2
+    made of    return '{%d.%d}' % (d - 1, -1 - x) d, '{%d.%d}' % (d - 1, -1 - x) d, x[0] return, x[0]
+    part of    x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s..., x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return '...
+    changes    +depth(x) if d == 1: return self.r0(x) text | (' ' if d == 2 else ' | ')...., +depth(x) if d == 1: return '.'.join(key_of(w, frame) for w in x) return ...
+    followed   depth(x) if d == 1: return self.r0(x) text 1, depth(x) if d == 1: return '.'.join(key_of(w, frame) for w in x) return ... 1
+    preceded   depth(x) while isinstance(x, tuple): x 2
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an...   seen 1
+    made of    """ Discovery -- the learning subroutine. One mechanism: a comparator an..., data
+    part of    
+    changes    
+    followed   open(path, 'rb').read() if limit: data 1
+    preceded   
+  open(path, 'rb').read() if limit: data   seen 1
+    made of    open(path, 'rb').read() if limit:, data
+    part of    
+    changes    
+    followed   data[:limit] if not data: return data, '' bits 1
+    preceded   """ Discovery -- the learning subroutine. One mechanism: a comparator an... 1
+  data[:limit] if not data: return data, '' bits   seen 1
+    made of    data[:limit] if not data: return data, '', bits
+    part of    
+    changes    
+    followed   bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8) return data, b... 1
+    preceded   open(path, 'rb').read() if limit: data 1
+  bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8) return data, b...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   the spread between the column that is 1 most often and the # column that... 1
+    preceded   data[:limit] if not data: return data, '' bits 1
+  the spread between the column that is 1 most often and the # column that...   seen 1
+    made of    the spread between the column that is 1 most often and the # column that..., s
+    part of    
+    changes    
+    followed   bits[:sample] profile, score 1
+    preceded   bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8) return data, b... 1
+  bits[:sample] profile, score   seen 1
+    made of    bits[:sample] profile,, score
+    part of    
+    changes    
+    followed   {}, {} for w in range(1, widest + 1): cols 1
+    preceded   the spread between the column that is 1 most often and the # column that... 1
+  {}, {} for w in range(1, widest + 1): cols   seen 1
+    made of    
+    part of    
+    changes    
+    followed   [] for c in range(w): col 1
+    preceded   bits[:sample] profile, score 1
+  [] for c in range(w): col   seen 1
+    made of    for c in range(w): col, c in range(w): col, [] for, []
+    part of    
+    changes    
+    followed   s[c::w] cols.append(col.count('1') / len(col) if col else 0.5) profile[w... 1
+    preceded   {}, {} for w in range(1, widest + 1): cols 1
+  s[c::w] cols.append(col.count('1') / len(col) if col else 0.5) profile[w...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   cols score[w] 1
+    preceded   [] for c in range(w): col 1
+  cols score[w]   seen 1
+    made of    
+    part of    
+    changes    
+    followed   max(cols) - min(cols) picked 1
+    preceded   s[c::w] cols.append(col.count('1') / len(col) if col else 0.5) profile[w... 1
+  max(cols) - min(cols) picked   seen 1
+    made of    max(cols) - min(cols), picked
+    part of    
+    changes    
+    followed   1 for w in range(2, widest + 1): rows 1
+    preceded   cols score[w] 1
+  1 for w in range(2, widest + 1): rows   seen 1
+    made of    1 for w in range(2, widest + 1):, for w in range(2, widest + 1): rows, rows, 1
+    part of    
+    changes    
+    followed   len(s) // w chance 1
+    preceded   max(cols) - min(cols) picked 1
+  len(s) // w chance   seen 1
+    made of    
+    part of    
+    changes    
+    followed   1 / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance: pic... 1
+    preceded   1 for w in range(2, widest + 1): rows 1
+  1 / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance: pic...   seen 1
+    made of    1 / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance:, / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance: picke..., picked, 1
+    part of    
+    changes    
+    followed   w fold 1
+    preceded   len(s) // w chance 1
+  w fold   seen 1
+    made of    fold, w
+    part of    
+    changes    
+    followed   {} # divisor -> mean difference from picked's columns rows 1
+    preceded   1 / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance: pic... 1
+  {} # divisor -> mean difference from picked's columns rows   seen 1
+    made of    # divisor -> mean difference from picked's columns rows, {}
+    part of    
+    changes    
+    followed   max(len(s) // picked, 1) wobble 1
+    preceded   w fold 1
+  max(len(s) // picked, 1) wobble   seen 1
+    made of    
+    part of    
+    changes    
+    followed   0.5 / rows ** 0.5 frame 1
+    preceded   {} # divisor -> mean difference from picked's columns rows 1
+  0.5 / rows ** 0.5 frame   seen 1
+    made of    0.5 / rows ** 0.5, frame
+    part of    
+    changes    
+    followed   picked for w in range(1, picked): if picked % w: continue fold[w] 1
+    preceded   max(len(s) // picked, 1) wobble 1
+  picked for w in range(1, picked): if picked % w: continue fold[w]   seen 1
+    made of    
+    part of    
+    changes    
+    followed   sum(abs(profile[picked][c] - profile[w][c % w]) for c in range(picked)) ... 1
+    preceded   0.5 / rows ** 0.5 frame 1
+  sum(abs(profile[picked][c] - profile[w][c % w]) for c in range(picked)) ...   seen 1
+    made of    sum(abs(profile[picked][c] - profile[w][c % w]) for c in range(picked)) ..., frame
+    part of    
+    changes    
+    followed   w return force or frame, profile, score, {'picked': picked, 'wobble': wo... 1
+    preceded   picked for w in range(1, picked): if picked % w: continue fold[w] 1
+  w return force or frame, profile, score, {'picked': picked, 'wobble': wo...   seen 1
+    made of    w return force or frame, profile, score, {'picked': picked, 'wobble': wo..., return force or frame, profile, score, {'picked': picked, 'wobble': wobb..., run, w
+    part of    
+    changes    
+    followed   [], [] for word in words: if word in separators: if run: runs.append(tup... 1
+    preceded   sum(abs(profile[picked][c] - profile[w][c % w]) for c in range(picked)) ... 1
+  [], [] for word in words: if word in separators: if run: runs.append(tup...   seen 1
+    made of    [] for word in words: if word in separators: if run: runs.append(tuple(r..., [],
+    part of    
+    changes    
+    followed   [] else: run.append(word) if run: runs.append(tuple(run)) return runs # ... 1
+    preceded   w return force or frame, profile, score, {'picked': picked, 'wobble': wo... 1
+  [] else: run.append(word) if run: runs.append(tuple(run)) return runs # ...   seen 1
+    made of    else: run.append(word) if run: runs.append(tuple(run)) return runs # ---..., []
+    part of    
+    changes    
+    followed   set(run_counts) # this level's parts, in this level's form produced 1
+    preceded   [], [] for word in words: if word in separators: if run: runs.append(tup... 1
+
+==============================================================================
+LEVEL 2
+==============================================================================
+
+SYMBOLS   142 symbols, 140 distinct  (each is a level 1 run; level 1 classes count as same)
+  depth(x) while isinstance(x, tuple): x    2
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d  2
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an...  1
+  open(path, 'rb').read() if limit: data    1
+  data[:limit] if not data: return data, '' bits  1
+  bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8) return data, b...  1
+  the spread between the column that is 1 most often and the # column that...  1
+  bits[:sample] profile, score              1
+  {}, {} for w in range(1, widest + 1): cols  1
+  [] for c in range(w): col                 1
+  s[c::w] cols.append(col.count('1') / len(col) if col else 0.5) profile[w...  1
+  cols score[w]                             1
+  max(cols) - min(cols) picked              1
+  1 for w in range(2, widest + 1): rows     1
+  len(s) // w chance                        1
+  1 / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance: pic...  1
+  w fold                                    1
+  {} # divisor -> mean difference from picked's columns rows  1
+  max(len(s) // picked, 1) wobble           1
+  0.5 / rows ** 0.5 frame                   1
+  picked for w in range(1, picked): if picked % w: continue fold[w]  1
+  sum(abs(profile[picked][c] - profile[w][c % w]) for c in range(picked)) ...  1
+  w return force or frame, profile, score, {'picked': picked, 'wobble': wo...  1
+  [], [] for word in words: if word in separators: if run: runs.append(tup...  1
+  [] else: run.append(word) if run: runs.append(tuple(run)) return runs # ...  1
+
+FOLLOWS   which symbol comes after which (top 25 of 140 pairs)
+  depth(x) while isinstance(x, tuple): x -> x[0] return '{%d.%d}' % (d - 1, -1 - x) d  2
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an... -> open(path, 'rb').read() if limit: data  1
+  open(path, 'rb').read() if limit: data -> data[:limit] if not data: return data, '' bits  1
+  data[:limit] if not data: return data, '' bits -> bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8) return data, b...  1
+  bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8) return data, b... -> the spread between the column that is 1 most often and the # column that...  1
+  the spread between the column that is 1 most often and the # column that... -> bits[:sample] profile, score  1
+  bits[:sample] profile, score -> {}, {} for w in range(1, widest + 1): cols  1
+  {}, {} for w in range(1, widest + 1): cols -> [] for c in range(w): col  1
+  [] for c in range(w): col -> s[c::w] cols.append(col.count('1') / len(col) if col else 0.5) profile[w...  1
+  s[c::w] cols.append(col.count('1') / len(col) if col else 0.5) profile[w... -> cols score[w]             1
+  cols score[w]            -> max(cols) - min(cols) picked  1
+  max(cols) - min(cols) picked -> 1 for w in range(2, widest + 1): rows  1
+  1 for w in range(2, widest + 1): rows -> len(s) // w chance        1
+  len(s) // w chance       -> 1 / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance: pic...  1
+  1 / rows ** 0.5 if rows else 1 if score[w] > score[picked] + chance: pic... -> w fold                    1
+  w fold                   -> {} # divisor -> mean difference from picked's columns rows  1
+  {} # divisor -> mean difference from picked's columns rows -> max(len(s) // picked, 1) wobble  1
+  max(len(s) // picked, 1) wobble -> 0.5 / rows ** 0.5 frame   1
+  0.5 / rows ** 0.5 frame  -> picked for w in range(1, picked): if picked % w: continue fold[w]  1
+  picked for w in range(1, picked): if picked % w: continue fold[w] -> sum(abs(profile[picked][c] - profile[w][c % w]) for c in range(picked)) ...  1
+  sum(abs(profile[picked][c] - profile[w][c % w]) for c in range(picked)) ... -> w return force or frame, profile, score, {'picked': picked, 'wobble': wo...  1
+  w return force or frame, profile, score, {'picked': picked, 'wobble': wo... -> [], [] for word in words: if word in separators: if run: runs.append(tup...  1
+  [], [] for word in words: if word in separators: if run: runs.append(tup... -> [] else: run.append(word) if run: runs.append(tuple(run)) return runs # ...  1
+  [] else: run.append(word) if run: runs.append(tuple(run)) return runs # ... -> set(run_counts) # this level's parts, in this level's form produced  1
+  set(run_counts) # this level's parts, in this level's form produced -> set(node(r) for r in run_counts) for r in run_counts: k  1
+
+SEPARATOR   the most common symbol: depth(x) while isinstance(x, tuple): x
+
+RUNS   3 runs between separators, 3 distinct
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an...  1
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s...  1
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return '...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 2 pairs)
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an... -> x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s...  1
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s... -> x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return '...  1
+
+MINT   2 rounds; parts minted per round: 2 0
+  pool: 3 distinct runs in, 5 structures added, 8163 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  depth(x) if d == 1: return '.'.join(key_of(w, frame) for w in x) return ...        1       0  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return '...
+  depth(x) if d == 1: return self.r0(x) text | (' ' if d == 2 else ' | ')....        1       0  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s...
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an...        0       1  
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return '...        0       1  
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+  +depth(x) if d == 1: return '.'.join(key_of(w, frame) for w in x) return ...  1
+  +depth(x) if d == 1: return self.r0(x) text | (' ' if d == 2 else ' | ')....  1
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d+  4
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s... 1
+    preceded   
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s...   seen 1
+    made of    depth(x) if d == 1: return self.r0(x) text | (' ' if d == 2 else ' | ')...., x[0] return '{%d.%d}' % (d - 1, -1 - x) d
+    part of    
+    changes    
+    followed   x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return '... 1
+    preceded   """ Discovery -- the learning subroutine. One mechanism: a comparator an... 1
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return '...   seen 1
+    made of    depth(x) if d == 1: return '.'.join(key_of(w, frame) for w in x) return ..., x[0] return '{%d.%d}' % (d - 1, -1 - x) d
+    part of    
+    changes    
+    followed   
+    preceded   x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s... 1
+
+==============================================================================
+LEVEL 3
+==============================================================================
+
+SYMBOLS   3 symbols, 3 distinct  (each is a level 2 run; level 2 classes count as same)
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an...  1
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s...  1
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return '...  1
+
+FOLLOWS   which symbol comes after which (top 25 of 2 pairs)
+  """ Discovery -- the learning subroutine. One mechanism: a comparator an... -> x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s...  1
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s... -> x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return '...  1
+
+SEPARATOR   the most common symbol: """ Discovery -- the learning subroutine. One mechanism: a comparator an...
+
+RUNS   1 runs between separators, 1 distinct
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s...  1
+
+RUN FOLLOWS   which run comes after which (top 25 of 0 pairs)
+
+MINT   1 rounds; parts minted per round: 0
+  pool: 1 distinct runs in, 1 structures added, 8164 in the pool now
+
+PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
+  part                            density   whole  inside (sample)
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s...        0       1  
+
+ENDINGS   what gets added to the end of a part to make another (top 25)
+
+BEGINNINGS   what gets added to the start of a part to make another (top 25)
+
+CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
+
+CRYSTAL   dictionary entries for the most common runs (top 25)
+  x[0] return '{%d.%d}' % (d - 1, -1 - x) d | depth(x) if d == 1: return s...   seen 1
+    made of    
+    part of    
+    changes    
+    followed   
+    preceded   
+

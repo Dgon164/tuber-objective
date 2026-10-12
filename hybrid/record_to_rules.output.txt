@@ -1,0 +1,18 @@
+RULES built from ../examples/text/alice.txt.record.json
+  next-run rules : 17450
+  forms-of rules : 22446
+  same-kind rules: 12241 parts in 11693 classes
+
+what follows said   -> the 197, Alice, 35, to 32, Alice 25, Alice; 9
+what follows the    -> Mock 47, March 25, King 22, Queen 20, White 17
+what follows Alice  -> said 7, could 7, in 6, to 5, was 5
+
+forms of walk   -> walked, walking, walk!", walking\na
+forms of look   -> looked, looking, (look, looking\nfor, to\nlook, look-out, look!\n\n, looked\nat
+forms of think  -> thinking, think--', think?'\n\n'I, think!'\n(Dinah, think.', think:, think?', think!
+
+same kind as swallow   [+ed, +ing] -> mutter, crawl, nibbl, yawn, remain, fann, stretch, rustl, ggl, rubb
+same kind as consider  [+ed, +ing] -> mutter, crawl, nibbl, yawn, remain, fann, stretch, rustl, ggl, rubb
+
+walk from "Alice":
+  Alice felt dreadfully one of gloves and as well as she turned away.\n\n'Come back!' the Queen. 'Can you join the jar from the cook.\n\nThe King

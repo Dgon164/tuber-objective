@@ -1,0 +1,126 @@
+--- agc_engine.c.orig	2026-10-10 08:49:56.399496638 -0600
++++ agc_engine.c	2026-10-10 08:49:56.471924539 -0600
+@@ -527,6 +527,36 @@
+ // much more cleverly.
+ 
+ int CoverageCounts = 0;			// Increment coverage counts is != 0.
++
++// ---- discovery trace (added for Project Discovery; see agc-test/README.md) ----
++// Two optional trace files, opened from environment variables:
++//   AGC_TRACE_WRITES    every write to erasable memory, 10 bytes big-endian:
++//                       instruction address (0..36863, same index as the rope),
++//                       instruction word, erasable address (0..4095),
++//                       old value, new value
++//   AGC_TRACE_CHANNELS  every output-channel packet, 4 bytes, as sent on the socket,
++//                       and every input-channel packet received, same form
++#include <stdlib.h>
++FILE *TraceWrites = NULL;
++FILE *TraceChannels = NULL;
++static uint16_t TraceInstrAddr = 0, TraceInstrWord = 0;
++static void
++TraceOpen (void)
++{
++  static int done = 0;
++  char *p;
++  if (done) return;
++  done = 1;
++  if ((p = getenv ("AGC_TRACE_WRITES")) != NULL) TraceWrites = fopen (p, "wb");
++  if ((p = getenv ("AGC_TRACE_CHANNELS")) != NULL) TraceChannels = fopen (p, "wb");
++}
++static void
++TracePut16 (FILE *f, uint16_t v)
++{
++  fputc ((v >> 8) & 0xff, f);
++  fputc (v & 0xff, f);
++}
++// ---- end discovery trace ----
+ unsigned ErasableReadCounts[8][0400];
+ unsigned ErasableWriteCounts[8][0400];
+ unsigned ErasableInstructionCounts[8][0400];
+@@ -836,6 +866,7 @@
+     return;
+   if (CoverageCounts)
+     ErasableWriteCounts[Bank][Offset]++;
++  int16_t TraceOld = State->Erasable[Bank][Offset];	// discovery trace
+   if (Bank == 0)
+     {
+       switch (Offset)
+@@ -881,7 +912,14 @@
+ 	State->Erasable[0][Offset] = Value & 0177777;
+     }
+   else
+-    State->Erasable[Bank][Offset] = Value & 077777;
++    State->Erasable[Bank][Offset] = Value & 077777;  if (TraceWrites)	// discovery trace
++    {
++      TracePut16 (TraceWrites, TraceInstrAddr);
++      TracePut16 (TraceWrites, TraceInstrWord);
++      TracePut16 (TraceWrites, (uint16_t) (Bank * 0400 + Offset));
++      TracePut16 (TraceWrites, (uint16_t) TraceOld & 0177777);
++      TracePut16 (TraceWrites, (uint16_t) State->Erasable[Bank][Offset] & 0177777);
++    }
+ }
+ 
+ static void
+@@ -2474,6 +2512,22 @@
+     }
+   Instruction &= 077777;
+ 
++  // ---- discovery trace: remember where we are and what we are executing ----
++  TraceOpen ();
++  TraceInstrWord = Instruction;
++  if (ProgramCounter < 02000)
++    TraceInstrAddr = ProgramCounter;	// executing from erasable (rare)
++  else if (ProgramCounter < 04000)
++    {
++      int b = 037 & (c (RegFB) >> 10);
++      if (030 == (b & 030) && (State->OutputChannel7 & 0100) != 0)
++	b += 010;
++      TraceInstrAddr = b * 02000 + (ProgramCounter - 02000);
++    }
++  else
++    TraceInstrAddr = 2 * 02000 + (ProgramCounter - 04000);	// fixed-fixed = banks 2,3
++  // ---- end discovery trace ----
++
+   sExtraCode = State->ExtraCode;
+ 
+   ExtendedOpcode = Instruction >> 9;	//2;
+--- SocketAPI.c.orig	2026-10-10 08:49:56.403048270 -0600
++++ SocketAPI.c	2026-10-10 08:49:56.472605663 -0600
+@@ -127,6 +127,11 @@
+   // hardware simulations.
+   if (FormIoPacket (Channel, Value, Packet))
+     return;
++  {	// discovery trace
++    extern FILE *TraceChannels;
++    if (TraceChannels)
++      fwrite (Packet, 1, 4, TraceChannels);
++  }
+   for (i = 0, Client = Clients; i < MAX_CLIENTS; i++, Client++)
+     if (Clients[i].Socket != -1)
+       {
+@@ -214,6 +219,11 @@
+ 		//	Client->Packet[2], Client->Packet[3]);
+ 		if (!ParseIoPacket (Client->Packet, &Channel, &Value, &uBit))
+ 		  {
++		    {	// discovery trace
++		      extern FILE *TraceChannels;
++		      if (TraceChannels)
++		        fwrite (Client->Packet, 1, 4, TraceChannels);
++		    }
+ 		    // Convert to AGC format (upper 15 bits).
+ 		    Value &= 077777;
+ 		    if (uBit)
+--- agc_simulator.c.orig	2026-10-10 08:51:06.285092082 -0600
++++ agc_simulator.c	2026-10-10 08:51:06.298525636 -0600
+@@ -280,6 +280,11 @@
+ 		Simulator.DesiredCycles = Simulator.RealTime;
+ 		Simulator.DesiredCycles -= Simulator.RealTimeOffset;
+ 		Simulator.DesiredCycles *= AGC_PER_SECOND;
++		{	// discovery trace: AGC_SPEED=N runs the machine N times faster than real time
++			static int speed = 0;
++			if (speed == 0) { char *p = getenv ("AGC_SPEED"); speed = (p && atoi (p) > 0) ? atoi (p) : 1; }
++			Simulator.DesiredCycles *= speed;
++		}
+ 	}
+ 	else SimSleep();
+ }
