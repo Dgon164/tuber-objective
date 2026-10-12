@@ -14,12 +14,20 @@ and Discovery reads them the same way it read the file. It's the
 bytes, read as a signal) with a 1960s flight computer in place of the
 net.
 
-Where it could go is in `notes/open.md` under "The AGC in the loop":
+Where it goes is in `notes/open.md` under "The AGC in the loop":
 reverse engineer the flight from the code, by comparing the machine
 before and after each piece runs, reading the tests each piece makes
 before it branches, and chaining those requirements backward from
 "landed" to the first key press. No manual, no training. This folder is
-the plumbing for that, and a first run. The rest hasn't been done.
+the plumbing for that and the runs made so far: one recording read by
+Discovery (`example-run/`); two flights with one kicked (`nudge-run/`:
+the autopilot's chain from the pulse in to the jets out, read off the
+comparison, nothing named); and the loop — press, record, compare,
+choose, walk backward from a goal — on the DSKY alone (`phase-a/`),
+with the vehicle attached (`phase-b/`), and on the pad with the
+astronaut's controls (`phase-c/`, which launched). What is not done is
+at the end of this page: opcodes by effect and the read/write sets per
+routine, from the write trace.
 
 ## What's in here
 

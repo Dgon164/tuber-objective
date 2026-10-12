@@ -453,8 +453,13 @@ matter for a given task is supplied by whoever is using it.
 ## 15. Open ends
 
 `notes/open.md` lists what hasn't been tried and what the records
-suggest trying next. The short version: picking more than one separator
-based on the record itself rather than by count; signals that have
-time structure, where the comparator should compare each row to the
-row before it; images, where the frame step meets a second dimension;
-and reading a trained net's weights instead of a reservoir's states.
+suggest trying next. The short version: separators chosen from the
+record itself rather than by count; the row-against-the-row-before
+reading of time in the core, next to the TIME tables, which read the
+sequence of runs as time; images, where the frame step meets a second
+dimension; reading a trained net's weights instead of a reservoir's
+states; the bridge in the other direction — shared changes between two
+records, not only shared parts; the baby model, the loop given "keep
+the baby from touching the hot stove" (`paper/persistence.md`); and the
+AGC in the loop, where the walk has run and the opcodes-by-effect
+stages have not.
