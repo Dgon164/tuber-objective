@@ -189,8 +189,9 @@ What was built, in order, and what each run changed. Dates are 2026.
 - `extend/sentence.py`: sentences from the follows table. Word-level
   bigrams chained from starters (after sentence-ending punctuation) to
   enders. 15 sentences in 1.4 seconds.
-- `extend/make_words.py`: the class-pair approach (earlier iteration
-  of word-making, kept for comparison).
+- The class-pair approach (the earlier iteration of word-making) was
+  not kept as a script; FUNCTIONS.md describes it under what was tried
+  before.
 - Paper: line count fixed (470 → 726).
 - README rewritten: opens with Wheeler ("it from bit") and Bateson
   ("a difference that makes a difference"), shows how Discovery
@@ -273,3 +274,15 @@ What was built, in order, and what each run changed. Dates are 2026.
   stove, needs; unnamed actions of the removing and the satisfying
   kind; the walk from the goal; what it proposes first, across worlds
   with the costs varied).
+
+## 10-12 — each example on its own
+
+- The front page says run one, not run everything: each example's
+  BREAKDOWN opens with its own command and its record is committed
+  beside its input; `extend/` and `hybrid/` have READMEs listing each
+  script with its command and what it writes; the table of folders
+  links to each. `run_examples.sh` is the optional bulk regeneration.
+- Documents point at records and outputs instead of quoting run
+  numbers (design rule 11, applied to the documents): FUNCTIONS.md,
+  the self-assembly guide, the TIME examples in the paper and guides,
+  the timings.

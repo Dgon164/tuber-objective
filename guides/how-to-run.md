@@ -55,8 +55,10 @@ python ../../discovery.py alice-second-half.txt --lens ascii --memory alice.memo
 python ../../discovery.py ep-00-01-17.de        --lens utf8  --memory alice.memory
 ```
 
-`run_examples.sh` runs all of these plus the hybrid scripts and
-rebuilds every record in the repo.
+Each one stands on its own, and its folder's BREAKDOWN.md says what to
+look for in the record it writes. `run_examples.sh` is the optional
+bulk run: all of these plus the extensions and the hybrid scripts,
+rebuilding every record in the repo.
 
 ## Use it from Python
 
@@ -82,11 +84,12 @@ discovery.save_memory('alice.memory', pool, made_of, part_of, history + [('name'
 
 ## How long does it take
 
-Pure Python, so time grows with the file. Alice (144 KB) takes about
-two seconds. The German file (160 KB) takes under one. The 1.6 MB AGC
-assembly source takes about twenty seconds with two separators. For a
-big file, use `--limit` to read just the first part, or split the file
-and run each piece. The mint loop's time depends on how many distinct
-runs there are and how long they are — not on file size. `--cap`
-(defaults to 1,000,000 parts) stops the mint loop if the pool gets
-too big, and the record says so.
+Pure Python. The text examples take seconds; the 1.6 MB AGC assembly
+source, with its long runs and its very large record, takes the longest
+of anything in the repo, well under a minute. For a big file, use
+`--limit` to read just the first part, or split the file and run each
+piece. The mint loop's time depends on how many distinct runs there are
+and how long they are — not on file size — and writing the record
+depends on how many connections were found. `--cap` (defaults to
+1,000,000 parts) stops the mint loop if the pool gets too big, and the
+record says so.

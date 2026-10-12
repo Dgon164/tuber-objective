@@ -212,8 +212,7 @@ Three earlier approaches, each one closer. The cost — failed attempts
 per word made — is the measure of each.
 
 **Open offers** (no feedback). Discovery's class-pairs as offers,
-accepted or rejected, no memory of what failed. `make_words.py` is this
-approach, kept for comparison. The most failures.
+accepted or rejected, no memory of what failed. The most failures.
 
 **Per-ending feedback**. Track refusals per ending: `+,` refused on
 this stem. Worse than no feedback. The feedback was too narrow: a

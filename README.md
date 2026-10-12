@@ -74,34 +74,50 @@ its forms.
 
 | folder | what's in it |
 |---|---|
-| `discovery.py` | the whole program — ten numbered sections, one file |
-| `paper/discovery.md` | what the system is and why it's built this way |
-| `paper/persistence.md` | a proposed alignment paper: a root-cause objective is one under which complex things persist — it needs them, cannot get them back, and answers a harm by satisfying its cause (the baby model) |
-| `guides/` | how to run it, how it works step by step, how to read what it writes, how to feed it anything, how to connect it to other systems, and how to build new things on top of it |
-| `notes/` | the design rules, the things we haven't tried yet, and a log of what was built and when |
-| `examples/text/` | an English novel (Alice in Wonderland, plain ASCII): how it finds the alphabet, the words, the word endings, and a group of 22 verb stems |
-| `examples/german/` | a day of German parliament (UTF-8) plus the English version, and a bridge that lines up what the two languages share |
-| `examples/code/` | Discovery's own source code, and a compiled C program read two ways — as 64-bit chunks (the file's layout) and as single bytes (the readable strings inside) |
-| `examples/agc/` | the Apollo 11 Lunar Module flight software: tightly packed 15-bit words from a machine built in the 1960s, plus the assembly source code |
-| `examples/agc-live/` | the same flight program running on an emulator of its machine, with every memory write and every hardware signal recorded as a new signal for Discovery to read; builds and runs with two commands |
-| `examples/memory/` | what happens when Discovery remembers: first half of Alice from scratch, second half against that memory, second half again (learns nothing new), then German against the English memory |
-| `extend/` | extensions that show you can get new results by pointing the comparator somewhere new, without changing the core: slot-mates (parts of speech), functions (word-making from the record), and sentence-making from the follows table |
-| `hybrid/` | three working scripts that connect Discovery to other systems: a rule engine, a neural net, and a loop that feeds Discovery's output back into itself |
+| [`discovery.py`](discovery.py) | the whole program — ten numbered sections, one file |
+| [`paper/discovery.md`](paper/discovery.md) | what the system is and why it's built this way |
+| [`paper/persistence.md`](paper/persistence.md) | a proposed alignment paper: a root-cause objective is one under which complex things persist — it needs them, cannot get them back, and answers a harm by satisfying its cause (the baby model) |
+| [`guides/`](guides/) | how to run it, how it works step by step, how to read what it writes, how to feed it anything, how to connect it to other systems, and how to build new things on top of it |
+| [`notes/`](notes/) | the design rules, the things we haven't tried yet, and a log of what was built and when |
+| [`examples/text/`](examples/text/BREAKDOWN.md) | an English novel (Alice in Wonderland, plain ASCII): how it finds the alphabet, the words, the word endings, and a group of 22 verb stems |
+| [`examples/german/`](examples/german/BREAKDOWN.md) | a day of German parliament (UTF-8) plus the English version, and a bridge that lines up what the two languages share |
+| [`examples/code/`](examples/code/BREAKDOWN.md) | Discovery's own source code, and a compiled C program read two ways — as 64-bit chunks (the file's layout) and as single bytes (the readable strings inside) |
+| [`examples/agc/`](examples/agc/BREAKDOWN.md) | the Apollo 11 Lunar Module flight software: tightly packed 15-bit words from a machine built in the 1960s, plus the assembly source code |
+| [`examples/agc-live/`](examples/agc-live/README.md) | the same flight program running on an emulator of its machine, with every memory write and every hardware signal recorded as a new signal for Discovery to read; builds and runs with two commands |
+| [`examples/memory/`](examples/memory/BREAKDOWN.md) | what happens when Discovery remembers: first half of Alice from scratch, second half against that memory, second half again (learns nothing new), then German against the English memory |
+| [`extend/`](extend/README.md) | extensions that show you can get new results by pointing the comparator somewhere new, without changing the core: slot-mates (parts of speech), functions (word-making from the record), and sentence-making from the follows table |
+| [`hybrid/`](hybrid/README.md) | three working scripts that connect Discovery to other systems: a rule engine, a neural net, and a loop that feeds Discovery's output back into itself |
 
 Each example folder has the input file, the record Discovery wrote, and
 a BREAKDOWN.md that walks through the record table by table — and where
 an outside source exists, shows how to check Discovery's work against it.
 
-## Run everything
+## Run one
+
+Pick anything in the table. Each example's BREAKDOWN.md opens with the
+command that makes its record, and the record it made is committed next
+to the input — so you can read first and run after, or never run at
+all. Each extension and hybrid script carries its command in its first
+lines and in its folder's README. None of them depends on another,
+except where one says so (the hybrid loop reads a JSON record; the
+row-by-row extension reads what the net wrote).
+
+```
+python discovery.py examples/text/alice.txt --lens ascii
+```
+
+## Regenerate everything
 
 ```
 ./run_examples.sh
 ```
 
-This rebuilds every record in the repo from scratch. Takes about three
-minutes. The plain-text records are committed; the JSON records (which
-the hybrid scripts and the bridge use) are big, so they get built by
-this script. `hybrid/net_as_lens.py` needs numpy; nothing else does.
+Optional. Rebuilds every record and output in the repo from the inputs
+in one go, so that what is committed is what the code makes. The
+plain-text records are committed; the JSON records (which the hybrid
+scripts and the bridge read) are big, so they are built by this script
+or by the single commands above. `hybrid/net_as_lens.py` needs numpy;
+nothing else does.
 
 ## Where the input files come from
 
