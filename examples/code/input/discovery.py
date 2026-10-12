@@ -1,5 +1,6 @@
 """
 Discovery -- the learning subroutine.
+Jason Weeks, thetuberobjective@gmail.com -- github.com/Dgon164/tuber-objective
 
 One mechanism: a comparator and a memory.
 

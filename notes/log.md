@@ -314,3 +314,7 @@ What was built, in order, and what each run changed. Dates are 2026.
 - `extend/template.py`: the shape to copy — the three sections, the
   middle one left to write (as it stands, for the most common runs,
   what follows them and how much of the time).
+- A name and an address on it: Jason Weeks, thetuberobjective@gmail.com
+  — the README's Contact, both papers' bylines, the LICENSE holder, the
+  header of `discovery.py`, a `CITATION.cff`, and the author of the
+  commits from here on.

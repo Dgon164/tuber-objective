@@ -137,3 +137,9 @@ nothing else does.
 ## Licence
 
 MIT. See `LICENSE`.
+
+## Contact
+
+Jason Weeks — thetuberobjective@gmail.com. Questions, something you
+built on it, something it got wrong, something you'd like help with:
+write, or open an issue here. I'd like to hear about it.

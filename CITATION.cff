@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "The Tuber Objective: A Root Cause Discovery Principle"
+authors:
+  - family-names: Weeks
+    given-names: Jason
+    email: thetuberobjective@gmail.com
+repository-code: "https://github.com/Dgon164/tuber-objective"
+license: MIT
+date-released: 2026-10-12

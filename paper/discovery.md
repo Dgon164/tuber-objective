@@ -2,7 +2,7 @@
 
 *A learning subroutine made of one comparator and a memory*
 
-Project Discovery, October 2026
+Jason Weeks — Project Discovery, October 2026 — thetuberobjective@gmail.com
 
 ## 1. What it is
 

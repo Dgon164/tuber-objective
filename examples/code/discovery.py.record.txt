@@ -1,69 +1,69 @@
 DISCOVERY RECORD
 signal     discovery.py
-size       42550 bytes, 340400 bits
+size       42629 bytes, 341032 bits
 
 FRAME   score = spread between the column most often 1 and the column least often 1
   width  score   least-1 column   most-1 column      (best 8 of 64 widths tried)
-   64    0.951   col   0 at 0.000   col  18 at 0.951
-   32    0.949   col   0 at 0.000   col  18 at 0.949
-   48    0.947   col   0 at 0.000   col   2 at 0.947
-   40    0.946   col   0 at 0.000   col  10 at 0.946
-   16    0.945   col   0 at 0.000   col   2 at 0.945
-   24    0.944   col   0 at 0.000   col  18 at 0.944
-   56    0.944   col   0 at 0.000   col  34 at 0.944
+   64    0.951   col   0 at 0.000   col  10 at 0.951
+   32    0.949   col   0 at 0.000   col  10 at 0.949
+   48    0.947   col   0 at 0.000   col  10 at 0.947
+   40    0.946   col   0 at 0.000   col   2 at 0.946
+   16    0.945   col   0 at 0.000   col  10 at 0.945
+   24    0.944   col   0 at 0.000   col   2 at 0.944
+   56    0.944   col   0 at 0.000   col  50 at 0.944
     8    0.942   col   0 at 0.000   col   2 at 0.942
   picked width 8
-    fold to  1: columns differ by 0.1780 on average (wobble by chance 0.0024) -> different
-    fold to  2: columns differ by 0.1782 on average (wobble by chance 0.0024) -> different
+    fold to  1: columns differ by 0.1781 on average (wobble by chance 0.0024) -> different
+    fold to  2: columns differ by 0.1783 on average (wobble by chance 0.0024) -> different
     fold to  4: columns differ by 0.1617 on average (wobble by chance 0.0024) -> different
   chosen width 8
   column rates at width 8:
-    0.000 0.545 0.942 0.228 0.357 0.423 0.310 0.410
+    0.000 0.545 0.942 0.228 0.358 0.423 0.310 0.410
 
 LEVELS   each level runs on the runs of the one before; nothing replaced, every structure added to one pool
   level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
-      0    42550        89     5339      2091     8045          215    10136       10136
-      1     5339      2091      219       218      282            2      498       10634
-      2      219       218        3         3        0            0        3       10637
-      3        3         3        1         1        0            0        1       10638
+      0    42629        90     5343      2094     8297          218    10391       10391
+      1     5343      2094      219       218      282            2      498       10889
+      2      219       218        3         3        0            0        3       10892
+      3        3         3        1         1        0            0        1       10893
   stopped: level 3 left a single run; nothing more to cut
 
 ==============================================================================
 LEVEL 0
 ==============================================================================
 
-WORDS   42550 words, 89 distinct
+WORDS   42629 words, 90 distinct
   bits      glyph   count
-  00100000          11404
-  01100101  e       2726
-  00101101  -       1775
-  01110100  t       1712
-  01101111  o       1694
-  01110011  s       1689
-  01110010  r       1549
-  01100001  a       1510
-  01101110  n       1494
-  01101001  i       1240
-  01101100  l       1085
+  00100000          11408
+  01100101  e       2735
+  00101101  -       1778
+  01110100  t       1718
+  01101111  o       1700
+  01110011  s       1691
+  01110010  r       1551
+  01100001  a       1512
+  01101110  n       1496
+  01101001  i       1244
+  01101100  l       1086
   01100100  d       993
-  00001010  \n      978
+  00001010  \n      979
   01100110  f       822
-  00101100  ,       775
+  00101100  ,       776
   00101000  (       768
   00101001  )       768
   00100111  '       767
   01110000  p       734
-  01100011  c       688
-  01101101  m       644
-  01101000  h       636
-  01110101  u       474
+  01100011  c       692
+  01101101  m       647
+  01101000  h       638
+  01110101  u       477
   01110111  w       434
   00111101  =       421
 
-FOLLOWS   which word comes after which (top 25 of 1276 pairs)
+FOLLOWS   which word comes after which (top 25 of 1293 pairs)
                            ->                           6066
-  -                        -> -                         1636
-  ,                        ->                           700
+  -                        -> -                         1637
+  ,                        ->                           701
   \n                       ->                           689
                            -> i                         434
   e                        ->                           429
@@ -71,10 +71,10 @@ FOLLOWS   which word comes after which (top 25 of 1276 pairs)
   i                        -> n                         396
   s                        ->                           365
                            -> s                         361
-  t                        -> h                         349
-                           -> t                         340
+  t                        -> h                         351
+                           -> t                         341
   l                        -> e                         338
-  n                        ->                           329
+  n                        ->                           330
   =                        ->                           285
   s                        -> e                         285
   r                        -> e                         282
@@ -89,7 +89,7 @@ FOLLOWS   which word comes after which (top 25 of 1276 pairs)
 
 SEPARATOR   the most common word: 00100000 ( )
 
-RUNS   5339 runs between separators, 2091 distinct
+RUNS   5343 runs between separators, 2094 distinct
   =                                         218
   the                                       153
   in                                        145
@@ -116,7 +116,7 @@ RUNS   5339 runs between separators, 2091 distinct
   d                                         22
   to                                        21
 
-RUN FOLLOWS   which run comes after which (top 25 of 4275 pairs)
+RUN FOLLOWS   which run comes after which (top 25 of 4279 pairs)
   c                        -> in                        21
   %s'                      -> %                         16
   %d'                      -> %                         14
@@ -172,25 +172,25 @@ TIME   the sequence read as time; the stretch after a run is 24 runs (the typica
     %7d                         -> %8d                               2   the other way 2
   EFFECTS   what comes in the stretch after a run more often than it comes overall: seen/expected
     =                           []\n 36/14.7, k 33/12.7, None 23/9.8, else:\n 21/9.8, / 17/5.9, rows 17/5.9
-    the                         the 216/105.2, is 97/48.1, that 40/13.8, are 29/8.3, one 35/15.1, with 27/8.9
+    the                         the 215/105.1, is 97/48.1, that 40/13.7, are 29/8.2, one 35/15.1, with 27/8.9
     in                          chain 7/1.9, {\n 7/2.6, %-27s 6/1.9, 0) 6/1.9, (n, 5/1.3, node(r)\n 5/1.3
     if                          else 72/23.7, == 53/19.0, not 49/15.4, n 25/10.3, d 24/11.3, k 17/6.7
-    for                         in 174/73.0, c 49/14.1, a, 17/5.0, x 21/10.1, w 15/5.5, b, 15/6.0
-    %                           % 61/24.0, say(' 43/13.1, %d 31/8.9, say('')\n\n 27/4.9, ', 21/3.6, c))\n 16/2.6
+    for                         in 174/72.9, c 49/14.1, a, 17/5.0, x 21/10.1, w 15/5.5, b, 15/6.0
+    %                           % 61/23.9, say(' 43/13.1, %d 31/8.9, say('')\n\n 27/4.9, ', 21/3.6, c))\n 16/2.6
     is                          the 106/48.1, what 21/6.3, None 14/3.1, its 13/2.8, one 17/6.9, that 16/6.3
     a                           is 49/21.4, part 24/7.6, run 18/5.2, to 19/6.4, that 14/6.1, what 14/6.1
-    return                      return 28/10.8, ------------------------... 15/2.4, -- 12/3.3, isinstance(x, 9/2.0, pool, 9/3.3, w 8/2.4
+    return                      return 28/10.8, ------------------------... 15/2.4, -- 12/3.5, isinstance(x, 9/2.0, pool, 9/3.3, w 8/2.4
     else                        # 17/5.9, else 20/9.4, + 16/6.9, n 11/4.1, part_of\n 6/0.4, k 8/2.6
     and                         the 57/28.2, not 14/5.5, == 14/6.8, width 8/2.4, what 9/3.7, same 8/2.8
     say('                       % 63/13.1, %d 22/4.9, %s' 20/2.9, say(' 24/7.2, %d' 17/2.5, say('')\n\n 17/2.7
     of                          one 12/3.8, part 11/4.3, that 9/3.4, run 8/2.9, same 7/2.6, to 8/3.6
-    ==                          == 21/6.0, return 21/7.9, and 17/6.7, p:\n 10/0.6, else 16/7.5, not 12/4.9
+    ==                          == 21/6.0, return 21/7.9, and 17/6.6, p:\n 10/0.6, else 16/7.5, not 12/4.9
     +                           + 21/5.2, else 19/7.0, text 8/0.9, / 7/0.9, 1 8/2.1, os.path.join(out, 6/0.3
     not                         not 16/4.0, collections.defaultdict(... 6/0.3, b):\n 6/0.5, break\n 6/0.9, this 7/2.4, earlier 5/0.7
     as                          the 40/19.9, a 22/8.9, level 9/3.8, are 6/1.6, with 6/1.7, as 8/3.8
     level                       as 15/3.8, level 10/3.8, one 9/2.9, 0 7/1.3, discover() 5/0.4, pool 6/2.1
     #                           # 15/3.8, this 9/2.3, forward 6/0.4, mirrored 6/0.5, at 7/2.3, shared 6/1.7
-    c                           c 28/3.5, in 41/18.3, % 19/9.2, c))\n 9/1.0, %d' 9/1.8, say(' 11/5.0
+    c                           c 28/3.5, in 41/18.2, % 19/9.2, c))\n 9/1.0, %d' 9/1.8, say(' 11/5.0
     %d                          % 41/8.9, %d 19/3.3, say(' 19/4.9, say('')\n\n 14/1.8, %d' 11/1.7, n 10/2.4
     part                        the 36/17.2, is 18/7.9, of 12/4.3, that 9/2.2, one 8/2.5, part 8/2.8
     one                         level 13/2.9, is 15/6.9, as 9/2.9, on 6/1.5, distinct 4/0.5, run 5/1.7
@@ -208,92 +208,92 @@ TIME   the sequence read as time; the stretch after a run is 24 runs (the typica
     return -> ------------------------... -> -- -> the -> is
     else -> # -> this -> level's -> a
 
-MINT   19 rounds; parts minted per round: 4080 2046 956 461 239 117 58 28 20 16 8 4 3 2 2 2 2 1 0
-  pool: 2091 distinct runs in, 10136 structures added, 10136 in the pool now
+MINT   21 rounds; parts minted per round: 4091 2062 974 486 263 142 78 47 39 39 29 12 7 7 5 5 5 3 2 1 0
+  pool: 2094 distinct runs in, 10391 structures added, 10391 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
   part                            density   whole  inside (sample)
   (                                   567       0  (top, (a,, (\n, ()),
-  s                                   560       6  is, as, this, parts
-  e                                   528       7  the, else, one, same
-  ,                                   479       0  pool,, c,, part_of,, made_of,
+  s                                   563       6  is, as, this, parts
+  e                                   540       7  the, else, one, same
+  ,                                   480       0  pool,, c,, part_of,, made_of,
   '                                   473      14  say(', %s', %d', ',
-  t                                   410       0  the, not, part, to
-  \n                                  388       0  []\n, say('')\n\n, 0\n, 1\n
-  i                                   362      14  in, if, is, it
-  n                                   351      20  in, return, not, run
-  .                                   350       0  1., signal., run., nothing.
+  t                                   430       0  the, not, part, to
+  \n                                  387       0  []\n, say('')\n\n, 0\n, 1\n
+  i                                   368      14  in, if, is, it
+  .                                   355       0  1., signal., run., nothing.
+  n                                   353      20  in, return, not, run
+  a                                   328      68  and, as, at, after
   r                                   325       8  for, run, after, or
-  a                                   316      68  and, as, at, after
   d                                   315      22  and, %d, def, shared
-  )                                   305       0  collections.defaultdict(set), len(s), members), discover()
-  o                                   279       0  of, one, to, on
-  l                                   274       0  level, pool, signal, until
+  )                                   307       0  collections.defaultdict(set), len(s), discover(), members)
+  o                                   287       0  of, one, to, on
+  l                                   277       0  level, pool, signal, until
   [                                   260       0  []\n, [],, [kc[q], [(a,
   p                                   257       7  part, parts, pool, pool,
   :                                   238       0  p:, q:, {str(w):, run:
-  c                                   228      28  c,, column, c))\n, count
+  c                                   232      28  c,, column, c))\n, count
+  m                                   212       4  made_of,, memory, more, most
   ]                                   212       0  score[w], c], [kc[q], x[0]
   =                                   209     218  ==, +=, <=, >=
-  m                                   204       4  made_of,, memory, more, most
   )\n                                 199       0  top)\n, x)\n, collections.defaultdict(collections.Counter)\n, run)\n
   _                                   185       1  __init__(self,, __name__, _order(, write_
 
 ENDINGS   what gets added to the end of a part to make another (top 25)
-  +,                         970
-  +\n                        598
-  +s                         386
-  +)                         354
-  +:                         348
-  +e                         326
+  +,                         980
+  +\n                        594
+  +s                         395
+  +)                         359
+  +:                         349
+  +e                         333
   +)\n                       297
-  +:\n                       297
+  +:\n                       296
   +'                         269
+  +t                         254
   +(                         253
-  +.                         246
-  +t                         245
-  +d                         210
-  +i                         203
-  +]                         200
+  +.                         249
+  +d                         212
+  +i                         206
+  +]                         199
   +n                         192
-  +\n#                       188
-  +':                        159
-  +r                         155
-  +l                         150
-  +a                         140
-  +o                         139
+  +\n#                       186
+  +':                        161
+  +l                         156
+  +r                         156
+  +a                         150
+  +o                         144
   +p                         125
-  +):\n                      125
+  +):\n                      124
   +,\n                       119
 
 BEGINNINGS   what gets added to the start of a part to make another (top 25)
                          (+  660
                          '+  558
-                         s+  441
-                         e+  425
-                         a+  387
-                         i+  360
-                         t+  349
-                         r+  348
-                         [+  341
-                         n+  335
-                         .+  332
-                         o+  317
-                         p+  313
-                         =+  283
-                         d+  269
-                         c+  266
-                         l+  257
-                         m+  239
-                         _+  229
-                         b+  207
-                         h+  183
-                         w+  173
+                         s+  448
+                         e+  433
+                         a+  390
+                         t+  381
+                         i+  363
+                         r+  347
+                         n+  341
+                         [+  340
+                         .+  337
+                         o+  323
+                         p+  317
+                         =+  285
+                         d+  275
+                         c+  269
+                         l+  256
+                         m+  246
+                         _+  233
+                         b+  221
+                         h+  201
+                         w+  174
                          f+  156
-                      len(+  125
-                         u+  124
+                         g+  132
+                         u+  131
 
-CLASSES   parts that take the same set of changes (largest 25 of 5335; two or more members count as same one level up)
+CLASSES   parts that take the same set of changes (largest 25 of 5531; two or more members count as same one level up)
   {0.0} [R+, self+]
      11 members: .profile,, .made_of,, .L0, .frame))\n, .part_of,, .data,, .name, .frame,, .score,, .folding, .pool,
   {0.1} [+:\n, +\n]
@@ -354,8 +354,8 @@ CRYSTAL   dictionary entries for the most common runs (top 25)
     preceded   k 10, d 8, x 7, n 6, i 4, out 4
   the   seen 153
     made of    th, he, t, e
-    part of    the\n#, they, (the, there, then, the\n, they\n#, their
-    changes    +\n#, +y, (+, +re, +n, +\n, +y\n#, +ir
+    part of    the\n#, they, (the, there, their, them,, they\n#, the\n
+    changes    +\n#, +y, (+, +re, +ir, +m,, +y\n#, +\n
     followed   same 10, shared 5, parts 5, most 5, one 5, signal 4
     preceded   is 10, of 9, and 9, in 9, to 8, on 8
   in   seen 145
@@ -501,7 +501,7 @@ CRYSTAL   dictionary entries for the most common runs (top 25)
 LEVEL 1
 ==============================================================================
 
-SYMBOLS   5339 symbols, 2091 distinct  (each is a level 0 run; level 0 classes count as same)
+SYMBOLS   5343 symbols, 2094 distinct  (each is a level 0 run; level 0 classes count as same)
   =                                         218
   the                                       153
   in                                        145
@@ -528,7 +528,7 @@ SYMBOLS   5339 symbols, 2091 distinct  (each is a level 0 run; level 0 classes c
   d                                         22
   to                                        21
 
-FOLLOWS   which symbol comes after which (top 25 of 4275 pairs)
+FOLLOWS   which symbol comes after which (top 25 of 4279 pairs)
   c                        -> in                        21
   %s'                      -> %                         16
   %d'                      -> %                         14
@@ -559,7 +559,7 @@ SEPARATOR   the most common symbol: =
 
 RUNS   219 runs between separators, 218 distinct
   depth(x)\n while isinstance(x, tuple):\n x  2
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato...  1
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti...  1
   discovery.Root(FILE) the signal as read, level 0, the pool;\n discover()...  1
   open(path, 'rb').read()\n if limit:\n data  1
   data[:limit]\n if not data:\n return data, ''\n bits  1
@@ -585,7 +585,7 @@ RUNS   219 runs between separators, 218 distinct
   []\n else:\n run.append(word)\n if run:\n runs.append(tuple(run))\n retu...  1
 
 RUN FOLLOWS   which run comes after which (top 25 of 218 pairs)
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato... -> discovery.Root(FILE) the signal as read, level 0, the pool;\n discover()...  1
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti... -> discovery.Root(FILE) the signal as read, level 0, the pool;\n discover()...  1
   discovery.Root(FILE) the signal as read, level 0, the pool;\n discover()... -> open(path, 'rb').read()\n if limit:\n data  1
   open(path, 'rb').read()\n if limit:\n data -> data[:limit]\n if not data:\n return data, ''\n bits  1
   data[:limit]\n if not data:\n return data, ''\n bits -> bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8)\n return data,...  1
@@ -619,12 +619,12 @@ TIME   the sequence read as time; the stretch after a run is 73 runs (the typica
     depth(x)\n while isinsta... -> '{%d.%d}' % (d - 1, -1 -...
 
 MINT   6 rounds; parts minted per round: 177 70 23 10 2 0
-  pool: 218 distinct runs in, 498 structures added, 10634 in the pool now
+  pool: 218 distinct runs in, 498 structures added, 10889 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
   part                            density   whole  inside (sample)
-  a                                   316       1  and, as, at, after
-  b                                   150       1  by, b,, break\n, back
+  a                                   328       1  and, as, at, after
+  b                                   164       1  by, b,, break\n, back
   []\n for                              8       0  []\n for x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class..., []\n for b, c in after.items():\n expected, []\n for x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class..., []\n for word in words:\n if word in separators:\n if run:\n runs.append...
   {}\n for                              6       0  {}\n for p in L['parts']:\n k, {}\n for p in L['parts']:\n, {}\n for i, (ch, members) in enumerate(classes):\n if len(members) >= 2:..., {}\n for i, (ch, members) in enumerate(classes):\n if len(members)
   c in                                  5       0  a, c in, (a, b), c in, c in range(w):\n col, c in after.items():\n expected
@@ -738,13 +738,13 @@ CLASSES   parts that take the same set of changes (largest 25 of 74; two or more
      1 members: True:\n new
   {1.16} [+(a, b), c in run_follows.items():\n back, +a, c in run_counts.most_common(min(top, 10)):\n chain, +b, c in after.items():\n expected, +c in range(w):\n col, +word in words:\n if word in separators:\n if run:\n runs.append(tuple(ru..., +word in words:\n if word in separators:\n if run:\n runs.append(tuple(ru..., +x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and c..., +x, y in zip(a, b):\n if x == y:\n h.append(x)\n elif x in class_of and c...]
      1 members: []\n for
-  {1.17} ['+, '.'.join(form+, 'ch+, 'fr+, 'p+, 'r+, 's+, (+, (F+, (e+, (form+, (h+, (l+, (lo+, (p+, (pl+, (s+, (wh+, +), +))\n, +),, +):, +):\n, +)\n, +,, +2, +2),, +2,, +[:, +[:i], +[:i]\n\n, +[:limit]\n, +\n, +\n#, +], +]), +]:\n, +][b], +]\n, +b, +bit:, +ble, +bo, +bout, +bove, +bove))), +bs, +bs(profile[picked][, +bs(profile[picked][c], +bspath(path))\n, +c, +ce, +ch, +ck, +cro, +cross, +d, +d;, +d_, +dd, +dd(, +dd(piece)\n, +dd(w, +dded, +dded', +dded':, +dded'],, +dds\n#, +de, +de_of, +de_of,, +ded, +ds, +f, +ft, +fte, +fter, +fter:, +g, +ga, +gain, +gainst, +ge, +ge., +i, +in, +in), +ind, +inst, +ise, +k, +k\n, +ke, +kedirs(out,, +kes, +l, +l', +l':, +lf, +lgorithm;, +ll, +lly, +lly[rest], +long, +ls, +lse, +lways, +m, +mbda, +me, +me', +me), +me,, +mp, +mple, +mple)'))\n, +mple]\n, +mples/agc-liv, +mples/agc-live:, +n, +nc, +nce, +nd, +nd\n, +nds, +ng, +nge, +nge(, +nges, +no, +ny, +p, +ppe, +ppen, +ppend, +ppend(, +ppend((c, +ppend(piece)\n, +ppend(x)\n, +pq, +pq.nsmallest(top,, +r, +re, +red, +rg, +rgest, +rgv, +rgv):\n, +rgv[i].lstrip('-')], +rr, +rro, +rrow, +rrower, +rrows, +rrows', +rrows'], +rrows']:\n, +rrows[:top]]\n\n, +rt, +rt_of, +rt_of,, +rts, +rts']:\n, +ry, +s, +s\n#, +s_, +sc, +sci, +scii, +scii', +sename(path)\n, +ss, +ssumed.\nOutput, +st, +st-1, +t, +t,, +t., +t.append, +t[, +t[a, +t[r].append(i)\n\n, +t\n, +t\n#, +ta, +tch, +te, +te(, +ted,, +th, +th':, +th(path))\n, +ti, +tion, +to, +tor, +ts, +tt, +ttern\n, +u, +ult, +use.\n#, +ve, +vera, +verage, +w, +w', +wn, +w|ascii|utf8|octal, +x, +x(range(w),, +y, +y,, +y., +ys, .+, .join(+, .m+, .p+, :s+, =+, =ch+, F+, Sp+, ['+, [+, ].+, _m+, _of(+, _t+, b+, bd+, be+, bits[:s+, c+, ch+, cl+, collections.def+, comp+, compar+, cryst+, d+, dat+, def+, diction+, dirname(os.path.absp+, dist+, dr+, e+, effects_of(+, er+, et+, form+, forw+, forward_m+, found[+, g'))[2:].zfill(len(dat+, g+, gn+, gr+, h+, he+, history.+, ion+, l+, le+, len(+, level(s+, lo+, m+, mbd+, memory['p+, n(+, n+, nxt[+, o+, orm+, os.path.b+, os.path.dirname(os.path.absp+, ot+, out.+, out.sort(key=lambd+, over+, p+, pickle.lo+, pl+, pre+, pret+, quiet=F+, r+, re+, rem+, repl+, s+, s.repl+, self.d+, self.p+, sh+, sign+, sort(key=lambd+, sp+, spre+, st+, t+, t[+, th+, time_t+, typic+, upd+, ver+, w+, wh+, write_level(s+, yst+, {key(+]
+  {1.17} ['+, '.'.join(form+, 'ch+, 'fr+, 'p+, 'r+, 's+, (+, (F+, (e+, (form+, (h+, (l+, (lo+, (p+, (pl+, (s+, (wh+, +), +))\n, +),, +):, +):\n, +)\n, +,, +2, +2),, +2,, +[:, +[:i], +[:i]\n\n, +[:limit]\n, +\n, +\n#, +], +]), +]:\n, +][b], +]\n, +b, +bit:, +ble, +bo, +bout, +bove, +bove))), +bs, +bs(profile[picked][, +bs(profile[picked][c], +bspath(path))\n, +c, +ce, +ch, +ck, +cro, +cross, +d, +d;, +d_, +dd, +dd(, +dd(piece)\n, +dd(w, +dded, +dded', +dded':, +dded'],, +dds\n#, +de, +de_of, +de_of,, +ded, +ds, +f, +ft, +fte, +fter, +fter:, +g, +ga, +gain, +gainst, +ge, +ge., +i, +il, +in, +in), +ind, +inst, +ise, +k, +k\n, +ke, +kedirs(out,, +kes, +l, +l', +l':, +lf, +lgorithm;, +ll, +lly, +lly[rest], +long, +ls, +lse, +lways, +m, +mbda, +me, +me', +me), +me,, +mp, +mple, +mple)'))\n, +mple]\n, +mples/agc-liv, +mples/agc-live:, +n, +nc, +nce, +nd, +nd\n, +nds, +ng, +nge, +nge(, +nges, +no, +ny, +p, +ppe, +ppen, +ppend, +ppend(, +ppend((c, +ppend(piece)\n, +ppend(x)\n, +pq, +pq.nsmallest(top,, +r, +re, +red, +rg, +rgest, +rgv, +rgv):\n, +rgv[i].lstrip('-')], +rr, +rro, +rrow, +rrower, +rrows, +rrows', +rrows'], +rrows']:\n, +rrows[:top]]\n\n, +rt, +rt_of, +rt_of,, +rts, +rts']:\n, +ry, +s, +s\n#, +s_, +sc, +sci, +scii, +scii', +sename(path)\n, +ss, +ssumed.\nOutput, +st, +st-1, +t, +t,, +t., +t.append, +t[, +t[a, +t[r].append(i)\n\n, +t\n, +t\n#, +ta, +tch, +te, +te(, +ted,, +th, +th':, +th(path))\n, +ti, +tion, +tive, +to, +tor, +ts, +tt, +ttern\n, +u, +ult, +use.\n#, +ve, +vera, +verage, +w, +w', +wn, +w|ascii|utf8|octal, +x, +x(range(w),, +y, +y,, +y., +ys, .+, .join(+, .m+, .p+, :s+, =+, =ch+, F+, J+, Sp+, ['+, [+, \nJ+, ].+, _m+, _of(+, _t+, b+, bd+, be+, bits[:s+, broutine.\nJ+, c+, ch+, cl+, collections.def+, comp+, compar+, cryst+, d+, dat+, def+, diction+, dirname(os.path.absp+, dist+, dr+, e+, e.\nJ+, effects_of(+, er+, et+, form+, forw+, forward_m+, found[+, g'))[2:].zfill(len(dat+, g+, gn+, gr+, h+, he+, history.+, ine.\nJ+, ion+, l+, le+, len(+, level(s+, lo+, m+, mbd+, memory['p+, n(+, n+, neg+, nxt[+, o+, orm+, os.path.b+, os.path.dirname(os.path.absp+, ot+, out.+, out.sort(key=lambd+, over+, p+, pickle.lo+, pl+, pre+, pret+, quiet=F+, r+, re+, rem+, repl+, s+, s.repl+, self.d+, self.p+, sh+, sign+, sort(key=lambd+, sp+, spre+, st+, subroutine.\nJ+, t+, t[+, th+, time_t+, tine.\nJ+, tuberobjective@gm+, typic+, upd+, utine.\nJ+, ver+, w+, wh+, write_level(s+, yst+, {key(+]
      1 members: a
   {1.18} [+run_counts.most_common(min(top, 10)):\n chain, +run_counts.most_common(top):\n found[a]]
      1 members: a, c in
   {1.19} [+== p:\n, +== p:\n ch]
      1 members: as_element_of(node(part), parent)\n if parent[:len(p)]
-  {1.20} ["""+, '+, '0%d+, 'r+, 'sym+, 'w+, (+, (a+, (wo+, (wob+, +', +'), +'))\n, +')., +').write(json.dumps(J,, +), +))\n, +),, +):, +):\n, +,, +., +2, +2), +2)):\n, +], +][a], +a, +ac, +ack, +and, +asename(path)\n, +at, +atch, +atch:\n, +b, +bl, +ble, +ble,, +d, +da, +e, +ea, +ec, +eco, +ef, +efor, +efore'],\n, +eg, +egin, +eginn, +eginning, +eginnings':, +el, +er, +ers, +ers),, +ers,, +est, +et, +etween, +i, +ig, +is, +ise, +isec, +isect, +isect.bisect_left(keys,, +it, +it:, +its, +its,, +its[, +its[:sample]\n, +its[i, +its[i:i, +its\n, +its\n#, +l, +le, +le,, +les, +les(, +les(L['runs'],, +les(runs,, +o, +ot, +oth, +ottom\n#\n#, +ou, +out, +ove, +ove))), +r, +rea, +reak\n, +ri, +ro, +rou, +routine.\n\n, +routine.\n\nOne, +s, +s(profile[picked][, +s(profile[picked][c], +spath(path))\n, +u, +ui, +uilt, +ut, +y, +yt, +yte, +ytes':, -+, .+, .from_+, 7+, 8-+, L['+, [(+, [+, [[key(+, _+, a+, em+, ha+, history_+, igh+, int.from_+, key(+, la+, len(a+, m+, mem+, memory['history_+, n(int.from_+, num+, o+, ob+, os.path.+, prv[+, run_counts[+, self.+, su+, sym+, time_ta+, um+, y+, ym+, {key(+]
+  {1.20} ["""+, '+, '0%d+, 'r+, 'sym+, 'w+, (+, (a+, (wo+, (wob+, +', +'), +'))\n, +')., +').write(json.dumps(J,, +), +))\n, +),, +):, +):\n, +,, +., +.com/Dgon164/tuber-obj, +.com/Dgon164/tuber-object, +.com/Dgon164/tuber-objectiv, +2, +2), +2)):\n, +], +][a], +a, +ac, +ack, +and, +asename(path)\n, +at, +atch, +atch:\n, +b, +bl, +ble, +ble':, +ble,, +d, +da, +e, +ea, +ec, +eco, +ef, +efor, +efore'],\n, +eg, +egin, +eginn, +eginning, +eginnings':, +el, +er, +ers, +ers),, +ers,, +est, +et, +etween, +i, +ig, +is, +ise, +isec, +isect, +isect.bisect_left(keys,, +it, +it:, +its, +its,, +its[, +its[:sample]\n, +its[i, +its[i:i, +its\n, +its\n#, +jective@gmail., +jective@gmail.com, +l, +le, +le':, +le,, +les, +les(, +les(L['runs'],, +les(runs,, +o, +ot, +oth, +ottom\n#\n#, +ou, +out, +ove, +ove))), +r, +rea, +reak\n, +ri, +ro, +rou, +routine.\nJa, +routine.\nJason, +s, +s(profile[picked][, +s(profile[picked][c], +spath(path))\n, +u, +ui, +uilt, +ut, +y, +yt, +yte, +ytes':, -+, .+, .com/Dgon164/tu+, .from_+, 164/tu+, 7+, 8-+, L['+, [(+, [+, [[key(+, _+, a+, em+, github.com/Dgon164/tu+, ha+, history_+, hub.com/Dgon164/tu+, igh+, int.from_+, key(+, la+, len(a+, m+, mem+, memory['history_+, n(int.from_+, num+, o+, ob+, os.path.+, prv[+, run_counts[+, self.+, su+, sym+, thub.com/Dgon164/tu+, time_ta+, tu+, u+, um+, y+, ym+, {key(+]
      1 members: b
   {1.21} [(a, b),+, +after.items():\n expected, +range(w):\n col, a,+, for (a, b),+]
      1 members: c in
@@ -762,8 +762,8 @@ CRYSTAL   dictionary entries for the most common runs (top 25)
     changes    
     followed   x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d 1, x[0]\n k 1
     preceded   node(x)\n if isinstance(x, int):\n return self.g0(x)\n if is_token(x):\n... 1, format(x, '0%dx' % ((frame + 3) // 4))\n elif is_token(x):\n d 1
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato...   seen 1
-    made of    """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato..., R
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti...   seen 1
+    made of    """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti..., R
     part of    
     changes    
     followed   discovery.Root(FILE) the signal as read, level 0, the pool;\n discover()... 1
@@ -773,7 +773,7 @@ CRYSTAL   dictionary entries for the most common runs (top 25)
     part of    
     changes    
     followed   open(path, 'rb').read()\n if limit:\n data 1
-    preceded   """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato... 1
+    preceded   """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti... 1
   open(path, 'rb').read()\n if limit:\n data   seen 1
     made of    open(path, 'rb').read()\n if limit:\n, data
     part of    
@@ -913,7 +913,7 @@ LEVEL 2
 
 SYMBOLS   219 symbols, 218 distinct  (each is a level 1 run; level 1 classes count as same)
   depth(x)\n while isinstance(x, tuple):\n x  2
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato...  1
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti...  1
   discovery.Root(FILE) the signal as read, level 0, the pool;\n discover()...  1
   open(path, 'rb').read()\n if limit:\n data  1
   data[:limit]\n if not data:\n return data, ''\n bits  1
@@ -939,7 +939,7 @@ SYMBOLS   219 symbols, 218 distinct  (each is a level 1 run; level 1 classes cou
   []\n else:\n run.append(word)\n if run:\n runs.append(tuple(run))\n retu...  1
 
 FOLLOWS   which symbol comes after which (top 25 of 218 pairs)
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato... -> discovery.Root(FILE) the signal as read, level 0, the pool;\n discover()...  1
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti... -> discovery.Root(FILE) the signal as read, level 0, the pool;\n discover()...  1
   discovery.Root(FILE) the signal as read, level 0, the pool;\n discover()... -> open(path, 'rb').read()\n if limit:\n data  1
   open(path, 'rb').read()\n if limit:\n data -> data[:limit]\n if not data:\n return data, ''\n bits  1
   data[:limit]\n if not data:\n return data, ''\n bits -> bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8)\n return data,...  1
@@ -968,12 +968,12 @@ FOLLOWS   which symbol comes after which (top 25 of 218 pairs)
 SEPARATOR   the most common symbol: depth(x)\n while isinstance(x, tuple):\n x
 
 RUNS   3 runs between separators, 3 distinct
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato...  1
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti...  1
   x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ...  1
   x[0]\n k | '{%d.%d}' % (d - 1, -1 - x)\n else:\n d | depth(x)\n k | ('.'...  1
 
 RUN FOLLOWS   which run comes after which (top 25 of 2 pairs)
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato... -> x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ...  1
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti... -> x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ...  1
   x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ... -> x[0]\n k | '{%d.%d}' % (d - 1, -1 - x)\n else:\n d | depth(x)\n k | ('.'...  1
 
 TIME   the sequence read as time; the stretch after a run is 3 runs (the typical distance to the next level's separator)
@@ -982,11 +982,11 @@ TIME   the sequence read as time; the stretch after a run is 3 runs (the typical
   CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
-  pool: 3 distinct runs in, 3 structures added, 10637 in the pool now
+  pool: 3 distinct runs in, 3 structures added, 10892 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
   part                            density   whole  inside (sample)
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato...        0       1  
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti...        0       1  
   x[0]\n k | '{%d.%d}' % (d - 1, -1 - x)\n else:\n d | depth(x)\n k | ('.'...        0       1  
   x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ...        0       1  
 
@@ -997,7 +997,7 @@ BEGINNINGS   what gets added to the start of a part to make another (top 25)
 CLASSES   parts that take the same set of changes (largest 25 of 0; two or more members count as same one level up)
 
 CRYSTAL   dictionary entries for the most common runs (top 25)
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato...   seen 1
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti...   seen 1
     made of    
     part of    
     changes    
@@ -1008,7 +1008,7 @@ CRYSTAL   dictionary entries for the most common runs (top 25)
     part of    
     changes    
     followed   x[0]\n k | '{%d.%d}' % (d - 1, -1 - x)\n else:\n d | depth(x)\n k | ('.'... 1
-    preceded   """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato... 1
+    preceded   """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti... 1
   x[0]\n k | '{%d.%d}' % (d - 1, -1 - x)\n else:\n d | depth(x)\n k | ('.'...   seen 1
     made of    
     part of    
@@ -1021,15 +1021,15 @@ LEVEL 3
 ==============================================================================
 
 SYMBOLS   3 symbols, 3 distinct  (each is a level 2 run; level 2 classes count as same)
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato...  1
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti...  1
   x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ...  1
   x[0]\n k | '{%d.%d}' % (d - 1, -1 - x)\n else:\n d | depth(x)\n k | ('.'...  1
 
 FOLLOWS   which symbol comes after which (top 25 of 2 pairs)
-  """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato... -> x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ...  1
+  """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti... -> x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ...  1
   x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ... -> x[0]\n k | '{%d.%d}' % (d - 1, -1 - x)\n else:\n d | depth(x)\n k | ('.'...  1
 
-SEPARATOR   the most common symbol: """\nDiscovery -- the learning subroutine.\n\nOne mechanism: a comparato...
+SEPARATOR   the most common symbol: """\nDiscovery -- the learning subroutine.\nJason Weeks, thetuberobjecti...
 
 RUNS   1 runs between separators, 1 distinct
   x[0]\n return '{%d.%d}' % (d - 1, -1 - x)\n d | depth(x)\n if d == 1:\n ...  1
@@ -1042,7 +1042,7 @@ TIME   the sequence read as time; the stretch after a run is 1 runs (the typical
   CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
-  pool: 1 distinct runs in, 1 structures added, 10638 in the pool now
+  pool: 1 distinct runs in, 1 structures added, 10893 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
   part                            density   whole  inside (sample)

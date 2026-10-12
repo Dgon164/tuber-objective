@@ -1,6 +1,6 @@
 # The persistence of all complex things
 
-*A proposed alignment paper. Draft, 2026-10-12.*
+*A proposed alignment paper. Jason Weeks, draft, 2026-10-12 — thetuberobjective@gmail.com*
 
 ## The claim
 
