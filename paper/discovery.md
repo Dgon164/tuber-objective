@@ -324,16 +324,18 @@ Memory closes the loop. With `--memory FILE`, the pool is saved after a
 run and loaded before the next one. The remembered parts sit in the
 sorted pool right next to the new signal's runs, so a new run gets
 compared against what's remembered as well as against the rest of the
-signal. Everything the run produces gets sorted into three bins:
-confirmed, added, and not seen this time. Nothing gets removed.
+signal. A comparison counts only when the new signal is in it: two
+remembered parts it has not reached are left alone, so a memory never
+confirms itself. Everything the run produces gets sorted into three
+bins: confirmed, added, and not seen this time. Nothing gets removed.
 
 The test is simple:
 
 - First half of Alice, from nothing: adds 14,079 parts.
-- Second half, against that memory: confirms 11,941 and adds 9,337.
-- Second half again: confirms all 21,278 and adds 0 at level 0
-  (5 at level 1).
-- German text against the English memory: confirms 18,971 (the short
+- Second half, against that memory: confirms 10,588 and adds 9,337.
+- Second half again: confirms 19,833 of the 19,925 it produced the
+  first time and adds 0 at level 0 (5 at level 1).
+- German text against the English memory: confirms 14,797 (the short
   parts the two alphabets share) and adds 17,987 that English never
   produced.
 
@@ -387,8 +389,10 @@ So there is:
   random-chance wobble, computed from the number of rows.
 - No training, no weights, no objective function.
 - No error handling on bad input — a random file gives a flat frame
-  table and a word table where nothing repeats, and that's reported as
-  found.
+  table and folds to a frame of one bit, and that's reported as found.
+  The only refusals are at the door, each with its reason: an option
+  the program doesn't have, a value left off, a memory written at
+  another frame or in an older format.
 
 Two things were added after the first examples ran, both limits rather
 than new methods (the level loop was added after them, and that is

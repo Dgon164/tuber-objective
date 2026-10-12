@@ -22,7 +22,13 @@ From Python:            R = discovery.Root(FILE)   the signal as read, level 0, 
                         discover() is Root plus every level and the record.
 """
 
-import sys, os, json, pickle, collections, heapq, bisect
+import sys, os, json, collections, heapq, bisect
+
+
+class Refusal(ValueError):
+    """A run that is not made, with the reason: an option the program does not
+    have, a memory at another frame or in an older format.  Said at the door,
+    without a traceback; a refusal is an answer."""
 
 
 # --------------------------------------------------------------------------
@@ -31,7 +37,7 @@ import sys, os, json, pickle, collections, heapq, bisect
 
 def read_signal(path, limit=None):
     data = open(path, 'rb').read()
-    if limit:
+    if limit is not None:
         data = data[:limit]
     if not data:
         return data, ''
@@ -58,6 +64,8 @@ def read_signal(path, limit=None):
 # picked width's column rates are a smaller width's rates repeated, within
 # the wobble a rate can have by chance (half over root rows), the frame is
 # that smaller width.  Smallest divisor that fits wins.
+#
+# The first 2^19 bits (64 KB) of the signal decide the frame.
 # --------------------------------------------------------------------------
 
 def find_frame(bits, widest=64, sample=1 << 19, force=None):
@@ -150,12 +158,15 @@ def cut_runs(words, separators):
 # memory: the parts that were in the pool before this signal arrived
 # (loaded from a memory file).  Remembered parts of this level's depth sit
 # in the sorted pool next to the new runs, so a new run collides with what
-# is remembered as well as with the rest of the signal.  Remembered parts
-# are fresh in the first round like everything else, so they are compared
-# again too; a remembered part that comes out of a comparison again is
-# confirmed.  What this run produces is reported against memory:
-# confirmed (remembered and produced again), added (new), not seen
-# (remembered, not produced this time).
+# is remembered as well as with the rest of the signal.  A comparison
+# counts only when this signal is in it: a pair of remembered parts that
+# this signal has not reached is left alone (they were compared when they
+# were minted).  A remembered part that comes out of a comparison again
+# is confirmed, and is then fresh for one round, so what was minted from
+# it last time can be reached again.  A signal read twice confirms
+# everything it produced the first time.  What this run produces is
+# reported against memory: confirmed (remembered, and produced again by
+# this signal), added (new), not seen (remembered, not produced this time).
 #
 # cap: the pool can grow large on a big signal with long runs.  When it
 # passes the cap the loop stops early and the record says so.  This is a
@@ -174,9 +185,12 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
     for r in run_counts:
         k = node(r)
         pool[k] = pool.get(k, 0) + (run_counts[r] if level == 0 else 0)   # whole count: level 0 only
+    remembered_only = set()                    # remembered parts of this depth that this signal did not run
+    reached = set(run_counts)                  # what this signal has run or produced, in this level's form
     if memory and run_counts:
         d = depth(next(iter(run_counts)))
-        mine |= set(p for p in memory if depth(p) == d and not is_token(p))
+        remembered_only = set(p for p in memory if depth(p) == d and not is_token(p)) - mine
+        mine |= remembered_only
     if not class_of:
         class_of = {}
 
@@ -216,6 +230,7 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
     endings = collections.Counter()            # remainder after a shared head
     beginnings = collections.Counter()         # remainder before a shared tail
     rounds = []
+    reached_again = []                         # per round: remembered parts this signal produced again
     nodal = level > 0                          # at level 0 a part is its own node
     # The pool in both orders: forward as the parts, mirrored as (mirrored
     # part, part).  What a round mints is merged in where it belongs, and
@@ -226,9 +241,11 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
     order = [sorted(mine), sorted((p[::-1], p) for p in mine)]
     pending = [[], []]                         # minted since each order was last merged
     forward_made, carried = [], []             # mirrored entries minted by a forward pass
+    touched = []                               # remembered parts this signal produced again last round: fresh once more
     r = 0
     while True:
         new = set()
+        touched_now = []
         for mirror in (False, True):
             keys, at = order[mirror], []
             if pending[mirror]:
@@ -238,6 +255,7 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
             if mirror:
                 at += [bisect.bisect_left(keys, e) for e in carried]
                 carried, forward_made = forward_made, []
+            at += [bisect.bisect_left(keys, (p[::-1], p) if mirror else p) for p in touched]
             if r == 0:
                 left = range(len(keys) - 1)
             else:
@@ -250,6 +268,8 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
                 else:
                     a2 = a = x
                     b2 = b = y
+                if a not in reached and b not in reached:
+                    continue                   # two remembered parts this signal has not reached: compared when they were minted
                 h = head(a2, b2)
                 n = len(h)
                 if n == 0:
@@ -271,21 +291,27 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
                             pool[k] = 0
                             mine.add(piece)
                             new.add(piece)
+                            reached.add(piece)
                             pending[0].append(piece)
                             e = (piece[::-1], piece)
                             pending[1].append(e)
                             if not mirror:
                                 forward_made.append(e)
+                        elif piece in remembered_only and piece not in reached:
+                            reached.add(piece)         # produced again by this signal: confirmed, and fresh next round
+                            touched_now.append(piece)
                     if rest:
                         tally[rest] += 1
         rounds.append(len(new))
-        if not new:
+        reached_again.append(len(touched_now))
+        touched = touched_now
+        if not new and not touched:
             break
         if len(pool) > cap:
             rounds.append('stopped: pool passed the cap of %d parts' % cap)
             break
         r += 1
-    return mine, produced, endings, beginnings, rounds
+    return mine, produced, endings, beginnings, rounds, reached_again
 
 
 # --------------------------------------------------------------------------
@@ -394,8 +420,8 @@ def run_level(seq, separators, pool, made_of, part_of, cap, class_of, level, mem
     run_counts = count(runs)
     run_follows = follows(runs)
     before = len(pool)
-    mine, produced, endings, beginnings, rounds = mint(run_counts, pool, made_of, part_of, cap,
-                                                       class_of, level, memory)
+    mine, produced, endings, beginnings, rounds, reached_again = mint(run_counts, pool, made_of, part_of, cap,
+                                                                      class_of, level, memory)
     classes = crystallize(mine, part_of)
     d = depth(next(iter(run_counts))) if run_counts else 0
     remembered = set(p for p in memory if depth(p) == d and not is_token(p))
@@ -410,7 +436,7 @@ def run_level(seq, separators, pool, made_of, part_of, cap, class_of, level, mem
                 next_class_of[m] = tok
     return dict(level=level, seq=seq, counts=counts, follows=flw, separator=sep, runs=runs,
                 run_counts=run_counts, run_follows=run_follows, parts=mine,
-                endings=endings, beginnings=beginnings, rounds=rounds, classes=classes,
+                endings=endings, beginnings=beginnings, rounds=rounds, reached_again=reached_again, classes=classes,
                 minted=sum(x for x in rounds if isinstance(x, int)),
                 added=len(pool) - before, total=len(pool), next_class_of=next_class_of,
                 produced=produced, confirmed=confirmed, new=new, unseen=unseen, remembered=remembered)
@@ -505,17 +531,37 @@ def time_tables(runs, run_counts, run_follows, window, top):
     return dict(window=window, arrows=arrows, effects=effects, chains=chains)
 
 
+def tuples(x):
+    """A part as JSON wrote it (nested lists) back to the tuples the pool uses."""
+    return tuple(tuples(e) for e in x) if isinstance(x, list) else x
+
+
 def load_memory(path):
+    """The memory file is JSON: the pool as [part, count] pairs, part_of as
+    [part, [the parts it sits inside]] pairs (made_of is its inverse and is
+    rebuilt), and the history of signals read.  Any program can read it,
+    and reading it runs nothing."""
     if not path or not os.path.exists(path):
         return {}, collections.defaultdict(set), collections.defaultdict(set), []
-    M = pickle.load(open(path, 'rb'))
-    return (M['pool'], collections.defaultdict(set, M['made_of']),
-            collections.defaultdict(set, M['part_of']), M['history'])
+    raw = open(path, 'rb').read()
+    if not raw.lstrip().startswith(b'{'):
+        raise Refusal('%s is not a JSON memory (earlier versions wrote a pickle, which is no longer read): '
+                      'delete it and run the signals again' % path)
+    M = json.loads(raw)
+    pool = {tuples(k): c for k, c in M['pool']}
+    part_of = collections.defaultdict(set, {tuples(k): set(tuples(v) for v in vs) for k, vs in M['part_of']})
+    made_of = collections.defaultdict(set)
+    for part, wholes in part_of.items():
+        for whole in wholes:
+            made_of[whole].add(part)
+    return pool, made_of, part_of, [tuple(h) for h in M['history']]
 
 
 def save_memory(path, pool, made_of, part_of, history):
-    pickle.dump({'pool': pool, 'made_of': dict(made_of), 'part_of': dict(part_of),
-                 'history': history}, open(path, 'wb'))
+    M = {'pool': [[k, c] for k, c in pool.items()],
+         'part_of': [[k, list(v)] for k, v in part_of.items()],
+         'history': history}
+    open(path, 'wb').write(json.dumps(M, separators=(',', ':')).encode())
 
 
 # --------------------------------------------------------------------------
@@ -647,6 +693,8 @@ def write_level(say, L, G, pool, made_of, part_of, top, frame):
         say('')
 
     say('MINT   %d rounds; parts minted per round: %s' % (len(L['rounds']), ' '.join(map(str, L['rounds']))))
+    if L['remembered']:
+        say('  remembered parts this signal produced again, per round: %s' % ' '.join(map(str, L['reached_again'])))
     say('  pool: %d distinct runs in, %d structures added, %d in the pool now' % (
         len(L['run_counts']), L['added'], L['total']))
     say('')
@@ -828,7 +876,7 @@ def write_record(out_txt, out_json, name, data, bits, frame, profile, score, fol
         say('')
         write_level(say, L, G, pool, made_of, part_of, top, frame)
 
-    open(out_txt, 'w').write('\n'.join(T) + '\n')
+    open(out_txt, 'w', encoding='utf-8').write('\n'.join(T) + '\n')
 
     keys = Keys(frame)                         # shared by every level
     J = {
@@ -874,15 +922,22 @@ class Root:
     separators: 1 for the most common word, N for the N most common, or a
     list of words.  same: a map from a word to what stands in for it when
     two words count as the same (the band in extend/same_within.py).
-    pool, made_of, part_of: a memory to start from, as load_memory gives it.
+    pool, made_of, part_of, history: a memory to start from, as load_memory
+    gives it.  A memory holds signals read at one frame: a word is a number,
+    and the same number means different things at different widths.
     """
 
     def __init__(self, path, separators=1, lens='raw', same=None, cap=1000000, limit=None,
-                 widest=64, frame=None, pool=None, made_of=None, part_of=None):
+                 widest=64, frame=None, pool=None, made_of=None, part_of=None, history=()):
         self.path = path
         self.name = os.path.basename(path)
         self.data, self.bits = read_signal(path, limit)
         self.frame, self.profile, self.score, self.folding = find_frame(self.bits, widest, force=frame)
+        frames = sorted(set(h[2] for h in history))
+        if frames and self.frame not in frames:
+            raise Refusal('%s reads at %d bits; the memory holds signals read at %s. A memory is one frame: '
+                          'use another memory file, or --frame %d to read this signal at the memory\'s width.'
+                          % (self.name, self.frame, ', '.join(map(str, frames)), frames[0]))
         self.words = cut_words(self.bits, self.frame)
         self.pool = {} if pool is None else pool
         self.made_of = collections.defaultdict(set) if made_of is None else made_of
@@ -922,13 +977,19 @@ def discover(path, lens='raw', limit=None, widest=64, top=25, out=None, quiet=Fa
     if memory:
         mem = {'path': memory, 'parts_before': len(pool), 'history_before': list(history)}
     if isinstance(separators, str) and not separators.isdigit():
-        sep0 = [int(h, 16) for h in separators.split(',')]          # named by hand, in hex
-        sep_tag = '.sep' + separators.replace(',', '-')
+        # named by hand, in hex: 20,0a  or  0x20  or  20,  (digits alone are a count: --separators 2)
+        names = [h.strip().lower() for h in separators.split(',')]
+        names = [h[2:] if h.startswith('0x') else h for h in names if h]
+        try:
+            sep0 = [int(h, 16) for h in names]
+            sep_tag = '.sep' + '-'.join(names) if len(names) > 1 else '.sepx' + names[0]
+        except (ValueError, IndexError):
+            raise Refusal('--separators %s: give a count (2), or words in hex (20,0a; one word as 0x20 or 20,)' % separators)
     else:
         sep0 = int(separators)
         sep_tag = '.sep%d' % sep0 if sep0 > 1 else ''
     R = Root(path, sep0, lens, cap=cap, limit=limit, widest=widest, frame=frame,
-             pool=pool, made_of=made_of, part_of=part_of)
+             pool=pool, made_of=made_of, part_of=part_of, history=history)
     R.all_levels()
     if memory:
         history.append((R.name, len(R.data), R.frame))
@@ -954,13 +1015,21 @@ def main(argv):
               '--top N  --separators N|HEX,HEX,...  --cap PARTS  --memory FILE  --out DIR  --quiet')
         return
     path, opts = argv[0], {}
+    if path.startswith('-'):
+        raise Refusal('the first argument is the file to read; the options come after it')
+    known = ('lens', 'limit', 'widest', 'frame', 'top', 'separators', 'cap', 'memory', 'out')
     i = 1
     while i < len(argv):
         if argv[i] == '--quiet':
             opts['quiet'] = True
             i += 1
         else:
-            opts[argv[i].lstrip('-')] = argv[i + 1]
+            name = argv[i].lstrip('-')
+            if not argv[i].startswith('--') or name not in known:
+                raise Refusal('%s is not an option; python discovery.py --help lists them' % argv[i])
+            if i + 1 >= len(argv):
+                raise Refusal('--%s needs a value' % name)
+            opts[name] = argv[i + 1]
             i += 2
     discover(path,
              lens=opts.get('lens', 'raw'),
@@ -976,4 +1045,7 @@ def main(argv):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    try:
+        main(sys.argv[1:])
+    except Refusal as e:
+        sys.exit(str(e))

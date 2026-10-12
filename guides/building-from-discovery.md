@@ -52,7 +52,7 @@ it in: the LEVELS table — 22,446, then 6,709, then 5, then 1.
 **8. Evaluation is the comparator pointed at the model's own output.**
 "Does the model match reality?" is the same question as "Is this the
 same as that?" Memory closes the loop. See it in: `examples/memory` —
-the second half of Alice read twice confirms 21,278 and adds 0 at
+the second half of Alice read twice confirms 19,833 and adds 0 at
 level 0.
 
 ## Why the givens are enough

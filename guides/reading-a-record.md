@@ -62,8 +62,10 @@ MEMORY   alice.memory
   before this signal: 16272 parts, from alice-first-half.txt (72215 bytes, frame 8)
   this signal, against memory:
   level  produced  confirmed      added  not seen this time
-      0     21278      11941       9337                2138
-      1      6967       1664       4510                 525
+      0     19925      10588       9337                3491
+      1      6711       1420       4510                 769
+      2         4          0          4                   3
+      3         1          0          1                   1
   after: 30124 parts, saved
 ```
 
@@ -71,8 +73,11 @@ What the memory held before this signal and where it came from. Then,
 for each level: how many parts this signal produced, how many were
 already in memory (confirmed), how many were new (added), and how many
 remembered parts this signal didn't produce (not seen this time — they
-stay in memory). If you run the same signal twice, the second time
-confirms everything and adds nothing (or next to nothing).
+stay in memory). A comparison counts only when this signal is in it, so
+a memory never confirms itself. If you run the same signal twice, the
+second time confirms what the first produced (to within the few parts
+whose neighbour in the pool has changed) and adds nothing (or next to
+nothing).
 
 The tables below are written for each level under a `LEVEL n` heading.
 At level 0 the first two are WORDS and FOLLOWS; at higher levels
@@ -136,7 +141,10 @@ against the run without it. The same tables, read across the two.
 ## MINT
 
 How many rounds the loop ran and how many parts each round made. The
-counts always fall to 0 — that's the stopping rule. A line saying
+counts always fall to 0 — that's the stopping rule. With a memory, a
+second line counts the remembered parts this signal produced again,
+round by round; on a signal read twice nothing is minted and that line
+carries the work, falling to 0 the same way. A line saying
 `stopped: pool passed the cap` means the loop got cut off by the size
 limit and the parts tables are incomplete.
 

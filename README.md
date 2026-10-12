@@ -120,8 +120,10 @@ Optional. Rebuilds every record and output in the repo from the inputs
 in one go, so that what is committed is what the code makes. The
 plain-text records are committed; the JSON records (which the hybrid
 scripts and the bridge read) are big, so they are built by this script
-or by the single commands above. `hybrid/net_as_lens.py` needs numpy;
-nothing else does.
+or by the single commands above. `hybrid/net_as_lens.py` needs numpy
+and `extend/functions.py` a word list (`/usr/share/dict/american-english`
+by default); nothing else does, and the script skips either when what it
+needs is missing.
 
 ## Where the input files come from
 

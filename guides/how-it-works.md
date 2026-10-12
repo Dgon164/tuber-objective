@@ -239,15 +239,21 @@ With `--memory FILE`:
 2. The new signal gets read as usual, but the remembered parts sit in
    the sorted pool right next to the new runs. So a new run gets
    compared against what's remembered as well as against the rest of
-   the signal. Two remembered parts that are already neighbours don't
-   get compared again (neither one is new).
+   the signal. A comparison counts only when this signal is in it: two
+   remembered parts the signal hasn't reached are left alone (they were
+   compared when they were minted), so a memory never confirms itself.
+   A remembered part the signal produces again is confirmed, and is
+   then compared with its own neighbours once more, so what was minted
+   from it last time can be reached too.
 3. Everything the run produces gets sorted into three bins against
    memory: **confirmed** (already remembered, and this signal produced
    it again), **added** (new), and **not seen this time** (remembered
    but this signal didn't produce it — it stays in memory, it's not
    removed; it's just a count on the entry).
 4. The pool gets saved back to FILE, with a line in its history for
-   this signal.
+   this signal. The file is JSON. One memory holds signals read at one
+   frame — the same number is a different word at a different width —
+   and a signal at another width is refused with the reason.
 
 The test in `examples/memory/`: first half of Alice from nothing,
 second half against that memory, second half again, German text against
@@ -256,16 +262,18 @@ the English memory.
 ```
                               produced  confirmed  added  not seen
 first half, from nothing         14079          0  14079         0
-second half, against it          21278      11941   9337      2138
-second half again                21278      21278      0      2138
-German, against the English      36958      18971  17987      4445
+second half, against it          19925      10588   9337      3491
+second half again                19833      19833      0      3583
+German, against the English      32784      14797  17987      8619
 ```
 
 The second pass over the same text adds nothing at level 0 and five
 parts at level 1 (the memory changed which parts sit next to each
 other in the sorted pool, so five new collisions happened; a third
-pass would find even fewer). That's the loop running out of new
-things. The German text against the English memory confirms 18,971
+pass would find even fewer), and reaches 19,833 of the 19,925 parts
+the first pass produced; the rest are heads that a part minted on the
+first pass now stands in front of. That's the loop running out of new
+things. The German text against the English memory confirms 14,797
 parts — the short parts the two alphabets share — and adds 17,987
 that English never produced.
 

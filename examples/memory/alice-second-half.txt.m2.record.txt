@@ -32,8 +32,8 @@ MEMORY   alice.memory
   before this signal: 16272 parts, from alice-first-half.txt (72215 bytes, frame 8)
   this signal, against memory:
   level  produced  confirmed      added  not seen this time
-      0     21278      11941       9337                2138
-      1      6967       1664       4510                 525
+      0     19925      10588       9337                3491
+      1      6711       1420       4510                 769
       2         4          0          4                   3
       3         1          0          1                   1
   after: 30124 parts, saved
@@ -219,6 +219,7 @@ TIME   the sequence read as time; the stretch after a run is 15 runs (the typica
     it -> be -> so -> she -> her
 
 MINT   13 rounds; parts minted per round: 3932 1809 594 254 99 52 21 13 8 6 3 1 0
+  remembered parts this signal produced again, per round: 6556 1979 666 171 39 11 1 0 0 0 0 0 0
   pool: 3710 distinct runs in, 9337 structures added, 25609 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
@@ -250,58 +251,58 @@ PARTS BY DENSITY   density = how many parts this one sits inside, at any level (
   and                                 401     630  'and, and,, hand, stand
 
 ENDINGS   what gets added to the end of a part to make another (top 25)
-  +,                         2032
-  +e                         1109
-  +\n                        859
-  +s                         859
-  +'                         704
-  +.                         686
-  +t                         676
-  +d                         649
-  +n                         562
-  +,'                        549
-  +a                         493
-  +ing                       485
-  +r                         484
-  +;                         471
-  +:                         467
-  +i                         436
-  +l                         431
-  +o                         409
-  +ed                        406
-  +!'                        371
-  +!                         359
-  +y                         342
-  +h                         305
-  +-                         237
-  +?'                        230
+  +,                         2375
+  +e                         1386
+  +\n                        1186
+  +s                         1004
+  +t                         841
+  +d                         814
+  +'                         805
+  +.                         778
+  +n                         677
+  +r                         612
+  +,'                        609
+  +a                         561
+  +ing                       534
+  +l                         534
+  +i                         528
+  +;                         527
+  +:                         498
+  +o                         473
+  +ed                        451
+  +!                         434
+  +!'                        415
+  +y                         403
+  +h                         366
+  +-                         304
+  +m                         263
 
 BEGINNINGS   what gets added to the start of a part to make another (top 25)
-                        \n+  1235
-                         e+  1110
-                         s+  988
-                         a+  956
-                         i+  805
-                         '+  802
-                         t+  790
-                         r+  730
-                         o+  659
-                         d+  632
-                         n+  623
-                         c+  587
-                         l+  562
-                         p+  506
-                         h+  482
-                         m+  456
-                         b+  433
-                         -+  429
-                         f+  427
-                         u+  383
-                         .+  375
-                         g+  350
-                         w+  325
-                        --+  239
-                         T+  209
+                        \n+  1821
+                         e+  1464
+                         a+  1326
+                         s+  1315
+                         i+  1043
+                         t+  1026
+                         '+  1012
+                         r+  985
+                         d+  874
+                         o+  853
+                         n+  844
+                         c+  788
+                         l+  747
+                         p+  681
+                         h+  658
+                         m+  614
+                         b+  578
+                         f+  563
+                         -+  556
+                         u+  510
+                         g+  471
+                         .+  452
+                         w+  410
+                        --+  282
+                         T+  263
 
 CLASSES   parts that take the same set of changes (largest 25 of 12401; two or more members count as same one level up)
   {0.0} [+ed, +ing]
@@ -357,13 +358,13 @@ CLASSES   parts that take the same set of changes (largest 25 of 12401; two or m
 
 CRYSTAL   dictionary entries for the most common runs (top 25)
   the   seen 798
-    made of    th, he, t, e
+    made of    he, th, e, t
     part of    they, their, them, then, there, them,, these, in\nthe
     changes    +y, +ir, +m, +n, +re, +m,, +se, in\n+
     followed   Mock 47, March 23, King 22, Queen 20, Gryphon 17, Dormouse 15
     preceded   said 127, of 59, to 37, and 35, at 29, in 26
   and   seen 290
-    made of    an, nd, a, d
+    made of    nd, an, a, d
     part of    'and, and,, hand, stand, them--and, Wonderland, and\nwas, and\nthey
     changes    '+, +,, h+, st+, them--+, Wonderl+, +\nwas, +\nthey
     followed   the 35, she 14, then 10, was 9, looked 7, went 6
@@ -641,6 +642,7 @@ TIME   the sequence read as time; the stretch after a run is 200 runs (the typic
     voice of -> King said to -> Dormouse crossed
 
 MINT   14 rounds; parts minted per round: 1529 909 567 316 174 113 57 35 29 9 2 1 1 0
+  remembered parts this signal produced again, per round: 719 426 175 62 22 7 4 0 0 1 0 0 0 0
   pool: 789 distinct runs in, 4510 structures added, 30119 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
@@ -672,58 +674,58 @@ PARTS BY DENSITY   density = how many parts this one sits inside, at any level (
   to see                               10       0  three gardeners instantly threw\nthemselves flat upon their faces. There..., instantly threw\nthemselves flat upon their faces. There was a sound of ..., Queen, 'and take this young lady to see, take this young lady to see
 
 ENDINGS   what gets added to the end of a part to make another (top 25)
-  +said                      359
-  +and                       172
-  +to                        151
-  +in                        121
-  +of                        116
-  +at                        113
-  +on                        61
-  +was                       54
-  +all                       53
-  +with                      47
-  +she                       46
-  +that                      43
-  +it                        39
-  +for                       35
-  +by                        34
-  +had                       33
-  +as                        33
-  +took                      29
-  +is                        26
-  +round                     26
-  +like                      25
-  +but                       25
-  +you                       25
-  +out                       25
-  +from                      23
+  +said                      378
+  +and                       188
+  +to                        162
+  +in                        126
+  +of                        123
+  +at                        116
+  +all                       61
+  +was                       60
+  +on                        60
+  +she                       53
+  +that                      50
+  +with                      50
+  +it                        49
+  +for                       38
+  +as                        36
+  +had                       35
+  +by                        35
+  +took                      34
+  +out                       31
+  +but                       30
+  +is                        28
+  +like                      28
+  +round                     28
+  +down                      27
+  +went                      27
 
 BEGINNINGS   what gets added to the start of a part to make another (top 25)
-                       and+  134
-               Mock Turtle+  86
-                       was+  85
-                        to+  74
-                     Queen+  70
-                        as+  67
-                       had+  67
-                        it+  66
-                       she+  63
-                         a+  61
-                      King+  57
+                       and+  148
+                       was+  99
+                        to+  95
+               Mock Turtle+  88
+                       she+  83
+                         a+  75
+                     Queen+  72
+                        as+  72
+                        it+  70
+                       had+  70
+                        of+  59
+                      went+  59
+                      King+  58
                    Gryphon+  56
-                      went+  51
-                      with+  49
+                      with+  54
+                    Hatter+  51
                       Mock+  49
-                    Hatter+  46
+                      same+  48
+                        in+  48
+                      very+  48
                      March+  45
-                        in+  44
-                        of+  43
-                    Queen,+  42
-                  Dormouse+  42
-                      same+  41
-                       his+  40
-                      said+  38
-                    little+  38
+                     first+  45
+                       his+  45
+                    little+  44
+                    Queen,+  43
 
 CLASSES   parts that take the same set of changes (largest 25 of 1964; two or more members count as same one level up)
   {1.0} [+said, King,+]
@@ -1006,6 +1008,7 @@ TIME   the sequence read as time; the stretch after a run is 4 runs (the typical
   CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
+  remembered parts this signal produced again, per round: 0
   pool: 4 distinct runs in, 4 structures added, 30123 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
@@ -1078,6 +1081,7 @@ TIME   the sequence read as time; the stretch after a run is 1 runs (the typical
   CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
+  remembered parts this signal produced again, per round: 0
   pool: 1 distinct runs in, 1 structures added, 30124 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)

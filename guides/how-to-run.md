@@ -1,7 +1,7 @@
 # How to run Discovery
 
 You need Python 3. Nothing to install. (`hybrid/net_as_lens.py` needs
-numpy; nothing else does.)
+numpy and `extend/functions.py` a word list; nothing else does.)
 
 ## Run it on a file
 
@@ -26,15 +26,17 @@ where N is how many signals the memory has seen after this one.
 | `--widest BITS` | widest word size to test | 64 |
 | `--frame BITS` | skip the word-size detection and use this width | auto-detected |
 | `--separators N` | use the N most common words as separators instead of just one | 1 |
-| `--separators HEX,HEX` | pick the separator words yourself, in hex (`20,0a` means space and newline) | |
+| `--separators HEX,HEX` | pick the separator words yourself, in hex (`20,0a` means space and newline; one word is `0x20` or `20,`, since digits alone are a count) | |
 | `--cap PARTS` | stop the mint loop if the pool gets bigger than this | 1000000 |
-| `--memory FILE` | load a saved pool from FILE, compare this signal against it, then save the updated pool back | none |
+| `--memory FILE` | load a saved pool from FILE, compare this signal against it, then save the updated pool back (JSON; one memory holds signals read at one frame) | none |
 | `--top N` | how many rows to show per table in the text record | 25 |
 | `--out DIR` | where to write the record files | next to the input |
 | `--quiet` | don't print the record to the screen | |
 
 The JSON record always has everything. `--top` only affects the
-text printout.
+text printout. The frame is decided from the first 64 KB of the file.
+An option the program doesn't have, or one with its value left off, is
+refused with a message rather than ignored.
 
 ## The examples
 

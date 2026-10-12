@@ -40,7 +40,7 @@ rules = Rules(first)
 walk = rules.walk('Alice', steps=RUNS_OUT, seed=3)
 text = ' '.join(walk).replace('\\n', '\n')
 out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'loop.output.txt')
-open(out_path, 'w').write(text)
+open(out_path, 'w', encoding='utf-8').write(text)
 print('walked %d runs into %s' % (len(walk), os.path.basename(out_path)))
 
 # ---- the new text, as discovery.py reads it: a second record ------------

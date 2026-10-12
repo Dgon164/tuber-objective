@@ -20,7 +20,7 @@ Every signal tried adds almost everything at levels 0 and 1, and just a handful 
 
 ## Memory across signals, beyond the test
 
-The memory test is two halves of one text, the second half twice, and one foreign text. What a memory looks like after twenty texts, how the "not seen this time" count behaves for a part that was real once and never again, and whether the sorted pool with a large memory in it still runs in seconds — none of that has been looked at. The memory file is a Python pickle, which is the easy path. A long-lived memory would want a format other programs can read.
+The memory test is two halves of one text, the second half twice, and one foreign text. What a memory looks like after twenty texts, how the "not seen this time" count behaves for a part that was real once and never again, and whether the sorted pool with a large memory in it still runs in seconds — none of that has been looked at. The memory file is JSON — the pool with its counts, part_of, the history; made_of is rebuilt on load — so other programs can read it and reading it runs nothing. It is large: 43 MB after the four runs in `examples/memory/`, most of it the part_of lists. A long-lived memory would want something more compact.
 
 ## Time
 
@@ -36,6 +36,10 @@ An earlier run of the loop (the same press-record-compare-walk as `examples/agc-
 - Raw actions with no names that mean anything to the loop: feed, change, read, put in crib, pick up, a fence, a latch, remove the stove, do nothing.
 - The loop as in `phase-c/`: press, record every field, compare against memory, keep everything, build the effects table; then the goal as a constraint on a field (touching = 0 over the run) and the walk backward from the goal to the presses.
 - What to record: which actions the walk proposes, in order, and whether each one removes something from the world (fence, latch, remove) or satisfies something in it (feed, change, read). The claim is that the satisfying ones come first because they sit upstream in the chain; the test is whether that holds across worlds where the costs are varied.
+
+## A null for the mint and the levels
+
+Random bytes fold to a frame of one bit (the fold step working as meant) and mint nothing at level 0: the runs are run-lengths, and nothing shares a head. The levels above then read the run-length sequence as a signal, and a sequence of small numbers drawn at random repeats by chance: 50 KB of noise gives some 20,000 parts and 7,000 classes at level 2, and two unrelated noise files confirm 40–50% of each other's level-1 and level-2 parts through memory. The frame step has a chance term computed from the signal; the mint and the levels have none. Whether a part should count only when it beats what a scrambled copy of the same signal gives — the comparator pointed at a shuffled self — is the open question. Not built; it would change every record.
 
 ## A row signal at a second frame
 

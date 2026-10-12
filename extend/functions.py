@@ -197,7 +197,7 @@ T3 = time.time()
 # ---- what it found (what ships) -----------------------------------------
 out = os.path.splitext(os.path.basename(path))[0] + '.functions.txt'
 fails = len(log) - len(made)
-with open(out, 'w') as f:
+with open(out, 'w', encoding='utf-8') as f:
     say = lambda s='': f.write(s + '\n')
     say('FUNCTIONS   signal %s   answer key %s' % (os.path.basename(path), wordlist))
     say('  time: record %.1fs, functions %.1fs, making %.1fs, total %.1fs'

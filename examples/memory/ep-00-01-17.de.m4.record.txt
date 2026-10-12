@@ -32,8 +32,8 @@ MEMORY   alice.memory
   before this signal: 30129 parts, from alice-first-half.txt (72215 bytes, frame 8), alice-second-half.txt (72180 bytes, frame 8), alice-second-half.txt (72180 bytes, frame 8)
   this signal, against memory:
   level  produced  confirmed      added  not seen this time
-      0     36958      18971      17987                4445
-      1     22577       5421      15017                1282
+      0     32784      14797      17987                8619
+      1     21259       4181      15017                2522
       2         9          0          9                   7
       3         1          0          1                   2
   after: 63143 parts, saved
@@ -218,7 +218,8 @@ TIME   the sequence read as time; the stretch after a run is 14 runs (the typica
     für -> Verkehr -> und -> Herren -> Abgeordneten
     von -> Herrn -> Koch -> für -> Verkehr
 
-MINT   8 rounds; parts minted per round: 8573 3434 1079 350 107 33 4 0
+MINT   14 rounds; parts minted per round: 8573 3434 1079 350 107 33 4 0 0 0 0 0 0 0
+  remembered parts this signal produced again, per round: 5039 3709 2876 1681 815 340 139 64 32 14 3 2 1 0
   pool: 4489 distinct runs in, 17987 structures added, 48116 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
@@ -250,58 +251,58 @@ PARTS BY DENSITY   density = how many parts this one sits inside, at any level (
   c                                   751       1  could, came, can, can't
 
 ENDINGS   what gets added to the end of a part to make another (top 25)
-  +e                         2416
-  +n                         2199
-  +,                         1932
-  +t                         1753
-  +s                         1654
-  +en                        1511
-  +r                         1239
-  +d                         939
-  +i                         904
-  +\n                        870
-  +l                         867
-  +a                         796
-  +.                         674
-  +'                         669
-  +o                         607
-  +h                         524
-  +m                         519
-  +g                         516
-  +ing                       479
-  +;                         468
-  +u                         467
-  +,'                        462
-  +:                         433
-  +-                         428
-  +er                        413
+  +e                         2881
+  +n                         2445
+  +,                         2075
+  +t                         1902
+  +s                         1757
+  +en                        1566
+  +r                         1383
+  +\n                        1365
+  +d                         1130
+  +i                         1040
+  +a                         1011
+  +l                         985
+  +'                         778
+  +.                         735
+  +o                         713
+  +h                         628
+  +-                         590
+  +g                         586
+  +m                         571
+  +u                         527
+  +;                         476
+  +f                         475
+  +y                         456
+  +ing                       439
+  +er                        438
 
 BEGINNINGS   what gets added to the start of a part to make another (top 25)
-                         e+  2325
-                         s+  1935
-                         a+  1622
-                         i+  1598
-                         r+  1538
-                         n+  1419
-                         t+  1377
-                         l+  1146
-                         d+  1062
-                        \n+  1052
-                         o+  1022
-                         b+  995
-                         u+  935
-                         g+  934
-                         h+  859
-                         f+  827
-                         m+  780
-                         p+  764
-                         c+  746
-                         '+  648
-                         k+  628
-                         w+  613
-                         S+  575
-                         A+  518
-                         E+  469
+                         e+  2789
+                         s+  2230
+                         a+  2090
+                         i+  1842
+                         r+  1814
+                        \n+  1812
+                         n+  1621
+                         t+  1621
+                         l+  1316
+                         d+  1307
+                         o+  1226
+                         b+  1160
+                         g+  1042
+                         u+  1036
+                         h+  1018
+                         f+  977
+                         c+  976
+                         m+  956
+                         p+  939
+                         '+  818
+                         w+  690
+                         k+  657
+                         -+  655
+                         S+  650
+                         A+  587
 
 CLASSES   parts that take the same set of changes (largest 25 of 21966; two or more members count as same one level up)
   {0.0} [+en, +t]
@@ -387,7 +388,7 @@ CRYSTAL   dictionary entries for the most common runs (top 25)
     followed   den 68, der 61, diesem 21, äußerster 16, die 15, einer 12
     preceded   , 28, Regionen 15, die 12, es 9, auch 8, nicht 8
   den   seen 302
-    made of    en, de, d, n
+    made of    en, de, n, d
     part of    werden, denen, denn, wurden, beiden, denke, golden, würden
     changes    wer+, +en, +n, wur+, bei+, +ke, gol+, wür+
     followed   Regionen 12, Mitgliedstaaten 8, letzten 8, Vorschlag 6, Antrag 6, ländlichen 6
@@ -661,7 +662,8 @@ TIME   the sequence read as time; the stretch after a run is 189 runs (the typic
     meine Damen und Herren A... -> Frau Berichterstatterin -> Herr Kommissar Barnier -> Herr Kommissar -> Herr Berichterstatter
     Herr Kommissar Barnier -> Herr Kommissar -> Herr Berichterstatter -> Herr Berend -> Herr Kommissar .\nDie Au...
 
-MINT   23 rounds; parts minted per round: 3355 2660 1985 1444 1091 835 602 430 325 224 143 100 61 47 37 20 12 9 5 2 1 1 0
+MINT   23 rounds; parts minted per round: 3352 2660 1985 1444 1091 835 602 432 325 224 143 100 61 47 37 20 12 10 5 2 1 1 0
+  remembered parts this signal produced again, per round: 105 94 143 220 296 399 501 544 551 459 322 212 144 99 55 22 12 3 0 0 0 0 0
   pool: 1654 distinct runs in, 15017 structures added, 63133 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
@@ -693,17 +695,17 @@ PARTS BY DENSITY   density = how many parts this one sits inside, at any level (
   über die                             27       0  über die Leitlinien zu sprechen, über die Thematik der Inseln gehört, über die Leitlinien zu sprechen .\nAber ich glaube nicht, Kommission über die
 
 ENDINGS   what gets added to the end of a part to make another (top 25)
-  +said                      362
-  +in                        190
+  +said                      372
+  +in                        212
+  +and                       204
+  +to                        184
   +der                       180
   +ist                       173
-  +and                       166
-  +to                        145
   +werden                    136
   +und                       128
-  +of                        113
+  +of                        118
   +die                       112
-  +at                        106
+  +at                        111
   +haben                     98
   +.\nHerr Präsident         97
   +ich                       94
@@ -712,21 +714,22 @@ ENDINGS   what gets added to the end of a part to make another (top 25)
   +hat                       87
   +sind                      86
   +wird                      83
+  +on                        69
   +das                       67
   +zu                        67
+  +it                        66
   +sagen                     65
-  +Regionen                  64
-  +Sie                       63
-  +auch                      63
+  +she                       65
 
 BEGINNINGS   what gets added to the start of a part to make another (top 25)
                        die+  1007
                        der+  644
                        und+  418
+                        in+  392
                        daß+  379
-                        in+  365
                        den+  266
                        das+  255
+                       was+  209
                       eine+  196
                         im+  191
                    daß die+  178
@@ -734,13 +737,12 @@ BEGINNINGS   what gets added to the start of a part to make another (top 25)
                        ich+  172
                         zu+  163
                        von+  163
-                       was+  158
-                        um+  154
+                        um+  155
                        wie+  154
                       auch+  145
                      nicht+  143
                        auf+  140
-                       ist+  135
+                       ist+  136
                        sie+  129
                        für+  128
                        ein+  128
@@ -1037,6 +1039,7 @@ TIME   the sequence read as time; the stretch after a run is 9 runs (the typical
   CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
+  remembered parts this signal produced again, per round: 0
   pool: 9 distinct runs in, 9 structures added, 63142 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)
@@ -1158,6 +1161,7 @@ TIME   the sequence read as time; the stretch after a run is 1 runs (the typical
   CHAINS   the strongest effect, followed forward
 
 MINT   1 rounds; parts minted per round: 0
+  remembered parts this signal produced again, per round: 0
   pool: 1 distinct runs in, 1 structures added, 63143 in the pool now
 
 PARTS BY DENSITY   density = how many parts this one sits inside, at any level (top 25)

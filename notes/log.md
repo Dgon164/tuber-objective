@@ -318,3 +318,46 @@ What was built, in order, and what each run changed. Dates are 2026.
   — the README's Contact, both papers' bylines, the LICENSE holder, the
   header of `discovery.py`, a `CITATION.cff`, and the author of the
   commits from here on.
+
+## 10-12 — what a new reader found, fixed
+
+- A cold read of the repo: every example run from a fresh checkout, the
+  emulator built and run, random bytes and a CSV fed in, the memory
+  loop probed with a two-byte file. What it found, all fixed the same
+  day; records without a memory are byte for byte the same.
+- MEMORY's *confirmed* column counted the memory colliding with itself:
+  a two-byte file against the first-half memory "confirmed" 11,476 of
+  the 11,941 the second half did. In `mint()` the first round compared
+  every neighbouring pair, remembered pairs included. Now a comparison
+  counts only when this signal is in it; a remembered part the signal
+  produces again is confirmed and fresh for one more round, so what was
+  minted from it last time is reached too. The two-byte file confirms
+  3. `examples/memory` regenerated: the second half confirms 10,588
+  (was 11,941) and adds 9,337 as before; the same half again confirms
+  19,833 of the 19,925 it produced and adds 0 and 5 as before; German
+  confirms 14,797 (was 18,971) and adds 17,987 as before. The MINT
+  line gained a second line for memory runs: remembered parts produced
+  again, per round.
+- A memory took signals at any frame, and the same number is a
+  different word at a different width. One memory, one frame: a signal
+  at another width is refused with the reason, or read with `--frame`.
+- The memory file was a pickle; it is JSON now (pool with counts,
+  part_of, history; made_of rebuilt on load). An old file is refused
+  with a note to delete it.
+- The text record was written in the locale's encoding and crashed on
+  the German example under an ASCII locale; UTF-8 now, here and in
+  `extend/functions.py` and `hybrid/loop.py`.
+- `--separators 20` meant the top twenty words, not the space: digits
+  alone are a count, so one word is `0x20` or `20,` (record tag
+  `.sepx20`). An option the program doesn't have, or one with its value
+  left off, is refused instead of ignored or a traceback. `--limit 0`
+  reads nothing instead of everything.
+- `run_examples.sh` died without `/usr/share/dict/american-english`;
+  it skips `functions.py` and says so, as it already did for numpy.
+- Said in the guides: the frame is decided from the first 64 KB.
+- Measured and left alone: random bytes fold to a frame of one bit and
+  mint nothing at level 0, then the levels above mint from the
+  run-length sequence like any signal, and two unrelated noise files
+  confirm 40–50% of each other's level-1 and level-2 parts. A null for
+  the mint and the levels is filed in open.md as the design question
+  it is.
