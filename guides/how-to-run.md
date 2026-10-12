@@ -1,7 +1,8 @@
 # How to run Discovery
 
-You need Python 3. Nothing to install. (`hybrid/net_as_lens.py` needs
-numpy and `extend/functions.py` a word list; nothing else does.)
+You need Python 3. There's nothing to install. (`hybrid/net_as_lens.py`
+needs numpy and `extend/functions.py` needs a word list, but nothing
+else does.)
 
 ## Run it on a file
 
@@ -9,13 +10,14 @@ numpy and `extend/functions.py` a word list; nothing else does.)
 python discovery.py FILE
 ```
 
-Two files get written next to the input: `FILE.record.txt` (readable
-by people) and `FILE.record.json` (readable by programs). The text
-record also gets printed to the screen. When you use `--frame` or
-`--separators`, the file names include that so different runs of the
-same file don't overwrite each other (like `FILE.frame8.record.txt` or
-`FILE.sep2.record.txt`). With `--memory` the name includes `.mN`,
-where N is how many signals the memory has seen after this one.
+Two files get written next to the input: `FILE.record.txt` (the
+human-readable version) and `FILE.record.json` (the machine-readable
+version). The text record also gets printed to your screen. When you use
+`--frame` or `--separators`, the file names include that so different
+runs of the same file don't step on each other (like
+`FILE.frame8.record.txt` or `FILE.sep2.record.txt`). With `--memory`
+the name includes `.mN`, where N is how many signals the memory has seen
+after this one.
 
 ## Options
 
@@ -26,17 +28,17 @@ where N is how many signals the memory has seen after this one.
 | `--widest BITS` | widest word size to test | 64 |
 | `--frame BITS` | skip the word-size detection and use this width | auto-detected |
 | `--separators N` | use the N most common words as separators instead of just one | 1 |
-| `--separators HEX,HEX` | pick the separator words yourself, in hex (`20,0a` means space and newline; one word is `0x20` or `20,`, since digits alone are a count) | |
+| `--separators HEX,HEX` | pick the separator words yourself, in hex (`20,0a` means space and newline; one word is `0x20` or `20,`, since digits alone are treated as a count) | |
 | `--cap PARTS` | stop the mint loop if the pool gets bigger than this | 1000000 |
 | `--memory FILE` | load a saved pool from FILE, compare this signal against it, then save the updated pool back (JSON; one memory holds signals read at one frame) | none |
 | `--top N` | how many rows to show per table in the text record | 25 |
 | `--out DIR` | where to write the record files | next to the input |
 | `--quiet` | don't print the record to the screen | |
 
-The JSON record always has everything. `--top` only affects the
-text printout. The frame is decided from the first 64 KB of the file.
-An option the program doesn't have, or one with its value left off, is
-refused with a message rather than ignored.
+The JSON record always has everything. `--top` only affects the text
+printout. The frame gets decided from the first 64 KB of the file. If
+you pass an option the program doesn't recognize, or leave off its
+value, you'll get an error message rather than silent weirdness.
 
 ## The examples
 
@@ -57,10 +59,10 @@ python ../../discovery.py alice-second-half.txt --lens ascii --memory alice.memo
 python ../../discovery.py ep-00-01-17.de        --lens utf8  --memory alice.memory
 ```
 
-Each one stands on its own, and its folder's BREAKDOWN.md says what to
-look for in the record it writes. `run_examples.sh` is the optional
-bulk run: all of these plus the extensions and the hybrid scripts,
-rebuilding every record in the repo.
+Each example stands on its own, and its folder's BREAKDOWN.md explains
+what to look for in the record it writes. `run_examples.sh` is the
+optional bulk run: all of the above plus the extensions and the hybrid
+scripts, rebuilding every record in the repo.
 
 ## Use it from Python
 
@@ -71,9 +73,10 @@ R.all_levels()                                  # every level, as discover() run
 txt, js = discovery.discover('some/file', lens='ascii', quiet=True)   # Root plus the record written
 ```
 
-`Root` is the root of every program built on Discovery (the scripts in
-`extend/` are `Root` plus one new thing) and of `discover()` itself.
-Or call the steps one at a time — each is a plain function:
+`Root` is the starting point for every program built on Discovery (the
+scripts in `extend/` are each `Root` plus one new thing) and for
+`discover()` itself. Or you can call the steps one at a time -- each one
+is a plain function:
 
 ```python
 data, bits = discovery.read_signal('some/file')
@@ -90,12 +93,12 @@ discovery.save_memory('alice.memory', pool, made_of, part_of, history + [('name'
 
 ## How long does it take
 
-Pure Python. The text examples take seconds; the 1.6 MB AGC assembly
-source, with its long runs and its very large record, takes the longest
-of anything in the repo, well under a minute. For a big file, use
+It's pure Python. The text examples take seconds. The 1.6 MB AGC
+assembly source, with its long runs and big record, takes the longest of
+anything in the repo -- well under a minute. For a big file, use
 `--limit` to read just the first part, or split the file and run each
 piece. The mint loop's time depends on how many distinct runs there are
-and how long they are — not on file size — and writing the record
+and how long they are -- not on the file size -- and writing the record
 depends on how many connections were found. `--cap` (defaults to
 1,000,000 parts) stops the mint loop if the pool gets too big, and the
 record says so.

@@ -7,61 +7,63 @@ Jason Weeks — Project Discovery, October 2026 — thetuberobjective@gmail.com
 ## 1. What it is
 
 Discovery takes any file, reads it as raw bits, and writes down
-everything it finds: the parts, what each part is made of, what
-contains it, what shows up before and after it, and what you'd change
-to turn one part into another. It doesn't know what kind of file it's
-looking at. It has no dictionary, no grammar, no list of file types,
-and no training step. The same one file of Python reads an English
-novel, a German parliamentary debate, a compiled program, and the
-15-bit flight software of the Apollo Lunar Module — and writes a record
-of each one.
+everything it finds. The parts, what each part is made of, what
+contains it, what shows up before and after it, and what you'd need to
+change to turn one part into another. It has no idea what kind of file
+you just handed it. There's no dictionary, no grammar rules, no list
+of known file types, and no training step. One single Python file reads
+an English novel, a German parliamentary debate, a compiled program,
+and the 15-bit flight software from the Apollo Lunar Module — and
+produces a record of each one.
 
-This paper explains how the system works and why it's built the way it
-is. It doesn't make claims about what the system can do beyond what the
-four example records in `examples/` show. Those records are the
-evidence; this is the explanation.
+This paper explains how the system works and why it's built this way.
+It doesn't make big claims about what the system can do beyond what the
+four example records in `examples/` show. Those records are the proof;
+this is the walkthrough.
 
 ## 2. Where the comparator came from
 
-Discovery started from reservoir nets — small random neural networks
-that are never trained. The finding, over many experiments, was that
-simpler was always better. A smaller net worked better than a bigger
-one. So the net got reduced: many layers to one layer. Floating-point
-numbers to integers. Integers to smaller integers. Smaller integers to
-binary. Binary to boolean.
+Discovery started from something called reservoir nets — small random
+neural networks that never get trained. Over many experiments, one
+thing kept showing up: simpler was always better. A smaller net beat a
+bigger one every time. So the net kept getting stripped down. Many
+layers became one layer. Floating-point numbers became integers.
+Integers became smaller integers. Smaller integers became binary.
+Binary became boolean.
 
-What came out the other end was the core of the whole system: A is not
-B. A boolean operation in the smallest possible net gives you the
-finest resolution of information you can get with a computer — one bit,
-one comparison, yes or no. And from that single operation, everything
-else self-assembles: the parts, the connections, the classes, the
-levels. The comparator finds what is the same and what is different.
-The memory holds what it found. And from those two pieces, structure
-builds itself up through the same logic used in basic Hebbian learning
-— things that show up together get connected.
+What came out the other end was the heart of the whole system: A is not
+B. A boolean operation (just true or false) in the tiniest possible net
+gives you the finest grain of information a computer can work with —
+one bit, one comparison, yes or no. And from that single operation,
+everything else builds itself: the parts, the connections, the groups,
+the layers. The comparator (the thing that checks whether two things
+match) finds what's the same and what's different. The memory holds
+what it found. And from those two pieces, structure assembles itself
+using the same basic idea behind Hebbian learning — things that show up
+together get linked together.
 
-That is why the program has no training step, no gradient, no
-optimization. The net was reduced until there was no net left — just
-the comparison that every net is made of.
+That's why the program has no training step, no gradient descent, no
+optimization. The net got reduced until there was no net left — just
+the comparison that every net is built out of.
 
 ## 3. The one tool
 
-The entire system is built on one operation: compare two things, and
-split the result three ways.
+The entire system runs on one operation: compare two things, and split
+the result three ways.
 
 - **Same** — the part the two share.
-- **Different** — what's left of each one after you remove the shared part.
+- **Different** — what's left of each one after you pull out the shared part.
 - **Not part** — everything the comparison never touched.
 
-That's the comparator. The other piece is a memory — a place to keep
+That's the comparator. The other piece is a memory — a place to store
 what the comparator has already seen, so there's something to compare
 the next thing against.
 
-That's the whole kit. A comparator with nothing in memory can only tell
-you something is there. A comparator with one thing in memory can tell
-you whether the next thing matches, and if not, which part is different.
-From there, every step in the program is the same comparator run again
-on what it already produced.
+That's the whole toolkit. A comparator with nothing in memory can only
+tell you that something exists. A comparator with one thing in memory
+can tell you whether the next thing matches, and if not, which part is
+different. From there, every step in the program is just the same
+comparator running again on what it already produced.
 
 Here's how that one operation shows up at every level of the program:
 
@@ -75,37 +77,39 @@ Here's how that one operation shows up at every level of the program:
 | classes | two parts and their sets of changes | the same set of changes | a different set |
 | bridge | a part in one record and all the parts in another record | a part that appears in both | its containing parts on each side |
 
-Nothing else is introduced. When a step looks like it has its own idea
-— a "frame" or a "separator" or a "class" — that idea is just a name
-for what the comparator's output looks like at that point.
+Nothing else gets added. When a step seems to introduce its own idea —
+a "frame" or a "separator" or a "class" — that idea is really just a
+name for what the comparator's output looks like at that point.
 
 ## 4. Why bits
 
 Everything a computer stores is bits — ones and zeroes. A text file, a
-program, a picture, a sound recording, a database — all of them are a
-string of bits that some program reads in chunks of a certain size. The
-chunk size is an agreement between whoever wrote the file and whoever
-reads it. It's not written in the bits themselves. ASCII text uses
-8-bit chunks with 7 bits actually used. A compiled program on a modern
-computer has 64-bit sections and 8-bit strings mixed together in the
-same file. The Apollo Guidance Computer used 15-bit chunks, and when
-its memory is packed into a file, none of those chunks even lines up
-with byte boundaries.
+program, a picture, a sound recording, a database — they're all just a
+string of bits that some program reads in chunks of a certain size.
+That chunk size is an agreement between whoever wrote the file and
+whoever reads it. It's not written in the bits themselves. ASCII text
+uses 8-bit chunks with 7 bits actually carrying data. A compiled
+program on a modern machine has 64-bit sections and 8-bit strings
+mixed together in the same file. The Apollo Guidance Computer used
+15-bit chunks, and when its memory gets packed into a file, none of
+those chunks even lines up with byte boundaries (the standard 8-bit
+grid).
 
 Reading everything as bits means the program can't be told the chunk
-size — it has to figure it out. That's a cost: a text file could have
-been read as bytes right away. But you pay that cost once, in the frame
-step, and it buys you everything else: one input path, one mechanism,
-no special code for each format, and a program that reads a 15-bit
-machine from 1969 without any changes.
+size — it has to figure it out on its own. That's a cost: a text file
+could have been read as bytes right away. But you pay that cost once,
+in the frame step, and it buys you everything else: one input path, one
+mechanism, no special code for each format, and a program that reads a
+15-bit machine from 1969 without any changes.
 
 ## 5. The frame (finding the chunk size)
 
-Imagine laying all the bits out in rows of some width *w*. Each column
+Picture laying all the bits out in rows of some width *w*. Each column
 is every *w*-th bit in the file. If you pick the right width, each
-column has its own pattern: the top bit of an ASCII byte is never 1;
-the next bit down is almost always 1. If you pick the wrong width, the
-bits get scrambled across columns, and every column ends up around 50/50.
+column has its own personality: the top bit of an ASCII byte is never
+1; the next bit down is almost always 1. If you pick the wrong width,
+the bits get scrambled across columns, and every column ends up around
+50/50 — random noise.
 
 The score for a width is the gap between the column that's 1 most
 often and the column that's 1 least often. Plain text at width 8 scores
@@ -124,7 +128,7 @@ times, and folded down to 15.
 
 The frame step is the only place in the program that uses a tolerance
 (a "close enough" check), and that tolerance is calculated from the
-data — the number of rows — not chosen by hand.
+data — specifically, the number of rows — not chosen by hand.
 
 ## 6. Words, the separator, and runs
 
@@ -132,23 +136,25 @@ Now that the program knows the chunk size, it cuts the bits into words
 of that width. It counts how often each word appears. It counts which
 words show up next to which other words.
 
-The most common word is the separator. A run is everything that sits
-between two separators.
+The most common word becomes the separator (the divider). A run is
+everything that sits between two separators.
 
-Using the most common word as the separator is a deliberate choice — it's
-the simplest rule that works. In text, it gives you the space character.
-In a compiled program, it gives you the zero byte. In the Apollo rope,
-it gives you EXTEND (the most common instruction prefix). Each of those
-is a reasonable place to cut.
+Using the most common word as the separator is a deliberate choice —
+it's the simplest rule that works. In text, it gives you the space
+character. In a compiled program, it gives you the zero byte. In the
+Apollo rope, it gives you EXTEND (the most common instruction prefix).
+Each of those is a reasonable place to cut.
 
-When a signal has more than one good cutting point, the record will show
-the others as high-frequency parts that never appear on their own. The
-`--separators N` flag lets you cut at the N most common words instead.
+When a signal has more than one good cutting point, the record will
+show the others as high-frequency parts that never appear on their own.
+The `--separators N` flag lets you cut at the N most common words
+instead.
 
 ## 7. The mint (finding the shared pieces)
 
-The pool starts as every distinct run. The mint smashes the pool against
-itself over and over until nothing new comes out:
+The pool starts as every distinct run. The mint (the part of the
+program that "coins" new parts from collisions) smashes the pool
+against itself over and over until nothing new comes out:
 
 1. Sort the pool. Two neighbours in sorted order share the longest
    beginning that either of them shares with anything else in the pool.
@@ -167,27 +173,32 @@ it sits inside 1,615 parts. The word `the` appears as a complete word
 1,340 times and sits inside 178 other parts. The word `walk` appears
 4 times and sits inside 4 parts.
 
-Three rules from the larger project this was distilled from:
+Three rules carried over from the larger project this was distilled
+from:
 
 - *Keep smashing things together until nothing new comes out.* The loop
-  runs until it reaches a stable state. The stable state is the stopping
-  rule, not a round limit.
-- *Rare but real is worth keeping.* A part made from a single collision
-  has the same standing as a part made from a thousand. Nothing fades
+  runs until it hits a stable state. That stable state is the stopping
+  rule, not some round limit.
+- *Rare but real is worth keeping.* A part born from a single collision
+  has the same standing as a part born from a thousand. Nothing fades
   away.
 - *Store each thing once with a count, not a thousand copies.* The pool
   has one entry per distinct part, with a number saying how many times
-  it appeared. That's the only compression done.
+  it appeared. That's the only compression happening.
 
 ## 8. The crystal (grouping by what changes)
 
 The pool is the raw memory. The crystal is a second table that reads
-the pool and groups parts together without losing any detail — dedup.
+the pool and groups parts together without losing any detail — think of
+it as deduplication (removing redundancy while keeping everything that
+matters).
 
 Here's how it works. For any part, a *change* is the piece that turns
-it into one of its containing parts. For example, `walk` becomes
-`walked` by adding `+ed`. The set of changes a part takes is a property
-of that part. Parts that take the same set of changes form a *class*.
+it into one of its containing parts (the bigger parts it sits inside).
+For example, `walk` becomes `walked` by adding `+ed`. The set of
+changes a part takes is a property of that part. Parts that take the
+same set of changes form a *class* (a group defined by shared
+behavior).
 
 In Alice, 22 stems take both `+ed` and `+ing` — that's the class
 `{+ed, +ing}`. A grammar book would call these verbs. The record calls
@@ -197,19 +208,19 @@ itself supports.
 In the German text, the class `{+en, +t}` has 52 members (verb stems)
 and `{+n, +r}` has 42 (adjective stems).
 
-The crystal's last table is like a dictionary entry for each common run:
-what it's made of, what contains it, its changes, what comes after it,
-what comes before it. The entry says: *this run is X; the change from X
-to Y is Z; X shows up next to these other things.* That sentence is the
-whole form of the knowledge the record holds, and every piece of it
-comes with a count.
+The crystal's last table is like a dictionary entry for each common
+run: what it's made of, what contains it, its changes, what comes
+after it, what comes before it. The entry basically says: *this run is
+X; the change from X to Y is Z; X shows up next to these other
+things.* That sentence is the whole shape of the knowledge the record
+holds, and every piece of it comes with a count.
 
 ## 9. Crystallize, then loop again, until nothing changes
 
-The crystal makes structure. If the system stopped there, it would make
-structure and then never use it — stopping one step short of its own
-rule. So it uses what the crystal just made in the next round, and
-nothing gets replaced — everything gets added.
+The crystal creates structure. If the system stopped there, it would
+make structure and then never use it — stopping one step short of its
+own rule. So it feeds what the crystal just made back into the next
+round. And nothing gets replaced — everything gets added.
 
 A level means: count the symbols, cut runs at the most common one,
 mint, crystallize. The next level's sequence of symbols is this level's
@@ -222,7 +233,7 @@ word that sits inside forty stretches one level up gains forty to its
 density count.
 
 The loop keeps going until a level has only a single run left, which
-can't be cut. The additions reach zero well before that.
+can't be cut. The additions peter out well before that.
 
 Each level's sequence is shorter than the one before, because the
 separator is always present and gets cut out, so the loop can't run
@@ -244,7 +255,8 @@ how the programmers started a comment: `TO`, `FOR`, `IN`, `IF`, `AND`,
 
 ## 10. The five steps, and the fifth one
 
-The steps of understanding something, said plainly:
+Here are the steps of understanding something, said as plainly as
+possible:
 
 1. **Identification** — drawing the border. "This is a thing, separate
    from the background."
@@ -256,7 +268,7 @@ The steps of understanding something, said plainly:
 5. **Evaluation** — checking the result. "Does the thing I built
    actually match what's out there?"
 
-Where each one lives in the file:
+Where each one lives in the program:
 
 | step | where it is in the program |
 |---|---|
@@ -266,7 +278,7 @@ Where each one lives in the file:
 | composition | made_of, part_of, the crystal entry, the classes, the levels |
 | evaluation | the comparator again — pointed at the model's own output instead of at a new part |
 
-Evaluation is not a separate mechanism. "Does the model match reality?"
+Evaluation isn't a separate mechanism. "Does the model match reality?"
 and "Is this the same as that?" are the same question, and the
 comparator answers both. What was missing at first was not the
 comparison itself but the loop: a run would read one signal, build the
@@ -275,9 +287,9 @@ point of the next round.
 
 ### The same steps, said the other way: roots, layers, interactions, crystals, relations, causes
 
-The five steps are one operation pointed at different places and
-scales. The same list in the words we use when we talk about what the
-system finds, with where each one lives:
+The five steps are really one operation pointed at different places and
+scales. Here's the same list in the words we use when we talk about
+what the system finds, along with where each one lives:
 
 | find the | which is | where it is | at which scales |
 |---|---|---|---|
@@ -290,8 +302,8 @@ system finds, with where each one lives:
 
 Time is in the signal from the start: the signal is in order, and the
 order is time. FOLLOWS was always a reading of it. The TIME tables
-read it three more ways, each the comparator pointed along the
-sequence: before against after. The TIME tables at level 0 of
+read it three more ways, each using the comparator along the sequence:
+before against after. The TIME tables at level 0 of
 `examples/text/alice.txt.record.txt` show it on the novel: the arrows
 among the words (`said -> Alice`, `if -> you`, `I -> shall`, each with
 its count each way), the effects of `I`, of `a`, of `little`, and the
@@ -300,21 +312,21 @@ show the instruction flow, with chains that loop back through it. None
 of that is a cause
 yet. A cause is an arrow that holds across a *do*: `examples/agc-live/`
 presses a key, records every signal, and compares the run with the
-press against the run without it; the effect that is only there after
-the press (engine on → thrust, propellant, accelerometer, 13 of 13) is
-the causal structure, and `walk.py` runs it backward from a goal to the
-presses that reach it. Same comparator, same tables; the *do* is the
-only thing added.
+press against the run without it; the effect that's only there after
+the press (engine on leads to thrust, propellant, accelerometer, 13 of
+13) is the causal structure, and `walk.py` runs it backward from a
+goal to the presses that reach it. Same comparator, same tables; the
+*do* is the only thing added.
 
-Grouped the way a program is, these are three subroutines:
+Grouped the way a program would be, these are three subroutines:
 
 - **Interpret** (input): takes the signal in and applies identification
   and association — the frame, the separator, the sort.
 - **Evaluate** (process): runs reduction, composition, and "this is not
-  that" to sort the noise out and build the model — the mint, the
+  that" to filter out the noise and build the model — the mint, the
   crystal, the levels, and the comparison against memory.
 - **Act** (output): does something with the result. In this program,
-  the act is two things: the record gets written, and the memory gets
+  the action is two things: the record gets written, and the memory gets
   updated. The memory update is the program acting on itself based on
   its own evaluation. That's the only action it takes. Acting on
   anything else is another system's job — that's what the hybrid systems
@@ -323,13 +335,14 @@ Grouped the way a program is, these are three subroutines:
 Memory closes the loop. With `--memory FILE`, the pool is saved after a
 run and loaded before the next one. The remembered parts sit in the
 sorted pool right next to the new signal's runs, so a new run gets
-compared against what's remembered as well as against the rest of the
-signal. A comparison counts only when the new signal is in it: two
-remembered parts it has not reached are left alone, so a memory never
-confirms itself. Everything the run produces gets sorted into three
-bins: confirmed, added, and not seen this time. Nothing gets removed.
+compared against what's been remembered as well as against the rest of
+the signal. A comparison only counts when the new signal is involved:
+two remembered parts it hasn't reached yet get left alone, so a memory
+never confirms itself. Everything the run produces gets sorted into
+three bins: confirmed, added, and not seen this time. Nothing gets
+removed.
 
-The test is simple:
+The test is straightforward:
 
 - First half of Alice, from nothing: adds 14,079 parts.
 - Second half, against that memory: confirms 10,588 and adds 9,337.
@@ -345,16 +358,16 @@ of new things the same way the levels do.
 ## 11. What "meaning" is in a record
 
 The record doesn't say what `the` means, what EXTEND does, or what a
-German verb is. What it holds for each part is its position in the web
-of connections: what it's made of, what contains it, what it changes
-into, what shows up next to it.
+German verb is. What it holds for each part is that part's position in
+the web of connections: what it's made of, what contains it, what it
+changes into, what shows up next to it.
 
-A part's meaning, in the only sense the signal provides, is that
+A part's meaning, in the only sense the signal can provide, is that
 position. Two parts with the same position are the same thing under
 different names. A part whose position is unlike any other's is unique.
 
 This is why the bridge works. Run two signals separately — the German
-and the English of the same day of debate — then smash the two pools
+and the English from the same day of debate — then smash the two pools
 together. A part that appears in both is *same* across the two
 languages; its containing parts on each side are *different*.
 
@@ -364,11 +377,11 @@ For example: `technologi` appears inside `technologische` and
 the other. The shared parts are the bridge between the two languages,
 and the containing parts are each language's way of building on them.
 
-This same collision is how a system can read its own output: run the
-output back through, smash the two records together, and get three
-bins — what came back the same, what was lost, what's new. `hybrid/
-loop.py` does this by hand on a walk of the model; `--memory` does it
-automatically on every signal that follows (section 10).
+This same collision trick is how a system can read its own output: run
+the output back through, smash the two records together, and you get
+three bins — what came back the same, what was lost, what's new.
+`hybrid/loop.py` does this by hand on a walk of the model; `--memory`
+does it automatically on every signal that follows (section 10).
 
 ## 12. What was left out on purpose
 
@@ -423,7 +436,7 @@ program rests on, each with the place in the records where you can see
 it working; the case that those eight things are enough for what the
 program does (every step is the comparator pointed somewhere, and no
 extension so far has needed a new operation); and three extensions built
-to show it, in `extend/`:
+to demonstrate it, in `extend/`:
 
 - Cut a level at a class instead of the most common word — what shows
   up before and after a verb.
@@ -432,27 +445,27 @@ to show it, in `extend/`:
 - The comparator pointed at consecutive rows of a net's states — which
   units move together.
 
-Each is a few lines on top of the main file, and none of them changes
-the mint, the crystal, or the levels.
+Each one is a few lines on top of the main file, and none of them
+changes the mint, the crystal, or the levels.
 
-`guides/the-process.md` is the general method written as a recipe: eight
-steps, with a quick reference card at the top and the reasoning below.
-It covers what Discovery does and what it doesn't (ablation, external
-scoring), so someone applying the process to a different problem knows
-where the choices are. At the bottom are proofs for each step that makes
-a claim: the split is lossless, ablation from both sides squares the
-loss, the comparator is its own scorer, the loop always stops, it finds
-everything the sorted order can show, every part it finds is real, and
-deletion is irreversible.
+`guides/the-process.md` is the general method written as a recipe:
+eight steps, with a quick reference card at the top and the reasoning
+below. It covers what Discovery does and what it doesn't (ablation,
+external scoring), so someone applying the process to a different
+problem knows where the choices are. At the bottom are proofs for each
+step that makes a claim: the split is lossless, ablation from both
+sides squares the loss, the comparator is its own scorer, the loop
+always stops, it finds everything the sorted order can show, every
+part it finds is real, and deletion is irreversible.
 
-One distinction worth stating plainly: base Discovery records all
-recurring structure in a signal. It doesn't pick out one thing and
-ignore the rest. If you need to isolate one designated target buried
-under heavy noise — find a specific pattern while ignoring everything
-else — you need an additional selection signal: an answer key to compare
-against, an external yes/no, or some other way to tell the system which
-parts you care about. Discovery supplies the components; which ones
-matter for a given task is supplied by whoever is using it.
+One thing worth spelling out clearly: base Discovery records all
+recurring structure in a signal. It doesn't cherry-pick one thing and
+ignore the rest. If you need to zero in on one specific target buried
+under heavy noise — find a particular pattern while ignoring everything
+else — you need an additional selection signal: an answer key to
+compare against, an external yes/no, or some other way to tell the
+system which parts you care about. Discovery supplies the components;
+which ones matter for a given task is up to whoever is using it.
 
 ## 15. Open ends
 

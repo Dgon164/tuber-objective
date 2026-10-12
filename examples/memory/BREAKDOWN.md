@@ -2,9 +2,9 @@
 
 ## What this tests
 
-"Does the model match reality?" and "is this the same as that?" are the same question. The comparator answers both. What makes it a loop is memory: the pool saved after one run and loaded before the next, so each new signal gets compared against everything that came before.
+"Does the model match reality?" and "is this the same as that?" are really the same question. The comparator (the part of the system that checks whether two parts overlap) answers both. What makes it a loop is memory: the pool gets saved after one run and loaded before the next, so each new signal gets compared against everything that came before.
 
-Four runs, one memory file (`alice.memory`, built by the runs):
+Four runs, one memory file (`alice.memory`, built up by the runs):
 
 ```
 python ../../discovery.py alice-first-half.txt  --lens ascii --memory alice.memory
@@ -13,9 +13,9 @@ python ../../discovery.py alice-second-half.txt --lens ascii --memory alice.memo
 python ../../discovery.py ep-00-01-17.de        --lens utf8  --memory alice.memory
 ```
 
-`alice-first-half.txt` and `alice-second-half.txt` are the two halves of Alice, cut at a line break near the middle (72,215 and 72,180 bytes). `ep-00-01-17.de` is the German text from `examples/german`. The memory file is JSON, and one memory holds signals read at one frame (all four here read at 8 bits; a signal at another width is refused with the reason).
+`alice-first-half.txt` and `alice-second-half.txt` are the two halves of Alice, cut at a line break near the middle (72,215 and 72,180 bytes). `ep-00-01-17.de` is the German text from `examples/german`. The memory file is JSON, and one memory holds signals read at one frame (all four here read at 8 bits; a signal at another width gets refused with the reason).
 
-A comparison counts only when the signal being read is in it. Two remembered parts the signal has not reached are left alone — they were compared when they were minted — so a memory never confirms itself. A remembered part the signal produces again is confirmed, and is then compared with its own neighbours once more, so what was minted from it last time can be reached too.
+A comparison only counts when the signal being read is involved. Two remembered parts that the current signal hasn't reached are left alone -- they were compared when they were first created -- so a memory never confirms itself. A remembered part that the current signal produces again does get confirmed, and is then compared with its own neighbors once more, so parts that were built from it last time can be reached too.
 
 ## Run 1: the first half, starting from nothing
 
@@ -30,7 +30,7 @@ MEMORY   alice.memory
   after: 16272 parts, saved
 ```
 
-Everything is new. Nothing was in memory to confirm. 16,272 parts go into the memory file.
+Everything is new. There was nothing in memory to confirm. 16,272 parts go into the memory file.
 
 ## Run 2: the second half, against the first
 
@@ -45,11 +45,11 @@ MEMORY   alice.memory
   after: 30124 parts, saved
 ```
 
-The second half produces 19,925 parts at level 0. Of those, 10,588 were already in memory from the first half and the second half reached them again — the letters, the common words, the common pieces of words. 9,337 are new. 3,491 parts the first half produced were not reached by the second half (names and words that only appear early in the book, and heads that only a first-half neighbour exposes). Those stay in memory — nothing is ever removed.
+The second half produces 19,925 parts at level 0. Of those, 10,588 were already in memory from the first half and the second half reached them again -- the letters, the common words, the common pieces of words. 9,337 are new. 3,491 parts the first half produced were never reached by the second half (names and words that only appear early in the book, and heads that only a first-half neighbor exposes). Those stay in memory -- nothing is ever removed.
 
 The remembered parts sat in the sorted pool during this run, so a run from the second half was compared against its nearest remembered neighbor as well as against the rest of the second half.
 
-Without memory, the second half would have added everything it produced. With memory, it only added 9,337 — the memory already covered the rest.
+Without memory, the second half would have added everything it produced. With memory, it only added 9,337 -- the memory already covered the rest.
 
 ## Run 3: the second half again
 
@@ -64,13 +64,13 @@ MEMORY   alice.memory
   after: 30129 parts, saved
 ```
 
-Same signal, second time. Level 0: 19,833 produced, 19,833 confirmed, zero added. Level 1: five parts added. Those five came from class-in-slot parts — stretches that differed only by members of one class in one spot. They were not produced the first time because the classes are computed over the pool, and the pool was bigger this time, so the class now had the members it needed. A third pass would find even fewer.
+Same signal, second time through. Level 0: 19,833 produced, 19,833 confirmed, zero added. Level 1: five parts added. Those five came from class-in-slot parts -- stretches that differed only by members of one class in one position. They weren't produced the first time because the classes are computed over the pool, and the pool was bigger this time, so the class now had the members it needed. A third pass would find even fewer.
 
-The first read produced 19,925; the second reaches 19,833 of them. The 92 it does not reach are first-half parts the first read exposed by colliding a second-half run with a first-half neighbour; a part minted on that first read now sorts between the two, so the collision yields it instead. What a signal produces depends on its neighbours in the pool at the time: the same pool, read twice, agrees to within half a percent.
+The first read produced 19,925; the second reaches 19,833 of them. The 92 it doesn't reach are first-half parts the first read exposed by colliding a second-half run with a first-half neighbor. A part created on that first read now sorts between the two, so the collision yields it instead. What a signal produces depends on its neighbors in the pool at the time: the same pool, read twice, agrees to within half a percent.
 
-The MINT line of this run shows nothing minted in nine rounds, and the line under it the remembered parts this signal produced again, round by round: 11,882, then 2,972, 946, 250, 53, 12, 5, 3, 0 — the same falling-to-zero shape as minting, and the same stopping rule.
+The MINT line of this run shows nothing minted in nine rounds, and the line under it shows the remembered parts this signal produced again, round by round: 11,882, then 2,972, 946, 250, 53, 12, 5, 3, 0 -- the same falling-to-zero shape as minting, and the same stopping rule.
 
-That is the loop running out of new things: 30,124 → 30,129, then stable.
+That's the loop running out of new things: 30,124 to 30,129, then stable.
 
 ## Run 4: German, against the English memory
 
@@ -85,10 +85,10 @@ MEMORY   alice.memory
   after: 63143 parts, saved
 ```
 
-A different language against the memory of the first. 14,797 confirmed: the parts the two alphabets share — the letters and the short pieces that occur in both languages (`in`, `er`, `st`, `en`), reached by German runs colliding with English neighbours. 17,987 added: everything German builds that English never produced. 8,619 not seen: the English parts the German text does not reach.
+A different language against the memory of the first. 14,797 confirmed: the parts the two alphabets share -- the letters and the short pieces that occur in both languages (`in`, `er`, `st`, `en`), reached by German runs colliding with English neighbors. 17,987 added: everything German builds that English never produced. 8,619 not seen: the English parts the German text doesn't reach.
 
-This is the same bridge from `examples/german`, but done by memory instead of a separate script. What is the same across the two signals is what gets confirmed.
+This is the same bridge from `examples/german`, but done through memory instead of a separate script. What's the same across the two signals is what gets confirmed.
 
 ## What this adds up to
 
-Every run with memory starts with three numbers per level: confirmed, added, not seen. A signal read twice confirms what it produced the first time, to within the few parts whose neighbour in the pool has changed, and adds nothing (or almost nothing). A new signal adds what it brings and confirms what it shares. Nothing is ever removed — a part not seen this time keeps its place and its count. The additions shrink as the memory covers more of what the signals contain, which is the same shape the levels have inside one run: a lot, then some more, then a little, then almost nothing, then stable.
+Every run with memory starts with three numbers per level: confirmed, added, not seen. A signal read twice confirms what it produced the first time, to within the few parts whose neighbor in the pool has changed, and adds nothing (or almost nothing). A new signal adds what it brings and confirms what it shares. Nothing is ever removed -- a part not seen this time keeps its place and its count. The additions shrink as the memory covers more of what the signals contain, which is the same shape the levels have inside one run: a lot, then some more, then a little, then almost nothing, then stable.
