@@ -117,13 +117,17 @@ If the cost is low, the system has enough structure to get there
 directly. That's the signal that the differences it has are the right
 ones.
 
-`functions.py` went through four iterations:
-- Open offers, no feedback: 3,341 failures for 100 words.
-- Per-ending feedback: 7,871 failures. Worse. The feedback was too
+`functions.py` went through four iterations, and the cost — failed
+attempts per word made — is the measure of each (`extend/FUNCTIONS.md`,
+"What was tried before this"):
+- Open offers, no feedback: the most failures.
+- Per-ending feedback: more failures still. The feedback was too
   narrow — one refusal taught nothing about similar refusals.
-- Negative groups: 662 failures. Better. The feedback generalized.
-- Functions over the record: 985 failures in 6 seconds. The structure
-  of the record IS the feedback. No bolted-on mechanism needed.
+- Negative groups: far fewer. The feedback generalized.
+- Functions over the record: about the same cost as the negative
+  groups in less than half the time, with nothing bolted on. The
+  structure of the record IS the feedback. The current run's numbers
+  are the header of `extend/alice.functions.txt`.
 
 The cost dropped as the system found the right differences to compare.
 
@@ -135,12 +139,14 @@ almost always to remove something — to stop comparing things that don't
 matter.
 
 `functions.py` was unusable when it treated every fragment as a target.
-The letter `e` sits inside 1,615 parts. It takes nearly every change
-and says nothing about any one of them. Restricting to whole runs —
-parts the signal stood up on its own — dropped from 6.8 million sibling
-pairs to 184,000. Same comparator, same logic, less noise. The thing
-that was removed was not information. It was a difference that didn't
-make a difference.
+The letter `e` sits inside more parts than almost any other (PARTS BY
+DENSITY in `examples/text/alice.txt.record.txt`). It takes nearly every
+change and says nothing about any one of them. Restricting to whole
+runs — parts the signal stood up on its own — cut the sibling pairs by
+orders of magnitude (the count is on the first line of
+`extend/functions.output.txt`). Same comparator, same logic, less
+noise. The thing that was removed was not information. It was a
+difference that didn't make a difference.
 
 ## The short version
 

@@ -291,14 +291,13 @@ system finds, with where each one lives:
 Time is in the signal from the start: the signal is in order, and the
 order is time. FOLLOWS was always a reading of it. The TIME tables
 read it three more ways, each the comparator pointed along the
-sequence: before against after. On Alice at level 0 the arrows are
-`said -> Alice` 25 times against 7 the other way, `if -> you` 12
-against 1, `I -> shall` 9 against 1; the effects of `I` are `think`,
-`know`, `can` at three to five times their usual rate; the effects of
-`a` are `good`, `large`, `curious`; of `little`, `golden`, `door`,
-`key`. On the Apollo rope the effects are the instruction flow, and
-the chains loop back through it: `22156 -> 63411 -> 74756 -> 02031 ->
-70000`. None of that is a cause
+sequence: before against after. The TIME tables at level 0 of
+`examples/text/alice.txt.record.txt` show it on the novel: the arrows
+among the words (`said -> Alice`, `if -> you`, `I -> shall`, each with
+its count each way), the effects of `I`, of `a`, of `little`, and the
+chains. The same tables in `examples/agc/luminary099.rope.record.txt`
+show the instruction flow, with chains that loop back through it. None
+of that is a cause
 yet. A cause is an arrow that holds across a *do*: `examples/agc-live/`
 presses a key, records every signal, and compares the run with the
 press against the run without it; the effect that is only there after

@@ -113,17 +113,18 @@ between zero bytes.
 ## TIME
 
 The sequence read as time: before and after. The *stretch* after a run
-is the typical distance to the next level's separator (18 words on
-Alice at level 0: about a clause), so the unit is the signal's own.
+is the typical distance to the next level's separator (on Alice at
+level 0, about a clause), so the unit is the signal's own.
 
-- **ARROWS** — pairs seen in both orders, counted each way. `said ->
-  Alice 25, the other way 7`: the order that wins is an arrow. A plain
-  text has few pairs that go both ways; a machine trace has many.
+- **ARROWS** — pairs seen in both orders, counted each way: `said ->
+  Alice` with its count, then the count the other way. The order that
+  wins is an arrow. A plain text has few pairs that go both ways; a
+  machine trace has many.
 - **EFFECTS** — what comes in the stretch after a run more often than it
-  comes overall, as `seen/expected`: `I  think 23/5.9, know 24/7.0`.
-  An effect is seen at least twice and at least twice its usual rate
-  (two make a pattern, as with the classes). The list is ordered by the
-  difference, seen minus expected.
+  comes overall, as `seen/expected` (read the row for `I` in the Alice
+  record). An effect is seen at least twice and at least twice its
+  usual rate (two make a pattern, as with the classes). The list is
+  ordered by the difference, seen minus expected.
 - **CHAINS** — the strongest effect, followed forward from the most
   common runs: `a -> b -> c`.
 

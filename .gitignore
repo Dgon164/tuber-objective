@@ -1,6 +1,6 @@
 __pycache__/
 *.pyc
-# JSON records are large (up to 300 MB); run_examples.sh rebuilds every one in under two minutes
+# JSON records are large; run_examples.sh rebuilds every one in a couple of minutes
 *.record.json
 *.memory
 *.flips

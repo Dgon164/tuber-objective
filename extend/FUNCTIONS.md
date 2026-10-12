@@ -11,8 +11,10 @@ become functions — things that take a part and make a new part — and can
 those functions, guided only by feedback from an answer key, create real
 English words that were not in the original text?
 
-The answer is yes. 100 new English words, 985 failed attempts, 6.3
-seconds total.
+The answer is yes. The words it made, every attempt it took, and what it
+cost are in its output: `alice.functions.txt`, which `run_examples.sh`
+regenerates (the 20-word run; `functions.output.txt` is what the run
+printed). For the full run:
 
 ```
 python functions.py examples/text/alice.txt 100
@@ -22,12 +24,10 @@ python functions.py examples/text/alice.txt 100
 ## Layer 0: the record
 
 Discovery runs on `alice.txt` exactly as it always does. No parameters
-set for this task, no hints about what the signal is. The result:
-
-- 144,395 bytes, 8-bit words, space is the separator
-- 6,466 distinct English words (runs between spaces)
-- 22,446 parts in the mint pool
-- 5,935 changes found by the crystal
+set for this task, no hints about what the signal is. The record is
+`examples/text/alice.txt.record.txt`: the bytes and the frame, the
+distinct words (runs between spaces), the parts in the mint pool, and
+the changes the crystal found.
 
 A **change** is what Discovery found that turns one part into another:
 `+ed` turns `walk` into `walked`, `m+` turns `are` into `mare`, `+s`
@@ -39,26 +39,30 @@ turns `cat` into `cats`. These are the raw material.
 Not every change is a function. A change that was seen on only one part
 is a connection — it tells you about that part, but it can't generalize.
 A change seen on two or more parts acts like a function: it takes one
-kind of thing and makes another kind.
-
-The filter: 5,935 changes in the record, 1,734 are functions.
+kind of thing and makes another kind. How many changes the record has
+and how many of them are functions is the first line of
+`alice.functions.txt`.
 
 One more restriction, and it matters. The functions act on **whole
 runs** — parts the signal stood up on their own (their whole count is
 above zero). Fragments like `e` or `ucked` are what changes are made of,
-not what they act on. The letter `e` sits inside 1,615 parts. It takes
-nearly every change and so says nothing about any one of them. Including
-fragments gave 13,109 functions and 6.8 million sibling pairs — the
-search took minutes and learned nothing. Restricting to whole runs gave
-1,734 functions and 184,278 pairs. The search finishes in seconds.
+not what they act on. The letter `e` sits inside more parts than almost
+any other (PARTS BY DENSITY in the record). It takes nearly every change
+and so says nothing about any one of them. Including fragments
+multiplied the functions and the sibling pairs many times over — the
+search took minutes and learned nothing. Restricting to whole runs cut
+the pairs by orders of magnitude (the count is on the first line
+`functions.py` prints) and the search finishes in seconds.
 
 A function's **in-kind** is learned from the parts it was seen on: the
-other functions those parts also take. `+s` was seen on 167 parts; those
-parts also take `+ed`, `+ing`, `+'s`, and so on. That is `+s`'s in-kind.
+other functions those parts also take. `+s` was seen on many parts;
+those parts also take `+ed`, `+ing`, `+'s`, and so on. That is `+s`'s
+in-kind.
 
 A function's **out-kind** is the functions seen applied to what it made.
 `+s` made plurals; those plurals were seen to take `+,` and `+.` (word
-then comma, word then period). That is `+s`'s out-kind.
+then comma, word then period). That is `+s`'s out-kind. The function
+table in `alice.functions.txt` lists each function's out-kind.
 
 
 ## Layer 2: siblings and paths
@@ -67,7 +71,8 @@ Two functions are **siblings** when two or more parts take both. `+s`
 and `+ed` are siblings — many words take both. `+s` and `m+` are not —
 no word in Alice takes both `+s` and a prefix `m`.
 
-25,992 sibling links in all. These are the wiring.
+The sibling links are the wiring; their count is on the first line of
+`alice.functions.txt`.
 
 A **path** is one function after another: apply `+s` to `ground`, get
 `grounds`; now `grounds` is a part, and the functions in `+s`'s out-kind
@@ -122,76 +127,42 @@ through that seam.
 Feedback acts on the producer (the hold), not on the record. The record
 is what was found. The holds are what was learned about how to use it.
 
-By the end: 1,379 negative flags. 245 whole functions flagged (outputs
-refused 2+, never accepted).
+How many negative flags stand at the end, and how many whole functions
+are flagged, is in the header and the NEGATIVE FLAGS section of
+`alice.functions.txt`.
 
 
 ## What it made
 
-100 words not in Alice, checked against `/usr/share/dict/american-english`.
+Words not in Alice, checked against `/usr/share/dict/american-english`.
+The MADE table in `alice.functions.txt` lists each one with the part and
+the function that made it, the attempt it came on, and how many failed
+attempts came before it.
 
-The first few and what made them:
+Read the first rows: `are` takes many prefix-functions and they are
+siblings of each other, so `m+`, `t+`, `f+`, `p+`, `r+`, `b+` are all
+offered on `are` with high standing, and most of them work. Once the
+first of them succeeds, the next ones follow at once — the holds were
+set.
 
-```
-  word        part    function    attempt#   failed before it
-  mare        are     m+              30     23
-  tare        are     t+              31      0
-  fare        are     f+              32      0
-  ham         am      h+              38      5
-  pare        are     p+              63     24
-  rare        are     r+              69      5
-  bare        are     b+              70      0
-  fate        ate     f+              81     10
-  fend        end     f+              83      1
-  offed       off     +ed             88      4
-  cone        one     c+              91      2
-  tour        our     t+             118     26
-```
-
-`are` takes many prefix-functions and they are siblings of each other.
-So `m+`, `t+`, `f+`, `p+`, `r+`, `b+` are all offered on `are` with
-high standing. Most of them work. After `mare` succeeds (attempt 30),
-the next three follow immediately — the holds were set.
-
-Later words come from suffixes on longer stems:
-
-```
-  tailing     tail    +ing           411     75
-  answering   answer  +ing           694      4
-  drying      dry     +ing           786     81
-  dreading    reading d+            1041      3
-  buttering   butter  +ing          1058      2
-```
-
-`dreading` is `d+` applied to `reading` — a prefix function on a whole
-word. The system didn't know what a prefix or suffix is; it found them
-as changes in the record and learned which ones take the same kinds.
+Read the later rows: suffixes on longer stems, and prefix functions on
+whole words (`d+` on `reading`). The system didn't know what a prefix or
+suffix is; it found them as changes in the record and learned which ones
+take the same kinds.
 
 
 ## The function table (what ships)
 
-The compacted output. This is what was found, not the search.
+The compacted output: THE FUNCTION TABLE in `alice.functions.txt`. This
+is what was found, not the search. For each function: how many parts it
+was seen on, how many words it made, how many times it was refused, its
+sibling links, its flagged pairs, and its out-kind.
 
-```
-  function   seen on  made  refused  siblings  flags
-  +s             167    33       46       625     29
-  +'s             50    21       11       103      2
-  +ing            93     7       12       119     10
-  p+              19     5       19       223     16
-  +ed             64     4       12        78      4
-  f+              27     4       21       277     15
-  m+              19     4       18       274     13
-  d+              18     4       19       169      9
-  +t              58     3       13       494     22
-  t+              46     3       22       360     23
-```
+Read `+s`: the most words made and the most refusals; an out-kind of
+`+,`, `+.`, `+\n` — its outputs tend to come before punctuation. That
+is correct: plurals often end clauses.
 
-`+s` made 33 words and was refused 46 times. It has 625 sibling links
-and 29 flagged pairs. Its out-kind is `+,`, `+.`, `+\n` — its outputs
-tend to come before punctuation. That is correct: plurals often end
-clauses.
-
-The 245 flagged functions are mostly punctuation attachments: `+,` (word
+Read the flagged functions: mostly punctuation attachments — `+,` (word
 then comma), `\n+` (newline then word), `+.` (word then period). They
 are functions of the signal — they were seen on real parts — but their
 outputs are not standalone English words. The system learned that by
@@ -200,17 +171,18 @@ failing.
 
 ## The cost
 
-985 failed attempts for 100 words. 6.3 seconds total (1.3s for the
-record, 0.5s for the function table, 4.5s for the search).
+The header of `alice.functions.txt` has the count of failed attempts,
+the attempts in all, and the time, split into the record, the function
+table, and the search.
 
-The failures are the evidence that the feedback works. The first word
-(`Os`, attempt 6) had 5 failures before it. By word 50 (`nothings`,
-attempt 504) the system has enough flags to skip most bad offers. Some
-words still cost many attempts — `drying` (attempt 786, 81 failures
-before it) because `dry` takes an unusual set of changes and the flags
-hadn't narrowed it yet.
+The failures are the evidence that the feedback works. Read the "failed
+before it" column of the MADE table from top to bottom: the early words
+cost many failures each, and once the flags accumulate most bad offers
+are skipped. Some words still cost many attempts, where the stem takes
+an unusual set of changes the flags hadn't narrowed yet.
 
-The attempt log is kept as the cost of finding the function table.
+The attempt log (EVERY ATTEMPT) is kept as the cost of finding the
+function table.
 
 
 ## What each piece is, in the theory
@@ -236,34 +208,36 @@ Each piece of this system is one idea used at a different scale:
 
 ## What was tried before this
 
-Three earlier approaches, each one closer.
+Three earlier approaches, each one closer. The cost — failed attempts
+per word made — is the measure of each.
 
 **Open offers** (no feedback). Discovery's class-pairs as offers,
-accepted or rejected, no memory of what failed. 3,341 failed attempts
-for 100 words.
+accepted or rejected, no memory of what failed. `make_words.py` is this
+approach, kept for comparison. The most failures.
 
 **Per-ending feedback**. Track refusals per ending: `+,` refused on
-this stem. Worse — 7,871 failures. The feedback was too narrow: a
+this stem. Worse than no feedback. The feedback was too narrow: a
 refusal of `+,` taught nothing about `+.'` or `+;`. It needed to
 build a group, not a list.
 
 **Negative groups** (symbol-level). Group the refused changes by what
 they share. Punctuation endings enter the same negative group after a
-few refusals. 662 failures — better, but the feedback was bolted on,
-not built from the structure.
+few refusals. Far fewer failures — but the feedback was bolted on, not
+built from the structure.
 
 **Functions** (this). The changes are the functions. The record is the
-wiring. The feedback is holds on the wiring. 985 failures — slightly
-more than the bolted-on version, but the system is the structure, not a
-patch on it. And it runs in 6 seconds, not 14.
+wiring. The feedback is holds on the wiring. About the cost of the
+negative groups in failures, in less than half the time, and the system
+is the structure, not a patch on it.
 
 
 ## What it doesn't do yet
 
-Two-step paths (a function of a function's output) were attempted 37
-times with 0 successes in the run that tested them. The out-kind mostly
-points at punctuation functions, which are flagged. For paths to work,
-the out-kind needs to carry more than what the signal's crystal saw;
-it needs what the *made* words take, updated as words are made.
+Two-step paths (a function of a function's output) were attempted a
+few dozen times with no successes in the run that tested them. The
+out-kind mostly points at punctuation functions, which are flagged. For
+paths to work, the out-kind needs to carry more than what the signal's
+crystal saw; it needs what the *made* words take, updated as words are
+made.
 
 That is the next layer.

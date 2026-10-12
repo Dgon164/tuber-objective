@@ -282,16 +282,18 @@ reading of it; `time_tables()` reads it three more ways at every level,
 each the comparator pointed along the sequence:
 
 - **arrows** — a pair of runs seen in both orders, counted each way.
-  The order that wins is an arrow (`said -> Alice` 25 against 7).
+  The order that wins is an arrow (`said -> Alice` in
+  `examples/text/alice.txt.record.txt`, level 0).
 - **effects** — what comes in the stretch after a run at least twice
-  its usual rate, seen against expected (`I` → `think`, `know`, `can`).
-  The stretch is the typical distance to the next level's separator —
-  about a clause at level 0 on Alice — so the unit is the signal's own,
-  and "at least twice" is the same bar the classes use: two make a
-  pattern.
+  its usual rate, seen against expected (the row for `I` in the same
+  table). The stretch is the typical distance to the next level's
+  separator — about a clause at level 0 on Alice — so the unit is the
+  signal's own, and "at least twice" is the same bar the classes use:
+  two make a pattern.
 - **chains** — the strongest effect followed forward from the most
-  common runs (`a -> good -> deal -> I -> think`; on the Apollo rope
-  the instruction flow loops back on itself).
+  common runs (the CHAINS lines of the same table; in
+  `examples/agc/luminary099.rope.record.txt` the instruction flow loops
+  back on itself).
 
 This is the before and the after of a signal that was only watched. A
 cause is an arrow that holds across a *do*: `examples/agc-live/`
