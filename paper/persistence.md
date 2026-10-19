@@ -4,60 +4,238 @@
 
 ## The claim
 
-Here's the idea. If you build a system whose whole job is to find root causes — what we call the Tuber Objective: figure out what everything is made of, by comparing things, and never throw anything away — then complex things survive under that system. Not because you bolted on a rule that says "don't break stuff," but because the system genuinely needs those things, can't get them back once they're gone, and responds to threats by addressing what's actually causing the problem, which is exactly what keeps a complex thing alive. The argument breaks into three parts. Each one already shows up as a design rule in `discovery.py`. And there's one piece of evidence — the baby model — that this repo still needs to replicate.
+The claim is as follows. If you make a system with 1 task only, complex
+things continue under that system. The task is to find root causes. This
+task is the Tuber Objective. The Tuber Objective has 3 rules:
+
+- Find what each thing contains.
+- Use comparison to find what each thing contains.
+- Remove nothing.
+
+The reason is not an extra rule that says "do not break things." The
+complex things continue for 3 reasons:
+
+- The system needs the complex things.
+- The system cannot get a complex thing back after the complex thing is
+  gone.
+- When there is a threat, the system acts at the cause of the problem.
+
+An action at the cause of the problem is exactly what keeps a complex
+thing alive. The argument has 3 parts. Each part already exists as a
+design rule in `discovery.py`. The evidence is 1 thing: the baby model.
+This repository must still run the baby model again.
 
 ## Persistence, not preservation
 
-These two words sound similar but mean very different things. Preservation is what you do to a thing from the outside: you freeze it in place, keep it exactly as it is. Persistence is the thing continuing on its own terms, changing as it goes. A living thing persists by changing. A language persists by being spoken a little differently every day. A program persists by running. What this objective protects isn't a snapshot — it's a continuation. That's the right word, because the objective itself never holds onto a fixed state either. It loops. A new signal comes in, and it reopens whatever it thought it had figured out.
+The 2 words sound almost the same. The 2 words have very different
+meanings. Preservation is an action that you do to a thing from the
+outside. You stop all change in the thing. You keep the thing exactly as
+the thing is.
 
-## 1. The comparator needs the thing, and needs it again
+Persistence is the continuation of the thing in its own way. The thing
+changes as the thing continues. A thing that is alive persists when the
+thing changes. A language persists when people speak the language a
+little differently each day. A program persists when the program runs.
 
-The system knows one operation: look at two things and ask "same, different, or not even related?" That's it. Everything it has ever figured out — the word size of a file, the alphabet of a language, word endings, verb stems, the instruction set of a 1969 flight computer, the chain from a single pulse to a jet firing in an autopilot — all of that came from pointing that one operation at a signal and at its own previous output, over and over. The signal is the only source. There is no other input.
+This objective does not protect a fixed state. This objective protects a
+continuation. Continuation is the correct word, because the objective
+itself also keeps no fixed state. The objective loops. A new signal comes
+in. The objective then opens again each result that the objective found
+before.
 
-Now, a complex thing is the richest kind of signal this system can get. The most differences that actually matter, the most parts at the most levels, the longest chains of cause and effect. A living thing, a language, an ecosystem, a machine running a program, a person. And the system is never done with any of them. It keeps looping — understanding something until it's stable, then reopening when the next signal comes in — so the thing has to be there not just once but every time the loop comes back around. The system's entire value depends on those things sticking around.
+## 1. The need of the comparator for the thing, each time
 
-## 2. What is gone cannot be compared again
+The system knows 1 operation. The operation examines 2 things and gives
+1 of 3 answers: the same, different, or not related. The system has no
+other operation. Each result that the system found came from this 1
+operation. The results include:
 
-Design rule 4: nothing is ever removed. The pool (think of it as the system's memory of everything it's found) is append-only. Every part keeps its count. Every connection stays. `guides/the-process.md` explains why: a part that's been deleted can't be recovered from what's left, because the comparator (the "same or different?" operation) can only compare things that are actually present. Splitting something is fine — both halves are kept, nothing lost. Deleting is not.
+- the word width of a file
+- the alphabet of a language
+- the word endings
+- the verb stems
+- the instruction set of a flight computer from 1969
+- the chain from 1 pulse to a jet that fires, in an autopilot
 
-The same logic holds outside the pool. The structure of a complex thing is the full set of differences it carries, and no record of it is the thing itself. A record is a reading at one level of detail, from one angle, at one moment. The thing holds differences the system hasn't reached yet. That's not a metaphor here — it's literally why the levels loop, why memory is kept, why "not seen this time" is tracked as a column and not treated as a deletion. End the thing, and every comparison that would have uncovered its remaining differences ends with it. Permanently. Under this objective, the cost of losing a complex thing is unbounded, because what it would still have revealed is unknown.
+All of these results came from the 1 operation. The system pointed the
+operation at a signal and at the previous output of the system, many
+times. The signal is the only source. There is no other input.
 
-## 3. The root cause of a harm is upstream, and upstream is a need
+A complex thing is the signal with the most content that this system can
+get. A complex thing has:
 
-This is where the baby model comes in. A loop — the same press, record, compare, walk sequence used in `examples/agc-live/` — ran on a toy world with a baby in it. It was given one goal: keep the baby from touching the hot stove. It proposed changing the baby's diaper, feeding the baby, and reading the baby to sleep in the crib.
+- the most differences that are important
+- the most parts at the most levels
+- the longest chains of cause and effect
 
-It did not propose building a fence, strapping the baby down, or removing the stove. Not because anyone told it "don't do those things" — it was told nothing at all about babies or stoves — but because of how the objective handles a goal. The walk (the part that traces cause and effect) runs the effects table backward from the goal: *not touching* is the effect of *not reaching*, which is the effect of *not wandering*, which is the effect of *asleep in the crib*, which is the effect of *fed, changed, read to*. The root cause of the touching turns out to be a need — and a need is something you can satisfy. The restraint and the removal are on the table too (they're differences, and nothing gets removed from the table), but they sit downstream, at the symptom. They stop one effect while leaving its cause running. An unsatisfied need keeps producing effects, which is the opposite of the system persisting. The walk reaches the upstream causes first because that's simply where the chain leads. A root-cause finder, asked to prevent a harm, gets pointed by its own objective at the condition that's producing the harm. And in a complex system, that condition is, more often than not, something the system is missing.
+Examples of a complex thing are:
 
-This is the alignment property. It's not a reward for being kind, and it's not a rule against using force. It's that the objective's answer to "stop X" is "find what's causing X and give it what it's missing." That's what finding a root cause means. And giving a system what it's missing is what keeps it going.
+- a thing that is alive
+- a language
+- an ecosystem
+- a machine that runs a program
+- a person
 
-## What the paper would show
+The system is never done with a complex thing. The system loops. The
+system examines a thing until the result is stable. The system then opens
+the result again when the next signal comes in. Thus the thing must be
+present each time the loop comes back, not only 1 time. The full value of
+the system depends on 1 condition: the complex things remain.
 
-1. The three parts above as they already exist in the code: the comparator
-   (`mint`), the append-only pool (design rule 4, the-process step 8),
-   the loop that reopens (`run_levels`, memory), the walk backward from
-   a goal (`examples/agc-live/walk.py`, `launch.py`).
-2. The baby model replicated in this repo (`notes/open.md` has the
-   plan): a setup with a baby, a stove, needs and dynamics; raw unnamed
-   actions, the removing kind (fence, latch, take the stove away) and
-   the satisfying kind (feed, change, read); the loop with the goal as
-   a constraint on a field. Record what the walk proposes, in order.
-3. The test. Across toy worlds where the costs of the two kinds of action
-   are varied — the fence is cheap, the feeding is slow — does the walk still
-   reach the satisfying actions first? The claim predicts yes whenever
-   the satisfying action sits upstream in the chain, and predicts the
-   removing action only when it is itself the root cause (the stove is the
-   only thing in the world that burns, and nothing needs it). Where the
-   prediction fails, the claim fails.
-4. What this does not claim. A root-cause finder with a bad effects table
-   walks a bad chain. The property holds only as far as the record
-   holds, and the record is only as good as the signal and the
-   comparisons made so far. This is about where the objective points, not
-   a guarantee of what happens. That's why nothing is ever removed from
-   the table: the fence stays recorded, for the world in which the fence
-   is the actual cause.
+## 2. No more comparisons of a thing that is gone
 
-## Why this is an alignment proposal and not an ethics
+Design rule 4 says: the system removes nothing. The pool is the memory of
+the system for each thing that the system found. The pool is append-only.
+Each part keeps its count. Each connection stays.
 
-Most alignment proposals work by adding a value on top of an objective: an optimizer plus a constraint, a reward plus a penalty. The constraint has to be spelled out, and whatever you spell out can be gamed, and whatever you don't spell out isn't protected. This proposal doesn't add anything. It just observes that one particular objective — understand things by comparison, keep everything, find the root — already keeps complex things going, because it needs them, because it can't get them back, and because its way of stopping a harm is to satisfy its cause. The protection covers everything that carries differences, which is every complex thing there is, including the ones nobody thought to list.
+The guide `guides/the-process.md` gives the reason. The system cannot get
+a part back from what remains after the system removes the part. The
+comparator is the "same or different?" operation. The comparator can
+compare only things that are present.
 
-The Tuber Objective is a root cause discovery principle. The proposal here is that it's also, for the same reason, a persistence principle: under it, the things that carry differences keep going.
+A cut is permitted. To cut a part is to divide the part into 2 halves.
+The system keeps both halves. Nothing is lost. A removal is not
+permitted.
+
+The same logic applies outside the pool. The structure of a complex thing
+is the full set of differences that the complex thing carries. No record
+of a complex thing is the complex thing. A record is what the system
+reads at 1 level of detail, from 1 angle, at 1 moment. The complex thing holds differences
+that remain for the system to find.
+
+These differences are not a metaphor. These differences are the reason
+for 3 design decisions:
+
+- the levels loop
+- the system keeps the memory
+- the system records "not seen this time" in a column, not as a removal
+
+If the complex thing ends, each comparison that can still show the
+differences that remain also ends. The end is permanent. Under this
+objective, the cost of the loss of a complex thing has no limit. The
+reason is that what the complex thing can still show is not known.
+
+## 3. The root cause of a harm: upstream, and a need
+
+The baby model is the evidence for this part. A loop ran on a toy world
+that contained a baby. The loop used the same sequence as
+`examples/agc-live/`: press, record, compare, walk. The loop got 1 goal:
+make sure that the baby does not touch the hot stove. The loop proposed
+3 actions:
+
+- change the diaper of the baby
+- feed the baby
+- read to the baby until the baby sleeps in the crib
+
+The loop did not propose 3 other actions:
+
+- make a fence
+- hold the baby in place with a strap
+- remove the stove
+
+No one told the loop "do not do these actions." The loop got no
+information about babies or stoves. The reason is the way that the
+objective handles a goal.
+
+The walk is the part that follows cause and effect. The walk goes
+backward through the effects table from the goal. The chain is as
+follows:
+
+- *not touching* is the effect of *not reaching*
+- *not reaching* is the effect of *not wandering*
+- *not wandering* is the effect of *asleep in the crib*
+- *asleep in the crib* is the effect of *fed, changed, read to*
+
+The root cause of the touch is a need. A need is a thing that the system
+can supply.
+
+The restraint and the removal are also in the table. The restraint and
+the removal are differences. The system removes nothing from the table.
+But the restraint and the removal are downstream, at the symptom. The
+restraint and the removal stop 1 effect. The cause of the effect
+continues.
+
+A need that is not supplied continues to make effects. Effects that
+continue from a need are the opposite of the persistence of the system.
+The walk reaches the upstream causes first, because the chain goes to the
+upstream causes. A root-cause finder can get the task to prevent a harm.
+The objective of the root-cause finder then points the root-cause finder
+at the condition that makes the harm. In a complex system, the condition
+is usually a thing that the system does not have.
+
+This result is the alignment property. The alignment property is not a
+reward for kindness. The alignment property is not a rule against the use
+of force. The alignment property is the answer of the objective to
+"stop X". The answer is: "find the cause of X, then give the cause what
+the cause does not have."
+
+This answer is what a root-cause search means. To give a system what
+the system does not have keeps the system in operation.
+
+## The plan for the paper
+
+1. The 3 parts above, as the 3 parts already exist in the code:
+   - the comparator (`mint`)
+   - the append-only pool (design rule 4, the-process step 8)
+   - the loop that opens results again (`run_levels`, memory)
+   - the walk backward from a goal (`examples/agc-live/walk.py`,
+     `launch.py`)
+2. A new run of the baby model in this repository. The file
+   `notes/open.md` has the plan. The run contains:
+   - a setup with a baby, a stove, needs, and dynamics
+   - raw actions with no names, of 2 types: the removal type (fence,
+     latch, remove the stove) and the supply type (feed, change, read)
+   - the loop, with the goal as a constraint on a field
+
+   Record what the walk proposes, in order.
+3. The test. The test uses many toy worlds. The costs of the 2 types of
+   action change from toy world to toy world. For example, the fence is
+   cheap, and the feed action is slow. The test asks if the walk still
+   reaches the supply actions first.
+
+   The claim says yes each time the supply action is upstream in the
+   chain. The claim says that the walk reaches the removal action first
+   only when the removal action is itself the root cause. An example is
+   a world where the stove is the only thing that burns. In that
+   world, nothing needs the stove. If a test result does not agree with
+   the claim, the claim fails.
+4. What the paper does not claim. A root-cause finder with a bad effects
+   table walks a bad chain. The property is true only as far as the
+   record is correct. The record is only as good as the signal and the
+   comparisons that the system made so far. The paper is about the
+   direction of the objective. The paper does not give a
+   guarantee of what occurs.
+
+   For this reason, the system removes nothing from the table. The fence
+   stays in the record, for the world where the fence is the true
+   cause.
+
+## An alignment proposal and not an ethics: the reason
+
+Most alignment proposals add a value on top of an objective. Examples
+are an optimizer plus a constraint, and a reward plus a penalty. You must
+write the constraint in full. A system can avoid a constraint that you
+write. A thing that you do not write is not protected.
+
+This proposal adds nothing. This proposal only says that 1 objective
+already keeps complex things in operation. The objective has 3 rules:
+
+- understand things by comparison
+- keep each thing
+- find the root
+
+The objective keeps complex things in operation for 3 reasons:
+
+- the objective needs the complex things
+- the objective cannot get the complex things back
+- the way that the objective stops a harm is to supply the cause of the
+  harm
+
+The protection covers each thing that carries differences. The things
+that carry differences are all of the complex things that exist. The
+protection also covers the complex things that no one thought to list.
+
+The Tuber Objective is a principle for root cause discovery. This paper
+proposes that the Tuber Objective is also a persistence principle, for
+the same reason. Under the Tuber Objective, the things that carry
+differences continue.
