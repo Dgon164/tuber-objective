@@ -1,37 +1,41 @@
 """
-Discovery -- finds structure in any file, from scratch.
+Discovery -- a program that finds the structure of a file with no prior knowledge.
 Jason Weeks, thetuberobjective@gmail.com -- github.com/Dgon164/tuber-objective
 
-The whole thing boils down to one operation: compare two things.
+The program has one operation. The operation compares 2 things.
 
-    same       what the two things have in common
-    different  what's left over once you take that out
-    not part   everything the comparison didn't touch
+    same       the part that the 2 things share
+    different  the part of each thing that remains after the shared part is removed
+    not part   the part that the comparison did not touch
 
-That's it. The program runs this comparison on the raw bits, then on its
-own results, over and over until nothing new shows up.
+The program applies the comparison to the raw bits. Then the program
+applies the comparison to its own results. The program continues until
+a step finds nothing new.
 
-Input   any file, read as raw bits. It doesn't assume any format.
-Output  a record (plain text and JSON) of everything it found:
-        what each piece is made of, what contains it, what shows up
-        before and after it, and how to turn one piece into another.
+Input   a file of any type. The program reads the file as raw bits. The
+        program does not assume a format.
+Output  a record, in plain text and in JSON. The record shows each part
+        that the program found, what each part contains, what contains
+        each part, what comes before and after each part, and the change
+        that makes one part into a different part.
 
 No dependencies.  Run:  python discovery.py FILE [--lens ascii|utf8|octal]
-                        python discovery.py --help   for the other options
-From Python:            R = discovery.Root(FILE)   gives you the signal, level 0, and the pool;
-                        discover() does all of that plus every level and writes the record.
+                        python discovery.py --help   shows the other options
+From Python:            R = discovery.Root(FILE)   gives the signal, level 0, and the pool
+                        discover() gives the same, plus each level, and writes the record
 """
 
 import sys, os, json, collections, heapq, bisect
 
 
 class Refusal(ValueError):
-    """When the program can't do what you asked -- wrong option, incompatible
-    memory file, etc. -- it says why and stops cleanly instead of crashing."""
+    """The program cannot do the request. Causes: an option that does not
+    exist, or a memory file at a different frame or in an old format. The
+    program gives the reason and stops. The program does not give a traceback."""
 
 
 # --------------------------------------------------------------------------
-# 1. SIGNAL  -- read the file as a string of 0s and 1s
+# 1. SIGNAL  -- read the file as a sequence of bits
 # --------------------------------------------------------------------------
 
 def read_signal(path, limit=None):
@@ -45,24 +49,28 @@ def read_signal(path, limit=None):
 
 
 # --------------------------------------------------------------------------
-# 2. FRAME  -- figure out how wide one "word" is
+# 2. FRAME  -- find the width of 1 word
 #
-# Imagine laying all the bits out in rows of some width w. Each column
-# (every w-th bit starting at position c) has a rate: how often it's a 1.
-# At the RIGHT width, each column has its own personality -- for example,
-# with 8-bit ASCII text, column 0 is never 1 and column 2 almost always
-# is. At the WRONG width, all the columns blur together to similar rates.
+# Put the bits in rows of width w. Column c contains each w-th bit from
+# bit c. The rate of a column is the fraction of its bits that are 1. At
+# the correct width, each column has its own rate. Example: in 8-bit
+# ASCII text, column 0 is never 1, and column 2 is almost always 1. At a
+# wrong width, all columns have almost the same rate.
 #
-# So we score each width by the spread between its most-1 column and its
-# least-1 column. Biggest spread wins. A wider width has to beat a narrower
-# one by more than you'd expect from random chance.
+# The score of a width is the spread between the column with the highest
+# rate and the column with the lowest rate. The width with the largest
+# spread wins. A wider width wins against a narrower width only if the
+# wider width beats the narrower width by more than chance gives for that
+# number of rows.
 #
-# Then we check for multiples. Width 16 on 8-bit text is just the same 8
-# columns repeated twice. If the winning width's column rates are a
-# smaller width's rates repeated (within the wobble you'd get by chance),
-# we fold down to that smaller width.
+# Then the program folds. A multiple of the true width shows the columns
+# of the true width repeated. Example: width 16 on 8-bit text shows the 8
+# columns 2 times. If the column rates of the width that won are the
+# rates of a smaller width repeated, within the variation that chance
+# gives, the frame is the smaller width. The smallest divisor that fits
+# wins.
 #
-# We only look at the first 64 KB of the file to decide this.
+# The program uses the first 64 KB of the file to find the frame.
 # --------------------------------------------------------------------------
 
 def find_frame(bits, widest=64, sample=1 << 19, force=None):
@@ -81,7 +89,7 @@ def find_frame(bits, widest=64, sample=1 << 19, force=None):
         chance = 1 / rows ** 0.5 if rows else 1
         if score[w] > score[picked] + chance:
             picked = w
-    fold = {}                                   # divisor -> mean difference from picked's columns
+    fold = {}                                   # divisor -> the mean difference from the columns of the width that won
     rows = max(len(s) // picked, 1)
     wobble = 0.5 / rows ** 0.5
     frame = picked
@@ -95,7 +103,7 @@ def find_frame(bits, widest=64, sample=1 << 19, force=None):
 
 
 # --------------------------------------------------------------------------
-# 3. WORDS  -- chop the bits into words and count them
+# 3. WORDS  -- cut the bits into words, count the words, count what follows each word
 # --------------------------------------------------------------------------
 
 def cut_words(bits, width):
@@ -111,9 +119,9 @@ def follows(items):
 
 
 # --------------------------------------------------------------------------
-# 4. RUNS  -- the most common word is the separator (like spaces in text,
-#             or zero bytes in a program). A "run" is everything between
-#             two separators -- basically, a word or chunk.
+# 4. RUNS  -- the most common word is the separator. A run is the sequence
+#             of words between 2 separators. In text, the separator is the
+#             space. In a compiled program, the separator is the zero byte.
 # --------------------------------------------------------------------------
 
 def cut_runs(words, separators):
@@ -131,57 +139,65 @@ def cut_runs(words, separators):
 
 
 # --------------------------------------------------------------------------
-# 5. MINT  -- smash parts together until nothing new comes out
+# 5. MINT  -- compare parts in pairs until a round makes nothing new
 #
-# Start with every distinct run in a sorted list (the "pool"). Neighbors
-# in sorted order share the longest common beginning. That shared piece
-# and the two leftover tails become new parts and go back into the pool.
-# Do the same thing backwards (mirror everything) to catch shared endings.
-# Keep going until a round produces nothing new. Nothing ever gets deleted.
+# To mint a part is to make a new part from 2 parts that have the same
+# start. The pool starts with each different run. The program sorts the
+# pool. Two neighbors in sorted order share the longest start that any 2
+# parts share. The program mints the shared start and the 2 remainders
+# as new parts. The new parts go into the pool. The program does the same
+# with each part reversed, to find shared ends. The program repeats until
+# a round mints nothing. The program never removes a part.
 #
-# Since nothing gets removed, two parts that were neighbors last round are
-# still neighbors this round, so we only bother comparing pairs where at
-# least one of them is new from the last round.
+# The program never removes a part. Thus 2 parts that were neighbors in
+# the last round are neighbors in this round. The program compares a pair
+# only when at least 1 part of the pair is new from the last round.
 #
-# Two elements count as "the same" if they're identical, OR if they belong
-# to the same class (classes come from the level below; there aren't any
-# at level 0). When they match by class, the class marker takes that slot
-# in the shared piece -- so the new part is the pattern they share, with
-# the class standing in for where they differ.
+# Two elements are the same if the elements are equal. Two elements are
+# also the same if the elements are in the same class. Classes come from
+# the level below. Level 0 has no classes. When 2 elements are the same
+# only by class, the class takes that position in the shared start. The
+# new part is then the pattern that the 2 parts share, with the class in
+# the position where the 2 parts differ.
 #
-# The pool, made_of, and part_of are shared across all levels, so new
-# parts automatically connect to whatever they're built from.
+# All levels share the pool, made_of, and part_of. Thus a new part adds
+# connections to the parts that the new part contains, at any level.
 #
-# Memory: parts that were in the pool from a previous run (loaded from a
-# file). They sit in the sorted pool next to the new runs, so new things
-# collide with remembered things too. But a comparison only counts if the
-# current signal is involved -- two old remembered parts that this signal
-# hasn't touched get left alone. When a remembered part comes out of a
-# comparison again, it's "confirmed" and gets one more round of being
-# treated as fresh. Reading the same signal twice confirms everything from
-# the first time. The record reports what happened: confirmed (was in
-# memory AND showed up again), added (brand new), not seen (was in memory
-# but didn't come up this time).
+# Memory: the parts that were in the pool before this signal arrived. The
+# program loads these parts from a memory file. The parts from memory at
+# the depth of this level are in the sorted pool next to the new runs.
+# Thus a new run is compared with the parts from memory and with the rest
+# of the signal. A comparison counts only when this signal is in the
+# comparison. The program does not compare 2 parts from memory that this
+# signal has not reached. The program compared those parts when the
+# program minted them. A part from memory that comes out of a comparison
+# again is confirmed. The confirmed part is new for 1 round. Thus the
+# program can reach again what the program minted from that part before.
+# A signal read 2 times confirms all that the signal made the first time.
+# The record reports the results against memory: confirmed (in memory,
+# and made again by this signal), added (new), not seen (in memory, not
+# made this time).
 #
-# Cap: the pool can get huge on big signals with long runs. If it passes
-# the cap, the loop stops early and the record says so. This is just a
-# memory limit, not part of the method -- raise it or use a smaller signal.
+# Cap: the pool can become large on a big signal with long runs. When the
+# pool passes the cap, the loop stops early and the record says so. The
+# cap is a memory limit. The cap is not part of the method. Increase the
+# cap, or cut the signal.
 # --------------------------------------------------------------------------
 
 def node(x):
-    """Unwrap single-element wrappers. A run containing just one run IS
-    that run, so connections should point to the thing itself."""
+    """A part with 1 element, at a level above 0, is that element. A run
+    that contains 1 run is that run. The connections go to the element."""
     return x[0] if isinstance(x, tuple) and len(x) == 1 and isinstance(x[0], tuple) else x
 
 
 def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0, memory=()):
-    mine = set(run_counts)                     # all parts at this level
+    mine = set(run_counts)                     # the parts of this level, in the form of this level
     produced = set(node(r) for r in run_counts)
     for r in run_counts:
         k = node(r)
-        pool[k] = pool.get(k, 0) + (run_counts[r] if level == 0 else 0)   # only count whole occurrences at level 0
-    remembered_only = set()                    # old parts from memory that this signal hasn't seen yet
-    reached = set(run_counts)                  # everything this signal has touched so far
+        pool[k] = pool.get(k, 0) + (run_counts[r] if level == 0 else 0)   # the whole count applies at level 0 only
+    remembered_only = set()                    # parts from memory at this depth that this signal did not make
+    reached = set(run_counts)                  # the parts that this signal made or ran, in the form of this level
     if memory and run_counts:
         d = depth(next(iter(run_counts)))
         remembered_only = set(p for p in memory if depth(p) == d and not is_token(p)) - mine
@@ -201,7 +217,7 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
         return tuple(h)
 
     if not class_of:
-        def head(a, b):                        # no classes to worry about: just find the shared beginning
+        def head(a, b):                        # no classes: the shared start only
             i = 0
             for x, y in zip(a, b):
                 if x != y:
@@ -210,8 +226,8 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
             return a[:i]
 
     def merged(keys, batch):
-        """Merge a sorted batch into a sorted list. Returns the combined
-        list and the positions where each batch item ended up."""
+        """Put the sorted batch into the sorted list keys, each item in its
+        place. Return the new list and the position of each batch item."""
         out, at, i = [], [], 0
         for item in batch:
             j = bisect.bisect_left(keys, item, i)
@@ -222,19 +238,22 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
         out += keys[i:]
         return out, at
 
-    endings = collections.Counter()            # leftover tails after a shared beginning
-    beginnings = collections.Counter()         # leftover fronts before a shared ending
+    endings = collections.Counter()            # the remainder after a shared start
+    beginnings = collections.Counter()         # the remainder before a shared end
     rounds = []
-    reached_again = []                         # per round: how many old memories got re-confirmed
-    nodal = level > 0                          # at level 0 a part is its own node
-    # We keep the pool sorted in two ways: forward (the parts themselves) and
-    # mirrored (reversed, so we can find shared endings). Each round, we only
-    # compare pairs where at least one part is new. First round compares
-    # everything; after that, just the freshly added ones and their neighbors.
+    reached_again = []                         # per round: the parts from memory that this signal made again
+    nodal = level > 0                          # at level 0, a part is its own node
+    # The pool is sorted in 2 orders. The forward order holds the parts.
+    # The mirror order holds each part reversed, with the part, to find
+    # shared ends. The program puts what a round mints into each order in
+    # its place. The program compares only the pairs that have a new part.
+    # The first round compares each pair. After the first round, the
+    # program compares the parts that the pass put in, and in the mirror
+    # order also the parts that the forward pass minted in the last round.
     order = [sorted(mine), sorted((p[::-1], p) for p in mine)]
     pending = [[], []]                         # minted since each order was last merged
-    forward_made, carried = [], []             # mirrored versions of what the forward pass just made
-    touched = []                               # old memories re-confirmed last round -- they get one more fresh round
+    forward_made, carried = [], []             # the mirror entries that a forward pass minted
+    touched = []                               # parts from memory that this signal made again in the last round: new for 1 more round
     r = 0
     while True:
         new = set()
@@ -262,7 +281,7 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
                     a2 = a = x
                     b2 = b = y
                 if a not in reached and b not in reached:
-                    continue                   # both are old memories this signal hasn't touched -- skip
+                    continue                   # 2 parts from memory that this signal did not reach: compared when minted
                 h = head(a2, b2)
                 n = len(h)
                 if n == 0:
@@ -270,7 +289,7 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
                 same = h[::-1] if mirror else h
                 for whole, flipped in ((a, a2), (b, b2)):
                     if same == whole:
-                        continue                       # nothing left over -- the whole thing IS the shared part
+                        continue                       # the whole part is the shared part
                     rest = flipped[n:]
                     if mirror:
                         rest = rest[::-1]
@@ -291,7 +310,7 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
                             if not mirror:
                                 forward_made.append(e)
                         elif piece in remembered_only and piece not in reached:
-                            reached.add(piece)         # this signal just re-confirmed an old memory -- give it one more fresh round
+                            reached.add(piece)         # this signal made the part again: confirmed, and new in the next round
                             touched_now.append(piece)
                     if rest:
                         tally[rest] += 1
@@ -308,14 +327,16 @@ def mint(run_counts, pool, made_of, part_of, cap=1000000, class_of=None, level=0
 
 
 # --------------------------------------------------------------------------
-# 6. CRYSTAL  -- group parts by what they have in common
+# 6. CRYSTAL  -- a second table that reads the pool and groups the parts
 #
-# The pool stays as-is; the crystal is a second view that reads it.
+# To crystallize is to group the parts by the changes that the parts
+# accept. The pool does not change. The crystal is a second table.
 #
-#   change(part -> parent): the piece you'd add to turn the part into
-#       a bigger part. "+rest" means it goes on the end, "rest+" on the front.
-#   class: parts that take the same set of changes belong to the same group.
-#       (Like how "walk", "talk", "look" all take "+ed" and "+ing".)
+#   change (part to parent): the remainder that makes the part into the
+#       parent. The form is "+rest" when the part is the start of the
+#       parent. The form is "rest+" when the part is the end of the parent.
+#   class: the parts that accept the same set of changes are in 1 class.
+#       Example: "walk", "talk", and "look" each accept "+ed" and "+ing".
 # --------------------------------------------------------------------------
 
 def depth(x):
@@ -327,7 +348,8 @@ def depth(x):
 
 
 def as_element_of(part, parent):
-    """Wrap or unwrap a part so it matches the nesting level of its parent's elements."""
+    """The form of the part that matches the elements of the parent. A
+    level-0 run in a level-1 part is 1 element of the level-1 part."""
     return (part,) if depth(parent) == depth(part) + 1 else part
 
 
@@ -336,7 +358,7 @@ def changes_of(part, part_of):
     k = node(part)
     d = depth(k)
     for parent in part_of.get(k, ()):
-        p = (k,) if depth(parent) == d + 1 else k   # as_element_of, with the part's depth found once
+        p = (k,) if depth(parent) == d + 1 else k   # as_element_of, with the depth of the part found 1 time
         n = len(p)
         if parent[0] == p[0] and parent[:n] == p:
             out.add(('+', parent[n:]))
@@ -372,8 +394,9 @@ def crystallize(parts, part_of):
 
 
 def class_token(level, i):
-    """Make a placeholder that can stand in for any member of a class
-    in the sequence one level up. Uses negative numbers so it's easy to spot."""
+    """The class as a symbol that can be in a sequence 1 level up. A
+    negative number marks the symbol. The nesting puts the symbol at the
+    correct depth."""
     tok = (-1 - i,)
     for _ in range(level):
         tok = (tok,)
@@ -389,18 +412,17 @@ def is_token(x):
 
 
 # --------------------------------------------------------------------------
-# 7. LEVELS  -- zoom out, one level at a time, until there's nothing left
+# 7. LEVELS  -- crystallize, then repeat 1 level up, until no change
 #
-# Each level does: count the symbols, split at the most common one, smash
-# parts together (mint), and group them (crystallize). Then the runs from
-# this level become the symbols for the next level -- nothing gets replaced,
-# and this level's classes become another way two things can count as
-# "the same." Everything each level finds (runs of runs, minted parts,
-# classes) goes into one shared pool with connections to everything else.
-#
-# Each level's sequence is shorter than the last (since the separator is
-# always present), so the loop naturally stops when a level has just one
-# run left. In practice the additions shrink to nothing well before that.
+# One level has 4 steps: count the symbols, cut the runs at the most
+# common symbol, mint, crystallize. The symbols of the next level are the
+# runs of this level, with no change. The classes of this level are a
+# second way that 2 symbols can be the same. Each structure that a level
+# makes (a run of runs, a part, a class) goes into the 1 shared pool. Each
+# structure adds connections to the parts already in the pool. The
+# sequence of each level is shorter than the sequence of the level below,
+# because the separator is always present. Thus the loop stops when a
+# level has 1 run. The additions decrease to zero before that point.
 # --------------------------------------------------------------------------
 
 def run_level(seq, separators, pool, made_of, part_of, cap, class_of, level, memory=frozenset(),
@@ -441,7 +463,7 @@ def run_levels(words, separators, cap, pool=None, made_of=None, part_of=None):
     pool = {} if pool is None else pool
     made_of = collections.defaultdict(set) if made_of is None else made_of
     part_of = collections.defaultdict(set) if part_of is None else part_of
-    memory = frozenset(pool)                   # snapshot of what was in memory before this signal
+    memory = frozenset(pool)                   # the parts in memory before this signal
     levels, seq, class_of, earlier = [], words, None, set()
     while True:
         L = run_level(seq, separators if not levels else 1, pool, made_of, part_of, cap,
@@ -455,23 +477,28 @@ def run_levels(words, separators, cap, pool=None, made_of=None, part_of=None):
 
 
 # --------------------------------------------------------------------------
-# 7b. TIME  -- reading the sequence as a timeline
+# 7b. TIME  -- the sequence read as time: before and after
 #
-# The signal is in order, and that order is time. FOLLOWS already tracks
-# what comes right after what. Here we get three more views:
+# The signal is in order. The order is time. FOLLOWS holds what comes
+# directly after what. The program makes 3 more tables from the same
+# sequence. Each table is the comparison applied along the sequence.
 #
-#   arrows    when A->B and B->A both happen, which direction wins?
-#             The winning direction is the arrow; the margin is its strength.
-#   effects   what shows up after a part more often than you'd expect by
-#             chance? We look at a window after each occurrence (sized to
-#             match the signal's own rhythm) and compare what we see vs.
-#             what we'd expect if things were random.
-#   chains    follow the strongest effect forward: a -> b -> c -> ...
+#   arrows    a pair seen in both orders, counted in each order. The order
+#             with the larger count is the arrow. The difference between
+#             the 2 counts is the strength of the arrow.
+#   effects   what a part changes in what comes after the part. The
+#             effects of a part are the parts that occur in the stretch
+#             after the part more often than the parts occur in the whole
+#             signal (the count seen against the count expected). The
+#             stretch is the typical distance to the separator of the next
+#             level. Thus the unit of the stretch comes from the signal.
+#   chains    the strongest effect, followed forward: a -> b -> c.
 #
-# For a signal you're just observing, this gives you before-and-after.
-# With a "do" (like in examples/agc-live: press a button, record what
-# happens, compare), the effect that only shows up after the press is
-# what the press caused.
+# For a signal that the program only observes, the tables give the before
+# and the after. With an action (examples/agc-live: press a key, record,
+# compare), the program reads the same tables across the run with the
+# press and the run without the press. The effect that is present only
+# after the press is the effect of the press.
 # --------------------------------------------------------------------------
 
 def time_tables(runs, run_counts, run_follows, window, top):
@@ -498,7 +525,7 @@ def time_tables(runs, run_counts, run_follows, window, top):
         out = []
         for b, c in after.items():
             expected = slots * run_counts[b] / n
-            if c >= 2 and c >= 2 * expected:          # shows up at least twice and at 2x the background rate -- that's a real effect
+            if c >= 2 and c >= 2 * expected:          # seen 2 times or more, at 2 times the expected rate or more: as with the classes, 2 make a pattern
                 out.append((c - expected, b, c, expected))
         out.sort(key=lambda t: (-t[0], t[1]))
         return [(b, c, expected) for d, b, c, expected in out[:8]]
@@ -525,16 +552,17 @@ def time_tables(runs, run_counts, run_follows, window, top):
 
 
 def tuples(x):
-    """Convert a part from JSON format (nested lists) back to the tuples
-    the pool uses internally."""
+    """Change a part from the JSON form (nested lists) to the tuple form
+    that the pool uses."""
     return tuple(tuples(e) for e in x) if isinstance(x, list) else x
 
 
 def load_memory(path):
-    """Load a memory file (JSON). It stores the pool as [part, count] pairs,
-    part_of as [part, [containers]] pairs (made_of is rebuilt from that),
-    and a history of which signals have been read. Any program can open
-    this file -- it's just data, no code gets executed."""
+    """Read a memory file. The memory file is JSON. The file holds the pool
+    as [part, count] pairs. The file holds part_of as [part, [the parts
+    that contain the part]] pairs. The program makes made_of from part_of.
+    The file holds the history of the signals read. Any program can read
+    the file. To read the file runs no code."""
     if not path or not os.path.exists(path):
         return {}, collections.defaultdict(set), collections.defaultdict(set), []
     raw = open(path, 'rb').read()
@@ -559,7 +587,8 @@ def save_memory(path, pool, made_of, part_of, history):
 
 
 # --------------------------------------------------------------------------
-# 8. LENS  -- how to display things (purely cosmetic, doesn't affect the algorithm)
+# 8. LENS  -- display only. The lens does not touch the method. The lens
+#             decides only how the record shows a word on the page.
 # --------------------------------------------------------------------------
 
 def make_lens(name, width):
@@ -591,9 +620,9 @@ def make_lens(name, width):
 
 
 class Glyphs:
-    """Turns any part into readable text. Words use the lens, runs show
-    their words, higher-level parts show their pieces, and classes show
-    as {level.index}."""
+    """Shows a part on the page. A word uses the lens. A level-0 run shows
+    its words. A part above level 0 shows its elements, each in turn. A
+    class shows as {level.index}."""
 
     def __init__(self, lens, wide=72):
         self.g0, self.r0 = lens
@@ -612,22 +641,22 @@ class Glyphs:
         if d == 1:
             return self.r0(x)
         sep = ' ' if d == 2 else ' | '
-        pieces, n = [], -len(sep)              # running length of what we've built so far
+        pieces, n = [], -len(sep)              # n is the length of sep.join(pieces)
         for e in x:
-            if n > self.wide:                  # too wide for display, stop here
+            if n > self.wide:                  # display only: the record shows nothing past the width
                 break
             s = self.draw(e)
             pieces.append(s)
             n += len(s) + len(sep)
         text = sep.join(pieces)
-        return text if len(text) <= self.wide else text[:self.wide] + '...'   # truncate for display
+        return text if len(text) <= self.wide else text[:self.wide] + '...'   # display only
 
     def change(self, d, x):
         return ('+' + self.draw(x)) if d == '+' else (self.draw(d) + '+')
 
 
 # --------------------------------------------------------------------------
-# 9. RECORD  -- write everything that was found to text and JSON files
+# 9. RECORD  -- write what the program found, in plain text and in JSON
 # --------------------------------------------------------------------------
 
 def write_level(say, L, G, pool, made_of, part_of, top, frame):
@@ -670,7 +699,7 @@ def write_level(say, L, G, pool, made_of, part_of, top, frame):
 
     T = L.get('time')
     if T:
-        short = lambda x: (lambda s: s if len(s) <= 24 else s[:24] + '...')(draw(x))   # truncate for display
+        short = lambda x: (lambda s: s if len(s) <= 24 else s[:24] + '...')(draw(x))   # display only
         say('TIME   the sequence read as time; the stretch after a run is %d runs (the typical distance to the next level\'s separator)'
             % T['window'])
         say('  ARROWS   pairs seen in both orders, counted each way (top %d by the difference)' % top)
@@ -739,9 +768,11 @@ def write_level(say, L, G, pool, made_of, part_of, top, frame):
 
 
 def key_of(x, frame, keys=None):
-    """Turn any part into a string key for JSON output. Level-0 runs become
-    hex words joined by dots, deeper parts join their pieces with spaces
-    or pipes, and classes show as {level.index}."""
+    """The JSON key for a part. A level-0 run is its hex words with '.'
+    between the words. A level-1 part is the keys of its elements with ' '
+    between the keys. A part at level 2 or above uses ' | '. A class is
+    {level.index}. Each part gets a key 1 time. The Keys object holds the
+    keys already made."""
     if keys is None:
         keys = Keys(frame)
     x = node(x)
@@ -763,8 +794,8 @@ def key_of(x, frame, keys=None):
 
 
 class Keys(dict):
-    """Lookup from parts to their JSON key strings. Auto-generates a key
-    the first time you ask for a part."""
+    """A map from a part to its JSON key. A part not seen before gets its
+    key at first use."""
 
     def __init__(self, frame):
         self.frame = frame
@@ -871,7 +902,7 @@ def write_record(out_txt, out_json, name, data, bits, frame, profile, score, fol
 
     open(out_txt, 'w', encoding='utf-8').write('\n'.join(T) + '\n')
 
-    keys = Keys(frame)                         # one key table shared across all levels
+    keys = Keys(frame)                         # all levels share 1 key table
     J = {
         'signal': name, 'bytes': len(data), 'bits': len(bits),
         'frame': frame, 'profile': {str(w): profile[w] for w in profile},
@@ -886,38 +917,39 @@ def write_record(out_txt, out_json, name, data, bits, frame, profile, score, fol
                         'added': len(L['new']), 'unseen': len(L['unseen'])} for L in levels]},
         'levels': [level_json(L, pool, made_of, part_of, G, frame, keys) for L in levels],
     }
-    open(out_json, 'wb').write(json.dumps(J, separators=(',', ':')).encode())   # compact JSON, no extra whitespace
+    open(out_json, 'wb').write(json.dumps(J, separators=(',', ':')).encode())   # compact JSON, no spaces
     return '\n'.join(T)
 
 
 # --------------------------------------------------------------------------
-# 10. RUN  -- put it all together
+# 10. RUN  -- the full program, from the top to the end
 #
-# Root is the starting point for anything built on Discovery: it reads the
-# file, figures out the frame, chops it into words, and runs level 0 on a
-# shared pool. You can then call for more levels as needed. discover() is
-# Root plus all levels plus writing the record. Every script in extend/
-# and hybrid/ is just Root plus one new idea.
+# Root is the 1 call that a program made on Discovery makes. Root gives
+# the signal as Discovery reads the signal: the file read, the frame, the
+# words, and level 0 on a shared pool. Root has a call for each further
+# level. discover() is Root, plus each level to the end, plus the record.
+# Each script in extend/ and hybrid/ is Root plus 1 new thing.
 # --------------------------------------------------------------------------
 
 class Root:
-    """The starting point for reading any signal with Discovery.
+    """The signal, as Discovery reads the signal.
 
-        R = Root(path)                 reads the file, finds the frame, runs level 0
-        R.words, R.frame               the signal as a list of numbers, and how wide each one is
-        R.L0                           level 0 results: runs, counts, classes, etc.
-        R.pool, R.made_of, R.part_of   the shared pool and all the connections between parts
-        R.level(seq, separators, class_of)   run one more level on the same pool
-        R.all_levels()                 keep running levels until there's nothing left to split
-        R.draw(x)                      show any part as readable text
+        R = Root(path)                 read the file, find the frame, cut the words, run level 0
+        R.words, R.frame               the signal as words of R.frame bits
+        R.L0                           level 0: runs, run_counts, run_follows, parts,
+                                       endings, beginnings, classes, next_class_of
+        R.pool, R.made_of, R.part_of   the shared pool and its connections
+        R.level(seq, separators, class_of)   1 more level on the same pool
+        R.all_levels()                 level after level until 1 run remains, as discover() does
+        R.draw(x)                      a part as text, through the lens
 
-    separators: 1 for the most common word, N for the N most common, or
-    a specific list of words. same: a map from a word to what stands in
-    for it when two words should count as matching (used by
-    extend/same_within.py). pool, made_of, part_of, history: pass these
-    in to start from a saved memory (from load_memory). A memory only
-    works at one frame width -- the same number means different things
-    at different widths.
+    separators: 1 for the most common word, N for the N most common
+    words, or a list of words. same: a map from a word to the symbol that
+    stands for the word when 2 words count as the same (the band in
+    extend/same_within.py). pool, made_of, part_of, history: a memory to
+    start from, as load_memory gives the memory. A memory holds signals
+    read at 1 frame. A word is a number. The same number means a different
+    thing at a different width.
     """
 
     def __init__(self, path, separators=1, lens='raw', same=None, cap=1000000, limit=None,
@@ -935,15 +967,15 @@ class Root:
         self.pool = {} if pool is None else pool
         self.made_of = collections.defaultdict(set) if made_of is None else made_of
         self.part_of = collections.defaultdict(set) if part_of is None else part_of
-        self.memory = frozenset(self.pool)       # snapshot of the pool before this signal
-        self.earlier = set()                     # parts produced by earlier levels of this run
+        self.memory = frozenset(self.pool)       # the parts in memory before this signal
+        self.earlier = set()                     # the parts that earlier levels of this run made
         self.cap = cap
         self.levels = []
         self.glyphs = Glyphs(make_lens(lens, self.frame))
         self.L0 = self.level(self.words, separators, same)
 
     def level(self, seq, separators=1, class_of=None):
-        """Run one more level: split at the separator, smash parts together, group them."""
+        """One more level on the shared pool: cut, mint, crystallize."""
         L = run_level(seq, separators, self.pool, self.made_of, self.part_of, self.cap,
                       class_of, len(self.levels), self.memory, self.earlier)
         self.levels.append(L)
@@ -951,9 +983,9 @@ class Root:
         return L
 
     def all_levels(self):
-        """Keep running levels (each one on the runs of the one before,
-        using its classes as another way things can match) until there's
-        only one run left."""
+        """Level after level. Each level runs on the runs of the level
+        below. The classes of the level below are a way to be the same.
+        The loop stops when a level has 1 run."""
         while len(self.levels[-1]['runs']) >= 2:
             L = self.levels[-1]
             self.level(L['runs'], 1, L['next_class_of'])
@@ -971,7 +1003,7 @@ def discover(path, lens='raw', limit=None, widest=64, top=25, out=None, quiet=Fa
     if memory:
         mem = {'path': memory, 'parts_before': len(pool), 'history_before': list(history)}
     if isinstance(separators, str) and not separators.isdigit():
-        # separator given as hex values: 20,0a  or  0x20  or  20,  (plain digits are a count: --separators 2)
+        # the user names the separators in hex: 20,0a  or  0x20  or  20,  (digits alone are a count: --separators 2)
         names = [h.strip().lower() for h in separators.split(',')]
         names = [h[2:] if h.startswith('0x') else h for h in names if h]
         try:

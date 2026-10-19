@@ -1,6 +1,6 @@
 # The Tuber Objective
 
-*A root cause discovery principle*
+*A principle for root cause discovery*
 
 > "It from bit."
 > -- John Archibald Wheeler, 1990
@@ -8,37 +8,43 @@
 > "Information is a difference that makes a difference."
 > -- Gregory Bateson, *Steps to an Ecology of Mind*, 1972
 
-This program takes both of those quotes at face value.
+This program applies the two quotations above directly.
 
-It reads any file as raw bits -- the "bit" -- and using nothing but
-comparison (what's the same? what's different?) it builds a record of
-every part and relationship it can find -- the "it." You don't tell it
-what to look for. Structure shows up on its own, just from the
-comparison. If a difference keeps showing up, it matters. If it doesn't
-repeat, it's noise. That's the only rule, and it gets applied at every
-level.
+The program reads a file as bits. The bits are the "bit". The program
+compares the bits. The program finds what is the same and what is
+different. From the comparisons, the program makes a record of each part
+and each relation that the program finds. The record is the "it". You do
+not tell the program what to find. The structure appears from the
+comparison alone. A difference that occurs many times is important. A
+difference that occurs one time is noise. This is the only rule. The
+program applies this rule at each level.
 
-One comparison operation. One memory. One Python file, no dependencies.
+One comparison operation. One memory. One Python file. No dependencies.
 
 ```
 python discovery.py examples/text/alice.txt --lens ascii
 ```
 
-## What it does
+## What the program does
 
-Hand it any file -- a novel, a compiled program, flight software from
-1969 -- and it reads the raw bits, figures out the word size by itself,
-finds the parts, and writes down everything it learned. That includes:
-what each part is made of, what contains it, what shows up next to it,
-what comes after it and which direction the order goes, and what you'd
-need to change to turn one part into another.
+Give the program a file. The file can be a novel, a compiled program, or
+flight software from 1969. The program reads the raw bits. The program
+finds the word width without help. The program finds the parts. The
+program writes a record of each part. The record shows:
 
-There's no list of known file types, no dictionary, no grammar rules,
-and no training step. The exact same program reads all four example
-files and writes a record of each one. The records are the evidence;
-the code is the explanation.
+- what each part contains
+- what contains each part
+- what occurs next to each part
+- what comes after each part, and the direction of the sequence
+- the change that makes one part into a different part
 
-If it's working, the first few lines of output will look like this:
+The program has no list of file types, no dictionary, no grammar, and no
+training step. The same program reads each of the 4 example files and
+writes a record of each file. The records are the evidence. The code is
+the explanation.
+
+When the program operates correctly, the first lines of the output are
+as follows:
 
 ```
 FRAME   ...
@@ -53,103 +59,110 @@ LEVELS   ...
       1    24167      6466     1341      1328     5408          133     6709       29155
 ```
 
-It figured out that the word size is 8 (one byte -- ASCII), there are
-73 distinct characters out of 144,395 total, and it created ("minted")
-15,980 shared parts at level 0. Dig deeper into the output and you'll
-see the space character identified as the separator, a table showing a
-group of 22 verb stems that all take `+ed` and `+ing`, and entries like
-`walk` with `walked` and `walking` listed as its forms.
+The output shows 3 results. The word width is 8 bits, which is 1 ASCII
+byte. There are 73 different characters in 144,395 characters. The
+program minted 15,980 shared parts at level 0. To mint a part is to make
+a new part from 2 parts that have the same start or the same end. Later
+in the output, the record shows the space character as the separator.
+The record shows a group of 22 verb stems. Each stem accepts the endings
+`+ed` and `+ing`. The record shows entries such as `walk`, with `walked`
+and `walking` as its forms.
 
-## What it found on four different signals
+## What the program found in 4 different signals
 
-| what we fed it | word size it found | separator it found | what it wrote down |
+| input | word width found | separator found | record contents |
 |---|---|---|---|
-| English novel (ASCII text) | 8 bits -- the top bit is never on | the space character | 73 letters and symbols in frequency order, the words, the endings `+ed` and `+ing`, a group of 22 verb stems that take both |
-| German parliament debate (UTF-8 text) | 8 bits -- the top bit is on 3.6% of the time | the space character | a byte that only ever shows up before four others (the umlaut lead byte), endings `+en` `+ung` `+lich`, prefixes `be+` `ge+`, 52 verb stems, 42 adjective stems |
-| compiled C program (binary) | 64 bits with a little-endian fall-off; at 8 bits, the human-readable strings | the zero word / zero byte | the file's internal layout; the source file name `hello.c`, the functions `strlen` and `puts`, the usage message, the compiler version, the loader path |
-| Apollo Guidance Computer flight code (packed 15-bit) | 15 bits -- it first picked 60, then noticed 60 is just 15 repeated four times, and folded down | EXTEND (the instruction prefix, word 00006) | the machine's actual word size; the most common instruction sequences -- `TC BANKCALL`, `TC INTPRET`, `TC PHASCHNG` -- each followed by their argument codes; `RETURN` as the most connected part |
+| English novel (ASCII text) | 8 bits. The top bit is never 1. | the space character | 73 letters and symbols in order of frequency, the words, the endings `+ed` and `+ing`, a group of 22 verb stems that accept both endings |
+| German parliament debate (UTF-8 text) | 8 bits. The top bit is 1 in 3.6 percent of words. | the space character | a byte that occurs only before 4 other bytes (the umlaut lead byte), the endings `+en` `+ung` `+lich`, the prefixes `be+` `ge+`, 52 verb stems, 42 adjective stems |
+| compiled C program (binary) | 64 bits, with a little-endian decrease in the column rates. At 8 bits, the text strings. | the zero word or zero byte | the layout of the file, the source file name `hello.c`, the functions `strlen` and `puts`, the usage message, the compiler version, the loader path |
+| Apollo Guidance Computer flight code (packed 15-bit) | 15 bits. The program first picked 60. Then the program found that 60 is 15 repeated 4 times, and folded down to 15. | EXTEND (the instruction prefix, word 00006) | the true word width of the machine, the most common instruction sequences `TC BANKCALL`, `TC INTPRET`, `TC PHASCHNG`, each with its argument codes, and `RETURN` as the part with the most connections |
 
-## What's in here
+## Contents of the repository
 
-| folder | what's in it |
+| folder | contents |
 |---|---|
-| [`discovery.py`](discovery.py) | the whole program -- ten numbered sections, one file |
-| [`paper/discovery.md`](paper/discovery.md) | what the system is and why it's built this way |
-| [`paper/persistence.md`](paper/persistence.md) | a proposed alignment paper: a root-cause objective is one where complex things stick around -- it needs them, can't replace them, and responds to harm by addressing whatever caused it (the baby model) |
-| [`guides/`](guides/) | how to run it, how it works step by step, how to read what it writes, how to feed it anything, how to connect it to other systems, and how to build new things on top of it |
-| [`notes/`](notes/) | the design rules, ideas we haven't tried yet, a proposal for the generations of AI and where this fits in, and a log of what was built and when |
-| [`examples/text/`](examples/text/BREAKDOWN.md) | an English novel (Alice in Wonderland, plain ASCII): how it finds the alphabet, the words, the word endings, and a group of 22 verb stems |
-| [`examples/german/`](examples/german/BREAKDOWN.md) | a day of German parliament (UTF-8) plus the English version, and a bridge that lines up what the two languages share |
-| [`examples/code/`](examples/code/BREAKDOWN.md) | Discovery's own source code, and a compiled C program read two ways -- as 64-bit chunks (the file's layout) and as single bytes (the readable strings inside) |
-| [`examples/agc/`](examples/agc/BREAKDOWN.md) | the Apollo 11 Lunar Module flight software: tightly packed 15-bit words from a machine built in the 1960s, plus the assembly source code |
-| [`examples/agc-live/`](examples/agc-live/README.md) | the same flight program running on an emulator of its machine, with every memory write and every hardware signal recorded as a new signal for Discovery to read; builds and runs with two commands |
-| [`examples/memory/`](examples/memory/BREAKDOWN.md) | what happens when Discovery remembers: first half of Alice from scratch, second half using that memory, second half again (learns nothing new), then German against the English memory |
-| [`extend/`](extend/README.md) | extensions that show you can get new results by pointing the comparison somewhere new, without touching the core: slot-mates (basically parts of speech), functions (building words from the record), and sentence-making from the "what follows what" table |
-| [`hybrid/`](hybrid/README.md) | three working scripts that connect Discovery to other systems: a rule engine, a neural net, and a loop that feeds Discovery's output back into itself |
+| [`discovery.py`](discovery.py) | the full program, in 10 numbered sections, in 1 file |
+| [`paper/discovery.md`](paper/discovery.md) | what the system is and why the system has this design |
+| [`paper/persistence.md`](paper/persistence.md) | a proposed alignment paper. A root-cause objective is an objective under which complex things continue. The objective needs the complex things, cannot replace the complex things, and responds to harm at the cause of the harm (the baby model). |
+| [`guides/`](guides/) | how to run the program, how the program operates step by step, how to read the record, how to give the program any signal, how to connect the program to other systems, and how to make new things on top of the program |
+| [`notes/`](notes/) | the design rules, ideas not yet tried, a proposal for the generations of AI and the place of this program in them, and a log of what was made and when |
+| [`examples/text/`](examples/text/BREAKDOWN.md) | an English novel (Alice in Wonderland, plain ASCII). The record shows the alphabet, the words, the word endings, and a group of 22 verb stems. |
+| [`examples/german/`](examples/german/BREAKDOWN.md) | one day of the German parliament (UTF-8) and the English version, and a bridge that shows what the 2 languages share |
+| [`examples/code/`](examples/code/BREAKDOWN.md) | the source code of Discovery, and a compiled C program read in 2 ways: as 64-bit words (the layout of the file) and as bytes (the text strings in the file) |
+| [`examples/agc/`](examples/agc/BREAKDOWN.md) | the Apollo 11 Lunar Module flight software. The words are packed 15-bit words from a machine of the 1960s. The assembly source code is included. |
+| [`examples/agc-live/`](examples/agc-live/README.md) | the same flight program in operation on an emulator of its machine. Each memory write and each hardware signal is recorded as a new signal for Discovery to read. The example builds and runs with 2 commands. |
+| [`examples/memory/`](examples/memory/BREAKDOWN.md) | what occurs when Discovery keeps a memory: the first half of Alice with no memory, the second half with that memory, the second half again (the program learns nothing new), then German against the English memory |
+| [`extend/`](extend/README.md) | extensions that get new results when they point the comparison at a new thing, with no change to the core: slot-mates (approximately the parts of speech), functions (words made from the record), and sentences made from the table of what follows what |
+| [`hybrid/`](hybrid/README.md) | 3 scripts that connect Discovery to other systems: a rule engine, a neural net, and a loop that gives the output of Discovery back to Discovery |
 
-Each example folder has the input file, the record Discovery wrote, and
-a BREAKDOWN.md that walks through the record table by table. Where an
-outside source exists, it shows you how to check Discovery's work
-against it.
+Each example folder has the input file, the record that Discovery wrote,
+and a BREAKDOWN.md that explains the record table by table. When an
+outside source exists, the BREAKDOWN.md shows how to check the work of
+Discovery against that source.
 
-## Run one
+## Run one example
 
-Pick anything from the table. Each example's BREAKDOWN.md starts with
-the command that produces its record, and the record it made is
-committed right next to the input -- so you can read first and run
-later, or never run at all. Each extension and hybrid script has its
-command in its first lines and in its folder's README. None of them
-depends on another, except where one says so (the hybrid loop reads a
-JSON record; the row-by-row extension reads what the net wrote).
+Select an example from the table. The BREAKDOWN.md of each example starts
+with the command that makes its record. The record is in the same folder
+as the input. You can read the record before you run the command. You can
+also read the record and not run the command. Each extension and each
+hybrid script has its command in its first lines and in the README of its
+folder. No script depends on a different script, unless the script says
+so. The hybrid loop reads a JSON record. The row-by-row extension reads
+what the net wrote.
 
 ```
 python discovery.py examples/text/alice.txt --lens ascii
 ```
 
-From Python the same thing is one call -- `R = discovery.Root(path)`:
-the signal as read, level 0, the pool. Every program built on Discovery
-in this repo is that call plus one new idea, and so is `discovery.py`
-itself.
+From Python, the same operation is 1 call: `R = discovery.Root(path)`.
+The call gives the signal as read, level 0, and the pool. Each program
+made on Discovery in this repository is that call and 1 new idea. The
+file `discovery.py` is also that call and 1 new idea.
 
-## Regenerate everything
+## Make all records again
 
 ```
 ./run_examples.sh
 ```
 
-This is optional. It rebuilds every record and output in the repo from
-the inputs in one go, so that what's committed matches what the code
-actually produces. The plain-text records are committed; the JSON
-records (which the hybrid scripts and the bridge read) are large, so
-they get built by this script or by the single commands above.
-`hybrid/net_as_lens.py` needs numpy and `extend/functions.py` needs a
-word list (`/usr/share/dict/american-english` by default); nothing else
-does, and the script skips either when what it needs is missing.
+This step is optional. The script makes each record and each output in
+the repository again from the inputs, in 1 run. The script makes sure
+that the committed records agree with what the code makes. The plain-text
+records are committed. The JSON records are large, so the script or the
+single commands above make them. The hybrid scripts and the bridge read
+the JSON records. The script `hybrid/net_as_lens.py` needs numpy. The
+script `extend/functions.py` needs a word list. The default word list is
+`/usr/share/dict/american-english`. No other script needs anything. The
+script omits a step when the thing that the step needs is not present.
 
-## Where the input files come from
+## Sources of the input files
 
 - `examples/text/alice.txt`: *Alice's Adventures in Wonderland*, 1865,
   public domain, from the NLTK Gutenberg sample.
-- `examples/german/ep-00-01-17.*`: Europarl parallel corpus sample as
-  shipped with NLTK; see `examples/german/EUROPARL-README`.
+- `examples/german/ep-00-01-17.*`: Europarl parallel corpus sample, as
+  shipped with NLTK. See `examples/german/EUROPARL-README`.
 - `examples/agc/input/Luminary099.binsource` and the `.agc` source:
   Virtual AGC project (virtualagc.org), public domain.
-- `examples/code/input/hello.c`: written for this repo.
+- `examples/code/input/hello.c`: written for this repository.
 
 ## Licence
 
-MIT for everything written for this repo. See `LICENSE`. Anything
-brought in from elsewhere keeps its own terms, the loosest each has:
+The licence for all work written for this repository is MIT. See
+`LICENSE`. Work from other sources keeps its own terms. Each source has
+the least restrictive terms that apply:
 
-- `examples/agc-live/virtualagc/yaAGC/`, `yaYUL/` and `Tools/`, the
-  Virtual AGC emulator and assembler: GPL version 2 or later, see
-  `examples/agc-live/virtualagc/COPYING`. `discovery-trace.patch`
-  modifies them, so a build of the patched emulator is GPL as well.
-- The Apollo flight program, Alice, and `hello.c`: public domain, or
-  written here. The Europarl sample: `examples/german/EUROPARL-README`.
+- `examples/agc-live/virtualagc/yaAGC/`, `yaYUL/`, and `Tools/` are the
+  Virtual AGC emulator and assembler. The licence is GPL version 2 or
+  later. See `examples/agc-live/virtualagc/COPYING`. The file
+  `discovery-trace.patch` changes these files, so a build of the patched
+  emulator is also GPL.
+- The Apollo flight program, Alice, and `hello.c` are public domain or
+  written here. The Europarl sample: see `examples/german/EUROPARL-README`.
 
 ## Contact
 
-Jason Weeks -- thetuberobjective@gmail.com. Questions, something you
-built on it, something it got wrong, something you'd like help with:
-write, or open an issue here. I'd like to hear about it.
+Jason Weeks -- thetuberobjective@gmail.com. Write to this address or open
+an issue here for a question, a thing you made on Discovery, a thing
+Discovery got wrong, or a thing you need help with. The author wants to
+know.
