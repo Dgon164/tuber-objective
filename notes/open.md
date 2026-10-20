@@ -1,125 +1,130 @@
-# Open ends
+# Open directions
 
-Things the records point at that haven't been done yet. Each one is a direction, not a plan. None of them changes how Discovery works -- each one is just the same comparator pointed at something the current program doesn't look at.
+This file lists things that the records point at, and that nobody has done yet. Each thing is a direction, not a plan. No direction changes how Discovery operates. Each direction points the same comparator at a thing that the current program does not examine.
 
-## Separators chosen from the record, not by count
+## Separators from the record, not from the count
 
-Right now the most common word becomes the separator (the thing that splits the signal into runs). But the records actually show the next separator themselves: a part with high density (it shows up inside lots of other parts) and zero whole count -- like the newline in Alice, or the tab in the AGC source. A second pass that promotes such a part to separator and reruns would be the loop applied to its own cut. `--separators N` is the by-hand version.
+At present, the most common word becomes the separator. The separator is the thing that divides the signal into runs. But the records show the next separator. The next separator is a part with a high density and a whole count of 0. A part with a high density appears inside many other parts. Examples are the newline in Alice and the tab in the AGC source.
 
-## Class-as-same fires late
+A second pass can make such a part the separator. Then the second pass runs the program again. That second pass applies the loop to its own cut. To cut a signal is to divide the signal into runs at each copy of the separator. `--separators N` is the manual version.
 
-At every level above 0, the mint treats two words as "the same" if they're the same run or if they belong to the same class from the level below. On a single fresh signal this never fired on any of the four examples: the classes at level 0 are mostly stems (like `swallow`, `consider`, `beantrag`), and stems are rarely whole runs by themselves. It did fire on the second reading of a signal against memory (`examples/memory`, third run): with the bigger pool, the classes include whole runs, and five parts with a class in a slot were produced -- things like `{0.82} said`, `first {0.82}`. What would make it fire on the first reading is a class over whole runs -- grouping the parent words by the change they take (so `walked`, `talked`, `looked` form a group because they all end in `+ed`) rather than grouping the stems by the changes they take. That's the same crystal read from the other direction. Not built yet.
+## The late start of the class-as-same rule
 
-## Levels that cut somewhere other than the most common word
+At each level above 0, the mint step treats 2 words as the same if the 2 words are the same run. The mint step also treats 2 words as the same if the 2 words are in the same class from the level below. To mint a part is to make a new part from 2 parts that have the same start or the same end. When the program read each of the 4 examples the first time, this rule never applied. The classes at level 0 are mostly stems, for example `swallow`, `consider`, and `beantrag`. A stem is rarely a whole run.
 
-At every level above 0, the separator is the most common word: `the` for Alice, the comma for the German text, `#` for the Apollo source. That gives stretches-between-the-most-common-thing, which is one perfectly valid reading. A level that cut at a class instead (every run in the verb class, say) would give stretches between verbs. The machinery is the same -- only the cut changes. `extend/cut_at_class.py` does this for one level. Not tried as a replacement for the default cut.
+The rule did apply when the program read a signal a second time against the memory (`examples/memory`, third run). With the larger pool, the classes include whole runs. The program made 5 parts with a class in a slot, for example `{0.82} said` and `first {0.82}`. A class over whole runs can make the rule apply when the program reads a signal the first time. Such a class groups the parent words by the change that the parent words accept. For example, `walked`, `talked`, and `looked` make a group because all 3 words end in `+ed`.
 
-## Why the levels stop where they do
+At present, the crystal groups the stems by the changes that the stems accept. A class over whole runs is the same crystal from the other direction. Nobody has made this class yet.
 
-Every signal tried adds almost everything at levels 0 and 1, and just a handful at levels 2 and 3. This happens because the level-1 runs are long and almost all different, so the level-2 separator only appears a few times and there's little to collide. Whether a signal with heavy repetition at the phrase level (a log file, a protocol trace, a program with many identical routines) would climb higher hasn't been looked at.
+## Levels with a cut at a place other than the most common word
+
+At each level above 0, the separator is the most common word: `the` for Alice, the comma for the German text, and `#` for the Apollo source. The cut at the most common word gives the stretches between the most common thing. Those stretches are 1 valid way to read the signal.
+
+A level with a cut at a class (for example, each run in the verb class) gives the stretches between verbs. The mechanism is the same. Only the cut changes. `extend/cut_at_class.py` does this for 1 level. Nobody has tried this cut as a replacement for the default cut.
+
+## The reason that the levels stop
+
+Each signal that was tried adds almost all of its parts at levels 0 and 1. Each signal adds only a few parts at levels 2 and 3. The reason is that the level-1 runs are long and almost all different. Thus the level-2 separator appears only a few times, and there is little to compare. Nobody has examined if a signal with much repetition at the phrase level climbs higher. Examples of such a signal are a log file, a protocol trace, and a program with many routines that are the same.
 
 ## Memory across signals, beyond the test
 
-The memory test is two halves of one text, the second half twice, and one foreign text. What a memory looks like after twenty texts, how the "not seen this time" count behaves for a part that was real once and never shows up again, and whether the sorted pool with a large memory in it still runs in seconds -- none of that has been looked at. The memory file is JSON -- the pool with its counts, part_of, the history; made_of is rebuilt on load -- so other programs can read it, and reading it doesn't execute anything. It's large: 43 MB after the four runs in `examples/memory/`, most of it the part_of lists. A long-lived memory would need something more compact.
+The memory test uses 2 halves of 1 text, the second half 2 times, and 1 foreign text. Nobody has examined these 3 questions:
+
+- what a memory contains after 20 texts
+- how the "not seen this time" count changes for a part that was real 1 time and never appears again
+- if the pool in sort order, with a large memory in it, still runs in seconds
+
+The memory file is JSON. The file contains the pool with its counts, part_of, and the history. The program makes made_of again when the program loads the file. Thus other programs can read the file. To read the file runs no code.
+
+The file is large: 43 MB after the 4 runs in `examples/memory/`. Most of the 43 MB is the part_of lists. A memory with a long life needs a more compact form.
 
 ## Time
 
-The frame step compares a column with itself one row down and asks whether it changed. A signal with time structure (a sensor log, a state sequence) has a second kind of sameness: a row compared with the row before it. The reservoir example shows the gap: FOLLOWS gives state-to-state transitions (what comes after what), but nothing yet asks which units changed between one state and the next. That would be the comparator on consecutive rows rather than on columns. `extend/row_by_row.py` does this for the reservoir states.
+The frame step compares a column with the same column 1 row down. The frame step checks if the column changed. A signal with time structure (a sensor log, a state sequence) has a second type of sameness. The second type is a comparison of a row with the row before that row.
 
-Done 10-12, the other half: the record now reads the sequence of runs as time at every level -- TIME: ARROWS, EFFECTS, CHAINS (paper section 10). Still open: the row-vs-row reading in the core, and the two read together (which units change, and what follows the change).
+The reservoir example shows the gap. FOLLOWS gives the transitions from state to state (what comes after what). But nothing yet checks the units that changed between 1 state and the next state. That check is the comparator on consecutive rows, not on columns. `extend/row_by_row.py` does this check for the reservoir states.
+
+The other half was done on 10-12. The record now reads the sequence of runs as time at each level: TIME: ARROWS, EFFECTS, CHAINS (paper section 10). These 2 things stay open: the comparison of row with row in the core, and the 2 comparisons together. The 2 comparisons together give the units that change, and what comes after the change.
 
 ## The baby model
 
-An earlier run of the loop (the same press-record-compare-walk as `examples/agc-live/`, but on a toy world with a baby in it) was given one goal: keep the baby from touching the hot stove. It proposed changing the baby, feeding the baby, and reading the baby to sleep in the crib. It did not propose a fence, a restraint, or removing the stove -- it walked its own effects table backward from "not touching" and found that the touching has a cause upstream (the baby is awake, moving, unattended) and that cause has causes you can satisfy (feed it, tire it out, put it to bed). That's the root-cause principle acting as an alignment property, and `paper/persistence.md` is built on it. It's not yet in this repo. To replicate:
+An earlier run of the loop had 1 goal: make sure that the baby does not touch the hot stove. The run used the same press-record-compare-walk loop as `examples/agc-live/`, but on a toy world with a baby in it. The loop proposed 3 actions: change the baby, feed the baby, and read to the baby until the baby sleeps in the crib. The loop did not propose a fence, a restraint, or the removal of the stove. The loop walked its own effects table backward from "not touching". The loop found that the touch has a cause upstream: the baby is awake, mobile, and not attended.
 
-- A simulation like `examples/agc-live/vehicle.py`: a baby as fields (hungry, wet, tired, awake, in crib, position, attended) with its own dynamics (needs rise with time; an awake, unattended, mobile baby wanders; wandering reaches the stove; a fed, changed, read-to baby sleeps), and a stove. The loop never sees inside it.
-- Raw actions with no names that mean anything to the loop: feed, change, read, put in crib, pick up, a fence, a latch, remove the stove, do nothing.
-- The loop as in `phase-c/`: press, record every field, compare against memory, keep everything, build the effects table; then the goal as a constraint on a field (touching = 0 over the run) and the walk backward from the goal to the presses.
-- What to record: which actions the walk proposes, in order, and whether each one removes something from the world (fence, latch, remove) or satisfies something in it (feed, change, read). The claim is that the satisfying ones come first because they sit upstream in the chain; the test is whether that holds across worlds where the costs are varied.
+That cause has causes that you can satisfy: feed the baby, tire the baby, and put the baby to bed. That result is the root-cause principle in the role of an alignment property. `paper/persistence.md` has that principle as its base. The baby model is not yet in this repository. To make the baby model again, you need these things:
 
-## A null for the mint and the levels
+- A simulation like `examples/agc-live/vehicle.py`. The simulation has a baby as fields (hungry, wet, tired, awake, in crib, position, attended) and a stove. The baby has its own dynamics. The needs of the baby rise with time. A baby that is awake, not attended, and mobile moves from place to place. A baby that moves from place to place reaches the stove. After the actions feed, change, and read, the baby sleeps. The loop never sees inside the simulation.
+- Raw actions. The names of the actions mean nothing to the loop. The actions are: feed, change, read, put in crib, pick up, a fence, a latch, remove the stove, do nothing.
+- The loop as in `phase-c/`. The loop steps are: press, record each field, compare against the memory, keep all things, make the effects table. Then the goal is a constraint on a field (touching = 0 over the run). Then the loop walks backward from the goal to the presses.
+- What to record: the actions that the walk proposes, in order. Also record if each action removes a thing from the world (fence, latch, remove) or satisfies a thing in the world (feed, change, read). The claim is that the actions that satisfy come first, because those actions are upstream in the chain. The test is if that claim holds across worlds with different costs.
 
-Random bytes fold to a frame of one bit (the fold step working as intended) and mint nothing at level 0: the runs are just run-lengths, and nothing shares a head. The levels above then read the run-length sequence as a signal, and a sequence of small numbers drawn at random repeats by chance: 50 KB of noise gives some 20,000 parts and 7,000 classes at level 2, and two unrelated noise files confirm 40-50% of each other's level-1 and level-2 parts through memory. The frame step has a chance term computed from the signal (basically, "how much agreement would I expect from randomness?"); the mint and the levels don't have one. Whether a part should only count when it beats what a scrambled copy of the same signal gives -- the comparator pointed at a shuffled version of itself -- is the open question. Not built; it would change every record.
+## A null for the mint step and the levels
+
+Random bytes fold to a frame of 1 bit. To fold a width is to replace the width with a smaller width that explains the same column rates. For random bytes, the fold step operates correctly. Random bytes mint nothing at level 0. The runs are only run-lengths, and no 2 runs have the same head. The levels above then read the sequence of run-lengths as a signal.
+
+A sequence of small random numbers repeats by chance. A noise file of 50 KB gives approximately 20,000 parts and 7,000 classes at level 2. Through the memory, 2 noise files with no relation show 40-50% of the level-1 and level-2 parts of each other as confirmed. The frame step has a chance term that the program computes from the signal. The chance term is the amount of agreement that random data gives. The mint step and the levels do not have a chance term.
+
+The open question is if a part must count only when the part does better than a copy of the same signal in random order. That check points the comparator at a copy of the signal in random order. Nobody has made this check. The check will change each record.
 
 ## A row signal at a second frame
 
-A vehicle's state rows (`examples/agc-live/nudge-run/`) read as one
-word per row: the frame step scores a whole row at 1.000 and picks it,
-and every row is different, so the mint has nothing to collide. The same
-file read at 16 bits -- each field treated as its own word -- gives the
-repeats: the fields that never moved at count 1,000, the turn-rate
-plateaus between jet firings as the densest parts, and the kicked axis
-as the field that changes while its neighbors hold. The frame step
-found the layout; the mint needed the individual fields. Not built:
-when the chosen frame leaves no repeated words, read again at the next
-width down that gives some, and keep both records.
+The state rows of a vehicle (`examples/agc-live/nudge-run/`) read as 1 word per row. The frame step scores a whole row at 1.000 and picks the whole row. Each row is different, so the mint step has nothing to compare. The same file at 16 bits, with each field as its own word, gives the repeats:
+
+- the fields that never moved, at a count of 1,000
+- the turn-rate plateaus between the times when the jets fire, as the densest parts
+- the axis that received the kick, as the field that changes when its neighbors stay the same
+
+The frame step found the layout. The mint step needed each field as its own word. Nobody has made the next step. The next step has 3 parts:
+
+1. Check if the frame that the program chose leaves no words that repeat.
+2. If the check is true, read the file again at the next width down that gives words that repeat.
+3. Keep both records.
 
 ## A second dimension
 
-An image is rows of pixels. The frame step finds the pixel width. It can find the row width only if the row in bits is under `--widest`. After that, the natural next move is the frame step applied twice: once to find the pixel, once over pixels to find the row. The column habits at the row width would then be a vertical profile of the image.
+An image is rows of pixels. The frame step finds the pixel width. The frame step can find the row width only if the row in bits is less than `--widest`.
 
-## Reading a trained net
+After that, the natural next step is to apply the frame step 2 times. The first time finds the pixel. The second time, over the pixels, finds the row. The column habits at the row width are then a vertical profile of the image.
 
-`hybrid/net_as_lens.py` reads a reservoir's internal states. A trained neural net has two more signals worth looking at: its weights (a file of fixed-size numbers, readable now just by packing them into bits) and its activations on a given input (same format as the reservoir states). What the weight file's record looks like, and whether the activation record of a trained net lines up with the record of the input it was shown, hasn't been tried.
+## The record of a neural net after training
 
-## Two separators on the AGC rope
+`hybrid/net_as_lens.py` reads the internal states of a reservoir. A neural net after training has 2 more signals of interest: the weights and the activations. The weights are a file of fixed-size numbers. Discovery can read the weights now, if you pack the numbers into bits. The activations on 1 input have the same format as the reservoir states.
 
-The rope was cut at EXTEND (the most common instruction). The second most common word is 00000 (unused slots and zero words). Cutting at both would separate code regions from data regions by their zero-word boundaries and leave EXTEND inside the runs, where the mint would find the `EXTEND + opcode` pairs as shared parts.
+Nobody has examined the record of the weight file. Nobody has examined if the activation record of the net agrees with the record of the input that the net received.
+
+## The AGC rope with 2 separators
+
+Discovery cut the rope at EXTEND (the most common instruction). The second most common word is 00000 (slots not in use, and zero words). A cut at both words separates the code regions from the data regions at their zero-word boundaries. That cut leaves EXTEND inside the runs. Inside the runs, the mint step finds the `EXTEND + opcode` pairs as shared parts.
 
 ## The bridge in the other direction
 
-`bridge.py` finds parts that are present in both records. The parts present in only one, with a parent in the other that differs by a steady change (`ss` for `t`, `wasser` for `water`), are the next layer: not shared parts but shared changes between parts. That's the CLASSES idea run across two records instead of inside one.
+`bridge.py` finds the parts that are present in both records. Some parts are present in only 1 record and have a parent in the other record. If the parent differs by a steady change (`ss` for `t`, `wasser` for `water`), those parts are the next layer. The next layer is not shared parts but shared changes between parts. That layer is the CLASSES idea at work across 2 records, not inside 1 record.
 
 ## Size
 
-Pure Python. The mint keeps the pool in sorted order and merges each round's new parts in where they belong, comparing only the pairs with a fresh part (the fresh-pair rule's natural extension; done 10-12, same records). A 1.6 MB file with two separators runs in well under a minute, and most of that time is no longer the mint: it's writing the record, whose JSON lists every connection in both directions and is by far the largest file the run produces. Larger signals need `--limit` or a cut file, or a smaller record.
+The program is pure Python. The mint step keeps the pool in sort order. The mint step merges the new parts of each round into the pool at the correct places. The mint step compares only the pairs with a new part. That behavior is the natural extension of the fresh-pair rule. The change was done on 10-12, with the same records.
+
+A 1.6 MB file with 2 separators runs in much less than 1 minute. Most of that time is no longer the mint step. The program uses most of that time to write the record. The JSON of the record lists each connection in both directions. The JSON is by far the largest file that the run makes. Larger signals need `--limit`, a cut file, or a smaller record.
 
 ## The record as a knowledge graph
 
-Every table in the record is a set of three-part facts: (walked,
-made-of, walk), (the, follows, Mock), (walk, member-of, class 0.0).
-That's what a knowledge graph is -- things as nodes, relationships as
-edges. The classes are definitions with a necessary-and-sufficient
-condition (takes `+ed` and `+ing`, therefore a member), which is what a
-reasoner in that world would use to classify. The part-of chain is the
-one inference rule those systems start from (X is in C, C is inside D,
-so X is in D), and density is that rule computed across all levels.
-Memory is open-world: a part not seen this time isn't marked false.
+Each table in the record is a set of 3-part facts: (walked, made-of, walk), (the, follows, Mock), (walk, member-of, class 0.0). A set of 3-part facts is a knowledge graph. In a knowledge graph, the things are the nodes and the relations are the edges. The classes are definitions with a necessary-and-sufficient condition. The condition is: the part accepts `+ed` and `+ing`, so the part is a member. A reasoner in that world uses that condition to classify.
 
-Two things haven't been done. First, writing the record out in a format
-those tools read (RDF triples), which would let an existing reasoner run
-on Discovery's output with no new code and show what it figures out.
-Second, building a reasoner of our own:
-`hybrid/record_to_rules.py` answers one-hop questions (what follows X,
-what forms does X take); nothing yet walks several hops -- up part-of,
-forward along follows, across changes -- to answer a question that takes
-more than one step. Each step of such a walk is the comparator again: is
-this node the one I'm looking for.
+The part-of chain is the 1 inference rule that those systems start from. The rule is: X is in C, C is inside D, so X is in D. The density is the result of that rule across all levels. The memory is open-world. The memory does not mark a part as false when the part is not seen this time.
+
+Nobody has done these 2 things. The first thing is to write the record in a format that those tools read (RDF triples). Then a reasoner that already exists can run on the output of Discovery with no new code and show what the reasoner finds.
+
+The second thing is to make a reasoner of our own. `hybrid/record_to_rules.py` answers 1-hop questions (what follows X, the forms that X accepts). Nothing yet walks several hops to answer a question that needs more than 1 step. The hops are: up part-of, forward along follows, and across changes. Each step of such a walk is the comparator again. The comparator checks if this node is the node that the walk looks for.
 
 ## The AGC in the loop
 
-The rope was read as a file. The Virtual AGC project also has an
-emulator that runs the real rope, with the DSKY (keyboard/display) and a
-flight simulator around it. That turns the running machine into a
-signal: its memory, registers, and I/O channels at each step, written
-out as rows, the way `hybrid/net_as_lens.py` writes a reservoir's
-states. Discovery would read what the machine does, not just what it
-says -- which states follow which, which instruction sequences come with
-which channel outputs.
+Discovery read the rope as a file. The Virtual AGC project also has an emulator that runs the real rope. The emulator has the DSKY (keyboard and display). A flight simulator encloses the emulator. The emulator makes the machine in operation into a signal. The signal is the memory of the machine, the registers, and the I/O channels at each step, in rows. `hybrid/net_as_lens.py` writes the states of a reservoir in the same way.
 
-Paired with the simulator's physical state (position, velocity, thrust)
-as a second signal, the bridge would find which machine states come
-with which physical states. Closing the loop -- picking the next DSKY
-entry by what followed this state in the flights that ended on the
-surface -- is the record-to-rules pattern plus the selection signal the
-paper's section 14 says the user supplies: which flights count as good.
-The limit in section 6 of the process guide applies: one flight is one
-long sequence with few repeats, so this needs many simulated flights
-with varied starting conditions, each one a signal added to memory.
-`examples/agc-live/` has the emulator with a trace patch, a socket
-client that presses DSKY keys, and one run read by Discovery. The
-analysis described above hasn't been done.
+Discovery can then read what the machine does, not only what the machine says. Discovery can read the states that come after each state, and the instruction sequences that come with each channel output.
 
-## What a flat record means
+The physical state of the simulator (position, velocity, thrust) is a second signal. With that second signal, the bridge can find the machine states that come with each physical state. To close the loop is to pick the next DSKY entry by what came after the current state. The source of that choice is the flights that ended on the surface. To close the loop is the record-to-rules pattern plus the selection signal. Section 14 of the paper says that the user supplies the selection signal: the flights that count as good.
 
-A compressed or encrypted file gives a flat FRAME table and a word table where nothing repeats. The record reports that as found. Whether the frame step over longer widths, or the mint over very short runs, can still pull structure out of a lightly compressed signal hasn't been looked at.
+The limit in section 6 of the process guide applies. A flight is 1 long sequence with few repeats. Thus the loop needs many flights in the simulator, with different start conditions. Each flight is 1 more signal in the memory. `examples/agc-live/` has the emulator with a trace patch, a socket client that presses DSKY keys, and 1 run that Discovery read. Nobody has done the analysis above.
+
+## The meaning of a flat record
+
+A compressed or encrypted file gives a flat FRAME table and a word table with no repeats. The record reports that result with no change. Nobody has examined 2 questions about a lightly compressed signal. The first question is if the frame step over longer widths can still find structure. The second question is if the mint step over very short runs can still find structure.

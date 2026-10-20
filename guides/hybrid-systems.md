@@ -87,16 +87,20 @@ bits alone. The column rates are a readout of the network, unit by unit.
 Units 2, 21, and 28 are almost never on. Units 7, 9, and 22 are almost
 always on. These 6 units no longer do anything of interest.
 
-The word table shows which states the network used (1,904 of the 4
-billion possible states) and how often. FOLLOWS shows which state leads
-to which state. The result is a map of what the network does. Discovery
+The word table shows the states that the network used (1,904 of the 4
+billion possible states) and how often. FOLLOWS shows the state that
+comes after each state. The result is a map of what the network does. Discovery
 made the map and never looked inside the network.
 
 This connection works for each system that can write its state or its
-output as bits: the activations of a network that someone trained, a
-sensor log, the state vector of a simulation, or the output of a
-different program. Discovery writes back a record of the habits of that
-system.
+output as bits. Examples:
+
+- the activations of a network that someone trained
+- a sensor log
+- the state vector of a simulation
+- the output of a different program
+
+Discovery writes back a record of the habits of that system.
 
 ## 3. The loop: the output as the next input
 
@@ -129,16 +133,20 @@ COLLIDE   first record 22446 parts, second 10468 parts
     flamingoes made of mingoes, f, fla, lamingoes
 ```
 
-There are 3 bins: the parts that both records share, the parts that the
-walk lost, and the parts that the walk made but the original pool never
-had. The "new" parts exist because the walk put different runs next to
+There are 3 bins:
+
+- the parts that both records share
+- the parts that the walk lost
+- the parts that the walk made but the original pool never had
+
+The "new" parts exist because the walk put different runs next to
 each other. Thus the pool in order had different adjacent parts, and the
 mint step cut different parts. The program never minted `flamingoes` from
 the original text, because nothing next to `flamingoes` shared a start or
 an end. In the walk, an adjacent part shared a start or an end.
 
-This collision with 3 bins is how a system checks its own output: what
-came back the same, what the walk lost, and what is new. The script stops
+This collision with 3 bins is how a system checks its own output. The
+bins show what came back the same, what the walk lost, and what is new. The script stops
 at the report of the bins. What a system does with the bins is the
 decision of that system. The comparison uses the same comparator as
 everything else in Discovery. The only difference is the input: 2 records
@@ -153,7 +161,7 @@ instead of 2 parts.
   the levels that the program made on the signal. The tables are `runs`,
   `run_follows`, `parts` (with `whole`, `density`, `made_of`, `part_of`),
   `endings`, `beginnings`, and `classes`.
-  - At level 0, the keys are hex bytes with `.` between them. The
+  - At level 0, the keys are hex bytes with `.` between the bytes. The
     function `glyph()` in `record_to_rules.py` turns a key back into
     text.
   - At higher levels, the keys are symbol numbers. The `symbols` table of

@@ -131,7 +131,7 @@ CLASSES
 
 The first class contains the 22 stems that occur with both `ed` and `ing`: swallow, remain, consider, crawl, mutter, nibbl(e), peep, pull, rais(e). A grammar book calls these stems verbs. The record calls these stems only "parts that accept `+ed` and `+ing`".
 
-The class `[+,, +s]` contains creature, manner, pencil, toe. These parts are things that occur in the plural and also get a comma after them. The class with `her\nhand` and `ucumber-frame` shows 2 problems that come from a single separator. The part `her\nhand` has a line break inside a run. The part `ucumber-frame` is a stem. The neighbors in the pool decided the point where the mint divided this stem.
+The class `[+,, +s]` contains creature, manner, pencil, toe. These parts occur in the plural and also with a comma after the part. The class with `her\nhand` and `ucumber-frame` shows 2 problems that come from a single separator. The part `her\nhand` has a line break inside a run. The part `ucumber-frame` is a stem. The neighbors in the pool decided the point where the mint divided this stem.
 
 ## CRYSTAL: 1 entry for each common word
 

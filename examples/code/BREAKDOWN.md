@@ -130,13 +130,13 @@ The parts by density at width 8 are as follows:
 
 The underscore and the period are the parts with the highest density. The symbol names and the section names contain the underscore and the period. The byte `H` (0x48) occurs inside 64 parts. None of these parts is a name. Each part that contains `H` is machine code.
 
-On x86-64, 0x48 is the prefix that makes an instruction operate on 64-bit values. Thus 0x48 starts a large share of the instructions. The record does not know what 0x48 does. The record shows only a byte that has a high density inside the parts that are not names. The byte is never a whole run on its own.
+On x86-64, 0x48 is the prefix that makes an instruction operate on 64-bit values. Thus 0x48 starts many of the instructions. The record does not know what 0x48 does. The record shows only a byte that has a high density inside the parts that are not names. The byte is never a whole run on its own.
 
 ## LEVELS
 
 The source and the binary each add almost all parts at level 0 and a few parts at level 1. At level 1, the source cuts at `=`, its most common run. To cut a signal is to divide the signal into runs at each separator. At level 1, the binary at width 8 cuts at the byte `\x01`.
 
-The runs between the separators are almost all unique. Thus level 1 makes few new parts (169 and 93). The levels after level 1 add a small number of parts and then stop.
+The runs between the separators are almost all different from each other. Thus level 1 makes few new parts (169 and 93). The levels after level 1 add a small number of parts and then stop.
 
 ## Two widths, two results
 

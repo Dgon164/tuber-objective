@@ -57,10 +57,10 @@ same way each time, so that the frame step has something to find.
 
 ## Grain
 
-The frame step selects the width at which the columns differ the most.
-That width is the size at which the bits of the signal have the most
-order. That size is usually, but not always, the size that you want to
-look at. The compiled program is the best example. At 64 bits, the
+The frame step selects the width with the largest difference between
+the columns. At that width, the bits of the signal have the most order.
+That width is usually, but not always, the width that you want to look
+at. The compiled program is the best example. At 64 bits, the
 record is about the internal layout of the file. At `--frame 8`, the
 record is about the strings and the names that people can read.
 
@@ -73,9 +73,9 @@ found shows little, set the next natural size down (`--frame 8`,
 The most common word is the separator. In some signals, 2 or 3
 different words divide the thing that you want to see (space and
 newline, tab and space, comma and newline). For such a signal, use
-`--separators N`. The record shows when you need this option. A word
-with a high density in PARTS BY DENSITY and a whole count of 0 operates
-as a separator that the program did not select.
+`--separators N`. The record shows when you need this option. The sign
+is a word with a high density in PARTS BY DENSITY and a whole count of
+0. Such a word operates as a separator that the program did not select.
 
 ## Size
 
@@ -83,9 +83,9 @@ The cost of the mint loop depends on the number of different runs and
 on the length of the runs. The cost does not depend on the file size.
 For a file with short runs that repeat (text, code, machine words), the
 program ends in seconds at a few hundred kilobytes. A file with long
-runs that do not repeat grows the pool faster. Examples are a log in
-which each line is different, and a binary that the program reads at
-the byte level. The option `--cap` stops the loop and says so.
+runs that do not repeat grows the pool faster. Examples are a log with
+no 2 lines the same, and a binary that the program reads at the byte
+level. The option `--cap` stops the loop and says so.
 
 Use `--limit` to read only the first part of a large file. Or divide
 the file into smaller files and run each smaller file.

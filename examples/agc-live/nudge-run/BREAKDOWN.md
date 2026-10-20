@@ -1,68 +1,88 @@
-# The nudge, read by the comparator
+# The nudge, in the record of the comparator
 
-2026-10-11. Two flights from the 10-10 package, same setup, same key
-schedule, 430 seconds each. In one, the vehicle was nudged at 340 s
-(+0.5 deg/s about the Y axis) and the flight program's autopilot damped
-the rotation. In the other, nothing happened. The question: with nothing
-told to it, can the comparator (Discovery's tool for finding differences)
-figure out what the nudge set off, from the incoming pulse all the way to
-the outgoing jets to the vehicle moving?
+2026-10-11. The run is 2 flights from the 10-10 package, with the same
+setup, the same key schedule, and 430 seconds each. In 1 flight, the
+vehicle got a nudge at 340 s (+0.5 deg/s about the Y axis). The
+autopilot of the flight program damped the rotation. In the other
+flight, no event occurred.
 
-It can. Here is how.
+The comparator is the tool of Discovery that finds differences. The run
+tests 1 question. The comparator gets no information. The comparator
+must find the chain that the nudge started. The chain goes from the
+pulse that comes in, to the jets that go out, to the motion of the
+vehicle.
 
-## What was given
+The comparator found the chain. The method follows.
 
-Every input, so you can see the complete list:
+## The inputs
 
-- Two flights, one with a nudge and one without. That is the
-  experiment's design.
-- The window: 10 s before the first pulse from outside reached the
-  computer, 90 s after. The start was found in the signal itself (the
-  first counter packet in the channel log), not picked by hand.
-- The clock stripped from each record before Discovery read it. The
-  cycle counter gives the row order; inside each word it would make
-  every row unique and nothing would repeat, which would hide the
-  patterns. Rows stay in time order.
-- For the last step, one row per 100 ms (the vehicle's own row rate)
-  holding the vehicle's fields and the last value seen on each channel,
-  in a fixed column order; then the flips -- which fields changed from
-  the row before. That is `extend/row_by_row.py` on the combined
-  record.
-- A names file, used only to print human-readable names next to what
-  was found.
+The full list of inputs:
 
-Not given: what a jet is, what a gimbal is, which channel is which,
-which memory cell is which, what a rate or an error is, any threshold,
-any category of change, any score.
+- The 2 flights, 1 with a nudge and 1 without a nudge. This is the
+  design of the experiment.
+- The window: 10 s before the first pulse from outside got to the
+  computer, and 90 s after. A channel is a numbered signal path between
+  the computer and the hardware. The start came from the signal itself
+  (the first counter packet in the channel trace). No person picked the
+  start.
+- Each record without the clock. The clock was removed from each record
+  before Discovery read the record. The cycle counter gives the row
+  order. A cycle counter inside each word makes each row unique. Then no
+  row repeats, and the counter hides the sequences. The rows stay in
+  time order.
+- For the last step, the row record. The row record has 1 row for each
+  100 ms (the row rate of the vehicle). Each row has the fields of the
+  vehicle and the last value of each channel, in a column order that
+  does not change. Then the flips: the fields that changed from the row
+  before. The flips come from `extend/row_by_row.py` on the row record.
+- A names file. The names file is used only to print names that a
+  person can read, next to the results.
+
+The comparator did not get these inputs:
+
+- the meaning of a jet
+- the meaning of a gimbal
+- the identity of each channel
+- the identity of each memory cell
+- the meaning of a rate or an error
+- a threshold
+- a category of change
+- a score
 
 ## Step 1. Discovery on each signal, each flight
 
-| signal | flight | frame found | distinct words | parts |
+| signal | flight | frame that Discovery found | distinct words | parts |
 |---|---|---|---|---|
-| memory writes | nudged | 80 bits | 58,917 | 173,946 |
+| memory writes | with nudge | 80 bits | 58,917 | 173,946 |
 | memory writes | quiet | 80 bits | 20,497 | 94,352 |
-| channel packets | nudged | 32 bits (forced; 16 and 32 tie) | 316 | 11,500 |
+| channel packets | with nudge | 32 bits (set by the flag, because 16 and 32 get the same score) | 316 | 11,500 |
 | channel packets | quiet | 32 bits | 89 | 930 |
-| vehicle rows | nudged | 208 bits | 901 of 1,000 | 1 |
+| vehicle rows | with nudge | 208 bits | 901 of 1,000 | 1 |
 | vehicle rows | quiet | 208 bits | 1 of 1,000 | 0 |
 
-The nudge tripled the number of distinct memory writes and multiplied
-the channel parts (repeated sequences) by twelve. The vehicle rows tell
-the other half of the story: in the quiet flight every row is the same
-(nothing is changing), so there is only 1 distinct word; in the nudged
-flight almost every row is different, so there is nothing for the mint
-(Discovery's pattern-finder) to match up. Something that moves
-continuously has no repeated words. That is the time case discussed in
-`notes/open.md`, and step 3 below is the answer to it.
+The nudge made the number of distinct memory writes 3 times larger. The
+nudge made the number of channel parts (sequences that repeat) 12 times
+larger. The vehicle rows show the other half of the result. In the quiet
+flight, each row is the same (no field changes). Thus there is only 1
+distinct word. In the flight with the nudge, almost each row is
+different.
 
-## Step 2. The bridge: things in the nudged flight and not the quiet one
+The mint is the step of Discovery that finds the sequences that repeat.
+To mint a part is to make a new part from 2 parts that have the same
+start or the same end. Thus the mint has no 2 rows to match. A thing in
+continuous motion has no words that repeat. That is the time case in
+`notes/open.md`. Step 3 below is the answer to the time case.
 
-Set operations on the words, the same way `bridge.py` compares two
-languages.
+## Step 2. The bridge: the things in the flight with the nudge and not in the quiet flight
 
-**Memory writes.** 40,636 distinct writes happen only in the nudged
-flight. The memory cells they write to, sorted by how often they were
-written, with names from the lens:
+The bridge is the tool of Discovery that compares 2 different signals.
+The bridge does set operations on the words, in the same way that
+`bridge.py` compares 2 languages.
+
+**Memory writes.** The flight with the nudge has 40,636 distinct writes
+that the quiet flight does not have. The lens is the tool that finds the
+name of a code or an address. The list below shows the memory cells of
+those writes, in order of write count, with names from the lens:
 
 ```
 3352 DAPTREG6    26851       3027 EDOT       10397       3050 DYERROR   4050
@@ -72,8 +92,8 @@ written, with names from the lens:
                              0034 CDUZ        4934       3023 OMEGAR    3127
 ```
 
-The routines doing those writes (identified by the nearest label below
-the instruction address):
+The routines that do those writes (the nearest label below the
+instruction address gives the routine):
 
 ```
 BACKP  ROT-TOUV  TJCALC  QERRCALC  TJLAW  PAXIS  NEGEDOT  SETSENSE
@@ -81,11 +101,12 @@ RERRCALC  SCALEE  CALCPERR  P-RATE  Q-RATE  STILLRCS  SCALEDOT  TJETLAW
 DACLOOP  ERRTEST  R-RATE  ROTORQUE  RCS  QRAXIS
 ```
 
-Only in the quiet flight: `NQTRAPS`, `NRTRAPS`, `NPTRAPS` -- the
-autopilot's idle bookkeeping for "nothing to respond to," which stops
-once there is actual work to do.
+Only in the quiet flight: `NQTRAPS`, `NRTRAPS`, `NPTRAPS`. These are
+the idle records of the autopilot for "nothing to respond to". The idle
+records stop when the autopilot has work to do.
 
-**Channel packets.** 254 distinct packets only in the nudged flight:
+**Channel packets.** The flight with the nudge has 254 distinct packets
+that the quiet flight does not have:
 
 ```
 233   5817 packets   values 00023, 00021
@@ -98,27 +119,31 @@ once there is actual work to do.
 175/176/174  138
 ```
 
-Only in the quiet flight: nothing but downlink words on 035.
+Only in the quiet flight: downlink words on 035, and no other packets.
 
-What the lens tells us this all means: the nudge was about the Y axis.
-Channel 233 is the Y gimbal pulse counter -- that is the nudge arriving
-at the computer, 5,817 pulses of it. `CDUY` is the memory cell those
-pulses land in. `EDOT`, the `OMEGA` cells, `DYERROR`, `DZERROR` are the
-autopilot's rate and error cells. `TJLAW`, `TJETLAW`, `TJCALC` compute
-the jet firing times. Channel 013 is the autopilot's control word.
-Channel 005 is the jet commands going out to the vehicle. The comparator
-put the whole reaction-control autopilot on the nudged-only side, cell
-by cell and routine by routine, because those are the things that
-happened in one flight and not the other.
+The lens gives the meaning of the results. The nudge was about the Y
+axis. Channel 233 is the pulse counter of the Y gimbal. Channel 233 is
+the nudge as the nudge gets to the computer, 5,817 pulses. The cell
+`CDUY` is the memory cell that gets those pulses. The cells `EDOT`,
+`OMEGA`, `DYERROR`, and `DZERROR` are the rate cells and the error cells
+of the autopilot.
 
-## Step 3. Channel to motion, on the shared clock
+The routines `TJLAW`, `TJETLAW`, and `TJCALC` compute the times at which
+the jets fire. Channel 013 is the control word of the autopilot. Channel
+005 is the jet commands that go out to the vehicle. The comparator put
+the full reaction-control autopilot on the side of the nudge only, cell
+by cell and routine by routine. The cause: those things occurred in 1
+flight and not in the other flight.
 
-Vehicle rows do not repeat, so the combined record was read as flips:
-for each 100 ms slice, which fields changed from the row before. 39
-fields -- 14 from the vehicle, 25 channels. One 40-bit word per row.
+## Step 3. Channel to motion, on the common clock
 
-Nudged flight, 169 distinct flip rows. The most common, with names from
-the lens:
+The vehicle rows do not repeat. Thus the reader read the row record as
+flips: for each 100 ms slice, the fields that changed from the row
+before. There are 39 fields: 14 from the vehicle and 25 channels. Each
+row is 1 word of 40 bits.
+
+The flight with the nudge has 169 distinct flip rows. The most common
+flip rows, with names from the lens:
 
 ```
  124  ay az cdu_sent
@@ -129,11 +154,11 @@ the lens:
   37  ax ay az cdu_sent ch034 ch035
 ```
 
-Quiet flight, 10 distinct flip rows, and every one of them is only
-`ch034` and `ch035` (the downlink, meaning telemetry) with an occasional
-`ch013`.
+The quiet flight has 10 distinct flip rows. Each flip row is only
+`ch034` and `ch035` (the downlink, the telemetry), with `ch013` in some
+rows.
 
-The rows where channel 005 (jet commands) flipped:
+The rows with a flip of channel 005 (jet commands):
 
 ```
    7  ax ay az cdu_sent ch005 ch013 ch034 ch035
@@ -142,89 +167,108 @@ The rows where channel 005 (jet commands) flipped:
    2  ay wy wz jets5 cdu_sent
 ```
 
-That is the final link. The rows where the computer's channel 005
-changed are the same rows where the vehicle's own jet field changed and
-the turn rates `wy` and `wz` changed. The field order was fixed in
-advance and nothing said which field was which; "these change in the
-same 100 ms" is all the comparator was asked, and it put the jet
-channel, the jet field, and the turn rates together.
+This is the last link. In the rows with a change of channel 005 of the
+computer, the jet field of the vehicle also changed. In the same rows,
+the turn rates `wy` and `wz` also changed. The field order was set
+before the run. No input gave the identity of each field. The only
+question for the comparator was "these fields change in the same
+100 ms". The comparator put the jet channel, the jet field, and the
+turn rates together.
 
-The RUNS table of the nudged flip rows is the flight in sequence: a long
-stretch of downlink-only rows, then one row where the angles start
-moving, then hundreds of rows of `ay cdu_sent` with jet rows scattered
-through them, thinning out. That is the nudge, the drift, the jet
-firings, and the damping, read as one continuous run.
+The RUNS table of the flip rows of the flight with the nudge is the
+flight in sequence:
+
+- a long sequence of rows with the downlink only
+- then 1 row where the angles start to move
+- then hundreds of rows of `ay cdu_sent`, with jet rows at intervals
+  that become longer
+
+That is the nudge, the drift, the jet fires, and the damping, as 1
+continuous run.
 
 ## Step 3b. The vehicle rows at a smaller frame
 
-The 208-bit read made every row one word, so rows that differed in even
-the last bit of one field were different words and the mint never got to
-look inside. The same file read at 16 bits (`--frame 16`) makes each
-field its own word, and now repeats show up:
+The read at 208 bits made each row 1 word. Thus 2 rows with a difference
+in only the last bit of 1 field were different words. The mint did not
+look inside a row. A read of the same file at 16 bits (`--frame 16`)
+makes each field 1 word. Then repeats appear:
 
-- **Fields that never moved**: `4204` and `f764` have count exactly
-  1,000 -- one per row. Through the lens: vx = 1690.0 m/s and
-  vz = -220.4, the two velocity fields. They never changed.
+- **Fields with no motion**: `4204` and `f764` have a count of exactly
+  1,000, 1 for each row. Through the lens: vx = 1690.0 m/s and
+  vz = -220.4, the 2 velocity fields. The 2 fields did not change.
 - **Rate plateaus.** The top parts by density are pairs of rate words
-  that hold steady for a stretch: `ff8f.0007` repeats 244 times,
-  `0013.004f` 94 times, `0154.ffc0` 74 times, `ff94.0002` 65 times,
-  `ff7c.ffb8` 58 times, `ff42.ff7e` 37 times. The vehicle turns at a
-  constant rate until a jet fires, then settles into a new constant
-  rate. Those are the autopilot's firings, seen as steps in the
-  vehicle's own record.
-- **The nudge's axis.** Class `{0.0} [0004+, +00b1]` has five members,
-  `fa5e fa3d fa53 fa48 f894`: five rows where the field before was
-  `0004` and the field after was `00b1` and only this one field
-  differed. Classes `{0.1}` to `{0.5}` are the same shape. Through the
-  lens, the fixed neighbors are `ax` and `az` and the moving field is
-  `ay` -- the Y angle, exactly the axis the nudge was about. Nothing
-  said Y.
+  that hold for a period:
+  - `ff8f.0007` repeats 244 times
+  - `0013.004f` repeats 94 times
+  - `0154.ffc0` repeats 74 times
+  - `ff94.0002` repeats 65 times
+  - `ff7c.ffb8` repeats 58 times
+  - `ff42.ff7e` repeats 37 times
 
-At 8 bits (`--frame 8`) it gets finer still: 89 classes at level 1.
+  The vehicle turns at a constant rate until a jet fires. Then the
+  vehicle goes to a new constant rate. The plateaus are the jet fires of
+  the autopilot, as steps in the record of the vehicle.
+- **The axis of the nudge.** The class `{0.0} [0004+, +00b1]` has 5
+  members, `fa5e fa3d fa53 fa48 f894`. The members are 5 rows with
+  `0004` in the field before and `00b1` in the field after. Only this 1
+  field is different. The classes `{0.1}` to `{0.5}` have the same
+  shape. Through the lens, the neighbors that do not change are `ax` and
+  `az`. The field in motion is `ay`, the Y angle. That is exactly the
+  axis of the nudge. No input said Y.
 
-Why the first read missed this: a whole row scores 1.000 in the frame
-step (it finds a column that is always 1 and a column that is always 0),
-so 208 was picked, and the fold check (which tests whether the two
-halves match) found the halves different and did not fold. For a signal
-made of rows, that is the wrong frame for the mint even though it is the
-right one for seeing the layout. Open end: when the chosen frame leaves
-no repeated words, try reading at the next width down that gives some --
-the same signal at a finer cut. Records: `held-vehicle.bin.frame16.record.txt`,
+At 8 bits (`--frame 8`), the result is finer: 89 classes at level 1.
+
+The cause of the miss in the first read: a full row gets a score of
+1.000 in the frame step. The frame step finds a column that is always 1
+and a column that is always 0. Thus the frame step picked 208. To fold a
+width is to divide the width into equal parts when the parts have the
+same form. The fold check found that the 2 halves were different, so the
+frame step did not fold. For a signal of rows, 208 is the wrong frame
+for the mint, but the correct frame to see the layout.
+
+Open task: when the frame that the frame step chose has no words that
+repeat, try a read at the next width down with words that repeat. To cut
+a signal is to divide the signal into parts at a boundary. That is the
+same signal at a finer cut. The records:
+`held-vehicle.bin.frame16.record.txt`,
 `held-vehicle.bin.frame8.record.txt`.
 
-## The chain, read backward
+## The chain, backward
 
-Vehicle rates change <-- vehicle jet field changes <-- channel 005
-changes <-- `TJLAW` / `TJETLAW` / `TJCALC` write `FIREFCT`, `DAPTREG6`
-<-- `EDOT`, `OMEGA*`, `D*ERROR` written by `P-RATE`, `Q-RATE`,
-`QERRCALC` <-- `CDUY` written from channel 233 <-- pulses from outside.
+The vehicle rates change <-- the jet field of the vehicle changes <--
+channel 005 changes <-- `TJLAW` / `TJETLAW` / `TJCALC` write `FIREFCT`,
+`DAPTREG6` <-- `P-RATE`, `Q-RATE`, `QERRCALC` write `EDOT`, `OMEGA*`,
+`D*ERROR` <-- the pulses from channel 233 write `CDUY` <-- pulses from
+outside.
 
-Every link in that chain is a set of words the comparator put on the
-nudged-only side, or a set of fields it put in the same flip row. The
-names were attached afterward. The chain was found by the comparator.
+Each link in the chain is 1 of 2 things. The first thing is a set of
+words that the comparator put on the side of the nudge only. The second
+thing is a set of fields that the comparator put in the same flip row.
+The names came after the result. The comparator found the chain.
 
-## Where it stopped
+## The limits
 
-- The combined record's "last value" per channel loses pulse channels:
-  channel 233 sends the same code 5,817 times, so its last value never
-  changes and it does not show up in the flips. The vehicle's own
-  `cdu_sent` count carries that link instead. A count-per-row field for
-  each channel would carry it on the computer's side too.
-- Step 2 is a bridge on whole words. A bridge on parts (the repeated
-  sequences the mint found) would give the nudged-only *sequences* --
-  routines as runs of writes -- not just the individual cells. The
-  writes record's JSON is 4 GB for a 100 s window, which is the size
-  bottleneck; the text record's top parts are in
+- The "last value" of each channel in the row record loses the pulse
+  channels. Channel 233 sends the same code 5,817 times. Thus the last
+  value of channel 233 does not change, and channel 233 does not appear
+  in the flips. The `cdu_sent` count of the vehicle carries that link in
+  place of channel 233. A field with a count for each row, for each
+  channel, can carry the link on the side of the computer also.
+- Step 2 is a bridge on whole words. A bridge on parts (the sequences
+  that the mint found) can give the *sequences* of the nudge only. Those
+  sequences are routines as runs of writes, not only the single cells.
+  The JSON of the writes record is 4 GB for a window of 100 s. The size
+  of the JSON is the limit. The top parts of the text record are in
   `held-writes.bin.record.head.txt`.
-- Classes on the flip rows exist (190 of them) and were not explored
-  here.
+- The flip rows have classes (190 classes). This run did not examine the
+  classes.
 
 ## Files
 
-- `bridge.txt` -- step 2's output in full.
-- `held-flips.bin.record.txt`, `quiet-flips.bin.record.txt`, `fields.txt`
-  -- step 3's records and the field order.
-- `*-channels.bin.frame32.record.txt` -- the channel records.
-- `*-writes.bin.record.head.txt` -- the top of the write records.
-- `../bridge_flights.py`, `../flips.py` -- the two readers. The lens is
-  used only when printing.
+- `bridge.txt`: the full output of step 2.
+- `held-flips.bin.record.txt`, `quiet-flips.bin.record.txt`,
+  `fields.txt`: the records of step 3 and the field order.
+- `*-channels.bin.frame32.record.txt`: the channel records.
+- `*-writes.bin.record.head.txt`: the top of the write records.
+- `../bridge_flights.py`, `../flips.py`: the 2 readers. The readers use
+  the lens only for the print step.

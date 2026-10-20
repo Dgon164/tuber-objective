@@ -1,50 +1,85 @@
-# Phase C: on the pad, with the astronaut's controls. It launched.
+# Phase C: on the pad, with the controls of the astronaut, and a launch
 
-2026-10-11, afternoon. Same machine as Phases A and B -- the real flight
-program on the emulator, the DSKY on its socket -- but now the vehicle
-model starts at rest on the ground. It also has the controls an
-astronaut had that work without the computer: arm, engine on, engine
-off, throttle up and down, and a hand controller that sends rotation
-pulses about three axes. `launch.py` is the loop. It presses, records
-every signal, compares against memory, keeps everything, predicts, and
--- once given a goal -- walks its own map backward from the goal to a
-control. It was told nothing about what any control does, what any
-instrument means, or how physics works.
+2026-10-11, afternoon. The machine is the same machine as Phases A and
+B: the real flight program on the emulator, with the DSKY on its socket.
+The computer is the AGC (the Apollo Guidance Computer). The DSKY is the
+display and keyboard unit of the AGC. In this phase, the vehicle model
+starts at rest on the ground. The vehicle model also has the controls
+of the astronaut that operate without the computer:
 
-## What was given
+- arm
+- engine on
+- engine off
+- throttle up and throttle down
+- a hand controller that sends rotation pulses about 3 axes
 
-Phase A's list, plus:
+The script `launch.py` is the loop. The loop presses a control. The loop
+records each signal. The loop compares the signals against the memory.
+The loop keeps each result. The loop predicts. When the loop gets a
+goal, the loop walks its own map backward from the goal to a control.
+The loop got no information about the function of a control, the
+meaning of an instrument, or the laws of physics.
 
-- The vehicle model (`vehicle.py --pad`): hardware. It knows physics
-  internally, but the loop never looks inside it. Its instrument rows
-  come every 100 ms: three angles, three turn rates, altitude, two
-  speeds, thrust, two jet words, two pulse counts, propellant, armed,
-  engine. The loop sees these as fields 0 through 16. The names are just
-  for us humans reading the output.
-- 44 raw actions: the 33 DSKY codes and PRO, plus 11 control packets.
-  Nothing says which packet is the throttle.
-- The goal, given only in the goal phase, as constraints on field
-  numbers: field 6 over 200; fields 3, 4, 5 under 5,000 (in the model's
-  units: altitude over 200 m, turn rates under 0.5 deg/s).
-- Two definitions the machine applies to every field, both using the
-  comparator: a field is *moving* in a window if it changed in more than
-  one row (to tell apart a genuine trend from a one-time jump), and
-  which way; a single-row change is a *jump*. A field that has ever been
-  seen moving is treated as continuous and only its direction (up or
-  down) matters for state; one that has only ever jumped contributes its
-  actual value.
-- Size limits (per-step channel reading turned off; the channel log is
-  saved to disk).
+## The inputs
 
-Not given: what any control does, what any field means, thrust, weight,
-gravity, inertia, a plan, a score, a manual.
+The inputs are the list of Phase A, and:
 
-## The model phase: 3,480 presses over three lives
+- The vehicle model (`vehicle.py --pad`): hardware. The model has
+  physics inside, but the loop does not look inside the model. The
+  instrument rows of the model come each 100 ms. Each row has these
+  fields:
+  - 3 angles
+  - 3 turn rates
+  - the altitude
+  - 2 speeds
+  - the thrust
+  - 2 jet words
+  - 2 pulse counts
+  - the propellant
+  - armed
+  - engine
 
-The vehicle model starts on the pad each life; the memory carries over.
-The loop tried the least-tried action in each state it found itself in.
-It found 43 states and 922 transitions, and built this effects table
-(`effects-table.txt`; names are from the lens, counts are the machine's):
+  The loop sees these as fields 0 through 16. The names are only for
+  the persons who read the output.
+- A list of 44 raw actions: the 33 DSKY codes and PRO, and 11 control
+  packets. No input says the packet of the throttle.
+- The goal, as limits on field numbers. The loop gets the goal only in
+  the goal phase. The limits: field 6 more than 200, and fields 3, 4, 5
+  less than 5,000. In the units of the model: an altitude more than
+  200 m, and turn rates less than 0.5 deg/s.
+- Two definitions that the machine applies to each field. The
+  comparator is the tool of Discovery that finds the differences between
+  2 things. Both definitions use the comparator. A field *moves* in a
+  window if the field changed in more than 1 row. The definition also
+  gives the direction. The definition separates a true trend from a
+  1-time jump. A change in 1 row only is a *jump*. A field that moved at
+  any time is continuous. For a continuous field, only the direction (up
+  or down) is part of the state. A field that only jumped gives its
+  value to the state.
+- Size limits. The channel read at each step is off. A channel is a
+  numbered signal path between the AGC and the hardware. The channel
+  trace goes to the disk.
+
+The loop did not get these inputs:
+
+- the function of a control
+- the meaning of a field
+- the thrust
+- the weight
+- the gravity
+- the inertia
+- a plan
+- a score
+- a manual
+
+## The model phase: 3,480 presses in 3 lives
+
+The vehicle model starts on the pad in each life. The memory continues
+from life to life. In each state, the loop tried the action with the
+least tries. The loop found 43 states and 922 transitions. The loop made
+this effects table (`effects-table.txt`). The lens is the tool that
+finds the name of a code. The names come from the lens. The counts come
+from the machine:
 
 ```
 action         pressed  effects seen (field: times up / times down)
@@ -59,35 +94,48 @@ PRO                 40  -
 24 DSKY codes           -   no effect on any instrument field, ever
 ```
 
-Engine on: thrust goes up, accelerometer pulses go up, propellant goes
-down, engine flag goes up -- thirteen times out of thirteen, never the
-reverse. Engine off: the exact reverse, ten of ten. Throttle up: thrust
-goes up, fourteen of fourteen. Arm: the armed flag. One roll pulse in
-flight: the roll angle, the roll rate, and the gimbal pulses to the
-computer all change. The DSKY codes: nothing, ever, on any vehicle
-instrument. That is thrust, propellant burn, and the hand controller,
-all figured out by pressing and watching.
+Engine on has 4 effects:
 
-The machine also sorted the fields by itself: eight have been seen
-moving continuously (angle, rate, altitude, vertical speed, a jet word,
-the pulse counts, propellant) and the rest only jump (thrust, armed,
-engine, the other angles -- those never moved because pitch and yaw were
-only tried on the ground where the legs hold it still).
+- the thrust goes up
+- the accelerometer pulses go up
+- the propellant goes down
+- the engine flag goes up
 
-The numbers in parentheses above are confounds (cases where the
-correlation might be misleading), and they are honest. Twice, altitude
-started moving during the same window as an "engine on" or a "throttle
-up," and both times the credit was deserved -- the engine or the extra
-notch is what lifted it. DSKY code 0 also shows `alt:5/0` -- it was
-being pressed during exploration when the slow propellant burn happened
-to bring the weight down below the thrust, and the vehicle lifted on its
-own. The record credits whatever was pressed in that window. The
-prediction step and the counts are what separate real effects from
-coincidence: 13 of 13 versus 5 of 64.
+The 4 effects occur 13 times of 13. The reverse does not occur. Engine
+off has the exact reverse effects, 10 of 10. Throttle up has 1 effect:
+the thrust goes up, 14 of 14. Arm has 1 effect: the armed flag goes up.
+One roll pulse in flight has 3 effects:
 
-During exploration the vehicle lifted off twice on a fourth throttle
-notch and came back down hard (179 and 152 m/s impact). Nothing in the
-explorer reacts to that, and nothing should.
+- the roll angle changes
+- the roll rate changes
+- the gimbal pulses to the computer change
+
+The DSKY codes have no effect on any vehicle instrument, at any time.
+Thus the loop found the thrust, the propellant burn, and the hand
+controller. The loop found these from presses and observation.
+
+The machine also sorted the fields without help. The machine saw 8
+fields in continuous motion: an angle, a rate, the altitude, the
+vertical speed, a jet word, the pulse counts, and the propellant. The
+other fields only jump: the thrust, armed, engine, and the other angles.
+The other angles did not move because the loop tried pitch and yaw only
+on the ground. On the ground, the legs hold the vehicle at rest.
+
+The numbers in parentheses in the table are confounds. A confound is a
+case in which the correlation can give a false result. The table shows
+the confounds as they are. Two times, the altitude started to move in
+the same window as an "engine on" or a "throttle up". Both times the
+credit was correct: the engine or the extra notch lifted the vehicle.
+
+DSKY code 0 also shows `alt:5/0`. The loop pressed code 0 at the time
+when the slow propellant burn made the weight less than the thrust. Then
+the vehicle lifted on its own. The record gives the credit to the action
+that the loop pressed in that window. The prediction step and the counts
+separate the true effects from chance: 13 of 13 against 5 of 64.
+
+In the exploration, the vehicle lifted off 2 times on a fourth throttle
+notch and came back down hard (179 and 152 m/s impact). No part of the
+explorer responds to the impact. This is correct.
 
 ## The goal phase: 22 presses
 
@@ -103,70 +151,88 @@ step 1747-1760  hold      DSKY code 3   (the record's least-effect action), clim
 step 1761  GOAL SATISFIED: altitude 223, vz 6.5 m/s, rates 0, propellant 4196, armed, engine on
 ```
 
-`vehicle.out`: lift-off at 103.76 s, thrust 24,670 N against weight of
-24,084 N. `vehicle.csv` has the climb row by row. Predictions during the
-run: 14,259 right, 4 wrong.
+The file `vehicle.out` shows the lift-off at 103.76 s, with a thrust of
+24,670 N against a weight of 24,084 N. The file `vehicle.csv` has the
+climb row by row. The predictions in the run: 14,259 correct, 4 wrong.
 
-How the walk works at each step: find the states in the map where every
-needed field was moving in the needed direction; search backward through
-the map's transitions to the current state; press the first action on
-that path; then look again from wherever it actually ends up. "walk*"
-means the match was on the instrument part of the state alone, because
-the AGC's channels at startup differ slightly from life to life.
+The walk does these steps at each step of the goal phase:
 
-## What got fixed along the way, each a definition the machine applies, not a fact handed in
+1. Find the states in the map where each goal field moved in the goal
+   direction.
+2. Search backward through the transitions of the map to the current
+   state.
+3. Press the first action on that path.
+4. Look again from the state that the machine is in after the press.
 
-- *Holding* was first defined as "the most common row-to-row change is
-  zero" -- wrong for the propellant, which changes about one row in
-  seven and drifts slowly. Now: unchanged from the start of the window
-  to the end.
-- A jump (thrust going from 0 to 4,670 in one row) was read as motion
-  in its window and then "motion stopped" in the next window, so the
-  next press got credit for "thrust down." Now: moving means changed in
-  more than one row.
-- An action was first credited with everything moving in its window,
-  including the propellant burn that was already under way. Now: an
-  action's effect is motion it started, stopped, or reversed, or a jump
-  while holding. Motion already under way belongs to the state, not to
-  the action.
-- A moving field's exact rate flickered between readings and made every
-  step look like a new state. Now: direction only (up or down).
-- A field that had never moved yet was recorded with its value; after it
-  started moving, the same situation was recorded as a direction. The
-  two descriptions did not match, so old states were invisible to the
-  walk. Fix: the walk reads old states through current knowledge.
-- The map held one-off transitions (engine-on lifting the vehicle in a
-  life where the propellant was nearly gone) and the walk followed them
-  into dead ends. Now: the walk prefers the transition that usually
-  follows -- seen at least twice, and at least half the time -- and
-  falls back to any single-occurrence transition only as a last resort.
+The mark "walk*" means that the match was on the instrument part of the
+state only. The cause: the channels of the AGC at the start are a small
+amount different from life to life.
 
-## Where it stops
+## The changes during the work, each a definition that the machine applies, not a fact from outside
 
-- The goal was reached by thrust alone, straight up. Nothing about
-  pitching over, following a trajectory, or coming back down. The hand
-  controller's pitch and yaw were never tried in flight; the explorer
-  ran out of lives before reaching those states. More lives means more
-  map.
-- The DSKY was a dead branch for this goal and cost 33 presses per
-  state. The machine learned that DSKY codes do nothing to the vehicle
-  but had no way to stop trying them in each new state. That is the
-  chooser being honest -- it tries everything.
-- The computer's own writes and channels were recorded but not read per
-  step (too big). The chain from a DSKY key to a routine to a channel
-  to the vehicle -- the one the nudge run found -- is on disk, not in
-  this loop's working state.
-- The walk's fallback ("direct") still trusts raw effect counts, which
-  is how DSKY code 0 got one press here. The prediction record is the
-  right thing for it to check, and it does not do that yet.
-- The time detail was reduced from "level 1 and 2 values" to just
-  "moving: which direction." The constants -- gravity showing up as a
-  steady second difference in position -- are in `vehicle.csv` and in
-  the level-1 pool, and were not needed for this goal. They will be for
-  a trajectory.
+- The first definition of *hold* was "the most common change from row
+  to row is 0". The definition was wrong for the propellant. The
+  propellant changes in approximately 1 row of 7 and changes slowly. The
+  definition now: no change from the start of the window to the end.
+- The loop read a jump (the thrust from 0 to 4,670 in 1 row) as motion
+  in its window. The loop read the next window as "motion stopped". Thus
+  the next press got the credit for "thrust down". The definition now: a
+  field moves if the field changed in more than 1 row.
+- At first, an action got the credit for each motion in its window. The
+  credit included the propellant burn that was in progress before the
+  action. The definition now: the effect of an action is a motion that
+  the action started, stopped, or reversed, or a jump in a hold. A
+  motion in progress before the action belongs to the state, not to the
+  action.
+- The exact rate of a field in motion changed from read to read. Thus
+  each step appeared to be a new state. The definition now: the
+  direction only (up or down).
+- The loop recorded a field with no motion to date with its value.
+  After the field started to move, the loop recorded the same situation
+  as a direction. The 2 descriptions did not agree. Thus the walk did
+  not see the old states. The correction: the walk reads the old states
+  through the current knowledge.
+- The map had transitions that occurred 1 time. An example: engine on
+  lifted the vehicle in a life with almost no propellant. The walk
+  followed those transitions to dead ends. The rule now: the walk
+  prefers the transition that usually follows. That is a transition that
+  the loop saw 2 times or more, and in half of the cases or more. The
+  walk uses a transition that occurred 1 time only as the last option.
+
+## The limits
+
+- The vehicle got to the goal with thrust only, straight up. The run has
+  no pitch over, no trajectory, and no return to the ground. The loop
+  did not try the pitch and the yaw of the hand controller in flight.
+  The explorer used all its lives before the explorer got to those
+  states. More lives make a larger map.
+- The DSKY was a dead branch for this goal, and the DSKY cost 33 presses
+  in each state. The machine learned that the DSKY codes have no effect
+  on the vehicle. But the machine had no method to stop the tries of the
+  DSKY codes in each new state. The chooser is correct: the chooser
+  tries each action.
+- The loop recorded the writes and the channels of the computer, but the
+  loop did not read the writes and the channels at each step. The writes
+  and the channels are too large. The chain from a DSKY key to a routine
+  to a channel to the vehicle is on the disk. The nudge run found that
+  chain. The chain is not in the working state of this loop.
+- The last option of the walk ("direct") uses the raw effect counts. For
+  that reason, DSKY code 0 got 1 press here. The correct check for the
+  last option is the prediction record. The walk does not do that check
+  yet.
+- The time detail went down from "the values of level 1 and 2" to "in
+  motion: the direction". The constants are in `vehicle.csv` and in the
+  pool of level 1. The gravity is a constant that appears as a steady
+  second difference in the position. This goal did not need the
+  constants. A trajectory will need the constants.
 
 ## Files
 
-`launch.py`, `vehicle.py` (the vehicle model with the pad start and the
-controls), `model.log` (the three lives), `goal.log`,
-`effects-table.txt`, `vehicle.csv` and `vehicle.out` (the goal life).
+The files are:
+
+- `launch.py`
+- `vehicle.py` (the vehicle model with the pad start and the controls)
+- `model.log` (the 3 lives)
+- `goal.log`
+- `effects-table.txt`
+- `vehicle.csv` and `vehicle.out` (the goal life)

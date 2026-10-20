@@ -77,8 +77,8 @@ expected. Look at what is in the record.
 ### 2. Find the difference that the system does not have
 
 If the record does not show a thing that you know is in the signal, do
-not add a detector for that thing. Ask this question: **which difference
-does the system need to see to find this thing without help?**
+not add a detector for that thing. Ask this question: **what difference
+must the system see to find this thing without help?**
 
 The system finds structure by comparison. If the system did not find a
 thing, 1 of these 3 statements is true:
@@ -109,11 +109,11 @@ part of the output:
   left, the same word on the right), not by their contents. The script
   finds parts of speech.
 - `functions.py` compares changes by the parts that the changes act on
-  (which parts take the same set of changes), not by their form. The
+  (the parts that take the same set of changes), not by their form. The
   script finds functions that make words. The functions can make new
   words.
-- `sentence.py` follows the sequence (which word comes after which word),
-  not the parts. The script writes sentences.
+- `sentence.py` follows the sequence (the word that comes after each
+  word), not the parts. The script writes sentences.
 
 None of these scripts needed a change to `discovery.py`. Each script
 points the comparator at a different relation in the record. The
@@ -123,9 +123,9 @@ that part of the data.
 ### 4. Check the cost, not the output
 
 The output of the system is what the system found. You do not grade the
-output. You measure the cost to find the output: the number of tries that
-failed, the time, and the number of paths that gave no result before the
-system was stable.
+output. You measure the cost to find the output. The cost is the number
+of tries that failed, the time, and the number of paths that gave no
+result before the system was stable.
 
 If the cost is high, the search of the system is too wide. The system
 does not have enough differences to make the search space small. The fix
@@ -138,6 +138,7 @@ the correct differences.
 The script `functions.py` went through 4 versions. The cost (the tries
 that failed for each word that the script made) is the measure of each
 version (`extend/FUNCTIONS.md`, "What was tried before this"):
+
 - Open offers, no feedback: the most failures.
 - Feedback for each ending: more failures still. The feedback was too
   narrow. One refusal taught nothing about refusals that were almost the
@@ -174,11 +175,11 @@ was not information. The thing was a difference that made no difference.
 ## The short version
 
 ```
-1. Run it.
-2. Read what it found, not what you expected.
-3. If something's missing, find the missing difference.
-4. Point the comparator there.
-5. If it's slow, remove noise — don't add rules.
+1. Run the program.
+2. Read what the program found, not what you expected.
+3. If a thing is missing, find the missing difference.
+4. Point the comparator at that difference.
+5. If the program is slow, remove noise. Do not add rules.
 6. The cost is the measure. The output is the answer.
 ```
 

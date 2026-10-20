@@ -68,7 +68,7 @@ locations that a routine reads and writes.
 | `nudge-run/` | 2 flights, 1 with a nudge. The comparator finds the chain of the autopilot from the pulse that comes in to the jets that go out. No name is given to the comparator. The readers are `bridge_flights.py` and `flips.py`. |
 | `loop.py`, `walk.py`, `do.py` | The loop: press, record, compare, choose. The backward walk from a goal to the key presses. The check: press the keys and compare the result with the goal. The folder `phase-a/` is the run of the loop on the DSKY alone. |
 | `vehicle.py` | A small model of the lunar module on the socket (hardware, from the 10-10 work). The model has a start on the pad and the direct controls of the astronaut. |
-| `launch.py` | The loop with the vehicle: make a model, predict, walk backward. The folder `phase-c/` is the run in which the vehicle launched. The folder `phase-b/` is the earlier run, in which a launch was not possible. The BREAKDOWN.md of `phase-b/` explains the cause. The files `goalB.py` and `runB.sh` go with `phase-b/`. |
+| `launch.py` | The loop with the vehicle: make a model, predict, walk backward. The folder `phase-c/` is the run where the vehicle launched. The folder `phase-b/` is the earlier run. In that run, a launch was not possible. The BREAKDOWN.md of `phase-b/` explains the cause. The files `goalB.py` and `runB.sh` go with `phase-b/`. |
 
 Each `phase-*/` folder and the `nudge-run/` folder has a `BREAKDOWN.md`.
 The BREAKDOWN.md lists each input first, then the results, then the
@@ -127,7 +127,7 @@ The key letters are as follows:
 
 ## The output of a correct run
 
-The frame step is the step in which Discovery finds the width of each
+The frame step is the step where Discovery finds the width of each
 record. From the write trace, the frame step finds the record width
 without help:
 
@@ -242,7 +242,7 @@ slow when the only task is to make a trace.
    the memory that the part writes. The needs of a part are the memory
    that the part reads before the part decides where to go. Match the
    reads of 1 routine against the writes of each other routine. The
-   result is the order in which the routines must run.
+   result is the order that the routines must follow.
 3. **Channels against the vehicle.** This stage needs a thing that
    moves on the other side of the socket. The thing can be NASSP in
    Orbiter (Windows) or a minimal physics model of your own. The channel

@@ -17,7 +17,7 @@ The files `alice-first-half.txt` and `alice-second-half.txt` are the 2 halves of
 
 One memory holds signals that the program read at 1 frame. The program reads all 4 signals here at 8 bits. The program does not accept a signal at a different width, and gives the reason.
 
-A comparison counts only when the comparison includes the current signal. The program does not compare 2 parts in memory that the current signal has not reached. The program compared those 2 parts when the program first made them. Thus a memory never confirms itself.
+A comparison counts only when the comparison includes the current signal. The program does not compare 2 parts in memory that the current signal has not reached. The program compared those 2 parts when the program first made the 2 parts. Thus a memory never confirms itself.
 
 The program confirms a part in memory when the current signal makes the part again. Then the program compares that part with its neighbors one more time. Thus the program can also reach the parts that the program made from that part in the last run.
 
@@ -103,6 +103,6 @@ The result is the same bridge as in `examples/german`, but through memory and no
 
 ## Summary of the record
 
-Each run with memory starts with 3 numbers for each level: confirmed, added, not seen. A signal that the program reads twice confirms what the signal made the first time. The exception is the few parts that have a different neighbor in the pool. The signal adds no parts, or almost no parts. A new signal adds what the new signal brings and confirms what the new signal shares. The program never removes a part.
+Each run with memory starts with 3 numbers for each level: confirmed, added, not seen. A signal that the program reads 2 times confirms what the signal made the first time. The exception is the few parts that have a different neighbor in the pool. The signal adds no parts, or almost no parts. A new signal adds what the new signal brings and confirms what the new signal shares. The program never removes a part.
 
 A part that the program does not see this time keeps its place and its count. The additions get smaller as the memory covers more of what the signals contain. The shape is the same as the shape of the levels in 1 run: many parts, then some more, then a few, then almost none, then no change.

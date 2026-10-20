@@ -241,11 +241,11 @@ everything.
 2. The classes of this level (the classes with 2 or more members)
    become a second way for 2 symbols to be the same. The symbols are
    the same if the symbols are the same run. The symbols are also the
-   same if the symbols are 2 runs in the same class. If 2 sequences are
-   the same only because a class member is in the same position, the
-   class itself is in that position of the part that the 2 sequences
-   share. This is the 1 place where the output of the crystal goes
-   back into the comparison.
+   same if the symbols are 2 runs in the same class. Sometimes 2
+   sequences are the same only because a class member is in the same
+   position. Then the class itself is in that position of the part
+   that the 2 sequences share. This is the 1 place where the output of
+   the crystal goes back into the comparison.
 3. Each new structure joins the pool. There is only 1 pool. A new
    structure can be a run of runs, a part that the program minted, or
    a class. The connections of the new structure go to the parts that
@@ -418,9 +418,11 @@ level-0 part.
 ## 10. Run
 
 `Root` is the 1 call that a program made on Discovery makes. `Root`
-gives the signal as read (sections 1 to 3), level 0 on the pool that
-all levels share (sections 4 to 7), and a call for each level above
-level 0.
+gives:
+
+- the signal as read (sections 1 to 3)
+- level 0 on the pool that all levels share (sections 4 to 7)
+- a call for each level above level 0
 
 `discover()` is `Root` plus 2 more operations. The first operation runs
 the levels to the end. The second operation writes the record (sections

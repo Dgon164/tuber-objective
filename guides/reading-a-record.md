@@ -20,7 +20,7 @@ FRAME   score = spread between the column most often 1 and the column least ofte
 
 - **Score**: the width with the largest difference between its columns
   gets the highest score. If 1 width is far above the rest, with the
-  multiples of that width close behind, the signal has a clear
+  multiples of that width a small amount below, the signal has a clear
   structure. If all widths have approximately the same score, the
   signal has no fixed structure (random bytes, or data after
   compression or encryption).

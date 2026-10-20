@@ -58,17 +58,26 @@ record. The MINT line decreases to 0 in 7 to 30 rounds. Also see `e`: `e`
 is never a whole word alone, but `e` is inside 1,615 parts.
 
 **5. The connections of a thing are its definition.** The connections
-are what the thing contains, what contains the thing, what the thing
-changes into, and what occurs next to the thing. The density of a part is
-the number of things that contain the part. See the given at work in the
-CRYSTAL entry for `the`, `die`, `Kommission`, and `for`.
+are:
+
+- what the thing contains
+- what contains the thing
+- what the thing changes into
+- what occurs next to the thing
+
+The density of a part is the number of things that contain the part. See
+the given at work in the CRYSTAL entry for `the`, `die`, `Kommission`,
+and `for`.
 
 **6. Parts that take the same changes are 1 kind.** See the given at
-work in: 22 stems with `{+ed, +ing}`, 52 stems with `{+en, +t}`, 42 stems
-with `{+n, +r}`, and the pairs of a capital letter and a small letter
-`{A+, a+}`.
+work in these groups:
 
-**7. Crystallize, then loop again. Replace nothing, add everything.** To
+- 22 stems with `{+ed, +ing}`
+- 52 stems with `{+en, +t}`
+- 42 stems with `{+n, +r}`
+- the pairs of a capital letter and a small letter `{A+, a+}`
+
+**7. Crystallize, then loop again: replace nothing, add everything.** To
 crystallize is to group the parts by the changes that the parts accept.
 The program cuts the runs again 1 level up. The classes are a second way
 to be the same. Each structure goes into 1 pool. The process repeats
@@ -93,9 +102,9 @@ a new target, not a new tool.
 - A count is the comparator with memory: the same thing again, add 1.
 - A cut is the comparator: this word is the background, the last word was
   not, so there is a border.
-- The mint step is the comparator on 2 things at one time: the same
-  start, the 2 different parts that remain, and everything else that is
-  not part of the comparison.
+- The mint step is the comparator on 2 things at one time. The result is
+  the same start, the 2 different parts that remain, and everything else
+  outside the comparison.
 - Composition is containment. Containment is a comparison: 1 part is in a
   second part. The mint step finds the containment and keeps the
   containment as a connection.
@@ -133,7 +142,7 @@ full.
 |---|---|---|
 | the cut | where the program divides the run sequence | `extend/cut_at_class.py` |
 | the kind of same | what is a match | `extend/same_within.py` |
-| the comparison target | which 2 things the program compares | `extend/row_by_row.py` |
+| the comparison target | the 2 things that the program compares | `extend/row_by_row.py` |
 | the signal | what goes in | any file (see `guides/any-signal.md`) |
 
 ### Cut at a class instead of the most common word
@@ -170,8 +179,10 @@ set), plus the call into `run_level` with those separators.
 replacement for that symbol when 2 symbols are the same by class. The
 main program uses the map for crystal classes (groups of parts that share
 the same set of changes). This extension fills the map with ranges
-instead. A pair of 15-bit words is "the same" if the 2 words are within 8
-of each other. On the Apollo rope, 2 runs that differ only by a near
+instead.
+
+A pair of 15-bit words is "the same" if the 2 words are within 8 of each
+other. On the Apollo rope, 2 runs that differ only by a near
 address now collide. The range stands in that position.
 
 ```
@@ -215,13 +226,13 @@ MINT   7 rounds; parts minted per round: 643 280 61 18 9 2 0
 ```
 
 Units 28, 21, and 2 never move. The column rates said the same thing. Now
-the flips confirm the same thing from the other direction.
+the flips show the same thing from the other direction.
 
 The most common change is a flip of 8 specific units together. This
 change occurred 149 times. This change is the most common step of the
 network. New lines of code: 2 lines (the XOR and the rate for each
-column), plus the write of the flips to a file and the call of `discover`
-on that file.
+column). The extension also writes the flips to a file and calls
+`discover` on that file.
 
 ### The other 3 extensions in the repository
 
@@ -229,8 +240,9 @@ on that file.
   the comparator on 2 records. The result is the shared parts and the
   parts that contain the shared parts, on each side.
 - A different system on either side: `hybrid/`. The scripts make a rule
-  table from the record, put the states of a network into Discovery, and
-  loop the output of the model back into Discovery.
+  table from the record. The scripts put the states of a network into
+  Discovery. The scripts loop the output of the model back into
+  Discovery.
 - Many signals over time: `--memory`. The flag is the comparator on a
   signal against everything in the memory. The bins are confirmed, added,
   and not seen.

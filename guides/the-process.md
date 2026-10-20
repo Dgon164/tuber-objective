@@ -8,34 +8,37 @@ guide gives the general method.
 ## Quick reference
 
 ```
-1. COMPARE     Take two things. Find what they share and what they don't.
-               Save all four parts: shared, unique-to-A, unique-to-B,
-               and everything the comparison never touched.
+1. COMPARE     Take 2 things. Find what the 2 things share and what the
+               2 things do not share. Keep all 4 parts: the shared part,
+               the part only in A, the part only in B, and all that the
+               comparison did not touch.
 
-2. FEATURES    Decide what you're comparing — raw values, sets, ordered
-               sequences, pairs. If order matters, keep it.
+2. FEATURES    Decide what you compare: raw values, sets, ordered
+               sequences, or pairs. If the order is important, keep the
+               order.
 
-3. ABLATION    Optional. If you drop pieces before comparing, say which
-               side and how much. Dropping from both sides squares the
-               loss. Discovery doesn't drop anything.
+3. ABLATION    Optional. If you remove parts before the comparison, say
+               from what side and how much. To remove from both sides
+               squares the loss. Discovery removes nothing.
 
 4. FEEDBACK    Point the comparator at its own output. The signal that
-               says "same again" or "new" is the feedback. No separate
-               scoring function needed — the comparator is the scorer.
+               says "the same again" or "new" is the feedback. No
+               separate score function is necessary. The comparator is
+               the scorer.
 
-5. EXAMPLES    Show one input, the parts that came out, and what was
-               recovered. The record is the proof.
+5. EXAMPLES    Show 1 input, the parts that came out, and what the
+               method recovered. The record is the proof.
 
-6. LIMITS      Short repeated pieces show up easily. Long exact sequences
-               need more signal or a better cut. Say where your method
-               runs out.
+6. LIMITS      Short parts that repeat are easy to find. Long exact
+               sequences need more signal or a better cut. Say where
+               your method stops.
 
-7. LOOP        Feed the parts back in and repeat until nothing new comes
-               out. The stable point is the only stopping rule.
+7. LOOP        Put the parts back in and repeat until nothing new comes
+               out. The stable point is the only rule to stop.
 
-8. KEEP ALL    Never throw away a part, a count, a connection, or a
-               leftover. Compression is storing a thing once with a
-               count, not throwing things out.
+8. KEEP ALL    Never remove a part, a count, a connection, or a
+               remainder. Compression is to keep a thing 1 time with a
+               count. Compression is not to remove things.
 ```
 
 ---
@@ -115,9 +118,9 @@ If you do ablation, obey these 3 rules:
    removals. The chance is 70 percent of 70
    percent. The result is 49 percent. You lose more than half of your
    signal for nothing.
-2. **Say which side.** Keep 1 side whole and remove from the other side.
+2. **Name the side.** Keep 1 side whole and remove from the other side.
    The whole side is the reference. The side with the removals is the
-   test. The result shows which parts the reference does not need.
+   test. The result shows the parts that the reference does not need.
 3. **Say how much.** The rate of removal sets how fine your filter is. A
    high rate lets through only the parts that occur many times. A low
    rate lets through parts that occur fewer times. The correct rate
@@ -126,8 +129,8 @@ If you do ablation, obey these 3 rules:
 Experiments showed this result: if the signal already has noise, more
 ablation can put the real parts below the level of the noise. Noise in a
 signal includes parts in random positions, order that is lost, and random
-additions. Clean the signal first. Then do ablation if you want to test
-which parts are necessary.
+additions. Clean the signal first. Then do ablation if you want to find
+the parts that are necessary.
 
 ## 4. Feedback
 
@@ -140,8 +143,8 @@ There are 3 kinds of feedback. Each kind uses the comparator:
 
 - **Against memory.** Save the pool after 1 signal. Load the pool before
   the next signal. The program puts each part from the new signal into 1
-  of 3 bins: confirmed (already known), added (new this time), and not
-  seen (in the memory but absent from this signal). The additions
+  of 3 bins. The bins are confirmed (already in the memory), added (new
+  this time), and not seen (in the memory but absent from this signal). The additions
   decrease toward 0 as the memory covers more of what the signals
   contain.
 - **Against its own output.** Run the output of the model back through
@@ -187,8 +190,8 @@ Say where the method stops.
   these parts in a few rounds.
 - **Long exact sequences** need a very clean signal or many occurrences.
   A clean signal has little noise and no shuffle. The comparator cannot
-  confirm a phrase that occurs only 1 time. The phrase has nothing to
-  collide with.
+  show that a phrase that occurs only 1 time is real. The phrase has
+  nothing to collide with.
 - **Signals with noise** need more samples. If random additions hide the
   real parts, the comparator needs enough collisions to show the real
   parts above the noise. More signal and a better cut both help. To cut
@@ -330,8 +333,8 @@ code (`discovery.py`) and against the example records.
 ### The split with no loss (step 1: compare)
 
 Take 2 things, A and B. The comparator makes a shared start H and 2 parts
-that remain: tail_A (the rest of A after H) and tail_B (the rest of B
-after H).
+that remain. The 2 parts are tail_A (the rest of A after H) and tail_B
+(the rest of B after H).
 
 H + tail_A = A. H + tail_B = B. You can always make the original things
 again from the parts. The comparator destroyed nothing. The same
@@ -388,8 +391,8 @@ This property gives 3 kinds of feedback. Each kind uses the same
 comparison.
 
 **Against memory.** Compare the parts of this signal to a pool that you
-saved. There are 3 bins: confirmed (already known), added (new this
-time), and not seen (known but absent from this signal). The question "is
+saved. There are 3 bins: confirmed (already in the pool), added (new this
+time), and not seen (in the pool but absent from this signal). The question "is
 this part in the pool that you saved?" is the same question as "do these
 2 things share this part?". The comparison is the comparator with the
 pool that you saved as 1 input.
@@ -454,8 +457,8 @@ that was a middle becomes the start or the end of a shorter part that
 remains. The sort of the next round puts that shorter part next to a part
 that shares the middle. The comparator then finds the middle.
 
-A shared middle stays hidden in only 1 case: the parts around the middle
-are all unique, and no round removes those parts. That case is a real
+A shared middle stays hidden in only 1 case: the parts on both sides of
+the middle are all unique, and no round removes those parts. That case is a real
 limit. Section 6 notes that limit.
 
 ### Real parts only (step 7: loop, soundness)
@@ -469,9 +472,9 @@ The counts are exact: each collision that made a part is a real event in
 the pool in order.
 
 Classes work in the same way. A part goes into the same class as a second
-part because the mint step found the same set of changes on both parts
-(the same endings, the same starts). The group comes from the data, not
-from a rule that says what goes together.
+part for 1 reason: the mint step found the same set of changes on both
+parts. The changes are the same endings and the same starts. The group
+comes from the data, not from a rule that says what goes together.
 
 ### The permanent loss from a removal (step 8: keep all)
 

@@ -148,7 +148,9 @@ rope:    8538 parts, then +11, then +1
 source:  126406 parts, then +121058, then +11, then +1
 ```
 
-The rope stops early. The rope has 1,717 runs between EXTENDs, with 1,665 different runs. The level-1 separator occurs only a few times. Thus there is little to compare. The source goes to more levels. At level 1, the source cuts at `#` (the comment marker). To cut a signal is to divide the signal into runs at each separator. Thus a level-1 run is a sequence of code up to a comment.
+The rope stops early. The rope has 1,717 runs between EXTENDs, with 1,665 different runs. The level-1 separator occurs only a few times. Thus there is little to compare.
+
+The source goes to more levels. At level 1, the source cuts at `#` (the comment marker). To cut a signal is to divide the signal into runs at each separator. Thus a level-1 run is a sequence of code up to a comment.
 
 The parts of the source with the highest density are the patterns that occur many times:
 
@@ -172,7 +174,7 @@ You put the names on top of the record after the run. Here, the names come from 
 
 ## The memory limit that this example found
 
-In the first run of the 1.6 MB source with 1 separator (the tab), the pool grew larger than the memory of the computer. The runs between tabs include whole comment phrases. Long unique runs make many long parts. This result caused 2 changes:
+In the first run of the 1.6 MB source with 1 separator (the tab), the pool grew larger than the memory of the computer. The runs between tabs include whole comment phrases. Long runs that occur only one time make many long parts. This result caused 2 changes:
 
 - The program compares a pair of neighbors only when one of the neighbors is new from the last round. The result is the same, in approximately half the time.
 - The flag `--cap` (default 1,000,000 parts) stops the loop and says so in the record.
