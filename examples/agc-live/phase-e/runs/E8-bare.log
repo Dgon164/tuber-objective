@@ -1,0 +1,272 @@
+mission: orbit [f20 > 32000; f19 < 3000; f16 == 0]; prefer ('steps', 'least')
+step    0  a1  p1  grade      nan  +yaw          alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore      0s
+step    1  a1  p1  grade      nan  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore      0s
+step    2  a1  p1  grade      nan  stage         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step    3  a1  p1  grade      nan  -roll         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step    4  a1  p1  grade      nan  -pitch        alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step    5  a1  p1  grade      nan  stage         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step    6  a1  p1  grade      nan  arm           alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step    7  a1  p1  grade      nan  +pitch        alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step    8  a1  p1  grade      nan  throttle down alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step    9  a1  p1  grade      nan  -roll         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step   10  a1  p1  grade      nan  +roll         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step   11  a1  p1  grade      nan  -pitch        alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step   12  a1  p1  grade      nan  arm           alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step   13  a1  p1  grade      nan  engine off    alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step   14  a1  p1  grade      nan  stage         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step   15  a1  p1  grade      nan  engine on     alt      30 vx     0 vz    15 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step   16  a1  p1  grade      nan  stage         alt     150 vx     0 vz    31 pitch    0.0 st 2 fall     0km high      0km  explore      0s
+step   17  a1  p1  grade      nan  arm           alt     340 vx     0 vz    46 pitch    0.0 st 2 fall     0km high      1km  explore      0s
+step   18  a1  p1  grade      nan  throttle down alt     610 vx     0 vz    62 pitch    0.0 st 2 fall     0km high      2km  explore      0s
+step   19  a1  p1  grade      nan  +yaw          alt     960 vx     0 vz    78 pitch    0.0 st 2 fall     0km high      3km  explore      0s
+step   20  a1  p1  grade      nan  -pitch        alt    1390 vx    -0 vz    94 pitch   -2.0 st 2 fall     0km high      4km  explore      0s
+step   21  a1  p1  grade      nan  +roll         alt    1900 vx    -2 vz   110 pitch   -3.9 st 2 fall     0km high      6km  explore      0s
+step   22  a1  p1  grade      nan  -roll         alt    2500 vx    -4 vz   127 pitch   -6.0 st 2 fall     0km high      7km  explore      0s
+step   23  a1  p1  grade      nan  +roll         alt    3170 vx    -7 vz   143 pitch   -7.7 st 2 fall     1km high     10km  explore      0s
+step   24  a1  p1  grade      nan  throttle up   alt    3930 vx   -11 vz   159 pitch   -9.4 st 2 fall     2km high     12km  explore      0s
+step   25  a1  p1  grade      200  wait          alt    4770 vx   -16 vz   175 pitch  -11.0 st 2 fall     3km high     14km  wait (in flight, nothing better; exploring every tenth step)      2s
+step   26  a1  p1  grade      200  wait          alt    5680 vx   -22 vz   191 pitch  -12.6 st 2 fall     5km high     17km  wait (in flight, nothing better; exploring every tenth step)      3s
+step   27  a1  p1  grade      200  wait          alt    6680 vx   -30 vz   207 pitch  -14.1 st 2 fall     8km high     20km  wait (in flight, nothing better; exploring every tenth step)      5s
+step   28  a1  p1  grade      200  wait          alt    7750 vx   -38 vz   222 pitch  -15.6 st 2 fall    11km high     23km  wait (in flight, nothing better; exploring every tenth step)      7s
+step   29  a1  p1  grade      200  wait          alt    8900 vx   -47 vz   237 pitch  -17.0 st 2 fall    15km high     26km  wait (in flight, nothing better; exploring every tenth step)      8s
+step   30  a1  p1  grade      200  +yaw          alt   10120 vx   -58 vz   252 pitch  -18.7 st 2 fall    20km high     30km  explore     10s
+step   31  a1  p1  grade      200  wait          alt   11410 vx   -70 vz   265 pitch  -20.4 st 2 fall    25km high     34km  wait (in flight, nothing better; exploring every tenth step)     11s
+step   32  a1  p1  grade      200  wait          alt   12770 vx   -83 vz   277 pitch  -22.1 st 2 fall    31km high     37km  wait (in flight, nothing better; exploring every tenth step)     13s
+step   33  a1  p1  grade      200  wait          alt   14180 vx   -97 vz   288 pitch  -23.9 st 2 fall    39km high     40km  wait (in flight, nothing better; exploring every tenth step)     15s
+step   34  a1  p1  grade      200  wait          alt   15640 vx  -113 vz   297 pitch  -25.8 st 2 fall    47km high     44km  wait (in flight, nothing better; exploring every tenth step)     16s
+step   35  a1  p1  grade      200  wait          alt   17150 vx  -130 vz   305 pitch  -27.9 st 2 fall    56km high     47km  wait (in flight, nothing better; exploring every tenth step)     18s
+step   36  a1  p1  grade      200  wait          alt   18690 vx  -148 vz   311 pitch  -30.2 st 2 fall    65km high     50km  wait (in flight, nothing better; exploring every tenth step)     20s
+step   37  a1  p1  grade      200  wait          alt   20260 vx  -168 vz   316 pitch  -32.9 st 2 fall    76km high     52km  wait (in flight, nothing better; exploring every tenth step)     21s
+step   38  a1  p1  grade      200  wait          alt   21850 vx  -188 vz   318 pitch  -36.2 st 2 fall    86km high     55km  wait (in flight, nothing better; exploring every tenth step)     23s
+step   39  a1  p1  grade      200  wait          alt   23440 vx  -210 vz   319 pitch  -40.6 st 2 fall    98km high     57km  wait (in flight, nothing better; exploring every tenth step)     24s
+step   40  a1  p1  grade      200  throttle down alt   25030 vx  -232 vz   317 pitch  -47.0 st 2 fall   109km high     58km  explore     26s
+step   41  a1  p1  grade      200  wait          alt   26610 vx  -256 vz   314 pitch  -57.5 st 2 fall   121km high     59km  wait (in flight, nothing better; exploring every tenth step)     28s
+step   42  a1  p1  grade      200  wait          alt   28170 vx  -280 vz   308 pitch  -77.7 st 2 fall   132km high     60km  wait (in flight, nothing better; exploring every tenth step)     29s
+step   43  a1  p1  grade      200  wait          alt   29690 vx  -305 vz   300 pitch -116.2 st 2 fall   143km high     60km  wait (in flight, nothing better; exploring every tenth step)     31s
+step   44  a1  p1  grade      200  wait          alt   31160 vx  -330 vz   290 pitch -155.0 st 2 fall   153km high     60km  wait (in flight, nothing better; exploring every tenth step)     33s
+step   45  a1  p1  grade      200  wait          alt   32580 vx  -356 vz   278 pitch -175.5 st 2 fall   163km high     59km  wait (in flight, nothing better; exploring every tenth step)     34s
+step   46  a1  p1  grade      199  wait          alt   33940 vx  -383 vz   263 pitch  174.0 st 2 fall   171km high     58km  wait (in flight, nothing better; exploring every tenth step)     36s
+step   47  a1  p1  grade      199  wait          alt   35210 vx  -409 vz   247 pitch  167.6 st 2 fall   179km high     56km  wait (in flight, nothing better; exploring every tenth step)     38s
+step   48  a1  p1  grade      199  wait          alt   36400 vx  -436 vz   228 pitch  163.2 st 2 fall   184km high     54km  wait (in flight, nothing better; exploring every tenth step)     39s
+step   49  a1  p1  grade      199  wait          alt   37500 vx  -463 vz   208 pitch  159.8 st 2 fall   189km high     53km  wait (in flight, nothing better; exploring every tenth step)     41s
+step   50  a1  p1  grade      199  +pitch        alt   38480 vx  -489 vz   186 pitch  159.0 st 2 fall   191km high     51km  explore     43s
+step   51  a1  p1  grade      199  wait          alt   39350 vx  -515 vz   161 pitch  158.4 st 2 fall   191km high     49km  wait (in flight, nothing better; exploring every tenth step)     45s
+step   52  a1  p1  grade      199  wait          alt   40090 vx  -540 vz   135 pitch  158.0 st 2 fall   189km high     47km  wait (in flight, nothing better; exploring every tenth step)     47s
+step   53  a1  p1  grade      199  wait          alt   40690 vx  -564 vz   106 pitch  157.6 st 2 fall   185km high     45km  wait (in flight, nothing better; exploring every tenth step)     49s
+step   54  a1  p1  grade      199  wait          alt   41150 vx  -588 vz    76 pitch  157.3 st 2 fall   179km high     43km  wait (in flight, nothing better; exploring every tenth step)     51s
+step   55  attempt 1  aborted: engine has only ever moved away from its target
+attempt 1 over: reached phase 0 of 1, got to 0.335, aborted: mission control called the attempt off; attempt 2 on the pad
+  closest approach: fall 191 km, alt 38480 m, downrange -25 km, 523 m/s
+  ended up:         fall 179 km, alt 41150 m, downrange -36 km, 593 m/s
+step   55  a2  p1  grade      100  stage         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore     53s
+step   56  a2  p1  grade      100  stage         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore     55s
+step   57  a2  p1  grade      100  engine off    alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore     57s
+step   58  a2  p1  grade      100  -pitch        alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore     59s
+step   59  a2  p1  grade      100  +pitch        alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore     61s
+step   60  a2  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore     63s
+step   61  a2  p1  grade      100  +roll         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore     65s
+step   62  a2  p1  grade      100  throttle up   alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore     67s
+step   63  a2  p1  grade      100  throttle down alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore     69s
+step   64  a2  p1  grade      100  -yaw          alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  explore     71s
+step   65  a2  p1  grade      100  arm           alt      30 vx     0 vz    15 pitch    0.0 st 2 fall     0km high      0km  explore     73s
+step   66  a2  p1  grade      200  wait          alt     150 vx     0 vz    31 pitch    0.0 st 2 fall     0km high      0km  wait (in flight, nothing better; exploring every tenth step)     74s
+step   67  a2  p1  grade      200  wait          alt     340 vx     0 vz    46 pitch    0.0 st 2 fall     0km high      1km  wait (in flight, nothing better; exploring every tenth step)     76s
+step   68  a2  p1  grade      200  wait          alt     610 vx     0 vz    62 pitch    0.0 st 2 fall     0km high      2km  wait (in flight, nothing better; exploring every tenth step)     78s
+step   69  a2  p1  grade      200  wait          alt     960 vx     0 vz    78 pitch    0.0 st 2 fall     0km high      3km  wait (in flight, nothing better; exploring every tenth step)     80s
+step   70  a2  p1  grade      200  stage         alt    1390 vx     0 vz    94 pitch    0.0 st 2 fall     0km high      4km  explore     82s
+step   71  a2  p1  grade      200  wait          alt    1910 vx     0 vz   111 pitch    0.0 st 2 fall     0km high      6km  wait (in flight, nothing better; exploring every tenth step)     84s
+step   72  a2  p1  grade      200  wait          alt    2500 vx     0 vz   127 pitch    0.0 st 2 fall     0km high      8km  wait (in flight, nothing better; exploring every tenth step)     86s
+step   73  a2  p1  grade      200  wait          alt    3180 vx     0 vz   144 pitch    0.0 st 2 fall     0km high     10km  wait (in flight, nothing better; exploring every tenth step)     88s
+step   74  a2  p1  grade      200  wait          alt    3940 vx     0 vz   161 pitch    0.0 st 2 fall     0km high     12km  wait (in flight, nothing better; exploring every tenth step)     90s
+step   75  a2  p1  grade      200  wait          alt    4790 vx     0 vz   178 pitch    0.0 st 2 fall     0km high     15km  wait (in flight, nothing better; exploring every tenth step)     92s
+step   76  a2  p1  grade      200  wait          alt    5720 vx     0 vz   196 pitch    0.0 st 2 fall     0km high     18km  wait (in flight, nothing better; exploring every tenth step)     94s
+step   77  a2  p1  grade      200  wait          alt    6750 vx     0 vz   213 pitch    0.0 st 2 fall     0km high     21km  wait (in flight, nothing better; exploring every tenth step)     96s
+step   78  a2  p1  grade      200  wait          alt    7860 vx     0 vz   231 pitch    0.0 st 2 fall     0km high     25km  wait (in flight, nothing better; exploring every tenth step)     98s
+step   79  a2  p1  grade      200  wait          alt    9060 vx     0 vz   250 pitch    0.0 st 2 fall     0km high     29km  wait (in flight, nothing better; exploring every tenth step)    100s
+step   80  a2  p1  grade      200  arm           alt   10350 vx     0 vz   268 pitch    0.0 st 2 fall     0km high     33km  explore    102s
+step   81  a2  p1  grade      200  wait          alt   11740 vx     0 vz   286 pitch    0.0 st 2 fall     0km high     38km  wait (in flight, nothing better; exploring every tenth step)    104s
+step   82  a2  p1  grade      200  wait          alt   13220 vx     0 vz   305 pitch    0.0 st 2 fall     0km high     43km  wait (in flight, nothing better; exploring every tenth step)    106s
+step   83  a2  p1  grade      200  wait          alt   14790 vx     0 vz   324 pitch    0.0 st 2 fall     0km high     48km  wait (in flight, nothing better; exploring every tenth step)    108s
+step   84  a2  p1  grade      200  wait          alt   16460 vx     0 vz   344 pitch    0.0 st 2 fall     0km high     54km  wait (in flight, nothing better; exploring every tenth step)    110s
+step   85  a2  p1  grade      200  wait          alt   18230 vx     0 vz   363 pitch    0.0 st 2 fall     0km high     61km  wait (in flight, nothing better; exploring every tenth step)    112s
+step   86  a2  p1  grade      200  wait          alt   20100 vx     0 vz   383 pitch    0.0 st 2 fall     0km high     68km  wait (in flight, nothing better; exploring every tenth step)    114s
+step   87  a2  p1  grade      200  wait          alt   22070 vx     0 vz   404 pitch    0.0 st 2 fall     0km high     75km  wait (in flight, nothing better; exploring every tenth step)    116s
+step   88  a2  p1  grade      200  wait          alt   24140 vx     0 vz   424 pitch    0.0 st 2 fall     0km high     83km  wait (in flight, nothing better; exploring every tenth step)    119s
+step   89  a2  p1  grade      200  wait          alt   26310 vx     0 vz   445 pitch    0.0 st 2 fall     0km high     91km  wait (in flight, nothing better; exploring every tenth step)    121s
+step   90  a2  p1  grade      200  +pitch        alt   28580 vx     0 vz   466 pitch    2.0 st 2 fall     0km high    100km  explore    123s
+step   91  a2  p1  grade      200  wait          alt   30970 vx     2 vz   487 pitch    4.1 st 2 fall     1km high    110km  wait (in flight, nothing better; exploring every tenth step)    125s
+step   92  a2  p1  grade      200  wait          alt   33460 vx     5 vz   509 pitch    6.1 st 2 fall     3km high    120km  wait (in flight, nothing better; exploring every tenth step)    127s
+step   93  a2  p1  grade      200  wait          alt   36050 vx     8 vz   530 pitch    8.1 st 2 fall     6km high    131km  wait (in flight, nothing better; exploring every tenth step)    129s
+step   94  a2  p1  grade      200  wait          alt   38760 vx    13 vz   552 pitch   10.2 st 2 fall     9km high    142km  wait (in flight, nothing better; exploring every tenth step)    131s
+step   95  attempt 2  aborted: engine has only ever moved away from its target
+attempt 2 over: reached phase 0 of 1, got to 0.667, aborted: mission control called the attempt off; attempt 3 on the pad
+  closest approach: fall 0 km, alt 0 m, downrange 0 km, 0 m/s
+  ended up:         fall 9 km, alt 38760 m, downrange 0 km, 552 m/s
+step   95  a3  p1  grade      100  -yaw          alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    133s
+step   96  a3  p1  grade      100  +pitch        alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    135s
+step   97  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    137s
+step   98  a3  p1  grade      100  -pitch        alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    139s
+step   99  a3  p1  grade      100  engine off    alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    141s
+step  100  model: 546 drift samples, 45 presses, 0 events, 0 deaths; ground fatal above None; presses per action: arm:5 engine on:4 engine off:3 throttle up:2 throttle down:4 +roll:4 -roll:3 +pitch:5 -pitch:5 +yaw:3 -yaw:1 stage:6
+step  100  a3  p1  grade      100  -roll         alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  plan[got to 0.67 at 12] -rollx3 stagex3 engine onx1    144s
+step  101  a3  p1  grade      100  stage         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 9] stagex3 engine onx1    146s
+step  102  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    148s
+step  103  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    150s
+step  104  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] engine onx3 +pitchx2    153s
+step  105  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx2    155s
+step  106  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] engine onx4 +pitchx3 armx3    157s
+step  107  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx3 armx3    160s
+step  108  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    162s
+step  109  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    164s
+step  110  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    166s
+step  111  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    168s
+step  112  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 100] engine onx1 +yawx1 +pitchx1    171s
+step  113  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    173s
+step  114  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    175s
+step  115  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    178s
+step  116  a3  p1  grade      100  +yaw          alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] +yawx1 engine onx2 +pitchx1    180s
+step  117  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 100] engine onx1 +pitchx1    183s
+step  118  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    185s
+step  119  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx4 +pitchx2 engine onx1    187s
+step  120  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] engine onx2 engine offx1 +pitchx1    190s
+step  121  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 100] engine onx1 engine offx1 wait17 +pitchx1    192s
+step  122  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 100] engine onx1 wait17 +pitchx1    195s
+step  123  a3  p1  grade      100  throttle up   alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] throttle upx1 engine onx1 +pitchx4    197s
+step  124  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 100] engine onx1 wait28 +pitchx4    199s
+step  125  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    202s
+step  126  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    204s
+step  127  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] engine onx4 +pitchx3 engine offx2    207s
+step  128  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx2 +pitchx3 engine offx2    209s
+step  129  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx3 engine offx2    211s
+step  130  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    214s
+step  131  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx2 +pitchx2 throttle upx3    216s
+step  132  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx2    219s
+step  133  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    221s
+step  134  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    223s
+step  135  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    226s
+step  136  a3  p1  grade      100  throttle up   alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] throttle upx1 engine onx2 +pitchx2 +pitchx1    228s
+step  137  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx2 +pitchx1    230s
+step  138  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx2 +pitchx1 armx1 +yawx1    233s
+step  139  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 100] engine onx1 -yawx1 +pitchx1 armx1 +yawx1    235s
+step  140  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    237s
+step  141  a3  p1  grade      100  wait          alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] wait3 engine onx1 +pitchx1 throttle downx4    240s
+step  142  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx1 throttle downx4    242s
+step  143  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx1 throttle downx4    245s
+step  144  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    247s
+step  145  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    250s
+step  146  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] engine onx3 +pitchx1 +rollx3 throttle upx1    252s
+step  147  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx2 +pitchx1 +rollx3    254s
+step  148  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx1    257s
+step  149  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] engine onx3 +pitchx1    259s
+step  150  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx2 +pitchx1    262s
+step  151  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx1    265s
+step  152  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    268s
+step  153  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx2 +pitchx4 throttle downx4 -yawx3    270s
+step  154  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx4 -yawx3    273s
+step  155  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    276s
+step  156  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    279s
+step  157  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    281s
+step  158  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    284s
+step  159  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    287s
+step  160  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    290s
+step  161  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    292s
+step  162  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    295s
+step  163  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    298s
+step  164  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    301s
+step  165  a3  p1  grade      100  +pitch        alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] +pitchx1 engine onx3 +pitchx3 +yawx4    304s
+step  166  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx3 +yawx4    306s
+step  167  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    309s
+step  168  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    312s
+step  169  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    315s
+step  170  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    318s
+step  171  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    321s
+step  172  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    323s
+step  173  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] engine onx3 +pitchx3 +yawx2    326s
+step  174  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx3 +yawx2    329s
+step  175  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] engine onx1 engine offx2 throttle upx1 +pitchx2    332s
+step  176  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    334s
+step  177  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx1 stagex1 +pitchx4 stagex2    337s
+step  178  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    340s
+step  179  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    343s
+step  180  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    346s
+step  181  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx3 +rollx1 throttle downx3    348s
+step  182  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    351s
+step  183  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] engine onx1 -rollx2 engine offx1 +pitchx1    354s
+step  184  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    357s
+step  185  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    360s
+step  186  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    362s
+step  187  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    365s
+step  188  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    368s
+step  189  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 100] engine onx1 wait28 +pitchx3 wait33    371s
+step  190  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    374s
+step  191  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    377s
+step  192  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    380s
+step  193  a3  p1  grade      100  +roll         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] +rollx1 engine onx2 +pitchx4 +pitchx1    383s
+step  194  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx2 +pitchx4    385s
+step  195  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx4    388s
+step  196  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    391s
+step  197  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    394s
+step  198  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    397s
+step  199  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx2    400s
+step  200  model: 1047 drift samples, 144 presses, 0 events, 0 deaths; ground fatal above None; presses per action: arm:5 engine on:96 engine off:3 throttle up:4 throttle down:4 +roll:5 -roll:4 +pitch:6 -pitch:5 +yaw:4 -yaw:1 stage:7
+step  200  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] engine onx4 +pitchx2    403s
+step  201  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx2    406s
+step  202  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    409s
+step  203  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    412s
+step  204  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] engine onx4 +pitchx4 +pitchx1 throttle downx2    415s
+step  205  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx4 +pitchx1 throttle downx2    418s
+step  206  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    421s
+step  207  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    424s
+step  208  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    427s
+step  209  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    431s
+step  210  a3  p1  grade      100  -roll         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] -rollx1 engine onx2 +pitchx4    434s
+step  211  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx4    437s
+step  212  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    440s
+step  213  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    443s
+step  214  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    446s
+step  215  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] engine onx4 +pitchx1 -pitchx2 throttle downx1    449s
+step  216  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx2 +pitchx1 -pitchx2 throttle downx1    452s
+step  217  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx1 throttle downx1    455s
+step  218  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    459s
+step  219  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    462s
+step  220  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx3 throttle downx2 armx3    465s
+step  221  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] engine onx4 +pitchx1 engine onx3 armx3    468s
+step  222  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] engine onx3 +pitchx1 armx3    471s
+step  223  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx2 +pitchx1    474s
+step  224  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx1    477s
+step  225  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    480s
+step  226  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    483s
+step  227  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    486s
+step  228  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    489s
+step  229  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    492s
+step  230  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    495s
+step  231  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    498s
+step  232  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    501s
+step  233  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] engine onx2 engine offx1 +pitchx4 engine offx4    504s
+step  234  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 100] engine onx1 wait35 engine offx1 +pitchx4 engine offx4    507s
+step  235  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] engine onx4 +pitchx3 throttle upx1 throttle downx1    509s
+step  236  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 3] engine onx2 +pitchx2    512s
+step  237  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx2    515s
+step  238  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 5] engine onx4 +pitchx4 -pitchx3    518s
+step  239  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx4 -pitchx3    521s
+step  240  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    524s
+step  241  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] engine onx3 +pitchx3    527s
+step  242  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx3    530s
+step  243  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    533s
+step  244  a3  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 6] engine onx1    536s
+step  245  attempt 3  aborted: 150 steps without reaching phase 1
+attempt 3 over: reached phase 0 of 1, got to 0.667, aborted: mission control called the attempt off; attempt 4 on the pad
+  closest approach: fall 0 km, alt 0 m, downrange 0 km, 0 m/s
+  ended up:         fall 0 km, alt 0 m, downrange 0 km, 0 m/s
+step  245  a4  p1  grade      100  -roll         alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    539s
+step  246  a4  p1  grade      100  throttle down alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    542s
+step  247  a4  p1  grade      100  +roll         alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    545s
+step  248  a4  p1  grade      100  arm           alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    548s
+step  249  a4  p1  grade      100  -pitch        alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    551s
+step  250  a4  p1  grade      100  engine on     alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  explore    555s
+step  251  a4  p1  grade      200  +roll         alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  plan[got to 0.34 at 5] +rollx1 +rollx1 stagex2 engine onx2    558s
+step  252  a4  p1  grade      200  +roll         alt       0 vx     0 vz     0 pitch    0.0 st 1 fall     0km high      0km  plan[got to 0.67 at 24] +rollx1 stagex2 engine onx1    562s
+step  253  a4  p1  grade      200  stage         alt       0 vx     0 vz     0 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 4] stagex2 engine onx1 +pitchx3    565s
+step  254  a4  p1  grade      100  engine on     alt      30 vx     0 vz    15 pitch    0.0 st 2 fall     0km high      0km  plan[got to 0.67 at 2] engine onx1 +pitchx3    568s
+step  255  a4  p1  grade      200  +pitch        alt     150 vx     0 vz    31 pitch    2.0 st 2 fall     0km high      0km  plan[got to 0.67 at 1] +pitchx3    572s
+step  256  a4  p1  grade      200  +pitch        alt     340 vx     2 vz    46 pitch    6.1 st 2 fall     0km high      1km  plan[got to 0.67 at 1] +pitchx2    575s

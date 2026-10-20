@@ -106,6 +106,8 @@ the flight plan, completed it 62 times in 63 attempts.
 | 3 | 2,200 of 3,000 | 22, phase 2 twice | 21, −1,457 km | exploration still pressed `stage` on the pad: the guard compared only phases-left and dead-or-not |
 | 4 | 3,000 | 34, phase 2 eight times | 24, −1,511 km | the grade divided a gap by the biggest one-step change ever seen, so a dropped stage made burnout read as one press away; the local line extrapolated slopes it had no evidence for; exploration mid-flight wrecked good flights |
 | 5 | 3,000 | 35, phase 2 in 27, phase 3 in 7, phase 4 once | 26, −1,572 km | an exact target of an earlier phase was kept even when a later phase asked for a different value of the same field, so "stage 0" from lift-off blocked "stage 1" at staging: the one attempt that staged was called off for it, and no plan could ever have proposed staging |
+| 6 | stopped at 1,386 | 15, phase 2 twice | (bare run replaced, see below) | kept-target fix, all three rates zero in the turn, guard on lost phases only. Stopped to free the machine. |
+| 7, 8 | stopped at 262 | not run | 3 attempts, fall destination 191 km at best | closeness learned from the record instead of the hand-written grade; the fall-destination instrument; closest approach and ended-up recorded per attempt. Stopped to free the machine. |
 
 Launch 5, flight plan, `runs/E-plan.log`, 35 attempts in 3.0 hours:
 
@@ -198,10 +200,23 @@ was never burned out in any attempt.
   never found that out because it only ever replayed one path. This
   loop searches, and a search finds the letter of a target.
 
+## Where it stood when the machine was handed over
+
+Launch 6, flight plan, `runs/E6-plan.log`, 1,386 steps, 15 attempts:
+six ended on the pad or just above it, seven lifted off and crashed,
+two reached the turn and crashed (953 and 354 m/s). Launch 8, bare
+mission under the new spec, `runs/E8-bare.log`, 262 steps, 3 attempts:
+the first flew to 38 km with its fall destination at 191 km and was
+called off; the next two never left the pad. The memory loading
+(`--memory`), the five goals and `transfer.sh` were written and
+checked on launch 8's record but the suite was not run. `RUN.md` says
+how to run all of it elsewhere.
+
 ## Not done
 
-- No orbit. Four launches, 0 of 93 attempts with the flight plan, 0 of
-  79 without.
+- No orbit. Six launches, 0 of 108 attempts with the flight plan, 0 of
+  82 without.
+- The transfer test (the same record, different goals) was not run.
 - Launch 6 is running with the kept-target fix, the turn phase asking
   for all three rates at zero, and an exploration guard that acts on a
   predicted lost phase only, not on a predicted death.
