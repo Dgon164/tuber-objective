@@ -1,0 +1,14 @@
+# The mission, as targets on the instrument fields, phase by phase. The loop reads this file and nothing
+# else about the mission. It is told what to reach, not which controls do it.
+#
+# fields (positions in the instrument row, see vehicle.py): 1 pitch angle in 0.01 deg, 4 pitch rate in
+# 0.01 deg/s, 6 altitude in 10 m, 9 engine thrust in 10 N, 14 propellant left in the current stage in kg, 16 engine on,
+# 17 stage (0 first, 1 second), 18 lowest and 19 highest point of the current path in 100 m (32767 = leaving the moon)
+#
+# within a phase the targets are worked in the order written: a target that is met, and comes before the
+# first one that is not, is to be kept; the first one not met is the one being worked on
+liftoff:    f17 == 0 ; f9 > 4000 ; f6 > 5
+pitchover:  f17 == 0 ; f1 > 10800 ; f1 < 11600 ; f4 == 0
+burnout:    f17 == 0 ; f14 < 1
+staged:     f17 == 1 ; f16 == 1
+orbit:      f18 > 100 ; f19 < 3000 ; f16 == 0

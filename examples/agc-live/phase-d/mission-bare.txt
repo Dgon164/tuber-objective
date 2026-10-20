@@ -1,0 +1,6 @@
+# The same mission without the pitch-over step: lift off at full thrust, burn the first stage out, stage, light the
+# second stage, raise the lowest point of the path above 10 km with the highest below 300 km, engine off. See mission.txt for the fields.
+liftoff:    f17 == 0 ; f9 > 4000 ; f6 > 5
+burnout:    f17 == 0 ; f14 < 1
+staged:     f17 == 1 ; f16 == 1
+orbit:      f18 > 100 ; f19 < 3000 ; f16 == 0

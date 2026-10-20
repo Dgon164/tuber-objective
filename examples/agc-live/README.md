@@ -53,6 +53,10 @@ far:
   - with a model of the vehicle attached (`phase-b/`)
   - on the launch pad with the astronaut's own controls (`phase-c/`).
     In that run the vehicle took off.
+  - with a mission to complete in five steps, a vehicle that can be
+    destroyed, and permission to try again (`phase-d/`). Lift off, turn
+    over, burn out the first stage, drop it, light the second, cut the
+    engine in orbit.
 
 The last section of this page lists what isn't done yet. One task is to
 sort the instruction codes (the opcodes) by what each one changes. The
@@ -74,6 +78,7 @@ locations each routine reads and which it writes.
 | `loop.py`, `walk.py`, `do.py` | The loop: press, record, compare, choose. The backward walk from a goal to the key presses that reach it. The check: press those keys on a fresh machine and compare what shows with the goal. `phase-a/` is this loop run on the DSKY alone. |
 | `vehicle.py` | A small model of the lunar module, attached to the socket as if it were hardware (from the 10-10 work). It can start on the pad and has the astronaut's direct controls. |
 | `launch.py` | The loop with the vehicle attached: build a map of what each control does, predict, then walk backward from a goal. `phase-c/` is the run where the vehicle took off. `phase-b/` is the earlier run, where a launch wasn't possible; its BREAKDOWN.md explains why. `goalB.py` and `runB.sh` go with `phase-b/`. |
+| `phase-d/` | The loop with a mission file, retries, and rules read off its own record. Its own `vehicle.py` has a round moon, two stages, and death. `mission.py` is the loop, `mission.txt` the flight plan, `scripted.py` a hand-flown check that orbit is reachable. |
 
 Each `phase-*/` folder and the `nudge-run/` folder has a `BREAKDOWN.md`
 that lists what went in first, then what came out, then what it
@@ -274,8 +279,9 @@ job is to make a recording.
 
 Stage 3 is done in `nudge-run/`: the comparator compared two flights and
 found the chain from pulses to jets to motion. The backward walk is done
-(`walk.py`, `launch.py`) and has run on the DSKY (`phase-a/`) and on
-the pad (`phase-c/`).
+(`walk.py`, `launch.py`) and has run on the DSKY (`phase-a/`), on
+the pad (`phase-c/`), and through a five-step mission to orbit with
+retries (`phase-d/`).
 
 Stages 1 and 2 are not done: sorting the opcodes by their effect, and
 finding what each routine reads and writes from the write recording.
