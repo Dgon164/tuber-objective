@@ -296,9 +296,9 @@ list, no dictionary and no training. All dates are in 2026.
 
 ## 10-11 -- the nudge, the loop, the launch
 
-- The folder `nudge-run/` holds two flights from the 10-10 package, both
-  with the same setup. In one of them the spacecraft gets a kick, a short
-  push that starts it turning. The author ran the bridge, the step that
+- The folder `nudge-run/` holds two flights from the 10-10 package. In
+  one of them the spacecraft gets a kick, a short push that starts it
+  turning. The author ran the bridge, the step that
   finds what two records share and what is in only one of them, on the
   words of each recording and on the flips (the fields that changed from
   one row to the next), with all the recordings on one shared clock. The
@@ -324,16 +324,16 @@ list, no dictionary and no training. All dates are in 2026.
   and that map is the DSKY's input grammar: VERB, then a digit, then a
   digit. The walk then goes backward through that map from a display
   word you ask for to the key presses that lead to it. The author pressed
-  those sequences again on a fresh machine, and the asked-for words
-  appeared. For a word the loop had never seen, it made no plan.
+  those sequences again, and the asked-for words appeared. For a word
+  the loop had never seen, it made no plan.
 - In `phase-b/`, the author attached the simulated vehicle to the same
   loop with no other change. The loop was given a goal row, the state of
   the vehicle's readings you want it to reach. The loop never reached the
   goal row, and the record shows why: the engine never came on, and the
   vehicle hit the ground at 136 s.
 - The author added a start on the launch pad and the astronaut's direct
-  controls (arm, engine on and off, throttle, hand controller) to
-  `vehicle.py`, and wrote `launch.py`. In `phase-c/`, 3,480 key presses
+  controls, the switches that work without going through the computer,
+  to `vehicle.py`, and wrote `launch.py`. In `phase-c/`, 3,480 key presses
   over three lives, three separate runs of the vehicle, built an effects
   table: for each control, which readings changed when it was pressed,
   and in how many of the tries. The table shows:
@@ -468,9 +468,10 @@ list, no dictionary and no training. All dates are in 2026.
     `think`, `know`, `can`; `a` -> `good`, `large`, `curious`; `little`
     -> `golden`, `door`, `key`; `the` -> `King`, `March`, `Rabbit`,
     `Hatter`.
-  - CHAINS: the strongest effect, followed forward step by step (`a ->
-    good -> deal -> I -> think`). On the rope, the flow of instructions
-    loops back on itself: `22156 -> 63411 -> 74756 -> 02031 -> 70000`.
+  - CHAINS: the strongest effect, followed forward step by step
+    (`a -> good -> deal -> I -> think`). On the rope, the flow of
+    instructions loops back on itself:
+    `22156 -> 63411 -> 74756 -> 02031 -> 70000`.
 
   The stretch is the usual distance from one run to the next separator
   of the level above, so the unit of time comes from the signal itself,
@@ -557,7 +558,7 @@ list, no dictionary and no training. All dates are in 2026.
   - 1.1, built by people, able to tune itself
   - 2.0, neural networks
   - 2.1, hybrids of neural networks and other methods
-  - 3.0, a system that builds its own structure and learns from nothing
+  - 3.0, a system that builds its own structure and learns
 
   The note places this repository at 3.0 by that definition, with
   `hybrid/` as the point where the generations meet.
@@ -584,7 +585,8 @@ list, no dictionary and no training. All dates are in 2026.
 - The *confirmed* column of the MEMORY table was counting the memory
   against itself. A 2-byte file, run against the first-half memory,
   "confirmed" 11,476 of the 11,941 parts that the whole second half had
-  confirmed, which is nonsense for two bytes. The cause was in `mint()`:
+  confirmed, far more than two bytes could have made. The cause was in
+  `mint()`:
   the first round compared every pair of neighbours in the sorted pool,
   including pairs where both parts came from memory. Now a comparison
   counts only when the current signal is one side of it. A part from
