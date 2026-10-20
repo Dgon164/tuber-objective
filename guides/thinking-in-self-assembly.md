@@ -4,7 +4,7 @@ This guide shows how to work with a system that finds its own structure.
 This guide is not about the code. This guide is about what you do and do
 not do as the person who runs the system.
 
-## The one rule
+## The only rule
 
 **Do not help the system. Run the system. Then find the difference that
 the system does not have.**
@@ -141,7 +141,7 @@ version (`extend/FUNCTIONS.md`, "What was tried before this"):
 
 - Open offers, no feedback: the most failures.
 - Feedback for each ending: more failures still. The feedback was too
-  narrow. One refusal taught nothing about refusals that were almost the
+  narrow. Each refusal taught nothing about refusals that were almost the
   same.
 - Negative groups: far fewer failures. The feedback applied to more
   cases.

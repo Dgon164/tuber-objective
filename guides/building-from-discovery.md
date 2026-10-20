@@ -36,10 +36,14 @@ results. There is no other operation in the file.
 **3. The most common thing is the background.** A run is the content
 between 2 occurrences of the most common symbol (the separator). To cut
 is to divide the signal into runs at the separator. See the given at work
-in: the space character in text, the zero byte in binary,
-the zero 64-bit word in a compiled program, and the EXTEND instruction in
-Apollo guidance code. One level up, the separators are `the`, the comma,
-and `#`.
+in these separators:
+
+- the space character in text
+- the zero byte in binary
+- the zero 64-bit word in a compiled program
+- the EXTEND instruction in Apollo guidance code
+
+The separators 1 level up are `the`, the comma, and `#`.
 
 **4. Compare things until nothing new comes out, and keep everything.**
 The loop mints parts. To mint a part is to make a new part from 2 parts
@@ -102,7 +106,7 @@ a new target, not a new tool.
 - A count is the comparator with memory: the same thing again, add 1.
 - A cut is the comparator: this word is the background, the last word was
   not, so there is a border.
-- The mint step is the comparator on 2 things at one time. The result is
+- The mint step is the comparator on 2 things at the same time. The result is
   the same start, the 2 different parts that remain, and everything else
   outside the comparison.
 - Composition is containment. Containment is a comparison: 1 part is in a

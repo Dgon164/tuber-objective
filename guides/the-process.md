@@ -51,7 +51,7 @@ Take 2 things. Split the result 3 ways:
 - **Different**: the rest of each thing after you remove the shared part.
   There are 2 different parts, 1 for each input.
 - **Not part**: each part in the pool that the comparison did not touch.
-  The pool is the collection of all known parts.
+  The pool is the collection of all parts that the program knows.
 
 The program keeps all 4 parts. The shared part becomes a new entry in the
 pool. The 2 parts that remain become new entries. The parts that the
@@ -80,8 +80,8 @@ comparison has something to find.
 Say what you compare. The choice of features decides what the comparator
 can find.
 
-- **Raw values**: compare the things exactly as they are, bit for bit or
-  symbol for symbol. Discovery compares raw values. Nothing changes
+- **Raw values**: compare the raw things, bit for bit or symbol for
+  symbol. Discovery compares raw values. Nothing changes
   before the comparison.
 - **Sets**: compare 2 collections with no order by their overlap. The
   parts in both sets are "same". The parts in 1 set and not in the other
@@ -449,16 +449,17 @@ mirror pass finds shared ends in the same way that the forward pass finds
 shared starts.
 
 A shared middle is a part inside 2 runs that have different starts and
-different ends. One pass does not always find a shared middle. But one
-pass does not need to find a shared middle.
+different ends. A pass alone does not always find a shared middle. But a
+pass alone does not need to find a shared middle.
 
 In each round, the loop removes shared starts and shared ends. A part
 that was a middle becomes the start or the end of a shorter part that
 remains. The sort of the next round puts that shorter part next to a part
 that shares the middle. The comparator then finds the middle.
 
-A shared middle stays hidden in only 1 case: the parts on both sides of
-the middle are all unique, and no round removes those parts. That case is a real
+The program does not find a shared middle in only 1 case: the parts on
+both sides of the middle are all unique, and no round removes those
+parts. That case is a real
 limit. Section 6 notes that limit.
 
 ### Real parts only (step 7: loop, soundness)
@@ -497,8 +498,8 @@ process from the start. The system has no prediction. The system does not
 know what will be necessary later. The only safe answer is to keep
 everything.
 
-Compression is not removal. One entry for each distinct part, with the
-count of the part, is compression. The pool is a dictionary with 1 entry
+Compression is not removal. Compression is 1 entry for each distinct
+part, with the count of the part. The pool is a dictionary with 1 entry
 for each thing, not 1,000 copies. The counts are values in the
 dictionary. No count decreases with time, no entry has an end date, and
 the program removes no entry.

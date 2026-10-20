@@ -396,7 +396,7 @@ signal without the key press. The tables are the same, read across the
 The lens only controls how the record shows a word on the page. The
 lens `raw` shows hex. The lens `ascii` shows the character when the
 word is 8 bits wide. The lens `utf8` decodes a whole run as UTF-8. Thus
-a-umlaut appears as the character itself and not as `\xc3\xa4`.
+`a-umlaut` appears as the character itself and not as `\xc3\xa4`.
 
 The lens `octal` shows a word in base 8. The Apollo listing is printed
 in base 8. The algorithm never uses the lens. If you change the lens,
