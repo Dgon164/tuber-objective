@@ -227,7 +227,7 @@ have to take the method on trust.
   comparison can't show that a phrase that occurs only once is real,
   because there is nothing for it to match against.
 - **Noisy signals** need more samples. If random additions hide the real
-  parts, the comparison needs enough matches to lift the real parts above
+  parts, the comparison needs enough matches to raise the real parts above
   the noise. More data helps, and so does a better cut. To cut is to
   divide the file into chunks at a divider. A better cut (the right
   divider, or two dividers) puts the real parts into shorter chunks, and

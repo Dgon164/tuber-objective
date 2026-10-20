@@ -424,22 +424,25 @@ list, no dictionary and no training. All dates are in 2026.
   fresh-pair rule that open.md had asked for. The same pairs meet in the
   same rounds, so the pool comes out the same: Alice 22,446 -> +6,709 ->
   +5 -> +1, as before. Finding the plain shared start, with no classes
-  involved, has its own fast path. At level 0 a part is its own node
-  rather than a wrapper around one. And `changes_of`, which works out what
-  you add to a part to get a larger one, looks at the first and last
-  values before slicing.
+  involved, has its own shortcut in the code. At level 0 a part now
+  stands for itself directly, with no wrapper object around it. And
+  `changes_of`, which works out what you add to a part to get a larger
+  one, checks just the first and last values of a part before it cuts
+  out and compares the whole stretch, which is cheaper.
 - A comment on the memory in `mint()` said that the program does not
   compare two parts from memory with each other again. The code always
   did compare them, and that comparison is how a remembered part comes
   out again and counts as confirmed. The author corrected the comment.
   The code did not change.
 - In `extend/functions.py`, `standing()` now counts a part's sibling
-  functions with a set intersection. The count is the same, at the speed
-  of C. The phase that makes words went from 5.9 s to 3.3 s for 20 words.
+  functions with a set intersection, the overlap of two sets, which
+  Python computes in C. The count is the same, at the speed of C. The
+  phase that makes words went from 5.9 s to 3.3 s for 20 words.
 - `run_examples.sh` now sets `PYTHONHASHSEED=0`. Python mixes a random
   number, different for each process, into how it orders strings in sets
-  and dictionaries. `functions.py` keys on strings, so its tie-breaks
-  followed that random number and its output changed on every run.
+  and dictionaries. `functions.py` uses strings as the keys of its
+  tables, so its tie-breaks followed that random number and its output
+  changed on every run.
   Fixing the number makes each run come out the same. `sentence.py` draws
   at random on purpose, so its output still changes.
 - The 100 s now go to these runs:
@@ -482,8 +485,9 @@ list, no dictionary and no training. All dates are in 2026.
 
 ## 10-12 -- persistence
 
-- The file `paper/persistence.md` is a proposed alignment paper. Its
-  claim is that a system whose only job is finding root causes keeps
+- The file `paper/persistence.md` is a proposed alignment paper, an
+  argument about whether a system built this way is safe to have around.
+  Its claim is that a system whose only job is finding root causes keeps
   complex things alive. The reasoning: the comparison needs the thing it
   compares against, and needs it again the next time the loop runs. A
   thing that is gone cannot be compared again (design rule 4: remove
@@ -618,13 +622,14 @@ list, no dictionary and no training. All dates are in 2026.
   always mean a count. To name one specific word, write it as `0x20` or
   `20,`; the record tag is then `.sepx20`. An option the program does not
   have, or an option with no value, now gives an error message; before,
-  the program ignored it silently or printed a traceback. `--limit 0`,
+  the program ignored it silently or printed a raw Python error dump (a
+  traceback). `--limit 0`,
   which sets how many bytes to read, now reads nothing rather than
   everything.
 - `run_examples.sh` failed when `/usr/share/dict/american-english`, the
   word list `functions.py` checks its words against, was not there. Now
   the script skips `functions.py` and writes a note, as it already did
-  when numpy was missing.
+  when numpy, the maths library `net_as_lens.py` needs, was missing.
 - The author added a note to the guides: the program decides the unit
   width from the first 64 KB of the file.
 - The author measured the behaviour below and did not change the
