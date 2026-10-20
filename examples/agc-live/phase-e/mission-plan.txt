@@ -1,0 +1,7 @@
+# The flight plan from phase-d, for comparison: the same five phases, then the second measure.
+liftoff:    f17 == 0 ; f9 > 4000 ; f6 > 5
+pitchover:  f17 == 0 ; f1 > 10800 ; f1 < 11600 ; f4 == 0
+burnout:    f17 == 0 ; f14 < 1
+staged:     f17 == 1 ; f16 == 1
+orbit:      f18 > 100 ; f19 < 3000 ; f16 == 0
+prefer:     steps least
