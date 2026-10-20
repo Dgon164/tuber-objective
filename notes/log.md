@@ -331,8 +331,8 @@ each run changed. All dates are in 2026.
   - ARROWS: a pair that occurs in both orders, with a count for each
     order (`said -> Alice` 25 against 7, `if -> you` 12 against 1).
   - EFFECTS: what occurs in the stretch after a run at a rate that is at
-    least 2 times its usual rate, with the real count against the count
-    that the usual rate gives. Examples: `I` -> `think`, `know`, `can`;
+    least 2 times its usual rate. The table gives the real count against
+    the count that the usual rate gives. Examples: `I` -> `think`, `know`, `can`;
     `a` -> `good`, `large`, `curious`; `little` -> `golden`, `door`,
     `key`; `the` -> `King`, `March`, `Rabbit`, `Hatter`.
   - CHAINS: the strongest effect, when the program follows the effect
@@ -411,10 +411,15 @@ each run changed. All dates are in 2026.
   The extensions are `R = D.Root(path)` plus their NEW section. The
   records and the outputs are the same, byte for byte.
 - The note `notes/generations.md` is the proposal for the generations of
-  AI: 1.0 made by humans, 1.1 with self-refinement, 2.0 neural networks,
-  2.1 hybrid, 3.0 a system that assembles itself and learns. The note
-  shows where this repository sits: 3.0 by the definition, with
-  `hybrid/` as the meeting point.
+  AI. The generations are:
+  - 1.0, made by humans
+  - 1.1, with self-refinement
+  - 2.0, neural networks
+  - 2.1, hybrid
+  - 3.0, a system that assembles itself and learns
+
+  The note shows where this repository sits: 3.0 by the definition, with
+  `hybrid/` as the point where the generations meet.
 - The file `extend/template.py` is the shape to copy. The file has the 3
   sections, and the middle section is open for you to write. As the file
   stands, the middle section shows, for the most common runs, what
