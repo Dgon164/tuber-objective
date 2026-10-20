@@ -109,7 +109,7 @@ the flight plan, completed it 62 times in 63 attempts.
 | 6 | stopped at 1,386 | 15, phase 2 twice | (bare run replaced, see below) | kept-target fix, all three rates zero in the turn, guard on lost phases only. Stopped to free the machine. |
 | 7, 8 | stopped at 262 | not run | 3 attempts, fall destination 191 km at best | closeness learned from the record instead of the hand-written grade; the fall-destination instrument; closest approach and ended-up recorded per attempt. Stopped to free the machine. |
 
-Launch 5, flight plan, `runs/E-plan.log`, 35 attempts in 3.0 hours:
+Launch 5, flight plan, `runs/E5-plan.log`, 35 attempts in 3.0 hours:
 
 ```
 reached nothing   6   (4 on the pad)
@@ -151,7 +151,7 @@ climbing at 178 m/s), was followed by nine presses, five of them
 exploration, the last of which was `stage` at 29 km; that lost the
 burnout phase's "stage 0" and the attempt was called off.
 
-Launch 5, bare mission, `runs/E-bare.log`, 26 attempts: 15 ended on
+Launch 5, bare mission, `runs/E5-bare.log`, 26 attempts: 15 ended on
 the pad. With more deaths on record, the model's death check flagged
 nearly every active press as leading to a crash, the exploration guard
 ruled those out, and what was left to explore on the pad was `engine
