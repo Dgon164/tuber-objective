@@ -138,11 +138,77 @@ without a new phase, in which case the loop sends `ABORT`.
 
 ## What happened
 
-todo: run A in progress, results in the next commit.
+Run A, the mission above, `runs/A.log`: 63 attempts in 5,275 steps,
+110 seconds of wall clock. 62 complete. Every attempt from the second
+one on.
+
+| attempt | steps | outcome |
+|---|---|---|
+| 1 | 206 | lift-off, pitch-over, burnout, staging; then tumbling in the orbit phase |
+| 2 to 63 | 81 each | mission complete, orbit 29 by 108 km (38 by 109 km in attempts 2 and 3), 1,046 kg of second-stage propellant left |
+
+Attempt 1, press by press. On the pad the loop explored: arm, engine
+on, engine off, throttle up. From the second throttle press it had a
+rule, "throttle up raises thrust", and used it, though it also pressed
+engine on ten times in a row for the same target before the rule for
+engine on was narrowed to "when thrust is zero". Lift-off at step 20.
+In the pitch-over phase it explored again: throttle down, +roll, −roll,
++pitch. +pitch moved the pitch angle, so the loop held, 53 steps of
+wait, and pressed −pitch at 108 degrees. Burnout came while it waited.
+It explored once more for the staging phase and found `stage` on the
+third press, then lit the engine by rule. In the orbit phase it waited
+while the lowest point of the path rose, and the lowest point passed
+10 km at step 119. But the turn had come late, the vehicle was coming
+down at 200 m/s while it gained speed, and the highest point of the
+path was past 300 km by then. The target became "highest point below
+300 km", and the one rule the loop had for that, read off a coincidence
+earlier in the same attempt, named +yaw. It pressed +yaw 74 times, with
+waits between, and the vehicle tumbled.
+
+Attempt 2 and after, the same 81 presses each time: six for lift-off
+(arm, engine on, four throttle presses; the walk gave one, rules the
+rest), +pitch by rule, 52 waits, −pitch by rule at 108 degrees, 13
+waits to burnout, `stage` by rule, engine on by rule, five waits, engine
+off by rule. 405 seconds of flight. The one press that moved the pitch
+angle, the one that stopped it, the one that dropped the stage, the
+one that lit the engine, the one that cut it: each was found once and
+reused.
+
+What was in memory at the end: 135 states, 171 transitions between
+them, 303 state-and-press pairs with their effects, 17 conditions. The
+useful ones: throttle up raises thrust when thrust reads 467, 1467,
+2467 or 3467 (the four levels below full); engine on raises thrust,
+drains propellant and sets the engine flag when thrust reads zero.
+Ten of the 17 are about +yaw, read off the 105 pulses of attempt 1.
+One says that waiting raises the lowest point of the path when that
+point reads about −1,737 km: the path rising on its own during the
+burn, credited to the press made at the time.
 
 ## Without the pitch-over phase
 
-todo: run B in progress, results in the next commit.
+Run B, the same mission without the pitch-over phase, `runs/B.log`:
+28 attempts in 3,699 steps. None complete.
+
+| attempt | steps | outcome |
+|---|---|---|
+| 1 | 138 | lift-off, burnout, staging; lost in the orbit phase with no propellant |
+| 2 to 10 | 121 to 142 | the same |
+| 11 to 28 | 132 each | the same presses exactly, the same loss |
+
+Every attempt lifts off at step 20, burns straight up to 200 km at
+1,400 m/s, stages at 260 km, and lights the second stage. The orbit
+phase then asks for the lowest point of the path above 10 km. Nothing
+in the mission before that asked for sideways speed. The loop finds
++pitch and +yaw by exploring, reads rules off what followed them, and
+burns the second stage with the lowest point still 1,700 km below
+ground. The second stage alone has about 1,350 m/s to give; a path
+that stays above the ground needs about 1,650 m/s sideways at that
+height.
+
+From attempt 11 on the loop makes the same 132 presses every time. The
+walk replays the path it knows, the attempt ends the same way, and the
+credit by outcome has nothing to add: every attempt fails the same
+phase, so no press stands out from the rest. Nothing new is tried.
 
 ## What it took
 
@@ -218,6 +284,12 @@ after a run showed it was needed, in this order:
 - The flight plan's numbers come from flying the model by hand. The
   loop does not find the attitude or the timing on its own. Run B shows
   what happens without them.
+- When every attempt fails the same way, the loop repeats itself. Run
+  B from attempt 11 on. The credit by outcome needs some attempts to
+  reach a phase and some not; with none reaching it, it is silent.
+- The orbit the loop reaches is the first one that meets the targets,
+  29 by 108 km, with 1,046 kg of propellant left. Nothing asks it to do
+  better, and it does not.
 - The flight computer is not in these runs.
 - Conditions are one instrument deep. A death that needs two
   instruments to predict (turning, and losing height) is not learned as
