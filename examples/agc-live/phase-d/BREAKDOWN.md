@@ -79,12 +79,11 @@ for comparison.
 
 **The loop** (`mission.py`). Phase C's loop, plus what is listed under
 "What it took" below. A run is `python mission.py RUN_DIR STEPS
---no-agc --speed 100 --dwell 0.05`: the vehicle runs 100 times faster
-than real time, the loop presses every 0.05 s of wall clock, so one
-step is 5 seconds of flight. The flight computer is left out of these
-runs. It adds 33 DSKY keys to the action list and its own state to
-every row, and it has no part in the manual ascent; the point here is
-the learner.
+--no-agc`: the vehicle flies 5 seconds per press and stands still
+while the loop thinks, so one step is 5 seconds of flight however long
+the loop takes. The flight computer is left out of these runs. It adds
+33 DSKY keys to the action list and its own state to every row, and it
+has no part in the manual ascent; the point here is the learner.
 
 ## What the loop does, each step
 
@@ -192,6 +191,13 @@ after a run showed it was needed, in this order:
   with the effects of fields that move on their own credited to
   whatever was pressed, it was `stage` once and `engine off` once, each
   of which ended the attempt. Holding is now `wait`.
+- **A clock that waits.** With the vehicle on the wall clock at 100
+  times real time, the loop's thinking time grew with its memory, from
+  a twentieth of a second a step to seconds a step by attempt 25, and
+  a press meant for 5 seconds after the last one landed 300 seconds
+  after it. A run of 73 attempts completed no mission: the first 23
+  reached staging, the rest flew straight up. The vehicle now moves
+  only when the loop tells it to, 5 seconds per press.
 - **A jump is not a movement.** A hand-controller press changes the
   turn rate over two instrument rows. The loop called that "moving",
   and a second press in the next window read as "still moving", that

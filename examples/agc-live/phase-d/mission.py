@@ -33,9 +33,10 @@ And on top of those, what the first runs showed was needed:
   wait      One more action, wait, presses nothing. Holding, while a target the loop is already moving
             toward arrives, is waiting.
 
-    python mission.py RUN_DIR STEPS [--speed N] [--dwell S] [--no-agc] [--mission FILE] [--max-attempt N]
-      RUN_DIR/memory.pkl is loaded if present and saved every 20 steps; --no-agc runs the vehicle on
-      the wall clock with no flight computer and no DSKY keys (for fast runs of the learner alone).
+    python mission.py RUN_DIR STEPS [--speed N] [--dwell S] [--no-agc] [--step S] [--mission FILE] [--max-attempt N]
+      RUN_DIR/memory.pkl is loaded if present and saved every 20 steps. --no-agc leaves out the flight
+      computer and its DSKY keys and runs the vehicle in lockstep: it flies --step seconds (5 by default)
+      per press and stands still while the loop thinks, however long that takes.
 """
 import os, sys, time, socket, struct, pickle, subprocess, collections, signal, re
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -141,6 +142,7 @@ def main():
     opts = sys.argv[3:]
     speed = int(opts[opts.index('--speed') + 1]) if '--speed' in opts else 20
     dwell = float(opts[opts.index('--dwell') + 1]) if '--dwell' in opts else 0.25
+    step_s = float(opts[opts.index('--step') + 1]) if '--step' in opts else 5.0      # vehicle seconds per press without the flight computer
     no_agc = '--no-agc' in opts
     max_attempt = int(opts[opts.index('--max-attempt') + 1]) if '--max-attempt' in opts else 300   # steps without a new phase before mission control calls the attempt off
     mission_file = opts[opts.index('--mission') + 1] if '--mission' in opts else os.path.join(HERE, 'mission.txt')
@@ -160,7 +162,8 @@ def main():
                                stdout=open('yaagc.out', 'w'), stderr=subprocess.STDOUT, env=env)
         time.sleep(1.5)
     veh = subprocess.Popen([sys.executable, os.path.join(HERE, 'vehicle.py'), '--port', str(port), '--ctl-port', str(ctl_port),
-                            '--speed', str(speed), '--seconds', '100000000', '--pad', '1', '--out', '.', '--no-agc', '1' if no_agc else '0'],
+                            '--speed', str(speed), '--seconds', '100000000', '--pad', '1', '--out', '.', '--no-agc', '1' if no_agc else '0',
+                            '--lockstep', '1' if no_agc else '0'],
                            stdout=open('vehicle.out', 'w'), stderr=subprocess.STDOUT)
     time.sleep(1.5)
     sock = None
@@ -172,6 +175,18 @@ def main():
 
     hw = L.Hardware()
     ins = Instruments()
+
+    def pause():
+        """let the vehicle fly for one step. With the flight computer: wait dwell seconds of wall clock. Without
+        it: tell the vehicle to advance step_s seconds and wait until its rows for that time are written"""
+        if not no_agc:
+            time.sleep(dwell)
+            return
+        want = os.path.getsize('vehicle.bin') + int(step_s / 0.1) * ROW_SIZE
+        ctl.sendall(L.packet(VH.TICK, int(step_s * 10)))
+        t_end = time.time() + 30
+        while os.path.getsize('vehicle.bin') < want and time.time() < t_end:
+            time.sleep(0.002)
     tried = collections.Counter(); went = collections.Counter(); contexts = {}
     effects = collections.defaultdict(collections.Counter)      # (state, action) -> Counter of (field, sign)
     effects_any = collections.defaultdict(collections.Counter)  # action -> Counter of (field, sign)
@@ -215,10 +230,10 @@ def main():
 
     # ---- watch: the baseline
     quiet = 0; windows = 0
-    time.sleep(1.0); read_channels(); ins.read()
+    pause(); read_channels(); ins.read()
     h1 = tuple([0] * NFIELD)
     while quiet < 2 and windows < 60:
-        time.sleep(dwell)
+        pause()
         _, moving = read_channels()
         rows, d1, h1, died, reborn = ins.read()
         before = len(self_moving)
@@ -382,14 +397,14 @@ def main():
         row = ins.last_row
         # ---- the mission: which phase, what it needs
         if ins.dead or row is None:
-            time.sleep(dwell)
+            pause()
             _, moving = read_channels(); rows, d1, h1, died, reborn = ins.read()
             if reborn:
                 rollover()
             continue
         if step - att['progress'] >= max_attempt:
             say(f'step {step:4d}  attempt {attempt}  aborted: {max_attempt} steps without reaching phase {phase_i + 1} ({phases[phase_i][0]})')
-            ctl.sendall(L.packet(VH.ABORT, 0)); time.sleep(dwell)
+            ctl.sendall(L.packet(VH.ABORT, 0)); pause()
             rows, d1, h1, died, reborn = ins.read()
             if reborn:
                 rollover()
@@ -405,7 +420,7 @@ def main():
                 f'lowest point {row[18] / 10:.0f} km, highest {row[19] / 10:.0f} km, {row[14]} kg left')
             # the mission is done; the vehicle is given up so that the next attempt can start from the pad
             att['done'] = True
-            ctl.sendall(L.packet(VH.ABORT, 0)); time.sleep(dwell)
+            ctl.sendall(L.packet(VH.ABORT, 0)); pause()
             rows, d1, h1, died, reborn = ins.read()
             if reborn:
                 rollover()
@@ -535,7 +550,7 @@ def main():
             ctl.sendall(L.packet(action[1], 0))
         elif action[0] != 'wait':
             L.send(sock, action)
-        time.sleep(dwell)
+        pause()
         if agc is not None:
             agc.send_signal(signal.SIGUSR1); time.sleep(0.02)
             try:

@@ -30,7 +30,9 @@ A hand-controller press fires the jets for 0.1 s, the same length every time, so
 a press the other way cancel exactly.
 
 --pad starts it at rest on the ground. --ctl-port N opens the direct-control socket. --no-agc runs
-it without the flight computer, on the wall clock, for testing the physics alone. --ctl "t:name,..."
+it without the flight computer, on the wall clock, for testing the physics alone. --lockstep 1 stops
+the clock: the vehicle moves only when a TICK message on the control socket tells it how far, so
+whoever presses the controls can take as long as it likes between presses. --ctl "t:name,..."
 is a schedule of direct controls by time, for a scripted flight.
 
     python vehicle.py --pad 1 --no-agc 1 --speed 200 --seconds 900 --ctl "60:arm,70:engine on,75:throttle up,..." --out runs/x
@@ -59,6 +61,7 @@ CTL = {0o300: 'arm', 0o301: 'engine on', 0o302: 'engine off', 0o303: 'throttle u
        0o305: '+roll', 0o306: '-roll', 0o307: '+pitch', 0o310: '-pitch', 0o311: '+yaw', 0o312: '-yaw',
        0o313: 'stage'}
 ABORT = 0o377                  # not a control: mission control ending the attempt; the vehicle is lost
+TICK = 0o376                   # not a control: in lockstep mode, advance the vehicle by val tenths of a second
 CDU_PER_TURN = 32768
 PIPA_MS = 0.01
 
@@ -321,7 +324,7 @@ class Vehicle:
 def main():
     args = sys.argv[1:]
     opt = {'speed': '10', 'seconds': '120', 'kick': '0', 'out': '.', 'port': str(PORT), 'keys': '', 'ctl-port': '0',
-           'pad': '0', 'no-agc': '0', 'ctl': ''}
+           'pad': '0', 'no-agc': '0', 'ctl': '', 'lockstep': '0'}
     i = 0
     while i < len(args):
         if args[i].startswith('--'):
@@ -332,6 +335,7 @@ def main():
     speed, seconds, kick = float(opt['speed']), float(opt['seconds']), float(opt['kick'])
     out = opt['out']
     no_agc = opt['no-agc'] != '0'
+    lockstep = opt['lockstep'] != '0'      # the clock moves only on TICK messages from the control socket
     schedule = []
     for item in [x for x in opt['keys'].split(',') if x.strip()]:
         t0, ks = item.split(':')
@@ -413,6 +417,8 @@ def main():
                     do_control(name)
                 elif ch == ABORT and not v.dead():
                     v.die('aborted: mission control called the attempt off')
+                elif ch == TICK and lockstep:
+                    steps_due += val * 10
         while ctl_schedule and v.t >= ctl_schedule[0][0]:
             _, name = ctl_schedule.pop(0)
             if not v.dead():
@@ -457,12 +463,12 @@ def main():
                     v.throttle_pulses += 1
                 elif val == 0o16:
                     v.throttle_pulses -= 1
-        if not heartbeat:
+        if not heartbeat and not lockstep:
             due = int((time.time() - t_wall0) * speed / dt) - n
             if due > 0:
                 steps_due = max(steps_due, min(due, 500))
         if steps_due <= 0:
-            time.sleep(0.0005)
+            time.sleep(0.0005 if not lockstep else 0.002)
             continue
         steps_due -= 1
         n += 1
