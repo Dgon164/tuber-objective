@@ -43,6 +43,15 @@ they read better. Active voice. Contractions are fine. Numbers as words
 when they are small and casual (one file, two commands), as digits when
 they are data (144,395 bytes, 22 verb stems).
 
+**State it. Don't comment on it.** A sentence about the work instead of
+about the thing gets cut. Not "what the test taught us" but "the test
+showed." Not "the critic is right" but the fact itself. Not "what's
+still open" but "not tested yet" or "todo." Not "the signal that holds
+up" but "the gap is 0.89." Not "the one place the bar was wrong" but
+"the 0.95 bar is above the noise floor." Status words are plain: done,
+not done, untested, todo, next. Headings are labels, not sentences with
+a twist in them.
+
 ## Two examples at the right level
 
 Before: "Lag nominates. Propagation confirms."
