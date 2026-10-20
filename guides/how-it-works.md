@@ -1,49 +1,58 @@
-# How Discovery works
+# How Discovery operates
 
-Discovery does one thing: it compares. Take two things and split them
-into three buckets:
+Discovery does 1 operation. The operation is a comparison. The
+comparison takes 2 things and puts the contents of the 2 things into 3
+groups:
 
-| bucket | what goes in it |
+| group | contents |
 |---|---|
-| same | whatever the two things have in common |
-| different | what's left of each once you pull out the shared stuff |
-| not part | everything the comparison never touched |
+| same | what the 2 things have in common |
+| different | what remains of each thing after the program removes what is the same |
+| not part | what the comparison did not touch |
 
-The whole program is just that comparison, run first on the input, then
-on its own results, over and over until a pass produces nothing new.
-Nothing gets thrown away. The file has ten numbered sections, and this
-guide walks through them in order. The examples come from
-`examples/text/alice.txt` and `examples/german/ep-00-01-17.de` unless
-another one is mentioned.
+The whole program is that comparison. The program does the comparison
+first on the input. Then the program does the comparison on the results
+of the comparison. The program repeats the comparison until a pass makes
+nothing new. The program removes nothing.
+
+The file `discovery.py` has 10 numbered sections. This guide explains
+the 10 sections in order. The examples come from
+`examples/text/alice.txt` and `examples/german/ep-00-01-17.de`, unless
+the text names a different file.
 
 ## 1. Signal
 
-The file gets read as raw bytes and turned into a long string of ones
-and zeroes. That's it. Discovery doesn't look at the file name, the
-extension, or any header bytes. A text file, a program, a picture, and
-a sound file all come in exactly the same way.
+The program reads the file as raw bytes. The program makes the bytes
+into a long string of ones and zeros. The program does nothing more in
+this step. Discovery does not look at the file name, the extension, or
+the header bytes. A text file, a program, a picture, and a sound file
+all enter in the same way.
 
 ```python
 bits = bin(int.from_bytes(data, 'big'))[2:].zfill(len(data) * 8)
 ```
 
-## 2. Frame -- figuring out how wide one "word" is
+## 2. Frame: the width of 1 word
 
-Lay the bits out in rows of some width, like a grid. Each column is
-every w-th bit in the file.
+The program puts the bits in rows of a width w. The rows make a grid.
+Each column holds every w-th bit of the file.
 
-If you pick the right width, each column has its own personality. For
-ASCII text at width 8: column 0 is a 1 zero percent of the time (the
-top bit is never on). Column 2 is a 1 about 95% of the time (letters
-live in the range 0x60--0x7f). Pick the wrong width -- say 7 -- and the
-bits get jumbled across columns, so every column drifts toward about
-50%.
+At the correct width, each column has its own rate of ones. For ASCII
+text at width 8, column 0 is a 1 in 0 percent of the rows (the top bit
+is never 1). Column 2 is a 1 in approximately 95 percent of the rows
+(the letters are in the range 0x60 to 0x7f). At a wrong width, for
+example 7, the bits mix across the columns. Each column then goes
+toward approximately 50 percent.
 
-The score for a given width is the gap between the column that's a 1
-most often and the column that's a 1 least often. The width with the
-biggest gap wins. One catch: a wider width only wins if it beats the
-narrower one by more than you'd expect from random noise at that number
-of rows.
+The score for a width is the gap between 2 columns. The 2 columns are
+the column that is 1 most often and the column that is 1 least often.
+The program selects the width with the largest gap.
+
+There is 1 condition. The program compares the score of a wider width
+with the score of the narrower width that the program selected before.
+The program selects the wider width only if the difference is more than
+the `chance` term. The `chance` term is the random noise for that
+number of rows.
 
 ```python
 score[w] = max(cols) - min(cols)
@@ -51,14 +60,20 @@ chance   = 1 / rows ** 0.5
 if score[w] > score[picked] + chance: picked = w
 ```
 
-Then the winning width gets "folded." A multiple of the real word size
-has the real word size's columns laid side by side -- width 16 on 8-bit
-text is really just the same 8 columns twice -- and its gap can come out
-slightly higher by luck. So for each number that divides evenly into the
-winning width, the program checks whether the bigger width's column
-pattern is just the smaller one repeated. If the difference is less than
-what random wobble would explain (half over the square root of the row
-count), the smaller width is the real answer.
+Then the program folds the width that the program selected. To fold a
+width is to check if the width is a smaller width repeated. If the
+width is a smaller width repeated, the program goes down to the smaller
+width. A multiple of the true word width has the columns of the true
+width side by side. For example, width 16 on 8-bit text is the same 8
+columns 2 times. The gap of the multiple can be a small amount higher
+by chance.
+
+Thus the program tests each smaller width that is a factor of the width
+that the program selected. The test checks if the column pattern of the
+larger width is the column pattern of the smaller width repeated. The
+wobble is 0.5 divided by the square root of the number of rows. If the
+difference between the 2 column patterns is less than the wobble, the
+smaller width is the true width.
 
 ```python
 wobble = 0.5 / rows ** 0.5
@@ -66,25 +81,34 @@ fold[w] = mean(|profile[picked][c] - profile[w][c % w]| for c in range(picked))
 if fold[w] <= wobble: frame = w
 ```
 
-The Apollo guidance computer rope in `examples/agc` is the case that
-needed this: the gap picked 60, but 60 is just 15 repeated four times.
-The fold step caught it, within 0.004.
+The Apollo Guidance Computer rope in `examples/agc` is the case that
+needed the fold step. By the gap, the program selected 60. But 60 is 15
+repeated 4 times. The fold step found the true width. The difference
+was not more than 0.004.
 
-The record prints the eight best widths, which one was picked, each fold
-test, the final choice, and every column's rate at that width. Those
-column rates are the first thing Discovery learned about the signal.
+The record shows:
 
-`--frame N` lets you force the width. It's there so you can look at a
-signal at a different size than the one the frame step chose. The
-compiled program in `examples/code` is read at 64 bits by the frame
-step, then again at 8 bits by hand -- the two records show different
-things.
+- the 8 best widths
+- the width that the program selected
+- each fold test
+- the final width
+- the rate of each column at the final width
+
+The column rates are the first thing that Discovery learned about the
+signal.
+
+With `--frame N`, you set the width. You use `--frame N` to look at a
+signal at a width that is different from the width that the frame step
+selected. The frame step reads the compiled program in `examples/code`
+at 64 bits. Then a second command, with `--frame 8`, reads the compiled
+program at 8 bits. The 2 records show different things.
 
 ## 3. Words
 
-Chop the bit string into chunks that are as wide as the frame. Count
-each distinct chunk. Count each pair of chunks that show up next to each
-other.
+The program cuts the bit string into words. To cut a sequence is to
+divide the sequence into smaller sequences. Each word has the width of
+the frame. The program counts each different word. The program counts
+each pair of words that occur next to each other.
 
 ```python
 words        = [int(bits[i:i+w], 2) for i in range(0, len(bits)-w+1, w)]
@@ -92,119 +116,149 @@ word_counts  = Counter(words)
 word_follows = Counter(zip(words, words[1:]))
 ```
 
-In Alice: 73 distinct words out of 144,395. The most common is
-`00100000` -- the space. In the German file: 88 distinct, and
-`11000011` (the UTF-8 lead byte for characters like a-umlaut, o-umlaut,
-u-umlaut, and sharp-s) shows up 2,827 times.
+In Alice, there are 73 different words in 144,395 words. The most
+common word is `00100000`, the space. In the German file, there are 88
+different words. The word `11000011` occurs 2,827 times. This word is
+the UTF-8 lead byte for characters such as a-umlaut, o-umlaut,
+u-umlaut, and sharp-s.
 
 ## 4. Runs
 
-The most common word becomes the separator. A "run" is whatever sits
-between two separators. In text the separator is the space, so the runs
-are the words of the language. In a compiled program the separator is
-the zero byte, so the runs are everything between zero bytes: machine
-code, function names, strings.
+The most common word becomes the separator. The program cuts the
+sequence of words at each separator. A run is what is between 2
+separators.
 
-`--separators 2` uses the two most common words as separators.
-`--separators 20,0a` lets you pick them yourself in hex (space and
-newline). The record tells you when you want this: a word with a high
-density in the parts table but that never appears as a complete run on
-its own is acting like a separator that didn't get picked. In Alice,
-that's the newline -- it's only the 14th most common word.
+In text, the separator is the space. Thus the runs are the words of the
+language. In a compiled program, the separator is the zero byte. Thus
+the runs are all that is between the zero bytes: machine code, function
+names, and strings.
 
-Runs get counted, and pairs of runs that follow each other get counted
-too.
+The option `--separators 2` uses the 2 most common words as separators.
+With `--separators 20,0a`, you select the separators yourself, in hex
+(space and newline).
 
-## 5. Mint -- smash things together until nothing new comes out
+The record shows when you need this option. The sign is a word that has
+a high density in the parts table but never occurs as a complete run.
+Such a word operates as a separator that the program did not select. In
+Alice, that word is the newline. The newline is only the 14th most
+common word.
 
-The pool starts with every distinct run.
+The program counts the runs. The program also counts each pair of runs
+that occur one after the other.
 
-Sort the pool. Two neighbors in sorted order share the longest beginning
-that either of them shares with anything else in the pool. Compare each
-pair:
+## 5. Mint: new parts until nothing new comes
 
-- Count how many words they share from the start.
-- If zero, skip them.
-- Otherwise, make three new parts: the shared beginning, and what's left
-  of each of the two. Every new part goes into the pool. The whole gets
-  recorded as "made of" its pieces; each piece gets recorded as "part
-  of" the whole.
+The mint step makes new parts. To mint a part is to make a new part
+from 2 parts that have the same start or the same end. The pool starts
+with each different run.
+
+The program sorts the pool. After the sort, each part shares its
+longest start with a part next to it. No other part in the pool shares
+a longer start with that part. The program compares each pair of parts
+that are next to each other:
+
+- The program counts the words that the 2 parts share from the start.
+- If the count is 0, the program skips the pair.
+- If the count is not 0, the program makes 3 new parts: the start that
+  the 2 parts share, and what remains of each of the 2 parts. Each new
+  part goes into the pool. The program records the whole as "made of"
+  its parts. The program records each part as "part of" the whole.
 
 ```
    abcd   vs  abef   ->  shared ab    leftovers cd, ef
    walk   vs  walked ->  shared walk  leftover ed   (walk is already whole, so only ed is new)
 ```
 
-Then flip every part backwards and do the same thing -- this catches
-shared endings: `looked` and `walked` share `ed`.
+Then the program reverses each part and does the same comparison. This
+comparison finds the ends that parts share. For example, `looked` and
+`walked` share `ed`.
 
-Two parts that were both in the pool last round were already neighbors
-last round (nothing ever gets removed), so a pair only gets compared
-when one of them is new. When a full round produces nothing new, the
-loop stops. That's the only stopping rule. (`--cap` is a size limit, not
-a rule -- if the pool gets too big it stops early, and the record says
-so.)
+The program never removes a part. Thus 2 parts that were both in the
+pool in the last round were already next to each other in the last
+round. So the program compares a pair only when 1 of the 2 parts is
+new. When a full round makes nothing new, the loop stops. This is the
+only stop rule.
+
+Note: `--cap` is a size limit, not a rule. If the pool becomes too
+large, the loop stops early. The record then says so.
 
 ```
 Alice:   14 rounds   10038 3800 1303 484 176 88 37 22 15 10 4 1 2 0
 German:  10 rounds    9291 3641 1205 402 130 42 7 2 1 0
 ```
 
-Each new part also records the leftover that produced it: a leftover
-after a shared beginning is an "ending" (`+ed`, `+ing`, `+en`, `+ung`).
-A leftover before a shared tail is a "beginning" (`be+`, `ge+`, `un+`).
+Each new part also records what remained when the program made the new
+part. What remains after a start that 2 parts share is an ending
+(`+ed`, `+ing`, `+en`, `+ung`). What remains before an end that 2 parts
+share is a beginning (`be+`, `ge+`, `un+`).
 
-Every part keeps two numbers: how many times it appeared as a complete
-run, and its "density" -- how many other parts it sits inside. The
-letter `e` is never a complete run in Alice, but it sits inside 1,615
-other parts.
+Each part keeps 2 numbers. The first number is the count of times that
+the part occurred as a complete run. The second number is the density
+of the part. The density is the number of other parts that contain the
+part. In Alice, the letter `e` is never a complete run. But 1,615 other
+parts contain the letter `e`.
 
-## 6. Crystal -- grouping what was found
+## 6. Crystal: groups of the parts
 
-The pool stays exactly as it is. The crystal is a second table that
-reads the pool and groups parts together without losing any detail --
-basically deduplication.
+The pool does not change. The crystal is a second table. The crystal
+reads the pool and puts the parts into groups, with no loss of detail.
+The operation is the same as the removal of duplicates. To crystallize
+a pool is to make the crystal from the pool.
 
-For any part, a "change" is the leftover that turns it into one of the
-parts that contain it. `walk` to `walked` is the change `+ed`. `walk`
-to `walking` is `+ing`.
+For a part, a change is what makes the part into a larger part that
+contains the part. The change from `walk` to `walked` is `+ed`. The
+change from `walk` to `walking` is `+ing`.
 
-A "class" is all the parts that take the exact same set of changes.
-Every stem that takes exactly `{+ed, +ing}` lands in one class. In
-Alice that class has 22 members: swallow, remain, consider, crawl,
-mutter, nibbl, peep, pull, rais, and more. In the German file, `{+en,
-+t}` has 52 members and `{+n, +r}` has 42.
+A class is all the parts that accept the same set of changes. Each stem
+that accepts exactly the set `{+ed, +ing}` is in 1 class.
 
-The crystal also writes one dictionary-style entry per common run: what
-it's made of, what contains it, its changes, what follows it, and what
-comes before it. The entry for `walk` is basically: the stem, its forms,
-and the company it keeps.
+In Alice, that class has 22 members. The members include swallow,
+remain, consider, crawl, mutter, nibbl, peep, pull, and rais. In the
+German file, the class `{+en, +t}` has 52 members. The class `{+n, +r}`
+has 42 members.
 
-## 7. Levels -- crystallize, then loop again, until nothing changes
+The crystal also writes 1 entry for each common run, like a dictionary
+entry. The entry shows:
 
-Sections 3 through 6 make up one level: count the words, cut runs at
-the most common one, mint, crystallize. Then the loop runs again on what
-the level just produced, and nothing gets replaced -- everything gets
-added.
+- what the run is made of
+- what contains the run
+- the changes of the run
+- what follows the run
+- what comes before the run
 
-1. The next level's sequence of symbols is this level's runs, as they
-   are.
-2. This level's classes (the ones with two or more members) become a
-   second way two symbols can count as "the same": either the exact same
-   run, or two runs that belong to the same class. When two sequences
-   match only because a class member sits in the same spot, the class
-   itself stands in that spot of the shared part. (This is the one place
-   where the crystal's output feeds back into the comparison.)
-3. Every new structure -- a run of runs, a minted part, a class -- joins
-   the one shared pool, and its connections land on the parts it's made
-   of wherever they live. A level-0 word that sits inside forty level-1
-   stretches gains forty to its density.
-4. Keep going until a level has only a single run left, which can't be
-   cut.
+The entry for `walk` is: the stem, the forms of the stem, and the runs
+that occur next to the stem.
 
-Every level's sequence is shorter than the one before (the separator is
-always present and gets cut out), so the loop ends on its own, and the
-additions shrink to nothing before it does:
+## 7. Levels: crystallize, then loop again, until nothing changes
+
+Sections 3 to 6 are 1 level: count the words, cut the sequence into
+runs at the most common word, mint, and crystallize. Then the loop runs
+again on what the level made. The loop replaces nothing. The loop adds
+everything.
+
+1. The sequence of symbols of the next level is the runs of this level,
+   with no change.
+2. The classes of this level (the classes with 2 or more members)
+   become a second way for 2 symbols to be the same. The symbols are
+   the same if the symbols are the same run. The symbols are also the
+   same if the symbols are 2 runs in the same class. If 2 sequences are
+   the same only because a class member is in the same position, the
+   class itself is in that position of the part that the 2 sequences
+   share. This is the 1 place where the output of the crystal goes
+   back into the comparison.
+3. Each new structure joins the pool. There is only 1 pool. A new
+   structure can be a run of runs, a part that the program minted, or
+   a class. The connections of the new structure go to the parts that
+   the new structure is made of, at each level where those parts are.
+   A level-0 word that is in 40 level-1 runs gets 40 more in its
+   density.
+4. The loop continues until a level has only 1 run. The program cannot
+   cut 1 run.
+
+The sequence of each level is shorter than the sequence of the level
+before. The separator is always present, and the program cuts the
+separator out. Thus the loop ends without help. The additions decrease
+to nothing before the loop ends:
 
 ```
   level  symbols  distinct     runs  distinct   minted  classes(2+)    added  pool total
@@ -214,58 +268,73 @@ additions shrink to nothing before it does:
       3        5         5        1         1        0            0        1       29161
 ```
 
-22,446 parts, then 6,709 more, then 5, then 1, then stable. The pool
-only grows; the growth runs out.
+The pool gets 22,446 parts, then 6,709 more, then 5, then 1, then no
+more. The pool only grows. The growth stops.
 
-What level 1 looks like for Alice: the separator is `the`. A run is the
-stretch between two `the`s. The endings are what sits right before `the`
-(`+said` 357, `+and` 181, `+to` 151, `+of` 122). The beginnings are
-what sits right after it (`and+`, `was+`, `to+`, `Mock Turtle+`). For
-the German text the separator is the comma; the most repeated stretches
-are the forms of address (`Herr Kommissar`, `meine Damen und Herren`,
-`Frau Prasidentin`). For the Apollo assembly source the separator is
-`#`, the comment mark; the densest level-1 parts are instruction
-sequences like `TC BANKCALL`, `CAF ZERO`, `CCS A`; and the beginnings
-are how the programmers started a comment: `TO+`, `FOR+`, `IN+`, `IF+`,
-`AND+`, `SET+`.
+At level 1 for Alice, the separator is `the`. A run is the sequence
+between 2 occurrences of `the`. The endings are what is immediately
+before `the` (`+said` 357, `+and` 181, `+to` 151, `+of` 122). The
+beginnings are what is immediately after `the` (`and+`, `was+`, `to+`,
+`Mock Turtle+`). For the German text, the separator is the comma. The
+runs that repeat most are the forms of address (`Herr Kommissar`,
+`meine Damen und Herren`, `Frau Prasidentin`).
+
+For the Apollo assembly source, the separator is `#`, the comment mark.
+The level-1 parts with the highest density are instruction sequences
+such as `TC BANKCALL`, `CAF ZERO`, and `CCS A`. The beginnings are the
+words that the programmers used to start a comment: `TO+`, `FOR+`,
+`IN+`, `IF+`, `AND+`, `SET+`.
 
 ```python
 L = run_level(seq, 1, pool, made_of, part_of, cap, class_of, level)
 seq, class_of = L['runs'], L['next_class_of']
 ```
 
-### Memory -- checking your work against what you already know
+### Memory: compare the new signal with what the program already knows
 
-"Does the model match reality?" and "Is this the same as that?" are
-really the same question, just asked about different things. The
-comparison answers both. What turns the second question into a loop is
-memory: the pool saved after one run and loaded before the next.
+The question "Does the model agree with reality?" and the question "Is
+this the same as that?" are the same question about different things.
+The comparison answers both questions. Memory makes the second question
+into a loop. The memory is the pool that the program saves after 1
+signal and loads before the next signal.
 
-With `--memory FILE`:
+With the option `--memory FILE`, the program does 4 steps:
 
-1. The pool is loaded from FILE (an empty file means empty memory).
-2. The new signal gets read as usual, but the remembered parts sit in
-   the sorted pool right next to the new runs. So a new run gets
-   compared against what's remembered as well as against the rest of the
-   signal. A comparison only counts when this signal is part of it: two
-   remembered parts the signal hasn't reached get left alone (they were
-   compared when they were minted), so a memory never confirms itself. A
-   remembered part the signal produces again is confirmed, and then gets
-   compared with its own neighbors once more, so what was minted from it
-   last time can be reached too.
-3. Everything the run produces gets sorted into three bins against
-   memory: **confirmed** (already remembered, and this signal produced
-   it again), **added** (new), and **not seen this time** (remembered
-   but this signal didn't produce it -- it stays in memory, it's not
-   removed; it just gets a count on the entry).
-4. The pool gets saved back to FILE, with a line in its history for this
-   signal. The file is JSON. One memory holds signals read at one frame
-   -- the same number means a different word at a different width -- and
-   a signal at another width is refused with the reason.
+1. The program loads the pool from FILE. An empty file means an empty
+   memory.
+2. The program reads the new signal in the usual way. But the parts from
+   memory are in the pool, after the sort, next to the new runs. Thus
+   the program compares a new run with the parts from memory and also
+   with the rest of the signal.
 
-The test in `examples/memory/`: first half of Alice from nothing, second
-half against that memory, second half again, German text against the
-English memory.
+   A comparison counts only when this signal is part of the comparison.
+   The program does not compare 2 parts from memory that the signal has
+   not reached. The program compared those 2 parts when the program
+   minted them. Thus a memory never counts its own parts as confirmed.
+   A part from memory that the signal makes again counts as
+   **confirmed**. The program then compares that part with the parts
+   next to it 1 more time. Thus the signal can also reach what the
+   program minted from that part last time.
+3. The program puts each thing that the program makes from this signal
+   into 1 of 3 groups against the memory:
+   - **confirmed**: the part was already in memory, and this signal
+     made the part again
+   - **added**: the part is new
+   - **not seen this time**: the part was in memory, but this signal
+     did not make the part. The part stays in memory. The program does
+     not remove the part. The program only adds a count to the entry.
+4. The program saves the pool back to FILE, with a line in the history
+   of the pool for this signal. The file is JSON. A memory holds only
+   signals that the program read at 1 frame. The same number means a
+   different word at a different width. The program refuses a signal
+   at a different width and gives the reason.
+
+The test in `examples/memory/` has 4 steps:
+
+- the first half of Alice, from nothing
+- the second half of Alice, against that memory
+- the second half of Alice again
+- the German text, against the English memory
 
 ```
                               produced  confirmed  added  not seen
@@ -275,15 +344,18 @@ second half again                19833      19833      0      3583
 German, against the English      32784      14797  17987      8619
 ```
 
-The second pass over the same text adds nothing at level 0 and five
-parts at level 1 (the memory changed which parts sit next to each other
-in the sorted pool, so five new collisions happened; a third pass would
-find even fewer), and reaches 19,833 of the 19,925 parts the first pass
-produced; the rest are heads that a part minted on the first pass now
-stands in front of. That's the loop running out of new things. The
-German text against the English memory confirms 14,797 parts -- the
-short parts the two alphabets share -- and adds 17,987 that English
-never produced.
+The second pass over the same text adds nothing at level 0. The second
+pass adds 5 parts at level 1. The memory changed the positions of the
+parts in the pool after the sort, so 5 new pairs occurred. A third pass
+will find even fewer.
+
+The second pass reaches 19,833 of the 19,925 parts that the first pass
+made. The rest are heads. A part that the program minted on the first
+pass now stands in front of each head. The result shows that the loop
+has no more new things to find. The German text against the English
+memory counts 14,797 parts as confirmed. Those parts are the short
+parts that the 2 alphabets share. The German text adds 17,987 parts
+that English never made.
 
 ```python
 pool, made_of, part_of, history = load_memory(path)
@@ -291,65 +363,75 @@ levels, pool, made_of, part_of = run_levels(words, sep, cap, pool, made_of, part
 save_memory(path, pool, made_of, part_of, history + [(name, size, frame)])
 ```
 
-### Time -- reading the sequence as "before and after"
+### Time: read the sequence as before and after
 
-The signal is in order, and that order is time. FOLLOWS was always one
-way of reading it; `time_tables()` reads it three more ways at every
-level, each one pointing the comparison along the sequence:
+The signal is in order. That order is time. FOLLOWS was always 1 way to
+read the order. The function `time_tables()` reads the order in 3 more
+ways at each level. Each way points the comparison along the sequence:
 
-- **arrows** -- a pair of runs seen in both orders, counted each way.
-  The order that shows up more is an arrow (`said -> Alice` in
-  `examples/text/alice.txt.record.txt`, level 0).
-- **effects** -- what shows up in the stretch after a run at least twice
-  its usual rate, compared to what you'd expect (the row for `I` in the
-  same table). The stretch is the typical distance to the next level's
-  separator -- roughly a clause at level 0 on Alice -- so the unit comes
-  from the signal itself, and "at least twice" is the same bar the
-  classes use: two make a pattern.
-- **chains** -- the strongest effect followed forward from the most
-  common runs (the CHAINS lines of the same table; in
-  `examples/agc/luminary099.rope.record.txt` the instruction flow loops
-  back on itself).
+- **arrows**: a pair of runs that occurs in both orders, with a count
+  for each order. The order that occurs more is an arrow (`said ->
+  Alice` in `examples/text/alice.txt.record.txt`, level 0).
+- **effects**: what occurs in the stretch after a run at 2 or more
+  times its usual rate, compared with the rate that you expect. An
+  example is the row for `I` in the same table. The stretch is the
+  usual distance to the separator of the next level. At level 0 on
+  Alice, the stretch is approximately a clause. Thus the unit comes
+  from the signal itself. The limit of 2 or more is the same limit
+  that the classes use: 2 occurrences make a pattern.
+- **chains**: the program follows the strongest effect forward from
+  the most common runs (the CHAINS lines of the same table). In
+  `examples/agc/luminary099.rope.record.txt`, the instruction flow
+  loops back on itself.
 
-This is the "before" and "after" of a signal that was only watched. A
-cause is an arrow that holds up when you actually *do* something:
-`examples/agc-live/` presses a key, records every signal, and compares
-the run with the key press against the run without it. Same tables, read
-across the two.
+These tables are the before and after of a signal that was only
+watched. A cause is an arrow that remains when you do something. The
+example `examples/agc-live/` presses a key and records each signal.
+Then the example compares the signal with the key press against the
+signal without the key press. The tables are the same, read across the
+2 signals.
 
 ## 8. Lens
 
-The lens only controls how a word gets displayed on the page. `raw`
-shows hex. `ascii` shows the character when the word is 8 bits wide.
-`utf8` decodes a whole run as UTF-8 so `a-umlaut` shows up as the actual
-character instead of `\xc3\xa4`. `octal` shows a word in base 8, which
-is how the Apollo listing is printed. The lens is never used by the
-algorithm. Change the lens and every table has the same contents with
-different labels.
+The lens only controls how the record shows a word on the page. The
+lens `raw` shows hex. The lens `ascii` shows the character when the
+word is 8 bits wide. The lens `utf8` decodes a whole run as UTF-8. Thus
+a-umlaut appears as the character itself and not as `\xc3\xa4`.
+
+The lens `octal` shows a word in base 8. The Apollo listing is printed
+in base 8. The algorithm never uses the lens. If you change the lens,
+each table has the same contents with different labels.
 
 ## 9. Record
 
-Everything above gets written two ways: a text record people can read
-and a JSON record programs can read. The text record has the FRAME, a
-LEVELS summary table, and then every table for every level. The JSON has
-every word, pair, run, part, change, and class for every level -- not
-just the top of each table. `levels[0]` is the signal itself;
-`levels[1]` is the first level up. Densities and part_of lists come from
-the shared pool, so a level-0 part lists the level-1 parts it sits
-inside.
+The program writes all of the above in 2 ways: a text record that
+people can read, and a JSON record that programs can read. The text
+record has the FRAME, a LEVELS summary table, and then each table for
+each level. The JSON record has each word, pair, run, part, change, and
+class for each level, not only the top of each table.
+
+`levels[0]` is the signal itself. `levels[1]` is the first level up.
+The densities and the part_of lists come from the pool that all levels
+share. Thus a level-0 part lists the level-1 parts that contain the
+level-0 part.
 
 ## 10. Run
 
-`Root` is the one call a program built on Discovery makes: the signal as
-read (sections 1 to 3), level 0 on a shared pool (4 to 7), and a call
-for each further level. `discover()` is `Root` plus the levels run to
-the end and the record written (8 and 9), and it returns the paths to
-the two record files. `main()` handles the command line.
+`Root` is the 1 call that a program made on Discovery makes. `Root`
+gives the signal as read (sections 1 to 3), level 0 on the pool that
+all levels share (sections 4 to 7), and a call for each level above
+level 0.
 
-## What's not in the file
+`discover()` is `Root` plus 2 more operations. The first operation runs
+the levels to the end. The second operation writes the record (sections
+8 and 9). `discover()` returns the paths of the 2 record files.
+`main()` reads the command line.
 
-There's no list of file types, no character table, no dictionary, no
-grammar, no training, and no threshold that someone hand-picked to fit
-one example. The one tolerance (the `chance` term in the frame step) is
-the random wobble for the number of rows at that width, computed from
-the signal itself.
+## What is not in the file
+
+The file has no list of file types, no character table, no dictionary,
+no grammar, and no training step. The file has no limit value that a
+person selected by hand to fit 1 example. The 1 tolerance is the
+`chance` term in the frame step. The `chance` term is the random wobble
+for the number of rows at that width. The program computes the `chance`
+term from the signal itself.

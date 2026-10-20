@@ -1,16 +1,21 @@
-# Phase B: the same loop, now with the vehicle on the socket
+# Phase B: the same loop, with the vehicle on the socket
 
-2026-10-11. Same loop as Phase A (`loop.py --vehicle`), same 33 raw
-actions, nothing named. The vehicle model from the 10-10 package
-(`vehicle.py`, with the hand controller removed) is a second client on
-the emulator's socket: it feeds the computer gimbal angles and
-accelerometer pulses and takes jet and engine commands back. One
-additional input: the goal, stated in the vehicle's own fields -- on the
-ground and still, meaning altitude 0, each turn rate under 0.5 deg/s,
-vertical and horizontal speed under 5 m/s.
+2026-10-11. The loop is the same loop as Phase A (`loop.py --vehicle`),
+with the same 33 raw actions. No name is given. The vehicle model from
+the 10-10 package (`vehicle.py`, without the hand controller) is a
+second client on the socket of the emulator. The model sends gimbal
+angles and accelerometer pulses to the computer. The model gets jet
+commands and engine commands back from the computer.
 
-90 steps, 10 s of machine time each. `goalB.py` checks the goal against
-the vehicle's record.
+The loop gets 1 more input: the goal. The goal is in the fields of the
+vehicle. The goal is "on the ground and at rest":
+
+- altitude 0
+- each turn rate less than 0.5 deg/s
+- vertical speed and horizontal speed less than 5 m/s
+
+The run is 90 steps, each 10 s of machine time. The script `goalB.py`
+checks the goal against the record of the vehicle.
 
 ## The result
 
@@ -25,62 +30,90 @@ the vehicle's record.
   at the first altitude-0 row: vz = -220.4 m/s, vx = 1690.0 m/s
 ```
 
-The story is in the last two lines. Altitude 0 was reached at 136 s --
-by falling. Nothing the loop pressed changed the engine, the thrust, the
-jets, or the horizontal speed, in 90 steps across the machine's states.
-The goal was never fully met, so there is no chain from it back to a
-key press. The record shows which parts of the goal were never achieved:
-horizontal speed (`vx`) under 5, and vertical speed (`vz`) under 5
-anywhere near altitude 0.
+The last 2 lines show the result. The vehicle got to altitude 0 at
+136 s, in a fall. In 90 steps across the states of the machine, no press
+of the loop changed these fields:
 
-That is the root cause, read straight from the record: the vehicle
-starts at 15 km altitude and 1,690 m/s horizontal speed with no engine
-running. Nothing you can press on the DSKY starts the engine. The only
-way altitude reaches 0 is by crashing.
+- the engine
+- the thrust
+- the jets
+- the horizontal speed
 
-## Why nothing on the DSKY starts the engine
+The vehicle did not satisfy the full goal at any time. Thus there is no
+chain from the goal back to a key press. The record shows the parts of
+the goal that the vehicle did not satisfy: a horizontal speed (`vx`)
+less than 5, and a vertical speed (`vz`) less than 5 near altitude 0.
 
-This is the finding I predicted before the run, and the record confirms
-it. The engine is controlled by the descent program (P63). P63 needs the
-state vector (where the spacecraft is), the landing site coordinates,
-and the ignition time loaded into erasable memory. On the real mission,
-the ground crew sent all that up by radio before the burn. A
-fresh-started machine has none of it, and the DSKY has no key sequence
-that writes it. So the machine as delivered to this loop -- with only
-its rope (read-only program) and no pre-loaded memory -- cannot land, no
-matter what you press. The "loaded memory" (the machine includes its
-memory the way it includes its rope -- it is part of what defines the
-machine) was not supplied here; supplying it is the next run, and it is
-a stated input, not outside help.
+The record shows the root cause directly. The vehicle starts at an
+altitude of 15 km and a horizontal speed of 1,690 m/s, with the engine
+off. The DSKY is the display and keyboard unit of the computer. No key
+on the DSKY starts the engine. The altitude gets to 0 only in a crash.
 
-## Two things the run showed about the loop itself
+## The cause of the failure to start the engine
 
-- **The startup transient.** With the vehicle attached, the computer
-  runs an IMU (inertial measurement unit) turn-on sequence for the first
-  87 s, and the display and several channels change on their own during
-  it. The sixteen-window baseline ran inside that period, so it tagged
-  the display (010) and channels 011, 012, 014, 030 as self-movers --
-  and the context lost the DSKY for the entire run (45 state-action
-  pairs instead of Phase A's 232). The fix: the baseline should wait
-  until the machine has stopped changing on its own before it decides
-  what "changing on its own" means. In other words, loop until stable
-  before running the baseline. Not done here.
-- **The clock.** 136 s to impact is only 14 steps at this dwell time.
-  On this vehicle model there is no run long enough to matter until the
-  engine can be started, and the engine cannot be started without the
-  loaded memory. The two fixes go together.
+The author predicted this result before the run. The record agrees with
+the prediction. The descent program (P63) controls the engine. The
+erasable memory is the part of the memory that the program can change.
+P63 needs 3 values in the erasable memory:
 
-## What was given
+- the state vector (the position of the spacecraft)
+- the coordinates of the landing site
+- the ignition time
 
-Phase A's list, plus: the vehicle model (hardware; it may know physics
-internally, but the loop never looks inside it); the goal described
-above; the vehicle's record (`vehicle.bin`) read as the sensor for
-checking the goal.
+On the real mission, the ground crew sent the 3 values by radio before
+the burn. A machine with a fresh start has none of the 3 values. The
+DSKY has no key sequence that writes the 3 values. The rope is the
+read-only program memory. The machine that this loop got has only its
+rope, and the erasable memory has no values at the start. Thus the
+machine cannot land, with any sequence of presses.
 
-Not given: anything about the engine, the programs, the memory that
-needs to be pre-loaded, or how a landing is actually flown.
+The "loaded memory" is part of the machine, in the same way that the
+rope is part of the machine. The memory is part of the definition of the
+machine. This run did not get the loaded memory. The next run will
+supply the loaded memory. The loaded memory is an input in the list of
+inputs, not help from outside.
+
+## Two results of the run about the loop itself
+
+- **The transient at the start.** With the vehicle on the socket, the
+  computer runs the turn-on sequence of the IMU (the inertial
+  measurement unit) for the first 87 s. The display and some channels
+  change on their own during the sequence. The baseline of 16 windows
+  ran in that period. Thus the baseline tagged the display (010) and the
+  channels 011, 012, 014, 030 as self-movers. The context lost the DSKY
+  for the full run: 45 pairs of state and action, against the 232 pairs
+  of Phase A. The correction: the baseline must wait until the machine
+  no longer changes on its own. Only then can the baseline decide the
+  meaning of "changes on its own". That is: loop until the machine is
+  stable, then run the baseline. This run did not do this.
+- **The clock.** The 136 s before impact is only 14 steps at this dwell
+  time. On this vehicle model, no run is long enough to be useful until
+  the engine can start. The engine cannot start without the loaded
+  memory. The 2 corrections go together.
+
+## The inputs
+
+The inputs are the list of Phase A, and:
+
+- the vehicle model (hardware). The model can have physics inside, but
+  the loop does not look inside the model.
+- the goal above
+- the record of the vehicle (`vehicle.bin`), read as the sensor for the
+  goal check
+
+The loop did not get these inputs:
+
+- information about the engine
+- information about the programs
+- the memory that must have values before the start
+- the method to fly a landing
 
 ## Files
 
-`loop.log`, `vehicle.out`, `vehicle.csv` (every 100 ms), `goal.txt`
-(the reader's output), `goalB.py`.
+The files are:
+
+- `loop.log`
+- `vehicle.out`
+- `vehicle.csv` (1 row for each 100 ms)
+- `goal.txt` (the output of the reader)
+- `goalB.py`

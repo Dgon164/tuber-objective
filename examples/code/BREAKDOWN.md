@@ -1,8 +1,8 @@
-# Breakdown: reading source code and a compiled program
+# Breakdown: source code and a compiled program
 
-## What goes in
+## The input
 
-Two inputs. `input/discovery.py` is Discovery's own source file. `input/hello.c` is a 25-line C program that counts letters in its command-line text. `input/hello` is that program compiled with gcc on x86-64 Linux, 16,104 bytes.
+There are 2 inputs. The file `input/discovery.py` is the source file of Discovery. The file `input/hello.c` is a C program of 25 lines. The program counts the letters in its command-line text. The file `input/hello` is the same program after gcc compiled the program on x86-64 Linux. The file has 16,104 bytes.
 
 ```
 python discovery.py examples/code/input/discovery.py --lens ascii --out examples/code
@@ -10,9 +10,9 @@ python discovery.py examples/code/input/hello --lens ascii --out examples/code
 python discovery.py examples/code/input/hello --lens ascii --out examples/code --frame 8
 ```
 
-## Source code: same process as English, different result
+## Source code: the same process as English, with a different result
 
-Frame: 8 bits, column 0 at 0.000 -- same as Alice. Words: 88 different ones. The most common is the space, then `-` (from the `# ----` lines in the comments), then e, o, t, r, n, s. Runs between spaces:
+The FRAME table shows 8 bits, with column 0 at 0.000. The result is the same as for Alice. The WORDS table shows 88 different words. The most common word is the space, then `-` (from the `# ----` lines in the comments), then e, o, t, r, n, s. The runs between spaces are as follows:
 
 ```
 RUNS   3847 runs between separators, 1598 distinct
@@ -26,9 +26,9 @@ RUNS   3847 runs between separators, 1598 distinct
   else      35
 ```
 
-In Alice the most common run was `the`. In this file it's `=`, and `in`, `if`, `for`, `return`, `else` are in the top ten. The most common words of the language come up first, and the language here is Python.
+In Alice, the most common run was `the`. In this file, the most common run is `=`. The runs `in`, `if`, `for`, `return`, `else` are in the top 10. The most common words of the language come first. The language here is Python.
 
-The parts ranked by density (how many other parts they show up inside) reveal what makes code different from prose:
+The table below lists the parts in order of density. The density of a part is the number of other parts that contain the part. The table shows what makes code different from English text:
 
 ```
   part   density   whole   inside (sample)
@@ -39,9 +39,9 @@ The parts ranked by density (how many other parts they show up inside) reveal wh
   ,          367       0   pool,, made_of,, part_of,, ',
 ```
 
-In Alice the densest parts were e, newline, s, comma, t. Here `(` is first, `'` is fourth, and `)`, `[`, `]`, `:`, `_` are all in the top twenty-five. Endings include `+,`, `+\n`, `+s`, `+)`, `+e`, `+:`. The punctuation that structures code shows up as the stuff most often attached to the front and back of other things.
+In Alice, the parts with the highest density were e, newline, s, comma, t. Here `(` is first and `'` is fourth. The parts `)`, `[`, `]`, `:`, `_` are all in the top 25. The endings include `+,`, `+\n`, `+s`, `+)`, `+e`, `+:`. The punctuation that gives code its structure occurs as the parts that most often attach to the front and the end of other parts.
 
-The crystal entry for `for`:
+The crystal entry for `for` is as follows:
 
 ```
   for   seen 81
@@ -51,9 +51,11 @@ The crystal entry for `for`:
     preceded   []\n 4, '.join(draw(q) 3, frame) 3, c 3, {}\n 2
 ```
 
-`for` is followed by `w`, `(a,`, `q` -- loop variables. It's also part of `form` and `force`, which the mint can't tell apart from a form of `for`. The record doesn't know that `for` is a keyword and `form` is a word that starts with the same letters. It records both, and the `changes` line shows them side by side. The `part of` line also shows a level-1 part, `for c in range(w):\n col` -- a stretch between two `=` signs that contains `for`.
+The words `w`, `(a,`, `q` come after `for`. These words are loop variables. The word `for` is also part of `form` and `force`. The mint step makes new parts from 2 parts that have the same start or the same end. The mint step does not know the difference between `form` and a form of `for`.
 
-## Compiled program at 64 bits: the layout of the file
+The record does not know that `for` is a keyword. The record does not know that `form` is a word that starts with the same letters. The record keeps both words. The `changes` line shows the 2 words next to each other. The `part of` line also shows a level-1 part, `for c in range(w):\n col`. This level-1 part is a run between 2 `=` signs that contains `for`.
+
+## The compiled program at 64 bits: the layout of the file
 
 ```
 FRAME
@@ -67,7 +69,7 @@ FRAME
   chosen width 64
 ```
 
-The score grows with the width: 8, 16, 32, 64. The 64-bit profile isn't the 32-bit profile repeated (a close call, and the record says so). Here are the column rates at 64 bits, laid out by byte:
+The score increases with the width: 8, 16, 32, 64. The column rates at 64 bits are not the column rates at 32 bits repeated. The difference is small, and the record says so. The column rates at 64 bits, in rows of 1 byte, are as follows:
 
 ```
 0.091 0.139 0.148 0.138 0.132 0.118 0.108 0.120   byte 0
@@ -80,7 +82,9 @@ The score grows with the width: 8, 16, 32, 64. The 64-bit profile isn't the 32-b
 0.018 0.075 0.072 0.040 0.067 0.068 0.055 0.057   byte 7
 ```
 
-The first byte of each 64-bit word has the most 1-bits, and the rate drops off toward the last byte. Why? A small number stored in a 64-bit slot puts its bits in the first byte and leaves the rest as zeros -- when the machine stores the low byte first. That's the little-endian layout of x86-64 (where the least significant byte comes first in memory), read straight from the column rates.
+The first byte of each 64-bit word has the most 1 bits. The rate decreases toward the last byte. The cause is as follows. When the machine stores the low byte first, a small number in a 64-bit slot puts its bits in the first byte. The other bytes stay 0.
+
+The layout is the little-endian layout of x86-64. In the little-endian layout, the least significant byte comes first in memory. The column rates alone show the layout.
 
 ```
 WORDS   2013 words, 492 distinct
@@ -89,11 +93,11 @@ WORDS   2013 words, 492 distinct
   0200000000000000    16
 ```
 
-Small numbers, low byte first, and 63% of all words are zero: the headers and tables of an executable file. The program's actual machine code is a small part of a 16 KB file -- most of it is layout.
+The words are small numbers with the low byte first. The word 0 is 63 percent of all words. These words are the headers and the tables of an executable file. The machine code of the program is a small part of a 16 KB file. Most of the file is layout.
 
-## The same program at 8 bits: what the program actually does
+## The same program at 8 bits: the purpose of the program
 
-`--frame 8` reads the same file one byte at a time. The separator becomes the zero byte (13,477 of 16,104). The runs between zero bytes are the file's readable strings, and the parts table holds them whole:
+The flag `--frame 8` reads the same file 1 byte at a time. The separator becomes the zero byte (13,477 of 16,104). The runs between zero bytes are the text strings of the file. The parts table holds the whole strings:
 
 ```
 usage: hello TEXT            hello.c              main
@@ -103,9 +107,17 @@ GCC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
 .text  .data  .bss  .rodata  .symtab  .strtab  .dynsym  .eh_frame
 ```
 
-Now the record tells us, in whole runs: this file was built from `hello.c` with gcc 13.3 on Ubuntu. It links `libc.so.6` through the x86-64 dynamic loader. It calls `strlen`, `puts`, and `printf`. It has a `main`. And it prints `usage: hello TEXT` when you run it the wrong way. That's the program's purpose and its external calls, read from the bytes. The compiler turned the `printf("usage...\n")` of the source into a `puts` call, and the record shows the `puts`.
+Now the record shows, in whole runs, these facts about the file:
 
-Parts by density at this grain:
+- gcc 13.3 on Ubuntu made the file from `hello.c`
+- the file links `libc.so.6` through the x86-64 dynamic loader
+- the file calls `strlen`, `puts`, and `printf`
+- the file has a `main`
+- the file prints `usage: hello TEXT` when you run the program in the wrong way
+
+The record read these facts from the bytes. These facts are the purpose of the program and its external calls. The compiler changed the `printf("usage...\n")` of the source into a `puts` call. The record shows the `puts`.
+
+The parts by density at width 8 are as follows:
 
 ```
   part   density   whole   inside (sample)
@@ -116,12 +128,16 @@ Parts by density at this grain:
   H           64       0   H\x85\xc0t\t\xff\xe0, H9\xf8t\x15H\x8b
 ```
 
-The underscore and the period are the densest parts: symbol names and section names are built on them. The byte `H` (0x48) shows up inside 64 parts, none of them names -- every part it's in is machine code. On x86-64, 0x48 is the prefix that makes an instruction work on 64-bit values, so it starts a large share of instructions. The record doesn't know that. It just shows a byte that is dense inside the non-name parts and never a whole run on its own.
+The underscore and the period are the parts with the highest density. The symbol names and the section names contain the underscore and the period. The byte `H` (0x48) occurs inside 64 parts. None of these parts is a name. Each part that contains `H` is machine code.
 
-## Levels
+On x86-64, 0x48 is the prefix that makes an instruction operate on 64-bit values. Thus 0x48 starts a large share of the instructions. The record does not know what 0x48 does. The record shows only a byte that has a high density inside the parts that are not names. The byte is never a whole run on its own.
 
-Both the source and the binary add almost everything at level 0 and a little at level 1. At level 1, the source cuts at `=` (its most common run) and the binary at the byte grain cuts at `\x01`. The stretches between are almost all unique, so level 1 produces few new parts (169 and 93) and the levels after that add a handful and stop.
+## LEVELS
 
-## Two grains, two readings
+The source and the binary each add almost all parts at level 0 and a few parts at level 1. At level 1, the source cuts at `=`, its most common run. To cut a signal is to divide the signal into runs at each separator. At level 1, the binary at width 8 cuts at the byte `\x01`.
 
-At 64 bits the record describes the file's layout and the machine's word habits. At 8 bits it describes what the program is for and what it calls. Both readings are in the same file. The frame step picks which one the word tables are about, and `--frame` exists so you can do the second reading.
+The runs between the separators are almost all unique. Thus level 1 makes few new parts (169 and 93). The levels after level 1 add a small number of parts and then stop.
+
+## Two widths, two results
+
+At 64 bits, the record describes the layout of the file and the way that the machine stores words. At 8 bits, the record describes the purpose of the program and the calls that the program makes. Both results come from the same file. The frame step picks the width that the word tables use. The flag `--frame` exists so that you can get the second result.

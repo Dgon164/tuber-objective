@@ -1,8 +1,8 @@
-# Breakdown: learning German from the signal
+# Breakdown: German from the signal
 
-## What goes in
+## The input
 
-`ep-00-01-17.de` is one day of European Parliament proceedings (17 January 2000) in German, 160,002 bytes. `ep-00-01-17.en` is the same day in English. The German file is UTF-8, which means letters like a-umlaut, o-umlaut, u-umlaut, and the sharp-s each take two bytes instead of one.
+The file `ep-00-01-17.de` is 1 day of the debate of the European Parliament (17 January 2000) in German. The file has 160,002 bytes. The file `ep-00-01-17.en` is the same day in English. The German file is UTF-8. In UTF-8, the letters a-umlaut, o-umlaut, u-umlaut, and sharp-s each use 2 bytes in place of 1 byte.
 
 ```
 python discovery.py examples/german/ep-00-01-17.de --lens utf8
@@ -10,9 +10,9 @@ python discovery.py examples/german/ep-00-01-17.en --lens ascii
 python bridge.py ep-00-01-17.de.record.json ep-00-01-17.en.record.json
 ```
 
-The `utf8` lens shows whole runs as readable text, so `a-umlaut` shows up as the actual character instead of two hex codes. In the WORDS table, single bytes are still shown one at a time, which is where the two-byte letters appear as pairs.
+The `utf8` lens shows whole runs as text that you can read. Thus the lens shows `a-umlaut` as the character and not as 2 hexadecimal codes. In the WORDS table, the lens shows single bytes one at a time. In the WORDS table, the 2-byte letters occur as pairs of bytes.
 
-## Frame: 8-bit words, and the top bit is used 3.6% of the time
+## FRAME: 8-bit words, with the top bit in use 3.6 percent of the time
 
 ```
     8    0.892   col   0 at 0.036   col   2 at 0.928
@@ -21,9 +21,9 @@ The `utf8` lens shows whole runs as readable text, so `a-umlaut` shows up as the
     0.036 0.803 0.928 0.245 0.315 0.494 0.377 0.462
 ```
 
-Same answer as the English text -- 8 bits. But column 0 isn't zero this time: 3.6% of the words have the top bit turned on. In Alice it was 0.000. That one number is already enough to tell this file apart from a pure 7-bit one.
+The answer is the same as for the English text: 8 bits. But column 0 is not 0 this time. The top bit is 1 in 3.6 percent of the words. In Alice, column 0 was 0.000. This one number is enough to show the difference between this file and a pure 7-bit file.
 
-## Words: 88 of them, including `\xc3`
+## WORDS: 88 different words, with `\xc3`
 
 ```
 WORDS   160002 words, 88 distinct
@@ -36,11 +36,13 @@ WORDS   160002 words, 88 distinct
   11000011  \xc3    2827
 ```
 
-The top-bit words are the UTF-8 pieces. `11000011` (`\xc3`) is the first byte of a-umlaut, o-umlaut, u-umlaut, and sharp-s. It shows up 2,827 times. The FOLLOWS table shows it always appears right before one of four specific bytes -- the four special letters. Nothing in the record knows what UTF-8 is. It just shows a byte that only ever appears right before four other bytes.
+The words that have the top bit at 1 are the bytes of the UTF-8 letters. The word `11000011` (`\xc3`) is the first byte of a-umlaut, o-umlaut, u-umlaut, and sharp-s. This word occurs 2,827 times. The FOLLOWS table shows that this word always occurs directly before 1 of 4 bytes. These 4 bytes are the 4 special letters.
 
-The letter order is e, n, i, r, t, s, d, a, h, u. In Alice it was e, t, a, o, h, n. Two languages, two different frequency orders, same process.
+The record does not know what UTF-8 is. The record shows only a byte that occurs only directly before 4 other bytes.
 
-## Runs: the German words
+The letter order is e, n, i, r, t, s, d, a, h, u. In Alice, the letter order was e, t, a, o, h, n. The 2 languages have 2 different frequency orders. The process is the same for the 2 languages.
+
+## RUNS: the German words
 
 ```
 RUNS   23206 runs between separators, 4489 distinct
@@ -56,9 +58,18 @@ RUNS   23206 runs between separators, 4489 distinct
   Kommission     125
 ```
 
-The comma is a run on its own here because the text puts a space on both sides of it. RUN FOLLOWS shows pairs: `, dass` 244 times, `, die` 177, `fuer die` 81, `in den` 68, `der Kommission` 59, `die Kommission` 53, `moechte ich` 45, `.\nHerr Praesident` 42.
+The comma is a run on its own here, because the text puts a space on each side of the comma. The RUN FOLLOWS table shows the pairs:
 
-## Endings, beginnings, and classes
+- `, dass`, 244 times
+- `, die`, 177 times
+- `fuer die`, 81 times
+- `in den`, 68 times
+- `der Kommission`, 59 times
+- `die Kommission`, 53 times
+- `moechte ich`, 45 times
+- `.\nHerr Praesident`, 42 times
+
+## ENDINGS, BEGINNINGS, and CLASSES
 
 ```
 ENDINGS               BEGINNINGS
@@ -74,7 +85,9 @@ ENDINGS               BEGINNINGS
   +ten     160
 ```
 
-The record lists the German endings and prefixes (pieces attached to the front or back of a word) by how often they turn one part into another: `+en`, `+ung`, `+lich`, `+ten`, `be+`, `ge+`, `er+`. The capital letters showing up as beginnings (`A+`, `S+`, `E+`, `B+`) come from German capitalizing nouns -- the same stem appears both capitalized and not.
+The record lists the German endings and prefixes. An ending is a part that attaches to the end of a word. A prefix is a part that attaches to the front of a word. The record lists the endings and the prefixes in order of frequency. The frequency is the number of times that the ending or the prefix makes one part into a different part. The endings and the prefixes include `+en`, `+ung`, `+lich`, `+ten`, `be+`, `ge+`, `er+`.
+
+The capital letters in the BEGINNINGS table (`A+`, `S+`, `E+`, `B+`) come from a rule of German: each noun starts with a capital letter. Thus the same stem occurs with a capital letter and without a capital letter.
 
 ```
 CLASSES
@@ -88,13 +101,15 @@ CLASSES
      17 members: erwarte, aufforder, belaste, binde, entwickel, erarbeite, leiste
 ```
 
-The class `[+en, +t]` has 52 members: beantrag, beleg, benoetig, beruecksichtig, beschraenk, and so on. These are stems that show up both with `-en` and with `-t` -- basically the infinitive and the third-person form of a German verb. The class `[+n, +r]` has 42 members: einige, liebe, laendliche, nachhaltige, bestimmte -- adjectives, which take `-n` and `-r` endings. The classes `[A+, a+]` and `[V+, v+]` are just the capitalized and lowercase forms of the same stems.
+The class `[+en, +t]` has 52 members: beantrag, beleg, benoetig, beruecksichtig, beschraenk, and more. These members are stems that occur with `-en` and with `-t`. The 2 forms are the infinitive and the third-person form of a German verb. The class `[+n, +r]` has 42 members: einige, liebe, laendliche, nachhaltige, bestimmte. These members are adjectives. Adjectives accept the endings `-n` and `-r`.
 
-The record doesn't say "verb" or "adjective." It says: here are 52 parts that take exactly these two changes, and here are 42 that take exactly those two.
+The classes `[A+, a+]` and `[V+, v+]` contain the forms of the same stems with a capital letter and without a capital letter.
 
-## Crystal
+The record does not say "verb" or "adjective". The record says only this: 52 parts accept exactly the changes `+en` and `+t`, and 42 parts accept exactly the changes `+n` and `+r`.
 
-The crystal table is basically a dictionary entry for each word, built from nothing but the signal.
+## CRYSTAL
+
+The CRYSTAL table is like a dictionary with 1 entry for each word. The program makes the entries from the signal alone.
 
 ```
   die   seen 862
@@ -112,7 +127,7 @@ The crystal table is basically a dictionary entry for each word, built from noth
     preceded   der 59, die 53, und 2, Europaeischen 2, neue 1
 ```
 
-`die` leads to dieser, diese, diesem, dieses: the different forms of the demonstrative (the German word for "this/that/the"), listed as changes. `Kommission` comes after `der` 59 times and `die` 53 times, and is part of `Kommissionsdokument` and `EU-Kommission`.
+The entry for `die` lists dieser, diese, diesem, dieses as changes. These words are the different forms of the demonstrative (the German word for "this", "that", or "the"). The word `Kommission` comes after `der` 59 times and after `die` 53 times. The word `Kommission` is part of `Kommissionsdokument` and `EU-Kommission`.
 
 ## Level 1
 
@@ -125,11 +140,18 @@ LEVELS
       3        9         9        1         1        0            0        1       34163
 ```
 
-The most common level-1 word is the comma, so a level-1 run is a stretch between commas. The most repeated stretches are the forms of address: `Herr Kommissar` 8 times, `meine Damen und Herren` 7, `Frau Berichterstatterin` 5, `Frau Praesidentin` 4. The ENDINGS show what comes right before a comma (`+der` 179, `+ist` 174, `+werden` 135) and the BEGINNINGS show what comes right after one (`die+` 997, `der+` 642, `und+` 418). Level 2 has nine runs and produces nothing new.
+The most common level-1 word is the comma. Thus a level-1 run is the sequence between 2 commas. The runs that occur most often are the forms of address:
+
+- `Herr Kommissar`, 8 times
+- `meine Damen und Herren`, 7 times
+- `Frau Berichterstatterin`, 5 times
+- `Frau Praesidentin`, 4 times
+
+The ENDINGS table shows the words directly before a comma (`+der` 179, `+ist` 174, `+werden` 135). The BEGINNINGS table shows the words directly after a comma (`die+` 997, `der+` 642, `und+` 418). Level 2 has 9 runs and makes no new parts.
 
 ## The bridge: German to English
 
-`bridge.py` runs the comparator (the part-matching logic) between the two records instead of inside one. A part that exists in both pools is shared; the parts that contain it on each side are the differences.
+The script `bridge.py` runs the comparator between the 2 records and not inside 1 record. The comparator is the code of the program that compares 2 parts. A part that exists in both pools is a shared part. The parts that contain the shared part on each side are the differences.
 
 ```
 BRIDGE   19210 parts in A, 10985 in B, 2188 shared
@@ -143,10 +165,23 @@ LONG SHARED PARTS
   Wulf-Mathies       A: (whole)                         B: (whole)
 ```
 
-2,188 parts show up in both pools. The long ones are stems the two languages share (international, technolog, transport, programm, instrument, operation) and proper names, which are the same string on both sides. Each shared part comes with its German parents and its English parents: `technologi` is inside `technologische` and `technologien` on one side and `technologies` and `technological` on the other. That's a bridge between two dictionaries, built from nothing but the parts both signals contain.
+There are 2,188 parts in both pools. The long shared parts are stems that the 2 languages share (international, technolog, transport, programm, instrument, operation) and proper names. A proper name is the same string on each side. Each shared part comes with its German parents and its English parents. The part `technologi` is inside `technologische` and `technologien` on the German side. The same part is inside `technologies` and `technological` on the English side.
 
-The shortest shared parts (`s`, `e`, `i`, `t`, `n`) have the highest density -- they're just the letters, and they only tell you that both files use the same alphabet.
+The result is a bridge between 2 dictionaries. The program made the bridge from the parts that both signals contain and from no other source.
 
-## What this adds up to
+The shortest shared parts (`s`, `e`, `i`, `t`, `n`) have the highest density. These parts are the letters. These parts show only that the 2 files use the same alphabet.
 
-From the German bits: 8-bit words with the top bit in use 3.6% of the time. A byte that only ever shows up in front of four other bytes. The letter order. The words. The endings `-en`, `-ung`, `-lich`, `-ten` and the prefixes `be-`, `ge-`, `er-`. A class of 52 verb stems and a class of 42 adjective stems. Capitalized/lowercase pairs. And a dictionary entry per word. From the two records together: 2,188 shared parts, with the stems and names the two languages have in common and the forms each language builds on them.
+## Summary of the record
+
+From the German bits, the record shows:
+
+- 8-bit words, with the top bit in use 3.6 percent of the time
+- 1 byte that occurs only in front of 4 other bytes
+- the letter order
+- the words
+- the endings `-en`, `-ung`, `-lich`, `-ten` and the prefixes `be-`, `ge-`, `er-`
+- a class of 52 verb stems and a class of 42 adjective stems
+- pairs of a stem with a capital letter and the same stem without a capital letter
+- a dictionary entry for each word
+
+From the 2 records together, the bridge shows 2,188 shared parts. The shared parts include the stems and the names that the 2 languages share. The shared parts also show the forms that each language makes on these stems.

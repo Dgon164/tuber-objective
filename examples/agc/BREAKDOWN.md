@@ -1,23 +1,23 @@
 # Breakdown: a 15-bit machine (Apollo Guidance Computer)
 
-## What goes in
+## The input
 
-The Virtual AGC project publishes the flight software of the Apollo 11 Lunar Module as a public-domain listing. Each word is five octal digits (base-8 numbers). The Apollo Guidance Computer uses 15-bit words.
+The Virtual AGC project publishes the flight software of the Apollo 11 Lunar Module as a listing in the public domain. Each word in the listing is 5 octal digits (base-8 numbers). The Apollo Guidance Computer uses 15-bit words.
 
-`make_rope.py` writes every word as exactly 15 bits, one after another, with no padding and no byte boundaries: 36,864 words into 69,120 bytes. A word starts on a byte boundary only every eighth word -- the rest start in the middle of a byte. This is intentionally awkward: the point is to see if Discovery can find the word size anyway.
+The script `make_rope.py` writes each word as exactly 15 bits, in sequence, with no extra bits and no byte boundaries. The script writes 36,864 words into 69,120 bytes. Only each eighth word starts on a byte boundary. The other words start in the middle of a byte. The author made the layout difficult. The purpose is to see if Discovery can find the word width in this layout.
 
-`input/luminary099.agc` is the assembly source of the same program: the 92 source files joined into one file, 1.6 MB of text.
+The file `input/luminary099.agc` is the assembly source of the same program. The file contains all 92 source files in 1 file. The file has 1.6 MB of text.
 
-Both were run with no setting that names the machine:
+Discovery read both files with no flag that names the machine:
 
 ```
 python discovery.py examples/agc/input/luminary099.rope --lens octal --out examples/agc
 python discovery.py examples/agc/input/luminary099.agc  --lens ascii --out examples/agc --separators 2
 ```
 
-The octal lens shows each word as five octal digits so you can line the record up with the published listing. It only changes the display.
+The octal lens shows each word as 5 octal digits. Thus you can compare the record with the listing. The lens changes only the display.
 
-## The rope record: frame
+## The rope record: FRAME
 
 ```
 FRAME
@@ -33,17 +33,19 @@ FRAME
   chosen width 15
 ```
 
-Widths 15, 30, 45, and 60 all stand out from every other width (0.21-0.23 versus 0.10 and below). The score picked 60, but the fold step found that the 60 columns are really just the 15 columns repeated four times, within the noise you'd expect by chance at that many rows. The smallest width that fits is 15. The record figured out the word size of the machine from a bit stream that has no byte boundaries in it.
+The widths 15, 30, 45, and 60 have scores from 0.21 to 0.23. All other widths have scores of 0.10 or less. The score picked 60. Then the fold step folded 60 to 15. To fold a width is to check if the columns of the width are the columns of a smaller width, repeated.
 
-The column rates at width 15:
+The fold step found that the 60 columns are the 15 columns repeated 4 times. The difference between the columns is within the noise that occurs by chance at this number of rows. The smallest width that fits is 15. The record found the word width of the machine from a bit stream that has no byte boundaries.
+
+The column rates at width 15 are as follows:
 
 ```
 0.380 0.321 0.480 0.393 0.411 0.415 0.408 0.411 0.454 0.441 0.406 0.455 0.532 0.477 0.484
 ```
 
-Columns 0 and 1 are 1 less often than the others. Column 12 is 1 most often. Someone who knows the AGC knows the top three bits hold the opcode (the part of the instruction that says what to do). Discovery doesn't know that -- it just shows which columns have which habits.
+Columns 0 and 1 are 1 less often than the other columns. Column 12 is 1 most often. A person who knows the AGC knows that the top 3 bits hold the opcode. The opcode is the bits of the instruction that say what the instruction does. Discovery does not know what the top 3 bits hold. Discovery shows only the rate of each column.
 
-## The rope record: words
+## The rope record: WORDS
 
 ```
 WORDS   36864 words, 9328 distinct
@@ -59,9 +61,9 @@ WORDS   36864 words, 9328 distinct
 SEPARATOR   the most common word: 00006
 ```
 
-The most common word, 00006, becomes the separator. In the AGC instruction set, word 00006 is `TC 6`, which the assembler writes as `EXTEND` -- the prefix that every extended instruction needs. So the separator Discovery picked, just by counting, is the instruction prefix. A run is what sits between one EXTEND and the next.
+The most common word, 00006, becomes the separator. In the AGC instruction set, the word 00006 is `TC 6`. The assembler writes `TC 6` as `EXTEND`. EXTEND is the prefix that each extended instruction needs. Thus the separator that Discovery picked from the count alone is the instruction prefix. A run is the sequence between one EXTEND and the next EXTEND.
 
-FOLLOWS shows what comes right after the prefix:
+The FOLLOWS table shows what comes directly after the prefix:
 
 ```
   00006 -> 03012   35
@@ -70,7 +72,7 @@ FOLLOWS shows what comes right after the prefix:
   00006 -> 05012   23
 ```
 
-And pairs that have nothing to do with the prefix:
+The FOLLOWS table also shows pairs that have no relation to the prefix:
 
 ```
   04616 -> 20476   44        04616 -> 20334   24
@@ -78,9 +80,9 @@ And pairs that have nothing to do with the prefix:
   06037 -> 77624   42        06037 -> 77650   18
 ```
 
-## Checking a word against the source
+## Check a word against the source
 
-The assembly source is public, so you can actually check what these words mean. A subroutine called with `TC X` lives at address X, and the first words of each subroutine are in the source. For example `BANKCALL` begins:
+The assembly source is public. Thus you can check what these words mean. A subroutine that the code calls with `TC X` is at address X. The first words of each subroutine are in the source. For example, `BANKCALL` starts with these lines:
 
 ```
 BANKCALL    DXCH    BUF2        # SAVE INCOMING A,L.
@@ -89,21 +91,21 @@ BANKCALL    DXCH    BUF2        # SAVE INCOMING A,L.
             INCR    Q           # SO WE RETURN TO THE LOC. AFTER THE CADR.
 ```
 
-Those instructions turn into a word pattern starting with `52xxx` followed by `50002 30000 24002`. Searching the listing for that pattern finds it at address 04616. Doing the same for the other common words:
+These instructions become a word pattern that starts with `52xxx` and continues with `50002 30000 24002`. A search of the listing for this pattern finds the pattern at address 04616. The same steps for the other common words give this table:
 
-| word | times in rope | the subroutine at that address | what follows the call |
+| word | times in rope | the subroutine at the address of the word | the words after the call |
 |---|---|---|---|
-| 04616 | 323 | BANKCALL | an address being called |
+| 04616 | 323 | BANKCALL | the address that the code calls |
 | 06037 | 238 | INTPRET (the interpreter) | interpreter words in negative form |
-| 05353 | 120 | PHASCHNG (phase change) | one argument word |
-| 04674 | 64 | IBNKCALL | an address being called |
-| 04635 | 61 | POSTJUMP | an address being called |
+| 05353 | 120 | PHASCHNG (phase change) | 1 argument word |
+| 04674 | 64 | IBNKCALL | the address that the code calls |
+| 04635 | 61 | POSTJUMP | the address that the code calls |
 
-So `04616 -> 20476` is a call to BANKCALL with its argument. `06037 -> 77624` is a jump into the interpreter followed by its first instruction word. And 00002 is `TC Q`, which the assembler writes as `RETURN` -- it's the densest part in the parts table (inside 178 larger parts), which is exactly where a return instruction would be: at the end of many different runs.
+Thus `04616 -> 20476` is a call to BANKCALL with its argument. The pair `06037 -> 77624` is a jump into the interpreter and then the first instruction word of the interpreter. The word 00002 is `TC Q`. The assembler writes `TC Q` as `RETURN`. The word 00002 is the part with the highest density in the parts table (inside 178 larger parts). The highest density is the correct result for a return instruction, because a return instruction is at the end of many different runs.
 
 ## The source record
 
-The second record is of the assembly text. Runs between tabs and spaces:
+The second record is the record of the assembly text. The runs between tabs and spaces are as follows:
 
 ```
 RUNS   257599 runs between separators, 42490 distinct
@@ -118,7 +120,7 @@ RUNS   257599 runs between separators, 42490 distinct
   EXTEND\n    1318
 ```
 
-And pairs of runs:
+The pairs of runs are as follows:
 
 ```
   EXTEND\n   -> BZF         294
@@ -128,35 +130,51 @@ And pairs of runs:
   TC         -> BANKCALL\n  199
 ```
 
-Set the two records next to each other:
+Put the 2 records next to each other:
 
 | in the rope | in the source |
 |---|---|
-| 00006 is the most common word (1,717) | EXTEND is among the most common runs (1,318) |
-| 00006 is followed by 03012, 50116, 34755 | EXTEND is followed by BZF, MP, DCA |
-| 04616 is followed by a steady set of words | TC is followed by BANKCALL; BANKCALL is followed by CADR |
-| 00002 sits inside 178 parts | RETURN ends routines throughout |
+| The word 00006 is the most common word (1,717). | EXTEND is one of the most common runs (1,318). |
+| The words 03012, 50116, 34755 come after 00006. | The runs BZF, MP, DCA come after EXTEND. |
+| A constant set of words comes after 04616. | BANKCALL comes after TC. CADR comes after BANKCALL. |
+| The word 00002 is inside 178 parts. | RETURN ends routines in the whole source. |
 
-Neither record knows the other exists. They line up because they're two recordings of the same program.
+No record knows that the other record exists. The 2 records agree because each record comes from the same program.
 
-## Levels
+## LEVELS
 
 ```
 rope:    8538 parts, then +11, then +1
 source:  126406 parts, then +121058, then +11, then +1
 ```
 
-The rope stops early: its 1,717 runs between EXTENDs are 1,665 different, the level-1 separator only shows up a few times, and there's little to collide. The source goes further: level 1 cuts at `#` (the comment marker), so a level-1 run is a stretch of code up to a comment. Its densest parts are the idioms (commonly repeated patterns): `TC BANKCALL` (inside 310 stretches), `CAF ZERO` 287, `CCS A` 273. Its ENDINGS are the instruction right before a comment (`+TS` 1076, `+EXTEND` 1013) and its BEGINNINGS are how a comment opens (`TO+` 1798, `FOR+` 1744, `IN+` 1732, `IF+` 1726, `AND+` 1609, `SET+` 1484) -- the writing style of the people who built it.
+The rope stops early. The rope has 1,717 runs between EXTENDs, with 1,665 different runs. The level-1 separator occurs only a few times. Thus there is little to compare. The source goes to more levels. At level 1, the source cuts at `#` (the comment marker). To cut a signal is to divide the signal into runs at each separator. Thus a level-1 run is a sequence of code up to a comment.
 
-## What the record does not do
+The parts of the source with the highest density are the patterns that occur many times:
 
-It doesn't name an instruction. It doesn't say what the program is for. It finds the word size, the most common word, what follows what, which words sit inside many others, and which pairs repeat. Naming is something you lay over the record afterward -- here, using the published listing and the source.
+- `TC BANKCALL`, inside 310 runs
+- `CAF ZERO`, inside 287 runs
+- `CCS A`, inside 273 runs
 
-## The memory limit this example found
+The ENDINGS table shows the instruction directly before a comment (`+TS` 1076, `+EXTEND` 1013). The BEGINNINGS table shows the first word of a comment (`TO+` 1798, `FOR+` 1744, `IN+` 1732, `IF+` 1726, `AND+` 1609, `SET+` 1484). The first words of the comments show the style of the people who wrote the program.
 
-The first run of the 1.6 MB source with one separator (the tab) grew the pool past memory: runs between tabs include whole comment phrases, and long unique runs produce many long parts. Two things came from that:
+## The limits of the record
 
-- A pair of neighbors only gets compared when one of them is new from the last round (same result, about half the time).
-- `--cap` (default 1,000,000 parts) stops the loop and says so in the record.
+The record does not name an instruction. The record does not say what the program is for. The record finds:
 
-With `--separators 2` (tab and space) the source runs in well under a minute, three levels and all. About half of that time is writing the record (the JSON lists every connection in both directions, and for this file it's by far the largest thing the run writes).
+- the word width
+- the most common word
+- the word that comes after each word
+- the words that are inside many other words
+- the pairs that repeat
+
+You put the names on top of the record after the run. Here, the names come from the listing and the source.
+
+## The memory limit that this example found
+
+In the first run of the 1.6 MB source with 1 separator (the tab), the pool grew larger than the memory of the computer. The runs between tabs include whole comment phrases. Long unique runs make many long parts. This result caused 2 changes:
+
+- The program compares a pair of neighbors only when one of the neighbors is new from the last round. The result is the same, in approximately half the time.
+- The flag `--cap` (default 1,000,000 parts) stops the loop and says so in the record.
+
+With `--separators 2` (tab and space), the source runs in much less than 1 minute, with all 3 levels. The write of the record takes approximately half of that time. The JSON lists each connection in both directions. For this file, the JSON is much larger than the other outputs of the run.

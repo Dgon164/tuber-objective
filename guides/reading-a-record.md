@@ -1,9 +1,9 @@
-# Reading a record
+# How to read a record
 
-A record starts with the FRAME and a LEVELS summary, then repeats the
-same set of tables for each level. The text record shows the top of each
-table; the JSON has all of it. Read them in order -- each one builds on
-the one before.
+A record starts with the FRAME and a LEVELS summary. Then the record
+repeats the same set of tables for each level. The text record shows
+the top of each table. The JSON record has the full table. Read the
+tables in order. Each table uses the table before.
 
 ## FRAME
 
@@ -18,21 +18,22 @@ FRAME   score = spread between the column most often 1 and the column least ofte
     0.000 0.745 0.950 0.235 0.338 0.477 0.333 0.452
 ```
 
-- **Score**: the width whose columns have the most varied patterns gets
-  the highest score. One width standing far above the rest, with its
-  multiples close behind, means a clearly structured signal. All widths
-  scoring about the same means there's no fixed structure (random bytes,
-  compressed or encrypted data).
-- **Picked, fold, chosen**: "picked" is the best gap. "fold" checks
-  whether that width is really just a smaller width repeated. "chosen"
-  is the final answer.
-- **Column rates**: this is the very first thing Discovery learned about
-  the signal. A column at 0.000 or 1.000 is a bit that never changes. A
-  column near 0.5 carries the most variety. The shape of the rates is
-  like a fingerprint of the signal: ASCII text has a zero column 0 and a
-  high column 2; a little-endian binary has rates that drop off across
-  each word; a packed 15-bit machine has 15 columns with the top ones
-  lowest.
+- **Score**: the width with the largest difference between its columns
+  gets the highest score. If 1 width is far above the rest, with the
+  multiples of that width close behind, the signal has a clear
+  structure. If all widths have approximately the same score, the
+  signal has no fixed structure (random bytes, or data after
+  compression or encryption).
+- **Picked, fold, chosen**: "picked" is the width with the best gap.
+  "fold" checks if that width is a smaller width repeated. "chosen" is
+  the final width.
+- **Column rates**: the column rates are the first thing that Discovery
+  learned about the signal. A column at 0.000 or 1.000 is a bit that
+  never changes. A column near 0.5 has the most variation. The shape of
+  the rates identifies the signal. ASCII text has a column 0 at zero
+  and a high column 2. A little-endian binary has rates that decrease
+  across each word. A packed 15-bit machine has 15 columns, with the
+  top columns lowest.
 
 ## LEVELS
 
@@ -46,16 +47,19 @@ LEVELS   each level runs on the runs of the one before; nothing replaced, every 
   stopped: level 3 left a single run; nothing more to cut
 ```
 
-One row per level. Level 0 is the signal; its symbols are words.
-Level 1's symbols are level 0's runs; its runs are runs-of-runs; and
-level 0's classes act as a second way two symbols can be "the same."
-The *added* column shows how many new structures that level put into the
-shared pool. The *pool total* is the running count. Look at the *added*
-column to see the growth peter out: 22,446, then 6,709, then 5, then 1.
+The table has 1 row for each level. Level 0 is the signal. The symbols
+of level 0 are words. The symbols of level 1 are the runs of level 0.
+The runs of level 1 are runs of runs. The classes of level 0 are a
+second way for 2 symbols to be the same.
+
+The *added* column shows the number of new structures that the level
+put into the pool. There is only 1 pool. The *pool total* is the total
+count at that level. Look at the *added* column to see the growth
+decrease to nothing: 22,446, then 6,709, then 5, then 1.
 
 ## MEMORY
 
-This section shows up when the run used `--memory FILE`.
+This section appears when you run the program with `--memory FILE`.
 
 ```
 MEMORY   alice.memory
@@ -69,128 +73,149 @@ MEMORY   alice.memory
   after: 30124 parts, saved
 ```
 
-It tells you what the memory held before this signal and where it came
-from. Then, for each level: how many parts this signal produced, how
-many were already in memory (confirmed), how many were new (added), and
-how many remembered parts this signal didn't produce (not seen this
-time -- they stay in memory, they're not removed). A comparison only
-counts when this signal is part of it, so a memory never confirms
-itself. If you run the same signal twice, the second time confirms what
-the first produced (give or take a few parts whose neighbor in the pool
-has shifted) and adds nothing (or next to nothing).
+The section shows what the memory held before this signal, and the
+source of the memory. Then, for each level, the section shows 4 counts:
 
-The tables below are written for each level under a `LEVEL n` heading.
-At level 0 the first two are WORDS and FOLLOWS; at higher levels they're
-SYMBOLS and FOLLOWS, where a symbol is drawn as the run it represents. A
-class standing in a spot of a minted part is drawn as `{n.k}` -- class k
-of level n; look it up in that level's CLASSES table. Long higher-level
-runs get cut off at 72 characters in the text; the JSON has them whole.
-Densities (how many things contain a part) count across all levels: a
-level-0 word that sits inside level-1 stretches counts them.
+- the parts that this signal made (produced)
+- the parts that were already in memory (confirmed)
+- the parts that are new (added)
+- the parts in memory that this signal did not make (not seen this
+  time)
+
+The parts not seen this time stay in memory. The program does not
+remove those parts. A comparison counts only when this signal is part
+of the comparison. Thus a memory never counts its own parts as
+confirmed. If you run the same signal 2 times, the second run counts as
+confirmed what the first run made. A few parts can differ, because the
+part next to them in the pool has moved. The second run adds nothing,
+or almost nothing.
+
+The record writes the tables below for each level under a `LEVEL n`
+heading. At level 0, the first 2 tables are WORDS and FOLLOWS. At
+higher levels, the first 2 tables are SYMBOLS and FOLLOWS. The record
+shows a symbol as the run that the symbol stands for. The record shows
+a class in a position of a part that the program minted as `{n.k}`.
+`{n.k}` is class k of level n.
+
+You can find the class in the CLASSES table of level n. The text record
+shows only the first 72 characters of a long run of a higher level. The
+JSON record has the whole run. A density (the number of things that
+contain a part) counts across all levels. A level-0 word that is in
+level-1 runs counts those level-1 runs.
 
 ## WORDS
 
-The distinct words and how often each one appeared. Compare the number
-of distinct words to the total for a quick read on the signal: 73 out
-of 144,395 is an alphabet; 9,328 out of 36,864 is machine code; 1,904
-out of 20,000 is a neural net that only uses a small part of its
-possible states.
+The table shows the different words and the count of each word. Compare
+the number of different words with the total for a quick view of the
+signal. A count of 73 in 144,395 is an alphabet. A count of 9,328 in
+36,864 is machine code. A count of 1,904 in 20,000 is a neural net that
+uses only a small part of its possible states.
 
 ## FOLLOWS
 
-Pairs of words that showed up back to back. In text these are letter
-pairs (`th`, `he`, `in`). In machine code they're instruction pairs. A
-word that's always followed by one of a small set (like the UTF-8 lead
-byte, or the EXTEND prefix) shows up as a word with a steady group of
-partners.
+The table shows pairs of words that occurred one after the other. In
+text, the pairs are letter pairs (`th`, `he`, `in`). In machine code,
+the pairs are instruction pairs. Some words always have 1 of a small
+set of words after them. Examples are the UTF-8 lead byte and the
+EXTEND prefix. Such a word appears with a constant group of partners.
 
 ## SEPARATOR
 
-The most common word. Runs get cut here. With `--separators N`, the N
-most common words all act as cut points.
+The separator is the most common word. The program cuts the runs at the
+separator. With `--separators N`, the N most common words are all cut
+points.
 
 ## RUNS and RUN FOLLOWS
 
-What sits between separators, counted, and which run follows which. In
-text: the words of the language and the common two-word sequences. In a
-binary at the byte level: the strings, function names, and the code
+The tables show what is between the separators, with counts, and the
+run that follows each run. In text, the runs are the words of the
+language and the common 2-word sequences. In a binary at the byte
+level, the runs are the strings, the function names, and the code
 between zero bytes.
 
 ## TIME
 
-The sequence read as time -- what came before and what came after. The
-"stretch" after a run is the typical distance to the next level's
-separator (on Alice at level 0, that's roughly a clause), so the unit
-comes from the signal itself.
+The table reads the sequence as time: what came before and what came
+after. The stretch after a run is the usual distance to the separator
+of the next level. On Alice at level 0, the stretch is approximately a
+clause. Thus the unit comes from the signal itself.
 
-- **ARROWS** -- pairs seen in both orders, counted each way: `said ->
-  Alice` with its count, then the count the other way. The order that
-  wins is an arrow. Plain text has few pairs that go both ways; a
-  machine trace has many.
-- **EFFECTS** -- what shows up in the stretch after a run more often than
-  it shows up overall, as `seen/expected` (check the row for `I` in the
-  Alice record). An effect is seen at least twice and at least twice its
-  usual rate (two make a pattern, same as with the classes). The list is
-  sorted by the difference, seen minus expected.
-- **CHAINS** -- the strongest effect, followed forward from the most
-  common runs: `a -> b -> c`.
+- **ARROWS**: pairs that occur in both orders, with a count for each
+  order. The table shows `said -> Alice` with its count, then the count
+  for the other order. The order with the higher count is an arrow.
+  Plain text has few pairs that go in both orders. A machine trace has
+  many.
+- **EFFECTS**: what occurs in the stretch after a run more often than
+  the same thing occurs in the whole signal, as `seen/expected`. An
+  example is the row for `I` in the Alice record. An effect occurs 2 or
+  more times, and at 2 or more times its usual rate. The rule is the
+  same as for the classes: 2 occurrences make a pattern. The list is in
+  order of the difference, seen minus expected.
+- **CHAINS**: the program follows the strongest effect forward from the
+  most common runs: `a -> b -> c`.
 
-None of this is a cause. It's the "before" and "after" of a signal that
-was only watched. A cause is an arrow that holds up when you actually
-*do* something -- `examples/agc-live/` presses a key and compares the
-run with the key press against the run without it. Same tables, read
-across the two.
+None of these tables shows a cause. The tables are the before and after
+of a signal that was only watched. A cause is an arrow that remains
+when you do something. The example `examples/agc-live/` presses a key.
+The example compares the signal with the key press against the signal
+without the key press. The tables are the same, read across the 2
+signals.
 
 ## MINT
 
-How many rounds the loop ran and how many parts each round made. The
-counts always fall to 0 -- that's the stopping rule. With a memory, a
-second line counts the remembered parts this signal produced again,
-round by round; on a signal read twice, nothing is minted and that line
-carries the work, falling to 0 the same way. A line saying
-`stopped: pool passed the cap` means the loop got cut off by the size
-limit and the parts tables are incomplete.
+The table shows the number of rounds of the loop and the number of
+parts that each round made. The counts always decrease to 0. That is
+the stop rule. With a memory, a second line counts the parts from
+memory that this signal made again, round by round. On a signal that
+the program read 2 times, the program mints nothing. The second line
+then carries the work, and decreases to 0 in the same way.
+
+A line that says `stopped: pool passed the cap` means that the size
+limit stopped the loop. The parts tables are then not complete.
 
 ## PARTS BY DENSITY
 
-Every part, ranked by how many other parts it sits inside. *whole* is
-how many times it appeared as a complete run on its own. A part with
-high density and zero whole count is a piece that's never a word by
-itself -- a letter, a punctuation mark, a stem, a machine instruction.
-A part with a high whole count and low density is a word that stands
-alone and doesn't build other things.
+The table shows each part, in order of the number of other parts that
+contain the part. *whole* is the number of times that the part occurred
+as a complete run. A part with a high density and a whole count of 0 is
+never a word by itself. Examples are a letter, a punctuation mark, a
+stem, and a machine instruction. A part with a high whole count and a
+low density is a word that stands alone and makes no other things.
 
 ## ENDINGS and BEGINNINGS
 
-The leftovers that turn one part into another, counted. `+ed 427` means
-the mint step found 427 pairs where one part was another plus `ed`
-tacked on the end. This list is the signal's own account of its suffixes
-and prefixes, punctuation included.
+The tables show the changes that make one part into a different part,
+with counts. `+ed 427` means that the mint step found 427 pairs. In
+each pair, 1 part was the other part plus `ed` at the end. This list is
+the account of the suffixes and the prefixes that the signal itself
+gives. The list includes punctuation.
 
 ## CLASSES
 
-Parts grouped by the exact set of changes they take. `[+ed, +ing]` with
-22 members is a class of stems. The label is the set of changes; the
-record doesn't give the class a name. Classes with many members are the
-real structure of the signal. Classes with two or three members are
-usually just two things that happened to land next to each other in the
-sorted pool.
+The table shows the parts in groups by the exact set of changes that
+the parts accept. `[+ed, +ing]` with 22 members is a class of stems.
+The label is the set of changes. The record does not give the class a
+name. Classes with many members are the true structure of the signal.
+Classes with 2 or 3 members are usually 2 things that were next to each
+other in the pool after the sort, by chance.
 
 ## CRYSTAL
 
-One entry per common run, pulling together everything from the tables
-above for that one thing: *made of*, *part of*, *changes*, *followed*,
-*preceded*. Think of it as the dictionary entry the signal writes for
-that run. Everything in it traces back to a count in an earlier table.
+The table has 1 entry for each common run. The entry collects all data
+from the tables above for that run: *made of*, *part of*, *changes*,
+*followed*, *preceded*. The entry is the dictionary entry that the
+signal writes for that run. Each value in the entry comes from a count
+in an earlier table.
 
-## What to trust and what not to
+## What to trust and what not to trust
 
-Every number in a record is a count of something that actually happened
-in the signal, or a ratio of two such counts. The record doesn't
-predict, estimate, or guess. When a table shows something that looks
-wrong -- a stem cut in a weird place, `for` grouped with `format` --
-that comes from the signal's own neighbor structure. The fix, if you
-want one, is in the input: more signal, or a different separator.
+Each number in a record is a count of something that occurred in the
+signal, or a ratio of 2 such counts. The record does not predict,
+estimate, or guess. A table can show something that looks wrong, for
+example a stem divided at an unusual position, or `for` in a group with
+`format`. Such a result comes from the structure of the signal itself,
+from the parts that are next to each other. If you want a correction,
+the correction is in the input: more signal, or a different separator.
 
-The lens changes how a word is displayed and nothing else. Two records
-of the same file with different lenses have the same tables.
+The lens changes only how the record shows a word. Records of the same
+file with 2 different lenses have the same tables.
