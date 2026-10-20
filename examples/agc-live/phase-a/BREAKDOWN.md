@@ -3,8 +3,9 @@
 2026-10-11. The machine is the real Apollo LM flight program in operation
 on the emulator. The AGC is the Apollo Guidance Computer, the computer
 that runs the flight program. The DSKY is the display and keyboard unit
-of the AGC. A socket connects the DSKY to the emulator. The loop
-(`loop.py`) can press 33 things: the 32 codes that the key channel
+of the AGC. A socket connects the DSKY to the emulator.
+
+The loop (`loop.py`) can press 33 things: the 32 codes that the key channel
 accepts, and PRO (proceed). Most of the 32 codes are not keys.
 
 A channel is a signal path with a number, between the AGC and the
@@ -38,14 +39,16 @@ the plan.
   and the map does not need the writes.
 - Two tests that the machine does on itself. The comparator is the tool
   of Discovery that finds the differences between 2 things. Both tests
-  use the comparator on the condition "no key pressed". The first test
-  is at the start: 16 windows with no action. A channel that has a
-  different value in any 2 of the 16 windows moves on its own. The
-  second test is at each step. A channel that changes in the second half
-  of the window moves on its own. The effect of the action must be
-  complete before the second half of the window. When the machine sees a
-  channel that moves on its own 1 time, the machine tags the channel as
-  a self-mover. The tag stays. A self-mover stays in the record. The
+  use the comparator on the condition "no key pressed".
+
+  The first test is at the start: 16 windows with no action. A channel
+  that has a different value in any 2 of the 16 windows moves on its
+  own. The second test is at each step. A channel that changes in the
+  second half of the window moves on its own. The effect of the action
+  must be complete before the second half of the window.
+
+  When the machine sees a channel that moves on its own 1 time, the
+  machine tags the channel as a self-mover. The tag stays. A self-mover stays in the record. The
   machine keeps a self-mover out of the context for decisions.
 
 The loop did not get these inputs:
@@ -89,8 +92,9 @@ key set a lamp to flash.
 
 The script `walk.py` takes a goal. The goal is a word that must be on
 the display. The walk finds each state of the machine that shows the
-word. The walk steps backward through the map to rest. The script
-`do.py` starts a fresh machine. The script presses the keys that the
+word. The walk steps backward through the map to rest.
+
+The script `do.py` starts a fresh machine. The script presses the keys that the
 walk gives. The script reads the display rows and checks the rows
 against the goal.
 
@@ -141,6 +145,7 @@ DSKY alone, with the inputs in the list above and no other input.
   budget makes a larger map.
 - Continuous state. The DSKY is discrete: the DSKY has a set of possible
   states that does not change. Thus states repeat, and the map fills.
+
   The state of a vehicle does not repeat. Phase B reads the values of
   the vehicle that change as a signal. Phase B looks at the fields that
   flipped, as in `nudge-run/`. Phase B does not put the values in the

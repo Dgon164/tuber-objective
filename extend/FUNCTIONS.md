@@ -65,9 +65,9 @@ signal (the whole count of the part is more than 0). Fragments such as
 `e` or `ucked` are the material of changes, not the things that changes
 act on.
 
-The letter `e` is inside more parts than almost each other part (see
-PARTS BY DENSITY in the record). The letter `e` takes almost each
-change. Thus the letter `e` gives no information about any 1 change.
+The letter `e` is inside more parts than almost all other parts (see
+PARTS BY DENSITY in the record). The letter `e` takes almost all
+changes. Thus the letter `e` gives no information about any 1 change.
 With the fragments, the number of functions and the number of sibling
 pairs were many times larger. The search took minutes and learned no new
 thing.
@@ -80,13 +80,14 @@ The **in-kind** of a function is the kind of thing that the function
 operates on. The program learns the in-kind from the parts where the
 function occurred: the other functions that those parts also take. The
 function `+s` occurred on many parts. Those parts also take `+ed`,
-`+ing`, `+'s`, and other functions. That set is the in-kind of `+s`.
+`+ing`, `+'s`, and other functions. The set of those functions is the
+in-kind of `+s`.
 
 The **out-kind** of a function is the kind of thing that the function
 makes. The out-kind is the set of functions that occurred on the parts
 that the function made. The function `+s` made plurals. Those plurals
-take `+,` and `+.` (word then comma, word then period). That set is the
-out-kind of `+s`. The function table in `alice.functions.txt` lists the
+take `+,` and `+.` (word then comma, word then period). The set of
+those functions is the out-kind of `+s`. The function table in `alice.functions.txt` lists the
 out-kind of each function.
 
 
@@ -122,7 +123,7 @@ directions:
   are *not* siblings of the function in the offer.
 - **Standing = same - different.**
 
-This is the key step. A part such as `a`, `it`, or `to` takes a very
+The standing is the key step. A part such as `a`, `it`, or `to` takes a very
 large number of changes, because the part is inside many words. The same
 count of the part is high. But the different count of the part is also
 high. The part matches each thing. Thus the part is not specially like
@@ -149,9 +150,9 @@ answer from the answer key against the hold.
   the sibling operates on". The flag stays. The next yes resets the
   flag.
 
-One level up: a **function** gets a flag when the answer key refused the
-outputs of the function 2 times and did not accept any output. The
-function makes a kind of thing that the answer key does not accept. The
+One level up: a **function** gets a flag in 1 case. The answer key
+refused the outputs of the function 2 times and did not accept any
+output. The function makes a kind of thing that the answer key does not accept. The
 function `+,` (word then comma) is the most clear case. The offers of a
 function with a flag rank lower by the count of refusals. A yes resets
 the flag.
@@ -165,9 +166,9 @@ Feedback acts on the producer (the hold), not on the record. The record
 is the result that Discovery found. The holds are the knowledge about
 the use of the record.
 
-The header and the NEGATIVE FLAGS section of `alice.functions.txt` give
-the number of negative flags at the end and the number of whole
-functions with a flag.
+The header of `alice.functions.txt` and the NEGATIVE FLAGS section give
+2 numbers. The first number is the negative flags at the end. The second
+number is the whole functions with a flag.
 
 
 ## The words that the program made
@@ -207,8 +208,8 @@ table is the result, not the search. For each function, the table gives:
 
 Read `+s`: the largest number of words and the largest number of
 refusals. The out-kind of `+s` is `+,`, `+.`, `+\n`. The outputs of `+s`
-usually come before punctuation. That is correct: plurals often end
-clauses.
+usually come before punctuation. The result is correct: plurals often
+end clauses.
 
 Read the functions with a flag. Most of them are punctuation
 attachments: `+,` (word then comma), `\n+` (newline then word), `+.`
@@ -249,13 +250,13 @@ Each part of this system is one idea at a different scale:
   NOT. The flag has a set condition (2 answers of no, no yes) and a
   reset condition (a yes).
 - **Standing** is the comparator in both directions, same minus
-  different. The standing is a number for the degree to which this part
-  is like the kind of thing that this function operates on.
+  different. The standing is a number. The number shows how much this
+  part is like the kind of thing that this function operates on.
 - **Layers**: the record is layer 0, the functions are layer 1, and the
   siblings and paths are layer 2. Each layer keeps a total that the
   layer updates.
-- **Feedback** changes the producer (the hold), not the record. That is
-  feedback, not recurrence. The record is the result that Discovery
+- **Feedback** changes the producer (the hold), not the record. The
+  change is feedback, not recurrence. The record is the result that Discovery
   found. The holds are the knowledge about the things that operate.
 
 
@@ -298,4 +299,4 @@ result of the crystal on the signal. The out-kind must carry the
 functions that the *new* words take. The out-kind must get an update
 each time the program makes a new word.
 
-That is the next layer.
+The out-kind with updates is the next layer.

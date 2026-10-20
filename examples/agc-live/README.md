@@ -91,7 +91,9 @@ The 3 commands are 3 steps:
 The script `build.sh` compiles `yaAGC` and `yaYUL` with gcc. The compile
 step needs no other tool. The script assembles `Luminary099/MAIN.agc`
 into `MAIN.agc.bin`. The file `MAIN.agc.bin` is the rope that the
-emulator loads. The rope is the same program as `examples/agc/input/
+emulator loads.
+
+The rope is the same program as `examples/agc/input/
 luminary099.rope`. The file in `examples/agc/input/` packs 15 bits in
 each word. The version of the emulator uses 16 bits in each word, with a
 parity bit. Thus the 2 files are not the same byte for byte.
@@ -238,8 +240,9 @@ slow when the only task is to make a trace.
 2. **Read set and write set for each subroutine.** The call structure is
    in the record of `examples/agc/` (`TC BANKCALL` and its targets). To
    cut a signal is to divide the signal into parts at a boundary. Cut
-   the write trace at the call boundaries. The write set of a part is
-   the memory that the part writes. The needs of a part are the memory
+   the write trace at the call boundaries.
+
+   The write set of a part is the memory that the part writes. The needs of a part are the memory
    that the part reads before the part decides where to go. Match the
    reads of 1 routine against the writes of each other routine. The
    result is the order that the routines must follow.
@@ -261,8 +264,9 @@ slow when the only task is to make a trace.
 Stage 3 is complete in `nudge-run/`. The comparator compared 2 flights
 and found the chain from the pulses to the jets to the motion. The
 backward walk is complete (`walk.py`, `launch.py`). The walk ran on the
-DSKY (`phase-a/`) and on the pad (`phase-c/`). Stages 1 and 2 are not
-complete. Stage 1 is the opcodes by effect. Stage 2 is the read set and
+DSKY (`phase-a/`) and on the pad (`phase-c/`).
+
+Stages 1 and 2 are not complete. Stage 1 is the opcodes by effect. Stage 2 is the read set and
 the write set of each routine, from the write trace.
 
 ## Sources
@@ -302,8 +306,10 @@ the write set of each routine, from the write trace.
   Discovery operates on the addresses.
 - Note: a full descent at real time takes approximately 12 minutes. At
   20 times real time, a full descent takes less than 1 minute and writes
-  approximately 600 MB of trace. The mint of Discovery is the step that
-  finds the sequences that repeat. To mint a part is to make a new part
+  approximately 600 MB of trace.
+
+  The mint of Discovery is the step that finds the sequences that
+  repeat. To mint a part is to make a new part
   from 2 parts that have the same start or the same end. The mint does
   1 sort in each round and is pure Python. Thus cut the trace into parts
   (for each subroutine, or for each time window) before you read the

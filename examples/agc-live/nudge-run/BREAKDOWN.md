@@ -18,11 +18,11 @@ The comparator found the chain. The method follows.
 
 The full list of inputs:
 
-- The 2 flights, 1 with a nudge and 1 without a nudge. This is the
-  design of the experiment.
+- The 2 flights, 1 with a nudge and 1 without a nudge. The 2 flights
+  are the design of the experiment.
 - The window: 10 s before the first pulse from outside got to the
-  computer, and 90 s after. A channel is a numbered signal path between
-  the computer and the hardware. The start came from the signal itself
+  computer, and 90 s after. A channel is a signal path with a number,
+  between the computer and the hardware. The start came from the signal itself
   (the first counter packet in the channel trace). No person picked the
   start.
 - Each record without the clock. The clock was removed from each record
@@ -64,14 +64,15 @@ The nudge made the number of distinct memory writes 3 times larger. The
 nudge made the number of channel parts (sequences that repeat) 12 times
 larger. The vehicle rows show the other half of the result. In the quiet
 flight, each row is the same (no field changes). Thus there is only 1
-distinct word. In the flight with the nudge, almost each row is
+distinct word. In the flight with the nudge, almost all rows are
 different.
 
 The mint is the step of Discovery that finds the sequences that repeat.
 To mint a part is to make a new part from 2 parts that have the same
 start or the same end. Thus the mint has no 2 rows to match. A thing in
-continuous motion has no words that repeat. That is the time case in
-`notes/open.md`. Step 3 below is the answer to the time case.
+continuous motion has no words that repeat. The continuous motion is
+the time case in `notes/open.md`. Step 3 below is the answer to the
+time case.
 
 ## Step 2. The bridge: the things in the flight with the nudge and not in the quiet flight
 
@@ -101,9 +102,9 @@ RERRCALC  SCALEE  CALCPERR  P-RATE  Q-RATE  STILLRCS  SCALEDOT  TJETLAW
 DACLOOP  ERRTEST  R-RATE  ROTORQUE  RCS  QRAXIS
 ```
 
-Only in the quiet flight: `NQTRAPS`, `NRTRAPS`, `NPTRAPS`. These are
-the idle records of the autopilot for "nothing to respond to". The idle
-records stop when the autopilot has work to do.
+Only in the quiet flight: `NQTRAPS`, `NRTRAPS`, `NPTRAPS`. The 3
+routines are the idle records of the autopilot when the autopilot has
+no work. The idle records stop when the autopilot has work to do.
 
 **Channel packets.** The flight with the nudge has 254 distinct packets
 that the quiet flight does not have:
@@ -128,8 +129,8 @@ the nudge as the nudge gets to the computer, 5,817 pulses. The cell
 `OMEGA`, `DYERROR`, and `DZERROR` are the rate cells and the error cells
 of the autopilot.
 
-The routines `TJLAW`, `TJETLAW`, and `TJCALC` compute the times at which
-the jets fire. Channel 013 is the control word of the autopilot. Channel
+The routines `TJLAW`, `TJETLAW`, and `TJCALC` calculate the fire times
+of the jets. Channel 013 is the control word of the autopilot. Channel
 005 is the jet commands that go out to the vehicle. The comparator put
 the full reaction-control autopilot on the side of the nudge only, cell
 by cell and routine by routine. The cause: those things occurred in 1
@@ -167,10 +168,11 @@ The rows with a flip of channel 005 (jet commands):
    2  ay wy wz jets5 cdu_sent
 ```
 
-This is the last link. In the rows with a change of channel 005 of the
-computer, the jet field of the vehicle also changed. In the same rows,
-the turn rates `wy` and `wz` also changed. The field order was set
-before the run. No input gave the identity of each field. The only
+The jet rows are the last link. In the rows with a change of channel
+005 of the computer, the jet field of the vehicle also changed. In the same rows,
+the turn rates `wy` and `wz` also changed.
+
+The field order was set before the run. No input gave the identity of each field. The only
 question for the comparator was "these fields change in the same
 100 ms". The comparator put the jet channel, the jet field, and the
 turn rates together.
@@ -183,8 +185,8 @@ flight in sequence:
 - then hundreds of rows of `ay cdu_sent`, with jet rows at intervals
   that become longer
 
-That is the nudge, the drift, the jet fires, and the damping, as 1
-continuous run.
+The sequence is the nudge, the drift, the jet fires, and the decrease
+of the rotation, as 1 continuous run.
 
 ## Step 3b. The vehicle rows at a smaller frame
 
@@ -212,9 +214,11 @@ makes each field 1 word. Then repeats appear:
   members, `fa5e fa3d fa53 fa48 f894`. The members are 5 rows with
   `0004` in the field before and `00b1` in the field after. Only this 1
   field is different. The classes `{0.1}` to `{0.5}` have the same
-  shape. Through the lens, the neighbors that do not change are `ax` and
-  `az`. The field in motion is `ay`, the Y angle. That is exactly the
-  axis of the nudge. No input said Y.
+  shape.
+
+  Through the lens, the neighbors that do not change are `ax` and
+  `az`. The field in motion is `ay`, the Y angle. The Y angle is exactly
+  the axis of the nudge. No input said Y.
 
 At 8 bits (`--frame 8`), the result is finer: 89 classes at level 1.
 
@@ -226,20 +230,26 @@ same form. The fold check found that the 2 halves were different, so the
 frame step did not fold. For a signal of rows, 208 is the wrong frame
 for the mint, but the correct frame to see the layout.
 
-Open task: when the frame that the frame step chose has no words that
-repeat, try a read at the next width down with words that repeat. To cut
-a signal is to divide the signal into parts at a boundary. That is the
-same signal at a finer cut. The records:
+Open task: the frame that the frame step chose can have no words that
+repeat. In that case, try a read at the next width down that has words
+that repeat. To cut a signal is to divide the signal into parts at a
+boundary. The next width down is the same signal at a finer cut. The
+records:
 `held-vehicle.bin.frame16.record.txt`,
 `held-vehicle.bin.frame8.record.txt`.
 
 ## The chain, backward
 
-The vehicle rates change <-- the jet field of the vehicle changes <--
-channel 005 changes <-- `TJLAW` / `TJETLAW` / `TJCALC` write `FIREFCT`,
-`DAPTREG6` <-- `P-RATE`, `Q-RATE`, `QERRCALC` write `EDOT`, `OMEGA*`,
-`D*ERROR` <-- the pulses from channel 233 write `CDUY` <-- pulses from
-outside.
+Each link in the list comes from the link below the link:
+
+1. The vehicle rates change.
+2. The jet field of the vehicle changes.
+3. Channel 005 changes.
+4. `TJLAW`, `TJETLAW`, and `TJCALC` write `FIREFCT` and `DAPTREG6`.
+5. `P-RATE`, `Q-RATE`, and `QERRCALC` write `EDOT`, `OMEGA*`, and
+   `D*ERROR`.
+6. The pulses from channel 233 write `CDUY`.
+7. The pulses come from outside.
 
 Each link in the chain is 1 of 2 things. The first thing is a set of
 words that the comparator put on the side of the nudge only. The second

@@ -15,8 +15,11 @@ of the astronaut that operate without the computer:
 
 The script `launch.py` is the loop. The loop presses a control. The loop
 records each signal. The loop compares the signals against the memory.
-The loop keeps each result. The loop predicts. When the loop gets a
-goal, the loop walks its own map backward from the goal to a control.
+The loop keeps each result. The loop predicts.
+
+When the loop gets a goal, the loop walks its own map backward from the
+goal to a control.
+
 The loop got no information about the function of a control, the
 meaning of an instrument, or the laws of physics.
 
@@ -49,11 +52,13 @@ The inputs are the list of Phase A, and:
   200 m, and turn rates less than 0.5 deg/s.
 - Two definitions that the machine applies to each field. The
   comparator is the tool of Discovery that finds the differences between
-  2 things. Both definitions use the comparator. A field *moves* in a
-  window if the field changed in more than 1 row. The definition also
+  2 things. Both definitions use the comparator.
+
+  A field *moves* in a window if the field changed in more than 1 row. The definition also
   gives the direction. The definition separates a true trend from a
-  1-time jump. A change in 1 row only is a *jump*. A field that moved at
-  any time is continuous. For a continuous field, only the direction (up
+  1-time jump. A change in 1 row only is a *jump*.
+
+  A field that moved at any time is continuous. For a continuous field, only the direction (up
   or down) is part of the state. A field that only jumped gives its
   value to the state.
 - Size limits. The channel read at each step is off. A channel is a
@@ -76,8 +81,9 @@ The loop did not get these inputs:
 
 The vehicle model starts on the pad in each life. The memory continues
 from life to life. In each state, the loop tried the action with the
-least tries. The loop found 43 states and 922 transitions. The loop made
-this effects table (`effects-table.txt`). The lens is the tool that
+least tries. The loop found 43 states and 922 transitions.
+
+The loop made this effects table (`effects-table.txt`). The lens is the tool that
 finds the name of a code. The names come from the lens. The counts come
 from the machine:
 
@@ -112,17 +118,31 @@ One roll pulse in flight has 3 effects:
 
 The DSKY codes have no effect on any vehicle instrument, at any time.
 Thus the loop found the thrust, the propellant burn, and the hand
-controller. The loop found these from presses and observation.
+controller. The loop found the 3 things from presses and observation.
 
 The machine also sorted the fields without help. The machine saw 8
-fields in continuous motion: an angle, a rate, the altitude, the
-vertical speed, a jet word, the pulse counts, and the propellant. The
-other fields only jump: the thrust, armed, engine, and the other angles.
+fields in continuous motion:
+
+- an angle
+- a rate
+- the altitude
+- the vertical speed
+- a jet word
+- the pulse counts
+- the propellant
+
+The other fields only jump:
+
+- the thrust
+- armed
+- engine
+- the other angles
+
 The other angles did not move because the loop tried pitch and yaw only
 on the ground. On the ground, the legs hold the vehicle at rest.
 
 The numbers in parentheses in the table are confounds. A confound is a
-case in which the correlation can give a false result. The table shows
+case where the correlation can give a false result. The table shows
 the confounds as they are. Two times, the altitude started to move in
 the same window as an "engine on" or a "throttle up". Both times the
 credit was correct: the engine or the extra notch lifted the vehicle.
@@ -135,7 +155,7 @@ separate the true effects from chance: 13 of 13 against 5 of 64.
 
 In the exploration, the vehicle lifted off 2 times on a fourth throttle
 notch and came back down hard (179 and 152 m/s impact). No part of the
-explorer responds to the impact. This is correct.
+explorer responds to the impact. The explorer is correct.
 
 ## The goal phase: 22 presses
 
@@ -195,8 +215,9 @@ amount different from life to life.
 - The map had transitions that occurred 1 time. An example: engine on
   lifted the vehicle in a life with almost no propellant. The walk
   followed those transitions to dead ends. The rule now: the walk
-  prefers the transition that usually follows. That is a transition that
-  the loop saw 2 times or more, and in half of the cases or more. The
+  prefers the transition that usually follows. The usual transition is
+  a transition that the loop saw 2 times or more, and in half of the
+  cases or more. The
   walk uses a transition that occurred 1 time only as the last option.
 
 ## The limits
@@ -215,7 +236,7 @@ amount different from life to life.
   loop did not read the writes and the channels at each step. The writes
   and the channels are too large. The chain from a DSKY key to a routine
   to a channel to the vehicle is on the disk. The nudge run found that
-  chain. The chain is not in the working state of this loop.
+  chain. The chain is not in the state that this loop uses.
 - The last option of the walk ("direct") uses the raw effect counts. For
   that reason, DSKY code 0 got 1 press here. The correct check for the
   last option is the prediction record. The walk does not do that check

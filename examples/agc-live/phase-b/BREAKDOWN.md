@@ -83,8 +83,10 @@ inputs, not help from outside.
   ran in that period. Thus the baseline tagged the display (010) and the
   channels 011, 012, 014, 030 as self-movers. The context lost the DSKY
   for the full run: 45 pairs of state and action, against the 232 pairs
-  of Phase A. The correction: the baseline must wait until the machine
-  no longer changes on its own. Only then can the baseline decide the
+  of Phase A.
+
+  The correction: the baseline must wait until the machine no longer
+  changes on its own. Only then can the baseline decide the
   meaning of "changes on its own". In short: loop until the machine is
   stable, then run the baseline. This run did not loop until stable.
 - **The clock.** The 136 s before impact is only 14 steps at this dwell
