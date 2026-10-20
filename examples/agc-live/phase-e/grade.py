@@ -103,7 +103,7 @@ class Model:
         self.fitted = False
         self.mean = np.zeros(NFIELD); self.std = np.ones(NFIELD)
         self.X = None; self.Y = None; self.Z = None                     # drift samples: rows, changes, standardized rows
-        self.K = 30; self.LAM = 2.0; self.NMAX = 1500
+        self.K = 50; self.LAM = 20.0; self.NMAX = 1500
         self.noise = np.ones(NFIELD)
         self.dmax = np.ones(NFIELD)
         self.jump_rows = []; self.jump_vals = []; self.jump_act = []     # presses: the row, the jump, the action
@@ -194,7 +194,10 @@ class Model:
                 S.append(rows[s + self.step_rows] - rows[s])
         if S:
             S = np.array(S)
-            self.best_rate[:, 0] = np.maximum(-S.min(0), 0); self.best_rate[:, 1] = np.maximum(S.max(0), 0)
+            for k in range(NFIELD):
+                down = -S[:, k][S[:, k] < 0]; up = S[:, k][S[:, k] > 0]
+                self.best_rate[k, 0] = np.percentile(down, 90) if len(down) else 0.0
+                self.best_rate[k, 1] = np.percentile(up, 90) if len(up) else 0.0
         self.fitted = True
         acts = collections.Counter(self.jump_act)
         self.summary = (f'{len(X)} drift samples, {len(self.jump_rows)} presses, {len(self.event_rows)} events, '
@@ -340,7 +343,8 @@ class Model:
         return out
 
     def grade(self, rows_q, cons, kept):
-        """presses to go: for each constraint not met, the gap over the most that field has moved in a step"""
+        """presses to go: for each constraint not met, the gap over a one-step change that field sustains (the 90th
+        percentile of its one-step changes that way)"""
         g = np.zeros(len(rows_q))
         for k, op, val in cons + kept:
             x = rows_q[:, k]
@@ -550,6 +554,11 @@ def main():
             if top[2] == 0 and top[0] == 0 or top[:2] < nothing[:2] or (top[:2] == nothing[:2] and top[2] <= nothing[2] - 1):
                 plan = list(cands[b]); action = plan[0][0] if plan else WAIT
                 why = f'plan[{scored[b][1]}] {plan_text(plan)}'
+            elif plan and scored[1][0][:3] <= nothing[:3]:
+                # the plan from last step is still no worse than doing nothing: keep it
+                action = plan[0][0]; why = f'plan[{scored[1][1]}] {plan_text(plan)}'
+            elif row[6] > 0 and step % 10 != 0:
+                plan = []; why = 'wait'; action = WAIT
             else:
                 plan = []
             # a single press the model says loses a phase or kills is not explored either
@@ -573,6 +582,8 @@ def main():
             presses.append((p0, action)); ctl.sendall(L.packet(ACTIONS[action][1], 0))
         pause(); died, reborn = read()
         plan = shift(plan) if why.startswith('plan') else []
+        if why == 'wait':
+            why = 'wait (in flight, nothing better; exploring every tenth step)'
         r = ins.last_row if not (ins.dead or died) else None
         where = '' if r is None else f'alt {r[6] * 10:7.0f} vx {r[7] / 10:5.0f} vz {r[8] / 10:5.0f} pitch {r[1] / 100:6.1f} st {r[17] + 1:.0f} low {r[18] / 10:6.0f}km high {r[19] / 10:6.0f}km'
         say(f'step {step:4d}  a{attempt:<2d} p{phase_i + 1}  grade {g_now:8.0f}  {aname(action):13s} {where}  {why[:90]}{"  DEAD" if died else ""}  {time.time() - t0:5.0f}s')
