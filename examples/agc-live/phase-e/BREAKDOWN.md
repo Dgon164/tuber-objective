@@ -95,8 +95,87 @@ own.
 
 ## What happened
 
-todo: runs in progress.
+Four launches of the two runs, with the loop changed between them.
+No launch completed the mission in either run. Phase D's loop, with
+the flight plan, completed it 62 times in 63 attempts.
+
+| launch | steps each | flight plan: attempts, best phase of 5 | bare: attempts, best low point | what was wrong, fixed before the next |
+|---|---|---|---|---|
+| 1 | 2,000 | 22, phase 2 twice | 17, never above the ground | a vehicle given up on the pad was recorded as a death, so the pad graded as fatal and any press beat doing nothing; plans were judged on the current phase only; exploration could press anything |
+| 2 | 2,000 | 23, phase 2 twice | 17, lowest point −1,590 km | an abort rule for a lost exact target fired on "engine off", an end target the engine has to move away from first |
+| 3 | 2,200 of 3,000 | 22, phase 2 twice | 21, −1,457 km | exploration still pressed `stage` on the pad: the guard compared only phases-left and dead-or-not |
+| 4 | 3,000 | 34, phase 2 eight times | 24, −1,511 km | see below |
+
+Launch 4, flight plan, `runs/E-plan.log`, 34 attempts in 2.6 hours:
+
+```
+reached nothing   4   (3 on the pad, 1 at 10 m)
+lift-off only    22   (crashed 13, called off 9)
+the turn too      8   (crashed 6, called off 2)
+burnout, staging, orbit   0
+```
+
+Lift-off is planned, not explored, from attempt 4 on: arm, engine on,
+throttle up four times, in 6 to 8 presses. The turn is reached by
+tumbling. In two of the three turns examined, the pitch reading entered
+108 to 116 degrees with the rate at zero while the vehicle was already
+falling at 270 m/s, after roll and yaw presses had swung the reading
+through the window. The one sound turn, attempt 22 (pitch 111 degrees,
+climbing at 178 m/s), was followed by nine presses, five of them
+exploration, the last of which was `stage` at 29 km; that lost the
+burnout phase's "stage 0" and the attempt was called off.
+
+Launch 4, bare mission, `runs/E-bare.log`, 24 attempts: 14 ended on
+the pad, called off after 150 steps; 7 crashed; 3 ran out of propellant
+with the lowest point of the path at −1,684, −1,665 and −1,511 km. The
+orbit needs +10 km. Across all four launches the best was −1,457 km.
+
+The model at the end of launch 4 (flight plan): 1,500 drift samples
+kept, 2,785 presses recorded, 18 deaths, ground fatal above 10.1 m/s
+(the vehicle's rule is 10), and no event ever recorded: the first stage
+was never burned out in any attempt.
+
+## What the results say
+
+- The pieces work as pieces. The jump table plans a lift-off in six
+  presses. The ground rule is learned to within a tenth of a metre per
+  second. Plans with amounts are found and executed and re-planned.
+- The grade divides each gap by the biggest one-step change ever seen.
+  For propellant, the biggest change ever seen is the drop when a stage
+  is dropped, so the grade reads "burnout is one press away" when it is
+  seventy steps of burning away. No plan delivers it, the loop falls
+  back to exploring, and exploring in the middle of a good flight is
+  what wrecked attempt 22. The rate has to be one the vehicle can
+  sustain.
+- The local line through nearby rows extrapolates along slopes it has
+  no business trusting. The planner believed yaw and roll pulses helped
+  (launch 3: 473 presses of −yaw against 154 of throttle up), pressed
+  them, and the new rows carried the same noise. More ridge toward the
+  flat line and more neighbours are the plain remedy; a model that
+  checks its own predictions against what followed is the real one.
+- The bare mission has a trap the grade cannot see. Pressing `stage` on
+  the pad lights the fixed-thrust second stage at once, and those
+  flights get the best grades, so the outcome credit steers exploration
+  into it. The second stage alone has about 1,350 m/s and orbit needs
+  about 1,650 sideways. Nothing in the targets says that the 5,000 kg
+  of first-stage propellant is the resource being thrown away; the
+  flight plan said so ("stage 0" during the burn), the bare mission does
+  not. And since the first stage was never burned out, the model has no
+  record of what a full two-stage ascent looks like, so no plan can
+  imagine one.
+- The flight plan's targets can be met by a tumble. Phase D's loop
+  never found that out because it only ever replayed one path. This
+  loop searches, and a search finds the letter of a target.
 
 ## Not done
 
-todo
+- No orbit. Four launches, 0 of 93 attempts with the flight plan, 0 of
+  79 without.
+- The three changes the results call for are not made: a sustained
+  rate in the grade; a model that discounts its own slopes where its
+  predictions keep failing; no exploration in the middle of a flight
+  that a plan is carrying.
+- The second measure (`prefer`) has never come into play, since no plan
+  reached the end.
+- The step is 5 seconds and the planning costs about 3 seconds of
+  wall clock per step, so a launch is two and a half hours.
