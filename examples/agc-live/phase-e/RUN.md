@@ -31,6 +31,7 @@ pip install -r examples/agc-live/phase-e/requirements.txt
 | `examples/agc-live/phase-e/transfer.sh` | runs every goal from an earlier run's record, then from nothing. |
 | `examples/agc-live/*/BREAKDOWN.md` | what went in, what the loop does, what happened, what it took. |
 | `examples/agc-live/*/runs/*.log` | the logs of the runs the write-ups describe (phase E: `E5-plan.log`, `E5-bare.log`, `E6-plan.log`, `E8-bare.log`). |
+| `examples/agc-live/phase-e/runs/E8-bare/`, `runs/E6-plan/` | the records (`memory.pkl`, `vehicle.out`) of launches 8 and 6, for `--memory` and `transfer.sh`. |
 
 ## Phase D (the one that reaches orbit)
 
@@ -79,6 +80,7 @@ goal. To run all five goals from a record and then from nothing:
 
 ```
 bash transfer.sh OLD_RUN_DIR OUT_DIR 400
+bash transfer.sh runs/E8-bare OUT_DIR 400      # from the record shipped with the repository
 ```
 
 That is ten runs of 400 steps, run one after another: about three
