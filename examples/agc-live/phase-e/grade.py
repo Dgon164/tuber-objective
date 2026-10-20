@@ -119,7 +119,7 @@ class Model:
         z = (rows - self.mean) / self.std
         return z * self.wz
 
-    def fit(self, rows, alive, attempt, presses, step_starts):
+    def fit(self, rows, alive, attempt, presses, step_starts, aborts=()):
         """rows: all rows seen (N x NFIELD); alive: bool per row; attempt: int per row; presses: list of (row
         index of the step start, action); step_starts: row index of every step start"""
         rows = np.asarray(rows, float)
@@ -175,7 +175,7 @@ class Model:
         # alive and dead rows, for the imagination to tell where it dies
         self.label_rows = []; self.label_dead = []
         for i in range(1, N):
-            if alive[i - 1] and not alive[i]:
+            if alive[i - 1] and not alive[i] and i not in aborts:        # a row mission control gave up on is not a death
                 self.label_rows.append(rows[i - 1]); self.label_dead.append(True)
         every = max(25, N // 400)
         for i in range(0, N, every):
@@ -184,7 +184,7 @@ class Model:
         # the ground: the slowest arrival that killed, the fastest that did not. A row is an arrival at the
         # ground if the next row would be there at its speed (altitude in 10 m, speed in 0.1 m/s, rows 0.1 s apart)
         ground = [(abs(rows[i - 1][8]), not alive[i]) for i in range(1, N)
-                  if alive[i - 1] and rows[i - 1][6] <= abs(rows[i - 1][8]) / 1000 + 1 and (not alive[i] or rows[i][6] <= 0)]
+                  if alive[i - 1] and i not in aborts and rows[i - 1][6] <= abs(rows[i - 1][8]) / 1000 + 1 and (not alive[i] or rows[i][6] <= 0)]
         fatal = [v for v, d in ground if d]; safe = [v for v, d in ground if not d]
         self.ground_fatal = None if not fatal else (min(fatal) + max([v for v in safe if v < min(fatal)] + [0])) / 2
         # the most a field has moved in one step, each way
@@ -208,10 +208,12 @@ class Model:
         d = ((Zq[:, None, :] - self.Z[None, :, :]) ** 2).sum(-1)
         k = min(self.K, len(self.Z))
         nb = np.argpartition(d, k - 1, axis=1)[:, :k]                       # P x k
+        dn = np.take_along_axis(d, nb, axis=1)
+        w = np.exp(-dn / (dn.max(1, keepdims=True) + 1e-9))                  # the nearest count most
         A = np.concatenate([np.ones((len(rows_q), k, 1)), self.Z[nb] - Zq[:, None, :]], axis=2)   # P x k x (1+F)
         Yn = self.Y[nb]                                                      # P x k x F
-        AtA = np.einsum('pki,pkj->pij', A, A) + self.LAM * np.eye(A.shape[2])[None]
-        AtY = np.einsum('pki,pkf->pif', A, Yn)
+        AtA = np.einsum('pki,pk,pkj->pij', A, w, A) + self.LAM * np.eye(A.shape[2])[None]
+        AtY = np.einsum('pki,pk,pkf->pif', A, w, Yn)
         W = np.linalg.solve(AtA, AtY)                                        # P x (1+F) x F
         return W[:, 0, :], W[:, 1:, :]
 
@@ -280,16 +282,19 @@ class Model:
             out |= np.array([self.label_dead[n] for n in near])
         return out
 
-    def run(self, row, plans, horizon, cons, kept, prefer):
-        """run every plan from this row for horizon steps. Returns per plan (primary, secondary, info)."""
-        P = len(plans)
+    def run(self, row, plans, horizon, phases, phase0, prefer):
+        """run every plan from this row for horizon steps, through the phases of the mission in order. Returns per
+        plan a cost tuple (phases still to reach, dead, best grade in the furthest phase, second measure) and a
+        note. Reaching the last phase gives (0, 0, 0, second measure)."""
+        P = len(plans); nph = len(phases)
+        cons_of = [ph[1] for ph in phases]
+        kept_of = [[c for q in range(i) for c in phases[q][1] if c[1] == '=='] for i in range(nph)]
         cur = np.tile(np.asarray(row, float), (P, 1))
-        # per plan: a cursor into its segments
         seg = [0] * P; left = [plans[p][0][1] if plans[p] else 0 for p in range(P)]
-        reached = [None] * P; dead_at = [None] * P; best = np.full(P, np.inf); at_reach = [None] * P; t_best = [0] * P
+        ph = [phase0] * P; best = np.full(P, np.inf); t_best = [0] * P
+        reached = [None] * P; dead_at = [None] * P; at_reach = [None] * P
         alive = np.ones(P, bool)
         for t in range(horizon):
-            # the press at this step, per plan
             for p in range(P):
                 if not alive[p] or reached[p] is not None:
                     continue
@@ -299,38 +304,39 @@ class Model:
                     a = plans[p][seg[p]][0]; left[p] -= 1
                     if a != WAIT:
                         cur[p] += self.jump(cur[p:p + 1], a)[0]
-            # drift, in sub-steps
             prev = cur.copy()
             for _ in range(self.SUB):
                 cur = cur + self.drift(cur)
                 cur += self.events(cur, prev)
-            # the ground is where it is
             cur[:, 6] = np.maximum(cur[:, 6], 0)
             died = self.dead(cur, prev) & alive
-            g = self.grade(cur, cons, kept)
+            G = np.array([self.grade(cur, cons_of[i], kept_of[i]) for i in range(nph)])     # phase x plan
             for p in range(P):
                 if not alive[p] or reached[p] is not None:
                     continue
                 if died[p]:
                     alive[p] = False; dead_at[p] = t; continue
-                if g[p] < best[p]:
-                    best[p] = g[p]; t_best[p] = t
-                if g[p] == 0:
-                    reached[p] = t; at_reach[p] = cur[p].copy()
-            if not alive.any() or all(r is not None or not alive[p] for p, r in enumerate(reached)):
+                while G[ph[p], p] == 0 and ph[p] < nph - 1:
+                    ph[p] += 1; best[p] = np.inf; t_best[p] = t
+                g = G[ph[p], p]
+                if g == 0:
+                    reached[p] = t; at_reach[p] = cur[p].copy(); best[p] = 0
+                elif g < best[p]:
+                    best[p] = g; t_best[p] = t
+            if not (alive & np.array([r is None for r in reached])).any():
                 break
         out = []
         for p in range(P):
+            remaining = nph - 1 - ph[p]
             if reached[p] is not None:
                 what, how = prefer
                 v = reached[p] + 1 if what == 'steps' else at_reach[p][what]
                 sec = v if how == 'least' else -v if how == 'most' else abs(v - how[1])
-                out.append((0.0, float(sec), f'reach {reached[p] + 1}'))
+                out.append(((0, 0, 0.0, float(sec)), f'reach {reached[p] + 1}'))
             elif dead_at[p] is not None:
-                out.append((2.0 + best[p] / 1e4, float(t_best[p]), f'dead {dead_at[p] + 1} best {best[p]:.0f}'))
+                out.append(((remaining, 1, float(best[p]), 0.0), f'phase {ph[p] + 1} best {best[p]:.0f} dead {dead_at[p] + 1}'))
             else:
-                # not reached: the lowest grade on the way, and how soon it got there
-                out.append((1.0 + best[p] / 1e4, float(t_best[p]), f'best {best[p]:.0f} at {t_best[p] + 1}'))
+                out.append(((remaining, 0, float(best[p]), float(t_best[p])), f'phase {ph[p] + 1} best {best[p]:.0f} at {t_best[p] + 1}'))
         return out
 
     def grade(self, rows_q, cons, kept):
@@ -427,6 +433,7 @@ def main():
     rows = []; alive = []; attempt_of = []; presses = []; step_starts = []
     attempt = 1
     tried = collections.Counter()
+    aborts = set()                      # row indices where mission control gave the vehicle up
 
     def read():
         """rows since the last read, live ones and the count of null ones, in order of arrival"""
@@ -487,7 +494,7 @@ def main():
             continue
         if step - att['progress'] >= max_attempt:
             say(f'step {step:4d}  attempt {attempt}  aborted: {max_attempt} steps without reaching phase {phase_i + 1}')
-            ctl.sendall(L.packet(VH.ABORT, 0)); pause(); died, reborn = read()
+            aborts.add(len(rows)); ctl.sendall(L.packet(VH.ABORT, 0)); pause(); died, reborn = read()
             if reborn:
                 rollover(last_cause())
             att['progress'] = step
@@ -502,7 +509,7 @@ def main():
             say(f'step {step:4d}  attempt {attempt}  MISSION COMPLETE in {step - att["start"]} steps, {sum(1 for p, a in presses if p >= step_starts[att["start"]])} presses: '
                 f'alt {row[6] * 10:.0f} m, vx {row[7] / 10:.0f} vz {row[8] / 10:.0f} m/s, low {row[18] / 10:.0f} km high {row[19] / 10:.0f} km, {row[14]:.0f} kg left')
             att['done'] = True
-            ctl.sendall(L.packet(VH.ABORT, 0)); pause(); died, reborn = read()
+            aborts.add(len(rows)); ctl.sendall(L.packet(VH.ABORT, 0)); pause(); died, reborn = read()
             if reborn:
                 rollover('mission complete')
             continue
@@ -515,14 +522,14 @@ def main():
         att['lost_since'] = min(att.get('lost_since', step), step) if lost else step
         if lost and step - att['lost_since'] >= 30:
             say(f'step {step:4d}  attempt {attempt}  aborted: {FIELD[lost[0]]} has only ever moved away from its target')
-            ctl.sendall(L.packet(VH.ABORT, 0)); pause(); died, reborn = read()
+            aborts.add(len(rows)); ctl.sendall(L.packet(VH.ABORT, 0)); pause(); died, reborn = read()
             if reborn:
                 rollover(last_cause())
             continue
         # ---- fit the model now and then
         if step % 25 == 0 and len(rows) >= 20 * step_rows:
             al = np.array(alive); R = np.array([r if a else np.zeros(NFIELD) for r, a in zip(rows, al)])
-            model.fit(R, al, np.array(attempt_of), presses, step_starts)
+            model.fit(R, al, np.array(attempt_of), presses, step_starts, aborts)
             if step % 100 == 0 and model.fitted:
                 say(f'step {step:4d}  model: {model.summary}')
                 for f in model.formulas(row):
@@ -530,24 +537,29 @@ def main():
         # ---- choose
         why = ''; action = WAIT
         g_now = model.grade(np.array([row]), cons, kept)[0] if model.fitted else float('nan')
+        avoid = set()
         if model.fitted:
             cands = [[], plan] + [[(a, 1)] for a in range(len(ACTIONS))]
             for _ in range(nplans):
                 cands.append(mutate(plan, rng, len(ACTIONS)) if (plan and rng.random() < 0.6) else random_plan(rng, len(ACTIONS)))
-            scored = model.run(row, cands, horizon, cons, kept, prefer)
-            order = sorted(range(len(cands)), key=lambda i: (scored[i][0], scored[i][1], len(cands[i])))
-            b = order[0]
-            if scored[b][0] == 0 or scored[b][0] < scored[0][0] - 1e-4:
+            scored = model.run(row, cands, horizon, phases, phase_i, prefer)
+            order = sorted(range(len(cands)), key=lambda i: (scored[i][0], len(cands[i])))
+            b = order[0]; nothing = scored[0][0]; top = scored[b][0]
+            # a plan is taken if it reaches the end, gets a phase further or avoids a death that doing nothing
+            # meets, or ends at least one press closer within the same phase
+            if top[2] == 0 and top[0] == 0 or top[:2] < nothing[:2] or (top[:2] == nothing[:2] and top[2] <= nothing[2] - 1):
                 plan = list(cands[b]); action = plan[0][0] if plan else WAIT
-                why = f'plan[{scored[b][2]}] {plan_text(plan)}'
+                why = f'plan[{scored[b][1]}] {plan_text(plan)}'
             else:
                 plan = []
+            # a single press the model says loses a phase or kills is not explored either
+            avoid = {a for a in range(len(ACTIONS)) if scored[2 + a][0][:2] > nothing[:2]}
         if not why:
             # explore: presses never made in a state like this first; then the ones whose attempts got closest
             key = state_key(row)
             def score(a):
                 c = credit.get((key, a))
-                return (tried[(key, a)] > 0, np.mean(c) if c else 0.0, rng.random())
+                return (a in avoid, tried[(key, a)] > 0, np.mean(c) if c else 0.0, rng.random())
             action = min(range(len(ACTIONS)), key=score)
             tried[(key, action)] += 1
             why = 'explore'

@@ -66,19 +66,32 @@ writes this grade from its own record.
 
 **A plan** is a list of presses with amounts: `engine on x1, throttle
 up x4, +pitch x1, wait 50, -pitch x1`. The loop runs each plan through
-its model for up to 120 steps, pressing where the plan says and letting
-the instruments move as the model says, and grades every step. A plan
-that reaches grade zero is judged by the second measure at that moment.
-One that does not is judged by the lowest grade it reached and how
-soon. One that dies is judged below all of those.
+its model for up to 100 steps, pressing where the plan says and letting
+the instruments move as the model says, and grades every step against
+the phase the imagined vehicle is in: when a phase's targets are all
+met in the imagination, the next phase's targets take over. A plan is
+judged first by how many phases it leaves unreached, then by whether
+it dies, then by the lowest grade it reached in the furthest phase,
+then by the second measure. So a plan that cuts the engine during the
+turn, which the turn's own targets do not mind, is judged by what that
+does to the burn and the orbit after it.
 
-Each step the loop tries about a hundred plans: doing nothing, the rest
-of the plan it chose last step, each single press, and variants made
-by changing an amount, swapping a press, adding or dropping one. If the
-best of them beats doing nothing, it makes that plan's first press,
-reads the instruments, and plans again from wherever it is. If nothing
-beats doing nothing, it explores: the press tried least often in a
-state like this one.
+Each step the loop tries about sixty plans: doing nothing, the rest of
+the plan it chose last step, each single press, and variants made by
+changing an amount, swapping a press, adding or dropping one. If the
+best of them reaches the end, gets a phase further than doing nothing,
+avoids a death that doing nothing meets, or ends at least one press
+closer, it makes that plan's first press, reads the instruments, and
+plans again from wherever it is. Otherwise it explores: among the
+presses the model does not say lose a phase or kill, the one never made
+in a state like this, then the one whose past attempts got closest.
+
+An attempt ends at death, at mission complete, after 150 steps without
+a new phase, or 30 steps after an exact target has been lost with
+nothing on record that ever moved it back. The vehicle is given up each
+time and the next attempt starts from the pad. A vehicle given up is
+not recorded as a death; the model learns deaths only from the vehicle's
+own.
 
 ## What happened
 
