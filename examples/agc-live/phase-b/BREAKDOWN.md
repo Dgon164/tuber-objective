@@ -41,8 +41,9 @@ of the loop changed these fields:
 
 The vehicle did not satisfy the full goal at any time. Thus there is no
 chain from the goal back to a key press. The record shows the parts of
-the goal that the vehicle did not satisfy: a horizontal speed (`vx`)
-less than 5, and a vertical speed (`vz`) less than 5 near altitude 0.
+the goal that the vehicle did not satisfy. The first part is a
+horizontal speed (`vx`) less than 5. The second part is a vertical speed
+(`vz`) less than 5 near altitude 0.
 
 The record shows the root cause directly. The vehicle starts at an
 altitude of 15 km and a horizontal speed of 1,690 m/s, with the engine
@@ -75,17 +76,17 @@ inputs, not help from outside.
 
 ## Two results of the run about the loop itself
 
-- **The transient at the start.** With the vehicle on the socket, the
-  computer runs the turn-on sequence of the IMU (the inertial
-  measurement unit) for the first 87 s. The display and some channels
+- **The transient at the start.** The IMU is the inertial measurement
+  unit. With the vehicle on the socket, the computer runs the turn-on
+  sequence of the IMU for the first 87 s. The display and some channels
   change on their own during the sequence. The baseline of 16 windows
   ran in that period. Thus the baseline tagged the display (010) and the
   channels 011, 012, 014, 030 as self-movers. The context lost the DSKY
   for the full run: 45 pairs of state and action, against the 232 pairs
   of Phase A. The correction: the baseline must wait until the machine
   no longer changes on its own. Only then can the baseline decide the
-  meaning of "changes on its own". That is: loop until the machine is
-  stable, then run the baseline. This run did not do this.
+  meaning of "changes on its own". In short: loop until the machine is
+  stable, then run the baseline. This run did not loop until stable.
 - **The clock.** The 136 s before impact is only 14 steps at this dwell
   time. On this vehicle model, no run is long enough to be useful until
   the engine can start. The engine cannot start without the loaded

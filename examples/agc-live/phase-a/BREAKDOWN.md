@@ -7,14 +7,14 @@ of the AGC. A socket connects the DSKY to the emulator. The loop
 (`loop.py`) can press 33 things: the 32 codes that the key channel
 accepts, and PRO (proceed). Most of the 32 codes are not keys.
 
-A channel is a numbered signal path between the AGC and the hardware.
-The loop gets no information about the code of each key, the channel of
+A channel is a signal path with a number, between the AGC and the
+hardware. The loop gets no information about the code of each key, the channel of
 the display, or the function of each code. The loop presses a thing. The
 loop records what the machine showed. The loop compares the result
 against the memory of the loop. The loop keeps each result.
 
-The loop picks the next press: the action that the loop has tried the
-least in the current state. Then `walk.py` reads the map that the loop
+The loop picks the next press: the action with the least tries in the
+current state. Then `walk.py` reads the map that the loop
 made. The walk goes backward from a goal to the key presses that get to
 the goal. Then `do.py` presses those keys on a fresh machine to check
 the plan.
@@ -29,9 +29,12 @@ the plan.
   sets the relay again. Each packet replaces the row that the top 4 bits
   of the packet name. The display *shows* the contents that the rows
   hold. The loop gets no information about the meaning of a row.
-- A dwell of 1 moment for each press (5 s of machine time), a step
-  budget of 250, and a size limit on the write trace for each step. The
-  write trace was off for this run. The writes made each step 13 s long,
+- Three limits:
+  - a dwell of 1 moment for each press (5 s of machine time)
+  - a step budget of 250
+  - a size limit on the write trace for each step
+
+  The write trace was off for this run. The writes made each step 13 s long,
   and the map does not need the writes.
 - Two tests that the machine does on itself. The comparator is the tool
   of Discovery that finds the differences between 2 things. Both tests
@@ -78,8 +81,9 @@ Thus the sequence is: VERB, digit, digit. The loop found the sequence by
 presses only. The loop did not get to ENTR in those states within the
 budget. The map shows this limit: the map has no ENTR.
 
-The loop found 3 self-movers: the 2 downlink channels (034, 035), at the
-start, and the lamp channel (163), after a key set a lamp to flash.
+The loop found 3 self-movers. The loop found the 2 downlink channels
+(034, 035) at the start. The loop found the lamp channel (163) after a
+key set a lamp to flash.
 
 ## The walk and the check
 
@@ -98,7 +102,7 @@ against the goal.
 | `77777` | -- | -- | "no context the machine has seen satisfies this" |
 
 Through the lens: V31, V2_, V91. The last row is the correct stop. A
-goal that the machine has not seen gets no plan. The walk does not make
+goal that the machine did not see gets no plan. The walk does not make
 a guess.
 
 The result has 3 parts. The map is "I understand this machine". The
@@ -133,18 +137,19 @@ DSKY alone, with the inputs in the list above and no other input.
 - Depth. With 33 actions for each state and a budget of 250, the loop
   gets to depth 3. The rule of the chooser is "try the action with the
   least tries in this state". The chooser has no cause to prefer 1 new
-  branch to a different new branch. This is correct. A larger budget
-  makes a larger map.
+  branch to a different new branch. The chooser is correct. A larger
+  budget makes a larger map.
 - Continuous state. The DSKY is discrete: the DSKY has a set of possible
   states that does not change. Thus states repeat, and the map fills.
   The state of a vehicle does not repeat. Phase B reads the values of
   the vehicle that change as a signal. Phase B looks at the fields that
   flipped, as in `nudge-run/`. Phase B does not put the values in the
-  context for decisions. Phase A does not do this.
+  context for decisions. Phase A does not read the values as a signal.
 - The loop records the write trace, but the loop did not read the write
   trace in this run. The write trace is too large. With the write trace,
   each transition can also carry the memory cells and the routines of
-  the transition. That is the "understand the code" half.
+  the transition. The memory cells and the routines are the "understand
+  the code" half.
 
 ## Files
 

@@ -210,9 +210,10 @@ The frame step compares a column with itself 1 row down. A signal with a
 time dimension has a second kind of same: a row against the row that
 comes before. The extension runs on the reservoir states (32 units, 1 row
 for each byte of Alice that goes through the network). The extension
-compares each row with the row before that row. A bit that changed between the 2 rows is
-a flip. The flips become a new signal. Discovery reads the flips like any
-other signal.
+compares each row with the row before that row.
+
+A bit that changed between the 2 rows is a flip. The flips become a new
+signal. Discovery reads the flips like any other signal.
 
 ```
 frame 32; 20000 rows; 19999 row-to-row comparisons

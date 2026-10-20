@@ -144,8 +144,8 @@ the record:
 - bit 16. The instruction word is 15 bits in a 16-bit slot.
 - bits 32-36. The erasable addresses are less than 4096, so the high
   bits are always 0.
-- bits 48 and 64. These are the parity positions of the old value and
-  the new value.
+- bits 48 and 64. Bits 48 and 64 are the parity positions of the old
+  value and the new value.
 
 Discovery read the layout directly from the signal.
 
@@ -161,8 +161,8 @@ memory is different: `...1400`, `...1402`, through `...1406`. The
 members are 1 routine that the program called 10 times, with a different
 argument each time. Discovery grouped the members from the trace alone.
 
-A channel is a numbered signal path between the AGC and the hardware.
-From the channel trace, the frame step picks 16. The true packet is 32
+A channel is a signal path with a number, between the AGC and the
+hardware. From the channel trace, the frame step picks 16. The true packet is 32
 bits, in 2 halves, each with a form that does not change. The widths 16
 and 32 get the same score, so the frame step takes the smaller width.
 The flag `--frame 32` reads whole packets. At each width, the WORDS
@@ -274,7 +274,7 @@ the write set of each routine, from the write trace.
   of 3 folders and 1 file from the project. The licence is GPL. See
   `virtualagc/COPYING`.
 - Luminary 099: the flight program of the Apollo 11 LM, public domain.
-  The Virtual AGC project transcribed the source.
+  The source is a copy that the Virtual AGC project made.
 - NASSP: https://github.com/orbiternassp/NASSP. NASSP is the LM and the
   CSM in the Orbiter space flight simulator, with the real AGC code
   inside.
@@ -294,7 +294,7 @@ the write set of each routine, from the write trace.
   tool is in the Virtual AGC repository but not in this folder. The tool
   needs wxWidgets. The script `channel.py` does the same job without the
   picture.
-- The build makes the symbol table `MAIN.agc.symtab`. The symbol table
+- The script `build.sh` makes the symbol table `MAIN.agc.symtab`. The symbol table
   is for the debugger of the emulator. The debugger can show the routine
   of an address. The symbol table is a help for the reader only, with
   the same standing as the display lens. The display lens is the tool

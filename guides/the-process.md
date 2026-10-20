@@ -457,9 +457,9 @@ that was a middle becomes the start or the end of a shorter part that
 remains. The sort of the next round puts that shorter part next to a part
 that shares the middle. The comparator then finds the middle.
 
-The program does not find a shared middle in only 1 case: the parts on
-both sides of the middle are all unique, and no round removes those
-parts. That case is a real
+The program does not find a shared middle in only 1 case. In that case,
+the parts on both sides of the middle are all unique, and no round
+removes those parts. That case is a real
 limit. Section 6 notes that limit.
 
 ### Real parts only (step 7: loop, soundness)
@@ -472,9 +472,8 @@ remain are the rest of the input after the removal of the shared part.
 The counts are exact: each collision that made a part is a real event in
 the pool in order.
 
-Classes work in the same way. A part goes into the same class as a second
-part for 1 reason: the mint step found the same set of changes on both
-parts. The changes are the same endings and the same starts. The group
+Classes work in the same way. A pair of parts goes into the same class
+for 1 reason: the mint step found the same set of changes on both parts. The changes are the same endings and the same starts. The group
 comes from the data, not from a rule that says what goes together.
 
 ### The permanent loss from a removal (step 8: keep all)
