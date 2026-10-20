@@ -553,7 +553,7 @@ def main():
             else:
                 plan = []
             # a single press the model says loses a phase or kills is not explored either
-            avoid = {a for a in range(len(ACTIONS)) if scored[2 + a][0][:2] > nothing[:2]}
+            avoid = {a for a in range(len(ACTIONS)) if scored[2 + a][0][:2] > nothing[:2] or scored[2 + a][0][2] > 2 * nothing[2] + 10}
         if not why:
             # explore: presses never made in a state like this first; then the ones whose attempts got closest
             key = state_key(row)
