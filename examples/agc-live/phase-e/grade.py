@@ -112,6 +112,8 @@ class Model:
         self.jump_only = np.zeros(NFIELD, bool)
         self.best_rate = np.zeros((NFIELD, 2))                          # most a field moved per step, down / up
         self.ground_fatal = None                                        # speed at the ground that killed; None: unknown
+        self.far = {}                                                   # per target: the farthest a reading has ever been from it
+        self.visited = None; self.visited_progress = None               # states passed through, and what the attempt got to from them
         self.summary = ''
     def standard(self, rows):
         """rows in standard units, with the jump-only fields counted three times over so that neighbours share
@@ -119,7 +121,7 @@ class Model:
         z = (rows - self.mean) / self.std
         return z * self.wz
 
-    def fit(self, rows, alive, attempt, presses, step_starts, aborts=()):
+    def fit(self, rows, alive, attempt, presses, step_starts, aborts=(), phases=None, progress_of=None):
         """rows: all rows seen (N x NFIELD); alive: bool per row; attempt: int per row; presses: list of (row
         index of the step start, action); step_starts: row index of every step start"""
         rows = np.asarray(rows, float)
@@ -198,6 +200,21 @@ class Model:
                 down = -S[:, k][S[:, k] < 0]; up = S[:, k][S[:, k] > 0]
                 self.best_rate[k, 0] = np.percentile(down, 90) if len(down) else 0.0
                 self.best_rate[k, 1] = np.percentile(up, 90) if len(up) else 0.0
+        # the loop's own scale for closeness: for each target, the farthest any reading has been from it
+        if phases:
+            live = rows[alive]
+            for name, cons in phases:
+                for k, op, val in cons:
+                    x = live[:, k]
+                    worst = x.min() if op == '>' else x.max() if op == '<' else x[np.abs(x - val).argmax()]
+                    self.far[(k, op, val)] = max(abs(val - worst), 1.0)
+        # what was reached from each state: every step's row, with the progress its attempt got to in the end
+        if progress_of:
+            vis = [(rows[s], progress_of[attempt[s]]) for s in step_starts if s < N and alive[s] and attempt[s] in progress_of]
+            if vis:
+                every = max(1, len(vis) // 2000)
+                vis = vis[::every]
+                self.visited = np.array([v for v, pr in vis]); self.visited_progress = np.array([pr for v, pr in vis])
         self.fitted = True
         acts = collections.Counter(self.jump_act)
         self.summary = (f'{len(X)} drift samples, {len(self.jump_rows)} presses, {len(self.event_rows)} events, '
@@ -295,7 +312,7 @@ class Model:
                    for i in range(nph)]
         cur = np.tile(np.asarray(row, float), (P, 1))
         seg = [0] * P; left = [plans[p][0][1] if plans[p] else 0 for p in range(P)]
-        ph = [phase0] * P; best = np.full(P, np.inf); t_best = [0] * P
+        ph = [phase0] * P; best = np.full(P, -np.inf); t_best = [0] * P
         reached = [None] * P; dead_at = [None] * P; at_reach = [None] * P
         alive = np.ones(P, bool)
         for t in range(horizon):
@@ -314,49 +331,62 @@ class Model:
                 cur += self.events(cur, prev)
             cur[:, 6] = np.maximum(cur[:, 6], 0)
             died = self.dead(cur, prev) & alive
-            G = np.array([self.grade(cur, cons_of[i], kept_of[i]) for i in range(nph)])     # phase x plan
+            C = np.array([self.closeness(cur, cons_of[i], kept_of[i]) for i in range(nph)])    # phase x plan
             for p in range(P):
                 if not alive[p] or reached[p] is not None:
                     continue
                 if died[p]:
                     alive[p] = False; dead_at[p] = t; continue
-                while G[ph[p], p] == 0 and ph[p] < nph - 1:
-                    ph[p] += 1; best[p] = np.inf; t_best[p] = t
-                g = G[ph[p], p]
-                if g == 0:
-                    reached[p] = t; at_reach[p] = cur[p].copy(); best[p] = 0
-                elif g < best[p]:
-                    best[p] = g; t_best[p] = t
+                while C[ph[p], p] >= 1 and ph[p] < nph - 1:
+                    ph[p] += 1
+                if C[ph[p], p] >= 1:
+                    reached[p] = t; at_reach[p] = cur[p].copy(); best[p] = nph
+            direct = np.array([ph[p] + C[ph[p], p] for p in range(P)])
+            learned = self.reached_from(cur, direct)
+            for p in range(P):
+                if alive[p] and reached[p] is None and learned[p] > best[p]:
+                    best[p] = learned[p]; t_best[p] = t
             if not (alive & np.array([r is None for r in reached])).any():
                 break
+        # the cost: reached the end (0) or not (1); then how far it got, as the phase and closeness it is judged to reach
+        # from the best state on its way (higher is better, so negated); then dead; then the second measure or how soon
         out = []
         for p in range(P):
-            remaining = nph - 1 - ph[p]
             if reached[p] is not None:
                 what, how = prefer
                 v = reached[p] + 1 if what == 'steps' else at_reach[p][what]
                 sec = v if how == 'least' else -v if how == 'most' else abs(v - how[1])
-                out.append(((0, 0, 0.0, float(sec)), f'reach {reached[p] + 1}'))
+                out.append(((0, -float(nph), 0, float(sec)), f'reach {reached[p] + 1}'))
             elif dead_at[p] is not None:
-                out.append(((remaining, 1, float(best[p]), 0.0), f'phase {ph[p] + 1} best {best[p]:.0f} dead {dead_at[p] + 1}'))
+                out.append(((1, -float(best[p]), 1, 0.0), f'got to {best[p]:.2f} dead {dead_at[p] + 1}'))
             else:
-                out.append(((remaining, 0, float(best[p]), float(t_best[p])), f'phase {ph[p] + 1} best {best[p]:.0f} at {t_best[p] + 1}'))
+                out.append(((1, -float(best[p]), 0, float(t_best[p])), f'got to {best[p]:.2f} at {t_best[p] + 1}'))
         return out
 
-    def grade(self, rows_q, cons, kept):
-        """presses to go: for each constraint not met, the gap over a one-step change that field sustains (the 90th
-        percentile of its one-step changes that way)"""
-        g = np.zeros(len(rows_q))
+    def closeness(self, rows_q, cons, kept):
+        """how well these rows line up with the targets: 1 when every target is met; each target short counts the
+        share of the farthest that reading has ever been from it. A kept target lost counts in full."""
+        if not cons + kept:
+            return np.ones(len(rows_q))
+        off = np.zeros(len(rows_q))
         for k, op, val in cons + kept:
             x = rows_q[:, k]
-            gap = np.where(x <= val, val - x + 1, 0) if op == '>' else np.where(x >= val, x - val + 1, 0) if op == '<' else np.abs(x - val)
-            if op == '==':
-                gap = np.where(gap < 0.5, 0, gap)
-            up = (op == '>') | ((op == '==') & (x < val))
-            rate = np.where(up, self.best_rate[k, 1], self.best_rate[k, 0])
-            g += np.where(gap > 0, gap / np.maximum(rate, 1e-9) + 1, 0)
-            g = np.minimum(g, 1e6)
-        return g
+            gap = np.where(x <= val, val - x + 1, 0) if op == '>' else np.where(x >= val, x - val + 1, 0) if op == '<' else np.where(np.abs(x - val) < 0.5, 0, np.abs(x - val))
+            off += np.minimum(gap / self.far.get((k, op, val), 1.0), 1.0)
+        return 1 - off / len(cons + kept)
+
+    def grade(self, rows_q, cons, kept):
+        """kept for the log: 0 when every target is met, else a count of targets' shares still short, times 100"""
+        return (1 - self.closeness(rows_q, cons, kept)) * 100 * len(cons + kept)
+
+    def reached_from(self, rows_q, direct):
+        """what the loop got to from states like these: the progress its attempt reached from the nearest state it has
+        passed through, adjusted by how much closer or farther the query is than that state was. Where it has passed
+        through nothing like it, the direct comparison stands."""
+        if self.visited is None:
+            return direct
+        near, dist = self.nearest(rows_q, self.visited, self.weights())
+        return self.visited_progress[near] + (direct - self.visited_direct[near])
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -476,7 +506,8 @@ def main():
     model = Model(step_rows)
     pause(); read()
     attempts = []
-    att = dict(start=0, reached=0, progress=0, max_alt=0, best_grade=float('inf'), pressed=set())
+    att = dict(start=0, reached=0, progress=0, max_alt=0, best_grade=float('inf'), pressed=set(), got=0.0)
+    progress_of = {}                             # attempt -> the phase and closeness it got to, for the table
     credit = collections.defaultdict(list)       # (state key, action) -> best grade of each attempt it was pressed in
     plan = []; phase_i = 0; step = 0; t0 = time.time()
     say(f'mission: ' + ' -> '.join(f'{n} [{"; ".join(f"f{k} {op} {v}" for k, op, v in c)}]' for n, c in phases) + f'; prefer {prefer}')
@@ -484,11 +515,12 @@ def main():
     def rollover(cause):
         nonlocal attempt, phase_i, att, plan
         att['end'] = step; att['cause'] = cause; attempts.append(att)
+        progress_of[attempt] = att['got'] if not att.get('done') else float(len(phases))
         for ka in att['pressed']:
-            credit[ka].append(att['best_grade'])
-        say(f'attempt {attempt} over: reached phase {att["reached"]} of {len(phases)}, max altitude {att["max_alt"] * 10:.0f} m, best grade {att["best_grade"]:.0f}, {cause}; attempt {attempt + 1} on the pad')
+            credit[ka].append(-att['got'])
+        say(f'attempt {attempt} over: reached phase {att["reached"]} of {len(phases)}, max altitude {att["max_alt"] * 10:.0f} m, got to {att["got"]:.3f}, {cause}; attempt {attempt + 1} on the pad')
         attempt += 1; phase_i = 0; plan = []
-        att = dict(start=step, reached=0, progress=step, max_alt=0, best_grade=float('inf'), pressed=set())
+        att = dict(start=step, reached=0, progress=step, max_alt=0, best_grade=float('inf'), pressed=set(), got=0.0)
 
     while step < budget:
         row = ins.last_row
@@ -534,7 +566,16 @@ def main():
         # ---- fit the model now and then
         if step % 25 == 0 and len(rows) >= 20 * step_rows:
             al = np.array(alive); R = np.array([r if a else np.zeros(NFIELD) for r, a in zip(rows, al)])
-            model.fit(R, al, np.array(attempt_of), presses, step_starts, aborts)
+            model.fit(R, al, np.array(attempt_of), presses, step_starts, aborts, phases, progress_of)
+            if model.visited is not None:
+                # the direct comparison of each visited state, for the adjustment in reached_from
+                model.visited_direct = np.zeros(len(model.visited))
+                for i, v in enumerate(model.visited):
+                    pi = 0
+                    while pi < len(phases) - 1 and model.closeness(v[None, :], phases[pi][1], [])[0] >= 1:
+                        pi += 1
+                    kp = [c for q in range(pi) for c in phases[q][1] if c[1] == '==' and c[0] not in {k for k, op, vv in phases[pi][1]}]
+                    model.visited_direct[i] = pi + model.closeness(v[None, :], phases[pi][1], kp)[0]
             if step % 100 == 0 and model.fitted:
                 say(f'step {step:4d}  model: {model.summary}')
                 for f in model.formulas(row):
@@ -542,6 +583,8 @@ def main():
         # ---- choose
         why = ''; action = WAIT
         g_now = model.grade(np.array([row]), cons, kept)[0] if model.fitted else float('nan')
+        if model.fitted:
+            att['got'] = max(att['got'], phase_i + model.closeness(np.array([row]), cons, kept)[0])
         avoid = set()
         if model.fitted:
             cands = [[], plan] + [[(a, 1)] for a in range(len(ACTIONS))]
@@ -552,10 +595,11 @@ def main():
             b = order[0]; nothing = scored[0][0]; top = scored[b][0]
             # a plan is taken if it reaches the end, gets a phase further or avoids a death that doing nothing
             # meets, or ends at least one press closer within the same phase
-            if top[2] == 0 and top[0] == 0 or top[:2] < nothing[:2] or (top[:2] == nothing[:2] and top[2] <= nothing[2] - 1):
+            # a plan is taken if it reaches the end, or is judged to get clearly further than doing nothing
+            if top[0] == 0 or top[1] < nothing[1] - 0.01:
                 plan = list(cands[b]); action = plan[0][0] if plan else WAIT
                 why = f'plan[{scored[b][1]}] {plan_text(plan)}'
-            elif plan and scored[1][0][:3] <= nothing[:3]:
+            elif plan and scored[1][0][:2] <= nothing[:2]:
                 # the plan from last step is still no worse than doing nothing: keep it
                 action = plan[0][0]; why = f'plan[{scored[1][1]}] {plan_text(plan)}'
             elif row[6] > 0 and step % 10 != 0:
@@ -564,7 +608,7 @@ def main():
                 plan = []
             # a single press the model says loses a phase is not explored either (a predicted death is not enough:
             # the death check is a nearest-row guess and early on it flags most presses)
-            avoid = {a for a in range(len(ACTIONS)) if scored[2 + a][0][0] > nothing[0] or scored[2 + a][0][2] > 2 * nothing[2] + 10}
+            avoid = {a for a in range(len(ACTIONS)) if scored[2 + a][0][1] > nothing[1] + 0.5}     # a press judged to lose half a phase or more
         if not why:
             # explore: presses never made in a state like this first; then the ones whose attempts got closest
             key = state_key(row)
@@ -600,7 +644,7 @@ def main():
     say(f'done: {step} steps, {attempt} attempts; {time.time() - t0:.0f} s')
     say('attempts:')
     for i, a in enumerate(attempts):
-        say(f'  {i + 1:3d}  steps {a["end"] - a["start"]:4d}  reached {a["reached"]}/{len(phases)}  max altitude {a["max_alt"] * 10:7.0f} m  {a["cause"]}')
+        say(f'  {i + 1:3d}  steps {a["end"] - a["start"]:4d}  reached {a["reached"]}/{len(phases)}  got to {a["got"]:.3f}  max altitude {a["max_alt"] * 10:7.0f} m  {a["cause"]}')
     wins = [a for a in attempts if a.get('done')]
     say(f'missions complete: {len(wins)} of {len(attempts)} attempts' + (f'; first at attempt {attempts.index(wins[0]) + 1}; steps per complete mission {[a["end"] - a["start"] for a in wins]}' if wins else ''))
     if model.fitted:
