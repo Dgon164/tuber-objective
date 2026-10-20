@@ -441,6 +441,7 @@ def main():
     nplans = get('--plans', 50, int)
     mission_file = get('--mission', os.path.join(HERE, 'mission.txt'), str)
     seed = get('--seed', 1, int)
+    memory = get('--memory', '', str)             # a RUN_DIR of an earlier run: its record is loaded and re-graded against this mission
     rng = random.Random(seed)
     phases, prefer = load_mission(mission_file)
     os.makedirs(run, exist_ok=True); os.chdir(run)
@@ -469,6 +470,25 @@ def main():
     attempt = 1
     tried = collections.Counter()
     aborts = set()                      # row indices where mission control gave the vehicle up
+    loaded_attempts = 0
+    if memory:
+        # the record of an earlier run: every row, every press, which rows mission control gave up on
+        m = pickle.load(open(os.path.join(memory, 'memory.pkl'), 'rb'))
+        rows = [r for r in m['rows']]; alive = [bool(a) for a in m['alive']]; attempt_of = [int(a) for a in m['attempt']]
+        presses = [tuple(p) for p in m['presses']]; step_starts = [int(x) for x in m['step_starts']]
+        if 'aborts' in m:
+            aborts = set(int(x) for x in m['aborts'])
+        else:
+            # older record: match each run of null rows, in order, to the DEAD lines of that run's vehicle.out
+            causes = [l.split('DEAD:')[1].strip() for l in open(os.path.join(memory, 'vehicle.out')) if 'DEAD:' in l]
+            k = 0
+            for i in range(1, len(alive)):
+                if alive[i - 1] and not alive[i]:
+                    if k < len(causes) and causes[k].startswith('aborted'):
+                        aborts.add(i)
+                    k += 1
+        loaded_attempts = max(attempt_of) if attempt_of else 0
+        attempt = loaded_attempts + 1
 
     def read():
         """rows since the last read, live ones and the count of null ones, in order of arrival"""
@@ -504,14 +524,34 @@ def main():
             return '?'
 
     model = Model(step_rows)
-    pause(); read()
-    attempts = []
-    att = dict(start=0, reached=0, progress=0, max_alt=0, best_grade=float('inf'), pressed=set(), got=0.0)
     progress_of = {}                             # attempt -> the phase and closeness it got to, for the table
     last_live = [None]                           # the last live row seen, for 'ended up'
+    pause(); read()
+    if memory and len(rows) >= 20 * step_rows:
+        al = np.array(alive); R = np.array([r if a else np.zeros(NFIELD) for r, a in zip(rows, al)])
+        model.fit(R, al, np.array(attempt_of), presses, step_starts, aborts, phases, None)
+        # every past attempt, measured against this mission's targets: the phase and closeness it got to
+        regraded = {}
+        for s0 in step_starts:
+            if s0 >= len(rows) or not alive[s0]:
+                continue
+            r = R[s0]; pi = 0
+            while pi < len(phases) - 1 and model.closeness(r[None, :], phases[pi][1], [])[0] >= 1:
+                pi += 1
+            kp = [c for q in range(pi) for c in phases[q][1] if c[1] == '==' and c[0] not in {k for k, op, v in phases[pi][1]}]
+            pr = pi + model.closeness(r[None, :], phases[pi][1], kp)[0]
+            a0 = attempt_of[s0]
+            regraded[a0] = max(regraded.get(a0, 0.0), pr)
+        progress_of.update(regraded)
+        model.fit(R, al, np.array(attempt_of), presses, step_starts, aborts, phases, progress_of)
+    attempts = []
+    att = dict(start=0, reached=0, progress=0, max_alt=0, best_grade=float('inf'), pressed=set(), got=0.0)
     credit = collections.defaultdict(list)       # (state key, action) -> best grade of each attempt it was pressed in
     plan = []; phase_i = 0; step = 0; t0 = time.time()
     say(f'mission: ' + ' -> '.join(f'{n} [{"; ".join(f"f{k} {op} {v}" for k, op, v in c)}]' for n, c in phases) + f'; prefer {prefer}')
+    if memory:
+        say(f'memory: {memory}: {len(rows)} rows, {loaded_attempts} attempts, {len(presses)} presses, {len(aborts)} given up; '
+            f're-graded against this mission, the past attempts got to: ' + ' '.join(f'{v:.2f}' for a, v in sorted(progress_of.items())))
 
     def point(r):
         """a point on the way, as the log shows it: where the path would come down, altitude, position, speed"""
@@ -650,7 +690,8 @@ def main():
         say(f'step {step:4d}  a{attempt:<2d} p{phase_i + 1}  grade {g_now:8.0f}  {aname(action):13s} {where}  {why[:90]}{"  DEAD" if died else ""}  {time.time() - t0:5.0f}s')
         if step % 50 == 49:
             pickle.dump(dict(rows=np.array([r if a else np.full(NFIELD, np.nan) for r, a in zip(rows, alive)]), alive=np.array(alive),
-                             attempt=np.array(attempt_of), presses=presses, step_starts=step_starts, attempts=attempts, step=step),
+                             attempt=np.array(attempt_of), presses=presses, step_starts=step_starts, attempts=attempts, step=step,
+                             aborts=sorted(aborts)),
                         open('memory.pkl', 'wb'))
         step += 1
         if reborn:

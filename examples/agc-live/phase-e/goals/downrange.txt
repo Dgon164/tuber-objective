@@ -1,0 +1,3 @@
+# A ballistic shot: a path that comes down between 400 and 800 km from the pad, engine off.
+shot:    f20 > 400 ; f20 < 800 ; f16 == 0
+prefer:  steps least

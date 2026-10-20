@@ -1,0 +1,3 @@
+# A higher orbit: never comes down, highest point between 150 and 250 km, engine off.
+orbit:   f20 > 32000 ; f19 > 1500 ; f19 < 2500 ; f16 == 0
+prefer:  steps least

@@ -1,0 +1,3 @@
+# A velocity: sideways 500 m/s or more, vertical within 50 m/s of zero, above 20 km, engine off.
+vector:  f6 > 2000 ; f7 > 5000 ; f8 > -500 ; f8 < 500 ; f16 == 0
+prefer:  steps least

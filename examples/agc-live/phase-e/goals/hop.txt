@@ -1,0 +1,3 @@
+# A hop: get the highest point of the path above 60 km, then shut the engine. No orbit.
+hop:     f19 > 600 ; f16 == 0
+prefer:  steps least
