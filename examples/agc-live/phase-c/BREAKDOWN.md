@@ -39,8 +39,8 @@ The inputs are the list of Phase A, and:
   - armed
   - engine
 
-  The loop sees these as fields 0 through 16. The names are only for
-  the persons who read the output.
+  The loop sees these fields as fields 0 through 16. The names are only
+  for the persons who read the output.
 - A list of 44 raw actions: the 33 DSKY codes and PRO, and 11 control
   packets. No input says the packet of the throttle.
 - The goal, as limits on field numbers. The loop gets the goal only in
@@ -57,8 +57,8 @@ The inputs are the list of Phase A, and:
   or down) is part of the state. A field that only jumped gives its
   value to the state.
 - Size limits. The channel read at each step is off. A channel is a
-  numbered signal path between the AGC and the hardware. The channel
-  trace goes to the disk.
+  signal path with a number, between the AGC and the hardware. The
+  channel trace goes to the disk.
 
 The loop did not get these inputs:
 
