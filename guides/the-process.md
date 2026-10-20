@@ -1,212 +1,255 @@
 # The process
 
-This guide shows how to use the comparator loop on any problem. The
-comparator loop is the core cycle: compare 2 things and find what the 2
-things share. Discovery is 1 implementation of the comparator loop. This
-guide gives the general method.
+This guide is the general method behind Discovery, written so you can
+use it on any problem, not only on files. The whole method rests on one
+operation: take two things, find what they share, and keep what's left
+over. Then feed the results back in and do it again. We'll call that the
+comparison loop. Discovery is one program built on it. The method itself
+is wider than Discovery, and this guide gives the method.
 
 ## Quick reference
 
 ```
-1. COMPARE     Take 2 things. Find what the 2 things share and what the
-               2 things do not share. Keep all 4 parts: the shared part,
-               the part only in A, the part only in B, and all that the
-               comparison did not touch.
+1. COMPARE     Take two things and find what they share and what they
+               don't. You end up with four pieces: the shared part, the
+               leftover from the first thing, the leftover from the
+               second, and everything the comparison never looked at.
+               Keep all four.
 
-2. FEATURES    Decide what you compare: raw values, sets, ordered
-               sequences, or pairs. If the order is important, keep the
-               order.
+2. FEATURES    Decide what form the things take when you compare them:
+               raw values, unordered sets, ordered sequences, or pairs of
+               neighbours. If the order matters in your data, compare in
+               a form that keeps the order.
 
-3. ABLATION    Optional. If you remove parts before the comparison, say
-               from what side and how much. To remove from both sides
-               squares the loss. Discovery removes nothing.
+3. THINNING    Optional. If you throw some of the data away before you
+               compare, say which side you thinned and by how much.
+               Thinning both sides loses far more than it looks like.
+               Discovery throws nothing away.
 
-4. FEEDBACK    Point the comparator at its own output. The signal that
-               says "the same again" or "new" is the feedback. No
-               separate score function is necessary. The comparator is
-               the scorer.
+4. FEEDBACK    Run the program's own output back through the comparison.
+               Whether a result comes back as "seen this before" or as
+               "new" is the feedback. You don't need a separate score.
+               The comparison is the scorer.
 
-5. EXAMPLES    Show 1 input, the parts that came out, and what the
-               method recovered. The record is the proof.
+5. EXAMPLES    Show one input, the parts that came out of it, and what
+               the method found. The written record is the proof.
 
-6. LIMITS      Short parts that repeat are easy to find. Long exact
-               sequences need more signal or a better cut. Say where
-               your method stops.
+6. LIMITS      Short parts that repeat are easy to find. Long sequences
+               that repeat exactly need more data or a better way of
+               chunking it. Say where your method stops.
 
-7. LOOP        Put the parts back in and repeat until nothing new comes
-               out. The stable point is the only rule to stop.
+7. LOOP        Put the parts back in and go again, until a pass finds
+               nothing new. That is the only reason to stop.
 
-8. KEEP ALL    Never remove a part, a count, a connection, or a
-               remainder. Compression is to keep a thing 1 time with a
-               count. Compression is not to remove things.
+8. KEEP ALL    Never throw away a part, a count, a connection, or a
+               leftover. Storing a thing once with a count of how often
+               it appeared is fine. Dropping it is not.
 ```
 
 ---
 
 ## 1. Compare
 
-Take 2 things. Split the result 3 ways:
+**What you do.** Take two things and line them up from the front (or
+from the back). Count how many positions match before the two things
+first differ.
 
-- **Same**: the part that the 2 things share.
-- **Different**: the rest of each thing after you remove the shared part.
-  There are 2 different parts, 1 for each input.
-- **Not part**: each part in the pool that the comparison did not touch.
-  The pool is the collection of all parts that the program knows.
+**What you get.** The result splits three ways:
 
-The program keeps all 4 parts. The shared part becomes a new entry in the
-pool. The 2 parts that remain become new entries. The parts that the
-comparison did not touch stay in the pool. The program removes nothing.
+- **Same**: the part the two things share.
+- **Different**: what's left of each thing once you take the shared part
+  off the front. There are two leftovers, one from each input.
+- **Not part**: everything the comparison never touched. The program
+  keeps a collection of every part it has found so far. We'll call that
+  collection the pool. Everything in the pool other than the two things
+  you compared is "not part".
 
-In Discovery, this operation is the mint step. To mint a part is to make
-a new part from 2 parts that have the same start or the same end. The
-mint step has 3 actions:
+You keep all four pieces. The shared part becomes a new entry in the
+pool. The two leftovers become new entries too. The parts the comparison
+never touched stay where they were. Nothing is removed.
 
-1. Sort the pool. To sort the pool is to put the parts of the pool in
-   order.
-2. Compare each pair of adjacent parts.
-3. Split each pair into a shared start and 2 parts that remain.
+In Discovery, this operation is called the mint step: making a new part
+out of two parts that start the same way or end the same way. The mint
+step does three things:
 
-The 2 parts that remain go back into the pool. The shared start also goes
-into the pool. In the next round, all of these parts are available for
-the next comparison.
+1. Sort the pool, which puts the parts in alphabetical order, so parts
+   that begin alike end up next to each other.
+2. Compare each part with its neighbour in that order.
+3. Split each pair into the shared start and the two leftovers.
 
-The comparison is simple. Put the 2 things in line from the front (or
-from the back). Count the positions where the 2 things are the same. The
-sort puts things that are almost the same next to each other. Thus the
-comparison has something to find.
+The two leftovers go back into the pool, and so does the shared start. In
+the next round, all of them are there to be compared again.
+
+**Why it works.** The comparison itself is simple: line the two things
+up and count matching positions. The sort is what makes it useful.
+Sorting puts things that are almost the same next to each other, so when
+the comparison looks at two neighbours it has something to find.
 
 ## 2. Features
 
-Say what you compare. The choice of features decides what the comparator
-can find.
+**What you do.** Decide what form your data takes when you compare it.
+That form is what we'll call the features, and the choice decides what
+the comparison can find. The main choices are:
 
-- **Raw values**: compare the raw things, bit for bit or symbol for
-  symbol. Discovery compares raw values. Nothing changes
+- **Raw values**: compare the things exactly as they are, bit for bit or
+  symbol for symbol. This is what Discovery does. Nothing is changed
   before the comparison.
-- **Sets**: compare 2 collections with no order by their overlap. The
-  parts in both sets are "same". The parts in 1 set and not in the other
-  set are "different".
-- **Sequences with order**: compare 2 sequences position by position. A
-  shared start, a shared end, and a shared subsequence are each a
-  different kind of "same".
-- **Pairs and n-grams**: compare sequences of 2 or 3 adjacent symbols.
-  These sequences carry structure that single symbols do not carry. The
-  pair `th` tells you something that `t` and `h` alone cannot tell you.
+- **Sets**: compare two collections that have no order, by how much they
+  overlap. What's in both sets is "same". What's in one set but not the
+  other is "different".
+- **Sequences with order**: compare two sequences position by position.
+  A shared start, a shared end, and a shared stretch in the middle are
+  each a different kind of "same".
+- **Pairs and short groups of neighbours**: compare sequences of two or
+  three symbols that sit next to each other. These carry structure that
+  single symbols don't. The pair `th` tells you something that `t` and
+  `h` on their own can't.
 
-If order is important in your signal, keep the order in your features. A
-shuffle destroys adjacency. Adjacency is the relation of symbols that are
-next to each other. Most of the structure is in the adjacency. A pair of
-2 characters can only continue to exist if the 2 characters are still
-next to each other.
+**What you get.** If order matters in your data, keep the order in your
+features. Shuffling the data destroys which symbols sit next to which,
+and most of the structure lives in exactly that. A two-letter pair can
+only go on existing if its two letters are still neighbours.
 
-Discovery uses sequences with order. Discovery sorts the pool and
-compares the parts from the front and then from the back. The frame step
-uses raw column values. The bridge uses set overlap on 2 pools. Each of
-the 3 is the comparator on a different kind of feature.
+Discovery uses sequences with order. It sorts the pool and compares
+neighbouring parts from the front, then from the back. The frame step,
+the part of the program that works out how wide one unit is, compares
+raw column values instead. The bridge, a script that compares the
+records of two different files, compares two pools by how much they
+overlap, which is the set version. All three are the same comparison on
+a different kind of feature.
 
-## 3. Ablation
+**Why it works.** The comparison can only find what's in its features.
+If you give it ordered sequences, it can find shared starts and shared
+ends. If you give it unordered sets, it can find shared membership but
+never shared position. You can always throw the order away later, but
+you can never put it back. Starting with order keeps every option open.
 
-Ablation is the removal of parts before the comparison. Ablation is
-optional. Discovery does no ablation. Discovery compares everything
-against everything.
+## 3. Thinning the data before you compare
 
-If you do ablation, obey these 3 rules:
+**What you do.** Sometimes people remove some of the data before they
+compare it. The name for that is ablation. It's optional, and Discovery
+doesn't do it: Discovery compares everything against everything. If you
+do thin the data, follow three rules.
 
-1. **Remove from 1 side only.** If you remove from 1 side at 30 percent,
-   each feature has a 70 percent chance to remain. If you remove from
-   both sides at 30 percent, each feature must remain through both
-   removals. The chance is 70 percent of 70
-   percent. The result is 49 percent. You lose more than half of your
-   signal for nothing.
-2. **Name the side.** Keep 1 side whole and remove from the other side.
-   The whole side is the reference. The side with the removals is the
-   test. The result shows the parts that the reference does not need.
+1. **Remove from one side only.** If you remove 30 percent from one
+   side, each feature has a 70 percent chance of still being there. If
+   you remove 30 percent from both sides, each feature has to survive
+   both removals, and the chance is 70 percent of 70 percent, which is
+   49 percent. You lose more than half your signal for nothing.
+2. **Name the side.** Keep one side whole and thin the other. The whole
+   side is your reference. The thinned side is the test. The result shows
+   you which parts the reference can do without.
 3. **Say how much.** The rate of removal sets how fine your filter is. A
    high rate lets through only the parts that occur many times. A low
-   rate lets through parts that occur fewer times. The correct rate
-   depends on how much noise is in your signal.
+   rate lets through parts that occur fewer times. The right rate depends
+   on how much noise your data has.
 
-Experiments showed this result: if the signal already has noise, more
-ablation can put the real parts below the level of the noise. Noise in a
-signal includes parts in random positions, order that is lost, and random
-additions. Clean the signal first. Then do ablation if you want to find
+**What you get.** The parts that survive are the parts the reference
+side needs.
+
+**Why it works.** Experiments showed that if the data already has noise,
+more thinning pushes the real parts down below the noise. Noise means
+parts that land in random positions, order that's been lost, and random
+additions. So clean the data first. Then thin it, if you want to find
 the parts that are necessary.
 
 ## 4. Feedback
 
-Point the comparator at its own output. The result is feedback. There is
-no separate score function, no loss function, and no objective. The
-question "is this thing the same as that thing?" also answers the
-question "is the model the same as reality?".
+**What you do.** Run the program's own output back through the
+comparison. The result is your feedback. You don't need a separate score
+function, a loss function, or an objective. The question "is this thing
+the same as that thing?" also answers the question "does the model match
+reality?".
 
-There are 3 kinds of feedback. Each kind uses the comparator:
+**What you get.** There are three kinds of feedback, and each one is the
+same comparison with a different pair of inputs.
 
-- **Against memory.** Save the pool after 1 signal. Load the pool before
-  the next signal. The program puts each part from the new signal into 1
-  of 3 bins. The bins are confirmed (already in the memory), added (new
-  this time), and not seen (in the memory but absent from this signal). The additions
-  decrease toward 0 as the memory covers more of what the signals
-  contain.
-- **Against its own output.** Run the output of the model back through
-  the program as a new signal. Compare the 2 results. There are 3 bins:
-  the parts that came back the same, the parts that did not come back,
-  and the parts that are new. The parts that did not come back are the
-  parts that the model lost. The new parts are the parts that the model
-  made.
-- **Against an answer key.** Compare the output to a correct answer that
-  you know. The result is same and different. Most systems use this kind
-  of feedback. The comparator does this comparison and needs nothing more.
+- **Against memory.** Save the pool after one file. Load it before the
+  next file. The program then puts each part of the new file into one of
+  three bins: confirmed (it was already in the memory), added (it's new
+  this time), and not seen (it's in the memory but this file didn't
+  produce it). As the memory covers more of what the files contain, the
+  additions fall toward zero.
+- **Against its own output.** Take whatever the model produced, run it
+  back through the program as a new file, and compare the two results.
+  Again there are three bins: the parts that came back the same, the
+  parts that didn't come back, and the parts that are new. The parts that
+  didn't come back are what the model lost. The new parts are what the
+  model made up.
+- **Against an answer key.** Compare the output to a correct answer you
+  already know. The result is same and different. This is the kind of
+  feedback most systems use, and the comparison does it without anything
+  extra.
 
-Discovery uses the first 2 kinds. You add the third kind if you have a
-target. All 3 kinds are the same comparison with different inputs.
+Discovery uses the first two kinds. You add the third if you have a
+target to compare against.
+
+**Why it works.** The output of the comparison is the same kind of thing
+as its input: sequences of symbols. So the comparison can take its own
+output as input, with no conversion in between. That's what lets one
+operation serve as the learner and the scorer at once.
 
 ## 5. Examples
 
-Show your work. For each signal that you run through the process, do
-these steps:
+**What you do.** Show your work. For each file you run through the
+process, do three things:
 
-1. Show 1 input in its original form.
-2. Show the parts that came out: the shared parts, the parts that
-   remain, and the counts.
-3. Show what the process found. A reader must be able to check this
-   result against an independent source.
+1. Show one input in its original form.
+2. Show the parts that came out: the shared parts, the leftovers, and
+   the counts.
+3. Show what the process found, in a form a reader can check against an
+   independent source.
 
-Each of the 4 example folders of Discovery does these 3 steps. Each
-folder has the input, the record, and a breakdown. The breakdown goes
-through each table. The breakdown checks each table against an outside
-source when a source exists. The Apollo listing that was published is 1
-source. The German and English texts of the same debate are 1 source.
+**What you get.** Each of Discovery's four example folders does these
+three things. Each folder has the input, the record the program wrote,
+and a breakdown. The breakdown walks through each table of the record
+and checks it against an outside source wherever one exists. The
+published Apollo listing is one such source. The German and English
+texts of the same parliamentary debate are another.
 
-The record is the evidence. The breakdown explains the evidence.
+**Why it works.** The record is the evidence. The breakdown explains the
+evidence. A reader who can compare the two to an outside source doesn't
+have to take the method on trust.
 
 ## 6. Limits
 
-Say where the method stops.
+**What you do.** Say where the method stops.
+
+**What you get.** Here is where Discovery stops:
 
 - **Short parts that occur many times** are easy to find. A letter that
-  occurs in many words has a high count and a high density. Density is
-  the number of parts that contain a part. The program mints a pair of 2
-  letters that occurs often in an early round. The comparator finds
-  these parts in a few rounds.
-- **Long exact sequences** need a very clean signal or many occurrences.
-  A clean signal has little noise and no shuffle. The comparator cannot
-  show that a phrase that occurs only 1 time is real. The phrase has
-  nothing to collide with.
-- **Signals with noise** need more samples. If random additions hide the
-  real parts, the comparator needs enough collisions to show the real
-  parts above the noise. More signal and a better cut both help. To cut
-  is to divide the signal into runs at a separator. A better cut (the
-  correct separator, or 2 separators) puts the real parts into shorter
-  runs. In a shorter run, a real part is more likely to meet an adjacent
-  part that shares a part.
-- **Size.** The pool only grows, so a signal with many long unique runs
-  fills the pool fast. The cap exists for this reason. The cap stops the
-  loop and reports the stop. There are 3 fixes: a shorter read, a second
-  separator, or a sort of only the new parts into the current order. The
-  third fix is not yet in the program. With the third fix, the program
-  does not sort the whole pool again.
+  appears in many words has a high count and sits inside many other
+  parts. (The number of parts a part sits inside is what the record calls
+  its density.) A two-letter pair that occurs often gets made in an early
+  round. The comparison finds these parts in a few rounds.
+- **Long sequences that repeat exactly** need a very clean signal or many
+  occurrences. A clean signal has little noise and nothing shuffled. The
+  comparison can't show that a phrase that occurs only once is real,
+  because there is nothing for it to match against.
+- **Noisy signals** need more samples. If random additions hide the real
+  parts, the comparison needs enough matches to lift the real parts above
+  the noise. More data helps, and so does a better cut. To cut is to
+  divide the file into chunks at a divider. A better cut (the right
+  divider, or two dividers) puts the real parts into shorter chunks, and
+  in a shorter chunk a real part is more likely to meet a neighbour that
+  shares something with it.
+- **Size.** The pool only grows, so a file with many long chunks that
+  never repeat fills the pool fast. That's why the program has a cap: a
+  limit on how many parts the pool may hold. When the pool passes the
+  cap, the loop stops and the record says so. There are three fixes: read
+  less of the file, add a second divider, or sort only the new parts into
+  the existing order instead of re-sorting the whole pool every round.
+  The third fix isn't in the program yet.
+
+**Why it works.** The comparison only finds what repeats, and it only
+finds a repeat when two neighbours in the sorted pool share a start or an
+end. Everything in the list above follows from that: short and frequent
+is easy, long and rare is hard, and noise gets in the way of neighbours
+meeting.
 
 ## 7. Loop
+
+**What you do.**
 
 1. Feed the parts back in.
 2. Repeat until nothing new comes out.
@@ -221,27 +264,28 @@ while True:
     add new_parts to pool
 ```
 
-The stable point is the only stop rule. The stable point is a round that
-makes nothing new. The stop rule is not a round limit, not a time limit,
-and not a score threshold. The loop runs until the program has compared
-the whole pool against itself. At that point, the program has found
-everything that the program can find.
+**What you get.** The only rule for stopping is a round that makes
+nothing new. There's no round limit, no time limit, and no score to
+reach. The loop runs until the whole pool has been compared against
+itself, and at that point the program has found everything it can find.
 
-The mint loop of Discovery runs the loop in 7 to 30 rounds. The number of
-rounds depends on the signal. The count of new parts in each round always
-decreases to 0:
+In Discovery, the mint loop takes 7 to 30 rounds, depending on the file.
+The number of new parts per round always falls to 0:
 
 ```
 Alice:   10038 3800 1303 484 176 88 37 22 15 10 4 1 2 0
 German:  9291 3641 1205 402 130 42 7 2 1 0
 ```
 
-Then the whole loop runs again 1 level up. At the new level, the program
-treats the runs as symbols and uses the classes as a second way to be the
-same. The level loop runs until a level also makes nothing new. The rule
-is the same at each scale.
+Then the whole loop runs again one level up. At the new level, the
+program treats each chunk from the level below as a single symbol. It
+also uses the classes from the level below as a second way for two
+things to count as the same. (A class is a group of parts that all take
+the same additions, like the 22 verb stems that all take `+ed` and
+`+ing`.) The level loop runs until a level also makes nothing new. The
+rule is the same at every scale.
 
-The code below is a reference implementation of the core loop in Python:
+Here is the core loop as a reference, in Python:
 
 ```python
 def mint_loop(pool):
@@ -272,40 +316,49 @@ def shared_head(a, b):
     return a[:n]
 ```
 
-This code is the skeleton. Discovery adds the reverse pass (shared ends),
-the part-of and made-of connections, the counts, the fresh-pair rule, and
-the cap. But the loop in Discovery is the loop above.
+That's the skeleton. Discovery adds a few things on top of it: a reverse
+pass that runs the same loop on every part spelled backwards, to find
+shared ends; two records of connections, which part sits inside which
+and which parts a part is built from; the counts; a rule that a pair of
+neighbours is only compared when at least one of the two is new since
+the last round; and the cap. But the loop in Discovery is the loop
+above.
+
+**Why it works.** The pool can only grow, and every part that could ever
+be made is some piece of a chunk that was in the pool at some point. There
+are only so many of those. A collection that only grows and has a ceiling
+has to stop growing eventually, and when a round adds nothing, the loop
+ends.
 
 ## 8. Keep all
 
-Never remove a part, a count, a connection, or a part that remains. Each
-intermediate result is information.
+**What you do.** Never remove a part, a count, a connection, or a
+leftover. Every intermediate result is information.
 
-- The program keeps a part that occurred 1 time in the same way as a
-  part that occurred 1,000 times. A part that is rare but real has
-  value.
-- A part that remains from a comparison is a part in its own right. The
-  part goes back into the pool. The program compares the part in the next
-  round.
-- A count says how often a thing occurred. The count does not decide if
-  the thing exists. Existence is yes or no. The count says how common the
-  thing is.
-- A connection is a fact about the signal. A connection has 3 forms: A is
-  in B, A comes after B, or A changes into B. The program writes the
-  connection down. The program does not evaluate the connection.
+- A part that occurred once is kept exactly the same way as a part that
+  occurred 1,000 times. A rare part that is real still has value.
+- A leftover from a comparison is a part in its own right. It goes back
+  into the pool, and the program compares it in the next round.
+- A count says how often a thing occurred. It doesn't decide whether the
+  thing exists. Existence is yes or no. The count says how common.
+- A connection is a fact about the file. There are three kinds: A is
+  inside B, A comes after B, or A turns into B. The program writes the
+  connection down. It doesn't judge it.
 
-If you remove intermediate results, you cannot find things that depend on
-those results. A part that you remove because the part is "too common" or
-"not important enough" can be the part that 2 other parts share. Without
-that part, the comparator cannot find the connection between the 2 other
-parts.
+**What you get.** A pool that holds a complete history of every split
+that ever happened.
 
-Discovery has no removal anywhere. The pool is a dictionary with the
-content of each part as the key. The counts are the values. No count
-decreases with time, no entry has an end date, and the program removes
-no entry. The only compression is 1 entry for each distinct part,
-with the count of the part. There is 1 entry for each thing, not 1,000
-copies.
+**Why it works.** If you remove intermediate results, you can no longer
+find anything that depends on them. A part you dropped because it was
+"too common" or "not important enough" can turn out to be exactly the
+part two other parts share. Without it, the comparison can never find the
+connection between those two.
+
+Discovery has no removal anywhere. The pool is a dictionary. Each key is
+the content of a part, and each value is its count. No count ever goes
+down, no entry expires, and the program never removes an entry. The only
+compression is that each distinct part is stored once, with its count,
+rather than as 1,000 separate copies.
 
 ---
 
@@ -313,212 +366,204 @@ copies.
 
 | step | in the process | in Discovery |
 |---|---|---|
-| compare | take 2 things, split 3 ways | `shared_head()` on adjacent parts in the pool in order |
-| features | raw sequences with order | bits -> words -> runs. The program compares the runs as symbol sequences. |
-| ablation | none | the program removes nothing |
-| feedback | against memory, against own output | `--memory`, `hybrid/loop.py` |
-| examples | show input, parts, result | the 4 `examples/` folders with breakdowns |
+| compare | take two things, split the result three ways | `shared_head()` on neighbouring parts in the sorted pool |
+| features | raw sequences, with their order kept | bits -> words -> chunks. The program compares the chunks as sequences of symbols. |
+| thinning | none | the program removes nothing |
+| feedback | against memory, against its own output | `--memory`, `hybrid/loop.py` |
+| examples | show the input, the parts, and the result | the four `examples/` folders, each with a breakdown |
 | limits | say where the method stops | `notes/open.md` |
-| loop | until stable | `mint()`, `run_levels()` |
-| keep all | never remove | the pool only grows. There is no removal in the code. |
+| loop | until a round makes nothing new | `mint()`, `run_levels()` |
+| keep all | never remove anything | the pool only grows. There is no removal anywhere in the code. |
 
 ---
 
-## Proof of each step
+## Why each step works
 
-Each step of the process makes a claim. This section gives the reason
-that each claim is correct. You can check all of the reasons against the
-code (`discovery.py`) and against the example records.
+Each step above makes a claim. This section gives the reason each claim
+holds. You can check every reason against the code (`discovery.py`) and
+against the example records.
 
-### The split with no loss (step 1: compare)
+### Nothing is lost in the split (step 1: compare)
 
-Take 2 things, A and B. The comparator makes a shared start H and 2 parts
-that remain. The 2 parts are tail_A (the rest of A after H) and tail_B
-(the rest of B after H).
+Take two things, A and B. The comparison produces a shared start, call it
+H, and two leftovers: the rest of A after H, and the rest of B after H.
 
-H + tail_A = A. H + tail_B = B. You can always make the original things
-again from the parts. The comparator destroyed nothing. The same
-information exists, in more parts. The comparator did not touch the "not
-part" set (everything else in the pool).
+H plus the rest of A is A. H plus the rest of B is B. You can always
+rebuild the originals from the pieces, so the comparison destroyed
+nothing. The same information is still there, just in more parts. And the
+comparison never touched anything else in the pool.
 
-Thus the split can run many times with no loss. Each round makes more
-parts, never fewer. With step 8 (keep all), the pool becomes a complete
-record of each split that occurred.
+So the split can run as many times as you like with no loss. Each round
+makes more parts, never fewer. Together with step 8 (keep all), that
+means the pool becomes a complete record of every split that ever
+happened.
 
-### Structure in the order of the symbols (step 2: features)
+### The structure lives in the order (step 2: features)
 
-The pair `th` exists only because `t` and `h` are next to each other. If
-you shuffle the signal, the pair is gone. The comparator can only find
-what is in its features. If the features are sequences with order, the
-comparator finds shared starts and shared ends. Both results depend on
+The pair `th` exists only because `t` and `h` sit next to each other. If
+you shuffle the file, the pair is gone. The comparison can only find
+what's in its features. Give it sequences with order and it finds shared
+starts and shared ends, both of which depend on position. Give it sets
+with no order and it finds shared membership, but never shared position.
+
+The relation between ordered and unordered runs one way only. You can
+always treat ordered features as a set by ignoring the order. You can't
+put a set back into order. So starting with order keeps all your options
+open, and starting without order closes every option that depends on
 position.
-If the features are sets with no order, the comparator finds shared
-membership but not shared position.
 
-The relation between order and no order goes in 1 direction only. You
-can always treat features with order as a set: ignore the order. But you
-cannot put a set back in order. Thus a start with features that have
-order keeps all of your options open. A start with features that have no
-order closes each option that depends on position.
+Discovery starts with ordered sequences. That's why it can find `th` as
+a pair, not just `t` and `h` as separate parts.
 
-Discovery starts with sequences that have order. Thus Discovery can find
-`th` as a pair, not only `t` and `h` as separate parts.
+### Why thinning both sides costs so much (step 3: thinning)
 
-### The loss from a removal on both sides (step 3: ablation)
+Each feature either survives the removal or it doesn't. If you remove
+from one side at a rate r, a feature has a chance of (1 - r) to survive.
+If you remove from both sides at the same rate, a feature has to survive
+twice, and the chance is (1 - r) times (1 - r), or (1 - r)^2.
 
-Each feature remains after the removal or does not remain. If you remove
-from 1 side at the rate r, a feature has a chance of (1 - r) to remain.
-If you remove from both sides at the rate r, a feature must remain
-through both removals. The chance is (1 - r) times (1 - r), or (1 - r)^2.
+At a rate of 30 percent, one side gives 0.70. Both sides give 0.49. You
+lose more than half your signal and gain nothing, because the comparison
+still only makes the same three-way split. Thinning both sides finds
+nothing that thinning one side misses.
 
-At a rate of 30 percent, 1 side gives 0.70. Both sides give 0.49. You
-lose more than half of your signal with no gain. The comparison still
-makes only the 3-way split. A removal from both sides finds nothing that a
-removal from 1 side misses.
+Experiments showed the same thing from the other direction. If the data
+already has noise (parts in random positions, features spread apart),
+more thinning pushes the real signal below the noise. Clean first. Thin
+second. Or don't thin at all, which is what Discovery does.
 
-Experiments showed this result. If the signal already has noise (random
-positions, features that are spread apart), more ablation pushes the real
-signal below the noise. Clean first. Do ablation second. Or do no
-ablation. Discovery does no ablation.
+### The comparison is its own scorer (step 4: feedback)
 
-### The comparator as the scorer (step 4: feedback)
+The comparison takes two things and makes parts. The parts are the same
+kind of thing as the inputs: sequences of symbols. So the comparison can
+take its own output as its next input, and nothing has to be converted
+in between.
 
-The comparator takes 2 things and makes parts. The parts are the same kind
-of thing as the inputs: sequences of symbols. Thus the comparator can take
-its own output as input. No adapter is necessary.
+That one property gives you all three kinds of feedback, each with the
+same operation.
 
-This property gives 3 kinds of feedback. Each kind uses the same
-comparison.
+**Against memory.** Compare the parts of this file to a pool you saved
+earlier. There are three bins: confirmed (already in the saved pool),
+added (new this time), and not seen (in the saved pool, but this file
+didn't produce it). The question "is this part in the saved pool?" is
+the same question as "do these two things share this part?". It's the
+comparison, with the saved pool as one of the two inputs.
 
-**Against memory.** Compare the parts of this signal to a pool that you
-saved. There are 3 bins: confirmed (already in the pool), added (new this
-time), and not seen (in the pool but absent from this signal). The question "is
-this part in the pool that you saved?" is the same question as "do these
-2 things share this part?". The comparison is the comparator with the
-pool that you saved as 1 input.
+**Against its own output.** Run the parts back through the process and
+compare the two pools: the parts that came back the same, the parts that
+didn't come back, and the parts that are new. If a part didn't come
+back, the process lost it somewhere. If a part is new, the process made
+it: a different order of neighbours let two parts meet that never met
+before. The comparison finds both kinds without a separate score.
 
-**Against its own output.** Run the parts back through the process. Then
-compare the 2 pools: the parts that came back the same, the parts that
-did not come back, and the parts that are new. If a part did not come
-back, the process lost the part in some way. If a part is new, the
-process made the part. A different order of adjacent parts made a
-different collision. The comparator finds both kinds of part with no
-separate score function.
+**Against an answer key.** Compare the output to a correct answer you
+already know. The result is same and different. Most systems use this
+kind, a test against a target, and the comparison does it with the same
+operation it uses for everything else.
 
-**Against an answer key.** Compare the output to a correct answer that you
-know. The result is same and different. Most systems use this kind: a
-test against a target. The comparator does this with the same operation
-that the comparator uses for everything else.
+All three kinds work because the output is the same type as the input.
+The technical word for that property is "closure": what comes out of the
+operation is the kind of thing that can go back in. There is no
+conversion step, no loss function, and no separate scoring mechanism.
+The comparison makes the score.
 
-All 3 kinds work because the output is the same type as the input. The
-technical word for this property is "closure": the output of the
-operation stays in the domain of the operation. There is no conversion
-step, no loss function, and no separate score mechanism. The comparator
-makes the score.
+### Why the loop always stops (step 7: loop)
 
-### The stop of the loop (step 7: loop, termination)
+The pool can only grow. In each round, the mint step looks at
+neighbouring parts in the sorted pool and splits them. A split makes at
+most three parts: the shared start and the two leftovers. Each of the
+three is shorter than the part it came from. The program adds only the
+parts the pool hasn't seen before.
 
-The pool can only grow. In each round, the mint step looks at adjacent
-parts in the pool in order and splits the adjacent parts. A split makes
-at most 3 parts: the shared start and the 2 parts that remain. Each of
-the 3 parts is shorter than its source. The program adds only the parts
-that the pool has not seen before.
+The number of parts that could ever exist is finite: every piece of every
+chunk that was ever in the pool. A collection that only grows, never
+shrinks, and has a ceiling must stop growing at some point. When a round
+adds nothing new, the loop exits.
 
-The number of possible parts is finite. The limit is each substring of
-each run that was ever in the pool. A finite set that only grows and
-never decreases must stop its growth at some time. When the program adds
-nothing new, the loop exits.
+The level loop has the same shape. Each level takes the chunks from the
+level below and runs the mint step again. At each level the chunks are
+fewer and longer. When a level ends up with one chunk, or finds nothing
+new, the level loop stops. In practice, Discovery takes 7 to 30 mint
+rounds at level 0 and 2 to 4 levels in all.
 
-The level loop has the same shape. Each level takes the runs from the
-level below and runs the mint step again. At each level, the runs are
-fewer and longer. When a level makes 1 run or finds nothing new, the
-level loop stops. In practice, Discovery takes 7 to 30 mint rounds at
-level 0 and 2 to 4 levels in total.
+### Why the loop finds every shared part the sort can reveal (step 7: loop)
 
-### Each shared part that the sort can show (step 7: loop, completeness)
+If two chunks share a start, they end up next to each other once the
+pool is sorted, because sorting groups parts with the same beginning
+together. Once they're neighbours, the comparison finds the shared start
+and splits it out. So the program will find every shared start between
+any two chunks in the pool. The sort guarantees that they meet.
 
-If 2 runs share a start, the 2 runs are next to each other after the sort
-of the pool. The sort puts parts with the same start together. When the 2
-runs are adjacent, the comparator finds the shared start and splits the
-shared start out. Thus the program will find each shared start between any
-2 runs in the pool. The sort makes sure that the 2 runs meet.
+The reverse pass does the same from the other end. It spells every part
+backwards, sorts, compares, and spells the results forwards again. That
+finds shared ends in exactly the way the forward pass finds shared
+starts.
 
-The mirror pass does the same from the other end. The mirror pass
-reverses everything, sorts, compares, and reverses the results back. The
-mirror pass finds shared ends in the same way that the forward pass finds
-shared starts.
+A shared middle is a stretch inside two chunks that have different starts
+and different ends. A single pass won't always find a shared middle. But
+a single pass doesn't need to.
 
-A shared middle is a part inside 2 runs that have different starts and
-different ends. A pass alone does not always find a shared middle. But a
-pass alone does not need to find a shared middle.
+Every round strips shared starts and shared ends off the parts. A stretch
+that used to be in the middle becomes the start or the end of a shorter
+leftover. In the next round's sort, that shorter leftover lands next to
+another part that shares the same stretch, and the comparison finds it.
 
-In each round, the loop removes shared starts and shared ends. A part
-that was a middle becomes the start or the end of a shorter part that
-remains. The sort of the next round puts that shorter part next to a part
-that shares the middle. The comparator then finds the middle.
+There is only one case where the program never finds a shared middle:
+when everything on both sides of the middle is unique, so no round ever
+strips it away. That is a real limit, and section 6 notes it.
 
-The program does not find a shared middle in only 1 case. In that case,
-the parts on both sides of the middle are all unique, and no round
-removes those parts. That case is a real
-limit. Section 6 notes that limit.
+### Why every part is real (step 7: loop)
 
-### Real parts only (step 7: loop, soundness)
+The mint step never makes a part out of nothing. Every part in the pool
+is there because two neighbours in the sorted pool matched for some
+number of positions, from the front or from the back. The program copies
+the shared part straight out of the input. The leftovers are what's left
+of the input after the shared part is taken off. The counts are exact:
+each match that produced a part was a real event in the sorted pool.
 
-The mint step never makes a part from nothing. Each part in the pool
-exists because 2 adjacent parts in the pool in order were the same for
-some number of positions. The comparison was from the front or from the
-back. The program copies the shared part from the input. The parts that
-remain are the rest of the input after the removal of the shared part.
-The counts are exact: each collision that made a part is a real event in
-the pool in order.
+Classes work the same way. Two parts end up in the same class for one
+reason only: the mint step found the same set of changes on both of
+them, meaning the same endings and the same beginnings. The grouping
+comes from the data, not from a rule that says what belongs together.
 
-Classes work in the same way. A pair of parts goes into the same class
-for 1 reason: the mint step found the same set of changes on both parts. The changes are the same endings and the same starts. The group
-comes from the data, not from a rule that says what goes together.
+### What a removal would lose for good (step 8: keep all)
 
-### The permanent loss from a removal (step 8: keep all)
-
-If you remove a part, you lose these things:
+If you remove a part, you lose:
 
 - the part itself
-- each "part of" connection of the part (each record that the part is
-  inside a different thing)
-- each "made of" connection of the part (each record that the part
-  contains smaller parts)
-- the class membership of the part (the place of the part in each group
-  that shares changes)
-- each future collision. The next round of the loop can find something
-  new because the part is next to a different part in the pool in order.
-  Without the part, that adjacent pair never occurs, and the discovery
-  never occurs.
+- every record that the part sits inside some other part
+- every record that the part is built from smaller parts
+- the part's place in its class, the group of parts that take the same
+  changes
+- every future match. The next round can find something new only because
+  the part is sitting next to some other part in the sorted pool.
+  Without it, that pair never forms, and that discovery never happens.
 
-You cannot get any of these things back without a new run of the whole
-process from the start. The system has no prediction. The system does not
-know what will be necessary later. The only safe answer is to keep
-everything.
+You can't get any of this back without re-running the whole process from
+the start. The system makes no predictions. It doesn't know what it will
+need later. The only safe answer is to keep everything.
 
-Compression is not removal. Compression is 1 entry for each distinct
-part, with the count of the part. The pool is a dictionary with 1 entry
-for each thing, not 1,000 copies. The counts are values in the
-dictionary. No count decreases with time, no entry has an end date, and
-the program removes no entry.
+Compression is not removal. Compression means one entry for each distinct
+part, with its count. The pool is a dictionary with one entry per thing,
+not 1,000 copies. The counts are the values. No count goes down, no entry
+expires, and the program removes nothing.
 
-The count says how common a thing is. Existence says that the thing is
-real.
+The count says how common a thing is. Its being there at all says the
+thing is real.
 
-### Same input, same output (determinism)
+### Same input, same output
 
-The program sorts the pool before each comparison. The order after the
-sort is the same each time for the same contents. The mint step goes
-through the list in order from the front to the back, with the same pairs
-in the same order. There is no random step anywhere. Run the program 2
-times on the same file, and you get the same record.
+The program sorts the pool before every comparison, and the sorted order
+is the same every time for the same contents. The mint step walks the
+sorted list from front to back, comparing the same pairs in the same
+order. There is no random step anywhere. Run the program twice on the
+same file and you get the same record.
 
-### No removal in the code (check)
+### How to check that the code removes nothing
 
-Each change in the code is an addition: `pool[key] = ...`,
-`made_of[key] = ...`, `part_of.setdefault(...)`. There is no `del`, no
-`pop`, no `remove`, and no `discard` on the pool or on any of the tables
-that go with the pool. Parts go in and stay in. This claim is easy to
-check. Search the source for a removal on the pool dictionary. There is
-none.
+Every change the code makes to its tables is an addition:
+`pool[key] = ...`, `made_of[key] = ...`, `part_of.setdefault(...)`.
+There is no `del`, no `pop`, no `remove`, and no `discard` on the pool or
+on any table that goes with it. Parts go in and stay in. This is easy to
+check yourself: search the source for anything that removes from the
+pool dictionary. There isn't anything.

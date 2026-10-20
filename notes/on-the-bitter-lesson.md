@@ -1,46 +1,40 @@
 # On the Bitter Lesson
 
-Richard Sutton wrote *The Bitter Lesson* in 2019. The essay makes a simple argument. Methods that use raw computation (search and learning) always win against methods that use human knowledge. The history of AI is a history of researchers who put what they know into systems. Then the researchers see simpler methods go past those systems. The simpler methods search more and learn more.
+Richard Sutton wrote *The Bitter Lesson* in 2019. Its argument is simple. Methods that run on raw computation, searching through possibilities and learning from data, always end up beating methods built on what humans know. The history of AI, he says, is a history of researchers putting their own knowledge into a system, and then watching a simpler system go past it, because the simpler one searches more and learns more.
 
-Discovery is the result when you take that argument to its end.
+Discovery is what you get when you take that argument all the way to the end.
 
 ## No human knowledge at all
 
-The examples of Sutton still include some human choices:
+Even Sutton's own examples still contain human choices. Someone decides what kind of problem the system is solving. Someone decides the form of the reward, the score that tells the system when it did well. Someone decides what kinds of things the search is allowed to consider. There's less human knowledge than before, but it's still there, in three places: the measure of how wrong an answer is, which people choose; the set of moves the system can make, which people choose; and the shape of the system, which people choose.
 
-- the type of problem
-- the form of the reward signal
-- the representations that the search covers
+Discovery takes all of that out.
 
-The human knowledge is less, but the human knowledge remains. The human knowledge is in the loss function, the action space, and the architecture. The loss function is the thing that tells the system what "good" means. The action space is the set of moves that the system can make. The architecture is the shape of the system.
+It doesn't know what kind of file it's reading. It has no dictionary, no grammar, no list of machine instructions, and no table of file formats. It doesn't know whether the signal is text, code, or instructions for a machine. It doesn't even know how many bits make one unit. It works that out first, from the raw bits: it tries one width after another, lays the bits out in rows of that width, and looks for the width where some column barely changes from one row to the next. That's where the units line up.
 
-Discovery removes all of that human knowledge.
+The only thing Discovery is given is the comparator: a piece of code that takes two things and answers same, different, or not part of each other. That isn't human knowledge about the subject matter. It's the operation itself, and it's the smallest possible unit of learning: a yes-or-no comparison, one bit of answer. That one operation runs again and again on what it found the time before. Everything else assembles itself out of it: the parts the file is made of, the connections between them, the groups of parts that behave alike, and the levels where the whole thing is done again one step up.
 
-Discovery does not know the type of the file that Discovery reads. Discovery has no dictionary, no grammar, no instruction set, and no file format table. Discovery does not know if the signal is text, code, or machine instructions. Discovery does not know the word width. Discovery finds the word width first, from the raw bits. To find the word width, Discovery looks for the column that changes least.
+## Three statements, each taken to its end
 
-The only thing that Discovery gets is the comparator: same, different, not part. The comparator is not human knowledge about the domain. The comparator is the operation itself. The comparator is the smallest possible unit of learning: a yes/no comparison, 1 bit of resolution. That 1 operation runs again and again on what the operation found before. All other things assemble themselves from that 1 operation: the parts, the connections, the classes, and the levels.
+**Wheeler: "It from bit."** The system starts from raw bits and makes structure out of them. The bits are not a figure of speech. The system reads real bits from the file and compares them one column at a time. The "it" is the parts, the words, the groups, and the changes that turn one word into another, and all of it comes from nothing but the pattern of where the bits agree.
 
-## The 3 statements, each to its end
+**Bateson: "A difference that makes a difference."** The comparator finds the differences, and the memory keeps them. A difference that shows up again is a difference that makes a difference: the same part turning up in another place, or the same ending fitting onto many words. A difference that never shows up again is noise. That's the only filter in the whole system, and it's nothing more than the comparator run on its own earlier output.
 
-**Wheeler: "It from bit."** The system starts from raw bits and makes structure. The bits are not a metaphor. The system reads real bits from the file. The system compares the bits 1 column at a time. The "it" is the parts, the words, the classes, and the changes. The "it" comes only from the pattern of agreement between the bits.
+**Sutton: "General methods that leverage computation ultimately win."** Discovery uses one method on every file it has ever been given: compare, and remember. With that one method it found:
 
-**Bateson: "A difference that makes a difference."** The comparator finds the differences. The memory keeps the differences. A difference that occurs again is a difference that makes a difference. Examples are the same part that appears again, and the same change that applies to many words. A difference that does not occur again is noise. This rule is the only filter, and the filter is the comparator at work on its own output.
+- 8-bit ASCII in English text, where every character is one byte
+- 15-bit packed words in Apollo flight code, where the machine's units are 15 bits long and don't line up with bytes
+- 64-bit words in a compiled binary, a program turned into machine code
+- UTF-8 lead bytes in German, the byte that always comes before an accented letter
 
-**Sutton: "General methods that leverage computation ultimately win."** Discovery uses 1 method on each signal that Discovery has received. The method is: compare and remember. Discovery found:
+It used the same one file of Python, the same comparator, and the same loop every time. It has no special case for any of them. The computation is the method.
 
-- 8-bit ASCII in English text
-- 15-bit packed words in Apollo flight code
-- 64-bit words in a compiled binary
-- UTF-8 lead bytes in German
+## What's left when all the human knowledge is gone
 
-Discovery uses the same 1 file of Python, the same comparator, and the same loop. Discovery has no specialization. The computation is the method.
+When you take the human knowledge about the subject out, you don't get a worse system that needs more data to make up the difference. You get a system that finds things a human wouldn't have thought to look for.
 
-## The result after the removal of all human knowledge
+Discovery found that the instruction EXTEND is the separator in the Apollo Guidance Computer's code. The separator is the most common unit in a file, and it's what divides the file into stretches that mean something on their own. Nobody told Discovery what EXTEND does. Nobody told it what an instruction is.
 
-When you remove the human knowledge about the domain, the result is not a worse system that needs more data in place of the knowledge. The result is a system that finds things that a human does not think to look for.
+It found that role from the same property that makes the space the separator in English: the separator is whatever shows up most often. To cut a signal is to divide it into stretches at every copy of the separator, and a cut at the most common thing gives the most structure.
 
-Discovery found that the EXTEND instruction of the Apollo Guidance Computer is the separator. The separator is the most common word. The separator divides the signal into runs with meaning. Nobody told Discovery what EXTEND does. Nobody told Discovery what an instruction is.
-
-Discovery found the role from the same property that makes the space the separator in English. The separator is the most common thing. To cut a signal is to divide the signal into runs at each copy of the separator. A cut at the most common thing gives the most structure.
-
-That result is the bitter lesson in its pure form. The lesson is not "search beats knowledge". That statement still accepts that knowledge is the thing that you prefer to have. The lesson is that knowledge is what you get when the search is complete. Knowledge is the output, not the input.
+That result is the bitter lesson in its purest form. The lesson isn't "search beats knowledge". That version still assumes knowledge is the thing you'd rather have, if only you could get it. The lesson is that knowledge is what you're left with when the search is finished. Knowledge is the output, not the input.

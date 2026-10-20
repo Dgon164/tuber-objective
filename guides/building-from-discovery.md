@@ -1,161 +1,186 @@
 # How to make new things on Discovery
 
-This guide has 3 parts:
+This guide has three parts:
 
-- the givens (the base of the program)
-- the reason that the set of givens is enough
-- how to make new things on the program
+- the givens: the things the program assumes or does, which everything
+  else rests on
+- why that set of givens is enough
+- how to build new things on top of the program
 
-The third part shows 3 extensions in `extend/`. Each extension adds a few
-lines. Each extension gets results that nothing in the original file gave.
+The third part walks through three extensions in `extend/`. Each one adds
+a few lines to the program and gets results that nothing in the original
+file gave.
 
 ## The givens
 
-Each given is a thing that the program assumes or does. Each given also
-says where in the records you can see the given at work.
+Each given is something the program assumes, or something it does. For
+each one, this section says what it is in plain words and where in the
+records you can see it working.
 
-**1. All storage is bits, and the bits do not say the word width.**
-A file is a string of bits. The word width is the number of bits in 1
-word. The word width is an agreement between the writer of the file and
-the reader of the file. The frame step finds that agreement from the bits
-alone. See the given at work in:
+**1. Every file is a string of bits, and the bits don't say how wide one
+unit is.** The program reads a file as one long string of bits. Somewhere
+in that string there's a natural unit: 8 bits for a byte of text, 15 bits
+for an Apollo word, 64 bits for a modern machine word. But the width of
+that unit is an agreement between whoever wrote the file and whoever
+reads it, and it isn't written down in the file. The frame step, the part
+of the program that works out the width, finds that agreement from the
+bits alone, by trying each width and looking for the one where the bit
+patterns line up. See it working in:
 
-- `examples/text` (8 bits for each character, and the top bit is never 1)
-- `examples/code` (64-bit words for a modern program, with the
-  little-endian decrease visible in the column rates)
+- `examples/text` (8 bits per character, and the top bit is never 1)
+- `examples/code` (64-bit words for a modern program; the numbers in it
+  are stored low byte first, a layout called little-endian, and you can
+  see that as a falloff in how often each bit position is 1 across the
+  word)
 - `examples/agc` (15-bit words, from a file where no word starts on a
   byte boundary)
 
-**2. A comparator and a memory are the whole set of tools.** The
-comparator gives same, different, and not part. The memory is a place to
-keep what the program saw, so the program can compare the next thing
-against the memory. See the given at work in `discovery.py`: each
-function is a comparison with that 3-way result, or a count of such
-results. There is no other operation in the file.
+**2. The only tools are one comparison and one memory.** The comparison
+takes two things and gives back three results: the part they share,
+what's left of each once the shared part is removed, and everything the
+comparison didn't touch. The memory is a place to keep what the program
+has seen, so that the next thing can be compared against it. See it
+working in `discovery.py`: every function in the file is either that
+three-way comparison or a count of its results. There is no other
+operation in the file.
 
-**3. The most common thing is the background.** A run is the content
-between 2 occurrences of the most common symbol (the separator). To cut
-is to divide the signal into runs at the separator. See the given at work
-in these separators:
+**3. The most common unit is the background, and the program cuts the
+file at it.** Once the program knows the unit width, it counts the units.
+The one that occurs most often becomes the divider, the way a space
+divides words in text. The program then cuts the file into chunks at
+every divider, so a chunk is whatever sits between two dividers. See it
+working in the dividers the program found:
 
 - the space character in text
 - the zero byte in binary
 - the zero 64-bit word in a compiled program
 - the EXTEND instruction in Apollo guidance code
 
-The separators 1 level up are `the`, the comma, and `#`.
+One level up, where the chunks themselves are the units, the dividers it
+found are `the`, the comma, and `#`.
 
 **4. Compare things until nothing new comes out, and keep everything.**
-The loop mints parts. To mint a part is to make a new part from 2 parts
-that have the same start or the same end. The loop has 5 steps:
+The program keeps a collection of every part it has found so far; call
+that the pool. In each round it makes new parts out of pairs of parts
+that start the same way or end the same way. That's called minting a
+part. The round has five steps:
 
-1. Sort the pool. To sort the pool is to put the parts of the pool in
-   order.
-2. Compare adjacent parts.
-3. Mint the shared start and the 2 parts that remain.
+1. Sort the pool, which puts the parts in alphabetical order so that
+   parts with the same beginning sit next to each other.
+2. Compare each part with its neighbour.
+3. Make three new parts from each pair: the shared start and the two
+   leftovers.
 4. Put the new parts back into the pool.
-5. Repeat until the pool is stable.
+5. Repeat until a round makes nothing new.
 
-The program removes nothing. The number of times that a part occurred is
-a number on the entry. See the given at work in the MINT line of each
-record. The MINT line decreases to 0 in 7 to 30 rounds. Also see `e`: `e`
-is never a whole word alone, but `e` is inside 1,615 parts.
+The program removes nothing. How many times a part occurred is just a
+number stored on its entry. See it working in the MINT line of each
+record, where the number of new parts falls to 0 in 7 to 30 rounds. Also
+look at `e`: it's never a whole word on its own, but it sits inside
+1,615 parts.
 
-**5. The connections of a thing are its definition.** The connections
-are:
+**5. A thing is defined by what it's connected to.** The program never
+says what a part is. It records what the part is connected to:
 
-- what the thing contains
-- what contains the thing
-- what the thing changes into
-- what occurs next to the thing
+- what the part contains
+- what contains the part
+- what the part turns into
+- what sits next to the part
 
-The density of a part is the number of things that contain the part. See
-the given at work in the CRYSTAL entry for `the`, `die`, `Kommission`,
-and `for`.
+The number of things that contain a part is what the record calls its
+density. See it working in the CRYSTAL entry, the record's dictionary-style
+entry for a common chunk, for `the`, `die`, `Kommission`, and `for`.
 
-**6. Parts that take the same changes are 1 kind.** See the given at
-work in these groups:
+**6. Parts that take the same changes are one kind.** If two parts both
+take the same additions, the program puts them in one group. See it
+working in these groups:
 
-- 22 stems with `{+ed, +ing}`
-- 52 stems with `{+en, +t}`
-- 42 stems with `{+n, +r}`
-- the pairs of a capital letter and a small letter `{A+, a+}`
+- 22 stems that take `{+ed, +ing}`
+- 52 stems that take `{+en, +t}`
+- 42 stems that take `{+n, +r}`
+- the pairs of a capital letter and its small letter, `{A+, a+}`
 
-**7. Crystallize, then loop again: replace nothing, add everything.** To
-crystallize is to group the parts by the changes that the parts accept.
-The program cuts the runs again 1 level up. The classes are a second way
-to be the same. Each structure goes into 1 pool. The process repeats
-until there is nothing more to cut.
+**7. Group the parts, then go up a level: replace nothing, add
+everything.** After the pool settles, the program groups the parts by
+which changes they accept. That grouping is called crystallizing, and
+the groups it makes are the classes. Then the program cuts the chunks
+again one level up, treating each chunk as a single unit, and runs the
+whole thing again. At the new level, two things count as the same if
+they're equal, or if they belong to the same class. Everything the
+program finds at every level goes into the one pool. The process repeats
+until there's nothing left to cut.
 
-See the given at work in the LEVELS table: 22,446, then 6,709, then 5,
+See it working in the LEVELS table: 22,446 parts, then 6,709, then 5,
 then 1.
 
-**8. Evaluation is the comparator on the output of the model.** The
-question "is the model the same as reality?" is the same question as "is
-this thing the same as that thing?". Memory closes the loop. See the
-given at work in `examples/memory`: the second read of the second half of
-Alice confirms 19,833 parts and adds 0 at level 0.
+**8. To check the model, compare its output the same way.** The question
+"does the model match reality?" is the same question as "is this thing
+the same as that thing?", and the same comparison answers it. Memory is
+what closes the loop: save what one file produced, read the next file
+against it. See it working in `examples/memory`: reading the second half
+of Alice a second time confirms 19,833 parts and adds 0 at level 0.
 
-## Proof that the givens are enough
+## Why the givens are enough
 
-The claim is not that the program does everything. The claim has 2 parts.
-First, the program needs nothing more than the givens for what the
-program does. Second, each new thing that you point the program at needs
-a new target, not a new tool.
+The claim is not that the program does everything. The claim has two
+parts. First, the program needs nothing beyond the givens to do what it
+does. Second, every new thing you point the program at needs a new
+target, not a new tool.
 
-- A count is the comparator with memory: the same thing again, add 1.
-- A cut is the comparator: this word is the background, the last word was
-  not, so there is a border.
-- The mint step is the comparator on 2 things at the same time. The result is
-  the same start, the 2 different parts that remain, and everything else
-  outside the comparison.
-- Composition is containment. Containment is a comparison: 1 part is in a
-  second part. The mint step finds the containment and keeps the
-  containment as a connection.
-- A class is the comparator on sets of changes: the same set of changes
-  puts things in 1 group.
-- A level is the comparator on runs instead of words. `mint()` works on
-  tuples. The type of the parts in a tuple is not important to `mint()`.
-  Thus level 1 needed no code that level 0 did not already have.
-- A second kind of "same" (class membership) is a branch of 4 lines in
-  `head()`. The part that the program mints carries the class in the
-  position where the 2 parts differ.
-- Evaluation is the comparator on the output of the model. Memory is the
-  pool that the program saved. Neither of the 2 added an operation. The
-  memory added only a file.
+- A count is the comparison plus memory: the same thing again, so add
+  one.
+- A cut is the comparison: this unit is the background and the last one
+  wasn't, so there's a boundary here.
+- The mint step is the comparison on two things at once. The result is
+  the shared start, the two leftovers, and everything else untouched.
+- Composition is containment, and containment is a comparison: one part
+  sits inside another. The mint step finds that and keeps it as a
+  connection.
+- A class is the comparison on sets of changes: the same set of changes
+  puts two things in one group.
+- A level is the comparison on chunks instead of units. `mint()` works on
+  tuples, which are ordered lists of items, and it doesn't care what the
+  items are. So level 1 needed no code that level 0 didn't already have.
+- A second kind of "same" (belonging to the same class) is a four-line
+  branch in `head()`, the function that finds how far two parts match
+  from the front. The part it makes carries the class in the position
+  where the two parts differ.
+- Checking the model is the comparison on the model's output. Memory is
+  the pool, saved to a file. Neither of these added an operation. Memory
+  added only a file.
 
-Each extension to date is a new thing to compare, not a new way to
-compare. That is the argument. The set of tools has not needed a new
-tool. The records show the same tool on 4 different kinds of signal and
-then on its own memory.
+Every extension so far has been a new thing to compare, not a new way to
+compare. That's the whole argument. The set of tools has never needed a
+new tool. The records show the same tool on four different kinds of file
+and then on its own memory.
 
-The word "enough" does not cover 2 things. The program names nothing: a
-class is its set of changes, not "verb". The program acts on nothing
-outside itself: the only actions of the program are to write the record
-and to update its memory. A name is a lens on the record. An action on
-the outside world is the job of a different system. The guide
-`guides/hybrid-systems.md` covers such systems.
+There are two things "enough" doesn't cover. The program names nothing: a
+class is its set of changes, not "verb". And the program acts on nothing
+outside itself: the only things it ever does are write the record and
+update its memory. A name is a way of reading the record, laid over the
+top of it. Acting on the outside world is the job of a different system,
+and `guides/hybrid-systems.md` covers those.
 
-## How to extend the program: point the comparator at a new target
+## How to extend the program: point the comparison at something new
 
-The program has 4 places where a new target connects. Each of the 3
-extensions below uses 1 place. Each extension is short enough to read in
+The program has four places where a new target can plug in. Each of the
+three extensions below uses one of them. Each is short enough to read in
 full.
 
 | place to point | what the place changes | extension |
 |---|---|---|
-| the cut | where the program divides the run sequence | `extend/cut_at_class.py` |
-| the kind of same | what is a match | `extend/same_within.py` |
-| the comparison target | the 2 things that the program compares | `extend/row_by_row.py` |
+| the cut | where the program divides the sequence of chunks | `extend/cut_at_class.py` |
+| the kind of same | what counts as a match | `extend/same_within.py` |
+| the comparison target | which two things the program compares | `extend/row_by_row.py` |
 | the signal | what goes in | any file (see `guides/any-signal.md`) |
 
 ### Cut at a class instead of the most common word
 
-Normally, `discovery.py` cuts level 1 at the most common run (`the`).
-This extension cuts at the largest level-0 class instead. Each stem that
-takes both `+ed` and `+ing` becomes a separator. Each complete word that
-has such a stem also becomes a separator. The runs of level 1 are then
-the content between verbs.
+Normally `discovery.py` cuts level 1 at the most common chunk, which in
+Alice is `the`. This extension cuts at the largest level-0 class instead.
+Every stem that takes both `+ed` and `+ing` becomes a divider, and so
+does every complete word built on such a stem. The level-1 chunks are
+then whatever sits between one verb and the next.
 
 ```
 level 1 cut at class [+ed, +ing]: 58 separators
@@ -170,24 +195,27 @@ ENDINGS (right before such a stem)      BEGINNINGS (right after)
                                           a little+  7
 ```
 
-The words immediately before a verb are `and`, `to`, and `she`. The words
-immediately after a verb are `herself`, `out`, `the`, `a`, `at`, and `a
-little`. Nothing in the program knew what a verb was. The class was 22
-stems that take 2 specific endings. The cut at that class shows the words
-that occur next to those stems. New lines of code: 4 lines (the separator
-set), plus the call into `run_level` with those separators.
+What came out: the words that sit immediately before a verb are `and`,
+`to`, and `she`. The words that sit immediately after one are `herself`,
+`out`, `the`, `a`, `at`, and `a little`. That's interesting because
+nothing in the program knew what a verb was. The class was just 22 stems
+that happen to take two particular endings. Cutting at that class is
+what shows you the words that live next to those stems. New lines of
+code: four (the set of dividers), plus the call into `run_level` with
+those dividers.
 
 ### A new kind of same: numbers within a range
 
-`mint()` takes a `class_of` map. The map goes from a symbol to the
-replacement for that symbol when 2 symbols are the same by class. The
-main program uses the map for crystal classes (groups of parts that share
-the same set of changes). This extension fills the map with ranges
-instead.
+`mint()` takes a map called `class_of`. For each symbol, the map says
+what stands in for it when two symbols count as the same by class. The
+main program fills the map with the classes from crystallizing (groups
+of parts that share the same set of changes). This extension fills it
+with ranges instead.
 
-A pair of 15-bit words is "the same" if the 2 words are within 8 of each
-other. On the Apollo rope, 2 runs that differ only by a near
-address now collide. The range stands in that position.
+Two 15-bit words count as "the same" if they're within 8 of each other.
+On the Apollo rope, the read-only program memory of the Apollo Guidance
+Computer, two chunks that differ only by a nearby address now match. The
+range takes the place of the exact number in that position.
 
 ```
 plain mint:        8538 parts
@@ -198,22 +226,26 @@ with same-within:  50319 parts, of which 2580 carry a range (~) in a slot
   ~32630.04616.20334.12603 14
 ```
 
-`05353.~04020` is `TC PHASCHNG` and then an argument in the 04020 range.
-The phase-change codes 04022, 04024, and 04026 are within 8 of each
-other. Thus the calls to PHASCHNG with any of the 3 codes become 1 part
-with 14 occurrences. New lines of code: 1 line (the range map), and 1
-line (the display of a range).
+What came out: `05353.~04020` is `TC PHASCHNG` followed by an argument
+somewhere in the 04020 range. The phase-change codes 04022, 04024, and
+04026 are all within 8 of each other, so a call to PHASCHNG with any of
+the three now becomes one part, seen 14 times. That's interesting because
+the plain program would have kept those as three separate parts; the
+range lets the comparison see that they're the same call. New lines of
+code: one (the range map) and one (how to display a range).
 
-### The comparator on adjacent rows
+### Comparing each row with the row before it
 
-The frame step compares a column with itself 1 row down. A signal with a
-time dimension has a second kind of same: a row against the row that
-comes before. The extension runs on the reservoir states (32 units, 1 row
-for each byte of Alice that goes through the network). The extension
-compares each row with the row before that row.
+The frame step compares a column with itself one row down. A signal that
+unfolds over time has a second kind of same: a row compared against the
+row that came before it. This extension runs on the states of a
+reservoir, which is a small random network whose connections never
+change. The reservoir here has 32 units. Each byte of Alice goes through
+it, and after each byte the on/off state of the 32 units is written down
+as one row. The extension compares each row with the row before it.
 
-A bit that changed between the 2 rows is a flip. The flips become a new
-signal. Discovery reads the flips like any other signal.
+A bit that changed between two rows is a flip. The flips become a new
+signal, and Discovery reads them like any other file.
 
 ```
 frame 32; 20000 rows; 19999 row-to-row comparisons
@@ -230,43 +262,45 @@ RUNS   150 runs between separators, 150 distinct
 MINT   7 rounds; parts minted per round: 643 280 61 18 9 2 0
 ```
 
-Units 28, 21, and 2 never move. The column rates said the same thing. Now
-the flips show the same thing from the other direction.
+What came out: units 28, 21, and 2 never move. The column rates (how
+often each bit position is 1) said the same thing when Discovery read
+the states directly. Now the flips show it from the other direction.
 
-The most common change is a flip of 8 specific units together. This
-change occurred 149 times. This change is the most common step of the
-network. New lines of code: 2 lines (the XOR and the rate for each
-column). The extension also writes the flips to a file and calls
+The most common change is a flip of eight specific units together, and it
+happened 149 times. That is the network's most common step. That's
+interesting because it's a map of what the network does, made without
+looking inside it. New lines of code: two (one to mark which bits differ
+between two rows, which in code is a single XOR, and one for the rate
+per column). The extension also writes the flips to a file and calls
 `discover` on that file.
 
-### The other 3 extensions in the repository
+### The other three extensions in the repository
 
-- A comparison of 2 signals: `examples/german/bridge.py`. The script is
-  the comparator on 2 records. The result is the shared parts and the
+- Comparing two files: `examples/german/bridge.py`. The script runs the
+  comparison on two records. The result is the parts both share, and the
   parts that contain the shared parts, on each side.
-- A different system on either side: `hybrid/`. The scripts make a rule
-  table from the record. The scripts put the states of a network into
-  Discovery. The scripts loop the output of the model back into
-  Discovery.
-- Many signals over time: `--memory`. The flag is the comparator on a
-  signal against everything in the memory. The bins are confirmed, added,
-  and not seen.
+- A different system on either side: `hybrid/`. These scripts build a
+  rule table out of the record, feed the states of a network into
+  Discovery, and loop the output of a model back into Discovery.
+- Many files over time: `--memory`. The flag compares a file against
+  everything in the memory. The results fall into three bins: confirmed,
+  added, and not seen.
 
 ## How to add something new
 
-1. Select 1 of the 4 places to point at: the cut, the kind of same, the
-   comparison target, or the signal.
-2. Write the new thing. The new thing is usually a map, a set, or a line
-   that makes a new file.
-3. Call `run_level` or `discover` with the new thing. Do not change the
-   mint, the crystal, or the levels.
-4. Read the record. If the record shows a thing that the plain run did
-   not show, keep the lines. If the record shows nothing new, the signal
-   did not have the thing.
+1. Pick one of the four places to point at: the cut, the kind of same,
+   the comparison target, or the signal.
+2. Write the new thing. It's usually a map, a set, or a line that makes a
+   new file.
+3. Call `run_level` or `discover` with the new thing. Don't change the
+   mint step, the crystallizing step, or the levels.
+4. Read the record. If it shows something the plain run didn't, keep the
+   lines. If it shows nothing new, the signal didn't have that thing in
+   it.
 
-Each script in `extend/`, `hybrid/`, and `examples/german/bridge.py` has
-the same shape. Thus the 1 new thing is the only thing that you must
-read. The root is 1 call:
+Every script in `extend/`, in `hybrid/`, and `examples/german/bridge.py`
+has the same shape, so the one new thing is the only thing you have to
+read. The root of each is a single call:
 
 ```
 import discovery as D
@@ -281,18 +315,18 @@ R = D.Root(sys.argv[1])      # read, frame, words, level 0, the shared pool
 print(...)                   # R.draw(x) draws a part through the lens
 ```
 
-`Root` takes 3 of the 4 places as arguments: `separators` (the cut),
-`same` (the kind of same), and the path (the signal). The comparison
-target is what the NEW section does with what `Root` holds. `discover()`
-itself is `Root` plus `all_levels()` plus the record. Thus the root of
-each program and the root of the program are the same call.
+`Root` takes three of the four places as arguments: `separators` (the
+cut), `same` (the kind of same), and the path (the signal). The
+comparison target is whatever the NEW section does with what `Root`
+holds. `discover()` itself is `Root` plus `all_levels()` plus writing the
+record. So the root of every script and the root of the program are the
+same call.
 
-A script that reads a record instead of a signal starts with *the
-record, as discovery.py wrote it* (`json.load` of the `.record.json`). A
-script with a new thing that makes a new signal has *the ..., as
-discovery.py reads it* after the NEW section. That line is a call to
-`discover`. The output that each script prints is committed next to the
-script.
+A script that reads a record instead of a file starts with *the record,
+as discovery.py wrote it* (a `json.load` of the `.record.json`). A script
+whose new thing produces a new file has *the ..., as discovery.py reads
+it* after the NEW section, and that line is a call to `discover`. The
+output each script prints is committed next to the script.
 
-None of the 3 extensions above took more time to write than to read. That
-is the practical result when the givens are enough.
+None of the three extensions above took longer to write than to read.
+That's the practical result when the givens are enough.
