@@ -1,4 +1,5 @@
 # The flight plan from phase-d, for comparison, then the second measure. One change from phase-d's: the turn
+# The orbit phase asks for a path that never comes down (field 20, the fall destination, reads 32767 = never).
 # phase asks for all three turn rates at zero (f3, f4, f5), not the pitch rate alone. Phase D's loop only ever
 # pressed +pitch and -pitch, so one rate was enough; this loop presses roll and yaw too, and met the pitch
 # target while still turning on the other axes.
@@ -6,5 +7,5 @@ liftoff:    f17 == 0 ; f9 > 4000 ; f6 > 5
 pitchover:  f17 == 0 ; f1 > 10800 ; f1 < 11600 ; f3 == 0 ; f4 == 0 ; f5 == 0
 burnout:    f17 == 0 ; f14 < 1
 staged:     f17 == 1 ; f16 == 1
-orbit:      f18 > 100 ; f19 < 3000 ; f16 == 0
+orbit:      f20 > 32000 ; f19 < 3000 ; f16 == 0
 prefer:     steps least

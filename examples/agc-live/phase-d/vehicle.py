@@ -8,9 +8,11 @@ astronaut's direct controls on a second socket. Three things are new.
 1. A round moon. Gravity pulls toward the moon's center and gets weaker with height. In the
    vehicle's own frame (x downrange, z up) that is: vertical acceleration = thrust part - g(r) + vx^2/r,
    downrange acceleration = thrust part - vx*vz/r. At the right horizontal speed the vx^2/r term
-   cancels gravity and the vehicle stays up: an orbit. Two instrument fields report the orbit the
+   cancels gravity and the vehicle stays up: an orbit. Four instrument fields report the path the
    vehicle is on right now, as a real cockpit would: the lowest and highest points it will reach
-   (periapsis and apoapsis altitude). A negative periapsis means the path hits the ground.
+   (periapsis and apoapsis altitude), where the path comes down (the distance downrange from the pad
+   to that point, or "never" for a path that stays up), and where the vehicle is now downrange. A
+   negative periapsis means the path hits the ground.
 
 2. Two stages. A descent stage with a throttleable engine, and an ascent stage with a fixed-thrust
    engine, each with its own propellant. One more control, 'stage', drops the stage you are on. The
@@ -76,10 +78,11 @@ KEYS = {'0': 16, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8,
 #  0 oga 1 iga 2 mga (deg*100)  3 wx 4 wy 5 wz (deg/s*100)  6 alt (10 m)  7 vx 8 vz (0.1 m/s)
 #  9 thrust (10 N)  10 jets5 11 jets6  12 cdu 13 pipa (counts)  14 prop (kg, this stage)
 #  15 armed 16 engine 17 stage  18 peri 19 apo (100 m, clamped)
-ROW = '>HhhhhhhHhhHBBHHHBBBhh'
-CSV_HEADER = 't,oga_deg,iga_deg,mga_deg,wx_dps,wy_dps,wz_dps,alt_m,vx,vz,thrust_N,jets5,jets6,cdu_sent,pipa_sent,prop_kg,armed,engine,stage,peri_m,apo_m'
+#  20 where the current path comes down, km downrange from the pad (32767 = never)  21 position downrange (km)
+ROW = '>HhhhhhhHhhHBBHHHBBBhhhh'
+CSV_HEADER = 't,oga_deg,iga_deg,mga_deg,wx_dps,wy_dps,wz_dps,alt_m,vx,vz,thrust_N,jets5,jets6,cdu_sent,pipa_sent,prop_kg,armed,engine,stage,peri_m,apo_m,fall_m,downrange_m'
 NULL_ROW = (0xffff, -32768, -32768, -32768, -32768, -32768, -32768, 0xffff, -32768, -32768, 0xffff, 255, 255,
-            0xffff, 0xffff, 0xffff, 255, 255, 255, -32768, -32768)
+            0xffff, 0xffff, 0xffff, 255, 255, 255, -32768, -32768, -32768, -32768)
 
 
 def packet(channel, value):
@@ -209,6 +212,37 @@ class Vehicle:
         e2 = 1 + 2 * eps * h * h / (GM_MOON * GM_MOON)
         e = math.sqrt(max(0.0, e2))
         return a * (1 - e) - R_MOON, a * (1 + e) - R_MOON
+
+    def fall(self):
+        """where the path the vehicle is on now comes down: the distance downrange from here to that point, in metres
+        along the ground. None if the path never comes down (a closed orbit above the ground, or leaving the moon)."""
+        r0 = R_MOON + self.pos[2]
+        vx, vz = self.vel[0], self.vel[2]
+        if self.down:
+            return 0.0
+        eps = 0.5 * (vx * vx + vz * vz) - GM_MOON / r0
+        h = r0 * abs(vx)
+        p = h * h / GM_MOON
+        e2 = 1 + 2 * eps * h * h / (GM_MOON * GM_MOON)
+        e = math.sqrt(max(0.0, e2))
+        if e < 1e-9:
+            return None                                  # a circle: never comes down
+        peri = p / (1 + e) if e < 1 or True else None
+        if e < 1 and p / (1 + e) >= R_MOON:
+            return None                                  # lowest point above the ground
+        if e >= 1 and p / (1 + e) >= R_MOON:
+            return None                                  # leaving, and the closest point is above the ground
+        if h < 1e-6:
+            return 0.0                                   # straight up and down
+        # true anomaly now, and at the ground on the way down
+        c0 = max(-1.0, min(1.0, (p / r0 - 1) / e))
+        nu0 = math.acos(c0)
+        if vz < 0:
+            nu0 = 2 * math.pi - nu0
+        c1 = max(-1.0, min(1.0, (p / R_MOON - 1) / e))
+        nu1 = 2 * math.pi - math.acos(c1)                # the descending crossing
+        d = (nu1 - nu0) % (2 * math.pi)
+        return R_MOON * d
 
     def die(self, cause):
         self.cause = cause
@@ -525,21 +559,23 @@ def main():
                         break
         if n % 10 == 0:
             if dead:
-                csv.write(f"{v.t:.4f}," + ','.join(['nan'] * 20) + '\n')
+                csv.write(f"{v.t:.4f}," + ','.join(['nan'] * 22) + '\n')
                 binf.write(struct.pack(ROW, *NULL_ROW))
             else:
                 peri, apo = v.orbit()
+                fall = v.fall()
                 p100 = lambda x: 32767 if x is None else max(-32767, min(32767, int(x / 100)))
+                km = lambda x: 32767 if x is None else max(-32767, min(32767, int(x / 1000)))
                 row = (v.t, math.degrees(ax), math.degrees(ay), math.degrees(az), math.degrees(v.w[0]), math.degrees(v.w[1]), math.degrees(v.w[2]),
                        v.pos[2], v.vel[0], v.vel[2], thrust, v.jets5, v.jets6, cdu_sent, pipa_sent, v.prop[v.stage], int(v.armed), int(thrust > 0),
-                       v.stage, -1e9 if peri is None else peri, -1e9 if apo is None else apo)
+                       v.stage, -1e9 if peri is None else peri, -1e9 if apo is None else apo, -1e9 if fall is None else fall, v.pos[0])
                 csv.write(','.join(f"{x:.4f}" if isinstance(x, float) else str(x) for x in row) + '\n')
                 s16 = lambda x, scale: max(-32767, min(32767, int(round(x * scale))))
                 binf.write(struct.pack(ROW, int(v.t * 10) & 0xffff, s16(math.degrees(ax), 100), s16(math.degrees(ay), 100), s16(math.degrees(az), 100),
                                        s16(math.degrees(v.w[0]), 100), s16(math.degrees(v.w[1]), 100), s16(math.degrees(v.w[2]), 100), int(v.pos[2] / 10) & 0xffff,
                                        s16(v.vel[0], 10), s16(v.vel[2], 10), int(thrust / 10) & 0xffff, v.jets5, v.jets6,
                                        cdu_sent & 0xffff, pipa_sent & 0xffff, int(v.prop[v.stage]) & 0xffff, int(v.armed), int(thrust > 0),
-                                       v.stage, p100(peri), p100(apo)))
+                                       v.stage, p100(peri), p100(apo), km(fall), km(v.pos[0])))
             binf.flush()
             csv.flush()
     csv.close()

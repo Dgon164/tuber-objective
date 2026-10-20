@@ -1,0 +1,9 @@
+# The mission: an orbit, and nothing else. The loop is told what the end looks like on the
+# instruments. Lift-off, the turn, the staging and the burns are its to find.
+#
+# fields (positions in the instrument row, see ../phase-d/vehicle.py): 16 engine on, 18 lowest and
+# 19 highest point of the current path in 100 m (32767 = leaving the moon)
+orbit:   f18 > 100 ; f19 < 3000 ; f16 == 0
+# the second measure: among plans that reach the targets, which is better. steps least (the default),
+# steps most, fK least, fK most, or fK == V (as close to V as possible)
+prefer:  steps least

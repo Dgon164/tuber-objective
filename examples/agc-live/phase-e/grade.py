@@ -29,7 +29,7 @@ the way phase-d did: the press tried least often in a state like this one.
 
     python grade.py RUN_DIR STEPS [--mission FILE] [--step S] [--max-attempt N] [--horizon H] [--plans P]
 """
-import os, sys, time, socket, struct, pickle, subprocess, collections, re, random
+import os, sys, time, socket, struct, pickle, subprocess, collections, re, random, math
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -508,22 +508,35 @@ def main():
     attempts = []
     att = dict(start=0, reached=0, progress=0, max_alt=0, best_grade=float('inf'), pressed=set(), got=0.0)
     progress_of = {}                             # attempt -> the phase and closeness it got to, for the table
+    last_live = [None]                           # the last live row seen, for 'ended up'
     credit = collections.defaultdict(list)       # (state key, action) -> best grade of each attempt it was pressed in
     plan = []; phase_i = 0; step = 0; t0 = time.time()
     say(f'mission: ' + ' -> '.join(f'{n} [{"; ".join(f"f{k} {op} {v}" for k, op, v in c)}]' for n, c in phases) + f'; prefer {prefer}')
 
+    def point(r):
+        """a point on the way, as the log shows it: where the path would come down, altitude, position, speed"""
+        if r is None:
+            return 'none'
+        fall = 'never' if r[20] >= 32767 else f'{r[20]:.0f} km'
+        return f'fall {fall}, alt {r[6] * 10:.0f} m, downrange {r[21]:.0f} km, {math.hypot(r[7], r[8]) / 10:.0f} m/s'
+
     def rollover(cause):
         nonlocal attempt, phase_i, att, plan
         att['end'] = step; att['cause'] = cause; attempts.append(att)
+        att['ended'] = last_live[0]
         progress_of[attempt] = att['got'] if not att.get('done') else float(len(phases))
         for ka in att['pressed']:
             credit[ka].append(-att['got'])
-        say(f'attempt {attempt} over: reached phase {att["reached"]} of {len(phases)}, max altitude {att["max_alt"] * 10:.0f} m, got to {att["got"]:.3f}, {cause}; attempt {attempt + 1} on the pad')
+        say(f'attempt {attempt} over: reached phase {att["reached"]} of {len(phases)}, got to {att["got"]:.3f}, {cause}; attempt {attempt + 1} on the pad')
+        say(f'  closest approach: {point(att.get("closest"))}')
+        say(f'  ended up:         {point(att.get("ended"))}')
         attempt += 1; phase_i = 0; plan = []
         att = dict(start=step, reached=0, progress=step, max_alt=0, best_grade=float('inf'), pressed=set(), got=0.0)
 
     while step < budget:
         row = ins.last_row
+        if row is not None and not ins.dead:
+            last_live[0] = row.copy()
         if ins.dead or row is None:
             pause(); died, reborn = read()
             if reborn:
@@ -584,7 +597,9 @@ def main():
         why = ''; action = WAIT
         g_now = model.grade(np.array([row]), cons, kept)[0] if model.fitted else float('nan')
         if model.fitted:
-            att['got'] = max(att['got'], phase_i + model.closeness(np.array([row]), cons, kept)[0])
+            c_now = phase_i + model.closeness(np.array([row]), cons, kept)[0]
+            if c_now > att['got']:
+                att['got'] = c_now; att['closest'] = row.copy()
         avoid = set()
         if model.fitted:
             cands = [[], plan] + [[(a, 1)] for a in range(len(ACTIONS))]
@@ -631,7 +646,7 @@ def main():
         if why == 'wait':
             why = 'wait (in flight, nothing better; exploring every tenth step)'
         r = ins.last_row if not (ins.dead or died) else None
-        where = '' if r is None else f'alt {r[6] * 10:7.0f} vx {r[7] / 10:5.0f} vz {r[8] / 10:5.0f} pitch {r[1] / 100:6.1f} st {r[17] + 1:.0f} low {r[18] / 10:6.0f}km high {r[19] / 10:6.0f}km'
+        where = '' if r is None else f'alt {r[6] * 10:7.0f} vx {r[7] / 10:5.0f} vz {r[8] / 10:5.0f} pitch {r[1] / 100:6.1f} st {r[17] + 1:.0f} fall {"never" if r[20] >= 32767 else f"{r[20]:5.0f}km"} high {r[19] / 10:6.0f}km'
         say(f'step {step:4d}  a{attempt:<2d} p{phase_i + 1}  grade {g_now:8.0f}  {aname(action):13s} {where}  {why[:90]}{"  DEAD" if died else ""}  {time.time() - t0:5.0f}s')
         if step % 50 == 49:
             pickle.dump(dict(rows=np.array([r if a else np.full(NFIELD, np.nan) for r, a in zip(rows, alive)]), alive=np.array(alive),
@@ -644,7 +659,7 @@ def main():
     say(f'done: {step} steps, {attempt} attempts; {time.time() - t0:.0f} s')
     say('attempts:')
     for i, a in enumerate(attempts):
-        say(f'  {i + 1:3d}  steps {a["end"] - a["start"]:4d}  reached {a["reached"]}/{len(phases)}  got to {a["got"]:.3f}  max altitude {a["max_alt"] * 10:7.0f} m  {a["cause"]}')
+        say(f'  {i + 1:3d}  steps {a["end"] - a["start"]:4d}  reached {a["reached"]}/{len(phases)}  got to {a["got"]:.3f}  closest: {point(a.get("closest"))}  ended: {point(a.get("ended"))}  {a["cause"]}')
     wins = [a for a in attempts if a.get('done')]
     say(f'missions complete: {len(wins)} of {len(attempts)} attempts' + (f'; first at attempt {attempts.index(wins[0]) + 1}; steps per complete mission {[a["end"] - a["start"] for a in wins]}' if wins else ''))
     if model.fitted:

@@ -49,10 +49,10 @@ import vehicle as VH
 CTL_ACTIONS = [('ctl', c) for c in sorted(VH.CTL)]
 ROW = VH.ROW
 ROW_SIZE = struct.calcsize(ROW)
-NFIELD = 20
+NFIELD = 22
 ALIVE = NFIELD                                    # a virtual field: 1 alive, 0 dead
 FIELD = ['oga', 'iga', 'mga', 'wx', 'wy', 'wz', 'alt', 'vx', 'vz', 'thrust', 'jets5', 'jets6', 'cdu', 'pipa',
-         'prop', 'armed', 'engine', 'stage', 'peri', 'apo', 'alive']      # the lens: names for the log only
+         'prop', 'armed', 'engine', 'stage', 'peri', 'apo', 'fall', 'downrange', 'alive']      # the lens: names for the log only
 NULL_ALT = 0xffff
 
 

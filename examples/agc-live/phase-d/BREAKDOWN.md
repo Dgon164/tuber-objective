@@ -37,7 +37,9 @@ switches as Phase C. New:
   control. It is mission control giving the vehicle up, and it kills
   the vehicle the same way.
 
-**The instruments.** A row every 100 ms with 20 fields: three angles,
+**The instruments.** A row every 100 ms with 20 fields (two more were
+added for Phase E: where the current path comes down, and the position
+downrange): three angles,
 three turn rates, altitude, two speeds (sideways, up), thrust, two jet
 words, two counts for the flight computer, propellant in the current
 stage, armed, engine on, stage number, and the lowest and highest

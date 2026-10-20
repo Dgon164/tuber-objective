@@ -1,9 +1,14 @@
-# The mission: an orbit, and nothing else. The loop is told what the end looks like on the
-# instruments. Lift-off, the turn, the staging and the burns are its to find.
+# The mission: a path that never comes down, and nothing else. The loop is told what the end looks like on
+# the instruments. Lift-off, the turn, the staging and the burns are its to find.
 #
-# fields (positions in the instrument row, see ../phase-d/vehicle.py): 16 engine on, 18 lowest and
-# 19 highest point of the current path in 100 m (32767 = leaving the moon)
-orbit:   f18 > 100 ; f19 < 3000 ; f16 == 0
+# fields (positions in the instrument row, see ../phase-d/vehicle.py): 16 engine on, 19 highest point of
+# the current path in 100 m, 20 where the current path comes down, in km downrange from the pad
+# (32767 = never: the path stays up), 21 where the vehicle is now, km downrange
+#
+# As the vehicle gains sideways speed its fall destination moves out from the pad toward never. The loop
+# records, for every attempt, the closest it came (the farthest fall destination it reached, and the state
+# it had then) and where it ended up.
+orbit:   f20 > 32000 ; f19 < 3000 ; f16 == 0
 # the second measure: among plans that reach the targets, which is better. steps least (the default),
 # steps most, fK least, fK most, or fK == V (as close to V as possible)
 prefer:  steps least
