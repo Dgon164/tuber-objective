@@ -324,14 +324,15 @@ the growth stops:
 
 Level 1 looks like this. In Alice, level 1 cuts at `the`, the most
 common run of level 0. The runs of level 1 are the stretches between one
-`the` and the next. The words that come directly before `the` are
+`the` and the next `the`. The words that come directly before `the` are
 `said`, `and`, `to`, and `of`. In the German text, level 1 cuts at the
 comma, and the stretches that occur most often are the forms of address.
 
-In the Apollo assembly source, level 1 cuts at the comment mark `#`. The
-parts with the highest density are instruction sequences such as `TC
-BANKCALL`, `CAF ZERO`, and `CCS A`, along with the words the programmers
-wrote at the start of a comment: `TO`, `FOR`, `IN`, `IF`, `AND`, `SET`.
+In the Apollo assembly source (the human-readable listing of the flight
+software), level 1 cuts at the comment mark `#`. The parts with the
+highest density are instruction sequences such as `TC BANKCALL`,
+`CAF ZERO`, and `CCS A`, along with the words the programmers wrote at
+the start of a comment: `TO`, `FOR`, `IN`, `IF`, `AND`, `SET`.
 
 ## 10. The five steps, and the fifth step
 
@@ -377,6 +378,9 @@ changes. TIME reads the sequence as time and holds three tables of its
 own: ARROWS, for pairs that occur in both orders, with the order that
 wins; EFFECTS, for things that come after a part more often than they
 occur overall; and CHAINS, which follow the strongest effect forward.
+Two entries also mention functions: in `extend/functions.py`, each
+change the crystal found is treated as a function, a rule that turns one
+part into another.
 
 | the thing to find | the step | the place | the scales |
 |---|---|---|---|
@@ -428,7 +432,8 @@ Written as a program, these steps are three pieces, each with one job
   updates the memory. The memory update is the program acting on
   itself, from its own evaluation, and it is the only action the
   program takes. Acting on anything else is the job of a different
-  system; the guide for hybrid systems covers that.
+  system; the guide for hybrid systems (programs that connect Discovery
+  to another system) covers that.
 
 The memory closes the loop. With `--memory FILE`, the program saves the
 pool after a run and loads it back before the next run. The parts from
@@ -545,7 +550,7 @@ a method.
 | English novel (ASCII) | 8 bits. Column 0 is never 1. | the space | 73 symbols in order of frequency, the words, `+ed`/`+ing`, 22 verb stems |
 | German debate (UTF-8 text, where some letters take more than one byte) | 8 bits. Column 0 is 1 in 3.6% of the words. | the space | the umlaut lead byte (a byte that occurs only before 4 other bytes), `+en`/`+ung`/`+lich`, `be+`/`ge+`, 52 verb stems, 42 adjective stems, pairs of words with capital letters |
 | compiled C program | 64 bits. The column rates fall off from the first byte of each word to the last, which is how numbers look when their low byte is stored first (little-endian). At 8 bits, the strings. | zero | the layout of the file. At the byte level: `hello.c`, `strlen`, `puts`, `usage: hello TEXT`, the loader path, the compiler version |
-| Apollo LM flight software, packed 15-bit | 15 bits (the program picked 60 first, then folded to 15) | EXTEND | the word width of the machine, the instruction prefix as the separator, `TC BANKCALL`, `TC INTPRET`, `TC PHASCHNG` with their argument words, `RETURN` as the part with the most connections |
+| Apollo Lunar Module flight software, packed 15-bit | 15 bits (the program picked 60 first, then folded to 15) | EXTEND | the word width of the machine, the instruction prefix as the separator, `TC BANKCALL`, `TC INTPRET`, `TC PHASCHNG` with their argument words, `RETURN` as the part with the most connections |
 
 Each example folder has the input, the record, and a breakdown that
 explains each table.

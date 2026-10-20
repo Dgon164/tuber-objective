@@ -23,7 +23,7 @@ When the current file produces a part that is already in memory, the program cou
 
 ## Run 1: the first half, with an empty memory
 
-Each record from a run with memory has a MEMORY table. It says what was in memory before this file. Then, for each level, it says how many parts this file produced, how many of those were already in memory (confirmed), how many were new (added), and how many parts in memory this file never produced (not seen this time).
+Each record from a run with memory has a MEMORY table. It says what was in memory before this file (the record calls the input file a signal). Then, for each level, it says how many parts this file produced, how many of those were already in memory (confirmed), how many were new (added), and how many parts in memory this file never produced (not seen this time).
 
 ```
 MEMORY   alice.memory

@@ -10,7 +10,7 @@ python discovery.py examples/german/ep-00-01-17.en --lens ascii
 python bridge.py ep-00-01-17.de.record.json ep-00-01-17.en.record.json
 ```
 
-The `--lens utf8` option is a display setting. It makes the record print a whole run as readable text, so an a-umlaut shows up as the letter and not as 2 hexadecimal codes. In the WORDS table, which lists single bytes, the lens shows the bytes one at a time, so there the 2-byte letters appear as pairs of bytes. The lens changes only how the output looks.
+The `--lens utf8` option is a display setting. It makes the record print a whole run as readable text, so an a-umlaut shows up as the letter and not as two hexadecimal codes. In the WORDS table, which lists single bytes, the lens shows the bytes one at a time, so there the 2-byte letters appear as pairs of bytes. The lens changes only how the output looks.
 
 ## FRAME: 8-bit units, with the top bit used 3.6 percent of the time
 

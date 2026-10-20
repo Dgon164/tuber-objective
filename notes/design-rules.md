@@ -12,13 +12,13 @@ To find anything in a signal, meaning any file or stream of values read as bits,
 
 ## 2. Three answers: same, different, or not part
 
-When the program compares two things, it doesn't throw away whatever differs. It sorts the result into three piles: the piece the two things share, the piece that differs, and the case where one thing isn't inside the other at all. The program keeps the differing piece because the leftover of one comparison is the input to the next one, and a leftover that comes back again later is a real part in its own right. The three answers show up at every level of the system:
+When the program compares two things, it doesn't throw away whatever differs. It sorts the result into three piles: the piece the two things share, the piece that differs, and the case where one thing isn't inside the other at all. The program keeps the differing piece because the leftover of one comparison is the input to the next one, and a leftover that comes back again later is a real part in its own right. The three answers show up at every stage of the system:
 
 - In the frame step, which is where the program works out how wide one unit is. It lays the bits out in rows of a trial width and looks down each column. A column either keeps the same value row after row, or it changes.
 - In the mint step, which is where the program compares two runs that begin the same way. The shared beginning is the same, and what remains of each run is different. To mint a part is to make a new part out of two parts that share a start or share an end: the shared piece becomes a part, and so does each leftover.
 - In the bridge, which is a script that compares the records of two different files. A part either appears in both records or in only one.
 
-*In the code:* `shared_head()` returns the length of the part that matches. The caller takes what remains. The program does not change what the pair never had in common.
+*In the code:* `head()`, inside `mint()`, returns the part that matches from the front. The caller takes what remains. The program does not change what the pair never had in common.
 
 ## 3. Repeat the comparison until nothing new turns up
 

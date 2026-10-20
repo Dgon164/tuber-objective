@@ -35,6 +35,6 @@ When you take the human knowledge about the subject out, you don't get a worse s
 
 Discovery found that the instruction EXTEND is the separator in the Apollo Guidance Computer's code. The separator is the most common unit in a file, and it's what divides the file into stretches that mean something on their own. Nobody told Discovery what EXTEND does. Nobody told it what an instruction is.
 
-It found that role from the same property that makes the space the separator in English: the separator is whatever shows up most often. To cut a signal is to divide it into stretches at every copy of the separator, and a cut at the most common thing gives the most structure.
+It found that role from the same property that makes the space the separator in English: the separator is whatever shows up most often. To cut a file is to divide it into stretches at every copy of the separator, and a cut at the most common thing gives the most structure.
 
 That result is the bitter lesson in its purest form. The lesson isn't "search beats knowledge". That version still assumes knowledge is the thing you'd rather have, if only you could get it. The lesson is that knowledge is what you're left with when the search is finished. Knowledge is the output, not the input.
