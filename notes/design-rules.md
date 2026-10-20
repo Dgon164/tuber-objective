@@ -6,7 +6,7 @@ A few of the program's own names come up in nearly every rule, so here they are 
 
 ## 1. Two things are enough: something that compares and something that remembers
 
-To find anything in a signal, you look at what came before and what came after, and you check whether they differ. That takes two things. The first is a comparator: a piece of code that takes two things and says whether they're the same. The second is a memory: a place that holds the thing you compare against, so that the next comparison has something to meet. Those two are enough to start. The program follows this rule because once you have that pair, every later step turns out to be the same pair pointed at a new place, so nothing else needs to be invented.
+To find anything in a signal, meaning any file or stream of values read as bits, you look at what came before and what came after, and you check whether they differ. That takes two things. The first is a comparator: a piece of code that takes two things and says whether they're the same. The second is a memory: a place that holds the thing you compare against, so that the next comparison has something to meet. Those two are enough to start. The program follows this rule because once you have that pair, every later step turns out to be the same pair pointed at a new place, so nothing else needs to be invented.
 
 *In the code:* each function in `discovery.py` is a comparison of two things, or a count of the answers from such comparisons. A comparison gives one of three answers: same, different, or not part.
 

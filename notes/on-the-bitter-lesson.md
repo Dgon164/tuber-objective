@@ -10,7 +10,7 @@ Even Sutton's own examples still contain human choices. Someone decides what kin
 
 Discovery takes all of that out.
 
-It doesn't know what kind of file it's reading. It has no dictionary, no grammar, no list of machine instructions, and no table of file formats. It doesn't know whether the signal is text, code, or instructions for a machine. It doesn't even know how many bits make one unit. It works that out first, from the raw bits: it tries one width after another, lays the bits out in rows of that width, and looks for the width where some column barely changes from one row to the next. That's where the units line up.
+It doesn't know what kind of file it's reading. It has no dictionary, no grammar, no list of machine instructions, and no table of file formats. It doesn't know whether the file is text, code, or instructions for a machine. It doesn't even know how many bits make one unit. It works that out first, from the raw bits: it tries one width after another, lays the bits out in rows of that width, and looks for the width where some column barely changes from one row to the next. That's where the units line up.
 
 The only thing Discovery is given is the comparator: a piece of code that takes two things and answers same, different, or not part of each other. That isn't human knowledge about the subject matter. It's the operation itself, and it's the smallest possible unit of learning: a yes-or-no comparison, one bit of answer. That one operation runs again and again on what it found the time before. Everything else assembles itself out of it: the parts the file is made of, the connections between them, the groups of parts that behave alike, and the levels where the whole thing is done again one step up.
 

@@ -1,10 +1,10 @@
-# Breakdown: memory across signals
+# Breakdown: memory across files
 
-## The purpose of the test
+## What this test is for
 
-The question "Does the model match reality?" and the question "Is this the same as that?" are the same question. The comparator answers both questions. The comparator is the code of the program that checks if 2 parts overlap. The memory makes the loop. The program saves the pool after 1 run and loads the pool before the next run. Thus the program compares each new signal against all parts from the runs before.
+"Does the model match reality?" and "Is this the same as that?" are the same question. The program's comparison, the piece of code that checks whether two parts overlap, answers both. The program finds parts by comparing stretches of a file with each other: two stretches that start or end the same way get split into the shared piece and the leftovers, each piece becomes a part, and every part goes into one collection, the pool. It keeps comparing, new parts included, until a round finds nothing new. Memory turns that into a loop across files: the program saves the pool after one run and loads it before the next, so every new file gets compared against every part found in the runs before.
 
-There are 4 runs and 1 memory file (`alice.memory`). The runs make the memory file:
+There are four runs and one memory file (`alice.memory`). The runs build the memory file:
 
 ```
 python ../../discovery.py alice-first-half.txt  --lens ascii --memory alice.memory
@@ -13,15 +13,17 @@ python ../../discovery.py alice-second-half.txt --lens ascii --memory alice.memo
 python ../../discovery.py ep-00-01-17.de        --lens utf8  --memory alice.memory
 ```
 
-The files `alice-first-half.txt` and `alice-second-half.txt` are the 2 halves of Alice. The 2 halves divide at a line break near the middle (72,215 and 72,180 bytes). The file `ep-00-01-17.de` is the German text from `examples/german`. The memory file is JSON.
+`alice-first-half.txt` and `alice-second-half.txt` are the two halves of Alice, split at a line break near the middle (72,215 and 72,180 bytes). `ep-00-01-17.de` is the German text from `examples/german`. The memory file is JSON.
 
-One memory holds signals that the program read at 1 frame. The program reads all 4 signals here at 8 bits. The program does not accept a signal at a different width, and gives the reason.
+One memory holds only files that were read at one unit width. All four files here are read at 8 bits. If a file comes in at a different width, the program refuses it and says why.
 
-A comparison counts only when the comparison includes the current signal. The program does not compare 2 parts in memory that the current signal has not reached. The program compared those 2 parts when the program first made the 2 parts. Thus a memory never confirms itself.
+A comparison counts only when the current file is part of it. The program doesn't compare two parts that are both already in memory and that the current file hasn't touched, because it compared them when it first made them. So a memory never confirms itself.
 
-The program confirms a part in memory when the current signal makes the part again. Then the program compares that part with its neighbors one more time. Thus the program can also reach the parts that the program made from that part in the last run.
+When the current file produces a part that is already in memory, the program counts that part as confirmed and compares it with its neighbors in the pool one more time. That way the file can also reach the parts that were built from that part in the previous run.
 
 ## Run 1: the first half, with an empty memory
+
+Each record from a run with memory has a MEMORY table. It says what was in memory before this file. Then, for each level, it says how many parts this file produced, how many of those were already in memory (confirmed), how many were new (added), and how many parts in memory this file never produced (not seen this time).
 
 ```
 MEMORY   alice.memory
@@ -34,7 +36,7 @@ MEMORY   alice.memory
   after: 16272 parts, saved
 ```
 
-All parts are new. There was no part in memory to confirm. The program puts 16,272 parts into the memory file.
+Every part is new. There was nothing in memory to confirm. The program saves 16,272 parts to the memory file.
 
 ## Run 2: the second half, against the first half
 
@@ -49,13 +51,13 @@ MEMORY   alice.memory
   after: 30124 parts, saved
 ```
 
-The second half makes 19,925 parts at level 0. Of these parts, 10,588 were in memory from the first half, and the second half reached these parts again. These parts are the letters, the common words, and the common parts of words. There are 9,337 new parts.
+The second half produces 19,925 parts at level 0. Of those, 10,588 were already in memory from the first half, and the second half produced them again: the letters, the common words, and the common pieces of words. The other 9,337 are new.
 
-The first half made 3,491 parts that the second half never reached. These parts are names and words that occur only early in the book, and heads that the program finds only with a first-half neighbor. These parts stay in memory. The program never removes a part.
+The first half made 3,491 parts that the second half never produced. These are names and words that appear only early in the book, and shared starts that only turn up when a particular first-half run is the neighbor. They stay in memory. The program never removes a part.
 
-During this run, the parts from memory were in the pool, in order. Thus the program compared a run from the second half against its nearest neighbor in memory and against the rest of the second half.
+During this run, the parts from memory sat in the pool in sorted order, alongside the new runs. So each run from the second half was compared both against its nearest neighbor from memory and against the rest of the second half.
 
-Without memory, the second half adds all parts that the second half makes. With memory, the second half added only 9,337 parts. The memory covered the rest.
+Without memory, the second half would add every part it makes. With memory, it added only 9,337. The memory covered the rest.
 
 ## Run 3: the second half again
 
@@ -70,17 +72,17 @@ MEMORY   alice.memory
   after: 30129 parts, saved
 ```
 
-The signal is the same signal, a second time. At level 0, the signal made 19,833 parts. The program confirmed 19,833 parts. The program added 0 parts. At level 1, the program added 5 parts.
+The same file, read a second time. At level 0 it produced 19,833 parts, all 19,833 were confirmed, and none were added. At level 1, five were added.
 
-These 5 parts came from class-in-slot parts. A class-in-slot part is a run that differs from another run only by a member of 1 class in 1 position. The first run did not make these parts, because the program computes the classes over the pool. The pool was larger this time. Thus the class now had the members that the class needed. A third run will find even fewer new parts.
+Those five are parts that carry a class in one position. A class is a group of parts that all take the same set of changes, like the 22 stems that take both `+ed` and `+ing`. When two runs differ only by one member of a class in one position, the program makes a part that has the class in that position instead of a single word. The first run of the second half didn't make these five because the classes are computed over the whole pool, and the pool was smaller then, so the class didn't yet have the members it needed. A third run would find even fewer.
 
-The first run of the second half made 19,925 parts. The second run reaches 19,833 of these parts. The 92 parts that the second run does not reach are parts of the first half. The first run found these 92 parts when the first run compared a run of the second half with a neighbor of the first half. A part that the first run made is now in the pool between the run and the neighbor. Thus the comparison gives that part and not the first-half part.
+The first run of the second half made 19,925 parts; the second run reaches 19,833 of them. The 92 that it doesn't reach belong to the first half. The first run found them by comparing a second-half run with a first-half neighbor. Now a part that the first run made sits in the pool between the run and that neighbor, so the comparison gives that part instead of the first-half one.
 
-The parts that a signal makes depend on the neighbors in the pool at that time. The results of 2 reads of the same pool agree to within 0.5 percent.
+Which parts a file produces depends on what its neighbors in the pool are at the time. Two reads of the same pool agree to within 0.5 percent.
 
-The MINT line of this run shows that the program minted no parts in 9 rounds. To mint a part is to make a new part from 2 parts that have the same start or the same end. The line under the MINT line shows the parts in memory that this signal made again, round by round. The counts are 11,882, then 2,972, 946, 250, 53, 12, 5, 3, 0. This sequence falls to 0 in the same shape as the mint. The stop rule is the same.
+The MINT line of this run, which reports how many new parts each round of comparison made, shows none in 9 rounds. The line under it reports how many parts already in memory this file produced again, round by round: 11,882, then 2,972, 946, 250, 53, 12, 5, 3, 0. It falls to 0 in the same shape as the mint line of a run without memory, and the loop stops by the same rule: when a round finds nothing new.
 
-The loop has no more new parts to find: 30,124 parts to 30,129 parts, then no change.
+The loop has nothing left to find: 30,124 parts to 30,129, then no change.
 
 ## Run 4: German, against the English memory
 
@@ -95,14 +97,14 @@ MEMORY   alice.memory
   after: 63143 parts, saved
 ```
 
-This run reads a different language against the memory of the first language. The program confirmed 14,797 parts. These parts are the parts that the 2 alphabets share: the letters and the short parts that occur in both languages (`in`, `er`, `st`, `en`). The program reached these parts when the program compared German runs with English neighbors.
+This run reads a different language against the memory of the first. The program confirmed 14,797 parts: the parts the two alphabets share, meaning the letters and the short pieces that appear in both languages (`in`, `er`, `st`, `en`). It reached them by comparing German runs with their English neighbors in the pool.
 
-The program added 17,987 parts. These parts are all that German makes and English never made. The program did not see 8,619 parts. These parts are the English parts that the German text does not reach.
+It added 17,987 parts, which is everything German makes that English never made. And 8,619 parts went unseen: the English parts that the German text never reaches.
 
-The result is the same bridge as in `examples/german`, but through memory and not through a separate script. The parts that are the same across the 2 signals are the parts that the program confirms.
+This is the same bridge as in `examples/german`, built through memory instead of a separate script. The parts that are the same across the two files are exactly the parts the program confirms.
 
 ## Summary of the record
 
-Each run with memory starts with 3 numbers for each level: confirmed, added, not seen. A signal that the program reads 2 times confirms what the signal made the first time. The exception is the few parts that have a different neighbor in the pool. The signal adds no parts, or almost no parts. A new signal adds what the new signal brings and confirms what the new signal shares. The program never removes a part.
+Each run with memory starts with three numbers for each level: confirmed, added, not seen. A file read twice confirms what it made the first time, apart from the few parts that now have a different neighbor in the pool, and it adds nothing or almost nothing. A new file adds what it brings and confirms what it shares. The program never removes a part.
 
-A part that the program does not see this time keeps its place and its count. The additions get smaller as the memory covers more of what the signals contain. The shape is the same as the shape of the levels in 1 run: many parts, then some more, then a few, then almost none, then no change.
+A part that isn't seen this time keeps its place and its count. The additions shrink as the memory covers more of what the files contain. The shape is the same as the shape of the levels inside one run: many parts, then some more, then a few, then almost none, then no change.

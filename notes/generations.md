@@ -10,7 +10,7 @@
 
 ## Where this repository fits
 
-By the definition in the table, Discovery is a 3.0 system. It's given no way of standing for things at the start. It gets the raw bits of a file and a comparator, which is a piece of code that takes two things and says whether they're the same or different. Everything else, the system makes for itself out of the signal it was given (see design rule 7, define nothing, and `paper/discovery.md`). The things it makes are:
+By the definition in the table, Discovery is a 3.0 system. It's given no way of standing for things at the start. It gets the raw bits of a file and a comparator, which is a piece of code that takes two things and says whether they're the same or different. Everything else, the system makes for itself out of the file it was given (see design rule 7, define nothing, and `paper/discovery.md`). The things it makes are:
 
 - the word width: how many bits make one unit of the file
 - the words: the file cut into units of that width
