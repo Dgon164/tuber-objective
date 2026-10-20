@@ -107,8 +107,9 @@ The parts not seen this time stay in memory; the program doesn't remove
 them. A comparison only counts when this signal is one side of it, so a
 memory never confirms its own parts. If you run the same signal twice,
 the second run confirms what the first run made. A few parts can
-differ, because the part that sits next to them in the sorted pool has
-moved. The second run adds nothing, or almost nothing.
+differ, because the program compares each part with its neighbor in
+the sorted pool, and that neighbor has moved. The second run adds
+nothing, or almost nothing.
 
 The record writes the tables below for each level under a `LEVEL n`
 heading. At level 0 the first two tables are WORDS and FOLLOWS. At
@@ -137,8 +138,9 @@ possible states.
 This table lists pairs of words that occurred one right after the
 other, with a count for each pair. In text, the pairs are letter pairs
 (`th`, `he`, `in`). In machine code, they are instruction pairs. Some
-words are always followed by one of a small set of words; the UTF-8
-lead byte and the EXTEND prefix are examples. A word like that shows up
+words are always followed by one of a small set of words; the byte that
+UTF-8 puts first in an accented character, and EXTEND, the Apollo
+computer's instruction prefix, are examples. A word like that shows up
 here with the same group of partners every time.
 
 ## SEPARATOR
@@ -239,5 +241,6 @@ That comes from the structure of the signal itself, from which parts
 ended up next to each other. If you want a correction, it lives in the
 input: more signal, or a different separator.
 
-The lens changes only how the record shows a word. Two records of the
-same file with different lenses have the same tables.
+The lens option only changes how the record prints each word. Two
+records of the same file made with different lenses have the same
+tables.

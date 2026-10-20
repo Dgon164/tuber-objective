@@ -43,7 +43,7 @@ A part has no definition apart from its connections. The connections are:
 
 The program also counts how many other parts contain a given part. That number is called the part's density. A part with a high density is one that appears inside many places.
 
-*In the code:* `made_of`, `part_of`, `changes_of()`, and the FOLLOWS and RUN FOLLOWS tables. The density is `len(part_of[p])`. The CRYSTAL entry shows all of those connections for 1 part.
+*In the code:* `made_of`, `part_of`, `changes_of()`, and the FOLLOWS and RUN FOLLOWS tables. The density is `len(part_of[p])`. The CRYSTAL entry shows all of those connections for one part.
 
 ## 6. Group the parts into classes without changing the pool
 

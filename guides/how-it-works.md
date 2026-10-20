@@ -84,8 +84,8 @@ fold[w] = mean(|profile[picked][c] - profile[w][c % w]| for c in range(picked))
 if fold[w] <= wobble: frame = w
 ```
 
-The Apollo Guidance Computer rope in `examples/agc` is the case that
-needed this check. By the gap alone, the program picked 60. But 60 is
+The Apollo Guidance Computer's flight program, the rope file in
+`examples/agc`, is the case that needed this check. By the gap alone, the program picked 60. But 60 is
 15 repeated four times, and the fold check found the true width. The
 two patterns differed by no more than 0.004.
 
@@ -243,7 +243,8 @@ again on what this level produced, so it finds phrases made of words
 the same way it found words made of letters. Nothing is replaced;
 everything is added.
 
-1. The symbols for the next level are the runs of this level, unchanged.
+1. The next level's symbols, the units it counts and cuts, are the runs
+   of this level, unchanged.
 2. The classes this level found (the ones with two or more members)
    give the next level a second way for two symbols to count as the
    same. Two symbols are the same if they are the same run. They are
