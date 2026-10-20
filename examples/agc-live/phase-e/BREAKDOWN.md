@@ -104,9 +104,33 @@ the flight plan, completed it 62 times in 63 attempts.
 | 1 | 2,000 | 22, phase 2 twice | 17, never above the ground | a vehicle given up on the pad was recorded as a death, so the pad graded as fatal and any press beat doing nothing; plans were judged on the current phase only; exploration could press anything |
 | 2 | 2,000 | 23, phase 2 twice | 17, lowest point −1,590 km | an abort rule for a lost exact target fired on "engine off", an end target the engine has to move away from first |
 | 3 | 2,200 of 3,000 | 22, phase 2 twice | 21, −1,457 km | exploration still pressed `stage` on the pad: the guard compared only phases-left and dead-or-not |
-| 4 | 3,000 | 34, phase 2 eight times | 24, −1,511 km | see below |
+| 4 | 3,000 | 34, phase 2 eight times | 24, −1,511 km | the grade divided a gap by the biggest one-step change ever seen, so a dropped stage made burnout read as one press away; the local line extrapolated slopes it had no evidence for; exploration mid-flight wrecked good flights |
+| 5 | 3,000 | 35, phase 2 in 27, phase 3 in 7, phase 4 once | 26, −1,572 km | an exact target of an earlier phase was kept even when a later phase asked for a different value of the same field, so "stage 0" from lift-off blocked "stage 1" at staging: the one attempt that staged was called off for it, and no plan could ever have proposed staging |
 
-Launch 4, flight plan, `runs/E-plan.log`, 34 attempts in 2.6 hours:
+Launch 5, flight plan, `runs/E-plan.log`, 35 attempts in 3.0 hours:
+
+```
+reached nothing   6   (4 on the pad)
+lift-off only     2
+the turn         19   (all crashed, 266 to 938 m/s)
+burnout           7   (all crashed, 260 to 754 m/s)
+staging           1   (called off, see the table)
+orbit             0
+```
+
+The turn is now reached in 27 of 29 flights that lift off, and the
+loop waits through the burn, which it did not before. What kills the
+flights after the turn is the turn: the mission asks for the pitch
+angle in a window and the pitch rate at zero, and the vehicle meets
+that while its pitch reading is still swinging through the window on a
+roll or yaw rate that the pitch-rate reading does not show. In attempt
+18 the pitch reading went 113, 116, 118, 120, 121, 122, 123, 125
+degrees over the seven steps after the turn was declared, the vertical
+speed fell from 142 to 3 m/s, and the vehicle dived. Phase D never met
+this because it only ever pressed +pitch and −pitch. This loop presses
+roll and yaw too, and it met the letter of the target.
+
+Launch 4, flight plan, 34 attempts in 2.6 hours:
 
 ```
 reached nothing   4   (3 on the pad, 1 at 10 m)
@@ -125,7 +149,14 @@ climbing at 178 m/s), was followed by nine presses, five of them
 exploration, the last of which was `stage` at 29 km; that lost the
 burnout phase's "stage 0" and the attempt was called off.
 
-Launch 4, bare mission, `runs/E-bare.log`, 24 attempts: 14 ended on
+Launch 5, bare mission, `runs/E-bare.log`, 26 attempts: 15 ended on
+the pad. With more deaths on record, the model's death check flagged
+nearly every active press as leading to a crash, the exploration guard
+ruled those out, and what was left to explore on the pad was `engine
+off` and `+yaw`: eight attempts in a row of 150 steps doing nothing.
+Best low point −1,572 km.
+
+Launch 4, bare mission, 24 attempts: 14 ended on
 the pad, called off after 150 steps; 7 crashed; 3 ran out of propellant
 with the lowest point of the path at −1,684, −1,665 and −1,511 km. The
 orbit needs +10 km. Across all four launches the best was −1,457 km.
@@ -171,10 +202,9 @@ was never burned out in any attempt.
 
 - No orbit. Four launches, 0 of 93 attempts with the flight plan, 0 of
   79 without.
-- The three changes the results call for are not made: a sustained
-  rate in the grade; a model that discounts its own slopes where its
-  predictions keep failing; no exploration in the middle of a flight
-  that a plan is carrying.
+- Launch 6 is running with the kept-target fix, the turn phase asking
+  for all three rates at zero, and an exploration guard that acts on a
+  predicted lost phase only, not on a predicted death.
 - The second measure (`prefer`) has never come into play, since no plan
   reached the end.
 - The step is 5 seconds and the planning costs about 3 seconds of

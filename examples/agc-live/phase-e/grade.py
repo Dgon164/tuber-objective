@@ -291,7 +291,8 @@ class Model:
         note. Reaching the last phase gives (0, 0, 0, second measure)."""
         P = len(plans); nph = len(phases)
         cons_of = [ph[1] for ph in phases]
-        kept_of = [[c for q in range(i) for c in phases[q][1] if c[1] == '=='] for i in range(nph)]
+        kept_of = [[c for q in range(i) for c in phases[q][1] if c[1] == '==' and c[0] not in {k for k, op, v in phases[i][1]}]
+                   for i in range(nph)]
         cur = np.tile(np.asarray(row, float), (P, 1))
         seg = [0] * P; left = [plans[p][0][1] if plans[p] else 0 for p in range(P)]
         ph = [phase0] * P; best = np.full(P, np.inf); t_best = [0] * P
@@ -518,7 +519,7 @@ def main():
                 rollover('mission complete')
             continue
         cons = phases[phase_i][1]
-        kept = [c for p in range(phase_i) for c in phases[p][1] if c[1] == '==']
+        kept = [c for p in range(phase_i) for c in phases[p][1] if c[1] == '==' and c[0] not in {k for k, op, v in cons}]
         # an exact target that has only ever moved away from its value, for 30 steps now: nothing known brings it
         # back, and the attempt is called off rather than waited out
         lost = [k for k, op, val in cons + kept if op == '==' and abs(row[k] - val) >= 0.5 and model.fitted
@@ -561,8 +562,9 @@ def main():
                 plan = []; why = 'wait'; action = WAIT
             else:
                 plan = []
-            # a single press the model says loses a phase or kills is not explored either
-            avoid = {a for a in range(len(ACTIONS)) if scored[2 + a][0][:2] > nothing[:2] or scored[2 + a][0][2] > 2 * nothing[2] + 10}
+            # a single press the model says loses a phase is not explored either (a predicted death is not enough:
+            # the death check is a nearest-row guess and early on it flags most presses)
+            avoid = {a for a in range(len(ACTIONS)) if scored[2 + a][0][0] > nothing[0] or scored[2 + a][0][2] > 2 * nothing[2] + 10}
         if not why:
             # explore: presses never made in a state like this first; then the ones whose attempts got closest
             key = state_key(row)
